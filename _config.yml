@@ -1,7 +1,7 @@
-site: Index Jekyll Theme
+site: Bitcoin Tools
 
 url: https://tools.bitbo.io
-baseurl: 
+baseurl: https://tools.bitbo.io
 
 collections:
   pages:
