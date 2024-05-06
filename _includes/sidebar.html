@@ -18,7 +18,7 @@
     </h2>
     
     <ul class="sidebar-list">
-    {% assign catlist = site.pages | sort: "name" %}
+    {% assign catlist = site.pages | sort: "title" %}
     {% for cat in catlist  %}
     {% if cat.category %}
       <li>
