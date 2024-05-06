@@ -12,7 +12,7 @@
       </div>
     </a> 
   </div>
-  <header>
+  <header style="display:block!important;">
     <h2>
       Tools Categories
     </h2>
@@ -21,7 +21,7 @@
     {% for cat in site.pages %}
     {% if cat.category %}
       <li>
-        <a href="{{ page.url }}">{{ cat.title }}</a>
+        <a href="{{ cat.permalink }}">{{ cat.title }}</a>
       </li>
     {% endif %}  
     {% endfor %}
