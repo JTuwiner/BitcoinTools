@@ -21,10 +21,10 @@ layout: base
 
       {{ content }}
       
+      {% if page.category %}
+      
       {% assign items = site.pages | sort: "name" %}
       {% for tool in items %}
-      
-      {% if page.category %}
         <div class="tools-container">
           {% if tool.cat == page.title %}
            <div class="tool">
@@ -33,7 +33,8 @@ layout: base
                <p>Smart AI generated content for all your writing needs</p>
            </div>
           {% endif %}  
-          {% endfor %}
+      
+      {% endfor %}
         </div>
       {% endif %}  
 
