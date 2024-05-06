@@ -6,96 +6,77 @@ layout: base
 <main>
 <div class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}" role="main">
   <div class="row">
-    <div {% if page.calendar %}id="calendar-page"{% endif %}class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
-
-      <div class="month-header" style="display: block;">
-        <h2 class="detailed-cal">
-          {{ page.title }}
-        </h2>
-        {% if page.subdesc %}
-        <p style="margin-top: 0;font-size: 14px;color: hsla(0,0%,100%,.5);">{{ page.subdesc }}</p>
-        {% endif %}
-        
-       
+    
+    
+    <div class="container">
+        <div class="logo-section">
+            <img src="/img/{{ page.img }}" alt="{{ page.title }}" class="logo">
+            <h1>{{ page.title }}</h1>
+            <p>{{ page.subdesc }}</p>
+        </div>
+        <div class="link-section">
+            <a href="{{ page.link }}" target="_blank" class="website-link">{{ page.link }} ↗</a>
+        </div>
     </div>
 
       {{ content }}
       
-      {% if page.category %}
-      <div class="tools-container">
-        {% assign items = site.pages | sort: "name" %}
-        {% for tool in items %}
-            {% if tool.cat == page.title %}
-             <a class="tool" href="{{ tool.permalink }}">
-                 <img src="/img/{{ tool.img }}" alt="{{ tool.title }}">
-                 
-                 <div class="tool-info">
-                     <h3>{{ tool.title }}</h3>
-                     <p>{{ tool.desc }}</p>
-                 </div>
+     
 
-             </a>
-            {% endif %}  
-        
-        {% endfor %}
-      </div>
-      {% endif %}  
-
-      {% if page.after-content %}
-        <div class="after-content">
-          {% for file in page.after-content %}
-            {% include {{ file }} %}
-          {% endfor %}
-        </div>
-      {% endif %}
+  
 
     </div>
   </div>
-</div>
+
 </main>
 
 <style>
   
-  .tools-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-      max-width: 1200px;
-  }
-  
-  .tool {
-      background-color: rgba(29,34,47,.5);
+  .container {
+      text-align: center;
+      max-width: 600px;
+      background-color: #fff;
       border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 15px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      text-align: left;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      margin: 20px;
   }
   
-  .tool img {
-      width: 60px;
-      height: 60px;
-      margin-right: 15px;
-      border-radius: 50%;
-      background-color: #f0f0f0;
+  .logo-section {
+      margin-bottom: 20px;
   }
   
-  .tool-info {
-      flex: 1;
+  .logo {
+      width: 80px;
+      height: auto;
   }
   
-  .tool h3 {
-      font-size: 18px;
-      margin: 0 0 5px;
-      color: white;
+  h1 {
+      font-size: 24px;
+      margin-top: 10px;
+      margin-bottom: 5px;
   }
   
-  .tool p {
+  p {
       font-size: 14px;
-      color: white;
-      margin: 0;
+      color: #999;
+  }
+  
+  .link-section {
+      margin-top: 20px;
+  }
+  
+  .website-link {
+      font-size: 16px;
+      color: #fff;
+      background-color: #000;
+      text-decoration: none;
+      border-radius: 20px;
+      padding: 8px 15px;
+  }
+  
+  .website-link:hover {
+      background-color: #444;
   }
   
 </style>
