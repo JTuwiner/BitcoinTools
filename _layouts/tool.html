@@ -14,12 +14,16 @@ layout: base
             <h1>{{ page.title }}</h1>
             <p>{{ page.desc }}</p>
         </div>
+        {% assign full_url = page.link %}
+        {% assign stripped_url = full_url | remove: "https://" | remove: "http://" | split: "/" | first %}
         <div class="link-section">
-            <a href="{{ page.link }}" target="_blank" class="website-link">{{ page.link }} ↗</a>
+            <a href="{{ page.link }}" target="_blank" class="website-link">{{ {{ stripped_url }} }} ↗</a>
         </div>
     </div>
 
-      {{ content }}
+  <div class="container">
+        {{ content }}
+  </div>
       
      
 
@@ -47,17 +51,6 @@ layout: base
   .logo {
       width: 80px;
       height: auto;
-  }
-  
-  h1 {
-      font-size: 24px;
-      margin-top: 10px;
-      margin-bottom: 5px;
-  }
-  
-  p {
-      font-size: 14px;
-      color: #999;
   }
   
   .link-section {
