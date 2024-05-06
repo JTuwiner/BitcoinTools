@@ -1,28 +1,16 @@
 ---
 layout: base
 ---
-{% include header.html type="page" %}
 
 {% include sidebar.html %}
 <main>
 <div class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}" role="main">
   <div class="row">
     <div {% if page.calendar %}id="calendar-page"{% endif %}class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
-      {% if page.before-content %}
-        <div class="before-content">
-          {% for file in page.before-content %}
-            {% include {{ file }} %}
-          {% endfor %}
-        </div>
-      {% endif %}
 
       <div class="month-header">
-        <h2 class="detailed-cal">{% if page.monthName %}{{ page.monthName}}{% else %}{{ currentMonthName }}{% endif %} 
-          {% if page.title contains "2025" %}
-          2025
-          {% else %}
-          2024
-          {% endif %}
+        <h2 class="detailed-cal">
+          {{ page.title }}
         </h2>
         
        
