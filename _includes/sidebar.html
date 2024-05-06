@@ -17,13 +17,10 @@
       Tools Categories
     </h2>
     
-    {%- for page in site.pages -%}
+    {% for page in site.pages %}
+      <a href="{{ page.url }}">{{ page.title }}</a>
+    {% endfor %}
     
-    <div class="category-wrapper">
-      {{ page.title }}
-    </div>
-    
-    {%- endfor -%}
   </header>
 
     
