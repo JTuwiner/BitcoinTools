@@ -18,7 +18,9 @@
     </h2>
     
     {% for page in site.pages %}
+    {% if page.category %}
       <a href="{{ page.url }}">{{ page.title }}</a>
+    {% endif %}  
     {% endfor %}
     
   </header>
