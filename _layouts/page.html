@@ -10,15 +10,8 @@ layout: base
 {% endif %}
 
 {% include header.html type="page" %}
-{% if page.month %}
-  {% if page.day %}
-  {% include sidebar.html month=page.month monthName=page.monthName day=page.day year=currentYear %}
-  {% else %}
-  {% include sidebar.html month=page.month monthName=page.monthName year=currentYear %}
-  {% endif %}
-{% else %}
-{% include sidebar.html month=currentMonth year=currentYear %}
-{% endif %}
+
+{% include sidebar.html %}
 <main>
 <div class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}" role="main">
   <div class="row">
@@ -40,7 +33,7 @@ layout: base
           {% endif %}
         </h2>
         
-        {% include months_nav.html activeMonth=page.month %}
+       
     </div>
 
       {{ content }}
