@@ -1,0 +1,14 @@
+<script type="text/javascript">
+window.bbww = window.bbww || {};
+window.bbww.runOnceAfterJqueryLoads = window.bbww.runOnceAfterJqueryLoads || function runOnceAfterJqueryLoads(fn) {
+  if (typeof fn !== 'function') {
+    throw TypeError('runOnceAfterJqueryLoads requires callback function');
+  }
+
+  if (typeof $ === 'function') {
+    fn();
+  } else {
+    window.setTimeout(() => window.bbww.runOnceAfterJqueryLoads(fn), 100);
+  }
+};
+</script>

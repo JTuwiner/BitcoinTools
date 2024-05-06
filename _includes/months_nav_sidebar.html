@@ -1,0 +1,47 @@
+{% include month_vars.html %}
+
+{% assign prevMonth = false %}
+{% assign nextMonth = false %}
+
+{% assign prevMonthI = false %}
+{% assign nextMonthI = false %}
+
+{% if include.activeMonth %}
+    {% assign activeMonth = include.activeMonth %}
+{% else %}
+    {% assign activeMonth = currentMonth %}
+{% endif %}
+
+{% for month in availableMonths %}
+    {% if activeMonth == month %}
+        {% if forloop.index0 > 0 %}
+            {% assign index = forloop.index0 | minus: 1 %}
+            {% assign prevMonth = availableMonths[index] %}
+        {% endif %}
+        {% if forloop.index0 < 12 %}
+            {% assign index = forloop.index0 | plus: 1 %}
+            {% assign nextMonth = availableMonths[index] %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+<nav>
+  
+    {% if prevMonth %}
+      <a href="{% if prevMonth %}/{{prevMonth | downcase }}/{% else %}javascript:void(0);{% endif %}">
+          <svg width="8" height="15" viewBox="0 0 8 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 13.0581L1 7.05811L7 1.05811" stroke="white" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+          </svg>
+      </a>
+    {% endif %}
+    {% if nextMonth %}
+      <a href="{% if nextMonth %}/{{nextMonth | downcase }}/{% else %}javascript:void(0);{% endif %}">
+          <svg width="8" height="15" viewBox="0 0 8 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M0.292893 0.350999C0.683417 -0.0395256 1.31658 -0.0395256 1.70711 0.350999L7.70711 6.351C8.09763 6.74152 8.09763 7.37469 7.70711 7.76521L1.70711 13.7652C1.31658 14.1557 0.683417 14.1557 0.292893 13.7652C-0.0976311 13.3747 -0.0976311 12.7415 0.292893 12.351L5.58579 7.05811L0.292893 1.76521C-0.0976311 1.37469 -0.0976311 0.741523 0.292893 0.350999Z"
+                  fill="white" />
+          </svg>
+
+      </a>
+    {% endif %}
+  </nav>

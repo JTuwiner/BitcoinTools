@@ -1,0 +1,12 @@
+{% assign unique_events = site.data.events %}
+  
+{% for event in unique_events %}
+
+	{% if event.type == include.type and event.month == include.month %}
+	<strong>{{ event.title }}</strong><br>
+			{{ include.monthname }} {{ event.day }} | <a href="{{ event.source }}">Learn More</a><br><br>
+			{{ event.desc }}<br>
+	<br><br>		
+    {% endif %}
+	
+{% endfor %}

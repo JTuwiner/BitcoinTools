@@ -1,0 +1,41 @@
+---
+layout: base
+---
+{% assign currentMonth = site.time | date: '%b' %}
+{% assign currentMonthName = site.time | date: '%B' %}
+{% include header.html type="page" %}
+{% if page.month %}
+  {% include sidebar.html month=page.month monthName=page.monthName day=page.day %}
+{% else %}
+{% include sidebar.html month=currentMonth %}
+{% endif %}
+<main class="main-event-content">
+<div class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}" role="main">
+  <div class="row">
+    <div {% if page.calendar %}id="calendar-page"{% endif %}class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
+      {% if page.before-content %}
+        <div class="before-content">
+          {% for file in page.before-content %}
+            {% include {{ file }} %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+
+      {% if page.day and page.month %}
+      {% include intro-header.html type="page" %}
+      {% endif %}
+      {{ content }}
+
+      {% if page.after-content %}
+        <div class="after-content">
+          {% for file in page.after-content %}
+            {% include {{ file }} %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+</main>

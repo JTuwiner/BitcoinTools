@@ -1,0 +1,14 @@
+<script type="text/javascript">
+window.bbww = window.bbww || {};
+window.bbww.runOnceAfterMomentLoads = window.bbww.runOnceAfterMomentLoads || function runOnceAfterMomentLoads(fn) {
+  if (typeof fn !== 'function') {
+    throw TypeError('runOnceAfterMomentLoads requires callback function');
+  }
+
+  if (typeof moment === 'function') {
+    fn();
+  } else {
+    window.setTimeout(() => window.bbww.runOnceAfterMomentLoads(fn), 100);
+  }
+};
+</script>

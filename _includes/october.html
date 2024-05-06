@@ -1,0 +1,18 @@
+{% include calendarHeader.html %}
+<div id="calendar">
+    <div class="day disabled-day">
+        <div class="day-number">29</div>
+    </div>
+    <div class="day disabled-day">
+        <div class="day-number">30</div>
+    </div>
+    {% for day in (1..31) %}
+    <div class="day">
+        <div class="day-number">{% if day < 10 %}0{{day}}{% else %}{{ day }}{% endif %}</div>
+        {% include event-checker.html month="Oct" day=day %}
+    </div>
+    {% endfor %}
+</div>
+
+
+

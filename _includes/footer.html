@@ -1,0 +1,144 @@
+<footer>
+  <div class="container-md beautiful-jekyll-footer">
+    
+    <div class="row">
+      <div id="bj-wrap">
+        <a href="https://bitcoinminimalist.com/subscribe" target="_blank" class="b-unit minimalistad"><div class="pic">
+          <picture><img src="https://calendar.bitbo.io/assets/bitbo.jpg" alt="minimalist"></picture></div>
+          <div class="r-wrap">
+            <div class="text">
+             Join 8,000+ Bitcoiners. Twice-weekly Bitcoin-only news & analysis. 
+            </div>
+            <div class="site">
+              bitcoinminimalist.com
+            </div>
+          </div>
+        </a>
+      </div>
+    </div> 
+    
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+       
+      {% include social-networks-links.html %}
+      {% if page.footer-extra %}
+        <div class="footer-custom-content">
+          {% for file in page.footer-extra %}
+            {% include {{ file }} %}
+          {% endfor %}
+        </div>
+      {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script> 
+window.addEventListener('load', (event) => {
+  document.querySelectorAll('.minimalistad').forEach(item => {
+  item.addEventListener('click', event => {
+    fathom.trackEvent('Click Minimalist Ad');
+  });
+  });
+});
+
+window.addEventListener('load', (event) => {
+  document.querySelectorAll('.chartsads').forEach(item => {
+  item.addEventListener('click', event => {
+    fathom.trackEvent('Click Charts Ad');
+  });
+  });
+});
+
+window.addEventListener('load', (event) => {
+  document.querySelectorAll('.bitbo-logo-nav-link').forEach(item => {
+  item.addEventListener('click', event => {
+    fathom.trackEvent('Click Bitbo Logo Nav');
+  });
+  });
+});
+
+window.addEventListener('load', (event) => {
+  document.querySelectorAll('.bitbo-nav-link').forEach(item => {
+  item.addEventListener('click', event => {
+    fathom.trackEvent('Click Dashboard Nav');
+  });
+  });
+});
+
+window.addEventListener('load', (event) => {
+  document.querySelectorAll('.bitbo-charts-link').forEach(item => {
+  item.addEventListener('click', event => {
+    fathom.trackEvent('Click Bitbo Charts Nav');
+  });
+  });
+});
+
+window.addEventListener('load', (event) => {
+  document.querySelectorAll('.bitcoin-jobs-link').forEach(item => {
+  item.addEventListener('click', event => {
+    fathom.trackEvent('Click Bitcoin Jobs Nav');
+  });
+  });
+});
+
+window.addEventListener('load', (event) => {
+  document.querySelectorAll('.merch-link').forEach(item => {
+  item.addEventListener('click', event => {
+    fathom.trackEvent('Click Bitcoin Merch Nav');
+  });
+  });
+});
+
+</script>
+
+<style>
+  .b-unit {
+    display: flex;
+    height: 95px;
+    grid-gap: 10px;
+    gap: 10px;
+    align-items: center;
+    padding: 11px 12px;
+    background: rgba(29,34,47,.5);
+    border-bottom: 0 !important;
+    margin: 20px auto 50px;
+  }
+  
+  .b-unit .pic img {
+    display: block;
+    height: 72px;
+    max-width: 80px;
+    border: 1px solid hsla(0,0%,100%,.05);
+  }
+  
+  .b-unit .text {
+    font-size: 15px;
+    font-weight: 400;
+    color: #fff;
+  }
+  
+  footer #bj-wrap {
+    display: block !important;
+    margin: 0 auto !important;
+  }
+  
+  .b-unit .site {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: hsla(0,0%,100%,.5);
+    margin-top: 12px;
+  }
+  
+  @media (max-width: 767px) {
+      div#calendar .day:is(:empty) {
+          display: none !important;
+      }
+      
+      div#calendar .disabled-day {
+          display: none !important;
+      }
+  }
+  
+</style>

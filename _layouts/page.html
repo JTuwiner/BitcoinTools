@@ -1,0 +1,59 @@
+---
+layout: base
+---
+{% assign currentMonth = site.time | date: '%b' %}
+{% assign currentMonthName = site.time | date: '%B' %}
+{% include header.html type="page" %}
+{% assign currentYear = "2024" %}
+{% if page.title contains "2025" %}
+  {% assign currentYear = "2025" %} 
+{% endif %}
+
+{% include header.html type="page" %}
+{% if page.month %}
+  {% if page.day %}
+  {% include sidebar.html month=page.month monthName=page.monthName day=page.day year=currentYear %}
+  {% else %}
+  {% include sidebar.html month=page.month monthName=page.monthName year=currentYear %}
+  {% endif %}
+{% else %}
+{% include sidebar.html month=currentMonth year=currentYear %}
+{% endif %}
+<main>
+<div class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}" role="main">
+  <div class="row">
+    <div {% if page.calendar %}id="calendar-page"{% endif %}class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
+      {% if page.before-content %}
+        <div class="before-content">
+          {% for file in page.before-content %}
+            {% include {{ file }} %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <div class="month-header">
+        <h2 class="detailed-cal">{% if page.monthName %}{{ page.monthName}}{% else %}{{ currentMonthName }}{% endif %} 
+          {% if page.title contains "2025" %}
+          2025
+          {% else %}
+          2024
+          {% endif %}
+        </h2>
+        
+        {% include months_nav.html activeMonth=page.month %}
+    </div>
+
+      {{ content }}
+
+      {% if page.after-content %}
+        <div class="after-content">
+          {% for file in page.after-content %}
+            {% include {{ file }} %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+</main>

@@ -1,0 +1,22 @@
+{% assign unique_events = site.data.events | group_by: "title" %}
+  
+{% for event in unique_events %}
+  {% assign event_days = "" %}
+  {% assign valid_event = false %}
+  
+  {% for occurrence in event.items %}
+	{% if occurrence.type == include.type and occurrence.month == include.month %}
+	  {% if forloop.first %}
+		<strong>{{ event.name }}</strong><br>
+		{{ occurrence.desc }}<br>
+	  {% endif %}
+	  {% capture event_days %}{{ event_days }}{{ occurrence.day }}, {% endcapture %}
+	  {% assign valid_event = true %}
+	{% endif %}
+  {% endfor %}
+  
+  {% if valid_event %}
+	  {{ event.items[0].name }}<br>
+	  {{ include.monthname }} {{ event_days | remove: "," | split: " " | join: ", " }} | <a href="{{ event.items[0].source }}">Learn More</a><br><br>
+	{% endif %}
+{% endfor %}

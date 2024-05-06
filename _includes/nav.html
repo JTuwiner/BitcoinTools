@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom {% if page.nav-short %}top-nav-short-permanent{% else %}top-nav-regular{% endif %}">
+
+<a href="https://bitbo.io/" aria-current="page" class="bitbo-logo-nav-link navbar-item logo-icon nuxt-link-exact-active nuxt-link-active"><img src="https://assets.bitbo.io/img/logos/bitbo-logo.svg" class="icon"> <img src="https://assets.bitbo.io/img/logos/bitbo-logo-text-white-alt2.svg" class="text"></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Calendar Home</a>
+      </li>
+      <li class="nav-item">
+        <a target="_blank" class="bitbo-nav-link nav-link" href="https://bitbo.io">Bitcoin Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a target="_blank" class="bitbo-charts-link nav-link" href="https://charts.bitbo.io">Bitcoin Charts</a>
+      </li>
+      <li class="nav-item">
+        <a target="_blank" class="bitbo-charts-link nav-link" href="https://bitbo.io/halving/">Halving Clock</a>
+      </li>
+      <li class="nav-item">
+        <a target="_blank" class="nav-link" href="https://bitcoinminimalist.com/subscribe">Newsletter</a>
+      </li>
+      <li class="nav-item">
+        <a target="_blank" class="nav-link merch-link" href="https://store.bitbo.io/">Merch</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a target="_blank" class="nav-link bitcoin-jobs-link" href="https://bitcoinjobs.com/">Bitcoin Jobs</a>
+      </li> -->
+      
+    </ul>
+  </div>
+
+  {% if site.navbar-extra %}
+    {% for file in site.navbar-extra %}
+      {% include {{ file }} %}
+    {% endfor %}
+  {% endif %}
+
+</nav>
