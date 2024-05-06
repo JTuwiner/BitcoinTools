@@ -27,7 +27,7 @@ layout: base
         {% for tool in items %}
             {% if tool.cat == page.title %}
              <a class="tool" href="{{ tool.permalink }}">
-                 <img src="https://tools.bitbo.io/assets/bitbo.jpg" alt="Halfway">
+                 <img src="/img/{{ tool.permalink }}" alt="{{ tool.title }}">
                  
                  <div class="tool-info">
                      <h3>{{ tool.title }}</h3>
@@ -61,7 +61,6 @@ layout: base
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 20px;
       max-width: 1200px;
-      margin: 0 auto;
   }
   
   .tool {
