@@ -14,8 +14,16 @@
   </div>
   <header>
     <h2>
-      Categories
+      Tools Categories
     </h2>
+    
+    {%- for page in site.pages -%}
+    
+    <div class="category-wrapper">
+      {{ page.title }}
+    </div>
+    
+    {%- endfor -%}
   </header>
 
     
