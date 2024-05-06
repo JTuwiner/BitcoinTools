@@ -22,20 +22,19 @@ layout: base
       {{ content }}
       
       {% if page.category %}
-      
-      {% assign items = site.pages | sort: "name" %}
-      {% for tool in items %}
-        <div class="tools-container">
-          {% if tool.cat == page.title %}
-           <div class="tool">
-               <img src="https://tools.bitbo.io/assets/bitbo.jpg" alt="Halfway">
-               <h3>Halfway</h3>
-               <p>Smart AI generated content for all your writing needs</p>
-           </div>
-          {% endif %}  
-      
-      {% endfor %}
-        </div>
+      <div class="tools-container">
+        {% assign items = site.pages | sort: "name" %}
+        {% for tool in items %}
+            {% if tool.cat == page.title %}
+             <div class="tool">
+                 <img src="https://tools.bitbo.io/assets/bitbo.jpg" alt="Halfway">
+                 <h3>{{ tool.title }}</h3>
+                 <p>{{ tool.desc }}</p>
+             </div>
+            {% endif %}  
+        
+        {% endfor %}
+      </div>
       {% endif %}  
 
       {% if page.after-content %}
