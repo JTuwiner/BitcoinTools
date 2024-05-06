@@ -8,7 +8,7 @@ layout: base
   <div class="row">
     <div {% if page.calendar %}id="calendar-page"{% endif %}class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
 
-      <div class="month-header">
+      <div class="month-header" style="display: block;">
         <h2 class="detailed-cal">
           {{ page.title }}
         </h2>
@@ -28,8 +28,13 @@ layout: base
             {% if tool.cat == page.title %}
              <div class="tool">
                  <img src="https://tools.bitbo.io/assets/bitbo.jpg" alt="Halfway">
-                 <h3>{{ tool.title }}</h3>
-                 <p>{{ tool.desc }}</p>
+                 
+                 <p>
+                   <h3>
+                     {{ tool.title }}
+                   </h3>
+                   {{ tool.desc }}
+                 </p>
              </div>
             {% endif %}  
         
