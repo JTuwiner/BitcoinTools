@@ -14,24 +14,10 @@
   </div>
   <header>
     <h2>
-      {% if include.monthName %}
-        {% if include.day %}
-          Other events in {{ include.monthName}} {{ include.year }}
-        {% else %}
-          Events for {{ include.monthName}} {{ include.year }}
-        {% endif %}
-      {% else %}
-      Upcoming Events
-      {% endif %}
+      Categories
     </h2>
-    {% include months_nav_sidebar.html activeMonth=page.month %}
   </header>
-  {% include month_vars.html %}
-  {% for month in monthsShortName %}
-    {% if include.month == month %}
-      {% include detailed-month-calendar.html month=forloop.index %}
-    {% endif %}
-  {% endfor %}
+
     
 </aside>
  

@@ -5,29 +5,6 @@ subtitle: Calendar for Bitcoin and other important economic dates.
 full-width: yes
 calendar: yes
 ---
-{% include month_vars.html %}
-{% for month in monthsShortName %}
-{% if currentMonth == month %}
-    {% assign currentYear = "now" | date: "%Y" %}
-    {% capture monthStartDate %}{{month}} 01, {{currentYear}}{% endcapture %}
-    {% assign monthStartDay = monthStartDate | date: "%a" %}
- 
- 
-    {% include calendarHeader.html %}
-    <div id="calendar">
-        {% for d in dayNames %}
-            {% if d == monthStartDay %}{% break %}{% endif %}
-            <div class="day"></div>
-        {% endfor %}
-        {% for day in (1..31) %}
-        <div class="day">
-            <div class="day-number">{% if day < 10 %}0{{day}}{% else %}{{ day }}{% endif %}</div>
-                    {% include event-checker.html month=month day=day %}
-            </div>
-            {% endfor %}  
-        </div>  
- 
-{% break %}
-
-{% endif %} 
-{% endfor %}
+<p>
+    Hi
+</p>
