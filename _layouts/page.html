@@ -1,14 +1,6 @@
 ---
 layout: base
 ---
-{% assign currentMonth = site.time | date: '%b' %}
-{% assign currentMonthName = site.time | date: '%B' %}
-{% include header.html type="page" %}
-{% assign currentYear = "2024" %}
-{% if page.title contains "2025" %}
-  {% assign currentYear = "2025" %} 
-{% endif %}
-
 {% include header.html type="page" %}
 
 {% include sidebar.html %}
