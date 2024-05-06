@@ -18,10 +18,10 @@
     </h2>
     
     <ul>
-    {% for page in site.pages %}
-    {% if page.category %}
+    {% for cat in site.pages %}
+    {% if cat.category %}
       <li>
-        <a href="{{ page.url }}">{{ page.title }}</a>
+        <a href="{{ page.url }}">{{ cat.title }}</a>
       </li>
     {% endif %}  
     {% endfor %}
