@@ -1,11 +1,8 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
+gemspec
 
-gem 'jekyll', '3.8.5'
+gem "jekyll-github-metadata", ">= 2.15"
 
-group :jekyll_plugins do
-  gem 'jekyll-paginate'
-  gem 'jekyll-sitemap'
-end
+gem "jekyll-include-cache", group: :jekyll_plugins
 
-gem 'rexml'
-gem 'webrick'
+gem "html-proofer", "~> 5.0", :group => :development
