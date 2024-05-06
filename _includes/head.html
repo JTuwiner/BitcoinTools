@@ -56,13 +56,7 @@
   {% if site.rss-description %}
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absolute_url }}">
   {% endif %}
-
-  {% include gtag.html %}
-  {% include gtm_head.html %}
-  {% include google_analytics.html %}
   
-<script src="https://cdn.usefathom.com/script.js" data-site="SLIFJUVH" defer></script>
-
 {% if page.include_remote_javascript %}
   {% for src in page.include_remote_javascript %}
     <script src="{{src}}"></script>
