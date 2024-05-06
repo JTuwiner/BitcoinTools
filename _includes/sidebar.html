@@ -21,7 +21,7 @@
     {% for cat in site.pages %}
     {% if cat.category %}
       <li>
-        <a href="{{ cat.permalink }}">{{ cat.title }}</a>
+        <i class="fa-solid fa-user"></i><a href="{{ cat.permalink }}">{{ cat.title }}</a>
       </li>
     {% endif %}  
     {% endfor %}
