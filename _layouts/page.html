@@ -21,7 +21,8 @@ layout: base
 
       {{ content }}
       
-      {% for tool in site.pages %}
+      {% assign items = site.pages | sort: "name" %}
+      {% for tool in items %}
       
       {% if page.category %}
         <div class="tools-container">
