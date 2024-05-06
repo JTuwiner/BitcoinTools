@@ -17,11 +17,11 @@
       Tools Categories
     </h2>
     
-    <ul>
+    <ul class="sidebar-list">
     {% for cat in site.pages %}
     {% if cat.category %}
       <li>
-        <i class="fa-solid fa-user"></i><a href="{{ cat.permalink }}">{{ cat.title }}</a>
+        <a href="{{ cat.permalink }}"><i class="fa-solid fa-chart-simple"></i> {{ cat.title }}</a>
       </li>
     {% endif %}  
     {% endfor %}
@@ -32,3 +32,9 @@
     
 </aside>
  
+ <style>
+   .sidebar-list {
+     list-style: none;
+     list-style-type: none;
+   }
+ </style>
