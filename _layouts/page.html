@@ -9,9 +9,11 @@ layout: base
     <div {% if page.calendar %}id="calendar-page"{% endif %}class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
 
       <div class="month-header" style="display: block;">
-        <h2 class="detailed-cal">
-          {{ page.title }}
-        </h2>
+        {% unless page.home == true %}
+        <h1 class="detailed-cal">
+           {{ page.title }}
+        </h1>
+        {% endunless %}
         {% if page.subdesc %}
         <p style="margin-top: 0;font-size: 14px;color: hsla(0,0%,100%,.5);">{{ page.subdesc }}</p>
         {% endif %}
