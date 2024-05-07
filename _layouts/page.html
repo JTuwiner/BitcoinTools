@@ -25,18 +25,9 @@ layout: base
       <div class="tools-container">
         {% assign items = site.pages | sort: "name" %}
         {% for tool in items %}
-            {% if tool.cat == page.title %}
-             <a class="tool" href="{{ tool.permalink }}">
-                 <img src="/img/{{ tool.img }}" alt="{{ tool.title }}">
-                 
-                 <div class="tool-info">
-                     <h3>{{ tool.title }}</h3>
-                     <p>{{ tool.desc }}</p>
-                 </div>
-
-             </a>
-            {% endif %}  
-        
+          {% if tool.cat == page.title %}
+             {% include toolslist.html %}
+          {% endif %}  
         {% endfor %}
       </div>
       {% endif %}  

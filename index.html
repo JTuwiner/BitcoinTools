@@ -8,5 +8,12 @@ home: yes
 desc: An exclusive list of the best Bitcoin tools. Carefully vetted and maintained by Bitbo.
 ---
 <p>
-    Hi
-</p>
+    This page shows ALL tools. Use sidebar to filter. 
+</p> 
+
+  <div class="tools-container">
+    {% assign items = site.pages | sort: "name" %}
+    {% for tool in items %}
+        {% include toolslist.html %}
+    {% endfor %}
+  </div>
