@@ -23,7 +23,7 @@ layout: base
       
       {% if page.category %}
       <div class="tools-container">
-        {% assign items = site.pages | sort: "name" %}
+        {% assign items = site.pages | sort: "title" %}
         {% for tool in items %}
           {% if tool.cat == page.title %}
              {% include toolslist.html %}
