@@ -12,7 +12,7 @@ desc: An exclusive list of the best Bitcoin tools. Carefully vetted and maintain
 </p> 
 
   <div class="tools-container">
-    {% assign items = site.pages | sort: "title" %}
+    {% assign items = site.pages | sort: "sort" %}
     {% for tool in items %}
     {% if tool.cat %}
         {% include toolslist.html %}
