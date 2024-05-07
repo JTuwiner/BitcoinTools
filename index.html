@@ -14,6 +14,8 @@ desc: An exclusive list of the best Bitcoin tools. Carefully vetted and maintain
   <div class="tools-container">
     {% assign items = site.pages | sort: "name" %}
     {% for tool in items %}
+    {% if tool.cat %}
         {% include toolslist.html %}
+    {% endif %} 
     {% endfor %}
   </div>
