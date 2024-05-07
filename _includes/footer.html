@@ -83,6 +83,16 @@ window.addEventListener('load', (event) => {
   });
 });
 
+window.addEventListener('load', (event) => {
+  document.querySelectorAll('.sidebar-category').forEach(item => {
+    item.addEventListener('click', event => {
+      let catName = item.getAttribute('title');
+      fathom.trackEvent(`Click Sidebar: ${catName}`);
+    });
+  });
+});
+
+
 </script>
 
 <style>
