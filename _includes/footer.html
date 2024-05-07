@@ -43,14 +43,6 @@ window.addEventListener('load', (event) => {
 });
 
 window.addEventListener('load', (event) => {
-  document.querySelectorAll('.chartsads').forEach(item => {
-  item.addEventListener('click', event => {
-    fathom.trackEvent('Click Charts Ad');
-  });
-  });
-});
-
-window.addEventListener('load', (event) => {
   document.querySelectorAll('.bitbo-logo-nav-link').forEach(item => {
   item.addEventListener('click', event => {
     fathom.trackEvent('Click Bitbo Logo Nav');
@@ -75,18 +67,19 @@ window.addEventListener('load', (event) => {
 });
 
 window.addEventListener('load', (event) => {
-  document.querySelectorAll('.bitcoin-jobs-link').forEach(item => {
+  document.querySelectorAll('.merch-link').forEach(item => {
   item.addEventListener('click', event => {
-    fathom.trackEvent('Click Bitcoin Jobs Nav');
+    fathom.trackEvent('Click Bitcoin Merch Nav');
   });
   });
 });
 
 window.addEventListener('load', (event) => {
-  document.querySelectorAll('.merch-link').forEach(item => {
-  item.addEventListener('click', event => {
-    fathom.trackEvent('Click Bitcoin Merch Nav');
-  });
+  document.querySelectorAll('.tool-link').forEach(item => {
+    item.addEventListener('click', event => {
+      let toolName = item.getAttribute('title');
+      fathom.trackEvent(`Click Tool: ${toolName}`);
+    });
   });
 });
 
