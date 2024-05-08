@@ -111,17 +111,21 @@
  </style>
  
  <script>
-// JavaScript to toggle sidebar visibility
- document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
    const sidebar = document.getElementById('sidebarHeader');
    const toggleButton = document.getElementById('toggleSidebar');
  
-   // If the header has the "homepage" class, make sure it's always visible
+   // Set the initial sidebar visibility based on homepage and mobile screen
    if (sidebar.classList.contains('homepage')) {
      sidebar.style.display = 'block';
-   } else if (toggleButton) {
-     // Otherwise, only toggle visibility via the button
-     toggleButton.addEventListener('click', function() {
+   } else if (window.innerWidth <= 768) {
+     sidebar.style.display = 'none';
+   }
+ 
+   // Toggle button click event listener
+   if (toggleButton) {
+     toggleButton.addEventListener('click', function () {
+       // Check the exact current display state
        if (sidebar.style.display === 'block' || sidebar.style.display === '') {
          sidebar.style.display = 'none';
          this.textContent = 'Show Tools Categories';
@@ -132,4 +136,5 @@
      });
    }
  });
+
  </script>
