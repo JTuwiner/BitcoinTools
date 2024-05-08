@@ -12,9 +12,55 @@
       </div>
     </a> 
   </div> -->
-  <header style="display:block!important;">
+  
+  <style>
+      /* Basic sidebar header styles */
+      .sidebar-header {
+          display: block;
+          background-color: #f8f9fa;
+          border: 1px solid #ddd;
+          padding: 15px;
+          margin-bottom: 10px;
+      }
+  
+      .sidebar-list {
+          list-style: none;
+          padding: 0;
+      }
+  
+      .sidebar-list li {
+          margin-bottom: 10px;
+      }
+  
+      .toggle-button {
+          display: none;
+          margin-bottom: 10px;
+          background-color: #007bff;
+          color: #fff;
+          padding: 10px;
+          cursor: pointer;
+          border: none;
+          border-radius: 5px;
+      }
+  
+      /* Media query to hide sidebar header on small screens and show the toggle button */
+      @media (max-width: 768px) {
+          .sidebar-header {
+              display: none;
+          }
+  
+          .toggle-button {
+              display: block;
+          }
+      }
+  </style>
+  
+  <!-- Toggle Button -->
+  <button class="toggle-button" id="toggleSidebar">Show Tools Categories</button>
+  
+  <header class="sidebar-header" id="sidebarHeader" style="display:block!important;">
     <h2>
-      Tools Categories
+      Tools Categories 
     </h2>
     
     <ul class="sidebar-list">
@@ -75,3 +121,17 @@
    }
    
  </style>
+ 
+ <script>
+     // JavaScript to toggle sidebar visibility
+     document.getElementById('toggleSidebar').addEventListener('click', function() {
+         const sidebar = document.getElementById('sidebarHeader');
+         if (sidebar.style.display === 'block' || sidebar.style.display === '') {
+             sidebar.style.display = 'none';
+             this.textContent = 'Show Tools Categories';
+         } else {
+             sidebar.style.display = 'block';
+             this.textContent = 'Hide Tools Categories';
+         }
+     });
+ </script>
