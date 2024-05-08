@@ -1,0 +1,536 @@
+---
+layout: page
+title: Coinbase Fee Calculator
+subtitle: An exclusive list of the best Bitcoin tools. Vetted and maintained by Bitbo.
+full-width: yes
+permalink: "/coinbase-fee-calc/"
+---
+<form id="coinbase-calc" aria-label="Coinbase Fee Calculator">
+  <p class="input-label">Transaction Amount:</p>
+  <input id="init-amount" type="text" placeholder="Enter a value" class="amount-input">
+  <p class="input-label">What payment method is being used?</p>
+  <div id="radio-btns" class="payment-methods-grid">
+    <span class="btn-span">
+      <input type="radio" id="payment-choice1" class="transaction-type-btn" name="paymentMethod" value="us-bank-account" checked>
+      <label for="payment-choice1">U.S. bank account</label>
+    </span>
+    <span class="btn-span">
+      <input type="radio" id="payment-choice2" class="transaction-type-btn" name="paymentMethod" value="coinbase-wallet">
+      <label for="payment-choice2">Coinbase USD wallet</label>
+    </span>
+    <span class="btn-span">
+      <input type="radio" id="payment-choice3" class="transaction-type-btn" name="paymentMethod" value="debit-card">
+      <label for="payment-choice3">Debit card buy</label>
+    </span>
+    <span class="btn-span">
+      <input type="radio" id="payment-choice4" class="transaction-type-btn" name="paymentMethod" value="card-withdrawal">
+      <label for="payment-choice4">Instant card withdrawal</label>
+    </span>
+  </div>
+  <section id="calc-results">
+    <p>Total Fee: $<span id="calc-fee"></span></p>
+    <p>Total Cost: $<span id="calc-cost"></span></p>
+  </section>
+</form>
+
+<a href="https://coinbase-consumer.sjv.io/jr3NDb" rel="nofollow noopener" target="_blank" style="font-size: 28px; display: block; width: 100% !important; text-align: center !important; margin-top: 30px !important; margin-right: 10px !important; margin-bottom: 30px !important; padding-top: 15px !important; padding-bottom: 15px !important; border-radius: 20px !important; transition: none 0s ease 0s !important;" class="buy-card-link btn-success"> Visit Coinbase's Website </a>
+
+<br><br>
+<p>This page covers everything you need to know about how Coinbase's fees work. See <a href="/fee-calculator/">this page for information on current Bitcoin transaction fees</a>. </p><p>
+
+<p>It's definitely not straightforward, so that's why we've made it really simple to understand with this in-depth guide!</p>
+
+<h2>Fees Charged by Coinbase for Bank Transactions</h2>
+
+<table><thead><tr><th><b>Transaction Amount</b></th>
+<th><b>Coinbase Fee</b></th>
+</tr></thead><tbody><tr><td>$10 or less</td>
+<td>$0.99</td>
+</tr><tr><td>More than $10, and less than or equal to $25</td>
+<td>$1.49</td>
+</tr><tr><td>More than $25, and less than or equal to $50</td>
+<td>$1.99</td>
+</tr><tr><td>More than $50, and less than or equal to $200</td>
+<td>$2.99</td>
+</tr></tbody></table>
+
+<h2>Coinbase Fees by Payment Method</h2>
+
+<table><thead><tr><th><b>Payment Method</b></th>
+<th><b>Fee</b></th>
+</tr></thead><tbody><tr><td>US bank account</td>
+<td>1.49%</td>
+</tr><tr><td>Coinbase USD wallet</td>
+<td>1.49%</td>
+</tr><tr><td>Debit card</td>
+<td>3.99%</td>
+</tr><tr><td>Instant card withdrawal</td>
+<td>Up to 1.50% of any transaction, with $0.55 minimum fee</td>
+</tr></tbody></table>
+
+<h2>Background</h2>
+
+<p><a href="/coinbase/">Coinbase</a> services all players in the cryptocurrency space, from beginner investors to institutions. It was their over-the-counter (OTC) desk that brokered <a href="/treasuries/tesla/">Tesla's $1.5 billion purchase of Bitcoin</a>.</p>
+
+<p>Coinbase Pro is targeted to advanced retail traders and offers different fees to the simpler interface.</p>
+
+
+<p>Having collected over $2 billion in fees alone since its inception, you may be wondering how high Coinbase's fees are for buying, selling, and converting between cryptocurrencies. If so, you've come to the right place.</p>
+
+<p>In this in-depth guide, we'll break down the fees and uncover the secrets that will help you to fully understand and minimize the costs of trading on Coinbase.</p>
+
+<h2>Buying Fees</h2>
+
+<p><a href="/treasuries/coinbase/">Coinbase</a> charges a fee for every purchase you make. The exact amount varies depending on the payment method used and the amount purchased.</p>
+
+
+<p>For smaller purchases, the following fees apply.</p>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered ">
+        <thead>
+        <tr>
+        <th data-label="Amount" scope="col">Amount</th>
+        <th data-label="Fees" scope="col">Fees</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td data-label="Amount" scope="row">Less than or equal to $10</td>
+        <td data-label="Fees">CAD$0.99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">CLP$0.99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">EUR€0,99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">GBP£0.99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">MXN$0.99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">SGD$0.99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">USD$0.99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row">More than $10 but less than $25</td>
+        <td data-label="Fees">CAD$1.49</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">CLP$1.49</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">EUR€1,49</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">GBP£1.49</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">MXN$1.49</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">SGD$1.49</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">USD$1.49</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row">More than $25 but less than $50</td>
+        <td data-label="Fees">CAD$1.99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">CLP$1.99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">EUR€1,99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">GBP£1.99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">MXN$1.99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">SGD$1.99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">USD$1.99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row">More than $50 but less than $200</td>
+        <td data-label="Fees">CAD$2.99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">CLP$2.99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">EUR€2,99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">GBP£2.99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">MXN$2.99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">SGD$2.99</td>
+        </tr>
+        <tr>
+        <td data-label="Amount" scope="row"></td>
+        <td data-label="Fees">USD$2.99</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+
+<p>These flat fees make buying small amounts of crypto on Coinbase quite expensive.</p>
+
+<p>For example, on a $51 transaction, you'll pay $2.99 in fees. That's nearly *6%*!</p>
+
+<p>If you're an investor looking to DCA (dollar cost average) a small amount into crypto every paycheck, you'll end up losing a sizeable chunk of your money to fees.</p>
+
+<p>While you may be willing to pay a 6% fee at the time of purchase, keep in mind the effect that appreciation in the price of Bitcoin will have on this loss of purchasing power.</p>
+
+
+<p>A 6% fee paid on a $100 investment when the price of Bitcoin is at $5,000 works out to $6.00 of purchasing power lost. But when Bitcoin hits $50,000, that $6.00 loss becomes $60.00! As you can see, minimizing fees now is important for maximizing your future returns.</p>
+
+<p>One way to do this on Coinbase is to buy larger amounts. This way, you can take advantage of Coinbase's (slightly) reduced fees for purchases over $200.<p>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered ">
+  <thead>
+    <tr>
+      <th data-label="Country/Region" scope="col">Country/Region</th>
+      <th data-label="Payment Method" scope="col">Payment Method</th>
+      <th data-label="Funds Available" scope="col">Funds Available</th>
+      <th data-label="Currency" scope="col">Currency</th>
+      <th data-label="Fees" scope="col">Fees</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th data-label="Country/Region" scope="row">Australia</th>
+      <td data-label="Payment Method">Debit/Credit Card</td>
+      <td data-label="Funds Available">Instant</td>
+      <td data-label="Currency">AUD</td>
+      <td data-label="Fees">3.99%</td>
+    </tr>
+    <tr>
+      <th data-label="Country/Region" scope="row">Canada</th>
+      <td data-label="Payment Method">Debit/Credit Card</td>
+      <td data-label="Funds Available">Instant</td>
+      <td data-label="Currency">CAD</td>
+      <td data-label="Fees">3.99%</td>
+    </tr>
+      <tr>
+      <th data-label="Country/Region" scope="row">Chile</th>
+      <td data-label="Payment Method">Debit/Credit Card</td>
+      <td data-label="Funds Available">Instant</td>
+      <td data-label="Currency">CLP</td>
+      <td data-label="Fees">3.99%</td>
+    </tr>
+    <tr>
+      <th data-label="Country/Region" scope="row">Europe</th>
+      <td data-label="Payment Method">SEPA Transfer</td>
+      <td data-label="Funds Available">1-3 days</td>
+      <td data-label="Currency">EUR</td>
+      <td data-label="Fees">1.49%</td>
+    </tr>
+    <tr>
+      <th data-label="Country/Region" scope="row"></th>
+      <td data-label="Payment Method">Debit/Credit Card</td>
+      <td data-label="Funds Available">Instant</td>
+      <td data-label="Currency">EUR</td>
+      <td data-label="Fees">3.99%</td>
+    </tr>
+      <tr>
+      <th data-label="Country/Region" scope="row">Mexico</th>
+      <td data-label="Payment Method">Debit/Credit Card</td>
+      <td data-label="Funds Available">Instant</td>
+      <td data-label="Currency">MXN</td>
+      <td data-label="Fees">3.99%</td>
+    </tr>
+    <tr>
+      <th data-label="Country/Region" scope="row">Singapore</th>
+      <td data-label="Payment Method">Debit/Credit Card</td>
+      <td data-label="Funds Available">Instant</td>
+      <td data-label="Currency">SGD</td>
+      <td data-label="Fees">3.99%</td>
+    </tr>
+    <tr>
+      <th data-label="Country/Region" scope="row"></th>
+      <td data-label="Payment Method">Xfers Transfer</td>
+      <td data-label="Funds Available">Instant</td>
+      <td data-label="Currency">SGD</td>
+      <td data-label="Fees">1.49%</td>
+    </tr>
+           <tr>
+      <th data-label="Country/Region" scope="row">UK</th>
+      <td data-label="Payment Method">Debit/Credit Card</td>
+      <td data-label="Funds Available">Instant</td>
+      <td data-label="Currency">GBP</td>
+      <td data-label="Fees">3.99%</td>
+    </tr>
+    <tr>
+      <th data-label="Country/Region" scope="row"></th>
+      <td data-label="Payment Method">SEPA Transfer or Faster Payments</td>
+      <td data-label="Funds Available">Instant</td>
+      <td data-label="Currency">GBP</td>
+      <td data-label="Fees">1.49%</td>
+    </tr>
+        <tr>
+      <th data-label="Country/Region" scope="row">USA</th>
+      <td data-label="Payment Method">Bank Transfer</td>
+      <td data-label="Funds Available">5-7 days</td>
+      <td data-label="Currency">USD</td>
+      <td data-label="Fees">1.49%</td>
+    </tr>
+    <tr>
+      <th data-label="Country/Region" scope="row"></th>
+      <td data-label="Payment Method">Debit/Credit Card</td>
+      <td data-label="Funds Available">Instant</td>
+      <td data-label="Currency">USD</td>
+      <td data-label="Fees">3.99%</td>
+    </tr>
+      <tr>
+      <th data-label="Country/Region" scope="row"></th>
+      <td data-label="Payment Method">Coinbase USD Balance</td>
+      <td data-label="Funds Available">Instant</td>
+      <td data-label="Currency">USD</td>
+      <td data-label="Fees">1.49%</td>
+    </tr>
+  </tbody>
+  </table>
+</div>
+
+<p>4% is still a relatively high price to pay for the convenience of instant Bitcoin purchases. It means that you'll receive $96 of crypto for every $100 you spend.</p>
+
+<p>As you can see, it's quite a bit cheaper to <a href="/glossary/fiat-currency/">deposit fiat currency</a> via a SEPA or ACH transfer and then use this balance to buy Bitcoin. This way, you'll only pay 1.49%.</p>
+
+<p>The good news is that the exact fee you'll pay for buying Bitcoin on Coinbase is always visible before you make your purchase.</p>
+
+<h2>Selling Fees</h2>
+
+<p>The fees outlined above apply to selling cryptocurrency on Coinbase too. You'll pay a 3.99% fee for selling to a debit or credit card, and 1.49% for selling to your Coinbase fiat balance.</p>
+
+  <br>
+<img alt="coinbase fee calculator" style="max-width: 100%;" src="/img/newimages/cbfees.png">
+<br>
+<br>
+
+<h2>Conversion Fees</h2>
+
+<p>Converting between cryptocurrencies is possible on Coinbase. Doing a direct conversion means you avoid paying fees twice, when selling to fiat and when buying back into a crypto-asset. </p>
+
+<p>You'll still have to pay fees, though.</p>
+
+
+<h2>Withdrawal Fees</h2>
+
+Withdrawals from Coinbase are subject to fees, whether you're taking out crypto or fiat currency.
+
+<h3>Withdrawing Fiat</h3>
+
+<p>Instant card withdrawals in the US will cost you up to 1.5% plus a minimum fee of $0.55. ACH transfers are free, while withdrawing USD via a wire transfer will incur a $25 fee.</p>
+
+<p>Withdrawing fiat via SEPA transfer in the EU or UK will cost you a flat €0.15.</p>
+
+<p>In <a href="/canada/">Canada</a>, PayPal withdrawals will cost you a flat 1%.</p>
+
+<h3>Withdrawing Crypto</h3>
+
+<p>Taking your crypto out of Coinbase will also cost you a small fee. This ranges from between $1.00-$5.00 for BTC, to generally less than $1.00 for other cryptocurrencies. </p>
+
+<p>This fee will vary based on network congestion at the time you initiate your withdrawal.</p>
+
+{% include article-sources.html 
+firstSource="Coinbase Help - Coinbase pricing and fees disclosures" firstLink="https://help.coinbase.com/en/coinbase/trading-and-funding/pricing-and-fees/fees" 
+secondSource="Coinbase Help - Exchange fees" secondLink="https://help.coinbase.com/en/exchange/trading-and-funding/exchange-fees"
+thirdSource="CNBC - Coinbase review: A crypto exchange for new investors and traders" thirdLink="https://www.cnbc.com/select/coinbase-crypto-exchange-review/"  %}
+
+ <style>
+    .input-label {
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.25px;
+    }
+    .amount-input {
+      background-color: #fff;
+      border: 0.0625rem solid #515260;
+      border-radius: 4px;
+      color: #151515;
+      display: block;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      height: 48px;
+      padding: 8px 16px;
+      width: 100%;
+      margin: 0px auto 20px auto;
+      max-width: 400px;
+    }
+    .btn-span {
+      width: 100%;
+      background: white;
+      padding: 18px 5px;
+      font-size: 16px;
+    }
+    .hidden {
+        display: none;
+    }
+    .payment-methods-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      flex-wrap: wrap;
+      grid-gap: 10px;
+      justify-content: center;
+    }
+
+    #coinbase-calc{
+        margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        background: #F3F3F3;
+        border-radius: 3px;
+        padding: 20px;
+        font-size: 100%;
+        width: 100%;
+    }
+
+    #calc-results{
+        font-size: 30px;
+        margin-top: 20px;
+        font-weight: 500;
+        display: flex;
+        justify-content: center;
+        grid-gap: 10%;
+    }
+    @media(max-width: 700px) {
+      .payment-methods-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media(max-width: 500px) {
+      #calc-results {
+        flex-direction: column;
+        font-size: 21px;
+      }
+      .payment-methods-grid {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+
+    .fee-row  .jumbotron {
+      padding: 30px !important;
+  }
+    </style>
+    
+    <script>
+      //Sets up element hiding
+      $('#calc-results').hide()
+      $('#calc-results').attr('class', '')
+      
+      //Actions when the button is clicked
+      
+      $('#init-amount').on('keyup', () => {
+          calculate();
+      });
+      
+      $("input[name='paymentMethod']").change(() => {
+          calculate();
+      });
+      
+      
+      function calculate() {
+          //Fade transition
+          $('#calc-results').fadeOut('fast');
+          //Variables that are needed in the calculation
+          var initialAmount = parseFloat($('#init-amount').val());
+          var newAmount = initialAmount;
+          var feeAmount;
+          var paymentMethod = $('input[name="paymentMethod"]:checked').attr('value');
+          
+          //Adds a fixed fee to the new amount if it is less then 200
+          if (initialAmount <= 200){
+              if (initialAmount <= 10){
+                  newAmount += 0.99;
+              }
+              else if (initialAmount > 10 && initialAmount <= 25){
+                  newAmount += 1.49;
+              }
+              else if (initialAmount > 25 && initialAmount <= 50){
+                  newAmount += 1.99;
+              }
+              else {
+                  newAmount += 2.99;
+              }
+          }
+          else{
+              if(paymentMethod == "us-bank-account"){
+                  newAmount *= 1.0149;
+              }
+              else if (paymentMethod == "coinbase-wallet"){
+                  newAmount *= 1.0149;
+              }
+              else if (paymentMethod == "debit-card"){
+                  newAmount *= 1.0399;
+              }
+              else {
+                  var amountCheck = newAmount * .015;
+          
+                  //Checks to see whether the fee is under 55 cents and sets it to 55 if it is
+                  if (amountCheck < .55){
+                      newAmount += 0.55;
+                  }
+                  else {
+                      newAmount *= 1.015;
+                  }
+              }
+          }
+          //Rounds up to the nearest cent
+          newAmount = Math.ceil(newAmount * 100) / 100;
+          //sets the fee amount when all conditionals have completed
+          feeAmount = newAmount - initialAmount;
+          feeAmount = Math.round(feeAmount * 100) / 100;
+          //Outputs the information to the page
+          $('#calc-fee').text(feeAmount);
+          $('#calc-cost').text(newAmount);
+          if (isNaN(feeAmount) && isNaN(newAmount)) {
+              console.log('')
+          } else {
+              $('#calc-results').fadeIn('fast');
+          }
+      }
+    </script>
