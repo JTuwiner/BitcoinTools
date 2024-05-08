@@ -1,4 +1,4 @@
-	  //Sets up element hiding
+//Sets up element hiding
   $('#calc-results').hide()
   $('#calc-results').attr('class', '')
   
