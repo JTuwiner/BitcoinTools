@@ -1,0 +1,425 @@
+---
+layout: page
+title: Satoshi to USD / BTC Converter & Calculator
+full-width: yes
+permalink: "/satoshi-usd/"
+include_javascript:
+- satoshiusd
+---
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+  jQuery.get( "https://api.coindesk.com/v1/bpi/currentprice.json", function( data ) {
+    var bitcoinPriceNow = parseFloat(data.bpi.USD.rate.replace(/,/g, ''))
+    document.getElementById("1-s-usd").innerHTML = '<i class="fa fa-spinner rotating"></i>'
+    document.getElementById("10-s-usd").innerHTML = '<i class="fa fa-spinner rotating"></i>'
+    document.getElementById("100-s-usd").innerHTML = '<i class="fa fa-spinner rotating"></i>'
+    document.getElementById("1000-s-usd").innerHTML = '<i class="fa fa-spinner rotating"></i>'
+    document.getElementById("10000-s-usd").innerHTML = '<i class="fa fa-spinner rotating"></i>'
+    document.getElementById("100000-s-usd").innerHTML = '<i class="fa fa-spinner rotating"></i>'
+    document.getElementById("1000000-s-usd").innerHTML = '<i class="fa fa-spinner rotating"></i>'
+    document.getElementById("10000000-s-usd").innerHTML = '<i class="fa fa-spinner rotating"></i>'
+    document.getElementById("100000000-s-usd").innerHTML = '<i class="fa fa-spinner rotating"></i>'
+    const myTimeout = setTimeout(loadUSDAmounts, 3000);
+
+    function loadUSDAmounts() {
+      document.getElementById("1-s-usd").innerHTML = "$" + (bitcoinPriceNow * 0.00000001).toFixed(6)
+      document.getElementById("10-s-usd").innerHTML = "$" + (bitcoinPriceNow * 0.0000001).toFixed(5)
+      document.getElementById("100-s-usd").innerHTML = "$" + (bitcoinPriceNow * 0.000001).toFixed(4)
+      document.getElementById("1000-s-usd").innerHTML = "$" + (bitcoinPriceNow * 0.00001).toFixed(3)
+      document.getElementById("10000-s-usd").innerHTML = "$" + (bitcoinPriceNow * 0.0001).toFixed(3)
+      document.getElementById("100000-s-usd").innerHTML = "$" + (bitcoinPriceNow * 0.001).toFixed(3)
+      document.getElementById("1000000-s-usd").innerHTML = "$" + (bitcoinPriceNow * 0.01).toFixed(3)
+      document.getElementById("10000000-s-usd").innerHTML = "$" + (bitcoinPriceNow * 0.10).toFixed(3)
+      document.getElementById("100000000-s-usd").innerHTML = "$" +  (bitcoinPriceNow).toFixed(3)
+      document.getElementById("1-s-usdx").innerHTML = "$" + (bitcoinPriceNow * 0.00000001).toFixed(6)
+    }
+
+    function myStopFunction() {
+      clearTimeout(myTimeout);
+    }
+  });
+
+  var scientificToDecimal = function (num) {
+    var nsign = Math.sign(num);
+    //remove the sign
+    num = Math.abs(num);
+    //if the number is in scientific notation remove it
+    if (/\d+\.?\d*e[\+\-]*\d+/i.test(num)) {
+      var zero = '0',
+        parts = String(num).toLowerCase().split('e'), //split into coeff and exponent
+        e = parts.pop(), //store the exponential part
+        l = Math.abs(e), //get the number of zeros
+        sign = e / l,
+        coeff_array = parts[0].split('.');
+      if (sign === -1) {
+        l = l - coeff_array[0].length;
+        if (l < 0) {
+          num = coeff_array[0].slice(0, l) + '.' + coeff_array[0].slice(l) + (coeff_array.length === 2 ? coeff_array[1] : '');
+        } 
+        else {
+          num = zero + '.' + new Array(l + 1).join(zero) + coeff_array.join('');
+        }
+      } 
+      else {
+        var dec = coeff_array[1];
+        if (dec)
+          l = l - dec.length;
+        if (l < 0) {
+          num = coeff_array[0] + dec.slice(0, l) + '.' + dec.slice(l);
+        } else {
+          num = coeff_array.join('') + new Array(l + 1).join(zero);
+        }
+      }
+    }
+
+    return nsign < 0 ? '-'+num : num;
+  };
+
+  jQuery(function()
+    {
+      jQuery("#btu-bts").bind('input',function(){
+
+        s = jQuery("#btu-bts").val().toString().replace(/\,/g,'');
+        if (s>=1000)
+        {
+          b = s.toString().split(".");
+          b[0] = b[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+          c = b.join('.');
+          jQuery("#btu-bts").val(c);
+        }
+        if (isNaN(s*2)) jQuery("#bts-sts").val(0);
+        else
+        {
+          jQuery.get( "https://api.coindesk.com/v1/bpi/currentprice.json", function( data ) {
+            var bitcoinEUR = data.bpi.USD.rate.replace(/\,/g,'') * s
+            var satoshiBitcoinEUR = (bitcoinEUR*0.00000001)
+            q = (satoshiBitcoinEUR).toFixed(3)
+            a = q.toString().split(".");
+            a[0] = a[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+            p = a.join('.');
+            btcAmount = scientificToDecimal(s / 100000000)
+            jQuery("#btus-stus").val(p);
+            jQuery("#btc-field").val(btcAmount)
+
+          });
+        }
+      });
+    });
+</script>
+
+
+<div class="converter-wrapper">
+      <div id="bts-conv">
+        <div class="input-wrapper">
+          <label class="input-label">
+            <span>Currency</span>
+            <span>Amount</span>
+          </label>
+          <div class="input-inner">
+            <div class="currency-meta-info">
+              <img src="/pages/img/satoshi-icon-small.svg" role="presentation" class="currency-logo" />
+              <div>
+                <p class="currency-name-long">Satoshis</p>
+                <p class="currency-name-short">SATS</p>
+              </div>
+            </div>
+            <input type="text" placeholder="0" id="btu-bts"/>
+          </div>
+        </div>
+        <div class="input-wrapper">
+          <label class="input-label">
+            <span>Currency</span>
+            <span>Amount</span>
+          </label>
+          <div class="input-inner">
+            <div class="currency-meta-info">
+              <img src="/pages/img/usd-icon-small.svg" role="presentation" class="currency-logo" />
+              <div>
+                <p class="currency-name-long">US Dollar</p>
+                <p class="currency-name-short">USD</p>
+              </div>
+            </div>
+            <input type="text" id="btus-stus" placeholder="0" />
+          </div>
+        </div>
+        <div class="input-wrapper">
+          <label class="input-label">
+            <span>Currency</span>
+            <span>Amount</span>
+          </label>
+          <div class="input-inner">
+            <div class="currency-meta-info">
+              <img src="/pages/img/bitcoin-icon-small.svg" role="presentation" class="currency-logo" />
+              <div>
+                <p class="currency-name-long">Bitcoin</p>
+                <p class="currency-name-short">BTC</p>
+              </div>
+            </div>
+            <input type="text" id="btc-field" placeholder="0" />
+          </div>
+        </div>
+      </div>
+  </div>
+
+<h2 style="text-align: center;">Satoshi to USD Rates (Live)</h2>
+<table class="stats-table larger-table">
+   <thead>
+      <tr>
+         <th scope="col">Satoshi (sats)</th>
+         <th scope="col">Bitcoin</th>
+         <th scope="col">U.S. Dollar</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>1 Satoshi</td>
+         <td>0.00000001 Bitcoin</td>
+         <td id="1-s-usd"></td>
+      </tr>
+      <tr>
+         <td>10 Satoshi</td>
+         <td>0.00000010 Bitcoin</td>
+         <td id="10-s-usd"></td>
+      </tr>
+      <tr>
+         <td>100 Satoshi</td>
+         <td>0.00000100 Bitcoin</td>
+         <td id="100-s-usd"></td>
+      </tr>
+      <tr>
+         <td>1,000 Satoshi</td>
+         <td>0.00001000 Bitcoin</td>
+         <td id="1000-s-usd"></td>
+      </tr>
+      <tr>
+         <td>10,000 Satoshi</td>
+         <td>0.00010000 Bitcoin</td>
+         <td id="10000-s-usd"></td>
+      </tr>
+      <tr>
+         <td>100,000 Satoshi</td>
+         <td>0.00100000 Bitcoin</td>
+         <td id="100000-s-usd"></td>
+      </tr>
+      <tr>
+         <td>1,000,000 Satoshi</td>
+         <td>0.01000000 Bitcoin</td>
+         <td id="1000000-s-usd"></td>
+      </tr>
+      <tr>
+         <td>10,000,000 Satoshi</td>
+         <td>0.10000000 Bitcoin</td>
+         <td id="10000000-s-usd"></td>
+      </tr>
+      <tr>
+         <td>100,000,000 Satoshi</td>
+         <td>1.00000000 Bitcoin</td>
+         <td id="100000000-s-usd"></td>
+      </tr>
+   </tbody>
+</table>
+
+<h2>What is a satoshi?</h2>
+
+<p>Each unit of bitcoin, or 0.00000001 bitcoin, is called a satoshi. </p>
+
+{% include takeaways.html bullet2="There are 100,000,000 satoshi in one bitcoin (BTC)." bullet1="Each unit of bitcoin, or 0.00000001 bitcoin, is called a satoshi. " bullet3="The value of a satoshi will change with the price of Bitcoin." %}
+
+<h2>How much is 1 Satoshi in USD?</h2>
+<p>One satoshi is currently worth <span id="1-s-usdx"></span> USD.</p>
+
+<h2 id="howmanysatoshisareinabitcoin">How many Satoshis are in a Bitcoin?</h2>
+
+<p>There are 100,000,000 satoshis in a BTC.</p> 
+
+<h2 id="whatisasatoshiworth">What is a Satoshi worth?</h2>
+
+<p>The value of a Satoshi in USD changes almost every second. We use an API to calculate the current Bitcoin price, and then we use that number to convert Satoshi to USD. The converter above will convert any amount into USD.  </p>
+
+
+<style>
+  .post-title-main {
+    text-align: center !important;
+  }
+  .rotating {
+    animation-name: spin;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; 
+  }
+
+  @keyframes spin {
+    from {
+      transform:rotate(0deg);
+    }
+    to {
+      transform:rotate(360deg);
+    }
+  }
+  .page-subtitle {
+    text-align: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+    .converter-wrapper {
+        width: 100%;
+        border: 1px solid #D6D6D6;
+        display: flex;
+        padding: 5px 24px;
+        position: relative;
+        flex-wrap: wrap;
+        max-width: 550px;
+        background: #FFFFFF;
+        box-shadow: none;
+        box-sizing: border-box;
+        border-radius: 15px;
+        margin-left: auto;
+    margin-right: auto;
+    }
+    .converter-heading {
+        color: #1d5ac3;
+        font-size: 26px;
+        min-height: 32px;
+        text-align: center;
+        font-weight: 400;
+        line-height: 1.66;
+        margin: 0 auto;
+        padding: 0;
+    }
+    
+  .page-subtitle {
+        font-size: 21px;
+        line-height: 28px;
+        margin-bottom: 40px;
+    }
+  .input-inner {
+      width: 100%;
+      padding: 12px;
+        background: #f5f5f5;
+        padding-top: 36px;
+        border-radius: 15px;
+        position: relative;
+        color: #0E0C28;
+        cursor: text;
+        display: inline-flex;
+        font-size: 1rem;
+        box-sizing: border-box;
+        align-items: center;
+        font-weight: 400;
+        line-height: 1.1876em;
+  }
+  @media (min-width: 600px) {
+      .input-inner {
+          padding-left: 24px;
+            padding-right: 24px;
+      }
+  }
+  .currency-meta-info {
+      height: auto;
+        margin-top: 0 !important;
+        max-height: initial;
+        align-items: center;
+        white-space: initial;
+        margin-right: 8px;
+        display: flex;
+        grid-gap: 8px;
+  }
+  .currency-name-long {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0;
+    padding: 0;
+  }
+  .currency-name-short {
+    margin: 0;
+    padding: 0;
+    color: #898989;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.66;
+  }
+  #bts-conv {
+        margin: 0 auto;
+        width: 100%;
+        color: #000;
+        padding-bottom: 30px;
+        padding-top: 25px;
+    }
+  .input-wrapper {
+    margin-top: 0px;
+    margin-bottom: 16px;
+    display: inline-flex;
+    padding: 0;
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid #C0C0C0;
+    transition: 0.25s;
+    border-radius: 15px;
+  }
+
+  .input-wrapper:hover {
+      border-color: #000;
+  }
+  .input-wrapper:focus {
+      border-color: #1d5ac3;
+  }
+  .input-label {
+      font-weight: 400;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #898989;
+    width: 100%;
+    display: flex;
+    padding: 12px;
+    z-index: 1;
+    font-size: 14px;
+    transform: none !important;
+    box-sizing: border-box;
+    line-height: 20px;
+    justify-content: space-between;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+#bts-conv input[type="text"] {
+    border-radius: 15px;
+    color: #555555;
+    padding: 0;
+    font-size: 35px;
+    text-align: end;
+    height: 100px;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    padding-right: 20px;
+    padding-top: 25px;
+    position: absolute;
+    font-weight: 300;
+    background: transparent;
+    border: none;
+}
+
+.equal-sign {
+    margin-top: -10px;
+}
+
+.second-field {
+    margin-top: 10px;
+}
+@media(max-width: 800px) {
+    .converter-heading {
+        font-size: 21px;
+    }
+}
+
+</style>  
