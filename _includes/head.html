@@ -60,13 +60,13 @@
   
 {% if page.include_remote_javascript %}
   {% for src in page.include_remote_javascript %}
-    <script src="{{src}}"></script>
+    <script defer src="{{src}}"></script>
   {% endfor %}
 {% endif %}
 
 {% if page.include_javascript %}
   {% for filename in page.include_javascript %}
-    <script src="/javascripts/{{filename}}.js"></script>
+    <script defer src="/javascripts/{{filename}}.js"></script>
   {% endfor %}
 {% endif %}
 
