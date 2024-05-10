@@ -18,14 +18,14 @@ layout: base
         <p style="margin-top: 0;font-size: 14px;color: hsla(0,0%,100%,.5);">{{ page.subdesc }}</p>
         {% endif %}
         
-       
+        
     </div>
 
       {{ content }}
       
       {% if page.category %}
       <div class="tools-container">
-        {% assign items = site.pages | sort: "title" %}
+        {% assign items = site.pages | sort: "sort" %}
         {% for tool in items %}
           {% if tool.cat == page.title %}
              {% include toolslist.html %}
