@@ -82,11 +82,15 @@ jquery: yes
     }
   }
 
+  let debounceTimer;
   function getBitcoinPriceAnd(callback) {
-    jQuery.get( "https://api.coindesk.com/v1/bpi/currentprice.json", function( data ) {
-      let bitcoinPriceNow = parseFloat(data.bpi.USD.rate.replace(/,/g, ''))
-      callback(bitcoinPriceNow);
-    });
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      jQuery.get( "https://api.coindesk.com/v1/bpi/currentprice.json", function( data ) {
+        let bitcoinPriceNow = parseFloat(data.bpi.USD.rate.replace(/,/g, ''))
+        callback(bitcoinPriceNow);
+      });
+    }, 500);
   }
 
   jQuery(function()
