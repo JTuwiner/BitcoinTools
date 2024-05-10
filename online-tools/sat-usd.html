@@ -63,8 +63,12 @@ jquery: yes
     // remove all non-numeric characters
     number = number.toString().replace(/[^0-9.]+/g, '');
 
-    if (number.toString().match(/\.[0]*$/)) { // we are typing the decimal and one or more zeros
+    if (number.toString().endsWith('.')) { // if the number ends with a decimal point, remove it
       return number;
+    } else if (number.toString().includes('.') && number.toString().endsWith('0')) { // if the number ends with a decimal point and a 0, remove the 0
+      return number;
+    } else if (number.toString().startsWith('.')) { // if the number starts with a decimal point, add a 0 before it
+      return '0' + number;
     } else if (isNaN(number*2)) { // we can't parse the number
       return 0;
     } else { // we can parse the number, so format it
