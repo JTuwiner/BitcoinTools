@@ -63,7 +63,7 @@ jquery: yes
     // remove all non-numeric characters
     number = number.toString().replace(/[^0-9.]+/g, '');
 
-    if (number.toString().endsWith('.')) { // we are typing the decimal
+    if (number.toString().match(/\.[0]*$/)) { // we are typing the decimal and one or more zeros
       return number;
     } else if (isNaN(number*2)) { // we can't parse the number
       return 0;
@@ -100,7 +100,6 @@ jquery: yes
         let parsed = parseNumber(raw);
         jQuery("#btu-bts").val(normalizeNumber(raw, 0, 0));
 
-
         getBitcoinPriceAnd(function(bitcoinPriceNow) {
           let btcValue = satoshiToBtc(parsed);
           let usdValue = satoshiToUsd(parsed, bitcoinPriceNow);
@@ -126,7 +125,6 @@ jquery: yes
       jQuery("#btc-field").bind("input", function() {
         let raw = jQuery("#btc-field").val();
         let parsed = parseNumber(raw);
-
         jQuery("#btc-field").val(normalizeNumber(raw, 0, 8));
 
         getBitcoinPriceAnd(function(bitcoinPriceNow) {
