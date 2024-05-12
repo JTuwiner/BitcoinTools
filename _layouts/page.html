@@ -104,6 +104,7 @@ layout: base
   
 </style>
 
+{% if page.category or page.home %}
 <script>
   // Function to check the user's country and hide the element if not from the USA
   function checkCountryAndHideElement() {
@@ -127,3 +128,4 @@ layout: base
   window.onload = checkCountryAndHideElement;
 
 </script>
+{% endif %}
