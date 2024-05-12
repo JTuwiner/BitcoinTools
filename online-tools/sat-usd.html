@@ -40,70 +40,104 @@ jquery: yes
     }
   });
 
-  var scientificToDecimal = function (num) {
-    var nsign = Math.sign(num);
-    //remove the sign
-    num = Math.abs(num);
-    //if the number is in scientific notation remove it
-    if (/\d+\.?\d*e[\+\-]*\d+/i.test(num)) {
-      var zero = '0',
-        parts = String(num).toLowerCase().split('e'), //split into coeff and exponent
-        e = parts.pop(), //store the exponential part
-        l = Math.abs(e), //get the number of zeros
-        sign = e / l,
-        coeff_array = parts[0].split('.');
-      if (sign === -1) {
-        l = l - coeff_array[0].length;
-        if (l < 0) {
-          num = coeff_array[0].slice(0, l) + '.' + coeff_array[0].slice(l) + (coeff_array.length === 2 ? coeff_array[1] : '');
-        } 
-        else {
-          num = zero + '.' + new Array(l + 1).join(zero) + coeff_array.join('');
-        }
-      } 
-      else {
-        var dec = coeff_array[1];
-        if (dec)
-          l = l - dec.length;
-        if (l < 0) {
-          num = coeff_array[0] + dec.slice(0, l) + '.' + dec.slice(l);
-        } else {
-          num = coeff_array.join('') + new Array(l + 1).join(zero);
-        }
-      }
-    }
+  function btcToSatoshi(btc) {
+    return btc * 100000000;
+  }
+  function satoshiToBtc(satoshi) {
+    return satoshi / 100000000;
+  }
+  function satoshiToUsd(satoshi, bitcoinPrice) {
+    return satoshiToBtc(satoshi) * bitcoinPrice;
+  }
+  function usdToSatoshi(usd, bitcoinPrice) {
+    return btcToSatoshi(usd / bitcoinPrice);
+  }
+  function btcToUsd(btc, bitcoinPrice) {
+    return btc * bitcoinPrice;
+  }
+  function usdToBtc(usd, bitcoinPrice) {
+    return usd / bitcoinPrice;
+  }
 
-    return nsign < 0 ? '-'+num : num;
-  };
+  function normalizeNumber(number, minimumFractionDigits = 2, maximumFractionDigits = 2) {
+    // remove all non-numeric characters
+    number = number.toString().replace(/[^0-9.]+/g, '');
+
+    if (number.toString().endsWith('.')) { // if the number ends with a decimal point, remove it
+      return number;
+    } else if (number.toString().includes('.') && number.toString().endsWith('0')) { // if the number ends with a decimal point and a 0, remove the 0
+      return number;
+    } else if (number.toString().startsWith('.')) { // if the number starts with a decimal point, add a 0 before it
+      return '0' + number;
+    } else if (isNaN(number*2)) { // we can't parse the number
+      return 0;
+    } else { // we can parse the number, so format it
+      return new Intl.NumberFormat('en-US', { style: 'decimal', minimumFractionDigits: minimumFractionDigits, maximumFractionDigits: maximumFractionDigits }).format(number);
+    }
+  }
+
+  function parseNumber(input) {
+    const number = parseFloat(input.replace(/[^0-9.]+/g, ''));
+
+    if (isNaN(number)) {
+      return 0;
+    } else {
+      return number;
+    }
+  }
+
+  let debounceTimer;
+  function getBitcoinPriceAnd(callback) {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      jQuery.get( "https://api.coindesk.com/v1/bpi/currentprice.json", function( data ) {
+        let bitcoinPriceNow = parseFloat(data.bpi.USD.rate.replace(/,/g, ''))
+        callback(bitcoinPriceNow);
+      });
+    }, 500);
+  }
 
   jQuery(function()
     {
-      jQuery("#btu-bts").bind('input',function(){
+      jQuery("#btu-bts").bind("input", function() {
+        let raw = jQuery("#btu-bts").val();
+        let parsed = parseNumber(raw);
+        jQuery("#btu-bts").val(normalizeNumber(raw, 0, 0));
 
-        s = jQuery("#btu-bts").val().toString().replace(/\,/g,'');
-        if (s>=1000)
-        {
-          b = s.toString().split(".");
-          b[0] = b[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
-          c = b.join('.');
-          jQuery("#btu-bts").val(c);
-        }
-        if (isNaN(s*2)) jQuery("#bts-sts").val(0);
-        else
-        {
-          jQuery.get( "https://api.coindesk.com/v1/bpi/currentprice.json", function( data ) {
-            var bitcoinEUR = data.bpi.USD.rate.replace(/\,/g,'') * s
-            var satoshiBitcoinEUR = (bitcoinEUR*0.00000001)
-            q = (satoshiBitcoinEUR).toFixed(3)
-            a = q.toString().split(".");
-            a[0] = a[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
-            p = a.join('.');
-            btcAmount = scientificToDecimal(s / 100000000)
-            jQuery("#btus-stus").val(p);
-            jQuery("#btc-field").val(btcAmount)
+        getBitcoinPriceAnd(function(bitcoinPriceNow) {
+          let btcValue = satoshiToBtc(parsed);
+          let usdValue = satoshiToUsd(parsed, bitcoinPriceNow);
 
-          });
-        }
+          jQuery("#btc-field").val(normalizeNumber(btcValue, 8, 8));
+          jQuery("#btus-stus").val(normalizeNumber(usdValue, 0, 2));
+        });
+      });
+      jQuery("#btus-stus").bind("input", function() {
+        let raw = jQuery("#btus-stus").val();
+        let parsed = parseNumber(raw);
+        jQuery("#btus-stus").val(normalizeNumber(raw, 0, 2));
+
+        getBitcoinPriceAnd(function(bitcoinPriceNow) {
+          let btcValue = usdToBtc(parsed, bitcoinPriceNow);
+          let satoshiValue = usdToSatoshi(parsed, bitcoinPriceNow);
+
+          jQuery("#btc-field").val(normalizeNumber(btcValue, 8, 8));
+          jQuery("#btu-bts").val(normalizeNumber(satoshiValue, 0, 0));
+        });
+      });
+
+      jQuery("#btc-field").bind("input", function() {
+        let raw = jQuery("#btc-field").val();
+        let parsed = parseNumber(raw);
+        jQuery("#btc-field").val(normalizeNumber(raw, 0, 8));
+
+        getBitcoinPriceAnd(function(bitcoinPriceNow) {
+          let usdValue = btcToUsd(parsed, bitcoinPriceNow);
+          let satoshiValue = btcToSatoshi(parsed);
+
+          jQuery("#btus-stus").val(normalizeNumber(usdValue, 0, 2));
+          jQuery("#btu-bts").val(normalizeNumber(satoshiValue, 0, 0));
+        });
       });
     });
 </script>
