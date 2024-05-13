@@ -86,6 +86,10 @@ window.addEventListener('load', (event) => {
 
 </script>
 
+{% if page.capture %}
+{% include om.html %}
+{% endif %}
+
 <style>
   .b-unit {
     display: flex;
