@@ -1,0 +1,336 @@
+---
+layout: page
+title: Bitcoin Fee Calculator
+seotitle: "#1 Bitcoin Fee Calculator & Estimator [Miner Gas Fees]"
+full-width: yes
+permalink: "/fee-calculator/"
+capture: yes
+---
+
+<div class="fee-calc-wrapper">
+  <form class="fee-calc-form">
+    <div class="fee-calc-form-row">
+      <label for="selectBlocks" class="confirm-label">To confirm within</label>
+      <div class="form-control-wrapper">
+        <select class="form-control fee-calc-form-select" id="selectBlocks"></select>
+        <img src="/assets/svg/select-down-arrow-icon.svg" class="form-control-icon" alt="">
+      </div>
+    </div>
+    <div class="fee-calc-form-row">
+      <label for="xInputs" class="confirm-label">Standard transaction inputs</label>
+      <input id="xInputs" type="text" value="2" size="2" class="fee-calc-form-input">
+    </div>
+    <div class="fee-calc-form-row">
+      <label for="xOutputs" class="confirm-label">Standard transaction outputs</label>
+      <input id="xOutputs" type="text" value="2" size="2" class="fee-calc-form-input">
+    </div>
+  </form>
+
+  <div class="form-results-wrapper">
+    <div class="form-results-wrapper-inner">
+      <div>
+
+        <div class="col-xs-7" style="border-right: 1px solid #bbb; display: none;">
+          To confirm within <span class="bold" id="xBlocks"></span> blocks ( ~<span class="bold" id="xMin"></span> min)
+        </div>
+
+        <div class="form-results-main-col">
+          <div class="form-results-col-number is--large">
+            <span id="xAmount"></span>
+          </div>
+          <div class="form-results-col-label">
+            satoshis/<span data-fee="measurement-unit"></span>
+          </div>
+        </div>
+
+        <div class="form-results-row-inner">
+
+            <div class="form-results-col">
+              <div class="form-results-col-number">
+                ~<span id="xBytes"></span>
+              </div>
+              <div class="form-results-col-label">
+                vbytes
+              </div>
+            </div>
+
+            <div class="form-results-col">
+              <div class="form-results-col-number">
+                ~<span id="xSatoshis"></span>
+              </div>
+              <div class="form-results-col-label">
+                satoshis
+              </div>
+            </div>
+
+            <div class="form-results-col">
+              <div class="form-results-col-number">
+                ~<span id="xUsd"></span>
+              </div>
+              <div class="form-results-col-label">
+                USD
+              </div>
+            </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="chart" style="height: 500px; margin-left: -20px;"></div>
+
+<h2>How do Bitcoin fees work?</h2>
+    
+    <p>
+        Bitcoin is made up of <strong>blocks</strong>.</p> 
+        
+      <p><strong>Blocks</strong> are a set of transactions, and currently restricted to be less than or equal to 1,000,000
+        bytes and designed so that on average only 1 block per ~10 minutes can be created. The groups that create blocks are
+        known as Bitcoin <strong>miners</strong>. These <strong>miners</strong> can pick whichever transactions they want in the block
+        they create.
+    </p>
+    <p>
+        Bitcoin miners get paid all the transaction fees in the block they mine. So as such, it is in their interest to
+        maximize the amount of money they make when they create a block. So what they do is pick the 1,000,000 bytes of transactions
+        that result in them getting paid the most money.
+    </p>
+    <p>
+        From a Bitcoin miner's perspective, they don't care about the <em>value</em> of a transaction, but just the size (amount of bytes), because they
+        are only allowed to create blocks of 1,000,000 bytes or less. So miners don't consider the absolute fee a transaction has, but rather,
+        the <strong>fee per byte</strong>.
+    </p>
+    
+    <h2>What is the Bitcoin transaction fee for $100 dollars?</h2>
+<p>Bitcoin fees are determined by the amount of data the transaction uses, and not the value being sent. You can use the calculator above to determine the cost of any transaction for any amount.</p>
+
+        <h2>Why are the fee estimations so high?</h2>
+
+    <p>
+        Eye-balling it, sometimes it looks like the fee estimates are super high.</p> 
+        
+        <p>The reason for that is because they use
+        95% confidence. If a block was found <strong>now</strong> maybe you'd only need 20 satoshi/byte, but it might be
+        an hour before the next block, and in the subsequent time a large amount of new transactions come in.
+    </p>
+
+    <p>
+        Sometimes you don't need such high confidence (e.g. it's not important, or you have a way of fee bumping), so you
+        can get away with much lower fees.
+    </p>
+    <p>
+        For instance, if you perform a Child-Pays-For-Parent transaction or your transaction is capable of Replace-By-Fee.   
+    </p>
+
+    <p>
+        In these cases, you can get away with starting with a lower fee to see if it gets through. If it doesn't you can use either of these methods to increase the fees and get your transaction into a block faster.  
+    </p>
+
+
+        <h2>Why are Bitcoin fees so high?</h2>
+
+    <p>
+        Sometimes fees are high when there is a lot of demand for blockspace due to new investors coming in. Remember that there can be only so many transactions per block. And there is a sort of auction that occurs to determine who's transactions make it in and who's don't. If there are a lot of people who need to get into the next block, they will pay for the privilege. Wait for demand to die down and fees will be almost 0. 
+    </p>
+    
+    <p>Fees have been coming down since large exchanges like Coinbase have been <a href="https://buybitcoinworldwide.com/glossary/batching/">been batching </a> payments and using <a href="https://buybitcoinworldwide.com/segwit/">and using Segwit.</a></p>
+
+
+        <h2>Why do some low-fee paying transactions appear early in the mempool?</h2>
+
+    <p>
+        It's because a high-fee paying transaction depends on it, and reprioritizes it. i.e. the only way for the miner to
+        get the money from the "good" transaction, is to include a "bad" one first. It's known as Child-Pays-For-Parent (CPFP), but note
+        that some old versions of bitcoin core, and bitcoin unlimited don't support it (and leave those transactions for smarter miner software).
+    </p>
+
+        <h2>How did you build this?</h2>
+
+    <p>
+        The way we calculate our fee estimates is by calling <code>estimatesmartfee $n</code> on bitcoin core (0.16.0). The
+        chart is generated by dumping the mempool and doing some <strong><a href="https://gist.github.com/RHavar/a2fe192e46a519965b01879eeade9874">smart sorting</a></strong>.
+    </p>
+
+    
+  <script src="https://btcpriceequivalent.com/fee-estimates"></script> 
+  
+  <script src="https://buybitcoinworldwide.com/javascripts/libs/highcharts.js"></script> 
+  
+  <script src="https://buybitcoinworldwide.com/javascripts/libs/highcharts-exporting.min.js" ></script> 
+  
+  <script src="https://buybitcoinworldwide.com/javascripts/libs/highcharts-offline-exporting.min.js"></script> 
+  <script src="https://buybitcoinworldwide.com/javascripts/libs/mempool-highchart.js"></script> 
+  <script src="https://buybitcoinworldwide.com/javascripts/pages/info/fees.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <style>
+  .html-embed-2 {
+    margin: 0 auto !important;
+  }
+  .feesexplain h2 {
+    margin-bottom: 25px;
+    margin-top: 50px;
+  }
+    .confirm-label {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 15px;
+      color: #4B5066;
+      display: block;
+    }
+    .form-control {
+      margin-top: 6px;
+    }
+    .hidden {
+        display: none;
+    }
+  
+    .fee-calc-wrapper {
+      display: flex;
+      grid-gap: 45px;
+      justify-content: space-between;
+    }
+  
+    .fee-calc-form {
+      width: 100%;
+    }
+    .fee-calc-form-row {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    .fee-calc-form-input {
+      background: #FFFFFF;
+      border: 1px solid #D8D8D8;
+      border-radius: 8px;
+      padding: 14px 19px;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 100%;
+      color: #4B5066;
+      width: 100%;
+      margin-top: 5px;
+    }
+    .fee-calc-form-select {
+      background: #FFFFFF;
+      border: 1px solid #D8D8D8;
+      border-radius: 8px;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 100%;
+      color: #4B5066;
+      margin-top: 5px;
+      padding-left: 7px;
+    }
+    .form-results-row-inner {
+      display: flex;
+      justify-content: space-around;
+      grid-gap: 40px;
+      margin-top: 25px;
+    }
+    .form-results-col {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+    .form-results-col-number {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      color: #FFFFFF;
+      margin-bottom: 10px;
+    }
+    .form-results-col-number.is--large {
+      font-size: 60px;
+      line-height: 73px;
+      margin-bottom: 5px;
+    }
+    .form-results-col-label {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 100%;
+      color: #FFFFFF;
+    }
+    .form-results-wrapper {
+      max-width: 320px;
+      margin-top: 20px;
+      width: 100%;
+      height: 100%;
+      background: #3D79C0;
+      border-radius: 8px;
+      padding-left: 17px;
+      padding-right: 17px;
+      padding-bottom: 30px;
+    }
+    .form-results-main-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px 25px;
+      border-bottom: 1px solid #2C61A0;
+    }
+    .form-control {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
+      height: 100% !important;
+      cursor: pointer;
+      box-shadow: none !important;
+    }
+    .form-control-wrapper {
+      height: 52px;
+      position: relative;
+    }
+    h2 {
+      margin-bottom: 25px;
+      margin-top: 50px;
+      font-size: 30px;
+      font-weight: bold;
+    }
+    p {
+      color: rgba(29,36,69,.75);
+      text-align: left;
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 23px;
+    }
+    .form-control-icon {
+      position: absolute;
+      top: 22px;
+      right: 20px;
+      width: 20px;
+      height: 20px;
+
+      cursor: pointer;
+    }
+    .form-control:focus, .fee-calc-form-input:focus {
+      border-color: rgba(61, 121, 192, 1) !important;
+      outline: 0;
+      -webkit-box-shadow: none !important;
+      box-shadow: none !important;
+    }
+    .form-control::-ms-expand {
+        display: none;
+      }
+    @media(max-width: 750px) {
+      .fee-calc-wrapper {
+        flex-direction: column;
+        grid-gap: 0px;
+        margin-bottom: 55px;
+      }
+      .form-results-wrapper {
+        max-width: 100%;
+      }
+    }
+  </style>
+  
