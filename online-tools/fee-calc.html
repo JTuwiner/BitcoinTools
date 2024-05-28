@@ -168,15 +168,19 @@ capture: yes
   .html-embed-2 {
     margin: 0 auto !important;
   }
-  #charts .highcharts-container {
-    width: auto !important;
-  }
+ 
   .feesexplain h2 {
     margin-bottom: 25px;
     margin-top: 50px;
   }
-  #charts .highcharts-container .highcharts-root {
-        max-width: 100%;
+  .main-page-content > main {
+    width: 84%;
+  }
+  
+  @media screen and (max-width: 992px) {
+     .main-page-content > main   {
+        width: 100%;
+    }
   }
     .confirm-label {
       font-style: normal;
