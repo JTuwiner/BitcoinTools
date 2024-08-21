@@ -43,6 +43,14 @@ window.addEventListener('load', (event) => {
 });
 
 window.addEventListener('load', (event) => {
+  document.querySelectorAll('.helpful-link-hash').forEach(item => {
+  item.addEventListener('click', event => {
+    fathom.trackEvent('Click Hash Calc Helpful Link');
+  });
+  });
+});
+
+window.addEventListener('load', (event) => {
   document.querySelectorAll('.helpful-link-1').forEach(item => {
   item.addEventListener('click', event => {
     fathom.trackEvent('Click Satoshi Helpful Link');
