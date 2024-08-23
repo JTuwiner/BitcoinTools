@@ -3,14 +3,14 @@
     
     <div class="row">
       <div id="bj-wrap">
-        <a href="https://bitcoinminimalist.com/subscribe" target="_blank" class="b-unit minimalistad"><div class="pic">
-          <picture><img src="https://calendar.bitbo.io/assets/bitbo.jpg" alt="minimalist"></picture></div>
+       <a href="https://charts.bitbo.io/fear-greed/" target="_blank" class="fearad b-unit"><div class="pic">
+          <picture><img src="/assets/feargreed.png" alt="fear and greed"></picture></div>
           <div class="r-wrap">
             <div class="text">
-             Join 8,000+ Bitcoiners. Twice-weekly Bitcoin-only news & analysis. 
+             View the Bitcoin Fear & Greed Index live, with data and price historical.  
             </div>
             <div class="site">
-              bitcoinminimalist.com
+              bitbo.io
             </div>
           </div>
         </a>
@@ -59,9 +59,9 @@ window.addEventListener('load', (event) => {
 });
 
 window.addEventListener('load', (event) => {
-  document.querySelectorAll('.minimalistad').forEach(item => {
+  document.querySelectorAll('.fearad').forEach(item => {
   item.addEventListener('click', event => {
-    fathom.trackEvent('Click Minimalist Ad');
+    fathom.trackEvent('Click Fear & Greed Top');
   });
   });
 });
