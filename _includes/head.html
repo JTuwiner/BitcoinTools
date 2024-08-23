@@ -28,7 +28,11 @@
   {% endcapture %}
 
 
-  {% if page.seotitle %} <title>{{ page.seotitle }}</title> {% else %} <title>{{ title }}</title> {% endif %}
+  {% if page.seotitle %} 
+  <title>{{ page.seotitle }}</title> 
+  {% else %}
+  <title>{{ title }}</title> 
+  {% endif %}
 
   {% if site.author %}
   <meta name="author" content="{{ site.author }}">
