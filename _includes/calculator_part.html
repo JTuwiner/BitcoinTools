@@ -14,8 +14,10 @@
       </div>
       <div id="customSelect" class="custom-select select_wrapper">
         <select id="unit_select" class="select_box select">
-          <option value="t">TH/s</option>
           <option value="g">GH/s</option>
+          <option value="t">TH/s</option>
+          <option value="p">PH/s</option>
+          <option value="e">EH/s</option>
         </select>
       </div>
     </div>
@@ -139,179 +141,180 @@
   </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 <script>
-  var height;
-  jQuery(document).ready(function ($) {
-    var hashrate;
-    var earned_day = 0;
-    var earned_month = 0;
-    var earned_year = 0;
-    var ele_day = 0;
-    var ele_month = 0;
-    var ele_year = 0;
+    jQuery(document).ready(function ($) {
+      var hashrate;
+      var earned_day = 0;
+      var earned_month = 0;
+      var earned_year = 0;
+      var ele_day = 0;
+      var ele_month = 0;
+      var ele_year = 0;
 
-    // $.getJSON("https://www.satochi.co/latest-hashrate", function( data ) {
-    //console.log(data);
-    hashrate = 576280000000; 
-    var append_html = hashrate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    $("#cur_hash_rate").append(append_html);
-    // });
+      // $.getJSON("https://www.satochi.co/latest-hashrate", function( data ) {
+      //console.log(data);
+      hashrate = 576280000000;
+      var append_html = hashrate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      $("#cur_hash_rate").append(append_html);
+      // });
 
-    $.getJSON("https://www.satochi.co/latest", function (data) {
-      //console.log(data.Price);
-      b = data.Price.toFixed(2).split(".");
-      b[0] = b[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
-      c = b.join('.');
-      $("#bitcoin_price").val(c);
+      $.getJSON("https://www.satochi.co/latest", function (data) {
+        //console.log(data.Price);
+        b = data.Price.toFixed(2).split(".");
+        b[0] = b[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+        c = b.join('.');
+        $("#bitcoin_price").val(c);
+      });
+
+      function stringToTS(s) {
+        b = s.toString().split(".");
+        b[0] = b[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+        c = b.join('.');
+        return c;
+      }
+
+      function getValueForYear(v) {
+        var t = 0;
+        for (i = 0; i < 12; i++) {
+          v *= 0.8732584107;
+          t += v;
+        }
+        return t;
+      }
+
+      function getAppendHTML(v1, v2) {
+        var append_html = "";
+        if (v1 >= v2) {
+          $(".negative-earning").attr('class', 'positive-earning');
+          append_html += "+$" + stringToTS((v1 - v2).toFixed(2));
+        } else {
+          $(".positive-earning").attr('class', 'negative-earning');
+          append_html += "-$" + stringToTS((v2 - v1).toFixed(2));
+        }
+        return append_html;
+      }
+
+      function setDValue_Style() {
+        jQuery("#d_day").html(getAppendHTML(earned_day, ele_day));
+        jQuery("#d_month").html(getAppendHTML(earned_month, ele_month));
+        jQuery("#d_year").html(getAppendHTML(earned_year, ele_year));
+      }
+
+      var eventCalc1Handler = function () {
+        var sel_index = document.getElementById("unit_select").selectedIndex;
+
+        const unit_magnitudes = {
+          "g": 1,
+          "t": 1_000,
+          "p": 1_000_000,
+          "e": 1_000_000_000,
+        };
+        const selected_unit = document.getElementById("unit_select").options[sel_index].value;
+        const unit = unit_magnitudes[selected_unit] || 0;
+
+        s = jQuery("#hash_rate").val().toString().replace(/\,/g, '');
+        jQuery("#hash_rate").val(stringToTS(s));
+
+        price = jQuery("#bitcoin_price").val().toString().replace(/\,/g, '');
+        jQuery("#bitcoin_price").val(stringToTS(price));
+
+        uhr = s / hashrate * unit;
+
+        if (isNaN(uhr)) {
+          jQuery("#user_hash_rate").html("0");
+          jQuery("#chance").html("0");
+          jQuery("#earned_btc_day").html("0");
+          jQuery("#earned_btc_month").html("0");
+          jQuery("#earned_dollar_day").html("0");
+          jQuery("#earned_dollar_month").html("0");
+          earned_day = 0;
+          earned_month = 0;
+          earned_month = 0;
+        } else {
+          q = uhr.toFixed(8);
+          jQuery("#user_hash_rate").html(stringToTS(q));
+
+          uhr *= 144;
+          jQuery("#chance").html(stringToTS(uhr.toFixed(8)));
+
+          uhr *= 3.125;
+          //jQuery("#earned_btc_day").html(stringToTS(uhr.toFixed(8)));
+          //jQuery("#earned_dollar_day").html(stringToTS((uhr * price).toFixed(2)));
+
+          uhr *= 30;
+          //jQuery("#earned_btc_month").html(stringToTS(uhr.toFixed(8)));
+          //jQuery("#earned_dollar_month").html(stringToTS((uhr * price).toFixed(2)));
+
+          uhr = getValueForYear(uhr);
+          earned_day = uhr / 365 * price;
+          earned_month = uhr / 12 * price;
+          earned_year = uhr * price;
+
+          jQuery("#earned_btc_year").html(stringToTS(uhr.toFixed(4)));
+          jQuery("#earned_dollar_year").html(stringToTS(earned_year.toFixed(2)));
+          jQuery("#earned_btc_day").html(stringToTS((uhr / 365).toFixed(4)));
+          jQuery("#earned_dollar_day").html(stringToTS(earned_day.toFixed(2)));
+          jQuery("#earned_btc_month").html(stringToTS((uhr / 12).toFixed(4)));
+          jQuery("#earned_dollar_month").html(stringToTS(earned_month.toFixed(2)));
+          //jQuery("#earned_btc_year").html(stringToTS((uhr > 0.01) ? uhr.toFixed(3) : uhr.toFixed(5)));
+          //jQuery("#earned_btc_day").html(stringToTS(((uhr/365) > 0.01) ? (uhr/365).toFixed(3) : (uhr/365).toFixed(5)));
+          //jQuery("#earned_btc_month").html(stringToTS(((uhr/12) > 0.01) ? (uhr/12).toFixed(3) : (uhr/12).toFixed(5)));
+        }
+
+        setDValue_Style();
+      }
+
+      var eventCalc2Hander = function () {
+        //s = parseFloat(jQuery("#hash_rate").val().toString().replace(/\,/g,''));
+        //jQuery("#hash_rate").val(s);
+        p = jQuery("#power_consumption").val().toString().replace(/\,/g, '');
+        jQuery("#power_consumption").val(stringToTS(p));
+
+        c = jQuery("#cost_kw").val().toString().replace(/\,/g, '');
+        jQuery("#cost_kw").val(stringToTS(c));
+
+        ec = p / 1000 * 24 * c;
+        if (isNaN(ec)) {
+          jQuery("#ele_costs_day").html("0");
+          jQuery("#ele_costs_month").html("0");
+          jQuery("#ele_costs_year").html("0");
+          ele_day = 0;
+          ele_month = 0;
+          ele_year = 0;
+        } else {
+          q = ec.toFixed(2);
+          jQuery("#ele_costs_day").html(stringToTS(q));
+
+          ec *= 30;
+          q = ec.toFixed(2);
+          jQuery("#ele_costs_month").html(stringToTS(q));
+
+          ec *= 12;
+          q = ec.toFixed(2);
+          jQuery("#ele_costs_year").html(stringToTS(q));
+
+          ele_year = ec;
+          ele_month = ec / 12;
+          ele_day = ec / 12 / 30;
+        }
+
+        setDValue_Style()
+      }
+
+      jQuery("#hash_rate").bind('input', eventCalc1Handler);
+      jQuery("#bitcoin_price").bind('input', eventCalc1Handler);
+      jQuery("#unit_select").bind('change', eventCalc1Handler);
+
+      jQuery("#power_consumption").bind('input', eventCalc2Hander);
+      jQuery("#cost_kw").bind('input', eventCalc2Hander);
     });
-
-    function stringToTS(s) {
-      b = s.toString().split(".");
-      b[0] = b[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
-      c = b.join('.');
-      return c;
-    }
-
-    function getValueForYear(v) {
-      var t = 0;
-      for (i = 0; i < 12; i++) {
-        v *= 0.8732584107;
-        t += v;
-      }
-      return t;
-    }
-
-    function getAppendHTML(v1, v2) {
-      var append_html = "";
-      if (v1 >= v2) {
-        $(".negative-earning").attr('class', 'positive-earning');
-        append_html += "+$" + stringToTS((v1 - v2).toFixed(2));
-      } else {
-        $(".positive-earning").attr('class', 'negative-earning');
-        append_html += "-$" + stringToTS((v2 - v1).toFixed(2));
-      }
-      return append_html;
-    }
-
-    function setDValue_Style() {
-      jQuery("#d_day").html(getAppendHTML(earned_day, ele_day));
-      jQuery("#d_month").html(getAppendHTML(earned_month, ele_month));
-      jQuery("#d_year").html(getAppendHTML(earned_year, ele_year));
-    }
-
-    var eventCalc1Handler = function () {
-      //s = parseFloat(jQuery("#hash_rate").val().toString().replace(/\,/g,''));
-      //jQuery("#hash_rate").val(s);
-      var unit = 1;
-      var sel_index = document.getElementById("unit_select").selectedIndex;
-      if (document.getElementById("unit_select").options[sel_index].value == "t") unit = 1000;
-
-      s = jQuery("#hash_rate").val().toString().replace(/\,/g, '');
-      jQuery("#hash_rate").val(stringToTS(s));
-
-      price = jQuery("#bitcoin_price").val().toString().replace(/\,/g, '');
-      jQuery("#bitcoin_price").val(stringToTS(price));
-
-      uhr = s / hashrate * unit;
-
-      if (isNaN(uhr)) {
-        jQuery("#user_hash_rate").html("0");
-        jQuery("#chance").html("0");
-        jQuery("#earned_btc_day").html("0");
-        jQuery("#earned_btc_month").html("0");
-        jQuery("#earned_dollar_day").html("0");
-        jQuery("#earned_dollar_month").html("0");
-        earned_day = 0;
-        earned_month = 0;
-        earned_month = 0;
-      } else {
-        q = uhr.toFixed(8);
-        console.log('q: ', q);
-        jQuery("#user_hash_rate").html(stringToTS(q));
-
-        uhr *= 144;
-        jQuery("#chance").html(stringToTS(uhr.toFixed(8)));
-
-        uhr *= 3.125;
-        //jQuery("#earned_btc_day").html(stringToTS(uhr.toFixed(8)));
-        //jQuery("#earned_dollar_day").html(stringToTS((uhr * price).toFixed(2)));
-
-        uhr *= 30;
-        //jQuery("#earned_btc_month").html(stringToTS(uhr.toFixed(8)));
-        //jQuery("#earned_dollar_month").html(stringToTS((uhr * price).toFixed(2)));
-
-        uhr = getValueForYear(uhr);
-        earned_day = uhr / 365 * price;
-        earned_month = uhr / 12 * price;
-        earned_year = uhr * price;
-
-        jQuery("#earned_btc_year").html(stringToTS(uhr.toFixed(4)));
-        jQuery("#earned_dollar_year").html(stringToTS(earned_year.toFixed(2)));
-        jQuery("#earned_btc_day").html(stringToTS((uhr / 365).toFixed(4)));
-        jQuery("#earned_dollar_day").html(stringToTS(earned_day.toFixed(2)));
-        jQuery("#earned_btc_month").html(stringToTS((uhr / 12).toFixed(4)));
-        jQuery("#earned_dollar_month").html(stringToTS(earned_month.toFixed(2)));
-        //jQuery("#earned_btc_year").html(stringToTS((uhr > 0.01) ? uhr.toFixed(3) : uhr.toFixed(5)));
-        //jQuery("#earned_btc_day").html(stringToTS(((uhr/365) > 0.01) ? (uhr/365).toFixed(3) : (uhr/365).toFixed(5)));
-        //jQuery("#earned_btc_month").html(stringToTS(((uhr/12) > 0.01) ? (uhr/12).toFixed(3) : (uhr/12).toFixed(5)));
-      }
-
-      setDValue_Style();
-    }
-
-    var eventCalc2Hander = function () {
-      //s = parseFloat(jQuery("#hash_rate").val().toString().replace(/\,/g,''));
-      //jQuery("#hash_rate").val(s);
-      p = jQuery("#power_consumption").val().toString().replace(/\,/g, '');
-      jQuery("#power_consumption").val(stringToTS(p));
-
-      c = jQuery("#cost_kw").val().toString().replace(/\,/g, '');
-      jQuery("#cost_kw").val(stringToTS(c));
-
-      ec = p / 1000 * 24 * c;
-      if (isNaN(ec)) {
-        jQuery("#ele_costs_day").html("0");
-        jQuery("#ele_costs_month").html("0");
-        jQuery("#ele_costs_year").html("0");
-        ele_day = 0;
-        ele_month = 0;
-        ele_year = 0;
-      } else {
-        q = ec.toFixed(2);
-        jQuery("#ele_costs_day").html(stringToTS(q));
-
-        ec *= 30;
-        q = ec.toFixed(2);
-        jQuery("#ele_costs_month").html(stringToTS(q));
-
-        ec *= 12;
-        q = ec.toFixed(2);
-        jQuery("#ele_costs_year").html(stringToTS(q));
-
-        ele_year = ec;
-        ele_month = ec / 12;
-        ele_day = ec / 12 / 30;
-      }
-
-      setDValue_Style()
-    }
-
-    jQuery("#hash_rate").bind('input', eventCalc1Handler);
-    jQuery("#bitcoin_price").bind('input', eventCalc1Handler);
-    jQuery("#unit_select").bind('change', eventCalc1Handler);
-
-    jQuery("#power_consumption").bind('input', eventCalc2Hander);
-    jQuery("#cost_kw").bind('input', eventCalc2Hander);
-  });
 </script>
 
 <script>
   var x, i, j, l, ll, selElmnt, a, b, c;
   const customSelect = document.getElementById("customSelect");
   customSelect.addEventListener("click", function (e) {
-    e.classList.toggle("select-arrow-active");
+    customSelect.classList.toggle("select-arrow-active");
   });
   /* Look for any elements with the class "custom-select": */
   x = document.getElementsByClassName("custom-select");
@@ -342,6 +345,10 @@
         for (i = 0; i < sl; i++) {
           if (s.options[i].innerHTML == this.innerHTML) {
             s.selectedIndex = i;
+            // Update the selectbox value. This should trigger the event listener
+            selectedValue = s.options[i].value;
+            s.value = selectedValue;
+
             h.innerHTML = this.innerHTML;
             y = this.parentNode.getElementsByClassName("same-as-selected");
             yl = y.length;
@@ -353,6 +360,7 @@
           }
         }
         h.click();
+        s.dispatchEvent(new Event('change'));
       });
       b.appendChild(c);
     }
@@ -366,7 +374,4 @@
       this.classList.toggle("select-arrow-active");
     });
   }
-
 </script>
-
-<script src="/javascripts/video-embed.js"></script>
