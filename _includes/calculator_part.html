@@ -345,6 +345,10 @@
         for (i = 0; i < sl; i++) {
           if (s.options[i].innerHTML == this.innerHTML) {
             s.selectedIndex = i;
+            // Update the selectbox value. This should trigger the event listener
+            selectedValue = s.options[i].value;
+            s.value = selectedValue;
+
             h.innerHTML = this.innerHTML;
             y = this.parentNode.getElementsByClassName("same-as-selected");
             yl = y.length;
@@ -356,6 +360,7 @@
           }
         }
         h.click();
+        s.dispatchEvent(new Event('change'));
       });
       b.appendChild(c);
     }
