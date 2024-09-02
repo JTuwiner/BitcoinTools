@@ -1,0 +1,77 @@
+---
+layout: page
+title: Bitcoin Whitepaper and PDF
+desc: Read the original Bitcoin whitepaper by Satoshi Nakamoto online.
+full-width: yes
+permalink: "/whitepaper/"
+link: /whitepaper/
+cat: Education
+tool: yes
+jquery: yes
+capture: yes
+img: bitbo.jpg
+sort: 17
+include_module_javascript:
+  - pdf
+  - pdf.worker
+  - whitepaper
+---
+<style>
+p.download {
+  font-size: 12px;
+  text-align: center;
+}
+
+.paper-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.paper {
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  box-shadow: 0 0 1px 1px #eaeaea;
+  border-radius: 10px;
+}
+
+.paginator {
+  text-align: center;
+}
+.paginator button {
+  display: inline-block;
+  margin-right: 10px;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  padding: 5px 10px;
+  width: 100px;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 1px #ccc;
+}
+.paginator button.disabled {
+  background: #ccc;
+  color: #000;
+  cursor: not-allowed;
+}
+</style>  
+
+<p class="download">(<a href="/assets/bitcoin.pdf">Download</a>)</p>
+
+<div class="paper-container">
+<canvas class="paper" id="the-canvas" data-pdf-url="{{ "/assets/bitcoin.pdf" | relative_url }}"></canvas>
+</div>
+
+<div class="paginator">
+  <p>Page <span id="page_num"></span> of <span id="page_count"></span></p>
+  <button id="prev">Previous</button>
+  <button id="next">Next</button>
+</div>
+
+<br><br>
+
+<p style="max-width: 500px; margin: 0 auto;">We tried to create a simple web version of the Bitcoin white paper. </p>
+<p style="max-width: 500px; margin: 0 auto;">Click previous and next to browse, or press the download button at the top to download the white paper.</p>
