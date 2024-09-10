@@ -1,0 +1,105 @@
+---
+layout: base
+---
+
+{% include sidebar.html %}
+<main>
+<div class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}" role="main">
+  <div class="row">
+    <div {% if page.calendar %}id="calendar-page"{% endif %}class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
+
+      <div class="month-header" style="display: block;">
+        {% unless page.home == true %}
+        <h1 class="detailed-cal">
+           {{ page.title }}
+        </h1>
+        {% endunless %}
+        {% if page.subdesc %}
+        <p style="margin-top: 0;font-size: 14px;color: hsla(0,0%,100%,.5);">{{ page.subdesc }}</p>
+        {% endif %}
+        
+        
+    </div>
+
+      {{ content }}
+      
+      {% if page.category %}
+      <div class="tools-container">
+        {% assign items = site.pages | sort: "sort" %}
+        {% for tool in items %}
+          {% if tool.secondcat == page.title %}
+             {% include toolslist.html %}
+          {% endif %}  
+        {% endfor %}
+      </div>
+      {% endif %}  
+
+      {% if page.after-content %}
+        <div class="after-content">
+          {% for file in page.after-content %}
+            {% include {{ file }} %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+</main>
+
+<style>
+  
+  .tools-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+  }
+  
+  @media screen and (max-width: 992px) {
+      .tools-container {
+          grid-template-columns: repeat(2, 1fr) !important;
+      }
+  }
+  
+  @media screen and (max-width: 768px) {
+      body .tools-container {
+          grid-template-columns: 1fr !important;
+      }
+  }
+  
+  .tool {
+      background-color: rgba(29,34,47,.5);
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      text-align: left;
+  }
+  
+  .tool img {
+      width: 60px;
+      height: 60px;
+      margin-right: 15px;
+      border-radius: 50%;
+  }
+  
+  .tool-info {
+      flex: 1;
+  }
+  
+  .tool h3 {
+      font-size: 18px;
+      margin: 0 0 5px;
+      color: white;
+  }
+  
+  .tool p {
+      font-size: 14px;
+      color: white;
+      margin: 0;
+  }
+  
+</style>
