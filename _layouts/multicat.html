@@ -21,7 +21,6 @@ layout: base
         
     </div>
 
-      {{ content }}
       
       {% if page.category %}
       <div class="tools-container">
@@ -41,6 +40,8 @@ layout: base
           {% endfor %}
         </div>
       {% endif %}
+      
+      {{ content }}
 
     </div>
   </div>
