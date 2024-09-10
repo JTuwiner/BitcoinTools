@@ -103,29 +103,3 @@ layout: base
   }
   
 </style>
-
-{% if page.category or page.home %}
-<script>
-  // Function to check the user's country and hide the element if not from the USA
-  function checkCountryAndHideElement() {
-    fetch('https://ipapi.co/country/')
-    .then(function(response) {
-      response.text().then(function(countryCode) {
-        if (countryCode.trim() !== 'US') {
-          // If the user is not from the USA, hide all elements with the 'usa-only' class
-          document.querySelectorAll('.usa-only').forEach(function(element) {
-            element.style.display = 'none';
-          });
-        }
-      });
-    })
-    .catch(function(error) {
-      console.error('Failed to fetch country:', error);
-    });
-  }
-  
-  // Call the function when the window loads
-  window.onload = checkCountryAndHideElement;
-
-</script>
-{% endif %}
