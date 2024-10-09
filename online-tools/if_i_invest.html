@@ -1,0 +1,118 @@
+---
+layout: page
+title: If I Invest in Bitcoin Today Calculator
+full-width: yes
+permalink: "/if-i-invest-bitcoin/"
+jquery: yes
+capture: yes
+include_javascript:
+  - 'ifinvest'
+---
+
+
+ 
+<div class="calculator">
+    <div class="input-group">
+        <label for="btcAmount"># of BTC:</label>
+        <input type="number" id="btcAmount" placeholder="Enter your BTC amount">
+    </div>
+    <div class="input-group">
+        <label for="btcValue">Current BTC/USD Value:</label>
+        <input type="text" id="btcValue" readonly>
+    </div>
+    <div class="input-group">
+        <label for="retirementGoal">Retirement Goal Amount (USD):</label>
+        <input type="number" id="retirementGoal" placeholder="Enter your retirement goal amount">
+    </div>
+    <div class="input-group">
+        <label for="retirementYear">Desired Retirement Year:</label>
+        <input type="number" id="retirementYear" placeholder="Enter your desired retirement year">
+    </div>
+    <button id="calculate">Calculate</button>
+    <div id="result"></div>
+</div> 
+
+
+<br>
+
+<h3>Helpful Links</h3>
+<ul>
+  <li><a class="helpful-link-retire" target="_blank" href="https://charts.bitbo.io/price-prediction/">Bitcoin Price Prediction Chart</a></li>
+  <li><a class="helpful-link-retire" target="_blank" href="https://bitbo.io/">Live Bitcoin price</a></li>
+</ul>
+
+<br>
+
+<br>
+
+<h2>Calculator</h2>
+<p>This calculator helps you determine how much Bitcoin would need to grow for you to retire entirely off of bitcoin.</p>
+
+
+<script>
+  
+  window.addEventListener('load', (event) => {
+    document.querySelectorAll('.helpful-link-retire').forEach(item => {
+    item.addEventListener('click', event => {
+      fathom.trackEvent('Click Retire Helpful Link');
+    });
+    });
+  });
+</script>
+
+
+
+<style>
+  
+  .calculator {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      color: black;
+  }
+  
+  .input-group {
+      margin-bottom: 15px;
+  }
+  
+  label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+  }
+  
+  input[type="number"],
+  input[type="text"] {
+      width: calc(100% - 10px);
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+  }
+  
+  button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+  }
+  
+  button:hover {
+      background-color: #0056b3;
+  }
+  
+  #result {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+  }
+
+
+</style>
