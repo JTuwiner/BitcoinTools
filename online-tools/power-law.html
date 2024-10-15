@@ -1,0 +1,149 @@
+---
+layout: page
+title: Bitcoin Power Law Calculator
+full-width: yes
+permalink: "/power-law-calculator/"
+jquery: yes
+capture: yes
+---
+
+<p>Enter a date and get a projected price on that date based on the Bitcoin power law.</p>
+
+<div class="container">
+	<h2>Projected Price Calculator</h2>
+	<label for="date">Enter a Date:</label>
+	<input type="date" id="date">
+	<button onclick="calculatePrice()">Calculate</button>
+	<div id="result" class="result"></div>
+</div>
+<br>
+
+<a class="view-live-chart" href="https://charts.bitbo.io/long-term-power-law/">View Live Power Law Chart</a>
+
+<br>
+
+ <h2 style="margin-bottom: 10px;">Projected Prices based on the Power Law</h2>
+ 
+<table>
+	<thead>
+		<tr>
+			<th>Year</th>
+			<th>Projected Price</th>
+		</tr>
+	</thead>
+	<tbody id="priceTable">
+		<!-- Prices will be populated here -->
+	</tbody>
+</table>
+
+<a class="view-live-chart" href="https://charts.bitbo.io/long-term-power-law/">View Live Power Law Chart</a>
+
+<style>
+	.view-live-chart {
+		background: #242424;
+		color: white;
+		padding: 10px 20px;
+		border-radius: 2px;
+		border: 1px solid #000;
+	}
+	.view-live-chart:hover {
+		background: #000;
+		color: white !important;
+		border: 1px solid #000;
+	}
+</style>
+
+
+<script>
+	
+	window.addEventListener('load', (event) => {
+	document.querySelectorAll('.view-live-chart').forEach(item => {
+		item.addEventListener('click', event => {
+			fathom.trackEvent('Click View Live Chart');
+			});
+		});
+	});
+	
+	function calculatePrice() {
+		const inputDate = document.getElementById('date').value;
+		if (!inputDate) {
+			alert('Please enter a valid date.');
+			return;
+		}
+
+		const pastDate = new Date('January 1, 2009');
+		const selectedDate = new Date(inputDate);
+		const days = Math.floor((selectedDate.getTime() - pastDate.getTime()) / (1000 * 3600 * 24));
+
+		// Constants for the p1 expression
+		const a = -17.0161223;
+		const b = 5.8451542;
+
+		// Calculate the projected price
+		const projectedPrice = Math.pow(10, a + b * Math.log10(days));
+		
+		// Display the result
+		document.getElementById('result').innerText = `Projected Price: $${projectedPrice.toFixed(2)}`;
+	}
+	
+	function populateTable() {
+		const years = [2025, 2026, 2027, 2028, 2029, 2030, 2035, 2040];
+		const pastDate = new Date('January 1, 2009');
+		const a = -17.0161223;
+		const b = 5.8451542;
+		const tableBody = document.getElementById('priceTable');
+	
+		years.forEach(year => {
+			const futureDate = new Date(`January 1, ${year}`);
+			const days = Math.floor((futureDate.getTime() - pastDate.getTime()) / (1000 * 3600 * 24));
+			const projectedPrice = Math.pow(10, a + b * Math.log10(days)).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+			
+			const row = document.createElement('tr');
+			const yearCell = document.createElement('td');
+			const priceCell = document.createElement('td');
+	
+			yearCell.innerText = year;
+			priceCell.innerText = projectedPrice;
+	
+			row.appendChild(yearCell);
+			row.appendChild(priceCell);
+	
+			tableBody.appendChild(row);
+		});
+	}
+	
+	// Populate the table on page load
+	window.onload = populateTable;
+
+
+</script>
+
+<style>
+	.container {
+		max-width: 500px;
+		margin: auto;
+		padding: 20px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+	}
+	label, input, button {
+		display: block;
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	button {
+		padding: 10px;
+		background-color: #4CAF50;
+		color: white;
+		border: none;
+		cursor: pointer;
+	}
+	button:hover {
+		background-color: #45a049;
+	}
+	.result {
+		font-size: 1.2em;
+		margin-top: 20px;
+	}
+</style>
+ 
