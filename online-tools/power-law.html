@@ -82,7 +82,7 @@ capture: yes
 		const projectedPrice = Math.pow(10, a + b * Math.log10(days));
 		
 		// Display the result
-		document.getElementById('result').innerText = `Projected Price: $${projectedPrice.toFixed(2)}`;
+		document.getElementById('result').innerText = `Projected Price: $${projectedPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 	}
 	
 	function populateTable() {
