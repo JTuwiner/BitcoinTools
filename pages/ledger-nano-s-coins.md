@@ -8,9 +8,13 @@ capture: yes
 ---
 
 
+<div style="max-width: 800px; margin: 0 auto;">
+
 The Ledger Nano S  is one of the most popular and secure ways to store Bitcoin and other cryptocurrencies.
 
 **Below you will find a list of supported coins on the Ledger Nano S.**
+
+<a type="button" href="https://ledger.pxf.io/POyW1j" rel="nofollow noopener" target="_blank" class="btn exchange-btn-top btn-success"><i class="fa fa-bitcoin"></i> View Entire List of Coins</a>
 
 ## 1,000+ Supported Coins
 
@@ -41,7 +45,7 @@ You can also buy most of these coins through Ledger Live. In fact, Ledger just a
 <br>
 <br>
 
-<a type="button" href="https://ledger.pxf.io/rnK2by" rel="nofollow noopener" target="_blank" class="btn exchange-btn-top btn-success"><i class="fa fa-bitcoin"></i> View Entire List of Coins</a>
+<a type="button" href="https://ledger.pxf.io/POyW1j" rel="nofollow noopener" target="_blank" class="btn exchange-btn-top btn-success">View Entire List of Coins</a>
 
 ## Other Compatible Wallets
 
@@ -52,7 +56,7 @@ The Ledger Nano S operates with its own cryptocurrencies wallet interfaces: Ledg
 <div class="kb-helper">Some of the software wallets you can use with Ledger Nano S</div>
 </center>
 
-Of course, the very popular third-party wallet [Electrum](/wallets/electrum/) is also compatible with Ledger Nano S and Nano X.
+Of course, the very popular third-party wallet Electrum is also compatible with Ledger Nano S and Nano X.
 
 ![electrum wallet logo](https://buybitcoinworldwide.com/pages/wallet-reviews/articles/electrum/img/electrum4.png)
 
@@ -95,3 +99,5 @@ You can extend your Ledger Wallet features by installing new applications using 
 The app helps you upgrade the firmware of your device to keep your Ledger Wallet up-to-date in order to benefit from the latest security features available.
 
 When a new alt coin is added to the Ledger Nano S, you will only need to download the last app (free) or update the firmware.  
+
+</div>
