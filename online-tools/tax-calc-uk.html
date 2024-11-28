@@ -8,7 +8,7 @@ capture: yes
 ---
 <div style="max-width: 800px;">
 
-    <p>We built this free crypto tax calculator for UK users that want to check their gains quickly. Our calculator is for informational purposes only. Consult an expert CPA or tax professional. You may need to use <a href="/tax/software/">more advanced crypto tax software if you have a lot of trades</a>.</p>
+    <p>We built this free crypto tax calculator for UK users that want to check their gains quickly. Our calculator is for informational purposes only. Consult an expert CPA or tax professional. You may need to use <a href="/tax/">more advanced crypto tax software if you have a lot of trades</a>.</p>
 
     <form id="ukTaxForm">
         <label for="ukIncome">Annual Income (in GBP):</label>
@@ -34,14 +34,14 @@ capture: yes
         <li><strong>Input Income:</strong> Begin by entering your annual income to determine your tax bracket.</li>
         <li><strong>Enter Transaction Details:</strong> Provide the cost of your crypto purchase and the sale amount.</li>
         <li><strong>Click 'Calculate':</strong> The calculator will display a breakdown of your gains, tax bracket, and the tax you owe.</li>
-        <li><strong>Review Results:</strong> Remember, the first £6,000 of your gains are tax-free. Any tax displayed is on gains beyond this allowance.</li>
+        <li><strong>Review Results:</strong> Remember, the first £3,000 of your gains are tax-free. Any tax displayed is on gains beyond this allowance.</li>
     </ul>
     
      <h2>How Our Calculations Are Made:</h2>
     <ul>
         <li><strong>Capital Gains:</strong> First, we determine your total capital gain by subtracting the purchase cost from the sale amount.</li>
-        <li><strong>Tax Bracket:</strong> Based on your provided annual income, you are categorized into one of the tax brackets: Basic (10%), Higher (20%), or Additional (20%).</li>
-        <li><strong>Allowance Deduction:</strong> If your gains exceed £6,000, this allowance is subtracted, ensuring you are only taxed on gains above this threshold.</li>
+        <li><strong>Tax Bracket:</strong> Based on your provided annual income, you are categorized into one of the tax brackets: Basic (18%), Higher (24%), or Additional (24%).</li>
+        <li><strong>Allowance Deduction:</strong> If your gains exceed £3,000, this allowance is subtracted, ensuring you are only taxed on gains above this threshold.</li>
         <li><strong>Tax Calculation:</strong> Finally, we apply the appropriate tax rate to the adjusted gains to determine the tax you owe.</li>
     </ul>
     
@@ -56,7 +56,6 @@ capture: yes
     
     <style>
       #ukTaxForm {
-          font-family: Arial, sans-serif;
           background-color: #ffffff;
           padding: 20px;
           border-radius: 8px;
@@ -143,21 +142,21 @@ function calculateUKTax() {
     let taxRate = 0;
     let taxBracket = '';
 
-    if (capitalGain <= 6000) {
+    if (capitalGain <= 3000) {
         taxableGain = capitalGain;
     } else {
-        taxableGain = capitalGain - 6000; // Deduct the allowance directly from gains only if gains exceed £6,000
+        taxableGain = capitalGain - 3000; // Deduct the allowance directly from gains only if gains exceed £3,000
     }
 
     if (income <= 50270) {
-        taxRate = 0.10; 
-        taxBracket = "Basic Rate (10%)";
-    } else if (income <= 125139) {
-        taxRate = 0.20; 
-        taxBracket = "Higher Rate (20%)";
+        taxRate = 0.18; 
+        taxBracket = "Basic Rate (18%)";
+    } else if (income <= 150000) {
+        taxRate = 0.24; 
+        taxBracket = "Higher Rate (24%)";
     } else {
-        taxRate = 0.20; 
-        taxBracket = "Additional Rate (20%)";
+        taxRate = 0.24; 
+        taxBracket = "Additional Rate (24%)";
     }
 
     taxDue = taxableGain * taxRate;
@@ -165,8 +164,8 @@ function calculateUKTax() {
     document.getElementById("ukTaxBracket").innerText = taxBracket;
     document.getElementById("ukTaxOwedWithoutAllowance").innerText = "£" + formatNumber(capitalGain * taxRate);
     
-    if (capitalGain <= 6000) {
-        document.getElementById("ukFinalTaxDue").innerText = "You would've owed tax at a rate of " + (taxRate * 100) + "% on the gains, but due to the £6,000 allowance, you don't owe any tax.";
+    if (capitalGain <= 3000) {
+        document.getElementById("ukFinalTaxDue").innerText = "You would've owed tax at a rate of " + (taxRate * 100) + "% on the gains, but due to the £3,000 allowance, you don't owe any tax.";
     } else {
         document.getElementById("ukFinalTaxDue").innerText = "£" + formatNumber(taxDue);
     }
