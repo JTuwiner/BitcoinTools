@@ -22,7 +22,7 @@ capture: yes
     
         <button type="button" onclick="calculateUKTax()">Calculate Tax</button>
     </form>
-    <div class="uk-result">
+    <div class="uk-result" style="display: none;">
         <p><span class="label1">Total Gains:</span> <span id="ukTotalGains">0.00</span></p>
         <p><span class="label1">Tax Bracket:</span> <span id="ukTaxBracket">N/A</span></p>
         <p><span class="label1">Tax Owed Without Allowance:</span> <span id="ukTaxOwedWithoutAllowance">0.00</span></p>
@@ -63,6 +63,7 @@ capture: yes
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
           max-width: 400px;
           margin: 0 auto;
+          color: black;
       }
       
       #ukTaxForm label {
@@ -168,8 +169,9 @@ function calculateUKTax() {
         document.getElementById("ukFinalTaxDue").innerText = "You would've owed tax at a rate of " + (taxRate * 100) + "% on the gains, but due to the £6,000 allowance, you don't owe any tax.";
     } else {
         document.getElementById("ukFinalTaxDue").innerText = "£" + formatNumber(taxDue);
- 
     }
+    
+    document.querySelector('.uk-result').style.display = 'block';
 }
 
 </script>
