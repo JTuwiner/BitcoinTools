@@ -11,15 +11,15 @@ capture: yes
 
 <p>California taxes short-term and long-term gains at the same rate. To calculate Federal taxes, please <a href="/tax/usa-calculator/">use our USA tax calculator</a>. </p>
 
-<div class="tax-calculator">
+<div id="cryptoTaxCalculator">
     <label for="totalIncome">Enter your total income (without capital gains):</label>
-    <input type="number" step="0.01" id="totalIncome" class="formatted-input" placeholder="Enter income">
+    <input type="number" step="0.01" id="totalIncome" placeholder="Enter income">
     
     <label for="purchaseCost">Total Cost of First Purchase:</label>
-    <input type="number" step="0.01" id="purchaseCost" class="formatted-input" placeholder="Cost of first crypto buy">
+    <input type="number" step="0.01" id="purchaseCost" placeholder="Cost of first crypto buy">
     
     <label for="saleAmount">Amount of Sale:</label>
-    <input type="number" step="0.01" id="saleAmount" class="formatted-input" placeholder="Amount you received when sold">
+    <input type="number" step="0.01" id="saleAmount" placeholder="Amount you received when sold">
 
     <label for="filingStatus">Filing Status:</label>
     <select id="filingStatus">
@@ -31,7 +31,7 @@ capture: yes
 
     <button onclick="calculateTax()">Calculate Tax</button>
 
-    <p id="result"></p>
+    <p id="taxOwed"></p>
 </div> 
 
 <script>
@@ -69,23 +69,23 @@ function calculateTax() {
     }
 
     const tax = capitalGains * taxRate;
-    document.getElementById("result").innerText = "Estimated Tax on Crypto Capital Gains: $" + tax.toFixed(2);
+    document.getElementById("taxOwed").innerText = "Estimated Tax on Crypto Capital Gains: $" + tax.toFixed(2);
 }
 
 </script>
 
 
- <h2>How to Use the Tax Calculator</h2>
-    <ol>
-        <li><strong>Enter your total income:</strong> This should be your annual income excluding any capital gains from crypto.</li>
-        <li><strong>Enter the Total Cost of First Purchase:</strong> This is the initial amount you spent to buy the cryptocurrency.</li>
-        <li><strong>Enter the Amount of Sale:</strong> This is the total amount you received when you sold the cryptocurrency.</li>
-        <li><strong>Select your Filing Status:</strong> Choose from the dropdown based on your tax filing status. Options include Single, Married Filing Jointly, Married Filing Separately, and Head of Household.</li>
-        <li>Click on the <strong>Calculate Tax</strong> button to get the estimated tax on your capital gains.</li>
-    </ol>
-    <p>Note: This is an estimation and may not reflect your actual tax liability. Always consult with a tax professional when filing your taxes.</p> 
+<h2>How to Use the Tax Calculator</h2>
+<ol>
+    <li><strong>Enter your total income:</strong> This should be your annual income excluding any capital gains from crypto.</li>
+    <li><strong>Enter the Total Cost of First Purchase:</strong> This is the initial amount you spent to buy the cryptocurrency.</li>
+    <li><strong>Enter the Amount of Sale:</strong> This is the total amount you received when you sold the cryptocurrency.</li>
+    <li><strong>Select your Filing Status:</strong> Choose from the dropdown based on your tax filing status. Options include Single, Married Filing Jointly, Married Filing Separately, and Head of Household.</li>
+    <li>Click on the <strong>Calculate Tax</strong> button to get the estimated tax on your capital gains.</li>
+</ol>
+<p>Note: This is an estimation and may not reflect your actual tax liability. Always consult with a tax professional when filing your taxes.</p> 
 
-<table class="tax-table">
+<table>
     <thead>
         <tr>
             <th>Rate</th>
@@ -162,65 +162,77 @@ function calculateTax() {
     </tbody>
 </table>
 
- 
-
 <style>
-  
-.tax-calculator {
-    font-family: Arial, sans-serif;
-    max-width: 500px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin: 0 auto; 
-}
+    table {
+        color: black;
+    }
 
-.tax-calculator label {
-    display: block;
-    margin-bottom: 8px;
-}
-
-.tax-calculator input, .tax-calculator select, .tax-calculator button {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.tax-calculator button {
-    cursor: pointer;
-}
-
-#result {
-    font-weight: bold;
-}
-
-.tax-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-    margin-bottom: 20px;
-}
-
-.tax-table th, .tax-table td {
-    border: 1px solid #ddd;
-    padding: 8px 12px;
-    text-align: center;
-}
-
-.tax-table th {
-    background-color: #f2f2f2;
-}
-
-.tax-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.tax-table tr:hover {
-    background-color: #e9e9e9;
-}
-
-
-
+    h4 {
+        color: #f2a900;
+        margin-bottom: 10px;
+    }
+    
+    #cryptoTaxCalculator {
+        max-width: 400px;
+        margin: 0 auto;
+        color: black;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    #cryptoTaxCalculator h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    #cryptoTaxCalculator .input-group {
+        margin-bottom: 15px;
+    }
+    
+    #cryptoTaxCalculator label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    #cryptoTaxCalculator input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    
+    #cryptoTaxCalculator button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    
+    #cryptoTaxCalculator button:hover {
+        background-color: #0056b3;
+    }
+    
+    #cryptoTaxCalculator h2 {
+        margin-top: 20px;
+    }
+    
+    #cryptoTaxCalculator #taxOwed {
+        font-weight: bold;
+    }
+    
+    .result-label {
+        font-weight: bold;
+    }
+    
+    .result-number {
+        color: #005fb9;
+        font-weight: bold;
+    }
 </style>
