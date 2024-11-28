@@ -198,6 +198,24 @@ table {
     </ul>
     <p>For these reasons, I might recommend Koinly for users who need very minimal features and just want their tax software to produce tax forms quickly.</p>
     
+    <style>
+        .info-table-desktop {
+            display: none;
+        }
+        .info-table-mobile {
+            display: table;
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            .info-table-desktop {
+                display: table;
+                width: 100%;
+            }
+            .info-table-mobile {
+                display: none;
+            }
+        }
+    </style>
     <div class="exchange-information">
         <table class="exchange-info-table info-table-desktop">
             <thead>
