@@ -7,7 +7,7 @@ jquery: yes
 capture: yes
 ---
 
-<p><b>We built this free crypto tax calculator for residents of California who want to check calculations quickly. Our calculator is for informational purposes only. Please consult a CPA or tax professional. Use <a href="/tax/software/">cryptocurrency tax accounting software if you have lots of trades</a>.</b></p>
+<p>We built this free crypto tax calculator for residents of California who want to check calculations quickly. Our calculator is for informational purposes only. Please consult a CPA or tax professional. Use <a href="/tax/">cryptocurrency tax accounting software if you have lots of trades</a>.</p>
 
 <p>California taxes short-term and long-term gains at the same rate. To calculate Federal taxes, please <a href="/tax/usa-calculator/">use our USA tax calculator</a>. </p>
 
@@ -44,10 +44,10 @@ function calculateTax() {
     const capitalGains = saleAmount - purchaseCost;
 
     const brackets = {
-        single: [8932, 21175, 33421, 46394, 58634, 299508, 359407, 599012, Infinity],
-        marriedJointly: [17864, 42350, 66842, 92788, 117268, 599016, 718814, 1198024, Infinity],
-        marriedSeparately: [8932, 21175, 33421, 46394, 58634, 299508, 359407, 599012, Infinity],
-        headOfHousehold: [17864, 42353, 54597, 67569, 79812, 407329, 488796, 814658, Infinity]
+        single: [10756, 25499, 40245, 55866, 70606, 360659, 432787, 721314, Infinity],
+        marriedJointly: [21512, 50998, 80490, 111732, 141212, 721318, 865574, 1442628, Infinity],
+        marriedSeparately: [10756, 25499, 40245, 55866, 70606, 360659, 432787, 721314, Infinity],
+        headOfHousehold: [21527, 51000, 65744, 81364, 96107, 490493, 588593, 980987, Infinity]
     };
 
     const rates = [0.01, 0.02, 0.04, 0.06, 0.08, 0.093, 0.103, 0.113, 0.123];
@@ -84,87 +84,98 @@ function calculateTax() {
     <li>Click on the <strong>Calculate Tax</strong> button to get the estimated tax on your capital gains.</li>
 </ol>
 <p>Note: This is an estimation and may not reflect your actual tax liability. Always consult with a tax professional when filing your taxes.</p> 
-
-<table>
-    <thead>
-        <tr>
-            <th>Rate</th>
-            <th>Single</th>
-            <th>Married Filing Jointly</th>
-            <th>Married Filing Separately</th>
-            <th>Head of Household</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1%</td>
-            <td>$0 – $8,932</td>
-            <td>$0 – $17,864</td>
-            <td>$0 – $8,932</td>
-            <td>$0 – $17,864</td>
-        </tr>
-        <tr>
-            <td>2%</td>
-            <td>$8,933 – $21,175</td>
-            <td>$17,865 – $42,350</td>
-            <td>$8,933 – $21,175</td>
-            <td>$17,865 – $42,353</td>
-        </tr>
-        <tr>
-            <td>4%</td>
-            <td>$21,176 – $33,421</td>
-            <td>$42,351 – $66,842</td>
-            <td>$21,176 – $33,421</td>
-            <td>$42,354 – $54,597</td>
-        </tr>
-        <tr>
-            <td>6%</td>
-            <td>$33,422 – $46,394</td>
-            <td>$66,843 – $92,788</td>
-            <td>$33,422 – $46,394</td>
-            <td>$54,598 – $67,569</td>
-        </tr>
-        <tr>
-            <td>8%</td>
-            <td>$46,395 – $58,634</td>
-            <td>$92,789 – $117,268</td>
-            <td>$46,395 – $58,634</td>
-            <td>$67,570 – $79,812</td>
-        </tr>
-        <tr>
-            <td>9.3%</td>
-            <td>$58,635 – $299,508</td>
-            <td>$117,269 – $599,016</td>
-            <td>$58,635 – $299,508</td>
-            <td>$79,813 – $407,329</td>
-        </tr>
-        <tr>
-            <td>10.3%</td>
-            <td>$299,509 – $359,407</td>
-            <td>$599,017 – $718,814</td>
-            <td>$299,509 – $359,407</td>
-            <td>$407,330 – $488,796</td>
-        </tr>
-        <tr>
-            <td>11.3% (plus 1% for income over $1,000,000)</td>
-            <td>$359,408 – $599,012</td>
-            <td>$718,815 – $1,198,024</td>
-            <td>$359,408 – $599,012</td>
-            <td>$488,797 – $814,658</td>
-        </tr>
-        <tr>
-            <td>12.3% (plus 1% for income over $1,000,000)</td>
-            <td>$599,013+</td>
-            <td>$1,198,025+</td>
-            <td>$599,013+</td>
-            <td>$814,659+</td>
-        </tr>
-    </tbody>
-</table>
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>Rate</th>
+                <th>Single</th>
+                <th>Married Filing Jointly</th>
+                <th>Married Filing Separately</th>
+                <th>Head of Household</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1%</td>
+                <td>$0 – $10,756</td>
+                <td>$0 – $21,512</td>
+                <td>$0 – $10,756</td>
+                <td>$0 – $21,527</td>
+            </tr>
+            <tr>
+                <td>2%</td>
+                <td>$10,757 – $25,499</td>
+                <td>$21,513 – $50,998</td>
+                <td>$10,757 – $25,499</td>
+                <td>$21,528 – $51,000</td>
+            </tr>
+            <tr>
+                <td>4%</td>
+                <td>$25,500 – $40,245</td>
+                <td>$50,999 – $80,490</td>
+                <td>$25,500 – $40,245</td>
+                <td>$51,001 – $65,744</td>
+            </tr>
+            <tr>
+                <td>6%</td>
+                <td>$40,246 – $55,866</td>
+                <td>$80,491 – $111,732</td>
+                <td>$40,246 – $55,866</td>
+                <td>$65,745 – $81,364</td>
+            </tr>
+            <tr>
+                <td>8%</td>
+                <td>$55,867 – $70,606</td>
+                <td>$111,733 – $141,212</td>
+                <td>$55,867 – $70,606</td>
+                <td>$81,365 – $96,107</td>
+            </tr>
+            <tr>
+                <td>9.3%</td>
+                <td>$70,607 – $360,659</td>
+                <td>$141,213 – $721,318</td>
+                <td>$70,607 – $360,659</td>
+                <td>$96,108 – $490,493</td>
+            </tr>
+            <tr>
+                <td>10.3%</td>
+                <td>$360,660 – $432,787</td>
+                <td>$721,319 – $865,574</td>
+                <td>$360,660 – $432,787</td>
+                <td>$490,494 – $588,593</td>
+            </tr>
+            <tr>
+                <td>11.3% (plus 1% for income over $1,000,000)</td>
+                <td>$432,788 – $721,314</td>
+                <td>$865,575 – $1,442,628</td>
+                <td>$432,788 – $721,314</td>
+                <td>$588,593 – $980,987</td>
+            </tr>
+            <tr>
+                <td>12.3% (plus 1% for income over $1,000,000)</td>
+                <td>$721,315+</td>
+                <td>$1,442,629+</td>
+                <td>$721,315+</td>
+                <td>$980,988+</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <style>
+    .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 1em;
+    }
+
     table {
         color: black;
+        min-width: 800px; /* Ensures table maintains minimum width on mobile */
+        width: 100%;
+        margin: 0;
     }
 
     h4 {
