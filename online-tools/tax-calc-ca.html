@@ -9,8 +9,8 @@ include_javascript:
   - 'canadatax'
 ---
 
-<div style="max-width: 800px; margin: 0 auto;">
-    <p>We created this crypto tax calculator for Canadian users that want to check gains quickly. Our calculator is for informational purposes only. Consult an expert CRA CPA or tax professional. You may need to use <a href="/tax/software/">more advanced crypto tax software if you have a lot of trades</a>.</p>
+<div style="max-width: 800px;">
+    <p>We created this crypto tax calculator for Canadian users that want to check gains quickly. Our calculator is for informational purposes only. Consult an expert CRA CPA or tax professional. You may need to use <a href="/tax/">more advanced tax software if you have a lot of trades</a>.</p>
 
     <div id="cryptoTaxCalculator">
         <h2>Crypto Tax Calculator for Canada</h2>
@@ -36,408 +36,128 @@ include_javascript:
             <option value="new-brunswick">New Brunswick</option> 
             <option value="newfoundland-labrador">Newfoundland and Labrador</option> 
             <option value="prince-edward-island">Prince Edward Island</option> 
-            
         </select><br><br>
 
-        <button onclick="calculateTax()">Calculate Federal Tax</button>
+        <button onclick="calculateTax()">Calculate Tax</button>
 
-    <br><br>
+        <br><br>
         <h4>Results:</h4>
-        <p><span class="result-label">Total Tax Owed:</span> <span class="result-number" id="totalTaxOwed">0.00</span></p>
-        <p><span class="result-label">Federal Tax Owed on Capital Gain (CAD):</span> <span class="result-number" id="taxOwed">0.00</span></p>
-        <p><span class="result-label">Additional Provincial / Territorial Tax (CAD):</span> <span class="result-number" id="additionalTax">0.00</span></p>
+        <p><span class="result-label">Capital Gain:</span> <span class="result-number" id="capitalGain">$0.00</span></p>
+        <p><span class="result-label">Federal Tax Owed (CAD):</span> <span class="result-number" id="federalTax">$0.00</span></p>
+        <p><span class="result-label">Provincial Tax (CAD):</span> <span class="result-number" id="provincialTax">$0.00</span></p>
+        <p><span class="result-label">Total Tax Owed:</span> <span class="result-number" id="totalTax">$0.00</span></p>
     </div>
 
-    <h2>How to Use Our Calculator</h2>
+    <script>
+    function calculateTax() {
+        // Get input values
+        const income = parseFloat(document.getElementById('income').value) || 0;
+        const purchaseAmount = parseFloat(document.getElementById('cryptoPurchaseAmount').value) || 0;
+        const saleAmount = parseFloat(document.getElementById('cryptoSaleAmount').value) || 0;
+        const province = document.getElementById('provinceDropdown').value;
 
-    <ul>
-    <li>Begin by entering your financial information for the year 2023.</li>
-    <li>Input your total income, the amount you invested in cryptocurrency, and the amount you received from cryptocurrency sales.</li>
-    <li>If you reside in Ontario or Manitoba, make sure to select your province from the dropdown.</li>
-    <li>Click the "Calculate Federal Tax" button to process your data.</li>
-    <li>The calculator will quickly estimate your federal and provincial tax obligations.</li>
-    <li>You'll see the results, including federal tax, provincial tax, and the total tax owed.</li>
-    </ul>
+        // Calculate capital gain
+        const capitalGain = saleAmount - purchaseAmount;
+        const taxableGain = capitalGain * 0.5; // Only 50% of capital gains are taxable in Canada
+        
+        // Calculate federal tax based on income brackets
+        let federalTax = 0;
+        const totalIncome = income + taxableGain;
+        
+        if(totalIncome <= 53359) {
+            federalTax = taxableGain * 0.15;
+        } else if(totalIncome <= 106717) {
+            federalTax = taxableGain * 0.205;
+        } else if(totalIncome <= 165430) {
+            federalTax = taxableGain * 0.26;
+        } else if(totalIncome <= 235675) {
+            federalTax = taxableGain * 0.29;
+        } else {
+            federalTax = taxableGain * 0.33;
+        }
 
-    <h2>How it's Calculated</h2>
+        // Calculate provincial tax
+        let provincialTax = 0;
+        
+        switch(province) {
+            case 'ontario':
+                if(totalIncome <= 49231) provincialTax = taxableGain * 0.0505;
+                else if(totalIncome <= 98463) provincialTax = taxableGain * 0.0915;
+                else if(totalIncome <= 150000) provincialTax = taxableGain * 0.1116;
+                else if(totalIncome <= 220000) provincialTax = taxableGain * 0.1216;
+                else provincialTax = taxableGain * 0.1316;
+                break;
+            case 'quebec':
+                if(totalIncome <= 49275) provincialTax = taxableGain * 0.15;
+                else if(totalIncome <= 98540) provincialTax = taxableGain * 0.20;
+                else if(totalIncome <= 119910) provincialTax = taxableGain * 0.24;
+                else provincialTax = taxableGain * 0.2575;
+                break;
+            case 'alberta':
+                if(totalIncome <= 142292) provincialTax = taxableGain * 0.10;
+                else if(totalIncome <= 170751) provincialTax = taxableGain * 0.12;
+                else if(totalIncome <= 227668) provincialTax = taxableGain * 0.13;
+                else if(totalIncome <= 341502) provincialTax = taxableGain * 0.14;
+                else provincialTax = taxableGain * 0.15;
+                break;
+            case 'british-columbia':
+                if(totalIncome <= 45654) provincialTax = taxableGain * 0.0506;
+                else if(totalIncome <= 91310) provincialTax = taxableGain * 0.077;
+                else if(totalIncome <= 104835) provincialTax = taxableGain * 0.105;
+                else if(totalIncome <= 127299) provincialTax = taxableGain * 0.1229;
+                else if(totalIncome <= 172602) provincialTax = taxableGain * 0.147;
+                else if(totalIncome <= 240716) provincialTax = taxableGain * 0.168;
+                else provincialTax = taxableGain * 0.205;
+                break;
+            case 'manitoba':
+                if(totalIncome <= 36842) provincialTax = taxableGain * 0.108;
+                else if(totalIncome <= 79625) provincialTax = taxableGain * 0.1275;
+                else provincialTax = taxableGain * 0.174;
+                break;
+            case 'new-brunswick':
+                if(totalIncome <= 47715) provincialTax = taxableGain * 0.094;
+                else if(totalIncome <= 95431) provincialTax = taxableGain * 0.14;
+                else if(totalIncome <= 176756) provincialTax = taxableGain * 0.16;
+                else provincialTax = taxableGain * 0.195;
+                break;
+            case 'newfoundland-labrador':
+                if(totalIncome <= 41457) provincialTax = taxableGain * 0.087;
+                else if(totalIncome <= 82913) provincialTax = taxableGain * 0.145;
+                else if(totalIncome <= 148027) provincialTax = taxableGain * 0.158;
+                else if(totalIncome <= 207239) provincialTax = taxableGain * 0.178;
+                else if(totalIncome <= 264750) provincialTax = taxableGain * 0.198;
+                else if(totalIncome <= 529500) provincialTax = taxableGain * 0.208;
+                else if(totalIncome <= 1059000) provincialTax = taxableGain * 0.213;
+                else provincialTax = taxableGain * 0.218;
+                break;
+            case 'nova-scotia':
+                if(totalIncome <= 29590) provincialTax = taxableGain * 0.0879;
+                else if(totalIncome <= 59180) provincialTax = taxableGain * 0.1495;
+                else if(totalIncome <= 93000) provincialTax = taxableGain * 0.1667;
+                else if(totalIncome <= 150000) provincialTax = taxableGain * 0.175;
+                else provincialTax = taxableGain * 0.21;
+                break;
+            case 'prince-edward-island':
+                if(totalIncome <= 31984) provincialTax = taxableGain * 0.098;
+                else if(totalIncome <= 63969) provincialTax = taxableGain * 0.138;
+                else provincialTax = taxableGain * 0.167;
+                break;
+            case 'saskatchewan':
+                if(totalIncome <= 49720) provincialTax = taxableGain * 0.105;
+                else if(totalIncome <= 142058) provincialTax = taxableGain * 0.125;
+                else provincialTax = taxableGain * 0.145;
+                break;
+        }
 
-    <p>Our Canadian Tax Calculator uses a precise method to estimate your tax liability. Here's how it's calculated:</p>
-    <ul>
-    <li>It starts by calculating your capital gains from cryptocurrency transactions, while we keep in mind that only 50% of the gain is taxable.</li>
-    <li>Then, it combines your capital gains with your reported income for the year.</li>
-    <li>Then, based on your province, it factors in additional provincial taxes based on the respective provincial tax rates.</li>
-    <li>Finally, it sums up both federal and provincial taxes to display your total tax owed.</li>
-    </ul>
+        const totalTax = federalTax + provincialTax;
 
-    <h2>Federal Tax Rates Used</h2>
-
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Tax Rate</th>
-                <th>Taxable Income Threshold</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>15%</td>
-                <td>Up to $53,359 of taxable income</td>
-            </tr>
-            <tr>
-                <td>20.5%</td>
-                <td>Between $53,359 and $106,717</td>
-            </tr>
-            <tr>
-                <td>26%</td>
-                <td>Between $106,717 and $165,430</td>
-            </tr>
-            <tr>
-                <td>29%</td>
-                <td>Between $165,430 and $235,675</td>
-            </tr>
-            <tr>
-                <td>33%</td>
-                <td>On any amount taxable income exceeding $235,675</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h2>Province Rates</h2>
-
-    <p>Each province in Canada has its own additional tax rates.</p>
-
-    <h4>Alberta</h4>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Tax Rate</th>
-                <th>Taxable Income Threshold</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>10%</td>
-                <td>Up to $142,292</td>
-            </tr>
-            <tr>
-                <td>12%</td>
-                <td>Between $142,292 and $170,751</td>
-            </tr>
-            <tr>
-                <td>13%</td>
-                <td>Between $170,751 and $227,668</td>
-            </tr>
-            <tr>
-                <td>14%</td>
-                <td>Between $227,668 and $341,502</td>
-            </tr>
-            <tr>
-                <td>15%</td>
-                <td>On any taxable income exceeding $341,502</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <br><br>
-
-    <h4>British Columbia</h4>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Tax Rate</th>
-                <th>Taxable Income Threshold</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>5.06%</td>
-                <td>Up to $45,654</td>
-            </tr>
-            <tr>
-                <td>7.7%</td>
-                <td>Between $45,654 and $91,310</td>
-            </tr>
-            <tr>
-                <td>10.5%</td>
-                <td>Between $91,310 and $104,835</td>
-            </tr>
-            <tr>
-                <td>12.29%</td>
-                <td>Between $104,835 and $127,299</td>
-            </tr>
-            <tr>
-                <td>14.7%</td>
-                <td>Between $127,299 and $172,602</td>
-            </tr>
-            <tr>
-                <td>16.8%</td>
-                <td>On any amount exceeding $172,602 and $240,716</td>
-            </tr>
-            <tr>
-                <td>20.5%</td>
-                <td>On any taxable income exceeding $240,716</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <br><br>
-
-    <h4>Manitoba</h4>
-
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Tax Rate</th>
-                <th>Taxable Income Threshold</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>10.8%</td>
-                <td>Up to $36,842</td>
-            </tr>
-            <tr>
-                <td>12.75%</td>
-                <td>Between $36,842 and $79,625</td>
-            </tr>
-            <tr>
-                <td>17.4%</td>
-                <td>On any taxable income exceeding $79,625</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <br><br>
-
-    <h4> New Brunswick</h4>
-
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Tax Rate</th>
-                <th>Taxable Income Threshold</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>9.4%</td>
-                <td>Up to $47,715</td>
-            </tr>
-            <tr>
-                <td>14%</td>
-                <td>Between $47,715 and $95,431</td>
-            </tr>
-            <tr>
-                <td>16%</td>
-                <td>Between $95,431 and $176,756</td>
-            </tr>
-            <tr>
-                <td>19.5%</td>
-                <td>On any taxable income exceeding $176,756</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <br><br>
-
-    <h4>Newfoundland and Labrador</h4>
-
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Tax Rate</th>
-                <th>Taxable Income Threshold</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>8.7%</td>
-                <td>Up to $41,457</td>
-            </tr>
-            <tr>
-                <td>14.5%</td>
-                <td>Between $41,457 and $82,913</td>
-            </tr>
-            <tr>
-                <td>15.8%</td>
-                <td>Between $82,913 and $148,027</td>
-            </tr>
-            <tr>
-                <td>17.8%</td>
-                <td>Between $148,027 and $207,239</td>
-            </tr>
-            <tr>
-                <td>19.8%</td>
-                <td>Between $207,239 and $264,750</td>
-            </tr>
-            <tr>
-                <td>20.8%</td>
-                <td>Between $264,750 and $529,500</td>
-            </tr>
-            <tr>
-                <td>21.3%</td>
-                <td>Between $529,500 and $1,059,000</td>
-            </tr>
-            <tr>
-                <td>21.8%</td>
-                <td>On any taxable income exceeding $1,059,000</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <br><br>
-
-    <h4>Nova Scotia</h4>
-
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Tax Rate</th>
-                <th>Taxable Income Threshold</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>8.79%</td>
-                <td>Up to $29,590</td>
-            </tr>
-            <tr>
-                <td>14.95%</td>
-                <td>Between $29,590 and $59,180</td>
-            </tr>
-            <tr>
-                <td>16.67%</td>
-                <td>Between $59,180 and $93,000</td>
-            </tr>
-            <tr>
-                <td>17.5%</td>
-                <td>Between $93,000 and $150,000</td>
-            </tr>
-            <tr>
-                <td>21%</td>
-                <td>On any taxable income exceeding $150,000</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <br><br>
-
-    <h4>Ontario</h4>
-
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Tax Rate</th>
-                <th>Taxable Income Threshold</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>5.05%</td>
-                <td>Up to $49,231</td>
-            </tr>
-            <tr>
-                <td>9.15%</td>
-                <td>Between $49,231 and $98,463</td>
-            </tr>
-            <tr>
-                <td>11.16%</td>
-                <td>Between $98,463 and $150,000</td>
-            </tr>
-            <tr>
-                <td>12.16%</td>
-                <td>Between $150,000 and $220,000</td>
-            </tr>
-            <tr>
-                <td>13.16%</td>
-                <td>On any taxable income exceeding $220,000</td>
-            </tr>
-        </tbody>
-    </table>
-
-
-    <br><br>
-
-    <h4>Prince Edward Island</h4>
-
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Tax Rate</th>
-                <th>Taxable Income Threshold</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>9.8%</td>
-                <td>Up to $31,984</td>
-            </tr>
-            <tr>
-                <td>13.8%</td>
-                <td>Between $31,984 and $63,969</td>
-            </tr>
-            <tr>
-                <td>16.7%</td>
-                <td>On any taxable income exceeding $63,969</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <br><br>
-    <h4>Quebec</h4>
-
-
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Tax Rate</th>
-                <th>Taxable Income Threshold</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>15%</td>
-                <td>Up to $49,275</td>
-            </tr>
-            <tr>
-                <td>20%</td>
-                <td>Between $49,275 and $98,540</td>
-            </tr>
-            <tr>
-                <td>24%</td>
-                <td>Between $98,540 and $119,910</td>
-            </tr>
-            <tr>
-                <td>25.75%</td>
-                <td>On any taxable income exceeding $119,910</td>
-            </tr>
-        </tbody>
-    </table>
-    <br><br>
-
-    <h4>Saskatchewan</h4>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Tax Rate</th>
-                <th>Taxable Income Threshold</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>10.5%</td>
-                <td>Up to $49,720</td>
-            </tr>
-            <tr>
-                <td>12.5%</td>
-                <td>Between $49,720 and $142,058</td>
-            </tr>
-            <tr>
-                <td>14.5%</td>
-                <td>On the amount over $142,058</td>
-            </tr>
-        </tbody>
-    </table>
+        // Display results
+        document.getElementById('capitalGain').textContent = '$' + capitalGain.toFixed(2);
+        document.getElementById('federalTax').textContent = '$' + federalTax.toFixed(2);
+        document.getElementById('provincialTax').textContent = '$' + provincialTax.toFixed(2);
+        document.getElementById('totalTax').textContent = '$' + totalTax.toFixed(2);
+    }
+    </script>
 
 
     <style>
