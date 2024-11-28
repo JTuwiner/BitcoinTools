@@ -4,12 +4,16 @@ function calculateTax() {
   const cryptoSaleAmount = parseFloat(document.getElementById("cryptoSaleAmount").value);
   const province = document.getElementById("provinceDropdown").value;
 
-  const capitalGain = (cryptoSaleAmount - cryptoPurchaseAmount) * 0.5; // Only 50% of capital gain is taxable
+  // Calculate total capital gain first
+  const totalCapitalGain = cryptoSaleAmount - cryptoPurchaseAmount;
+  // Then calculate taxable portion (50%)
+  const capitalGain = totalCapitalGain * 0.5;
   const taxableIncome = income + capitalGain;
 
   let taxRate = 0;
   let additionalTax = 0; // Additional tax for Ontario or Manitoba
 
+  // Determine federal tax rate based on total taxable income
   if (taxableIncome <= 53359) {
       taxRate = 0.15;
   } else if (taxableIncome <= 106717) {
@@ -22,7 +26,8 @@ function calculateTax() {
       taxRate = 0.33;
   }
 
-  const federalTaxOwed = capitalGain * taxRate;
+  // Calculate federal tax on the capital gain portion only
+  const federalTaxOwed = Math.max(0, capitalGain * taxRate);
 
   if (province === "ontario") {
       // Calculate additional tax for Ontario
