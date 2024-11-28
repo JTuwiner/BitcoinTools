@@ -34,62 +34,6 @@ capture: yes
         <option value="shortTerm">Less than 1 year</option>
         <option value="longTerm">More than 1 year</option>
     </select>
-    <br>
-
-    <label for="state">State:</label>
-    <select id="state">
-        <option value="Alabama">Alabama</option>
-        <option value="Alaska">Alaska</option>
-        <option value="Arizona">Arizona</option>
-        <option value="Arkansas">Arkansas</option>
-        <option value="California">California</option>
-        <option value="Colorado">Colorado</option>
-        <option value="Connecticut">Connecticut</option>
-        <option value="Delaware">Delaware</option>
-        <option value="Florida">Florida</option>
-        <option value="Georgia">Georgia</option>
-        <option value="Hawaii">Hawaii</option>
-        <option value="Idaho">Idaho</option>
-        <option value="Illinois">Illinois</option>
-        <option value="Indiana">Indiana</option>
-        <option value="Iowa">Iowa</option>
-        <option value="Kansas">Kansas</option>
-        <option value="Kentucky">Kentucky</option>
-        <option value="Louisiana">Louisiana</option>
-        <option value="Maine">Maine</option>
-        <option value="Maryland">Maryland</option>
-        <option value="Massachusetts">Massachusetts</option>
-        <option value="Michigan">Michigan</option>
-        <option value="Minnesota">Minnesota</option>
-        <option value="Mississippi">Mississippi</option>
-        <option value="Missouri">Missouri</option>
-        <option value="Montana">Montana</option>
-        <option value="Nebraska">Nebraska</option>
-        <option value="Nevada">Nevada</option>
-        <option value="New Hampshire">New Hampshire</option>
-        <option value="New Jersey">New Jersey</option>
-        <option value="New Mexico">New Mexico</option>
-        <option value="New York">New York</option>
-        <option value="North Carolina">North Carolina</option>
-        <option value="North Dakota">North Dakota</option>
-        <option value="Ohio">Ohio</option>
-        <option value="Oklahoma">Oklahoma</option>
-        <option value="Oregon">Oregon</option>
-        <option value="Pennsylvania">Pennsylvania</option>
-        <option value="Rhode Island">Rhode Island</option>
-        <option value="South Carolina">South Carolina</option>
-        <option value="South Dakota">South Dakota</option>
-        <option value="Tennessee">Tennessee</option>
-        <option value="Texas">Texas</option>
-        <option value="Utah">Utah</option>
-        <option value="Vermont">Vermont</option>
-        <option value="Virginia">Virginia</option>
-        <option value="Washington">Washington</option>
-        <option value="Washington D.C.">Washington D.C.</option>
-        <option value="West Virginia">West Virginia</option>
-        <option value="Wisconsin">Wisconsin</option>
-        <option value="Wyoming">Wyoming</option>
-    </select>
     <br><br>
 
     <button onclick="calculateTax()">Calculate Tax</button>
@@ -105,7 +49,6 @@ capture: yes
     const saleAmount = parseFloat(document.getElementById("saleAmount").value);
     const totalIncome = parseFloat(document.getElementById("totalIncome").value);
     const filingStatus = document.getElementById("filingStatus").value;
-    const state = document.getElementById("state").value;
     const holdingDuration = document.getElementById("holdingDuration").value;
 
     const gain = saleAmount - purchaseCost;
@@ -131,110 +74,48 @@ capture: yes
     } else { // shortTerm
         switch (filingStatus) {
             case 'single':
-                federalTaxRate = totalIncome <= 11000 ? 10 : 
-                                totalIncome <= 44725 ? 12 : 
-                                totalIncome <= 95375 ? 22 :
-                                totalIncome <= 182100 ? 24 :
-                                totalIncome <= 231250 ? 32 :
-                                totalIncome <= 578125 ? 35 : 37;
+                federalTaxRate = totalIncome <= 11600 ? 10 : 
+                                totalIncome <= 47150 ? 12 : 
+                                totalIncome <= 100525 ? 22 :
+                                totalIncome <= 191950 ? 24 :
+                                totalIncome <= 243725 ? 32 :
+                                totalIncome <= 609350 ? 35 : 37;
                 break;
             case 'headOfHousehold':
-                federalTaxRate = totalIncome <= 15700 ? 10 : 
-                                totalIncome <= 59850 ? 12 : 
-                                totalIncome <= 95350 ? 22 :
-                                totalIncome <= 182100 ? 24 :
-                                totalIncome <= 231250 ? 32 :
-                                totalIncome <= 578100 ? 35 : 37;
+                federalTaxRate = totalIncome <= 16550 ? 10 : 
+                                totalIncome <= 63100 ? 12 : 
+                                totalIncome <= 100500 ? 22 :
+                                totalIncome <= 191950 ? 24 :
+                                totalIncome <= 243700 ? 32 :
+                                totalIncome <= 609350 ? 35 : 37;
                 break;
             case 'marriedJointly':
-                federalTaxRate = totalIncome <= 22000 ? 10 : 
-                                totalIncome <= 89450 ? 12 : 
-                                totalIncome <= 190750 ? 22 :
-                                totalIncome <= 364200 ? 24 :
-                                totalIncome <= 462500 ? 32 :
-                                totalIncome <= 693750 ? 35 : 37;
+                federalTaxRate = totalIncome <= 23200 ? 10 : 
+                                totalIncome <= 94300 ? 12 : 
+                                totalIncome <= 201050 ? 22 :
+                                totalIncome <= 383900 ? 24 :
+                                totalIncome <= 487450 ? 32 :
+                                totalIncome <= 731200 ? 35 : 37;
                 break;
             case 'marriedSeparately':
-                federalTaxRate = totalIncome <= 11000 ? 10 : 
-                                totalIncome <= 44725 ? 12 : 
-                                totalIncome <= 95375 ? 22 :
-                                totalIncome <= 182100 ? 24 :
-                                totalIncome <= 231250 ? 32 :
-                                totalIncome <= 346875 ? 35 : 37;
+                federalTaxRate = totalIncome <= 11600 ? 10 : 
+                                totalIncome <= 47150 ? 12 : 
+                                totalIncome <= 100525 ? 22 :
+                                totalIncome <= 191950 ? 24 :
+                                totalIncome <= 243725 ? 32 :
+                                totalIncome <= 365600 ? 35 : 37;
                 break;
             default:
                 federalTaxRate = 0;
         }
     }
 
-    const stateTaxRates = {
-        "California": 13.30,
-        "New Jersey": 10.75,
-        "Washington D.C.": 10.75,
-        "Oregon": 9.90,
-        "Minnesota": 9.85,
-        "Massachusetts": 9.00,
-        "New York": 10.90,
-        "Vermont": 8.75,
-        "Wisconsin": 7.65,
-        "Hawaii": 7.25,
-        "Maine": 7.15,
-        "Washington": 7.00,
-        "Connecticut": 6.99,
-        "Montana": 6.75,
-        "Nebraska": 6.64,
-        "Delaware": 6.60,
-        "West Virginia": 6.50,
-        "South Carolina": 6.40,
-        "Iowa": 6.00,
-        "Rhode Island": 5.99,
-        "New Mexico": 5.90,
-        "Idaho": 5.80,
-        "Georgia": 5.75,
-        "Maryland": 5.75,
-        "Virginia": 5.75,
-        "Kansas": 5.70,
-        "Alabama": 5.00,
-        "Mississippi": 5.00,
-        "North Carolina": 4.75,
-        "Illinois": 4.95,
-        "Arkansas": 4.90,
-        "Utah": 4.85,
-        "Oklahoma": 4.75,
-        "Kentucky": 4.50,
-        "Missouri": 4.95,
-        "Colorado": 4.40,
-        "Louisiana": 4.25,
-        "Michigan": 4.25,
-        "Ohio": 3.99,
-        "Indiana": 3.15,
-        "Pennsylvania": 3.07,
-        "North Dakota": 2.90,
-        "Arizona": 2.50,
-        "Alaska": 0.00,
-        "Florida": 0.00,
-        "Nevada": 0.00,
-        "New Hampshire": 0.00,
-        "South Dakota": 0.00,
-        "Tennessee": 0.00,
-        "Texas": 0.00,
-        "Wyoming": 0.00
-    };
-
-    const stateTaxRate = stateTaxRates[state] || 0;
-
     const federalTaxOwed = gain * (federalTaxRate / 100);
-    const stateTaxOwed = gain * (stateTaxRate / 100);
-    const totalTaxOwed = federalTaxOwed + stateTaxOwed;
 
     document.getElementById("result").innerHTML = `
     <strong>Total Gain:</strong> $${new Intl.NumberFormat().format(gain.toFixed(2))}<br>
-    <strong>Federal Tax Owed at ${federalTaxRate}%:</strong> $${new Intl.NumberFormat().format(federalTaxOwed.toFixed(2))}<br>
-    <strong>State Tax Owed at ${stateTaxRate}%:</strong> $${new Intl.NumberFormat().format(stateTaxOwed.toFixed(2))}<br>
-    <strong>Total Tax Owed:</strong> $${new Intl.NumberFormat().format(totalTaxOwed.toFixed(2))}`;
-
+    <strong>Federal Tax Owed at ${federalTaxRate}%:</strong> $${new Intl.NumberFormat().format(federalTaxOwed.toFixed(2))}`;
 }
-
 </script>
 
 <div id="howToUseCalculator">
@@ -257,41 +138,82 @@ capture: yes
 
 <h2>US Federal Cap Gains Rates</h2>
 
+<h3>Single Filer</h3>
 <table>
 <tr>
     <th>Taxable Income Range</th>
     <th>Capital Gains Tax Rate</th>
 </tr>
 <tr>
-    <td>Less than or equal to $41,675 (Single, Married Filing Separately)</td>
+    <td>Up to $47,025</td>
     <td>0%</td>
 </tr>
 <tr>
-    <td>Less than or equal to $83,350 (Married Filing Jointly, Qualifying Surviving Spouse)</td>
+    <td>$47,026 to $518,900</td>
+    <td>15%</td>
+</tr>
+<tr>
+    <td>Over $518,900</td>
+    <td>20%</td>
+</tr>
+</table>
+
+<h3>Married Filing Separately</h3>
+<table>
+<tr>
+    <th>Taxable Income Range</th>
+    <th>Capital Gains Tax Rate</th>
+</tr>
+<tr>
+    <td>Up to $47,025</td>
     <td>0%</td>
 </tr>
 <tr>
-    <td>Less than or equal to $55,800 (Head of Household)</td>
+    <td>$47,026 to $291,850</td>
+    <td>15%</td>
+</tr>
+<tr>
+    <td>Over $291,850</td>
+    <td>20%</td>
+</tr>
+</table>
+
+<h3>Head of Household</h3>
+<table>
+<tr>
+    <th>Taxable Income Range</th>
+    <th>Capital Gains Tax Rate</th>
+</tr>
+<tr>
+    <td>Up to $63,000</td>
     <td>0%</td>
 </tr>
 <tr>
-    <td>More than $41,675 but less than or equal to $459,750 (Single)</td>
+    <td>$63,001 to $551,350</td>
     <td>15%</td>
 </tr>
 <tr>
-    <td>More than $83,350 but less than or equal to $517,200 (Married Filing Jointly, Qualifying Surviving Spouse)</td>
+    <td>Over $551,350</td>
+    <td>20%</td>
+</tr>
+</table>
+
+<h3>Married Filing Jointly</h3>
+<table>
+<tr>
+    <th>Taxable Income Range</th>
+    <th>Capital Gains Tax Rate</th>
+</tr>
+<tr>
+    <td>Up to $94,050</td>
+    <td>0%</td>
+</tr>
+<tr>
+    <td>$94,051 to $583,750</td>
     <td>15%</td>
 </tr>
 <tr>
-    <td>More than $55,800 but less than or equal to $488,500 (Head of Household)</td>
-    <td>15%</td>
-</tr>
-<tr>
-    <td>More than $41,675 but less than or equal to $258,600 (Married Filing Separately)</td>
-    <td>15%</td>
-</tr>
-<tr>
-    <td>Exceeds the thresholds for the 15% rate</td>
+    <td>Over $583,750</td>
     <td>20%</td>
 </tr>
 </table>
@@ -518,7 +440,7 @@ table {
 }
 
     #cryptoTaxCalculator {
-        max-width: 800px;
+        max-width: 500px;
         margin: 2rem auto;
         padding: 1.5rem;
         color: black;
@@ -542,8 +464,9 @@ table {
     
     #cryptoTaxCalculator label {
       width: 100%;
-      margin: 3rem 0 1rem 0 !important;
+      margin: 1rem 0 1rem 0 !important;
       box-sizing: border-box;
+      font-weight: bold;
     }
     
     #cryptoTaxCalculator select,
