@@ -25,6 +25,7 @@ capture: yes
         .info-tooltip {
             position: relative;
             display: inline-block;
+            margin-top: -8px;
         }
         .info-tooltip:hover::after {
             content: attr(data-tooltip);
@@ -50,14 +51,14 @@ capture: yes
         </label>
         <input type="number" id="income" placeholder="Enter your income"><br><br>
 
-        <label for="cryptoPurchaseAmount">Enter the amount of crypto you bought:
+        <label for="cryptoPurchaseAmount">Enter amount of crypto you bought
             <span class="info-tooltip info-icon" data-tooltip="Enter the amount you originally paid for the crypto (example: if you bought 1 BTC for $500, enter $500)">
                 {% include infoicon.html %}
             </span>
         </label>
         <input type="number" id="cryptoPurchaseAmount" placeholder="Enter crypto purchase amount"><br><br>
 
-        <label for="cryptoSaleAmount">Enter the amount of crypto you sold:
+        <label for="cryptoSaleAmount">Enter amount of crypto you sold:
             <span class="info-tooltip info-icon" data-tooltip="Enter the amount you sold the crypto for">
                 {% include infoicon.html %}
             </span>
@@ -86,11 +87,13 @@ capture: yes
         <button id="calculateButton">Calculate Tax</button>
 
         <br><br>
-        <h4>Results:</h4>
-        <p><span class="result-label">Capital Gain:</span> <span class="result-number" id="capitalGain">$0.00</span></p>
-        <p><span class="result-label">Federal Tax Owed (CAD):</span> <span class="result-number" id="federalTax">$0.00</span></p>
-        <p><span class="result-label">Provincial Tax (CAD):</span> <span class="result-number" id="provincialTax">$0.00</span></p>
-        <p><span class="result-label">Total Tax Owed:</span> <span class="result-number" id="totalTax">$0.00</span></p>
+        <div id="resultsSection" style="display: none;">
+            <h4>Results:</h4>
+            <p><span class="result-label">Capital Gain:</span> <span class="result-number" id="capitalGain">$0.00</span></p>
+            <p><span class="result-label">Federal Tax Owed (CAD):</span> <span class="result-number" id="federalTax">$0.00</span></p>
+            <p><span class="result-label">Provincial Tax (CAD):</span> <span class="result-number" id="provincialTax">$0.00</span></p>
+            <p><span class="result-label">Total Tax Owed:</span> <span class="result-number" id="totalTax">$0.00</span></p>
+        </div>
     </div>
     <script>
         function calculateTax() {
@@ -206,15 +209,19 @@ capture: yes
             const totalTax = federalTax + provincialTax;
     
             // Get result elements
+            const resultsSection = document.getElementById('resultsSection');
             const capitalGainEl = document.getElementById('capitalGain');
             const federalTaxEl = document.getElementById('federalTax');
             const provincialTaxEl = document.getElementById('provincialTax');
             const totalTaxEl = document.getElementById('totalTax');
 
-            if (!capitalGainEl || !federalTaxEl || !provincialTaxEl || !totalTaxEl) {
+            if (!capitalGainEl || !federalTaxEl || !provincialTaxEl || !totalTaxEl || !resultsSection) {
                 console.error('Result elements not found');
                 return;
             }
+
+            // Display results section
+            resultsSection.style.display = 'block';
 
             // Display results
             capitalGainEl.textContent = '$' + capitalGain.toFixed(2);
