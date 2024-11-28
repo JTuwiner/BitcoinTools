@@ -10,7 +10,11 @@ capture: yes
 <p><b>We built this free crypto tax calculator for USA users who want to check their Federal tax status quickly. This calculator is for informational purposes only. Consult an expert CPA or tax pro always. Use <a href="/tax/">crypto tax software if you have a lot of trades</a>.</b></p>
 
 <div id="cryptoTaxCalculator">
-    <label for="filingStatus">Filing Status:</label>
+    <label for="filingStatus">Filing Status:
+        <span class="info-tooltip info-icon" data-tooltip="Your tax filing status affects your tax brackets and rates">
+            {% include infoicon.html %}
+        </span>
+    </label>
     <select id="filingStatus">
         <option value="single">Single</option>
         <option value="marriedJointly">Married filing jointly</option>
@@ -18,16 +22,32 @@ capture: yes
         <option value="headOfHousehold">Head of household</option>
     </select>
 
-    <label for="totalIncome">Total Income:</label>
+    <label for="totalIncome">Total Income:
+        <span class="info-tooltip info-icon" data-tooltip="Your total taxable income for 2024, which determines your tax bracket">
+            {% include infoicon.html %}
+        </span>
+    </label>
     <input type="number" id="totalIncome" placeholder="Enter your total income">
 
-    <label for="purchaseCost">Total Cost of First Purchase:</label>
+    <label for="purchaseCost">Total Cost of First Purchase:
+        <span class="info-tooltip info-icon" data-tooltip="The amount you originally paid to acquire the cryptocurrency">
+            {% include infoicon.html %}
+        </span>
+    </label>
     <input type="number" id="purchaseCost" placeholder="Enter cost of purchase">
 
-    <label for="saleAmount">Amount of Sale:</label>
+    <label for="saleAmount">Amount of Sale:
+        <span class="info-tooltip info-icon" data-tooltip="The amount you received when selling your cryptocurrency">
+            {% include infoicon.html %}
+        </span>
+    </label>
     <input type="number" id="saleAmount" placeholder="Enter sale amount">
     
-    <label for="holdingDuration">Held Crypto For:</label>
+    <label for="holdingDuration">Held Crypto For:
+        <span class="info-tooltip info-icon" data-tooltip="Determines short term or long term capital gains">
+            {% include infoicon.html %}
+        </span>
+    </label>
     <select id="holdingDuration">
         <option value="shortTerm">Less than 1 year</option>
         <option value="longTerm">More than 1 year</option>
