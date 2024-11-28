@@ -1,0 +1,584 @@
+---
+layout: page
+title: Free Crypto Tax Calculator for Capital Gains USA
+full-width: yes
+permalink: "/usa-tax-calculator/"
+jquery: yes
+capture: yes
+---
+
+<p><b>We built this free crypto tax calculator for USA users who want to check their status quickly. This calculator is for informational purposes only. Consult an expert CPA or tax pro always. Use <a href="/tax/software/">crypto tax software if you have a lot of trades</a>.</b></p>
+
+<div id="cryptoTaxCalculator">
+    <h2>Crypto Tax Calculator</h2>
+
+    <label for="filingStatus">Filing Status:</label>
+    <select id="filingStatus">
+        <option value="single">Single</option>
+        <option value="marriedJointly">Married filing jointly</option>
+        <option value="marriedSeparately">Married filing separately</option>
+        <option value="headOfHousehold">Head of household</option>
+    </select>
+
+    <label for="totalIncome">Total Income:</label>
+    <input type="number" id="totalIncome" placeholder="Enter your total income">
+
+    <label for="purchaseCost">Total Cost of First Purchase:</label>
+    <input type="number" id="purchaseCost" placeholder="Enter cost of purchase">
+
+    <label for="saleAmount">Amount of Sale:</label>
+    <input type="number" id="saleAmount" placeholder="Enter sale amount">
+    
+    <label for="holdingDuration">Held Crypto For:</label>
+    <select id="holdingDuration">
+        <option value="shortTerm">Less than 1 year</option>
+        <option value="longTerm">More than 1 year</option>
+    </select>
+    <br>
+
+    <label for="state">State:</label>
+    <select id="state">
+        <option value="Alabama">Alabama</option>
+        <option value="Alaska">Alaska</option>
+        <option value="Arizona">Arizona</option>
+        <option value="Arkansas">Arkansas</option>
+        <option value="California">California</option>
+        <option value="Colorado">Colorado</option>
+        <option value="Connecticut">Connecticut</option>
+        <option value="Delaware">Delaware</option>
+        <option value="Florida">Florida</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Hawaii">Hawaii</option>
+        <option value="Idaho">Idaho</option>
+        <option value="Illinois">Illinois</option>
+        <option value="Indiana">Indiana</option>
+        <option value="Iowa">Iowa</option>
+        <option value="Kansas">Kansas</option>
+        <option value="Kentucky">Kentucky</option>
+        <option value="Louisiana">Louisiana</option>
+        <option value="Maine">Maine</option>
+        <option value="Maryland">Maryland</option>
+        <option value="Massachusetts">Massachusetts</option>
+        <option value="Michigan">Michigan</option>
+        <option value="Minnesota">Minnesota</option>
+        <option value="Mississippi">Mississippi</option>
+        <option value="Missouri">Missouri</option>
+        <option value="Montana">Montana</option>
+        <option value="Nebraska">Nebraska</option>
+        <option value="Nevada">Nevada</option>
+        <option value="New Hampshire">New Hampshire</option>
+        <option value="New Jersey">New Jersey</option>
+        <option value="New Mexico">New Mexico</option>
+        <option value="New York">New York</option>
+        <option value="North Carolina">North Carolina</option>
+        <option value="North Dakota">North Dakota</option>
+        <option value="Ohio">Ohio</option>
+        <option value="Oklahoma">Oklahoma</option>
+        <option value="Oregon">Oregon</option>
+        <option value="Pennsylvania">Pennsylvania</option>
+        <option value="Rhode Island">Rhode Island</option>
+        <option value="South Carolina">South Carolina</option>
+        <option value="South Dakota">South Dakota</option>
+        <option value="Tennessee">Tennessee</option>
+        <option value="Texas">Texas</option>
+        <option value="Utah">Utah</option>
+        <option value="Vermont">Vermont</option>
+        <option value="Virginia">Virginia</option>
+        <option value="Washington">Washington</option>
+        <option value="Washington D.C.">Washington D.C.</option>
+        <option value="West Virginia">West Virginia</option>
+        <option value="Wisconsin">Wisconsin</option>
+        <option value="Wyoming">Wyoming</option>
+    </select>
+    <br><br>
+
+    <button onclick="calculateTax()">Calculate Tax</button>
+
+    <div id="result">
+        <!-- This is where the result will be displayed -->
+    </div>
+</div>
+
+<script>
+    function calculateTax() {
+    const purchaseCost = parseFloat(document.getElementById("purchaseCost").value);
+    const saleAmount = parseFloat(document.getElementById("saleAmount").value);
+    const totalIncome = parseFloat(document.getElementById("totalIncome").value);
+    const filingStatus = document.getElementById("filingStatus").value;
+    const state = document.getElementById("state").value;
+    const holdingDuration = document.getElementById("holdingDuration").value;
+
+    const gain = saleAmount - purchaseCost;
+
+    let federalTaxRate;
+    if (holdingDuration === "longTerm") {
+        switch (filingStatus) {
+            case 'single':
+                federalTaxRate = totalIncome <= 44625 ? 0 : (totalIncome <= 492300 ? 15 : 20);
+                break;
+            case 'marriedJointly':
+                federalTaxRate = totalIncome <= 89250 ? 0 : (totalIncome <= 553850 ? 15 : 20);
+                break;
+            case 'marriedSeparately':
+                federalTaxRate = totalIncome <= 44625 ? 0 : (totalIncome <= 276900 ? 15 : 20);
+                break;
+            case 'headOfHousehold':
+                federalTaxRate = totalIncome <= 59750 ? 0 : (totalIncome <= 523050 ? 15 : 20);
+                break;
+            default:
+                federalTaxRate = 0;
+        }
+    } else { // shortTerm
+        switch (filingStatus) {
+            case 'single':
+                federalTaxRate = totalIncome <= 11000 ? 10 : 
+                                totalIncome <= 44725 ? 12 : 
+                                totalIncome <= 95375 ? 22 :
+                                totalIncome <= 182100 ? 24 :
+                                totalIncome <= 231250 ? 32 :
+                                totalIncome <= 578125 ? 35 : 37;
+                break;
+            case 'headOfHousehold':
+                federalTaxRate = totalIncome <= 15700 ? 10 : 
+                                totalIncome <= 59850 ? 12 : 
+                                totalIncome <= 95350 ? 22 :
+                                totalIncome <= 182100 ? 24 :
+                                totalIncome <= 231250 ? 32 :
+                                totalIncome <= 578100 ? 35 : 37;
+                break;
+            case 'marriedJointly':
+                federalTaxRate = totalIncome <= 22000 ? 10 : 
+                                totalIncome <= 89450 ? 12 : 
+                                totalIncome <= 190750 ? 22 :
+                                totalIncome <= 364200 ? 24 :
+                                totalIncome <= 462500 ? 32 :
+                                totalIncome <= 693750 ? 35 : 37;
+                break;
+            case 'marriedSeparately':
+                federalTaxRate = totalIncome <= 11000 ? 10 : 
+                                totalIncome <= 44725 ? 12 : 
+                                totalIncome <= 95375 ? 22 :
+                                totalIncome <= 182100 ? 24 :
+                                totalIncome <= 231250 ? 32 :
+                                totalIncome <= 346875 ? 35 : 37;
+                break;
+            default:
+                federalTaxRate = 0;
+        }
+    }
+
+    const stateTaxRates = {
+        "California": 13.30,
+        "New Jersey": 10.75,
+        "Washington D.C.": 10.75,
+        "Oregon": 9.90,
+        "Minnesota": 9.85,
+        "Massachusetts": 9.00,
+        "New York": 10.90,
+        "Vermont": 8.75,
+        "Wisconsin": 7.65,
+        "Hawaii": 7.25,
+        "Maine": 7.15,
+        "Washington": 7.00,
+        "Connecticut": 6.99,
+        "Montana": 6.75,
+        "Nebraska": 6.64,
+        "Delaware": 6.60,
+        "West Virginia": 6.50,
+        "South Carolina": 6.40,
+        "Iowa": 6.00,
+        "Rhode Island": 5.99,
+        "New Mexico": 5.90,
+        "Idaho": 5.80,
+        "Georgia": 5.75,
+        "Maryland": 5.75,
+        "Virginia": 5.75,
+        "Kansas": 5.70,
+        "Alabama": 5.00,
+        "Mississippi": 5.00,
+        "North Carolina": 4.75,
+        "Illinois": 4.95,
+        "Arkansas": 4.90,
+        "Utah": 4.85,
+        "Oklahoma": 4.75,
+        "Kentucky": 4.50,
+        "Missouri": 4.95,
+        "Colorado": 4.40,
+        "Louisiana": 4.25,
+        "Michigan": 4.25,
+        "Ohio": 3.99,
+        "Indiana": 3.15,
+        "Pennsylvania": 3.07,
+        "North Dakota": 2.90,
+        "Arizona": 2.50,
+        "Alaska": 0.00,
+        "Florida": 0.00,
+        "Nevada": 0.00,
+        "New Hampshire": 0.00,
+        "South Dakota": 0.00,
+        "Tennessee": 0.00,
+        "Texas": 0.00,
+        "Wyoming": 0.00
+    };
+
+    const stateTaxRate = stateTaxRates[state] || 0;
+
+    const federalTaxOwed = gain * (federalTaxRate / 100);
+    const stateTaxOwed = gain * (stateTaxRate / 100);
+    const totalTaxOwed = federalTaxOwed + stateTaxOwed;
+
+    document.getElementById("result").innerHTML = `
+    <strong>Total Gain:</strong> $${new Intl.NumberFormat().format(gain.toFixed(2))}<br>
+    <strong>Federal Tax Owed at ${federalTaxRate}%:</strong> $${new Intl.NumberFormat().format(federalTaxOwed.toFixed(2))}<br>
+    <strong>State Tax Owed at ${stateTaxRate}%:</strong> $${new Intl.NumberFormat().format(stateTaxOwed.toFixed(2))}<br>
+    <strong>Total Tax Owed:</strong> $${new Intl.NumberFormat().format(totalTaxOwed.toFixed(2))}`;
+
+}
+
+</script>
+
+<div id="howToUseCalculator">
+    <h3>How to Use Our Crypto Tax Calculator</h3>
+    <p>
+        Follow these steps to quickly estimate your crypto tax:
+    </p>
+    <ol>
+        <li><strong>Select Your Filing Status:</strong> Choose the option that corresponds to your tax filing status. This helps in determining your federal tax rate.</li>
+        <li><strong>Enter Your Total Income:</strong> Input your overall annual income. This will help in estimating your taxable amount.</li>
+        <li><strong>Provide Purchase & Sale Amounts:</strong> Add the total cost of your first crypto purchase and the sale amount to determine your capital gain.</li>
+        <li><strong>Specify Holding Duration:</strong> Select whether you held your crypto for less than or more than a year. Short-term holdings may have different tax implications.</li>
+        <li><strong>Pick Your State:</strong> Select the state you reside in. State taxes can vary, and this will help calculate the applicable state tax.</li>
+        <li><strong>Calculate Tax:</strong> Click the 'Calculate Tax' button. Your estimated federal, state, and total tax will be displayed below.</li>
+    </ol>
+    <p>
+        Always consult with a tax professional to get precise numbers. This calculator provides a general estimate based on the provided information.
+    </p>
+</div>
+
+<h2>US Federal Cap Gains Rates</h2>
+
+<table>
+<tr>
+    <th>Taxable Income Range</th>
+    <th>Capital Gains Tax Rate</th>
+</tr>
+<tr>
+    <td>Less than or equal to $41,675 (Single, Married Filing Separately)</td>
+    <td>0%</td>
+</tr>
+<tr>
+    <td>Less than or equal to $83,350 (Married Filing Jointly, Qualifying Surviving Spouse)</td>
+    <td>0%</td>
+</tr>
+<tr>
+    <td>Less than or equal to $55,800 (Head of Household)</td>
+    <td>0%</td>
+</tr>
+<tr>
+    <td>More than $41,675 but less than or equal to $459,750 (Single)</td>
+    <td>15%</td>
+</tr>
+<tr>
+    <td>More than $83,350 but less than or equal to $517,200 (Married Filing Jointly, Qualifying Surviving Spouse)</td>
+    <td>15%</td>
+</tr>
+<tr>
+    <td>More than $55,800 but less than or equal to $488,500 (Head of Household)</td>
+    <td>15%</td>
+</tr>
+<tr>
+    <td>More than $41,675 but less than or equal to $258,600 (Married Filing Separately)</td>
+    <td>15%</td>
+</tr>
+<tr>
+    <td>Exceeds the thresholds for the 15% rate</td>
+    <td>20%</td>
+</tr>
+</table>
+
+<h2>State Capital Gains Taxes for 2023</h2>
+
+<table>
+    <tr>
+        <th>State</th>
+        <th>Rates 2023</th>
+    </tr>
+    <tr>
+        <td>California</td>
+        <td>13.30%</td>
+    </tr>
+    <tr>
+        <td>New Jersey </td>
+        <td>10.75%</td>
+    </tr>
+    <tr>
+        <td>Washington D.C.</td>
+        <td>10.75%</td>
+    </tr>
+    <tr>
+        <td>Oregon </td>
+        <td>9.90%</td>
+    </tr>
+    <tr>
+        <td>Minnesota</td>
+        <td>9.85%</td>
+    </tr>
+    <tr>
+        <td>Massachusetts</td>
+        <td>9.00%</td>
+    </tr>
+    <tr>
+        <td>New York </td>
+        <td>10.90%</td>
+    </tr>
+    <tr>
+        <td>Vermont</td>
+        <td>8.75%</td>
+    </tr>
+    <tr>
+        <td>Wisconsin </td>
+        <td>7.65%</td>
+    </tr>
+    <tr>
+        <td>Hawaii </td>
+        <td>7.25%</td>
+    </tr>
+    <tr>
+        <td>Maine</td>
+        <td>7.15%</td>
+    </tr>
+    <tr>
+        <td>Washington †</td>
+        <td>7.00%</td>
+    </tr>
+    <tr>
+        <td>Connecticut</td>
+        <td>6.99%</td>
+    </tr>
+    <tr>
+        <td>Montana </td>
+        <td>6.75%</td>
+    </tr>
+    <tr>
+        <td>Nebraska</td>
+        <td>6.64%</td>
+    </tr>
+    <tr>
+        <td>Delaware </td>
+        <td>6.60%</td>
+    </tr>
+    <tr>
+        <td>West Virginia</td>
+        <td>6.50%</td>
+    </tr>
+    <tr>
+        <td>South Carolina </td>
+        <td>6.40%</td>
+    </tr>
+    <tr>
+        <td>Iowa </td>
+        <td>6.00%</td>
+    </tr>
+    <tr>
+        <td>Rhode Island</td>
+        <td>5.99%</td>
+    </tr>
+    <tr>
+        <td>New Mexico </td>
+        <td>5.90%</td>
+    </tr>
+    <tr>
+        <td>Idaho</td>
+        <td>5.80%</td>
+    </tr>
+    <tr>
+        <td>Georgia</td>
+        <td>5.75%</td>
+    </tr>
+    <tr>
+        <td>Maryland </td>
+        <td>5.75%</td>
+    </tr>
+    <tr>
+        <td>Virginia</td>
+        <td>5.75%</td>
+    </tr>
+    <tr>
+        <td>Kansas</td>
+        <td>5.70%</td>
+    </tr>
+    <tr>
+        <td>Alabama </td>
+        <td>5.00%</td>
+    </tr>
+    <tr>
+        <td>Mississippi</td>
+        <td>5.00%</td>
+    </tr>
+    <tr>
+        <td>North Carolina</td>
+        <td>4.75%</td>
+    </tr>
+    <tr>
+        <td>Illinois</td>
+        <td>4.95%</td>
+    </tr>
+    <tr>
+        <td>Arkansas </td>
+        <td>4.90%</td>
+    </tr>
+    <tr>
+        <td>Utah</td>
+        <td>4.85%</td>
+    </tr>
+    <tr>
+        <td>Oklahoma</td>
+        <td>4.75%</td>
+    </tr>
+    <tr>
+        <td>Kentucky </td>
+        <td>4.50%</td>
+    </tr>
+    <tr>
+        <td>Missouri </td>
+        <td>4.95%</td>
+    </tr>
+    <tr>
+        <td>Colorado</td>
+        <td>4.40%</td>
+    </tr>
+    <tr>
+        <td>Louisiana</td>
+        <td>4.25%</td>
+    </tr>
+    <tr>
+        <td>Michigan </td>
+        <td>4.25%</td>
+    </tr>
+    <tr>
+        <td>Ohio </td>
+        <td>3.99%</td>
+    </tr>
+    <tr>
+        <td>Indiana </td>
+        <td>3.15%</td>
+    </tr>
+    <tr>
+        <td>Pennsylvania </td>
+        <td>3.07%</td>
+    </tr>
+    <tr>
+        <td>North Dakota </td>
+        <td>2.90%</td>
+    </tr>
+    <tr>
+        <td>Arizona</td>
+        <td>2.50%</td>
+    </tr>
+    <tr>
+        <td>Alaska</td>
+        <td>0.00%</td>
+    </tr>
+    <tr>
+        <td>Florida</td>
+        <td>0.00%</td>
+    </tr>
+    <tr>
+        <td>Nevada</td>
+        <td>0.00%</td>
+    </tr>
+    <tr>
+        <td>New Hampshire</td>
+        <td>0.00%</td>
+    </tr>
+    <tr>
+        <td>South Dakota</td>
+        <td>0.00%</td>
+    </tr>
+    <tr>
+        <td>Tennessee</td>
+        <td>0.00%</td>
+    </tr>
+    <tr>
+        <td>Texas</td>
+        <td>0.00%</td>
+    </tr>
+    <tr>
+        <td>Wyoming</td>
+        <td>0.00%</td>
+    </tr>
+</table>
+
+
+<h2>Calculator Not Working?</h2>
+<p>If you see any issues with this calculator, <a href="/contact/">please contact us and we'll get it fixed</a>.</p>
+
+<style>
+    #cryptoTaxCalculator {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 1.5rem;
+        border-radius: 8px;
+        background-color: #f5f5f5;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    #cryptoTaxCalculator h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    #cryptoTaxCalculator select,
+    #cryptoTaxCalculator input,
+    #cryptoTaxCalculator button {
+        width: 100%;
+        margin-bottom: 1rem;
+        box-sizing: border-box;
+    }
+    
+    #cryptoTaxCalculator label {
+      width: 100%;
+      margin: 3rem 0 1rem 0 !important;
+      box-sizing: border-box;
+    }
+    
+    #cryptoTaxCalculator select,
+    #cryptoTaxCalculator input {
+        padding: 0.5rem;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+    }
+    
+    #cryptoTaxCalculator button {
+        padding: 0.75rem 1rem;
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    #cryptoTaxCalculator button:hover {
+        background-color: #0056b3;
+    }
+    
+    #result {
+        margin-top: 1rem;
+        padding: 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        background-color: #fff;
+    }
+    
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+        #cryptoTaxCalculator {
+            margin: 1rem;
+            padding: 1rem;
+        }
+    }
+
+
+</style>
