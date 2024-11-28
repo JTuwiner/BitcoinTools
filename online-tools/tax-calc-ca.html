@@ -86,9 +86,8 @@ capture: yes
 
         <button id="calculateButton">Calculate Tax</button>
 
-        <br><br>
+        <br>
         <div id="resultsSection" style="display: none;">
-            <h4>Results:</h4>
             <p><span class="result-label">Capital Gain:</span> <span class="result-number" id="capitalGain">$0.00</span></p>
             <p><span class="result-label">Federal Tax Owed (CAD):</span> <span class="result-number" id="federalTax">$0.00</span></p>
             <p><span class="result-label">Provincial Tax (CAD):</span> <span class="result-number" id="provincialTax">$0.00</span></p>
@@ -224,10 +223,10 @@ capture: yes
             resultsSection.style.display = 'block';
 
             // Display results
-            capitalGainEl.textContent = '$' + capitalGain.toFixed(2);
-            federalTaxEl.textContent = '$' + federalTax.toFixed(2);
-            provincialTaxEl.textContent = '$' + provincialTax.toFixed(2);
-            totalTaxEl.textContent = '$' + totalTax.toFixed(2);
+            capitalGainEl.textContent = '$' + capitalGain.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            federalTaxEl.textContent = '$' + federalTax.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            provincialTaxEl.textContent = '$' + provincialTax.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            totalTaxEl.textContent = '$' + totalTax.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
         }
 
         // Add event listener after DOM is loaded
@@ -239,6 +238,7 @@ capture: yes
         });
     </script>
 
+<br><br><br>
     <h2>How to Use Our Calculator</h2>
 
     <ul>
@@ -250,6 +250,7 @@ capture: yes
     <li>You'll see the results, including federal tax, provincial tax, and the total tax owed.</li>
     </ul>
 
+    <br><br><br>
     <h2>How it's Calculated</h2>
 
     <p>Our Canadian Tax Calculator uses a precise method to estimate your tax liability. Here's how it's calculated:</p>
@@ -259,6 +260,9 @@ capture: yes
     <li>Then, based on your province, it factors in additional provincial taxes based on the respective provincial tax rates.</li>
     <li>Finally, it sums up both federal and provincial taxes to display your total tax owed.</li>
     </ul>
+
+
+    <br><br><br>
 
     <h2>Federal Tax Rates Used</h2>
 
@@ -293,6 +297,7 @@ capture: yes
         </tbody>
     </table>
 
+    <br><br><br>
     <h2>Province Rates</h2>
 
     <p>Each province in Canada has its own additional tax rates.</p>
