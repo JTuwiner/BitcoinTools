@@ -5,8 +5,6 @@ full-width: yes
 permalink: "/canada-tax-calculator/"
 jquery: yes
 capture: yes
-include_javascript:
-  - 'canadatax'
 ---
 
 <div style="max-width: 800px;">
@@ -38,7 +36,7 @@ include_javascript:
             <option value="prince-edward-island">Prince Edward Island</option> 
         </select><br><br>
 
-        <button onclick="calculateTax()">Calculate Tax</button>
+        <button id="calculateButton">Calculate Tax</button>
 
         <br><br>
         <h4>Results:</h4>
@@ -48,141 +46,141 @@ include_javascript:
         <p><span class="result-label">Total Tax Owed:</span> <span class="result-number" id="totalTax">$0.00</span></p>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Wait for DOM to be ready before adding event listener
-            const calculateButton = document.getElementById('calculateTax');
-            if (calculateButton) {
-                calculateButton.addEventListener('click', calculateTax);
+        function calculateTax() {
+            // Get input values
+            const incomeEl = document.getElementById('income');
+            const purchaseEl = document.getElementById('cryptoPurchaseAmount'); 
+            const saleEl = document.getElementById('cryptoSaleAmount');
+            const provinceEl = document.getElementById('provinceDropdown');
+
+            if (!incomeEl || !purchaseEl || !saleEl || !provinceEl) {
+                console.error('Required form elements not found');
+                return;
             }
 
-            function calculateTax() {
-                // Get input values
-                const incomeEl = document.getElementById('income');
-                const purchaseEl = document.getElementById('cryptoPurchaseAmount'); 
-                const saleEl = document.getElementById('cryptoSaleAmount');
-                const provinceEl = document.getElementById('provinceDropdown');
+            const income = parseFloat(incomeEl.value) || 0;
+            const purchaseAmount = parseFloat(purchaseEl.value) || 0;
+            const saleAmount = parseFloat(saleEl.value) || 0;
+            const province = provinceEl.value;
+    
+            // Calculate capital gain
+            const capitalGain = saleAmount - purchaseAmount;
+            const taxableGain = capitalGain * 0.5; // Only 50% of capital gains are taxable in Canada
+            
+            // Calculate federal tax based on income brackets
+            let federalTax = 0;
+            const totalIncome = income + taxableGain;
+            
+            if(totalIncome <= 55867) {
+                federalTax = taxableGain * 0.15;
+            } else if(totalIncome <= 111733) {
+                federalTax = taxableGain * 0.205;
+            } else if(totalIncome <= 173205) {
+                federalTax = taxableGain * 0.26;
+            } else if(totalIncome <= 246752) {
+                federalTax = taxableGain * 0.29;
+            } else {
+                federalTax = taxableGain * 0.33;
+            }
+    
+            // Calculate provincial tax
+            let provincialTax = 0;
+            
+            switch(province) {
+                case 'ontario':
+                    if(totalIncome <= 49231) provincialTax = taxableGain * 0.0505;
+                    else if(totalIncome <= 98463) provincialTax = taxableGain * 0.0915;
+                    else if(totalIncome <= 150000) provincialTax = taxableGain * 0.1116;
+                    else if(totalIncome <= 220000) provincialTax = taxableGain * 0.1216;
+                    else provincialTax = taxableGain * 0.1316;
+                    break;
+                case 'quebec':
+                    if(totalIncome <= 49275) provincialTax = taxableGain * 0.15;
+                    else if(totalIncome <= 98540) provincialTax = taxableGain * 0.20;
+                    else if(totalIncome <= 119910) provincialTax = taxableGain * 0.24;
+                    else provincialTax = taxableGain * 0.2575;
+                    break;
+                case 'alberta':
+                    if(totalIncome <= 142292) provincialTax = taxableGain * 0.10;
+                    else if(totalIncome <= 170751) provincialTax = taxableGain * 0.12;
+                    else if(totalIncome <= 227668) provincialTax = taxableGain * 0.13;
+                    else if(totalIncome <= 341502) provincialTax = taxableGain * 0.14;
+                    else provincialTax = taxableGain * 0.15;
+                    break;
+                case 'british-columbia':
+                    if(totalIncome <= 45654) provincialTax = taxableGain * 0.0506;
+                    else if(totalIncome <= 91310) provincialTax = taxableGain * 0.077;
+                    else if(totalIncome <= 104835) provincialTax = taxableGain * 0.105;
+                    else if(totalIncome <= 127299) provincialTax = taxableGain * 0.1229;
+                    else if(totalIncome <= 172602) provincialTax = taxableGain * 0.147;
+                    else if(totalIncome <= 240716) provincialTax = taxableGain * 0.168;
+                    else provincialTax = taxableGain * 0.205;
+                    break;
+                case 'manitoba':
+                    if(totalIncome <= 36842) provincialTax = taxableGain * 0.108;
+                    else if(totalIncome <= 79625) provincialTax = taxableGain * 0.1275;
+                    else provincialTax = taxableGain * 0.174;
+                    break;
+                case 'new-brunswick':
+                    if(totalIncome <= 47715) provincialTax = taxableGain * 0.094;
+                    else if(totalIncome <= 95431) provincialTax = taxableGain * 0.14;
+                    else if(totalIncome <= 176756) provincialTax = taxableGain * 0.16;
+                    else provincialTax = taxableGain * 0.195;
+                    break;
+                case 'newfoundland-labrador':
+                    if(totalIncome <= 41457) provincialTax = taxableGain * 0.087;
+                    else if(totalIncome <= 82913) provincialTax = taxableGain * 0.145;
+                    else if(totalIncome <= 148027) provincialTax = taxableGain * 0.158;
+                    else if(totalIncome <= 207239) provincialTax = taxableGain * 0.178;
+                    else if(totalIncome <= 264750) provincialTax = taxableGain * 0.198;
+                    else if(totalIncome <= 529500) provincialTax = taxableGain * 0.208;
+                    else if(totalIncome <= 1059000) provincialTax = taxableGain * 0.213;
+                    else provincialTax = taxableGain * 0.218;
+                    break;
+                case 'nova-scotia':
+                    if(totalIncome <= 29590) provincialTax = taxableGain * 0.0879;
+                    else if(totalIncome <= 59180) provincialTax = taxableGain * 0.1495;
+                    else if(totalIncome <= 93000) provincialTax = taxableGain * 0.1667;
+                    else if(totalIncome <= 150000) provincialTax = taxableGain * 0.175;
+                    else provincialTax = taxableGain * 0.21;
+                    break;
+                case 'prince-edward-island':
+                    if(totalIncome <= 31984) provincialTax = taxableGain * 0.098;
+                    else if(totalIncome <= 63969) provincialTax = taxableGain * 0.138;
+                    else provincialTax = taxableGain * 0.167;
+                    break;
+                case 'saskatchewan':
+                    if(totalIncome <= 49720) provincialTax = taxableGain * 0.105;
+                    else if(totalIncome <= 142058) provincialTax = taxableGain * 0.125;
+                    else provincialTax = taxableGain * 0.145;
+                    break;
+            }
+    
+            const totalTax = federalTax + provincialTax;
+    
+            // Get result elements
+            const capitalGainEl = document.getElementById('capitalGain');
+            const federalTaxEl = document.getElementById('federalTax');
+            const provincialTaxEl = document.getElementById('provincialTax');
+            const totalTaxEl = document.getElementById('totalTax');
 
-                if (!incomeEl || !purchaseEl || !saleEl || !provinceEl) {
-                    console.error('Required form elements not found');
-                    return;
-                }
+            if (!capitalGainEl || !federalTaxEl || !provincialTaxEl || !totalTaxEl) {
+                console.error('Result elements not found');
+                return;
+            }
 
-                const income = parseFloat(incomeEl.value) || 0;
-                const purchaseAmount = parseFloat(purchaseEl.value) || 0;
-                const saleAmount = parseFloat(saleEl.value) || 0;
-                const province = provinceEl.value;
-        
-                // Calculate capital gain
-                const capitalGain = saleAmount - purchaseAmount;
-                const taxableGain = capitalGain * 0.5; // Only 50% of capital gains are taxable in Canada
-                
-                // Calculate federal tax based on income brackets
-                let federalTax = 0;
-                const totalIncome = income + taxableGain;
-                
-                if(totalIncome <= 55867) {
-                    federalTax = taxableGain * 0.15;
-                } else if(totalIncome <= 111733) {
-                    federalTax = taxableGain * 0.205;
-                } else if(totalIncome <= 173205) {
-                    federalTax = taxableGain * 0.26;
-                } else if(totalIncome <= 246752) {
-                    federalTax = taxableGain * 0.29;
-                } else {
-                    federalTax = taxableGain * 0.33;
-                }
-        
-                // Calculate provincial tax
-                let provincialTax = 0;
-                
-                switch(province) {
-                    case 'ontario':
-                        if(totalIncome <= 49231) provincialTax = taxableGain * 0.0505;
-                        else if(totalIncome <= 98463) provincialTax = taxableGain * 0.0915;
-                        else if(totalIncome <= 150000) provincialTax = taxableGain * 0.1116;
-                        else if(totalIncome <= 220000) provincialTax = taxableGain * 0.1216;
-                        else provincialTax = taxableGain * 0.1316;
-                        break;
-                    case 'quebec':
-                        if(totalIncome <= 49275) provincialTax = taxableGain * 0.15;
-                        else if(totalIncome <= 98540) provincialTax = taxableGain * 0.20;
-                        else if(totalIncome <= 119910) provincialTax = taxableGain * 0.24;
-                        else provincialTax = taxableGain * 0.2575;
-                        break;
-                    case 'alberta':
-                        if(totalIncome <= 142292) provincialTax = taxableGain * 0.10;
-                        else if(totalIncome <= 170751) provincialTax = taxableGain * 0.12;
-                        else if(totalIncome <= 227668) provincialTax = taxableGain * 0.13;
-                        else if(totalIncome <= 341502) provincialTax = taxableGain * 0.14;
-                        else provincialTax = taxableGain * 0.15;
-                        break;
-                    case 'british-columbia':
-                        if(totalIncome <= 45654) provincialTax = taxableGain * 0.0506;
-                        else if(totalIncome <= 91310) provincialTax = taxableGain * 0.077;
-                        else if(totalIncome <= 104835) provincialTax = taxableGain * 0.105;
-                        else if(totalIncome <= 127299) provincialTax = taxableGain * 0.1229;
-                        else if(totalIncome <= 172602) provincialTax = taxableGain * 0.147;
-                        else if(totalIncome <= 240716) provincialTax = taxableGain * 0.168;
-                        else provincialTax = taxableGain * 0.205;
-                        break;
-                    case 'manitoba':
-                        if(totalIncome <= 36842) provincialTax = taxableGain * 0.108;
-                        else if(totalIncome <= 79625) provincialTax = taxableGain * 0.1275;
-                        else provincialTax = taxableGain * 0.174;
-                        break;
-                    case 'new-brunswick':
-                        if(totalIncome <= 47715) provincialTax = taxableGain * 0.094;
-                        else if(totalIncome <= 95431) provincialTax = taxableGain * 0.14;
-                        else if(totalIncome <= 176756) provincialTax = taxableGain * 0.16;
-                        else provincialTax = taxableGain * 0.195;
-                        break;
-                    case 'newfoundland-labrador':
-                        if(totalIncome <= 41457) provincialTax = taxableGain * 0.087;
-                        else if(totalIncome <= 82913) provincialTax = taxableGain * 0.145;
-                        else if(totalIncome <= 148027) provincialTax = taxableGain * 0.158;
-                        else if(totalIncome <= 207239) provincialTax = taxableGain * 0.178;
-                        else if(totalIncome <= 264750) provincialTax = taxableGain * 0.198;
-                        else if(totalIncome <= 529500) provincialTax = taxableGain * 0.208;
-                        else if(totalIncome <= 1059000) provincialTax = taxableGain * 0.213;
-                        else provincialTax = taxableGain * 0.218;
-                        break;
-                    case 'nova-scotia':
-                        if(totalIncome <= 29590) provincialTax = taxableGain * 0.0879;
-                        else if(totalIncome <= 59180) provincialTax = taxableGain * 0.1495;
-                        else if(totalIncome <= 93000) provincialTax = taxableGain * 0.1667;
-                        else if(totalIncome <= 150000) provincialTax = taxableGain * 0.175;
-                        else provincialTax = taxableGain * 0.21;
-                        break;
-                    case 'prince-edward-island':
-                        if(totalIncome <= 31984) provincialTax = taxableGain * 0.098;
-                        else if(totalIncome <= 63969) provincialTax = taxableGain * 0.138;
-                        else provincialTax = taxableGain * 0.167;
-                        break;
-                    case 'saskatchewan':
-                        if(totalIncome <= 49720) provincialTax = taxableGain * 0.105;
-                        else if(totalIncome <= 142058) provincialTax = taxableGain * 0.125;
-                        else provincialTax = taxableGain * 0.145;
-                        break;
-                }
-        
-                const totalTax = federalTax + provincialTax;
-        
-                // Get result elements
-                const capitalGainEl = document.getElementById('capitalGain');
-                const federalTaxEl = document.getElementById('federalTax');
-                const provincialTaxEl = document.getElementById('provincialTax');
-                const totalTaxEl = document.getElementById('totalTax');
+            // Display results
+            capitalGainEl.textContent = '$' + capitalGain.toFixed(2);
+            federalTaxEl.textContent = '$' + federalTax.toFixed(2);
+            provincialTaxEl.textContent = '$' + provincialTax.toFixed(2);
+            totalTaxEl.textContent = '$' + totalTax.toFixed(2);
+        }
 
-                if (!capitalGainEl || !federalTaxEl || !provincialTaxEl || !totalTaxEl) {
-                    console.error('Result elements not found');
-                    return;
-                }
-
-                // Display results
-                capitalGainEl.textContent = '$' + capitalGain.toFixed(2);
-                federalTaxEl.textContent = '$' + federalTax.toFixed(2);
-                provincialTaxEl.textContent = '$' + provincialTax.toFixed(2);
-                totalTaxEl.textContent = '$' + totalTax.toFixed(2);
+        // Add event listener after DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const calculateButton = document.getElementById('calculateButton');
+            if (calculateButton) {
+                calculateButton.addEventListener('click', calculateTax);
             }
         });
     </script>
