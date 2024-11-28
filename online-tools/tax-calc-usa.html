@@ -9,6 +9,38 @@ capture: yes
 <div style="max-width: 800px;">
 <p><b>We built this free crypto tax calculator for USA users who want to check their Federal tax status quickly. This calculator is for informational purposes only. Consult an expert CPA or tax pro always. Use <a href="/tax/">crypto tax software if you have a lot of trades</a>.</b></p>
 
+<style>
+    .info-icon {
+        display: inline-block;
+        margin-left: 5px;
+        color: #666;
+        cursor: help;
+        vertical-align: middle;
+    }
+    .info-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+    .info-tooltip {
+        position: relative;
+        display: inline-block;
+        margin-top: -8px;
+    }
+    .info-tooltip:hover::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        left: 25px;
+        top: -5px;
+        background: #333;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 14px;
+        white-space: nowrap;
+        z-index: 100;
+    }
+</style>
+
 <div id="cryptoTaxCalculator">
     <label for="filingStatus">Filing Status:
         <span class="info-tooltip info-icon" data-tooltip="Your tax filing status affects your tax brackets and rates">
