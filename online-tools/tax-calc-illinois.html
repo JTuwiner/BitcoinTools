@@ -1,0 +1,151 @@
+---
+layout: page
+title: Illinois Crypto Tax Calculator
+full-width: yes
+permalink: "/illinois-tax-calculator/"
+jquery: yes
+capture: yes
+---
+
+<div style="max-width: 800px;">
+
+<p>We built this free crypto tax calculator for residents of Illinois who want to check calculations quickly. Our calculator is for informational purposes only. Please consult a CPA or tax professional. Use <a href="/tax/">cryptocurrency tax accounting software if you have lots of trades</a>.</p>
+
+<p>Illinois has a flat tax rate of 4.95% that applies to both short-term and long-term capital gains. To calculate Federal taxes, please <a href="/usa-tax-calculator/">use our USA tax calculator</a>. </p>
+
+<div id="cryptoTaxCalculator">
+    <label for="purchaseCost">Total Cost of First Purchase:</label>
+    <input type="number" step="0.01" id="purchaseCost" placeholder="Cost of first crypto buy">
+    
+    <label for="saleAmount">Amount of Sale:</label>
+    <input type="number" step="0.01" id="saleAmount" placeholder="Amount you received when sold">
+<br>
+    <button onclick="calculateTax()">Calculate Tax</button>
+
+    <p id="taxOwed"></p>
+</div> 
+
+<script>
+function calculateTax() {
+    const purchaseCost = parseFloat(document.getElementById("purchaseCost").value);
+    const saleAmount = parseFloat(document.getElementById("saleAmount").value);
+
+    const capitalGains = saleAmount - purchaseCost;
+    const taxRate = 0.0495; // Illinois flat tax rate of 4.95%
+
+    const tax = capitalGains * taxRate;
+    document.getElementById("taxOwed").innerText = "Estimated Illinois Tax on Crypto Capital Gains: $" + tax.toFixed(2);
+}
+</script>
+
+<br><br>
+<h2>How to Use the Tax Calculator</h2>
+<ol>
+    <li><strong>Enter the Total Cost of First Purchase:</strong> This is the initial amount you spent to buy the cryptocurrency.</li>
+    <li><strong>Enter the Amount of Sale:</strong> This is the total amount you received when you sold the cryptocurrency.</li>
+    <li>Click on the <strong>Calculate Tax</strong> button to get the estimated tax on your capital gains.</li>
+</ol>
+<p>Note: This is an estimation and may not reflect your actual tax liability. Always consult with a tax professional when filing your taxes.</p> 
+
+<br><br>
+
+<h3>Illinois Tax Rate</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Rate</th>
+            <th>Income Range</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>4.95%</td>
+            <td>All income levels</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Illinois has a flat tax rate system, meaning all income including capital gains is taxed at the same rate of 4.95%, regardless of the amount earned.</p>
+
+</div>
+<style>
+
+    table {
+        color: black;
+        width: 100%;
+        margin: 0;
+        max-width: 400px;
+    }
+
+    h3 {
+        color: #f2a900;
+        margin-bottom: 15px;
+        margin-top: 20px;
+    }
+
+    
+    #cryptoTaxCalculator {
+        max-width: 400px;
+        color: black;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    #cryptoTaxCalculator h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    #cryptoTaxCalculator .input-group {
+        margin-bottom: 15px;
+    }
+    
+    #cryptoTaxCalculator label {
+        display: block;
+        margin-bottom: 5px;
+        margin-top: 15px;
+    }
+    
+    #cryptoTaxCalculator input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    
+    #cryptoTaxCalculator button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        margin-top: 15px;
+        cursor: pointer;
+    }
+    
+    #cryptoTaxCalculator button:hover {
+        background-color: #0056b3;
+    }
+    
+    #cryptoTaxCalculator h2 {
+        margin-top: 20px;
+    }
+    
+    #cryptoTaxCalculator #taxOwed {
+        font-weight: bold;
+    }
+    
+    .result-label {
+        font-weight: bold;
+    }
+    
+    .result-number {
+        color: #005fb9;
+        font-weight: bold;
+    }
+</style>
