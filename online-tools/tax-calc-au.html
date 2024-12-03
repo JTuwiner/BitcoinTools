@@ -1,0 +1,178 @@
+---
+layout: page
+title: Free Crypto Tax Calculator Australia for Capital Gains
+full-width: yes
+permalink: "/au-tax-calculator/"
+jquery: yes
+capture: yes
+---
+
+<p>We built this free crypto tax calculator for Australian users that want to check their gains quickly. Our calculator is for informational purposes only. Consult an expert CPA or tax professional. You can use <a href="/tax/">more advanced crypto tax software if you have a lot of trades</a>.</p>
+
+
+<form id="taxForm">
+    <label for="income">Annual Income (AUD):</label>
+    <input type="number" id="income" required>
+
+    <label for="purchaseCost">Cost of Purchase (AUD):</label>
+    <input type="number" id="purchaseCost" required>
+
+    <label for="saleAmount">Amount of Sale (AUD):</label>
+    <input type="number" id="saleAmount" required>
+
+    <label for="duration">Duration Held:</label>
+    <select id="duration">
+        <option value="lessThanAYear">Less than 1 year</option>
+        <option value="moreThanAYear">More than 1 year</option>
+    </select>
+
+    <button type="button" onclick="calculateTax()">Calculate Tax</button>
+</form>
+<div class="au-result">
+    <p><span>Tax Rate Based on Income:</span> <span id="taxRate">0%</span></p>
+    <p><span>Total Profit from Trade:</span> <span id="profit">$0</span></p>
+    <p><span>Tax Due:</span> <span id="result">$0</span></p>
+</div>
+
+<h2>How to Use the Calculator:</h2>
+<ul>
+    <li>Enter your <strong>Annual Income</strong> to determine your applicable tax rate.</li>
+    <li>Input the <strong>Cost of Purchase</strong> for the crypto asset.</li>
+    <li>Provide the <strong>Amount of Sale</strong> to calculate your gains or losses.</li>
+    <li>Select the <strong>Duration Held</strong> from the dropdown, indicating whether you've held the asset for more or less than a year.</li>
+    <li>Click on the <strong>Calculate Tax</strong> button to get a breakdown of the tax due based on your inputs.</li>
+</ul>
+
+<h2>Why Use This Calculator:</h2>
+<ul>
+    <li>Gain clarity on potential taxes owed for crypto transactions.</li>
+    <li>Stay informed and avoid surprises during tax season.</li>
+    <li>Benefit from accurate calculations tailored to Australian tax brackets and rates.</li>
+    <li>Identify potential tax savings if assets were held for longer durations.</li>
+    <li>Plan future trades with a clearer understanding of tax implications.</li>
+</ul>
+
+
+<style>
+
+  
+  #taxForm {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      margin: 0 auto;
+  }
+  
+  #taxForm label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+  }
+  
+  #taxForm input, #taxForm select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+  }
+  
+  #taxForm button {
+      background-color: #007BFF;
+      color: #ffffff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+  }
+  
+  #taxForm button:hover {
+      background-color: #0056b3;
+  }
+  
+  #taxForm p {
+      font-size: 18px;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f1f1f1;
+      border-radius: 4px;
+  }
+  
+ .au-result {
+     background-color: #e6e6e6;
+     padding: 20px;
+     border-radius: 5px;
+     margin-top: 20px;
+ }
+ 
+  .au-result p {
+     font-size: 20px;
+     margin: 10px 0;
+ }
+ 
+ .au-result #result, .au-result #profit, .au-result #taxRate {
+ font-weight: normal !important;
+ }
+ 
+ .au-result span {
+     font-weight: bold;
+ }
+
+
+
+
+</style>
+
+
+<script>
+   function formatCurrency(value) {
+    return new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD' }).format(value);
+}
+
+function calculateTax() {
+    const income = parseFloat(document.getElementById("income").value);
+    const purchaseCost = parseFloat(document.getElementById("purchaseCost").value);
+    const saleAmount = parseFloat(document.getElementById("saleAmount").value);
+    const durationSelection = document.getElementById("duration").value;
+
+    let capitalGain = saleAmount - purchaseCost;
+    let taxableCapitalGain = capitalGain;
+
+    let discountMessage = "";
+    // Adjusting taxable capital gains based on the duration held
+    if (durationSelection === "moreThanAYear") {
+        taxableCapitalGain *= 0.5;
+        discountMessage = "You qualify for a 50% tax discount as the asset was held for more than 1 year.";
+    }
+
+    document.getElementById("profit").innerText = formatCurrency(capitalGain);
+ 
+    let taxRate;
+    let taxDue;
+
+    if (income <= 18200) {
+        taxRate = 0;
+    } else if (income <= 45000) {
+        taxRate = 0.19;
+    } else if (income <= 120000) {
+        taxRate = 0.325;
+    } else if (income <= 180000) {
+        taxRate = 0.37;
+    } else {
+        taxRate = 0.45;
+    }
+
+    taxDue = taxRate * taxableCapitalGain;
+
+    document.getElementById("taxRate").innerText = (taxRate * 100).toFixed(2) + "%";
+    document.getElementById("result").innerText = formatCurrency(taxDue) + ". " + discountMessage;
+}
+
+
+</script>
