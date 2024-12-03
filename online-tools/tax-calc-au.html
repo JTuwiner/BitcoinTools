@@ -28,7 +28,7 @@ capture: yes
 
     <button type="button" onclick="calculateTax()">Calculate Tax</button>
 </form>
-<div class="au-result">
+<div class="au-result" style="display: none;">
     <p><span>Tax Rate Based on Income:</span> <span id="taxRate">0%</span></p>
     <p><span>Total Profit from Trade:</span> <span id="profit">$0</span></p>
     <p><span>Tax Due:</span> <span id="result">$0</span></p>
@@ -64,6 +64,7 @@ capture: yes
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       max-width: 400px;
       margin: 0 auto;
+      color: black;
   }
   
   #taxForm label {
@@ -109,6 +110,7 @@ capture: yes
      padding: 20px;
      border-radius: 5px;
      margin-top: 20px;
+     color: black;
  }
  
   .au-result p {
@@ -117,11 +119,13 @@ capture: yes
  }
  
  .au-result #result, .au-result #profit, .au-result #taxRate {
- font-weight: normal !important;
+     font-weight: normal !important;
+     color: black;
  }
  
  .au-result span {
      font-weight: bold;
+     color: black;
  }
 
 
@@ -172,6 +176,8 @@ function calculateTax() {
 
     document.getElementById("taxRate").innerText = (taxRate * 100).toFixed(2) + "%";
     document.getElementById("result").innerText = formatCurrency(taxDue) + ". " + discountMessage;
+    
+    document.querySelector('.au-result').style.display = 'block';
 }
 
 
