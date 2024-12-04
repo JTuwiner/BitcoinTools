@@ -3,7 +3,7 @@ layout: page
 title: Hardware Wallets
 full-width: yes
 permalink: "/hardware-wallets/"
-seotitle: Bitcoin Hardware Wallets
+seotitle: Best Bitcoin Hardware Wallets
 category: yes
 subdesc: Bitcoin hardware wallets, some Bitcoin-only. 
 icon: lock
@@ -59,6 +59,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   </tbody>
 </table>
 
+<br><br>
 <h2>Amazon Review Score Comparison</h2>
 
 <p>This table compares the Amazon review score of each hardware wallet.</p>
@@ -93,3 +94,39 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
     </tr>
   </tbody>
 </table>
+
+<h2>FAQ</h2>
+
+<div class="faq-item">
+  <h3 class="faq-question" onclick="toggleAnswer(this)">What happens if your hardware wallet breaks?</h3>
+  <div class="faq-answer" style="display: none;">
+    <p>If your hardware wallet breaks, you can easily restore your funds by using your seed phrase (backup) to recover your wallet on a new device. </p>
+    <p>The seed phrase can be imported into any hardware wallet that supports BIP39 seed phrases, or into software wallets like Electrum. This is why it's critical to properly back up and secure your seed phrase - it's the only way to recover your funds if your device is lost, stolen, or damaged.</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <h3 class="faq-question" onclick="toggleAnswer(this)">What is the cheapest hardware wallet?</h3>
+  <div class="faq-answer" style="display: none;">
+    <p>The Blockstream Jade is currently the most affordable hardware wallet at $79. Despite its lower price point, it still provides strong security features and is made by Blockstream, a well-known Bitcoin company.</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <h3 class="faq-question" onclick="toggleAnswer(this)">How do I safely buy a hardware wallet?</h3>
+  <div class="faq-answer" style="display: none;">
+    <p>The safest way to buy a hardware wallet is directly from the manufacturer's official website. This ensures you receive a genuine device that hasn't been tampered with.</p>
+    <p>While Amazon is a popular option, you need to be extremely careful when purchasing hardware wallets there. Only buy if the product is sold and shipped directly by the manufacturer (like "Sold by Ledger" or "Sold by Trezor"). Avoid third-party sellers, as there have been cases of scammers selling compromised or fake hardware wallets that could steal your bitcoin.</p>
+  </div>
+</div>
+
+<script>
+function toggleAnswer(element) {
+  const answer = element.nextElementSibling;
+  if (answer.style.display === "none") {
+    answer.style.display = "block";
+  } else {
+    answer.style.display = "none";
+  }
+}
+</script>
