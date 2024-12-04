@@ -97,9 +97,48 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 
 <h2>FAQ</h2>
 
+<style>
+.faq-question {
+  cursor: pointer;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  margin: 10px 0;
+  position: relative;
+}
+
+.faq-question:hover {
+  background-color: #e9ecef;
+}
+
+.faq-question:after {
+  content: '+';
+  position: absolute;
+  right: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.faq-question.active:after {
+  content: '-';
+}
+
+.faq-answer {
+  padding: 0 15px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.faq-answer.show {
+  max-height: 500px;
+  transition: max-height 0.3s ease-in;
+}
+</style>
+
 <div class="faq-item">
   <h3 class="faq-question" onclick="toggleAnswer(this)">What happens if your hardware wallet breaks?</h3>
-  <div class="faq-answer" style="display: none;">
+  <div class="faq-answer">
     <p>If your hardware wallet breaks, you can easily restore your funds by using your seed phrase (backup) to recover your wallet on a new device. </p>
     <p>The seed phrase can be imported into any hardware wallet that supports BIP39 seed phrases, or into software wallets like Electrum. This is why it's critical to properly back up and secure your seed phrase - it's the only way to recover your funds if your device is lost, stolen, or damaged.</p>
   </div>
@@ -107,14 +146,14 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 
 <div class="faq-item">
   <h3 class="faq-question" onclick="toggleAnswer(this)">What is the cheapest hardware wallet?</h3>
-  <div class="faq-answer" style="display: none;">
+  <div class="faq-answer">
     <p>The Blockstream Jade is currently the most affordable hardware wallet at $79. Despite its lower price point, it still provides strong security features and is made by Blockstream, a well-known Bitcoin company.</p>
   </div>
 </div>
 
 <div class="faq-item">
   <h3 class="faq-question" onclick="toggleAnswer(this)">How do I safely buy a hardware wallet?</h3>
-  <div class="faq-answer" style="display: none;">
+  <div class="faq-answer">
     <p>The safest way to buy a hardware wallet is directly from the manufacturer's official website. This ensures you receive a genuine device that hasn't been tampered with.</p>
     <p>While Amazon is a popular option, you need to be extremely careful when purchasing hardware wallets there. Only buy if the product is sold and shipped directly by the manufacturer (like "Sold by Ledger" or "Sold by Trezor"). Avoid third-party sellers, as there have been cases of scammers selling compromised or fake hardware wallets that could steal your bitcoin.</p>
   </div>
@@ -122,11 +161,8 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 
 <script>
 function toggleAnswer(element) {
+  element.classList.toggle('active');
   const answer = element.nextElementSibling;
-  if (answer.style.display === "none") {
-    answer.style.display = "block";
-  } else {
-    answer.style.display = "none";
-  }
+  answer.classList.toggle('show');
 }
 </script>
