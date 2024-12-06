@@ -97,7 +97,7 @@ capture: yes
       <p><strong>Product:</strong> {{ program.product }}</p>
       <p><strong>Commission:</strong> {{ program.terms }}</p>
       <p><strong>Payout Frequency:</strong> {{ program.payoutfrequency }}</p>
-      <a href="{{ program.url }}" class="join-button affiliate-link" data-program="{{ program.company }}" target="_blank" rel="nofollow">Learn more</a>
+      <a href="{{ program.url }}" class="join-button program-link" data-program="{{ program.company }}" target="_blank" rel="nofollow">Learn more</a>
     </div>
   </div>
   {% endfor %}
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Track affiliate link clicks
-  document.querySelectorAll('.affiliate-link').forEach(link => {
+  document.querySelectorAll('.program-link').forEach(link => {
     link.addEventListener('click', event => {
       const program = link.getAttribute('data-program');
       fathom.trackEvent(`Click ${program}`);
