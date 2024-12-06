@@ -47,10 +47,12 @@ capture: yes
 }
 
 .affiliate-card img {
-  max-width: 200px;
+  max-width: 100px;
   height: auto;
   display: block;
   margin: 0 auto 15px;
+  border-radius: 100%;
+  border: 1px solid #ccc;
 }
 
 .affiliate-card h3 {
@@ -65,6 +67,13 @@ capture: yes
 .affiliate-details p {
   margin: 5px 0;
   font-size: 14px;
+}
+.affiliate-grid .btn {
+  background-color: #f2a900;
+  color: black;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px !important;
 }
 </style>
 
@@ -83,7 +92,7 @@ capture: yes
       <p><strong>Product:</strong> {{ program.product }}</p>
       <p><strong>Commission:</strong> {{ program.terms }}</p>
       <p><strong>Payout Frequency:</strong> {{ program.payoutfrequency }}</p>
-      <a href="{{ program.url }}" class="btn btn-success" target="_blank" rel="nofollow">Join Program</a>
+      <a href="{{ program.url }}" class="btn btn-success" target="_blank" rel="nofollow">Learn more</a>
     </div>
   </div>
   {% endfor %}

@@ -14,10 +14,18 @@
   image: trezor.png
   product: Bitcoin hardware wallets.
 
+- company: Ledger
+  url: https://affiliate.ledger.com/
+  terms: "10% commission on each sale"
+  payoutfrequency: "Monthly"
+  type: wallet
+  image: ledger.png
+  product: Bitcoin and crypto hardware wallets.
+
 - company: Koinly
   url: https://koinly.io/affiliate/
   terms: "20% commission on first purchase, 10% lifetime commission on repeat purchases"
   payoutfrequency: "Every 30 days via PayPal"
   type: software
-  image: koinly.png
+  image: koinly.jpg
   product: Crypto tax reporting and portfolio tracking software.
