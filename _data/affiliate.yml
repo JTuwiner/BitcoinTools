@@ -37,7 +37,6 @@
   type: exchange
   image: coinbase.webp
   product: Cryptocurrency exchange.
-
 - company: CoinLedger
   url: https://coinledger.io/affiliate-program
   terms: "25% recurring lifetime commission"
@@ -45,3 +44,19 @@
   type: software
   image: coinledger.png
   product: Cryptocurrency tax software.
+
+- company: BitBox
+  url: https://bitbox.swiss/affiliates/
+  terms: "12% commission on sales (excluding shipping and VAT)"
+  payoutfrequency: "Monthly via Bitcoin or bank transfer"
+  type: wallet
+  image: bitbox.png
+  product: Bitcoin hardware & steel wallets.
+
+- company: River
+  url: https://river.com/rewards
+  terms: "Up to $100, depending on volume"
+  payoutfrequency: "7 days after funds settle, paid in BTC"
+  type: exchange
+  image: river.png
+  product: Bitcoin exchange and financial services.
