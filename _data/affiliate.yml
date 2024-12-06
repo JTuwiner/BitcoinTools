@@ -12,4 +12,12 @@
   payoutfrequency: "Monthly in EUR, BTC, or wire transfer"
   type: wallet
   image: trezor.png
-  product: Bitcoin hardware wallets. 
+  product: Bitcoin hardware wallets.
+
+- company: Koinly
+  url: https://koinly.io/affiliate/
+  terms: "20% commission on first purchase, 10% lifetime commission on repeat purchases"
+  payoutfrequency: "Every 30 days via PayPal"
+  type: software
+  image: koinly.png
+  product: Crypto tax reporting and portfolio tracking software.
