@@ -70,10 +70,14 @@ capture: yes
 }
 .affiliate-grid .join-button {
   background-color: #f2a900;
-  color: black;
+  color: black !important;
   display: block;
   margin: 0 auto;
   margin-top: 20px !important;
+  text-align: center;
+  font-weight: bold;
+  padding: 5px 5px 8px 5px;
+  border-radius: 7px;
 }
 </style>
 
@@ -81,6 +85,7 @@ capture: yes
   <button class="filter-btn active" data-type="all">All</button>
   <button class="filter-btn" data-type="wallet">Wallets</button>
   <button class="filter-btn" data-type="software">Software</button>
+  <button class="filter-btn" data-type="exchange">Exchanges</button>
 </div>
 
 <div class="affiliate-grid">
