@@ -77,15 +77,12 @@ capture: yes
 <div class="affiliate-grid">
   {% for program in site.data.affiliate %}
   <div class="affiliate-card" data-type="{{ program.type }}">
-    <img src="/img/affiliate/{{ program.image }}" alt="{{ program.company }} logo">
+    <img src="/img/{{ program.image }}" alt="{{ program.company }} logo">
     <h3>{{ program.company }}</h3>
     <div class="affiliate-details">
       <p><strong>Product:</strong> {{ program.product }}</p>
       <p><strong>Commission:</strong> {{ program.terms }}</p>
       <p><strong>Payout Frequency:</strong> {{ program.payoutfrequency }}</p>
-      {% if program.cookiewindow %}
-      <p><strong>Cookie Window:</strong> {{ program.cookiewindow }}</p>
-      {% endif %}
       <a href="{{ program.url }}" class="btn btn-success" target="_blank" rel="nofollow">Join Program</a>
     </div>
   </div>
