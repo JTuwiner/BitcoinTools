@@ -1,0 +1,119 @@
+---
+layout: page
+title: "Crypto Affiliate Programs [2024]"
+seotitle: "Best Crypto Affiliate Programs [2024]"
+full-width: yes
+permalink: "/affiliate-programs/"
+capture: yes
+---
+
+<style>
+.filter-buttons {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  margin: 0 5px;
+  border: 2px solid #ddd;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.filter-btn.active {
+  background: #28a745;
+  color: white;
+  border-color: #28a745;
+}
+
+.affiliate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.affiliate-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.affiliate-card:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.affiliate-card img {
+  max-width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto 15px;
+}
+
+.affiliate-card h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.affiliate-details {
+  margin-top: 15px;
+}
+
+.affiliate-details p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+</style>
+
+<div class="filter-buttons">
+  <button class="filter-btn active" data-type="all">All</button>
+  <button class="filter-btn" data-type="wallet">Wallets</button>
+  <button class="filter-btn" data-type="software">Software</button>
+</div>
+
+<div class="affiliate-grid">
+  {% for program in site.data.affiliate %}
+  <div class="affiliate-card" data-type="{{ program.type }}">
+    <img src="/img/affiliate/{{ program.image }}" alt="{{ program.company }} logo">
+    <h3>{{ program.company }}</h3>
+    <div class="affiliate-details">
+      <p><strong>Product:</strong> {{ program.product }}</p>
+      <p><strong>Commission:</strong> {{ program.terms }}</p>
+      <p><strong>Payout Frequency:</strong> {{ program.payoutfrequency }}</p>
+      {% if program.cookiewindow %}
+      <p><strong>Cookie Window:</strong> {{ program.cookiewindow }}</p>
+      {% endif %}
+      <a href="{{ program.url }}" class="btn btn-success" target="_blank" rel="nofollow">Join Program</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.affiliate-card');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const filterType = button.getAttribute('data-type');
+      
+      // Update active button
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      // Filter cards
+      cards.forEach(card => {
+        if (filterType === 'all' || card.getAttribute('data-type') === filterType) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+});
+</script>

@@ -1,0 +1,16 @@
+- company: Bitbo Pro
+  url: https://partners.bitbo.io/
+  terms: "50% commission for first 12 months"
+  payoutfrequency: "Monthly via Wise, PayPal, or crypto"
+  type: software
+  image: bitbo.png
+  product: Bitcoin charts and software for traders and investors. 
+
+- company: Trezor
+  url: https://partners.trezor.io/
+  terms: "15% commission on each sale (Net sale amount, excluding VAT and shipping)"
+  payoutfrequency: "Monthly in EUR, BTC, or wire transfer"
+  cookiewindow: "30 days"
+  type: wallet
+  image: trezor.png
+  product: Bitcoin hardware wallets. 
