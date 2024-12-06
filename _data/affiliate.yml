@@ -60,3 +60,11 @@
   type: exchange
   image: river.png
   product: Bitcoin exchange and financial services.
+
+- company: Kraken
+  url: https://www.kraken.com/referrals
+  terms: "$10 in BTC for each referral, up to $100 total"
+  payoutfrequency: "Within 1 week after qualifying trade"
+  type: exchange
+  image: kraken.jpg
+  product: Cryptocurrency exchange and trading platform.
