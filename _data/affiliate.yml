@@ -28,7 +28,7 @@
   payoutfrequency: "Every 30 days via PayPal"
   type: software
   image: koinly.jpg
-  product: Crypto tax reporting and portfolio tracking software.
+  product: Crypto tax software.
 
 - company: Coinbase
   url: https://coinbase-consumer.sjv.io/yqqj93
@@ -44,4 +44,4 @@
   payoutfrequency: "Monthly, paid via PayPal or bank transfer"
   type: software
   image: coinledger.png
-  product: Cryptocurrency tax software for investors and traders.
+  product: Cryptocurrency tax software.
