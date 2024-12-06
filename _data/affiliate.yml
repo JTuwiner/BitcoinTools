@@ -17,7 +17,7 @@
 - company: Ledger
   url: https://affiliate.ledger.com/
   terms: "10% commission on each sale"
-  payoutfrequency: "Monthly"
+  payoutfrequency: "Monthly via bitcoin or bank transfer"
   type: wallet
   image: ledger.png
   product: Bitcoin and crypto hardware wallets.
