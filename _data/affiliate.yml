@@ -76,3 +76,11 @@
   type: exchange
   image: rhood.png
   product: Stock and cryptocurrency trading platform.
+
+- company: TradingView
+  url: https://www.tradingview.com/partner-program/?aff_id=21693
+  terms: "$10-350 per subscription depending on plan"
+  payoutfrequency: "Monthly, 30 days after month end"
+  type: software
+  image: tradingview.jpg
+  product: Charting & trading platform.
