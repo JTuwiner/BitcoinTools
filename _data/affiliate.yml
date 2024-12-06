@@ -68,3 +68,11 @@
   type: exchange
   image: kraken.jpg
   product: Cryptocurrency exchange and trading platform.
+
+- company: Robinhood
+  url: https://affiliates.robinhood.com/
+  terms: "Up to $20 per sale with 30-day cookie"
+  payoutfrequency: "Paid monthly after reaching $50 minimum"
+  type: exchange
+  image: rhood.png
+  product: Stock and cryptocurrency trading platform.
