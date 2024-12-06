@@ -29,3 +29,11 @@
   type: software
   image: koinly.jpg
   product: Crypto tax reporting and portfolio tracking software.
+
+- company: Coinbase
+  url: https://coinbase-consumer.sjv.io/yqqj93
+  terms: "50% of trading fees for first 3 months"
+  payoutfrequency: "Local currency via PayPal or bank account"
+  type: exchange
+  image: coinbase.webp
+  product: Cryptocurrency exchange.

@@ -68,7 +68,7 @@ capture: yes
   margin: 5px 0;
   font-size: 14px;
 }
-.affiliate-grid .btn {
+.affiliate-grid .join-button {
   background-color: #f2a900;
   color: black;
   display: block;
@@ -92,7 +92,7 @@ capture: yes
       <p><strong>Product:</strong> {{ program.product }}</p>
       <p><strong>Commission:</strong> {{ program.terms }}</p>
       <p><strong>Payout Frequency:</strong> {{ program.payoutfrequency }}</p>
-      <a href="{{ program.url }}" class="btn btn-success" target="_blank" rel="nofollow">Learn more</a>
+      <a href="{{ program.url }}" class="join-button" target="_blank" rel="nofollow">Learn more</a>
     </div>
   </div>
   {% endfor %}
