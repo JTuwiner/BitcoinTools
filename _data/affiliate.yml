@@ -37,3 +37,11 @@
   type: exchange
   image: coinbase.webp
   product: Cryptocurrency exchange.
+
+- company: CoinLedger
+  url: https://coinledger.io/affiliate-program
+  terms: "25% recurring lifetime commission"
+  payoutfrequency: "Monthly, paid via PayPal or bank transfer"
+  type: software
+  image: coinledger.png
+  product: Cryptocurrency tax software for investors and traders.
