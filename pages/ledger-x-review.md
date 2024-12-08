@@ -1,0 +1,345 @@
+---
+layout: page
+title: "Ledger Nano X Review: Safety, Price & Box"
+seotitle: "Ledger Nano X Review: Safety, Price & Box (2024)"
+full-width: yes
+permalink: "/ledger-x-review/"
+capture: yes
+---
+
+
+{% include toc-box.html bullet1="What is Ledger Nano X?" bullet1tag="#what-is-ledger-nano-x" bullet2="Is Ledger Nano X Safe?" bullet2tag="#is-ledger-nano-x-safe" bullet3="What's in the Box" bullet3tag="#whats-in-the-box" bullet4="Price" bullet4tag="#price" bullet5="Ledger Nano X vs S" bullet5tag="#ledger-nano-x-vs-nano-s" bullet6="How to Use Ledger Nano X" bullet6tag="#how-to-use-ledger-nano-x" %}
+
+In this Ledger Nano X review, we are going to cover everything you need to know.
+
+We analyzed dozens of data points relevant to the benefits and features of using a Ledger Nano X and scored our findings on a 5-point scale across five important categories.
+
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/32.JPG){: .ledgertop}
+
+The Ledger Nano X is Ledger's newest [hardware wallet](/glossary/hardware-wallet/) and was released in 2019 as an upgrade to the Ledge Nano S.
+
+## What is Ledger Nano X?
+
+Ledger Nano X is a hardware wallet, which is a type of cold wallet.
+
+The purpose of Ledger Nano X is to create an easy way to secure your Bitcoin and cryptocurrency offline. 
+
+Keeping your coins offline offers extra security compared to keeping them on a device that's connected to the internet, like your phone for example. 
+
+## Who is Ledger Nano X Best For?
+
+The Ledger Nano X is best for beginners who want a secure place to store crypto. 
+
+It's best for users who specifically want convenience, as the Nano X is more expensive due to its wireless support via Bluetooth for iOS devices. 
+
+## Is Ledger Nano X Safe? 
+
+According to Ledger's website, 0 Ledgers have ever been hacked since the company launched. 
+
+Indeed, this is generally true:
+
+More cryptocurrency is lost due to people losing and forgetting passwords than from being hacked. 
+
+Therefore, simple solutions like Ledger are often better than complex security set ups.
+
+## What's in the Box
+
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/36.JPG)
+
+The Ledger Nano X comes nicely packaged and includes the following items:
+
+<ul class="quick-info-pros">
+ <li>Ledger Nano X</li>
+ <li>1 USB C cable</li>
+ <li>Keychain strap</li>
+ <li>3 recovery sheets</li>
+ <li>Ledger stickers</li>
+</ul>
+
+## Price
+
+The Ledger Nano X is priced at $149. This also includes free shipping to almost every country.
+
+<br>
+<div class="warning-box">
+<h3>WARNING</h3>
+<p>Don't buy a Ledger Nano on eBay. There are no official sellers on eBay and it is not worth the risk of buying a hardware wallet there. Scammers are going to scam. One way you could be scammed is by buying from an unofficial source that has tampered with the wallet before sending it to you.</p>
+</div><br>
+
+**Price Score**: 4/5
+
+[Ledger's Nano X is most comparable to TREZOR's Model T](/trezor-vs-ledger/), which is $219. TREZOR's Model T has a color touch screen, while the Nano X does not. 
+
+The Nano X's $149 price tag still seems like a lot to pay compared to Ledger's Nano S at $79 or TREZOR's One at $69. 
+
+## Pros and Cons
+
+The main pros of the Ledger Nano X are: 
+
+* Supports more coins than any other hardware wallet
+* Staking is integrated, making it easy to earn on crypto
+
+The main cons of the Ledger Nano X are: 
+
+* ID-based key recovery service lacks privacy
+* The battery is not replaceable 
+
+## Device Design
+
+Here are some pictures of the Nano X.
+
+The device when you open the box:
+
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/33.JPG)
+<br>
+
+The Ledger Nano X screen is much bigger than Ledger's previous hardware wallet, the Ledger Nano S. The buttons are much bigger as well and easier to click:
+
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/34.JPG)
+
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/37.JPG)
+<br>
+
+## Ledger Nano X Supported Coins
+
+Ledger Nano X supported 5,000+ coins.
+
+Overall, Nano X supports almost all of the top 100 cryptocurrencies and plans on implementing support for the ones that are not available at the moment. 
+
+Nano X also offers support to any ERC20 willing to be available on the Nano hardware wallets.
+
+It supports cryptocurrencies such as:
+
+* Bitcoin
+* Ethereum
+* Bitcoin Cash (BCH)
+* EOS
+* Stellar
+* Litecoin
+* Monero
+* Ripple (XRP)
+* Tether
+* Tron
+* Cardano
+* IOTA
+* Binance coin
+* Dash
+* Neo
+  
+<a type="button" href="https://ledger.pxf.io/3emX2A" rel="nofollow" target="_blank" class="btn exchange-btn-top btn-success"><i class="fa fa-bitcoin"></i> View Entire List of Coins</a>
+<br>
+
+**Coin Support Score**: 5/5
+
+Ledger's hardware wallets support more coins than any other hardware wallet. 
+
+## Ledger Nano X vs Nano S
+
+The Ledger Nano X is new, so what's the difference? There are three main differences: 
+
+* The Ledger Nano X costs $150 vs $59 for the Nano S.
+* The Nano X connects to iOS devices, while the Nano S only works with desktop computers and Android devices.
+* The Ledger Nano X has a slightly larger screen that displays at a higher resolution. 
+
+Both Ledger Nano X and Nano S support the same amount of coins. 
+
+## Ledger Nano X vs Coldcard
+
+Coldcard is Bitcoin-only, so if you want more than Bitcoin you can't use a Coldcard. 
+
+Coldcard is for more advanced users, while Ledger Nano X is more for beginners. 
+
+## Background on Ledger - A Bitcoin Security Company
+
+Ledger has been creating hardware for Bitcoin security since 2014.
+
+Since then it has [received over $85 million in funding](https://www.crunchbase.com/organization/ledger-2#section-investors) from some of the world's top investors. Its most recent raise was for [$75 million](https://techcrunch.com/2018/01/18/ledger-raises-another-70-million-to-become-the-leader-in-cryptocurrency-hardware-wallets/) in January 2018. They raised another $380 million in June of 2021.
+
+To date, the company is worth around $1.41 billion.
+
+<br>
+![ledger investors](https://buybitcoinworldwide.com/img/ledgercoins/investorsledger.png)
+<br>
+
+According to Ledger's website, they have sold over 3 million Ledger devices and have clients in over 200 countries:
+
+<br>
+![ledger investors](https://buybitcoinworldwide.com/img/ledgercoins/ledgerinfo.png)
+<br>
+
+## Frequently Asked Questions
+
+### Can I Trust a Ledger from a Reseller?
+
+One thing you won't find on the packaging is anti-tamper seals. 
+
+Anti-tamper seals are a special piece of tape that is on the box. If the tape is removed, it would indicate that someone opened your Nano X while it was on the way to ship to you. 
+
+Ledger doesn't use anti-tampering seals on their packaging, as they can give a false sense of security.
+
+Instead of trusting a sticker to tell you that your device is genuine, Ledger has developed an online test to do just this, called Root of Trust.
+
+This means that you don't need to trust the retailer you bought your Nano from. You can verify the authenticity of your device yourself.
+
+That being said: 
+
+It is still recommended that if you are going to purchase from a reseller you should use an Authorized Reseller listed on the Ledger website.
+
+### Does Ledger Nano X work with iPhone? 
+
+Yes, Ledger Nano X connects to iPhones via Ledger's iOS app.
+
+### Is Ledger Nano X a cold wallet?
+
+Yes, Ledger Nano X is a hardware wallet, which is a type of [cold wallet](/wallets/). 
+
+### Where does Ledger ship from?
+
+Ledgers ship from France. The company also has a distribution center in Memphis, Tennessee in the United States.
+
+Keep in mind, that this is only if you buy directly from Ledger. If you buy from somewhere else, which is not recommended, it may ship from another location.
+
+### Has Ledger ever been hacked?
+
+There has never been a known instance of a Ledger getting hacked in a non-laboratory setting. 
+
+That being said, Ledger (the company) has had its databases hacked. On July 29, 2020, Ledger sent out an email to all previous customers that began:
+
+<div class="quote-box">
+<p>Our e-commerce and marketing database leaked. We immediately fixed the breach. Contact and order details were involved. Your funds are safe.</p>
+<div class="quote-ref"><img alt="pascal gauthier" src="https://buybitcoinworldwide.com/wallets/img/ledger-ceo.jpg">Pascal Gauthier <span class="position">CEO, Ledger</span></div>
+</div>
+
+To be clear, this breach **did not affect any customer funds held on Ledger devices**. This was a breach of Ledger's e-commerce customer database. For the most part, emails and addresses were leaked, and for some customers, what they had ordered in the past was also leaked. 
+
+In July 2020, Ledger, a leading crypto hardware wallet company, discovered a data breach in their marketing database. The breach, originating from a misconfigured API key by Shopify's support team, exposed transaction data from August 2018 to June 2020. While initially detected and reported by a researcher under Ledger's bounty program, a deeper investigation revealed that ~272,000 customers' details had been compromised, far greater than the initial 9,500 reported. This breach was linked to an internal Shopify hack. To safeguard oneself from similar breaches, it is recommended to provide minimal personal details, use single-use credentials, employ aliases, conceal residential addresses, and make private payments. The Ledger incident underscores the importance of personal vigilance, as companies might not always ensure data security.
+
+### Does the Ledger Nano X Work with Billfodl, Cryptosteel, Cryptotag, and other steel wallets?
+
+Yes, you can use steel backup tools like Billfodl, Cryptotag, and Cryptosteel to protect your Nano X's recovery seed.
+
+**This is the end of our review. The next section will be a detailed guide on how to set up and use the Nano X. You can [go back to the top](/wallets/ledger-nano-x/#what-is-ledger-nano-x).**
+
+<br>
+
+<hr>
+
+## How to Use Ledger Nano X
+
+While the Nano X uses its operating system on the device (named Bolos), it is still compatible with iOS, macOS, Android, Windows, and even Linux. It also works with desktop wallets like MyEtherWallet as well.
+
+In this set up example, I used my iPhone XR to set up the Nano X via Bluetooth, but the steps are similar for other devices.
+
+Ledger has a new app called Ledger Live, which is what I used to set up the Nano X:
+
+*BEWARE:* There have been scams involving fake versions of their hardware manager app, Ledger Live, on the Google Play Store.
+
+<br>
+<center>
+<img alt="ledger twitter warnining about scams" src="https://buybitcoinworldwide.com/wallets/img/ledger-warning.png" />
+</center>
+<br>
+
+Make sure you only download the app through the link on the Ledger Live page on Ledger's site.
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/1.PNG){: .img-responsive .kb-helper .android-img-kb}
+<br>
+Once opened, select the device you're setting up. I chose Nano X, but it will work with any of Ledger's devices.
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/2.PNG){: .img-responsive .kb-helper .android-img-kb}
+<br>
+If your device is brand new, select "Initialize as a new device":
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/3.PNG){: .img-responsive .kb-helper .android-img-kb}
+<br>
+In this step, set a PIN code on your device. You don't need to use the app for anything yet, the app is just guiding you through the steps.
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/4.PNG){: .img-responsive .kb-helper .android-img-kb}
+<br>
+Ledger's app has some nice security suggestions. Follow them!
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/5.PNG){: .img-responsive .kb-helper .android-img-kb}
+<br>
+Now, write down the 24 words that you will see on your Ledger Nano X's screen. You still don't need the app yet, it's just guiding you.
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/6.PNG){: .img-responsive .kb-helper .android-img-kb}
+<br>
+Ledger offers more tips here, definitely make sure you've followed all of their suggestions to keep your Bitcoin and cryptocurrency safe!
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/7.PNG){: .img-responsive .kb-helper .android-img-kb}
+<br>
+Ledger will ask you to confirm that you followed their advice. Great feature!
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/8.PNG){: .img-responsive .kb-helper .android-img-kb}
+<br>
+More confirmation:
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/9.PNG){: .img-responsive .kb-helper .android-img-kb}
+<br>
+Now we can get to pairing your Nano X with your phone.
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/11.PNG){: .img-responsive .kb-helper .android-img-kb}
+<br>
+The wallet and my phone connected!
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/14.PNG){: .img-responsive .kb-helper .android-img-kb}
+<br>
+Pairing successful:
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/15.PNG){: .img-responsive .kb-helper .android-img-kb}
+<br>
+Now that your device is paired, select it from the menu to proceed:
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/16.PNG){: .img-responsive .kb-helper .android-img-kb}
+<br>
+Ledger Live will tell you to set a password lock. This is so if someone gets access to your phone they can't see any information about which coins are on your Ledger. This is mostly a privacy concern and not a security concern.
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/17.PNG){: .img-responsive .kb-helper .android-img-kb}
+<br>
+Setting a password:
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/18.PNG){: .img-responsive .kb-helper .android-img-kb}
+<br>
+After that, choose which data you're willing to share with Ledger:
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/21.PNG){: .img-responsive .kb-helper .android-img-kb}
+<br>
+That's it, the device is ready to use! Although this process seemed long, it didn't take me more than 5 minutes to complete all of it.
+<br>
+![ledger nano x](https://buybitcoinworldwide.com/img/nanox/22.PNG){: .img-responsive .kb-helper .android-img-kb}
+<br>
+Now you can optionally add a passphrase for extra protection.
+
+## Real User Feedback 
+
+Ledger Nano X has a 4.5-star rating on Amazon. Here are some interesting trends we noticed in the reviews:
+
+### Positive Review
+
+The top positive mentioned these pros of Ledger Nano X:
+
+**Battery:** After a year of regular use, the user noted that the Ledger Nano X was still functioning well with no significant battery or other major issues.
+
+**Initial Battery Check:** Upon receiving the device, the user appreciated that the battery was at around 34% charge, interpreting this as an indication of a recently manufactured unit. The user did not face any errors or warnings when charging it for the first time.
+
+**Functionality:** The Ledger Nano X worked exactly as expected, and the user was able to use it with multiple cryptos, even those not natively supported by the Ledger app suite.
+
+**Ledger Live App:** The user found the Ledger Live app layout to be superior to the Trezor Suite, although they hadn't been able to test many features due to the cryptos they used not being natively supported.
+
+### Critical Review
+
+The top critical review mentioned the following:
+
+**Connectivity Issues**: The Nano X could not connect to the user's phone via Bluetooth, even after trying various troubleshooting methods suggested by the company. While the PC could recognize the Nano X over Bluetooth, the device doesn't support connecting to PCs via Bluetooth. This is a limitation the user found absurd.
+
+**Support & Responsiveness**: Ledger Support took a long time to respond and did not resolve the user's issue. The user found the company's support unsatisfactory and unresponsive.
+
+## Methodology
+
+BuyBitcoinWorldwide is dedicated to providing readers with detailed and comprehensive reviews. To review the Ledger Nano X, we used the wallet and tested it. We then looked at five different categories that are important for hardware wallets and scored them on a 5-point scale.
+
+## Research Process
+
+* **Time taken to write, review, and research for this article:** 12 hours
