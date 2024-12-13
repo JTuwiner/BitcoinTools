@@ -25,6 +25,8 @@ capture: yes
     <p id="taxOwed"></p>
 </div> 
 
+{% include koinlylink.html link="https://links.bitbo.io/Koinly" %}
+
 <script>
 function calculateTax() {
     const purchaseCost = parseFloat(document.getElementById("purchaseCost").value);
