@@ -1,0 +1,99 @@
+---
+layout: page
+title: Market Cap Calculator [Crypto, Stocks, & More]
+full-width: yes
+permalink: "/market-cap-calculator/"
+jquery: yes
+capture: yes
+include_module_javascript:
+---
+
+<div class="market-cap-calc" id="calc-form"></div>
+    <label for="price">Current Price:</label>
+    <input type="number" id="price" placeholder="Enter price per unit">
+    
+    <label for="supply">Total Supply/Shares:</label>
+    <input type="number" id="supply" placeholder="Enter total supply">
+    
+    <button id="calculate-cap">Calculate Market Cap</button>
+</div>
+
+<div id="result"></div>
+
+<h2>Market Cap Formula</h2>
+
+<p>Market capitalization (market cap) is a key metric used to measure the total value of an asset like stocks, cryptocurrencies, or other investments. The formula is simple: multiply the current price by the total supply/shares.</p>
+
+<p>This calculator works for any asset - whether you're calculating the market cap of a stock, cryptocurrency like Bitcoin, or other financial instruments.</p>
+
+
+<h3>What is Market Cap's Meaning?</h3>
+
+<p>Market cap helps investors understand the total value and size of an asset. For example, a stock trading at $100 with 1 million shares would have a $100 million market cap. Similarly, if Bitcoin trades at $50,000 with 19 million coins in circulation, its market cap would be $950 billion.</p>
+
+<style>
+  .market-cap-calc input, .market-cap-calc button {
+      padding: 10px;
+      margin: 5px;
+      width: 200px;
+      display: block;
+  }
+  
+  .market-cap-calc button:disabled, .market-cap-calc input:disabled {
+      background-color: #ccc;
+      opacity: 0.5;
+  }
+  
+  .market-cap-calc {
+      margin: 20px 0;
+  }
+  
+  #result {
+      margin: 20px 0;
+      padding: 15px;
+      background-color: #f5f5f5;
+      border-radius: 5px;
+  }
+  
+  label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+  }
+  
+  h2, h3 {
+      color: #333;
+      margin-top: 30px;
+  }
+</style>
+
+<script>
+$(document).ready(function() {
+    $('#calculate-cap').on('click', function() {
+        const price = parseFloat($('#price').val());
+        const supply = parseFloat($('#supply').val());
+        
+        if (isNaN(price) || isNaN(supply)) {
+            $('#result').html('<p style="color: red;">Please enter valid numbers for both price and supply.</p>');
+            return;
+        }
+        
+        const marketCap = price * supply;
+        
+        // Format the market cap with commas and 2 decimal places
+        const formattedMarketCap = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }).format(marketCap);
+        
+        $('#result').html(`<p>Market Cap: ${formattedMarketCap}</p>`);
+    });
+    
+    // Enable input validation - only allow numbers and decimal points
+    $('#price, #supply').on('input', function() {
+        this.value = this.value.replace(/[^0-9.]/g, '');
+    });
+});
+</script>
