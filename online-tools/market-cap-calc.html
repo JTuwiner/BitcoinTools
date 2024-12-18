@@ -18,7 +18,7 @@ include_module_javascript:
     <button id="calculate-cap">Calculate Market Cap</button>
 </div>
 
-<div id="result"></div>
+<div id="result" style="display: none;"></div>
 
 <h3>Market Cap Formula</h3>
 
@@ -62,7 +62,7 @@ include_module_javascript:
   }
   
   h2, h3 {
-      color: #333;
+      color: white;
       margin-top: 30px;
   }
 </style>
@@ -74,7 +74,7 @@ $(document).ready(function() {
         const supply = parseFloat($('#supply').val());
         
         if (isNaN(price) || isNaN(supply)) {
-            $('#result').html('<p style="color: red;">Please enter valid numbers for both price and supply.</p>');
+            $('#result').html('<p style="color: red;">Please enter valid numbers for both price and supply.</p>').show();
             return;
         }
         
@@ -88,7 +88,7 @@ $(document).ready(function() {
             maximumFractionDigits: 2
         }).format(marketCap);
         
-        $('#result').html(`<p>Market Cap: ${formattedMarketCap}</p>`);
+        $('#result').html(`<p>Market Cap: ${formattedMarketCap}</p>`).show();
     });
     
     // Enable input validation - only allow numbers and decimal points
