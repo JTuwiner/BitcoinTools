@@ -8,7 +8,12 @@ capture: yes
 include_module_javascript:
 ---
 
-<div class="market-cap-calc" id="calc-form">
+<div class="calc-tabs">
+    <button class="tab-btn active" data-calc="market-cap">Calculate Market Cap</button>
+    <button class="tab-btn" data-calc="price">Calculate Price</button>
+</div>
+
+<div class="market-cap-calc" id="market-cap-form">
     <label for="price">Current Price:</label>
     <input type="number" id="price" placeholder="Enter price per unit">
     
@@ -16,6 +21,16 @@ include_module_javascript:
     <input type="number" id="supply" placeholder="Enter total supply">
     
     <button id="calculate-cap">Calculate Market Cap</button>
+</div>
+
+<div class="market-cap-calc" id="price-form" style="display: none;">
+    <label for="market-cap">Market Cap:</label>
+    <input type="number" id="market-cap" placeholder="Enter market cap">
+    
+    <label for="supply-price">Total Supply/Shares:</label>
+    <input type="number" id="supply-price" placeholder="Enter total supply">
+    
+    <button id="calculate-price">Calculate Price</button>
 </div>
 
 <div id="result" style="display: none;"></div>
@@ -34,13 +49,30 @@ include_module_javascript:
 </div>
 
 <style>
+  .calc-tabs {
+      margin-bottom: 20px;
+  }
+  
+  .tab-btn {
+      padding: 10px 20px;
+      margin-right: 10px;
+      border: none;
+      background: #333;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+  }
+  
+  .tab-btn.active {
+      background: #666;
+  }
+
   .market-cap-calc input, .market-cap-calc button {
       padding: 10px;
       margin: 5px;
       width: 200px;
       display: block;
   }
-
   
   .market-cap-calc button:disabled, .market-cap-calc input:disabled {
       background-color: #ccc;
@@ -74,6 +106,22 @@ include_module_javascript:
 
 <script>
 $(document).ready(function() {
+    // Tab switching logic
+    $('.tab-btn').on('click', function() {
+        $('.tab-btn').removeClass('active');
+        $(this).addClass('active');
+        
+        const calcType = $(this).data('calc');
+        if (calcType === 'market-cap') {
+            $('#market-cap-form').show();
+            $('#price-form').hide();
+        } else {
+            $('#market-cap-form').hide();
+            $('#price-form').show();
+        }
+        $('#result').hide();
+    });
+
     $('#calculate-cap').on('click', function() {
         const price = parseFloat($('#price').val());
         const supply = parseFloat($('#supply').val());
@@ -96,8 +144,30 @@ $(document).ready(function() {
         $('#result').html(`<p><b>Market Cap:</b> ${formattedMarketCap}</p>`).show();
     });
     
+    $('#calculate-price').on('click', function() {
+        const marketCap = parseFloat($('#market-cap').val());
+        const supply = parseFloat($('#supply-price').val());
+        
+        if (isNaN(marketCap) || isNaN(supply)) {
+            $('#result').html('<p style="color: red;">Please enter valid numbers for both market cap and supply.</p>').show();
+            return;
+        }
+        
+        const price = marketCap / supply;
+        
+        // Format the price with commas and appropriate decimal places
+        const formattedPrice = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 6
+        }).format(price);
+        
+        $('#result').html(`<p><b>Price per unit:</b> ${formattedPrice}</p>`).show();
+    });
+    
     // Enable input validation - only allow numbers and decimal points
-    $('#price, #supply').on('input', function() {
+    $('#price, #supply, #market-cap, #supply-price').on('input', function() {
         this.value = this.value.replace(/[^0-9.]/g, '');
     });
 });
