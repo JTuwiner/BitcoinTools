@@ -80,7 +80,7 @@ capture: yes
 }
 </style>
 
-
+<div style="max-width: 800px;">
 Cryptocurrency affiliate programs offer opportunities for content creators and marketers to earn commissions promoting various crypto products and services.
 
 <style>
@@ -398,3 +398,4 @@ document.addEventListener('DOMContentLoaded', function() {
   <h2>About Our List</h2>
   <p>We try to keep this list as up to date as possible. If you notice any errors or omissions please contact us.</p>
 <p>We've also been careful to only include legit companies. We have personally worked as an affiliate with many of the companies above.</p>
+</div>
