@@ -215,17 +215,25 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
 
 <p>There are several categories of cryptocurrency affiliate programs available to promoters:</p>
 
-<h2>Hardware Wallet Programs</h2>
+<h2 id="wallets">Hardware Wallet Programs</h2>
 
 <p>Hardware wallet companies offer some of the most straightforward affiliate programs. You earn a commission on each wallet sale, typically 10-15% of the purchase price excluding shipping and taxes.</p>
 
-<p>The main hardware wallet affiliate programs are:</p>
-
-<ul>
-  <li>Trezor - 15% commission per sale</li>
-  <li>Ledger - 10% base commission</li>
-  <li>BitBox - 12% commission</li>
-</ul>
+<div class="affiliate-grid">
+  {% for program in site.data.affiliate %}
+    {% if program.type == 'wallet' %}
+    <div class="affiliate-card" data-type="{{ program.type }}">
+      <img src="/img/{{ program.image }}" alt="{{ program.company }} logo">
+      <h3><a href="{{ program.url }}" class="program-link" data-program="{{ program.company }}" target="_blank" rel="nofollow">{{ program.company }}</a></h3>
+      <div class="affiliate-details">
+        <p><strong>Product:</strong> {{ program.product }}</p>
+        <p><strong>Commission:</strong> {{ program.terms }}</p>
+        <p><strong>Payout Frequency:</strong> {{ program.payoutfrequency }}</p>
+      </div>
+    </div>
+    {% endif %}
+  {% endfor %}
+</div>
 
 <p>Hardware wallet affiliate programs are popular because:</p>
 
@@ -236,15 +244,25 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
   <li>Strong brand recognition</li>
 </ul>
 
-<h2>Exchange Programs</h2>
+<h2 id="exchanges">Exchange Programs</h2>
 
-<p>Cryptocurrency exchanges often have tiered commission structures based on the trading volume of referred users. Key programs include:</p>
+<p>Cryptocurrency exchanges often have tiered commission structures based on the trading volume of referred users.</p>
 
-<ul>
-  <li>Coinbase - 50% of fees for 3 months</li>
-  <li>Kraken - $10-100 per referral</li>
-  <li>River - Up to $100 per referral</li>
-</ul>
+<div class="affiliate-grid">
+  {% for program in site.data.affiliate %}
+    {% if program.type == 'exchange' %}
+    <div class="affiliate-card" data-type="{{ program.type }}">
+      <img src="/img/{{ program.image }}" alt="{{ program.company }} logo">
+      <h3><a href="{{ program.url }}" class="program-link" data-program="{{ program.company }}" target="_blank" rel="nofollow">{{ program.company }}</a></h3>
+      <div class="affiliate-details">
+        <p><strong>Product:</strong> {{ program.product }}</p>
+        <p><strong>Commission:</strong> {{ program.terms }}</p>
+        <p><strong>Payout Frequency:</strong> {{ program.payoutfrequency }}</p>
+      </div>
+    </div>
+    {% endif %}
+  {% endfor %}
+</div>
 
 <p>Exchange affiliate programs can provide recurring revenue but may have:</p>
 
@@ -254,15 +272,25 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
   <li>Varying payout schedules</li>
 </ul>
 
-<h2>Software Programs</h2>
+<h2 id="software">Software Programs</h2>
 
 <p>Software affiliate programs tend to offer the highest commission rates:</p>
 
-<ul>
-  <li>Bitbo Pro - 50% for 12 months</li>
-  <li>Koinly - 20% initial + 10% recurring</li>
-  <li>CoinLedger - 25% lifetime recurring</li>
-</ul>
+<div class="affiliate-grid">
+  {% for program in site.data.affiliate %}
+    {% if program.type == 'software' %}
+    <div class="affiliate-card" data-type="{{ program.type }}">
+      <img src="/img/{{ program.image }}" alt="{{ program.company }} logo">
+      <h3><a href="{{ program.url }}" class="program-link" data-program="{{ program.company }}" target="_blank" rel="nofollow">{{ program.company }}</a></h3>
+      <div class="affiliate-details">
+        <p><strong>Product:</strong> {{ program.product }}</p>
+        <p><strong>Commission:</strong> {{ program.terms }}</p>
+        <p><strong>Payout Frequency:</strong> {{ program.payoutfrequency }}</p>
+      </div>
+    </div>
+    {% endif %}
+  {% endfor %}
+</div>
 
 <p>Benefits of software programs:</p>
 
@@ -272,7 +300,7 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
   <li>Digital delivery means no shipping issues</li>
 </ul>
 
-<h2>Commission Terms</h2>
+<h2 id="terms">Commission Terms</h2>
 
 <p>Commission structures vary significantly between programs:</p>
 
@@ -286,7 +314,7 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
 
 <p>The most lucrative programs often combine upfront and recurring commissions.</p>
 
-<h2>Payout Methods</h2>
+<h2 id="payouts">Payout Methods</h2>
 
 <p>Most programs offer multiple payout options:</p>
 
@@ -299,7 +327,7 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
 
 <p>Minimum payout thresholds typically range from $50-100.</p>
 
-<h2>Program Comparison</h2>
+<h2 id="comparison">Program Comparison</h2>
 
 <table>
 <thead>
