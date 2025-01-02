@@ -1,0 +1,211 @@
+---
+layout: page
+title: Colorado Crypto Tax Calculator 
+full-width: yes
+permalink: "/colorado-tax-calculator/"
+jquery: yes
+capture: yes
+---
+
+<div style="max-width: 800px;">
+
+<p>We built this free crypto tax calculator for residents of Colorado who want to check calculations quickly. Our calculator is for informational purposes only. Please consult a CPA or tax professional. Use <a href="/tax/">cryptocurrency tax accounting software if you have lots of trades</a>.</p>
+
+<p>Colorado taxes all capital gains at a flat rate of 4.4%. To calculate Federal taxes, please <a href="/usa-tax-calculator/">use our USA tax calculator</a>.</p>
+
+<div id="cryptoTaxCalculator">
+    <label for="purchaseCost">Total Cost of First Purchase:</label>
+    <input type="number" step="0.01" id="purchaseCost" placeholder="Cost of first crypto buy">
+    
+    <label for="saleAmount">Amount of Sale:</label>
+    <input type="number" step="0.01" id="saleAmount" placeholder="Amount you received when sold">
+
+    <label for="holdingPeriod">Holding Period:</label>
+    <select id="holdingPeriod">
+        <option value="shortTerm">Short Term (1 year or less)</option>
+        <option value="longTerm">Long Term (more than 1 year)</option>
+    </select>
+<br>
+    <button onclick="calculateTax()">Calculate Tax</button>
+
+    <p id="taxOwed"></p>
+    <p id="explanation" style="font-size: 0.9em;"></p>
+</div> 
+
+<script>
+function calculateTax() {
+    const purchaseCost = parseFloat(document.getElementById("purchaseCost").value);
+    const saleAmount = parseFloat(document.getElementById("saleAmount").value);
+    const holdingPeriod = document.getElementById("holdingPeriod").value;
+
+    let capitalGains = saleAmount - purchaseCost;
+    const TAX_RATE = 0.044; // Colorado's flat 4.4% tax rate
+    
+    const tax = capitalGains * TAX_RATE;
+    
+    let explanation = `Capital gains: $${capitalGains.toFixed(2)}<br>` +
+                     `Tax rate: ${(TAX_RATE * 100).toFixed(1)}%`;
+
+    document.getElementById("taxOwed").innerHTML = `Estimated Colorado Tax on Crypto Capital Gains: $${tax.toFixed(2)}`;
+    document.getElementById("explanation").innerHTML = explanation;
+}
+</script>
+
+<br><br>
+{% include koinlylink.html link="https://links.bitbo.io/Koinly" %}
+<br><br>
+
+<h2>How to Use the Tax Calculator</h2>
+<ol>
+    <li><strong>Enter the Total Cost of First Purchase:</strong> This is the initial amount you spent to buy the cryptocurrency.</li>
+    <li><strong>Enter the Amount of Sale:</strong> This is the total amount you received when you sold the cryptocurrency.</li>
+    <li><strong>Select your Holding Period:</strong> Choose whether you held the asset for more or less than one year (this is for your reference, as Colorado applies the same rate regardless).</li>
+    <li>Click on the <strong>Calculate Tax</strong> button to get the estimated tax on your capital gains.</li>
+</ol>
+
+<p>Note: This is an estimation and may not reflect your actual tax liability. Always consult with a tax professional when filing your taxes.</p>
+
+<br><br>
+
+<h2>Cryptocurrency Taxation in Colorado</h2>
+
+<h3>Colorado Crypto Tax Overview</h3>
+<p>Colorado has a straightforward approach to cryptocurrency taxation:</p>
+
+<ul>
+    <li><strong>Flat Tax Rate:</strong> Colorado applies a flat 4.4% tax rate to all capital gains, regardless of holding period or income level.</li>
+    <li><strong>Property Treatment:</strong> Like federal law, Colorado treats cryptocurrency as property for tax purposes.</li>
+    <li><strong>Mining Income:</strong> Cryptocurrency mining income is treated as self-employment income and is taxed at the same 4.4% rate.</li>
+</ul>
+
+<h3>Recent Developments</h3>
+<p>Colorado has emerged as a crypto-friendly state:</p>
+<ul>
+    <li><strong>Crypto for Taxes:</strong> Colorado became the first state to accept cryptocurrency for tax payments in 2022.</li>
+    <li><strong>Business Innovation:</strong> The state has attracted numerous blockchain and crypto businesses due to its favorable regulatory environment.</li>
+    <li><strong>Legislative Support:</strong> Colorado has passed several blockchain-friendly bills to promote innovation in the crypto space.</li>
+</ul>
+
+<h3>Common Colorado Crypto Tax Situations</h3>
+<div class="tax-situations">
+    <div class="situation">
+        <h4>Mining Operations</h4>
+        <p>Crypto mining income is subject to Colorado's 4.4% tax rate. Miners can deduct business expenses including electricity costs and equipment depreciation.</p>
+    </div>
+
+    <div class="situation">
+        <h4>Trading Between Cryptocurrencies</h4>
+        <p>Crypto-to-crypto trades are taxable events in Colorado. Each trade must be reported and is subject to the 4.4% tax rate on any gains.</p>
+    </div>
+
+    <div class="situation">
+        <h4>NFT Transactions</h4>
+        <p>NFT sales are treated like other crypto transactions in Colorado, with gains taxed at 4.4%. Artists and creators must report NFT sales as income.</p>
+    </div>
+</div>
+
+<h3>Tax Planning Considerations</h3>
+<ul>
+    <li>Track all crypto transactions carefully as Colorado requires reporting of all gains.</li>
+    <li>Keep detailed records of acquisition costs and sale prices for accurate tax calculations.</li>
+    <li>Consider timing of sales as losses can offset gains in the same tax year.</li>
+    <li>Consult with a Colorado-based tax professional familiar with both state tax law and cryptocurrency.</li>
+</ul>
+
+<style>
+    table {
+        color: black;
+        width: 100%;
+        margin: 0;
+        max-width: 600px;
+        margin-bottom: 20px;
+    }
+
+    h3 {
+        color: #f2a900;
+        margin-bottom: 15px;
+        margin-top: 20px;
+    }
+
+    #cryptoTaxCalculator {
+        max-width: 400px;
+        color: black;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    #cryptoTaxCalculator label {
+        display: block;
+        margin-bottom: 5px;
+        margin-top: 15px;
+    }
+    
+    #cryptoTaxCalculator input[type="number"],
+    #cryptoTaxCalculator select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    
+    #cryptoTaxCalculator button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        margin-top: 15px;
+        cursor: pointer;
+    }
+    
+    #cryptoTaxCalculator button:hover {
+        background-color: #0056b3;
+    }
+    
+    #cryptoTaxCalculator #taxOwed {
+        font-weight: bold;
+    }
+
+    #cryptoTaxCalculator #explanation {
+        color: #666;
+        margin-top: 10px;
+    }
+
+    .tax-situations {
+        margin: 20px 0;
+    }
+    
+    .situation {
+        background-color: #f8f9fa;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-left: 4px solid #f2a900;
+        border-radius: 3px;
+    }
+    
+    .situation h4 {
+        color: #333;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+    
+    .situation p {
+        margin: 0;
+        color: #666;
+    }
+    
+    ul {
+        padding-left: 20px;
+    }
+    
+    ul li {
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+</style>
+</div> 
