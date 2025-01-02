@@ -205,15 +205,43 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
 <div class="takeaways">
   <h3>Key Takeaways</h3>
   <ul>
-    <li>Hardware wallet programs like Trezor and Ledger offer 10-15% commissions on sales</li>
-    <li>Exchange programs provide recurring revenue from trading fees</li>
-    <li>Software affiliate programs often have the highest commission rates</li>
+    <li>Exchange affiliate programs are best for recurring revenue.</li>
+    <li>Software crypto affiliate programs often have the highest commission rates and recurring revenue.</li>
+    <li>Hardware wallet programs convert well, but have lower commission rates.</li>
   </ul>
 </div>
 
 <h2>Types of Crypto Affiliate Programs</h2>
 
 <p>There are several categories of cryptocurrency affiliate programs available to promoters:</p>
+
+<h2 id="software">Software Programs</h2>
+
+<p>Software affiliate programs tend to offer the highest commission rates:</p>
+
+<div class="affiliate-grid">
+  {% for program in site.data.affiliate %}
+    {% if program.type == 'software' %}
+    <div class="affiliate-card" data-type="{{ program.type }}">
+      <img src="/img/{{ program.image }}" alt="{{ program.company }} logo">
+      <h3><a href="{{ program.url }}" class="program-link" data-program="{{ program.company }}" target="_blank" rel="nofollow">{{ program.company }}</a></h3>
+      <div class="affiliate-details">
+        <p><strong>Product:</strong> {{ program.product }}</p>
+        <p><strong>Commission:</strong> {{ program.terms }}</p>
+        <p><strong>Payout Frequency:</strong> {{ program.payoutfrequency }}</p>
+      </div>
+    </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<p>Benefits of software programs:</p>
+
+<ul>
+  <li>High commission rates</li>
+  <li>Often include recurring revenue</li>
+  <li>Digital delivery means no shipping issues</li>
+</ul>
 
 <h2 id="wallets">Hardware Wallet Programs</h2>
 
@@ -244,6 +272,8 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
   <li>Strong brand recognition</li>
 </ul>
 
+<p>The downside is that they have lower commission rates, and no recurring revenue.</p>
+
 <h2 id="exchanges">Exchange Programs</h2>
 
 <p>Cryptocurrency exchanges often have tiered commission structures based on the trading volume of referred users.</p>
@@ -272,33 +302,6 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
   <li>Varying payout schedules</li>
 </ul>
 
-<h2 id="software">Software Programs</h2>
-
-<p>Software affiliate programs tend to offer the highest commission rates:</p>
-
-<div class="affiliate-grid">
-  {% for program in site.data.affiliate %}
-    {% if program.type == 'software' %}
-    <div class="affiliate-card" data-type="{{ program.type }}">
-      <img src="/img/{{ program.image }}" alt="{{ program.company }} logo">
-      <h3><a href="{{ program.url }}" class="program-link" data-program="{{ program.company }}" target="_blank" rel="nofollow">{{ program.company }}</a></h3>
-      <div class="affiliate-details">
-        <p><strong>Product:</strong> {{ program.product }}</p>
-        <p><strong>Commission:</strong> {{ program.terms }}</p>
-        <p><strong>Payout Frequency:</strong> {{ program.payoutfrequency }}</p>
-      </div>
-    </div>
-    {% endif %}
-  {% endfor %}
-</div>
-
-<p>Benefits of software programs:</p>
-
-<ul>
-  <li>High commission rates</li>
-  <li>Often include recurring revenue</li>
-  <li>Digital delivery means no shipping issues</li>
-</ul>
 
 <h2 id="terms">Commission Terms</h2>
 
