@@ -12,7 +12,7 @@
   payoutfrequency: "Monthly in EUR, BTC, or wire transfer"
   type: wallet
   image: trezor.png
-  product: Bitcoin hardware wallets.
+  product: Bitcoin hardware wallets. 
 
 - company: Ledger
   url: https://affiliate.ledger.com/

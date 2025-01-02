@@ -366,7 +366,7 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
 </tbody>
 </table>
 
-## Terms to Understand
+<h2>Terms to Understand</h2>
 
 <ul>
   <li><strong>Commission Rate</strong>: The percentage or fixed amount earned per sale or referral</li>
@@ -379,67 +379,8 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
   <li><strong>EPC (Earnings Per Click)</strong>: Average earnings per referral click</li>
 </ul>
 
-<div class="filter-buttons">
-  <button class="filter-btn active" data-type="all">All</button>
-  <button class="filter-btn" data-type="wallet">Wallets</button>
-  <button class="filter-btn" data-type="software">Software</button>
-  <button class="filter-btn" data-type="exchange">Exchanges</button>
-</div>
 
-<div class="affiliate-grid">
-  {% for program in site.data.affiliate %}
-  <div class="affiliate-card" data-type="{{ program.type }}">
-    <img src="/img/{{ program.image }}" alt="{{ program.company }} logo">
-    <h3>{{ program.company }}</h3>
-    <div class="affiliate-details">
-      <p><strong>Product:</strong> {{ program.product }}</p>
-      <p><strong>Commission:</strong> {{ program.terms }}</p>
-      <p><strong>Payout Frequency:</strong> {{ program.payoutfrequency }}</p>
-      <a href="{{ program.url }}" class="join-button program-link" data-program="{{ program.company }}" target="_blank" rel="nofollow">Learn more</a>
-    </div>
-  </div>
-  {% endfor %}
-</div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.affiliate-card');
+<h2>Methodology</h2>
 
-  filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const filterType = button.getAttribute('data-type');
-      
-      // Update active button
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-      
-      // Filter cards
-      cards.forEach(card => {
-        if (filterType === 'all' || card.getAttribute('data-type') === filterType) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  // Track affiliate link clicks
-  document.querySelectorAll('.program-link').forEach(link => {
-    link.addEventListener('click', event => {
-      const program = link.getAttribute('data-program');
-      fathom.trackEvent(`Click ${program}`);
-    });
-  });
-});
-</script>
-
-  <h2>How to Use Our Program Finder</h2>
-  <p>By default we show all programs. Click on a type at the top to filter the list by which type of affiliate programs you want to view.</p>
-  <p>For example, if you want to promote wallets then click on the "Wallets" button at the top.</p>
-
-  <h2>About Our List</h2>
-  <p>We try to keep this list as up to date as possible. If you notice any errors or omissions please contact us.</p>
-<p>We've also been careful to only include legit companies. We have personally worked as an affiliate with many of the companies above.</p>
-</div>
+<p>Bitbo's CEO, Jordan, has been affiliate marketing in the Bitcoin space for many years. This is based on extensive usage and years of working with these companies.</p>
