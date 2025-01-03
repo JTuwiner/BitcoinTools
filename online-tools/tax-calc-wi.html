@@ -1,0 +1,253 @@
+---
+layout: page
+title: Wisconsin Crypto Tax Calculator 
+full-width: yes
+permalink: "/wisconsin-tax-calculator/"
+jquery: yes
+capture: yes
+---
+
+<div style="max-width: 800px;">
+
+<p>We built this free crypto tax calculator for residents of Wisconsin who want to check calculations quickly. Our calculator is for informational purposes only. Please consult a CPA or tax professional. Use <a href="/tax/">cryptocurrency tax accounting software if you have lots of trades</a>.</p>
+
+<p>Wisconsin taxes capital gains at rates from 3.5% to 7.65%, with a special 30% deduction for long-term gains. To calculate Federal taxes, please <a href="/usa-tax-calculator/">use our USA tax calculator</a>.</p>
+
+<div id="cryptoTaxCalculator">
+    <label for="totalIncome">Enter your total income (without capital gains):</label>
+    <input type="number" step="0.01" id="totalIncome" placeholder="Enter income">
+    
+    <label for="purchaseCost">Total Cost of First Purchase:</label>
+    <input type="number" step="0.01" id="purchaseCost" placeholder="Cost of first crypto buy">
+    
+    <label for="saleAmount">Amount of Sale:</label>
+    <input type="number" step="0.01" id="saleAmount" placeholder="Amount you received when sold">
+
+    <label for="filingStatus">Filing Status:</label>
+    <select id="filingStatus">
+        <option value="single">Single</option>
+        <option value="marriedJointly">Married Filing Jointly</option>
+    </select>
+
+    <label for="holdingPeriod">Holding Period:</label>
+    <select id="holdingPeriod">
+        <option value="shortTerm">Less than 1 year (Short-term)</option>
+        <option value="longTerm">1 year or more (Long-term)</option>
+    </select>
+<br>
+    <button onclick="calculateTax()">Calculate Tax</button>
+
+    <p id="taxOwed"></p>
+    <p id="explanation" style="font-size: 0.9em;"></p>
+</div> 
+
+<script>
+function calculateTax() {
+    const totalIncome = parseFloat(document.getElementById("totalIncome").value);
+    const purchaseCost = parseFloat(document.getElementById("purchaseCost").value);
+    const saleAmount = parseFloat(document.getElementById("saleAmount").value);
+    const filingStatus = document.getElementById("filingStatus").value;
+    const holdingPeriod = document.getElementById("holdingPeriod").value;
+
+    let capitalGains = saleAmount - purchaseCost;
+    
+    // Apply long-term capital gains deduction
+    let taxableGains = capitalGains;
+    if (holdingPeriod === 'longTerm') {
+        taxableGains = capitalGains * 0.7; // 30% deduction
+    }
+    
+    const brackets = {
+        single: [14320, 28640, 315310, Infinity],
+        marriedJointly: [19090, 38190, 420420, Infinity]
+    };
+
+    const rates = [0.035, 0.044, 0.053, 0.0765];
+    
+    const taxableIncome = totalIncome + taxableGains;
+    let tax = 0;
+    let previousBracket = 0;
+
+    for (let i = 0; i < brackets[filingStatus].length; i++) {
+        if (taxableIncome > previousBracket) {
+            const incomeInBracket = Math.min(taxableIncome, brackets[filingStatus][i]) - previousBracket;
+            const gainsPortion = (taxableGains / taxableIncome) * incomeInBracket;
+            tax += gainsPortion * rates[i];
+        }
+        previousBracket = brackets[filingStatus][i];
+    }
+    
+    let effectiveRate = (tax / capitalGains) * 100;
+    
+    let explanation = `Capital gains: $${capitalGains.toFixed(2)}<br>`;
+    if (holdingPeriod === 'longTerm') {
+        explanation += `Long-term deduction (30%): $${(capitalGains * 0.3).toFixed(2)}<br>`;
+        explanation += `Taxable gains after deduction: $${taxableGains.toFixed(2)}<br>`;
+    }
+    explanation += `Effective tax rate: ${effectiveRate.toFixed(2)}%`;
+
+    document.getElementById("taxOwed").innerHTML = `Estimated Wisconsin Tax on Crypto Capital Gains: $${tax.toFixed(2)}`;
+    document.getElementById("explanation").innerHTML = explanation;
+}
+</script>
+
+<br><br>
+{% include koinlylink.html link="https://links.bitbo.io/Koinly" %}
+<br><br>
+
+<h2>Wisconsin Tax Brackets (2024)</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Single Filers</th>
+            <th>Married Filing Jointly</th>
+            <th>Tax Rate</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>$0 to $14,320</td>
+            <td>$0 to $19,090</td>
+            <td>3.50%</td>
+        </tr>
+        <tr>
+            <td>$14,320 to $28,640</td>
+            <td>$19,090 to $38,190</td>
+            <td>4.40%</td>
+        </tr>
+        <tr>
+            <td>$28,640 to $315,310</td>
+            <td>$38,190 to $420,420</td>
+            <td>5.30%</td>
+        </tr>
+        <tr>
+            <td>Over $315,310</td>
+            <td>Over $420,420</td>
+            <td>7.65%</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Long-Term Capital Gains Deduction</h2>
+<p>Wisconsin offers a 30% deduction for long-term capital gains (assets held for more than one year). For example, if you have $100,000 in long-term gains, only $70,000 will be subject to tax.</p>
+
+<h2>Cryptocurrency Taxation in Wisconsin</h2>
+
+<h3>Key Points</h3>
+<ul>
+    <li><strong>Progressive Taxation:</strong> Wisconsin taxes crypto gains at rates from 3.5% to 7.65%.</li>
+    <li><strong>Long-Term Benefits:</strong> 30% deduction available for long-term gains.</li>
+    <li><strong>Different Brackets:</strong> Tax brackets vary by filing status.</li>
+    <li><strong>Mining Income:</strong> Crypto mining is treated as self-employment income and taxed at regular income rates.</li>
+</ul>
+
+<h3>Common Tax Situations</h3>
+<div class="tax-situations">
+    <div class="situation">
+        <h4>Trading & Investment</h4>
+        <p>All crypto trades are taxable events, but long-term holders can benefit from the 30% deduction. Consider your holding period when planning trades.</p>
+    </div>
+
+    <div class="situation">
+        <h4>Tax Planning Tips</h4>
+        <p>The combination of progressive rates and the 30% long-term deduction can result in significant tax savings. Consider holding assets for over a year when possible to qualify for the deduction.</p>
+    </div>
+</div>
+
+<style>
+    table {
+        color: black;
+        width: 100%;
+        margin: 0;
+        max-width: 600px;
+        margin-bottom: 20px;
+    }
+
+    h3 {
+        color: #f2a900;
+        margin-bottom: 15px;
+        margin-top: 20px;
+    }
+
+    #cryptoTaxCalculator {
+        max-width: 400px;
+        color: black;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    #cryptoTaxCalculator label {
+        display: block;
+        margin-bottom: 5px;
+        margin-top: 15px;
+    }
+    
+    #cryptoTaxCalculator input[type="number"],
+    #cryptoTaxCalculator select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    
+    #cryptoTaxCalculator button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        margin-top: 15px;
+        cursor: pointer;
+    }
+    
+    #cryptoTaxCalculator button:hover {
+        background-color: #0056b3;
+    }
+    
+    #cryptoTaxCalculator #taxOwed {
+        font-weight: bold;
+    }
+
+    #cryptoTaxCalculator #explanation {
+        color: #666;
+        margin-top: 10px;
+    }
+
+    .tax-situations {
+        margin: 20px 0;
+    }
+    
+    .situation {
+        background-color: #f8f9fa;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-left: 4px solid #f2a900;
+        border-radius: 3px;
+    }
+    
+    .situation h4 {
+        color: #333;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+    
+    .situation p {
+        margin: 0;
+        color: #666;
+    }
+    
+    ul {
+        padding-left: 20px;
+    }
+    
+    ul li {
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+</style>
+</div> 
