@@ -1,0 +1,142 @@
+---
+layout: page
+title: Coinbase USDC Rewards Calculator
+subtitle: Calculate your potential USDC rewards on Coinbase
+full-width: yes
+permalink: "/coinbase-usdc-rewards-calculator/"
+jquery: yes
+capture: yes
+---
+
+<div style="max-width: 800px;">
+
+<p>Calculate how much you can earn in USDC rewards by holding USDC on Coinbase. The current reward rate is 4.35% APY. Rewards are distributed monthly and require a minimum balance of $1 USDC.</p>
+
+<div id="usdc-calc">
+    <label for="usdc-amount">Enter USDC amount:</label>
+    <input type="number" id="usdc-amount" placeholder="Enter USDC amount" min="1" step="0.01">
+    
+    <label for="time-period">Select time period:</label>
+    <select id="time-period">
+        <option value="1">1 month</option>
+        <option value="3">3 months</option>
+        <option value="6">6 months</option>
+        <option value="12">1 year</option>
+        <option value="18">18 months</option>
+        <option value="24">2 years</option>
+    </select>
+
+    <button onclick="calculateRewards()">Calculate Rewards</button>
+
+    <div id="results" style="display: none;">
+        <p>Estimated Monthly Rewards: <span id="monthly-rewards"></span> USDC</p>
+        <p>Total Rewards Over Period: <span id="total-rewards"></span> USDC</p>
+        <p>Final Balance: <span id="final-balance"></span> USDC</p>
+    </div>
+</div>
+
+<script>
+function calculateRewards() {
+    const amount = parseFloat(document.getElementById('usdc-amount').value);
+    const months = parseInt(document.getElementById('time-period').value);
+    const annualRate = 0.0435; // 4.35% APY
+    
+    if (amount < 1) {
+        alert('Minimum USDC amount is $1');
+        return;
+    }
+    
+    // Calculate monthly rate (APY to monthly)
+    const monthlyRate = annualRate / 12;
+    
+    // Calculate monthly rewards
+    const monthlyRewards = amount * monthlyRate;
+    
+    // Calculate total rewards (compound monthly)
+    const finalAmount = amount * Math.pow(1 + monthlyRate, months);
+    const totalRewards = finalAmount - amount;
+    
+    // Display results
+    document.getElementById('monthly-rewards').textContent = monthlyRewards.toFixed(2);
+    document.getElementById('total-rewards').textContent = totalRewards.toFixed(2);
+    document.getElementById('final-balance').textContent = finalAmount.toFixed(2);
+    document.getElementById('results').style.display = 'block';
+}
+</script>
+
+<style>
+#usdc-calc {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+#usdc-calc label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: 500;
+}
+
+#usdc-calc input,
+#usdc-calc select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#usdc-calc button {
+    background: #0052FF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#usdc-calc button:hover {
+    background: #0043CC;
+}
+
+#results {
+    margin-top: 20px;
+    padding: 15px;
+    background: #e9ecef;
+    border-radius: 4px;
+}
+
+#results p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+#results span {
+    font-weight: bold;
+    color: #0052FF;
+}
+</style>
+
+<div class="info-section">
+    <h2>About USDC Rewards on Coinbase</h2>
+    <ul>
+        <li>Current reward rate: 4.35% APY</li>
+        <li>Minimum balance required: $1 USDC</li>
+        <li>Rewards are distributed monthly</li>
+        <li>No lock-up period required</li>
+        <li>Available in 190+ countries</li>
+        <li>Automatic enrollment for eligible customers</li>
+    </ul>
+    
+    <h3>Important Notes:</h3>
+    <ul>
+        <li>USDC is not legal tender</li>
+        <li>Your USDC balance is not FDIC insured</li>
+        <li>Rates are subject to change</li>
+        <li>Eligibility requirements apply</li>
+    </ul>
+</div>
+</div> 
