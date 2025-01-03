@@ -1,0 +1,228 @@
+---
+layout: page
+title: Iowa Crypto Tax Calculator 
+full-width: yes
+permalink: "/iowa-tax-calculator/"
+jquery: yes
+capture: yes
+---
+
+<div style="max-width: 800px;">
+
+<p>We built this free crypto tax calculator for residents of Iowa who want to check calculations quickly. Our calculator is for informational purposes only. Please consult a CPA or tax professional. Use <a href="/tax/">cryptocurrency tax accounting software if you have lots of trades</a>.</p>
+
+<p>Iowa taxes capital gains as regular income, with rates ranging from 4.40% to 5.70%. To calculate Federal taxes, please <a href="/usa-tax-calculator/">use our USA tax calculator</a>.</p>
+
+<div id="cryptoTaxCalculator">
+    <label for="totalIncome">Enter your total income (without capital gains):</label>
+    <input type="number" step="0.01" id="totalIncome" placeholder="Enter income">
+    
+    <label for="purchaseCost">Total Cost of First Purchase:</label>
+    <input type="number" step="0.01" id="purchaseCost" placeholder="Cost of first crypto buy">
+    
+    <label for="saleAmount">Amount of Sale:</label>
+    <input type="number" step="0.01" id="saleAmount" placeholder="Amount you received when sold">
+
+    <label for="filingStatus">Filing Status:</label>
+    <select id="filingStatus">
+        <option value="single">Single</option>
+        <option value="marriedJointly">Married Filing Jointly</option>
+    </select>
+<br>
+    <button onclick="calculateTax()">Calculate Tax</button>
+
+    <p id="taxOwed"></p>
+    <p id="explanation" style="font-size: 0.9em;"></p>
+</div> 
+
+<script>
+function calculateTax() {
+    const totalIncome = parseFloat(document.getElementById("totalIncome").value);
+    const purchaseCost = parseFloat(document.getElementById("purchaseCost").value);
+    const saleAmount = parseFloat(document.getElementById("saleAmount").value);
+    const filingStatus = document.getElementById("filingStatus").value;
+
+    let capitalGains = saleAmount - purchaseCost;
+    
+    const brackets = {
+        single: [6210, 31050, Infinity],
+        marriedJointly: [12420, 62100, Infinity]
+    };
+
+    const rates = [0.0440, 0.0482, 0.0570];
+    
+    const taxableIncome = totalIncome + capitalGains;
+    let tax = 0;
+    let previousBracket = 0;
+
+    for (let i = 0; i < brackets[filingStatus].length; i++) {
+        if (taxableIncome > previousBracket) {
+            const incomeInBracket = Math.min(taxableIncome, brackets[filingStatus][i]) - previousBracket;
+            const gainsPortion = (capitalGains / taxableIncome) * incomeInBracket;
+            tax += gainsPortion * rates[i];
+        }
+        previousBracket = brackets[filingStatus][i];
+    }
+    
+    let effectiveRate = (tax / capitalGains) * 100;
+    
+    let explanation = `Capital gains: $${capitalGains.toFixed(2)}<br>` +
+                     `Effective tax rate: ${effectiveRate.toFixed(2)}%`;
+
+    document.getElementById("taxOwed").innerHTML = `Estimated Iowa Tax on Crypto Capital Gains: $${tax.toFixed(2)}`;
+    document.getElementById("explanation").innerHTML = explanation;
+}
+</script>
+
+<br><br>
+{% include koinlylink.html link="https://links.bitbo.io/Koinly" %}
+<br><br>
+
+<h2>Iowa Tax Brackets (2024)</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Single Filers</th>
+            <th>Married Filing Jointly</th>
+            <th>Tax Rate</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>$0 to $6,210</td>
+            <td>$0 to $12,420</td>
+            <td>4.40%</td>
+        </tr>
+        <tr>
+            <td>$6,210 to $31,050</td>
+            <td>$12,420 to $62,100</td>
+            <td>4.82%</td>
+        </tr>
+        <tr>
+            <td>Over $31,050</td>
+            <td>Over $62,100</td>
+            <td>5.70%</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Cryptocurrency Taxation in Iowa</h2>
+
+<h3>Key Points</h3>
+<ul>
+    <li><strong>Income-Based Taxation:</strong> Iowa treats crypto gains as regular income, with rates from 4.40% to 5.70%.</li>
+    <li><strong>Progressive System:</strong> Tax rates increase with income across three brackets.</li>
+    <li><strong>No Distinction:</strong> Iowa makes no distinction between short-term and long-term gains.</li>
+    <li><strong>Mining Income:</strong> Crypto mining is treated as self-employment income and taxed at regular income rates.</li>
+</ul>
+
+<h3>Common Tax Situations</h3>
+<div class="tax-situations">
+    <div class="situation">
+        <h4>Trading & Investment</h4>
+        <p>All crypto trades, including crypto-to-crypto transactions, are taxable events. Gains are taxed based on your total income bracket.</p>
+    </div>
+
+    <div class="situation">
+        <h4>Tax Planning Tips</h4>
+        <p>Consider timing your crypto sales to manage your tax bracket position. Keep detailed records of all transactions for accurate reporting.</p>
+    </div>
+</div>
+
+<style>
+    table {
+        color: black;
+        width: 100%;
+        margin: 0;
+        max-width: 600px;
+        margin-bottom: 20px;
+    }
+
+    h3 {
+        color: #f2a900;
+        margin-bottom: 15px;
+        margin-top: 20px;
+    }
+
+    #cryptoTaxCalculator {
+        max-width: 400px;
+        color: black;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    #cryptoTaxCalculator label {
+        display: block;
+        margin-bottom: 5px;
+        margin-top: 15px;
+    }
+    
+    #cryptoTaxCalculator input[type="number"],
+    #cryptoTaxCalculator select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    
+    #cryptoTaxCalculator button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        margin-top: 15px;
+        cursor: pointer;
+    }
+    
+    #cryptoTaxCalculator button:hover {
+        background-color: #0056b3;
+    }
+    
+    #cryptoTaxCalculator #taxOwed {
+        font-weight: bold;
+    }
+
+    #cryptoTaxCalculator #explanation {
+        color: #666;
+        margin-top: 10px;
+    }
+
+    .tax-situations {
+        margin: 20px 0;
+    }
+    
+    .situation {
+        background-color: #f8f9fa;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-left: 4px solid #f2a900;
+        border-radius: 3px;
+    }
+    
+    .situation h4 {
+        color: #333;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+    
+    .situation p {
+        margin: 0;
+        color: #666;
+    }
+    
+    ul {
+        padding-left: 20px;
+    }
+    
+    ul li {
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+</style>
+</div> 
