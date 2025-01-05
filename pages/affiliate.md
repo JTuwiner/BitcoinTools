@@ -67,6 +67,7 @@ capture: yes
   margin: 5px 0;
   font-size: 14px;
 }
+
 .affiliate-grid .join-button {
   background-color: #f2a900;
   color: black !important;
@@ -78,10 +79,133 @@ capture: yes
   padding: 5px 5px 8px 5px;
   border-radius: 7px;
 }
+
+/* Calculator Styles */
+.earnings-calculator {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f8f9fa;
+}
+
+.calc-input {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.calc-select {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.calc-result {
+  margin-top: 15px;
+  padding: 15px;
+  background: #28a745;
+  color: white;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 1.2em;
+}
 </style>
 
 <div style="max-width: 800px;">
 Cryptocurrency affiliate programs offer opportunities for content creators and marketers to earn commissions promoting various crypto products and services.
+
+<div class="earnings-calculator">
+  <h3>Earnings Calculator</h3>
+  <select id="programSelect" class="calc-select">
+    <option value="">Select Program</option>
+    <option value="bitbo">Bitbo Pro (50%)</option>
+    <option value="trezor">Trezor (15%)</option>
+    <option value="ledger">Ledger (10%)</option>
+    <option value="koinly">Koinly (20%)</option>
+    <option value="coinbase">Coinbase (50% trading fees)</option>
+    <option value="coinledger">CoinLedger (25%)</option>
+    <option value="bitbox">BitBox (12%)</option>
+    <option value="river">River ($100 max)</option>
+    <option value="kraken">Kraken ($10 per referral)</option>
+    <option value="robinhood">Robinhood ($20 per sale)</option>
+    <option value="tradingview">TradingView ($10-350 per sub)</option>
+  </select>
+  
+  <select id="calcType" class="calc-select">
+    <option value="volume">Calculate by Sales Volume</option>
+    <option value="leads">Calculate by Number of Leads</option>
+  </select>
+  
+  <input type="number" id="calcInput" class="calc-input" placeholder="Enter amount">
+  
+  <div id="calcResult" class="calc-result">
+    Estimated earnings: $0
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const programSelect = document.getElementById('programSelect');
+  const calcType = document.getElementById('calcType');
+  const calcInput = document.getElementById('calcInput');
+  const calcResult = document.getElementById('calcResult');
+  
+  function calculateEarnings() {
+    const program = programSelect.value;
+    const type = calcType.value;
+    const input = parseFloat(calcInput.value) || 0;
+    let earnings = 0;
+    
+    switch(program) {
+      case 'bitbo':
+        earnings = type === 'volume' ? input * 0.5 : input * 100;
+        break;
+      case 'trezor':
+        earnings = type === 'volume' ? input * 0.15 : input * 15;
+        break;
+      case 'ledger':
+        earnings = type === 'volume' ? input * 0.1 : input * 10;
+        break;
+      case 'koinly':
+        earnings = type === 'volume' ? input * 0.2 : input * 20;
+        break;
+      case 'coinbase':
+        earnings = type === 'volume' ? input * 0.5 : input * 25;
+        break;
+      case 'coinledger':
+        earnings = type === 'volume' ? input * 0.25 : input * 25;
+        break;
+      case 'bitbox':
+        earnings = type === 'volume' ? input * 0.12 : input * 12;
+        break;
+      case 'river':
+        earnings = Math.min(input * 10, 100); // $100 max
+        break;
+      case 'kraken':
+        earnings = Math.min(input * 10, 100); // $10 per referral, $100 max
+        break;
+      case 'robinhood':
+        earnings = input * 20; // $20 per sale
+        break;
+      case 'tradingview':
+        earnings = type === 'volume' ? input * 0.3 : input * 180; // Average of range
+        break;
+    }
+    
+    calcResult.textContent = `Estimated earnings: $${earnings.toFixed(2)}`;
+  }
+  
+  programSelect.addEventListener('change', calculateEarnings);
+  calcType.addEventListener('change', calculateEarnings);
+  calcInput.addEventListener('input', calculateEarnings);
+});
+</script>
 
 <style>
 .toc-box {
