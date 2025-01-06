@@ -115,6 +115,10 @@ capture: yes
   text-align: center;
   font-size: 1.2em;
 }
+
+.earnings-calculator h3 {
+  color: #000000;
+}
 </style>
 
 <div style="max-width: 800px;">
