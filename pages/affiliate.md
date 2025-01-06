@@ -131,18 +131,12 @@ Cryptocurrency affiliate programs offer opportunities for content creators and m
     <option value="coinbase">Coinbase (50% trading fees)</option>
     <option value="coinledger">CoinLedger (25%)</option>
     <option value="bitbox">BitBox (12%)</option>
-    <option value="river">River ($100 max)</option>
+    <option value="river">River (Up to $95 per $10k referral)</option>
     <option value="kraken">Kraken ($10 per referral)</option>
-    <option value="robinhood">Robinhood ($20 per sale)</option>
-    <option value="tradingview">TradingView ($10-350 per sub)</option>
+    <option value="robinhood">Robinhood ($20 per referral)</option>
   </select>
   
-  <select id="calcType" class="calc-select">
-    <option value="volume">Calculate by Sales Volume</option>
-    <option value="leads">Calculate by Number of Leads</option>
-  </select>
-  
-  <input type="number" id="calcInput" class="calc-input" placeholder="Enter amount">
+  <input type="number" id="calcInput" class="calc-input" placeholder="Select a program above">
   
   <div id="calcResult" class="calc-result">
     Estimated earnings: $0
@@ -152,58 +146,83 @@ Cryptocurrency affiliate programs offer opportunities for content creators and m
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const programSelect = document.getElementById('programSelect');
-  const calcType = document.getElementById('calcType');
   const calcInput = document.getElementById('calcInput');
   const calcResult = document.getElementById('calcResult');
   
+  function updatePlaceholder() {
+    const program = programSelect.value;
+    switch(program) {
+      case 'bitbo':
+      case 'trezor':
+      case 'ledger':
+      case 'koinly':
+      case 'coinbase':
+      case 'coinledger':
+      case 'bitbox':
+        calcInput.placeholder = "Enter Sales Volume ($)";
+        break;
+      case 'river':
+        calcInput.placeholder = "Enter Number of $10k+ Referrals";
+        break;
+      case 'kraken':
+      case 'robinhood':
+        calcInput.placeholder = "Enter Number of Referrals";
+        break;
+      default:
+        calcInput.placeholder = "Select a program above";
+    }
+  }
+
   function calculateEarnings() {
     const program = programSelect.value;
-    const type = calcType.value;
     const input = parseFloat(calcInput.value) || 0;
     let earnings = 0;
     
     switch(program) {
       case 'bitbo':
-        earnings = type === 'volume' ? input * 0.5 : input * 100;
+        earnings = input * 0.5;
         break;
       case 'trezor':
-        earnings = type === 'volume' ? input * 0.15 : input * 15;
+        earnings = input * 0.15;
         break;
       case 'ledger':
-        earnings = type === 'volume' ? input * 0.1 : input * 10;
+        earnings = input * 0.1;
         break;
       case 'koinly':
-        earnings = type === 'volume' ? input * 0.2 : input * 20;
+        earnings = input * 0.2;
         break;
       case 'coinbase':
-        earnings = type === 'volume' ? input * 0.5 : input * 25;
+        earnings = input * 0.5;
         break;
       case 'coinledger':
-        earnings = type === 'volume' ? input * 0.25 : input * 25;
+        earnings = input * 0.25;
         break;
       case 'bitbox':
-        earnings = type === 'volume' ? input * 0.12 : input * 12;
+        earnings = input * 0.12;
         break;
       case 'river':
-        earnings = Math.min(input * 10, 100); // $100 max
+        // $15 initial + $80 when reaching $10k, per referral
+        earnings = input * 95; // $15 + $80 per successful $10k referral
         break;
       case 'kraken':
         earnings = Math.min(input * 10, 100); // $10 per referral, $100 max
         break;
       case 'robinhood':
-        earnings = input * 20; // $20 per sale
-        break;
-      case 'tradingview':
-        earnings = type === 'volume' ? input * 0.3 : input * 180; // Average of range
+        earnings = input * 20; // $20 per referral
         break;
     }
     
     calcResult.textContent = `Estimated earnings: $${earnings.toFixed(2)}`;
   }
   
-  programSelect.addEventListener('change', calculateEarnings);
-  calcType.addEventListener('change', calculateEarnings);
+  programSelect.addEventListener('change', function() {
+    updatePlaceholder();
+    calculateEarnings();
+  });
   calcInput.addEventListener('input', calculateEarnings);
+  
+  // Set initial placeholder
+  updatePlaceholder();
 });
 </script>
 
@@ -492,6 +511,127 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
   </tr>
 </tbody>
 </table>
+
+<h2 id="tradingview">TradingView Affiliate Calculator</h2>
+
+<div class="earnings-calculator">
+  <h3>TradingView Earnings Calculator</h3>
+  
+  <div style="margin-bottom: 15px;">
+    <label>Essential Plan Referrals:</label>
+    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+      <div style="flex: 1;">
+        <small>Monthly ($10)</small>
+        <input type="number" id="essentialMonthly" class="calc-input" placeholder="# of referrals" min="0">
+      </div>
+      <div style="flex: 1;">
+        <small>Annual ($60)</small>
+        <input type="number" id="essentialAnnual" class="calc-input" placeholder="# of referrals" min="0">
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label>Plus Plan Referrals:</label>
+    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+      <div style="flex: 1;">
+        <small>Monthly ($20)</small>
+        <input type="number" id="plusMonthly" class="calc-input" placeholder="# of referrals" min="0">
+      </div>
+      <div style="flex: 1;">
+        <small>Annual ($80)</small>
+        <input type="number" id="plusAnnual" class="calc-input" placeholder="# of referrals" min="0">
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label>Premium Plan Referrals:</label>
+    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+      <div style="flex: 1;">
+        <small>Monthly ($40)</small>
+        <input type="number" id="premiumMonthly" class="calc-input" placeholder="# of referrals" min="0">
+      </div>
+      <div style="flex: 1;">
+        <small>Annual ($100)</small>
+        <input type="number" id="premiumAnnual" class="calc-input" placeholder="# of referrals" min="0">
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label>PRO Plan Referrals:</label>
+    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+      <div style="flex: 1;">
+        <small>Monthly ($150)</small>
+        <input type="number" id="proMonthly" class="calc-input" placeholder="# of referrals" min="0">
+      </div>
+      <div style="flex: 1;">
+        <small>Annual ($600)</small>
+        <input type="number" id="proAnnual" class="calc-input" placeholder="# of referrals" min="0">
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label>Ultimate Plan Referrals:</label>
+    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+      <div style="flex: 1;">
+        <small>Monthly ($350)</small>
+        <input type="number" id="ultimateMonthly" class="calc-input" placeholder="# of referrals" min="0">
+      </div>
+      <div style="flex: 1;">
+        <small>Annual ($1500)</small>
+        <input type="number" id="ultimateAnnual" class="calc-input" placeholder="# of referrals" min="0">
+      </div>
+    </div>
+  </div>
+
+  <div id="tvCalcResult" class="calc-result">
+    Estimated earnings: $0
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const inputs = [
+    'essentialMonthly', 'essentialAnnual',
+    'plusMonthly', 'plusAnnual',
+    'premiumMonthly', 'premiumAnnual',
+    'proMonthly', 'proAnnual',
+    'ultimateMonthly', 'ultimateAnnual'
+  ];
+  
+  const rates = {
+    essentialMonthly: 10,
+    essentialAnnual: 60,
+    plusMonthly: 20,
+    plusAnnual: 80,
+    premiumMonthly: 40,
+    premiumAnnual: 100,
+    proMonthly: 150,
+    proAnnual: 600,
+    ultimateMonthly: 350,
+    ultimateAnnual: 1500
+  };
+
+  function calculateTVEarnings() {
+    let total = 0;
+    
+    inputs.forEach(inputId => {
+      const value = parseInt(document.getElementById(inputId).value) || 0;
+      total += value * rates[inputId];
+    });
+    
+    document.getElementById('tvCalcResult').textContent = `Estimated earnings: $${total.toLocaleString()}`;
+  }
+
+  inputs.forEach(inputId => {
+    document.getElementById(inputId).addEventListener('input', calculateTVEarnings);
+  });
+});
+</script>
+
 
 <h2>Terms to Understand</h2>
 
