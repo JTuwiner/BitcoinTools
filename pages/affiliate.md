@@ -246,9 +246,9 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
 <div class="takeaways">
   <h3>Key Takeaways</h3>
   <ul>
-    <li>Exchange affiliate programs are best for recurring revenue.</li>
-    <li>Software crypto affiliate programs often have the highest commission rates and recurring revenue.</li>
+    <li>Software crypto affiliate programs are best for recurring revenue and high commissions.</li>
     <li>Hardware wallet programs convert well, but have lower commission rates.</li>
+    <li><b>Expert advice from Bitbo's CEO:</b> these companies are all vetted by us and legit. We've been in the Bitcoin space for years and have worked with all of these companies.</li>
   </ul>
 </div>
 
