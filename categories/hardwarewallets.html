@@ -3,14 +3,60 @@ layout: page
 title: Hardware Wallets
 full-width: yes
 permalink: "/hardware-wallets/"
-seotitle: Best Bitcoin Hardware Wallets
+seotitle: 9 Best Bitcoin Hardware Wallets [2025]
 category: yes
 subdesc: Bitcoin hardware wallets, some Bitcoin-only. 
 icon: lock
 svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path fill="currentColor" d="M216 40H40a16 16 0 0 0-16 16v136a16 16 0 0 0 16 16h16v16a8 8 0 0 0 16 0v-16h112v16a8 8 0 0 0 16 0v-16h16a16 16 0 0 0 16-16V56a16 16 0 0 0-16-16m-8 96h-28.91a36 36 0 1 1 0-16H208a8 8 0 0 1 0 16m-44-8a20 20 0 1 1-20-20a20 20 0 0 1 20 20"/></svg>'
----
+--- 
 
 <br><br><br>
+
+<div class="toc-box">
+  <ul>
+    <li><a href="#wallets">Hardware Wallet Programs</a></li>
+    <li><a href="#exchanges">Exchange Programs</a></li>
+    <li><a href="#software">Software Programs</a></li>
+    <li><a href="#terms">Commission Terms</a></li>
+    <li><a href="#payouts">Payout Methods</a></li>
+    <li><a href="#comparison">Program Comparison</a></li>
+  </ul>
+</div>
+
+<br><br>
+
+<div class="takeaways">
+  <h3>Key Takeaways</h3>
+  <ul>
+    <li>The Trezor Safe 5 is the most expensive hardware wallet on this list.</li>
+    <li>The Blockstream Jade is the cheapest hardware wallet on this list.</li>
+    <li>The Amazon review score of each hardware wallet is also shown below.</li>
+  </ul>
+</div>
+
+<p class="warning">
+  WARNING: Never buy a hardware wallet from eBay. Always verify that the manufacturer is selling the product directly, especially if buying on Amazon. Some scammers sell fake hardware wallets that could steal your bitcoin.</p>
+
+<br><br>
+
+<h2>Best for</h2>
+
+<table class="table table-striped"></table>
+  <thead>
+    <tr>
+      <th>Hardware Wallet</th>
+      <th>Price (USD)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for wallet in site.data.hardwarewallets %}
+    <tr>
+      <td>{{ wallet.name }}</td>
+      <td>${{ wallet.bestfor }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 <h2>Price Comparison</h2>
 
@@ -36,26 +82,12 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
     </tr>
   </thead>
   <tbody>
+    {% for wallet in site.data.hardwarewallets %}
     <tr>
-      <td>Trezor Safe 5</td>
-      <td>$169</td>
+      <td>{{ wallet.name }}</td>
+      <td>${{ wallet.price }}</td>
     </tr>
-    <tr>
-      <td>Ledger Nano X</td>
-      <td>$149</td>
-    </tr>
-    <tr>
-      <td>Coldcard Mk4</td>
-      <td>$167.94</td>
-    </tr>
-    <tr>
-      <td>BitBox02</td>
-      <td>$157</td>
-    </tr>
-    <tr>
-      <td>Blockstream Jade</td>
-      <td>$79</td>
-    </tr>
+    {% endfor %}
   </tbody>
 </table>
 
@@ -72,26 +104,12 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
     </tr>
   </thead>
   <tbody>
+    {% for wallet in site.data.hardwarewallets %}
     <tr>
-      <td>Trezor Safe 5</td>
-      <td>4.5/5</td>
+      <td>{{ wallet.name }}</td>
+      <td>{{ wallet.amazon_score }}</td>
     </tr>
-    <tr>
-      <td>Ledger Nano X</td>
-      <td>4.4/5</td>
-    </tr>
-    <tr>
-      <td>Blockstream Jade</td>
-      <td>4.5/5</td>
-    </tr>
-    <tr>
-      <td>Coldcard Mk4</td>
-      <td>Not sold on Amazon</td>
-    </tr>
-    <tr>
-      <td>BitBox02</td>
-      <td>Not sold on Amazon</td>
-    </tr>
+    {% endfor %}
   </tbody>
 </table>
 
@@ -113,6 +131,83 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 .faq-question:hover {
   color: #f2a900;
 }
+
+.toc-box {
+  background-color: rgba(29,34,47,.5);
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.toc-box ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  columns: 2;
+}
+
+.toc-box li {
+  margin-bottom: 0.75rem;
+}
+
+.toc-box a {
+  color: #C2C2C2;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.toc-box a:after {
+  content: "→";
+  margin-left: 5px;
+  transition: transform 0.2s;
+}
+
+.toc-box a:hover {
+  text-decoration: underline;
+}
+
+.toc-box a:hover:after {
+  transform: translateX(3px);
+}
+
+.takeaways {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.takeaways h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: #212529;
+}
+
+.takeaways ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.takeaways li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  color: #495057;
+}
+
+.warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    border-left: 4px solid #ffc107;
+    border-radius: 4px;
+    color: #856404;
+    margin: 1rem 0;
+    padding: 1rem;
+    max-width: 100% !important;
+  }
 
 .faq-question:after {
   content: '+';

@@ -1,0 +1,29 @@
+- name: Trezor Safe 5
+  price: 169
+  amazon_score: 4.5
+  bestfor: "Best overall"
+  yearfounded: 2013
+
+- name: Ledger Nano X 
+  price: 149
+  amazon_score: 4.4
+  bestfor: "If you need coins other than Bitcoin"
+  yearfounded: 2014
+
+- name: Coldcard Mk4
+  price: 167.94
+  amazon_score: "Not sold on Amazon"
+  bestfor: "Best for advanced users"
+  yearfounded: 2018
+
+- name: BitBox02
+  price: 157
+  amazon_score: "Not sold on Amazon"
+  bestfor: "Best for hobbyists"
+  yearfounded: 2018
+
+- name: Blockstream Jade
+  price: 79
+  amazon_score: 4.5
+  bestfor: "Best for budget"
+  yearfounded: 2021
