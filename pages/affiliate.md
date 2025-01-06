@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <p>There are several categories of cryptocurrency affiliate programs available to promoters:</p>
 
-<h2 id="software">Software Programs</h2>
+<h2 id="software">Best Crypto Software Programs</h2>
 
 <p>Software affiliate programs tend to offer the highest commission rates:</p>
 
@@ -393,7 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <li>Digital delivery means no shipping issues</li>
 </ul>
 
-<h2 id="wallets">Hardware Wallet Programs</h2>
+<h2 id="wallets">Best Hardware Wallet Affiliate Programs</h2>
 
 <p>Hardware wallet companies offer some of the most straightforward affiliate programs. You earn a commission on each wallet sale, typically 10-15% of the purchase price excluding shipping and taxes.</p>
 
@@ -424,7 +424,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <p>The downside is that they have lower commission rates, and no recurring revenue.</p>
 
-<h2 id="exchanges">Exchange Programs</h2>
+<h2 id="exchanges">Best Crypto Exchange Affiliate Programs</h2>
 
 <p>Cryptocurrency exchanges often have tiered commission structures based on the trading volume of referred users.</p>
 
@@ -516,12 +516,44 @@ document.addEventListener('DOMContentLoaded', function() {
     <td>50% of fees for 3 months</td>
     <td>Local currency via PayPal/Bank</td>
   </tr>
+  <tr>
+    <td>CoinLedger</td>
+    <td>25% recurring lifetime</td>
+    <td>Monthly via PayPal/Bank</td>
+  </tr>
+  <tr>
+    <td>BitBox</td>
+    <td>12% per sale</td>
+    <td>Monthly via Bitcoin/Bank</td>
+  </tr>
+  <tr>
+    <td>River</td>
+    <td>Up to $100 per referral</td>
+    <td>7 days after settlement in BTC</td>
+  </tr>
+  <tr>
+    <td>Kraken</td>
+    <td>$10 per referral</td>
+    <td>Within 1 week after trade</td>
+  </tr>
+  <tr>
+    <td>Robinhood</td>
+    <td>Up to $20 per sale</td>
+    <td>Monthly after $50 minimum</td>
+  </tr>
+  <tr>
+    <td>TradingView</td>
+    <td>$10-350 per subscription</td>
+    <td>Monthly, 30 days after month end</td>
+  </tr>
 </tbody>
 </table>
 
 <h2 id="tradingview">TradingView Affiliate Calculator</h2>
 
-<div class="earnings-calculator">
+<p>TradingView offers a tiered commission structure based on the subscription plan and duration of the referral.</p>
+
+<div class="earnings-calculator" style="color: #000000;">
   <h3>TradingView Earnings Calculator</h3>
   
   <div style="margin-bottom: 15px;">
