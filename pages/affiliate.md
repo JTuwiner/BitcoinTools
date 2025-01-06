@@ -123,111 +123,6 @@ capture: yes
 <div style="max-width: 800px;">
 Cryptocurrency affiliate programs offer opportunities for content creators and marketers to earn commissions promoting various crypto products and services.
 
-<div class="earnings-calculator">
-  <h3>Earnings Calculator</h3>
-  <select id="programSelect" class="calc-select">
-    <option value="">Select Program</option>
-    <option value="bitbo">Bitbo Pro (50%)</option>
-    <option value="trezor">Trezor (15%)</option>
-    <option value="ledger">Ledger (10%)</option>
-    <option value="koinly">Koinly (20%)</option>
-    <option value="coinbase">Coinbase (50% trading fees)</option>
-    <option value="coinledger">CoinLedger (25%)</option>
-    <option value="bitbox">BitBox (12%)</option>
-    <option value="river">River (Up to $95 per $10k referral)</option>
-    <option value="kraken">Kraken ($10 per referral)</option>
-    <option value="robinhood">Robinhood ($20 per referral)</option>
-  </select>
-  
-  <input type="number" id="calcInput" class="calc-input" placeholder="Select a program above">
-  
-  <div id="calcResult" class="calc-result">
-    Estimated earnings: $0
-  </div>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const programSelect = document.getElementById('programSelect');
-  const calcInput = document.getElementById('calcInput');
-  const calcResult = document.getElementById('calcResult');
-  
-  function updatePlaceholder() {
-    const program = programSelect.value;
-    switch(program) {
-      case 'bitbo':
-      case 'trezor':
-      case 'ledger':
-      case 'koinly':
-      case 'coinbase':
-      case 'coinledger':
-      case 'bitbox':
-        calcInput.placeholder = "Enter Sales Volume ($)";
-        break;
-      case 'river':
-        calcInput.placeholder = "Enter Number of $10k+ Referrals";
-        break;
-      case 'kraken':
-      case 'robinhood':
-        calcInput.placeholder = "Enter Number of Referrals";
-        break;
-      default:
-        calcInput.placeholder = "Select a program above";
-    }
-  }
-
-  function calculateEarnings() {
-    const program = programSelect.value;
-    const input = parseFloat(calcInput.value) || 0;
-    let earnings = 0;
-    
-    switch(program) {
-      case 'bitbo':
-        earnings = input * 0.5;
-        break;
-      case 'trezor':
-        earnings = input * 0.15;
-        break;
-      case 'ledger':
-        earnings = input * 0.1;
-        break;
-      case 'koinly':
-        earnings = input * 0.2;
-        break;
-      case 'coinbase':
-        earnings = input * 0.5;
-        break;
-      case 'coinledger':
-        earnings = input * 0.25;
-        break;
-      case 'bitbox':
-        earnings = input * 0.12;
-        break;
-      case 'river':
-        // $15 initial + $80 when reaching $10k, per referral
-        earnings = input * 95; // $15 + $80 per successful $10k referral
-        break;
-      case 'kraken':
-        earnings = Math.min(input * 10, 100); // $10 per referral, $100 max
-        break;
-      case 'robinhood':
-        earnings = input * 20; // $20 per referral
-        break;
-    }
-    
-    calcResult.textContent = `Estimated earnings: $${earnings.toFixed(2)}`;
-  }
-  
-  programSelect.addEventListener('change', function() {
-    updatePlaceholder();
-    calculateEarnings();
-  });
-  calcInput.addEventListener('input', calculateEarnings);
-  
-  // Set initial placeholder
-  updatePlaceholder();
-});
-</script>
 
 <style>
 .toc-box {
@@ -356,6 +251,115 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
     <li>Hardware wallet programs convert well, but have lower commission rates.</li>
   </ul>
 </div>
+
+<h2>Affiliate Earnings Calculator</h2>
+<p>We built this calculator to estimate your earnings from top crypto affiliate programs based on your referral volume.</p>
+
+<div class="earnings-calculator">
+  <h3>Earnings Calculator</h3>
+  <select id="programSelect" class="calc-select">
+    <option value="">Select Program</option>
+    <option value="bitbo">Bitbo Pro (50%)</option>
+    <option value="trezor">Trezor (15%)</option>
+    <option value="ledger">Ledger (10%)</option>
+    <option value="koinly">Koinly (20%)</option>
+    <option value="coinbase">Coinbase (50% trading fees)</option>
+    <option value="coinledger">CoinLedger (25%)</option>
+    <option value="bitbox">BitBox (12%)</option>
+    <option value="river">River (Up to $95 per $10k referral)</option>
+    <option value="kraken">Kraken ($10 per referral)</option>
+    <option value="robinhood">Robinhood ($20 per referral)</option>
+  </select>
+  
+  <input type="number" id="calcInput" class="calc-input" placeholder="Select a program above">
+  
+  <div id="calcResult" class="calc-result">
+    Estimated earnings: $0
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const programSelect = document.getElementById('programSelect');
+  const calcInput = document.getElementById('calcInput');
+  const calcResult = document.getElementById('calcResult');
+  
+  function updatePlaceholder() {
+    const program = programSelect.value;
+    switch(program) {
+      case 'bitbo':
+      case 'trezor':
+      case 'ledger':
+      case 'koinly':
+      case 'coinbase':
+      case 'coinledger':
+      case 'bitbox':
+        calcInput.placeholder = "Enter Sales Volume ($)";
+        break;
+      case 'river':
+        calcInput.placeholder = "Enter Number of $10k+ Referrals";
+        break;
+      case 'kraken':
+      case 'robinhood':
+        calcInput.placeholder = "Enter Number of Referrals";
+        break;
+      default:
+        calcInput.placeholder = "Select a program above";
+    }
+  }
+
+  function calculateEarnings() {
+    const program = programSelect.value;
+    const input = parseFloat(calcInput.value) || 0;
+    let earnings = 0;
+    
+    switch(program) {
+      case 'bitbo':
+        earnings = input * 0.5;
+        break;
+      case 'trezor':
+        earnings = input * 0.15;
+        break;
+      case 'ledger':
+        earnings = input * 0.1;
+        break;
+      case 'koinly':
+        earnings = input * 0.2;
+        break;
+      case 'coinbase':
+        earnings = input * 0.5;
+        break;
+      case 'coinledger':
+        earnings = input * 0.25;
+        break;
+      case 'bitbox':
+        earnings = input * 0.12;
+        break;
+      case 'river':
+        // $15 initial + $80 when reaching $10k, per referral
+        earnings = input * 95; // $15 + $80 per successful $10k referral
+        break;
+      case 'kraken':
+        earnings = Math.min(input * 10, 100); // $10 per referral, $100 max
+        break;
+      case 'robinhood':
+        earnings = input * 20; // $20 per referral
+        break;
+    }
+    
+    calcResult.textContent = `Estimated earnings: $${earnings.toFixed(2)}`;
+  }
+  
+  programSelect.addEventListener('change', function() {
+    updatePlaceholder();
+    calculateEarnings();
+  });
+  calcInput.addEventListener('input', calculateEarnings);
+  
+  // Set initial placeholder
+  updatePlaceholder();
+});
+</script>
 
 <h2>Types of Crypto Affiliate Programs</h2>
 
