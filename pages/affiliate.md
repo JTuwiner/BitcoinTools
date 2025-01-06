@@ -112,7 +112,7 @@ capture: yes
   border-radius: 4px;
   text-align: center;
   font-size: 1.2em;
-  font-weight: bold;
+  color: #000000;
 }
 
 .earnings-calculator h3 {
@@ -254,7 +254,6 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
 
 <h2>Affiliate Earnings Calculator</h2>
 <p>We built this calculator to estimate your earnings from top crypto affiliate programs based on your referral volume.</p>
-
 <div class="earnings-calculator">
   <h3>Earnings Calculator</h3>
   <select id="programSelect" class="calc-select">
@@ -273,8 +272,8 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
   
   <input type="number" id="calcInput" class="calc-input" placeholder="Select a program above">
   
-  <div id="calcResult" class="calc-result">
-    Estimated earnings: $0
+  <div id="calcResult" class="calc-result" style="display: none;">
+    Estimated earnings: <b>$0</b>
   </div>
 </div>
 
@@ -313,6 +312,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const input = parseFloat(calcInput.value) || 0;
     let earnings = 0;
     
+    if (!program || !input) {
+      calcResult.style.display = 'none';
+      return;
+    }
+    
     switch(program) {
       case 'bitbo':
         earnings = input * 0.5;
@@ -336,18 +340,18 @@ document.addEventListener('DOMContentLoaded', function() {
         earnings = input * 0.12;
         break;
       case 'river':
-        // $15 initial + $80 when reaching $10k, per referral
-        earnings = input * 95; // $15 + $80 per successful $10k referral
+        earnings = input * 95;
         break;
       case 'kraken':
-        earnings = Math.min(input * 10, 100); // $10 per referral, $100 max
+        earnings = Math.min(input * 10, 100);
         break;
       case 'robinhood':
-        earnings = input * 20; // $20 per referral
+        earnings = input * 20;
         break;
     }
     
-    calcResult.textContent = `Estimated earnings: $${earnings.toFixed(2)}`;
+    calcResult.style.display = 'block';
+    calcResult.innerHTML = `Estimated earnings: <b>$${earnings.toFixed(2)}</b>`;
   }
   
   programSelect.addEventListener('change', function() {
@@ -356,7 +360,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   calcInput.addEventListener('input', calculateEarnings);
   
-  // Set initial placeholder
   updatePlaceholder();
 });
 </script>
@@ -553,7 +556,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <p>TradingView offers a tiered commission structure based on the subscription plan and duration of the referral.</p>
 
-<div class="earnings-calculator" style="color: #000000;">
+<p>We built a calculator that estimates your earnings based on the number of referrals for each plan.</p>
+
+<button id="toggleCalc" style="
+  background-color: #f2a900;
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  font-weight: bold;
+">Show Calculator</button>
+
+<div id="calcContainer" class="earnings-calculator" style="color: #000000; display: none;">
   <h3>TradingView Earnings Calculator</h3>
   
   <div style="margin-bottom: 15px;">
@@ -667,6 +683,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
   inputs.forEach(inputId => {
     document.getElementById(inputId).addEventListener('input', calculateTVEarnings);
+  });
+
+  // Toggle calculator visibility
+  const toggleBtn = document.getElementById('toggleCalc');
+  const calcContainer = document.getElementById('calcContainer');
+  
+  toggleBtn.addEventListener('click', function() {
+    const isHidden = calcContainer.style.display === 'none';
+    calcContainer.style.display = isHidden ? 'block' : 'none';
+    toggleBtn.textContent = isHidden ? 'Hide Calculator' : 'Show Calculator';
   });
 });
 </script>
