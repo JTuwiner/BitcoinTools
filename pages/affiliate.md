@@ -252,6 +252,75 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
   </ul>
 </div>
 
+<h2 id="comparison">Top Affiliate Programs Compared</h2>
+
+<table>
+<thead>
+  <tr>
+    <th>Program</th>
+    <th>Commission Rate</th>
+    <th>Payout Method</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Bitbo Pro</td>
+    <td>50% for 12 months</td>
+    <td>Monthly via Wise/PayPal/Crypto</td>
+  </tr>
+  <tr>
+    <td>Trezor</td>
+    <td>15% per sale</td>
+    <td>Monthly in EUR/BTC</td>
+  </tr>
+  <tr>
+    <td>Ledger</td>
+    <td>10%+ per sale</td>
+    <td>Monthly via BTC/Bank</td>
+  </tr>
+  <tr>
+    <td>Koinly</td>
+    <td>20% initial + 10% recurring</td>
+    <td>Every 30 days via PayPal</td>
+  </tr>
+  <tr>
+    <td>Coinbase</td>
+    <td>50% of fees for 3 months</td>
+    <td>Local currency via PayPal/Bank</td>
+  </tr>
+  <tr>
+    <td>CoinLedger</td>
+    <td>25% recurring lifetime</td>
+    <td>Monthly via PayPal/Bank</td>
+  </tr>
+  <tr>
+    <td>BitBox</td>
+    <td>12% per sale</td>
+    <td>Monthly via Bitcoin/Bank</td>
+  </tr>
+  <tr>
+    <td>River</td>
+    <td>Up to $100 per referral</td>
+    <td>7 days after settlement in BTC</td>
+  </tr>
+  <tr>
+    <td>Kraken</td>
+    <td>$10 per referral</td>
+    <td>Within 1 week after trade</td>
+  </tr>
+  <tr>
+    <td>Robinhood</td>
+    <td>Up to $20 per sale</td>
+    <td>Monthly after $50 minimum</td>
+  </tr>
+  <tr>
+    <td>TradingView</td>
+    <td>$10-350 per subscription</td>
+    <td>Monthly, 30 days after month end</td>
+  </tr>
+</tbody>
+</table>
+
 <h2>Affiliate Earnings Calculator</h2>
 <p>We built this calculator to estimate your earnings from top crypto affiliate programs based on your referral volume.</p>
 <div class="earnings-calculator">
@@ -483,74 +552,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <p>Minimum payout thresholds typically range from $50-100.</p>
 
-<h2 id="comparison">Program Comparison</h2>
-
-<table>
-<thead>
-  <tr>
-    <th>Program</th>
-    <th>Commission Rate</th>
-    <th>Payout Method</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>Bitbo Pro</td>
-    <td>50% for 12 months</td>
-    <td>Monthly via Wise/PayPal/Crypto</td>
-  </tr>
-  <tr>
-    <td>Trezor</td>
-    <td>15% per sale</td>
-    <td>Monthly in EUR/BTC</td>
-  </tr>
-  <tr>
-    <td>Ledger</td>
-    <td>10%+ per sale</td>
-    <td>Monthly via BTC/Bank</td>
-  </tr>
-  <tr>
-    <td>Koinly</td>
-    <td>20% initial + 10% recurring</td>
-    <td>Every 30 days via PayPal</td>
-  </tr>
-  <tr>
-    <td>Coinbase</td>
-    <td>50% of fees for 3 months</td>
-    <td>Local currency via PayPal/Bank</td>
-  </tr>
-  <tr>
-    <td>CoinLedger</td>
-    <td>25% recurring lifetime</td>
-    <td>Monthly via PayPal/Bank</td>
-  </tr>
-  <tr>
-    <td>BitBox</td>
-    <td>12% per sale</td>
-    <td>Monthly via Bitcoin/Bank</td>
-  </tr>
-  <tr>
-    <td>River</td>
-    <td>Up to $100 per referral</td>
-    <td>7 days after settlement in BTC</td>
-  </tr>
-  <tr>
-    <td>Kraken</td>
-    <td>$10 per referral</td>
-    <td>Within 1 week after trade</td>
-  </tr>
-  <tr>
-    <td>Robinhood</td>
-    <td>Up to $20 per sale</td>
-    <td>Monthly after $50 minimum</td>
-  </tr>
-  <tr>
-    <td>TradingView</td>
-    <td>$10-350 per subscription</td>
-    <td>Monthly, 30 days after month end</td>
-  </tr>
-</tbody>
-</table>
 
 <h2 id="tradingview">TradingView Affiliate Calculator</h2>
 
