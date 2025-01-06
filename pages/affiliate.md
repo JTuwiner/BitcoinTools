@@ -79,7 +79,6 @@ capture: yes
   padding: 5px 5px 8px 5px;
   border-radius: 7px;
 }
-
 /* Calculator Styles */
 .earnings-calculator {
   max-width: 500px;
@@ -109,11 +108,11 @@ capture: yes
 .calc-result {
   margin-top: 15px;
   padding: 15px;
-  background: #28a745;
-  color: white;
+  border: 2px solid #ddd;
   border-radius: 4px;
   text-align: center;
   font-size: 1.2em;
+  font-weight: bold;
 }
 
 .earnings-calculator h3 {
