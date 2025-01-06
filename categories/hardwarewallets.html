@@ -116,6 +116,10 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
       width: 33.33%;
     }
 
+    .comparison-table td {
+      border: 0 !important;
+    }
+
     .comparison-table th {
       background: #1d222f;
       color: #fff;
@@ -176,7 +180,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
       </thead>
       <tbody>
         <tr>
-          <td>Name</td>
+          <td></td>
           <td id="name1"></td>
           <td id="name2"></td>
         </tr>
@@ -189,7 +193,10 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
           <td id="price2"></td>
         </tr>
         <tr>
-          <td>Best For</td>
+          <td class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg>
+            Best For
+          </td>
           <td id="bestfor1"></td>
           <td id="bestfor2"></td>
         </tr>
@@ -210,7 +217,10 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
           <td id="mobile2"></td>
         </tr>
         <tr>
-          <td>Amazon Score</td>
+          <td class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v15.59c0 .89 1.08 1.34 1.71.71L6 18h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2m-6.43 9.57l-1.12 2.44a.5.5 0 0 1-.91 0l-1.12-2.44l-2.44-1.12a.5.5 0 0 1 0-.91l2.44-1.12l1.12-2.44a.5.5 0 0 1 .91 0l1.12 2.44l2.44 1.12a.5.5 0 0 1 0 .91z"/></svg>
+            Amazon Score
+          </td>
           <td id="score1"></td>
           <td id="score2"></td>
         </tr>
