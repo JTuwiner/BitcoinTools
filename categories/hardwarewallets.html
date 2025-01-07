@@ -555,6 +555,30 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
     </div>
   </div>
 
+  <div class="faq-item">
+    <h3 class="faq-question" onclick="toggleAnswer(this)">What is the difference between a hardware wallet (cold storage) and a hot wallet?</h3>
+    <div class="faq-answer">
+      <p>A hardware wallet (cold storage) stores your private keys offline on a dedicated physical device, providing maximum security since the keys are never exposed to an internet-connected computer. Hot wallets, like browser extensions, mobile apps, or desktop wallets, run on internet-connected devices, making them more convenient but less secure.</p>
+      <p>While hot wallets are suitable for small amounts and frequent transactions, hardware wallets are recommended for storing larger amounts of bitcoin securely.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <h3 class="faq-question" onclick="toggleAnswer(this)">What is Shamir's Secret Sharing and why is it important?</h3>
+    <div class="faq-answer">
+      <p>Shamir's Secret Sharing is an advanced security feature offered by some hardware wallets that splits your recovery seed phrase into multiple shares. Instead of having a single seed phrase, you can split it into several parts (like 3-of-5 or 2-of-3), requiring a minimum number of shares to restore your wallet.</p>
+      <p>This provides better security and redundancy - even if one share is lost or compromised, your funds remain safe as long as you have the minimum required number of shares. It's particularly useful for inheritance planning or protecting against theft of your seed phrase.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <h3 class="faq-question" onclick="toggleAnswer(this)">What security certifications should I look for in a hardware wallet?</h3>
+    <div class="faq-answer">
+      <p>The EAL (Evaluation Assurance Level) certification, particularly EAL7, is one of the highest security certifications a hardware wallet can achieve. It certifies that the device's secure element chip has undergone rigorous security testing and meets strict international standards.</p>
+      <p>Other important security features include true random number generators (TRNG) for generating secure private keys, and tamper-resistant packaging. Some wallets also offer additional security through features like NFC-enabled cards or microSD card backup options.</p>
+    </div>
+  </div>
+
   <br><br>
   <h2>Terms to Understand</h2>
   <ul>
