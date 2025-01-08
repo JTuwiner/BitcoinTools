@@ -84,3 +84,11 @@
   type: software
   image: tradingview.jpg
   product: Charting & trading platform with social features.
+
+- company: Exodus
+  url: https://www.exodus.com/support/en/articles/8598885-how-do-i-earn-rewards-with-the-exodus-referral-program
+  terms: "20% of trading fees on eligible swaps"
+  payoutfrequency: "Paid in USDC"
+  type: exchange
+  image: exodus.png
+  product: Cryptocurrency wallet with built-in exchange.
