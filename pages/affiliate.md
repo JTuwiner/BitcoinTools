@@ -431,6 +431,15 @@ document.addEventListener('DOMContentLoaded', function() {
   
   updatePlaceholder();
 });
+
+// Track clicks on all affiliate program links
+document.querySelectorAll('.program-link').forEach(link => {
+  link.addEventListener('click', event => {
+    const program = link.getAttribute('data-program');
+    fathom.trackEvent('Click Affiliate');
+    fathom.trackEvent(`Click Affiliate: ${program}`);
+  });
+});
 </script>
 
 <h2>Types of Crypto Affiliate Programs</h2>
