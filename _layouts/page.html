@@ -27,7 +27,7 @@ layout: base
       <div class="tools-container">
         {% assign items = site.pages | sort: "sort" %}
         {% for tool in items %}
-          {% if tool.cat == page.title or tool.cat == page.customcategory %}
+          {% if tool.cat == page.title %}
              {% include toolslist.html %}
           {% endif %}  
         {% endfor %}
