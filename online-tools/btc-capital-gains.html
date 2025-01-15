@@ -1,0 +1,426 @@
+---
+layout: page
+title: Bitcoin Capital Gains Tax Calculator
+seotitle: "Bitcoin Capital Gains Tax Calculator [Global Tax Rates]"
+full-width: yes
+permalink: "/btc-capital-gains/"
+capture: yes
+---
+
+<div class="fee-calc-wrapper">
+    <div class="fee-calc-form">
+        <form id="taxCalcForm">
+            <div class="fee-calc-form-row">
+                <label for="country">Select Your Country:</label>
+                <select id="country" class="fee-calc-form-select">
+                    <option value="">Select a country</option>
+                </select>
+            </div>
+
+            <div class="fee-calc-form-row">
+                <label for="buyPrice">Purchase Price (USD):</label>
+                <input type="number" id="buyPrice" class="fee-calc-form-input" step="any" placeholder="Enter purchase price" required>
+            </div>
+
+            <div class="fee-calc-form-row">
+                <label for="sellPrice">Sale Price (USD):</label>
+                <input type="number" id="sellPrice" class="fee-calc-form-input" step="any" placeholder="Enter sale price" required>
+            </div>
+
+            <div class="fee-calc-form-row">
+                <label for="btcAmount">BTC Amount:</label>
+                <input type="number" id="btcAmount" class="fee-calc-form-input" step="any" placeholder="Enter BTC amount" required>
+            </div>
+
+            <div class="fee-calc-form-row">
+                <button type="button" class="btn btn-primary" id="calculate">Calculate Tax</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="form-results-wrapper">
+        <div class="form-results-wrapper-inner">
+            <div>
+                <div class="form-results-main-col">
+                    <div class="form-results-col-number is--large">
+                        $<span id="capitalGains">0</span>
+                    </div>
+                    <div class="form-results-col-label">
+                        Total Capital Gains
+                    </div>
+                </div>
+
+                <div class="form-results-row-inner">
+                    <div class="form-results-col">
+                        <div class="form-results-col-number">
+                            $<span id="corporateTax">0</span>
+                        </div>
+                        <div class="form-results-col-label">
+                            Corporate Tax
+                        </div>
+                    </div>
+
+                    <div class="form-results-col">
+                        <div class="form-results-col-number">
+                            $<span id="individualTax">0</span>
+                        </div>
+                        <div class="form-results-col-label">
+                            Individual Tax
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tax-info">
+    <h2>Selected Country Tax Information</h2>
+    <div class="situation">
+        <h4>Tax Rates</h4>
+        <p id="countryTaxInfo">Please select a country to see tax rates.</p>
+    </div>
+</div>
+
+<style>
+.fee-calc-wrapper {
+    display: flex;
+    grid-gap: 45px;
+    justify-content: space-between;
+    max-width: 820px;
+    margin-bottom: 50px;
+}
+
+.fee-calc-form {
+    width: 100%;
+}
+
+.fee-calc-form-row {
+    margin-bottom: 20px;
+}
+
+.fee-calc-form-input, .fee-calc-form-select {
+    background: #FFFFFF;
+    border: 1px solid #D8D8D8;
+    border-radius: 8px;
+    padding: 14px 19px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    color: #4B5066;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.form-results-wrapper {
+    max-width: 320px;
+    margin-top: 20px;
+    width: 100%;
+    background: #3D79C0;
+    border-radius: 8px;
+    padding: 17px;
+}
+
+.form-results-main-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 25px;
+    border-bottom: 1px solid #2C61A0;
+}
+
+.form-results-col-number {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+}
+
+.form-results-col-number.is--large {
+    font-size: 60px;
+    line-height: 73px;
+    margin-bottom: 5px;
+}
+
+.form-results-col-label {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    color: #FFFFFF;
+}
+
+.form-results-row-inner {
+    display: flex;
+    justify-content: space-around;
+    grid-gap: 40px;
+    margin-top: 25px;
+}
+
+.btn {
+    background: #3D79C0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 19px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    cursor: pointer;
+    width: 100%;
+}
+
+.tax-info {
+    margin-top: 30px;
+}
+
+.situation {
+    background-color: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid #3D79C0;
+    border-radius: 3px;
+}
+
+label {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 15px;
+    color: #98A2B3;
+    display: block;
+}
+
+@media(max-width: 750px) {
+    .fee-calc-wrapper {
+        flex-direction: column;
+        grid-gap: 0px;
+    }
+    .form-results-wrapper {
+        max-width: 100%;
+    }
+}
+</style>
+
+<script>
+const taxRates = {
+    "Albania": { corporate: 15, individual: 15 },
+    "Algeria": { corporate: 26, individual: 15 },
+    "Angola": { corporate: 10, individual: 10 },
+    "Argentina": { corporate: 35, individual: 15 },
+    "Armenia": { corporate: 18, individual: 10 },
+    "Australia": { corporate: 30, individual: 45 },
+    "Austria": { corporate: 24, individual: 27.5 },
+    "Azerbaijan": { corporate: 20, individual: 25 },
+    "Bahrain": { corporate: 0, individual: 0 },
+    "Bangladesh": { corporate: 15, individual: 15 },
+    "Barbados": { corporate: 0, individual: 0 },
+    "Belgium": { corporate: 25, individual: 0 },
+    "Bermuda": { corporate: 0, individual: 0 },
+    "Bolivia": { corporate: 25, individual: 0 },
+    "Bosnia and Herzegovina": { corporate: 10, individual: 10 },
+    "Botswana": { corporate: 22, individual: 25 },
+    "Brazil": { corporate: 34, individual: 22.5 },
+    "Bulgaria": { corporate: 10, individual: 10 },
+    "Cabo Verde": { corporate: 22, individual: 1 },
+    "Cambodia": { corporate: 20, individual: 20 },
+    "Cameroon": { corporate: 33, individual: 16.5 },
+    "Canada": { corporate: 26.5, individual: 50 },
+    "Cayman Islands": { corporate: 0, individual: 0 },
+    "Chad": { corporate: 20, individual: 20 },
+    "Chile": { corporate: 25, individual: 40 },
+    "China": { corporate: 25, individual: 20 },
+    "Colombia": { corporate: 15, individual: 15 },
+    "Congo, Democratic Republic": { corporate: 30, individual: 0 },
+    "Congo, Republic": { corporate: 28, individual: 30 },
+    "Costa Rica": { corporate: 15, individual: 15 },
+    "Croatia": { corporate: 18, individual: 12 },
+    "Cyprus": { corporate: 20, individual: 20 },
+    "Czech Republic": { corporate: 19, individual: 15 },
+    "Denmark": { corporate: 22, individual: 42 },
+    "Dominican Republic": { corporate: 27, individual: 25 },
+    "Ecuador": { corporate: 10, individual: 10 },
+    "Egypt": { corporate: 22.5, individual: 27.5 },
+    "El Salvador": { corporate: 30, individual: 30 },
+    "Estonia": { corporate: 20, individual: 20 },
+    "Ethiopia": { corporate: 30, individual: 30 },
+    "Finland": { corporate: 20, individual: 34 },
+    "France": { corporate: 25, individual: 30 },
+    "Gabon": { corporate: 20, individual: 20 },
+    "Georgia": { corporate: 15, individual: 20 },
+    "Germany": { corporate: 15, individual: 26.375 },
+    "Ghana": { corporate: 25, individual: 25 },
+    "Gibraltar": { corporate: 0, individual: 0 },
+    "Greece": { corporate: 22, individual: 15 },
+    "Greenland": { corporate: 26.5, individual: 0 },
+    "Guatemala": { corporate: 10, individual: 10 },
+    "Guernsey": { corporate: 0, individual: 0 },
+    "Guyana": { corporate: 20, individual: 20 },
+    "Honduras": { corporate: 10, individual: 10 },
+    "Hong Kong": { corporate: 0, individual: 0 },
+    "Hungary": { corporate: 9, individual: 15 },
+    "Iceland": { corporate: 20, individual: 22 },
+    "India": { corporate: 25, individual: 30 },
+    "Indonesia": { corporate: 22, individual: 35 },
+    "Iraq": { corporate: 15, individual: 15 },
+    "Ireland": { corporate: 33, individual: 33 },
+    "Isle of Man": { corporate: 0, individual: 0 },
+    "Israel": { corporate: 23, individual: 25 },
+    "Italy": { corporate: 24, individual: 26 },
+    "Jamaica": { corporate: 2, individual: 2 },
+    "Japan": { corporate: 23.2, individual: 20.315 },
+    "Jersey": { corporate: 0, individual: 0 },
+    "Jordan": { corporate: 20, individual: 30 },
+    "Kazakhstan": { corporate: 20, individual: 15 },
+    "Kenya": { corporate: 15, individual: 15 },
+    "Korea, Republic": { corporate: 24, individual: 45 },
+    "Kosovo": { corporate: 10, individual: 10 },
+    "Kuwait": { corporate: 15, individual: 0 },
+    "Kyrgyzstan": { corporate: 10, individual: 10 },
+    "Lao PDR": { corporate: 2, individual: 2 },
+    "Latvia": { corporate: 20, individual: 20 },
+    "Lebanon": { corporate: 15, individual: 15 },
+    "Libya": { corporate: 20, individual: 10 },
+    "Liechtenstein": { corporate: 24, individual: 24 },
+    "Lithuania": { corporate: 15, individual: 20 },
+    "Luxembourg": { corporate: 24.94, individual: 45.78 },
+    "Macau": { corporate: 12, individual: 0 },
+    "Madagascar": { corporate: 20, individual: 20 },
+    "Malawi": { corporate: 30, individual: 30 },
+    "Malaysia": { corporate: 10, individual: 30 },
+    "Malta": { corporate: 35, individual: 35 },
+    "Mauritania": { corporate: 25, individual: 25 },
+    "Mauritius": { corporate: 0, individual: 0 },
+    "Mexico": { corporate: 30, individual: 35 },
+    "Moldova": { corporate: 12, individual: 12 },
+    "Mongolia": { corporate: 10, individual: 10 },
+    "Montenegro": { corporate: 9, individual: 15 },
+    "Morocco": { corporate: 31, individual: 20 },
+    "Myanmar": { corporate: 10, individual: 10 },
+    "Namibia": { corporate: 0, individual: 0 },
+    "Netherlands": { corporate: 25.8, individual: 0 },
+    "New Zealand": { corporate: 28, individual: 39 },
+    "Nicaragua": { corporate: 15, individual: 15 },
+    "Nigeria": { corporate: 10, individual: 10 },
+    "North Macedonia": { corporate: 10, individual: 10 },
+    "Norway": { corporate: 22, individual: 37.84 },
+    "Oman": { corporate: 15, individual: 0 },
+    "Pakistan": { corporate: 29, individual: 15 },
+    "Panama": { corporate: 10, individual: 10 },
+    "Papua New Guinea": { corporate: 0, individual: 0 },
+    "Paraguay": { corporate: 10, individual: 10 },
+    "Peru": { corporate: 29.5, individual: 5 },
+    "Philippines": { corporate: 25, individual: 15 },
+    "Poland": { corporate: 19, individual: 19 },
+    "Portugal": { corporate: 21, individual: 28 },
+    "Qatar": { corporate: 10, individual: 0 },
+    "Romania": { corporate: 16, individual: 10 },
+    "Rwanda": { corporate: 5, individual: 5 },
+    "Saint Lucia": { corporate: 0, individual: 0 },
+    "Saudi Arabia": { corporate: 20, individual: 0 },
+    "Senegal": { corporate: 30, individual: 30 },
+    "Serbia": { corporate: 15, individual: 15 },
+    "Singapore": { corporate: 0, individual: 0 },
+    "Slovak Republic": { corporate: 21, individual: 19 },
+    "Slovenia": { corporate: 19, individual: 25 },
+    "South Africa": { corporate: 21.6, individual: 18 },
+    "Spain": { corporate: 25, individual: 28 },
+    "Sweden": { corporate: 20.6, individual: 30 },
+    "Switzerland": { corporate: 19.7, individual: 0 },
+    "Taiwan": { corporate: 20, individual: 20 },
+    "Tajikistan": { corporate: 18, individual: 15 },
+    "Tanzania": { corporate: 30, individual: 10 },
+    "Thailand": { corporate: 20, individual: 35 },
+    "Timor-Leste": { corporate: 10, individual: 10 },
+    "Trinidad and Tobago": { corporate: 0, individual: 0 },
+    "Tunisia": { corporate: 15, individual: 15 },
+    "Turkey": { corporate: 20, individual: 40 },
+    "Turkmenistan": { corporate: 20, individual: 10 },
+    "Uganda": { corporate: 30, individual: 40 },
+    "Ukraine": { corporate: 18, individual: 18 },
+    "United Arab Emirates": { corporate: 9, individual: 0 },
+    "United Kingdom": { corporate: 25, individual: 20 },
+    "United States": { corporate: 21, individual: 20 },
+    "Uruguay": { corporate: 25, individual: 12 },
+    "Uzbekistan": { corporate: 15, individual: 12 },
+    "Venezuela": { corporate: 34, individual: 34 },
+    "Vietnam": { corporate: 20, individual: 20 },
+    "Zambia": { corporate: 0, individual: 0 },
+    "Zimbabwe": { corporate: 20, individual: 20 }
+};
+
+// Add a search functionality to the country dropdown
+const searchCountry = (searchText) => {
+    const countrySelect = document.getElementById('country');
+    countrySelect.innerHTML = '<option value="">Select a country</option>';
+    
+    Object.keys(taxRates)
+        .filter(country => country.toLowerCase().includes(searchText.toLowerCase()))
+        .sort()
+        .forEach(country => {
+            const option = document.createElement('option');
+            option.value = country;
+            option.textContent = country;
+            countrySelect.appendChild(option);
+        });
+};
+
+// Add search input
+document.querySelector('.fee-calc-form-row').insertAdjacentHTML('afterbegin', `
+    <div class="fee-calc-form-row">
+        <label for="countrySearch">Search Country:</label>
+        <input type="text" id="countrySearch" class="fee-calc-form-input" placeholder="Type to search countries">
+    </div>
+`);
+
+document.getElementById('countrySearch').addEventListener('input', (e) => {
+    searchCountry(e.target.value);
+});
+
+// Initial population of dropdown
+searchCountry('');
+
+// Update tax info when country changes
+countrySelect.addEventListener('change', function() {
+    const country = this.value;
+    if (country && taxRates[country]) {
+        const rates = taxRates[country];
+        document.getElementById('countryTaxInfo').innerHTML = `
+            <strong>Corporate Tax Rate:</strong> ${rates.corporate}%<br>
+            <strong>Individual Tax Rate:</strong> ${rates.individual}%
+        `;
+    } else {
+        document.getElementById('countryTaxInfo').textContent = 'Please select a country to see tax rates.';
+    }
+});
+
+function calculateTax() {
+    const country = document.getElementById('country').value;
+    if (!country) {
+        alert('Please select a country');
+        return;
+    }
+
+    const buyPrice = parseFloat(document.getElementById('buyPrice').value) || 0;
+    const sellPrice = parseFloat(document.getElementById('sellPrice').value) || 0;
+    const btcAmount = parseFloat(document.getElementById('btcAmount').value) || 0;
+
+    const totalBuy = buyPrice * btcAmount;
+    const totalSell = sellPrice * btcAmount;
+    const capitalGains = totalSell - totalBuy;
+
+    const rates = taxRates[country];
+    const corporateTax = (capitalGains * rates.corporate) / 100;
+    const individualTax = (capitalGains * rates.individual) / 100;
+
+    document.getElementById('capitalGains').textContent = capitalGains.toFixed(2);
+    document.getElementById('corporateTax').textContent = corporateTax.toFixed(2);
+    document.getElementById('individualTax').textContent = individualTax.toFixed(2);
+}
+
+document.getElementById('calculate').addEventListener('click', calculateTax);
+</script>
