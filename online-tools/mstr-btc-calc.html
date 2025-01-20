@@ -1,0 +1,351 @@
+---
+layout: page
+title: MSTR to BTC Calculator
+seotitle: "MSTR to BTC Calculator - Convert MicroStrategy Shares to Bitcoin"
+full-width: yes
+permalink: "/mstr-btc-calculator/"
+capture: yes
+---
+
+<div class="fee-calc-wrapper">
+    <div class="fee-calc-form">
+        <form id="mstrForm">
+            <div class="toggle-wrapper">
+                <label class="switch">
+                    <input type="checkbox" id="conversionToggle">
+                    <span class="slider round"></span>
+                </label>
+                <span class="toggle-label">Convert BTC to MSTR</span>
+            </div>
+            <div class="share-type-selector">
+                <label class="radio-label">
+                    <input type="radio" name="shareType" value="regular" checked>
+                    Regular Shares (245,459,000)
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="shareType" value="diluted">
+                    Diluted Shares (281,418,000)
+                </label>
+            </div>
+            <div class="entry-row">
+                <input type="number" id="inputAmount" step="any" placeholder="Enter Amount" required>
+            </div>
+            <div class="fee-calc-form-row">
+                <button type="button" class="btn btn-primary" id="calculate">Calculate</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="form-results-wrapper">
+        <div class="form-results-wrapper-inner">
+            <div>
+                <div class="form-results-main-col">
+                    <div class="form-results-col-number is--large">
+                        <span id="btcAmount">0</span>
+                    </div>
+                    <div class="form-results-col-label">
+                        BTC Amount
+                    </div>
+                </div>
+
+                <div class="form-results-row-inner">
+                    <div class="form-results-col">
+                        <div class="form-results-col-number">
+                            <span id="mstrDisplay">0</span>
+                        </div>
+                        <div class="form-results-col-label">
+                            MSTR Shares
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>What is MSTR?</h2>
+<p>
+    MSTR (MicroStrategy) is a publicly traded company that holds a significant amount of Bitcoin on its balance sheet. By owning MSTR shares, investors gain indirect exposure to Bitcoin through the company's Bitcoin holdings.
+</p>
+
+<p>
+    <strong>Note on Share Count:</strong> While MicroStrategy has 245,459,000 regular outstanding shares, this calculator uses the fully diluted share count of 281,418,000. The diluted count includes potential additional shares from convertible securities and stock options, providing a more conservative estimate of Bitcoin exposure per share.
+</p>
+
+<h2>Why Use This Calculator?</h2>
+<p>
+    This calculator helps you:
+</p>
+<ul>
+    <li>Convert your MSTR holdings to their equivalent Bitcoin exposure</li>
+    <li>Calculate how many MSTR shares you need for a target Bitcoin exposure</li>
+    <li>Understand your indirect Bitcoin holdings through MicroStrategy shares</li>
+    <li>Compare MSTR investment with direct Bitcoin holdings</li>
+</ul>
+
+<style>
+.entry-row {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.entry-row input {
+    background: #FFFFFF;
+    border: 1px solid #D8D8D8;
+    border-radius: 8px;
+    padding: 14px 19px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    color: #4B5066;
+    width: 100%;
+}
+
+.btn {
+    background: #FFFFFF;
+    border: 1px solid #D8D8D8;
+    border-radius: 8px;
+    padding: 14px 19px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.btn-primary {
+    background: #3D79C0;
+    color: white;
+    border-color: #3D79C0;
+}
+
+.fee-calc-wrapper {
+    display: flex;
+    grid-gap: 45px;
+    justify-content: space-between;
+    max-width: 820px;
+    margin-bottom: 50px;
+}
+
+.fee-calc-form {
+    width: 100%;
+}
+
+.form-results-wrapper {
+    max-width: 320px;
+    margin-top: 20px;
+    width: 100%;
+    background: #3D79C0;
+    border-radius: 8px;
+    padding: 17px;
+}
+
+.form-results-main-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 25px;
+    border-bottom: 1px solid #2C61A0;
+}
+
+.form-results-col-number {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+}
+
+.form-results-col-number.is--large {
+    font-size: 60px;
+    line-height: 73px;
+    margin-bottom: 5px;
+}
+
+.form-results-col-label {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    color: #FFFFFF;
+}
+
+.form-results-row-inner {
+    display: flex;
+    justify-content: space-around;
+    grid-gap: 40px;
+    margin-top: 25px;
+}
+
+h2 {
+    margin-bottom: 25px;
+    margin-top: 50px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+p {
+    color: #98A2B3;
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 23px;
+}
+
+@media(max-width: 750px) {
+    .fee-calc-wrapper {
+        flex-direction: column;
+        grid-gap: 0px;
+    }
+    .form-results-wrapper {
+        max-width: 100%;
+    }
+}
+
+.toggle-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.toggle-label {
+    color: #4B5066;
+    font-size: 16px;
+}
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #3D79C0;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.share-type-selector {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4B5066;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.radio-label input[type="radio"] {
+    margin: 0;
+    cursor: pointer;
+}
+</style>
+
+<script>
+    // MSTR shares per BTC ratios
+    const REGULAR_SHARES_PER_BTC = 1291.89; // 245.459M shares / 190K BTC
+    const DILUTED_SHARES_PER_BTC = 1481.15; // 281.418M shares / 190K BTC
+
+    function getSharesPerBTC() {
+        const shareType = document.querySelector('input[name="shareType"]:checked').value;
+        return shareType === 'regular' ? REGULAR_SHARES_PER_BTC : DILUTED_SHARES_PER_BTC;
+    }
+
+    function updatePlaceholder() {
+        const input = document.getElementById('inputAmount');
+        const isBtcToMstr = document.getElementById('conversionToggle').checked;
+        input.placeholder = isBtcToMstr ? 'Enter BTC Amount' : 'Enter MSTR Shares Amount';
+    }
+
+    function calculate() {
+        const inputAmount = parseFloat(document.getElementById('inputAmount').value) || 0;
+        const isBtcToMstr = document.getElementById('conversionToggle').checked;
+        const sharesPerBTC = getSharesPerBTC();
+        
+        let btcAmount, mstrAmount;
+        
+        if (isBtcToMstr) {
+            btcAmount = inputAmount;
+            mstrAmount = inputAmount * sharesPerBTC;
+        } else {
+            mstrAmount = inputAmount;
+            btcAmount = inputAmount / sharesPerBTC;
+        }
+
+        document.getElementById('btcAmount').textContent = btcAmount.toFixed(8);
+        document.getElementById('mstrDisplay').textContent = mstrAmount.toFixed(2);
+    }
+
+    document.getElementById('calculate').addEventListener('click', calculate);
+    document.getElementById('inputAmount').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            calculate();
+        }
+    });
+    
+    document.getElementById('conversionToggle').addEventListener('change', function() {
+        updatePlaceholder();
+        calculate();
+    });
+
+    // Add listener for share type changes
+    document.querySelectorAll('input[name="shareType"]').forEach(radio => {
+        radio.addEventListener('change', calculate);
+    });
+
+    // Initialize placeholder
+    updatePlaceholder();
+</script> 
