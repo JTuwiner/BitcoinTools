@@ -1,0 +1,6 @@
+
+/* Don't let the tables overflow the container. This will make the tables scrollable on smaller screens. */
+table {
+  table-layout: fixed;
+  width: 100%;
+}
