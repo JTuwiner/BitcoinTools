@@ -78,13 +78,9 @@ capture: yes
   }
 
   function parseNumber(input) {
+    if (!input) return 0;
     const number = parseFloat(input.replace(/[^0-9.]+/g, ''));
-
-    if (isNaN(number)) {
-      return 0;
-    } else {
-      return number;
-    }
+    return isNaN(number) ? 0 : number;
   }
 
   let debounceTimer;
@@ -110,13 +106,13 @@ capture: yes
           let usdValue = satoshiToUsd(parsed, bitcoinPriceNow);
 
           jQuery("#btc-field").val(normalizeNumber(btcValue, 8, 8));
-          jQuery("#btus-stus").val(normalizeNumber(usdValue, 0, 2));
+          jQuery("#btus-stus").val(normalizeNumber(usdValue, 2, 8));
         });
       });
       jQuery("#btus-stus").bind("input", function() {
         let raw = jQuery("#btus-stus").val();
         let parsed = parseNumber(raw);
-        jQuery("#btus-stus").val(normalizeNumber(raw, 0, 2));
+        jQuery("#btus-stus").val(normalizeNumber(raw, 2, 8));
 
         getBitcoinPriceAnd(function(bitcoinPriceNow) {
           let btcValue = usdToBtc(parsed, bitcoinPriceNow);
@@ -136,7 +132,7 @@ capture: yes
           let usdValue = btcToUsd(parsed, bitcoinPriceNow);
           let satoshiValue = btcToSatoshi(parsed);
 
-          jQuery("#btus-stus").val(normalizeNumber(usdValue, 0, 2));
+          jQuery("#btus-stus").val(normalizeNumber(usdValue, 2, 8));
           jQuery("#btu-bts").val(normalizeNumber(satoshiValue, 0, 0));
         });
       });
