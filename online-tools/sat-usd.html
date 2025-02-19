@@ -110,7 +110,7 @@ capture: yes
           let btcValue = satoshiToBtc(parsed);
           let usdValue = satoshiToUsd(parsed, bitcoinPriceNow);
 
-          jQuery("#btc-field").val(normalizeNumber(btcValue, 8, 8));
+          jQuery("#btc-field").val(btcValue.toFixed(8));
           jQuery("#btus-stus").val(normalizeNumber(usdValue, 2, 8));
         });
       });
@@ -123,7 +123,7 @@ capture: yes
           let btcValue = usdToBtc(parsed, bitcoinPriceNow);
           let satoshiValue = usdToSatoshi(parsed, bitcoinPriceNow);
 
-          jQuery("#btc-field").val(normalizeNumber(btcValue, 8, 8));
+          jQuery("#btc-field").val(btcValue.toFixed(8));
           jQuery("#btu-bts").val(normalizeNumber(satoshiValue, 0, 0));
         });
       });
@@ -131,7 +131,7 @@ capture: yes
       jQuery("#btc-field").bind("input", function() {
         let raw = jQuery("#btc-field").val();
         let parsed = parseNumber(raw);
-        jQuery("#btc-field").val(normalizeNumber(raw, 0, 8));
+        jQuery("#btc-field").val(parsed.toFixed(8));
 
         getBitcoinPriceAnd(function(bitcoinPriceNow) {
           let usdValue = btcToUsd(parsed, bitcoinPriceNow);
