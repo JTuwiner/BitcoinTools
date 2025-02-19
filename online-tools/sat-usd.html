@@ -11,7 +11,7 @@ capture: yes
 
 <script type="text/javascript">  
   jQuery.get( "https://satochi.co/latest", function( data ) {
-    var bitcoinPriceNow = data.Price
+    var bitcoinPriceNow = parseFloat(data.Price)
     document.getElementById("1-s-usd").innerHTML = '<i class="fa fa-spinner rotating"></i>'
     document.getElementById("10-s-usd").innerHTML = '<i class="fa fa-spinner rotating"></i>'
     document.getElementById("100-s-usd").innerHTML = '<i class="fa fa-spinner rotating"></i>'
@@ -88,7 +88,7 @@ capture: yes
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
       jQuery.get( "https://satochi.co/latest", function( data ) {
-        let bitcoinPriceNow = data.Price
+        let bitcoinPriceNow = parseFloat(data.Price)
         callback(bitcoinPriceNow);
       });
     }, 500);
