@@ -547,7 +547,21 @@ layout: base
                     <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.trustpilot }}</p>
+                  <p class="exchanges-details-side-subtitle">
+                    {% assign rating = exchange1_page.trustpilotrating | times: 1.0 %}
+                    <svg width="60" height="30">
+                      {% if rating <= 2 %}
+                        <rect width="60" height="30" rx="4" fill="#ffebee"/>
+                        <text x="30" y="20" text-anchor="middle" fill="#d32f2f" font-size="16" font-weight="bold">{{ rating }}</text>
+                      {% elsif rating == 3 %}
+                        <rect width="60" height="30" rx="4" fill="#fff3e0"/>
+                        <text x="30" y="20" text-anchor="middle" fill="#f57c00" font-size="16" font-weight="bold">{{ rating }}</text>
+                      {% else %}
+                        <rect width="60" height="30" rx="4" fill="#e8f5e9"/>
+                        <text x="30" y="20" text-anchor="middle" fill="#2e7d32" font-size="16" font-weight="bold">{{ rating }}</text>
+                      {% endif %}
+                    </svg>
+                  </p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -555,7 +569,21 @@ layout: base
                     <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.trustpilot }}</p>
+                  <p class="exchanges-details-side-subtitle">
+                    {% assign rating = exchange2_page.trustpilotrating | times: 1.0 %}
+                    <svg width="60" height="30">
+                      {% if rating <= 2 %}
+                        <rect width="60" height="30" rx="4" fill="#ffebee"/>
+                        <text x="30" y="20" text-anchor="middle" fill="#d32f2f" font-size="16" font-weight="bold">{{ rating }}</text>
+                      {% elsif rating == 3 %}
+                        <rect width="60" height="30" rx="4" fill="#fff3e0"/>
+                        <text x="30" y="20" text-anchor="middle" fill="#f57c00" font-size="16" font-weight="bold">{{ rating }}</text>
+                      {% else %}
+                        <rect width="60" height="30" rx="4" fill="#e8f5e9"/>
+                        <text x="30" y="20" text-anchor="middle" fill="#2e7d32" font-size="16" font-weight="bold">{{ rating }}</text>
+                      {% endif %}
+                    </svg>
+                  </p>
                 </div>
               </div>
             </div>
