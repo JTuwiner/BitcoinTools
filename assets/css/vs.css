@@ -1,0 +1,623 @@
+
+.vs-related-comparisons {
+  margin-top: 50px;
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+  margin-bottom: 40px;
+}
+
+.vs-related-comparisons a {
+  color: #000 !important;
+}
+
+.two-column-list {
+  column-count: 1;
+}
+
+@media (min-width: 768px) {
+  .two-column-list {
+    column-count: 2;
+    column-gap: 40px;
+  }
+  
+  .two-column-list li {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+.vs-related-comparisons h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #000 !important;  
+}
+
+.vs-related-comparisons li {
+  list-style: none;
+  list-style-type: none;
+}
+
+  .exchanges-details-card {
+      display: grid;
+      grid-template-columns: 28% 72%;
+      align-items: flex-start;
+      margin-bottom: 30px;
+  }
+  .exchanges-details-right {
+      background: white;
+      border-radius: 15px;
+      padding: 0px 15px;
+      display: flex;
+      grid-gap: 1px;
+  }
+  .exchanges-details-side {
+      padding-top: 20px;
+      padding-bottom: 20px;
+  }
+  .exchanges-details-right .exchanges-details-side:first-child {
+      padding-right: 10px;
+  }
+  .exchanges-details-right .exchanges-details-side:last-child {
+      border-left: 1px solid rgb(244, 246, 250);
+      padding-left: 20px;
+      opacity: 0.99;
+  }
+  .exchange-details-wrapper {
+      padding-top: 50px;
+      margin-bottom: 100px;
+  }
+
+  .exchanges-details-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: black;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+  }
+  .exchanges-details-side {
+      flex: 1;
+  }
+  .exchanges-details-side ul {
+      font-size: 16px;
+      padding-left: 30px;
+  }
+  .exchanges-details-side-subtitle {
+      font-size: 16px;
+  }
+  .exchanges-details-img {
+      width: 35px;
+      margin-right: 7px;
+      border-radius: 5px;
+  }
+
+
+  html, body {
+      scroll-behavior: smooth;
+  }
+
+  .vs-compare-content {
+    background: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+    color: black;
+    padding: 10px 25px !important;
+  }
+
+  .vs-compare-content table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .compare-bright-section {
+      background: #eff5ff;
+      width: 100vw;
+      margin: 40px auto 0 auto;
+      border-top-right-radius: 20px;
+      border-top-left-radius: 20px;
+  }
+  .compare-bright-container {
+      max-width: 1200px;
+      margin: 0 auto;
+  }
+  .sticky-compare-cta.fixed {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0px;
+      z-index: 500000;
+      width: 600px;
+      padding: 5px 15px 0px 15px;
+      border-top-right-radius: 20px;
+      border-top-left-radius: 20px;
+      height: 100px;
+      background: white;
+      transition: 0.5s;
+      box-shadow: 0 0 #0000,0 0 #0000,0 0 #0000,0 0 #0000,0px -10px 20px rgba(0,0,0,0.1);
+  }
+  .sticky-compare-cta-inner {
+      margin: 0 auto;
+      padding: 15px 0px;
+      display: flex;
+      justify-content: space-between;
+      grid-gap: 0px 25px;
+  }
+  .sticky-compare-cta.fixed .sticky-compare-cta-inner {
+      grid-gap: 0px 20px;
+  }
+
+  .sticky-compare-cta-col {
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+  }
+  .sticky-compare-cta-button {
+      background: #f2a900;
+      color: #020617 !important;
+      padding: 12px 21px 16px 21px;
+      text-align: center;
+      border-radius: 10px;
+      grid-gap: 20px;
+      font-size: 16px;
+      display: inline-block;
+      justify-content: space-between;
+      font-weight: 600;
+      transition: 0.25s;
+      width: 100%;
+  }
+  .sticky-compare-cta-button:hover,
+  .sticky-compare-cta-button:focus {
+      text-decoration: none;
+      color: white !important;
+      background: #000;
+      box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000, 0px 2px 4px -1px rgb(0 0 0/20%),0px 4px 5px 0px rgb(0 0 0/14%),0px 1px 10px 0px rgb(0 0 0/12%);
+  }
+  .section-left-heading {
+      text-align: left;
+      font-size: 18px;
+      margin-top: 0px;
+      max-width: 300px;
+      color: black !important;
+      line-height: 26px;
+  }
+  body .compare-bright-section-header {
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #020617;
+      margin-bottom: 65px;
+      padding: 0 15px !important;
+  }
+  .compare-bright-section-toc-list {
+      display: flex;
+      list-style: none;
+      justify-content: center;
+      grid-gap: 15px;
+      flex-wrap: wrap;
+      opacity: 1;
+      padding: 0;
+  }
+  .compare-bright-section-toc-link {
+    background: #f2a900 !important;
+    color: black !important; 
+      padding: 5px 10px 7px;
+      border-radius: 100px;
+      text-decoration: none;
+      font-size: 16px;
+  }
+  .compare-bright-section-toc-link:hover,
+  .compare-bright-section-toc-link:focus {
+      color: white !important;
+      text-decoration: underline;
+  }
+  .compare-bright-section-heading {
+      text-align: center;
+      font-size: 34px;
+      color: black;
+      margin-bottom: 20px;
+      padding-bottom: 0px;
+  }
+
+  .sticky-compare-cta-button svg {
+      width: 20px;
+      margin-left: 11px;
+      top: 5px;
+      left: 0px;
+      transition: 0.25s;
+  }
+  .sticky-compare-cta-button.is--dark {
+      background: rgb(1, 3, 35);
+      color: white;
+  }
+  .sticky-compare-cta-button.is--dark:hover {
+      background: #2679C6;
+      color: white;
+  }
+  .post-inner-wrapper {
+      max-width: 100vw;
+      margin-left: auto;
+      margin-right: auto;
+  }
+  .navbar-inverse {
+      background-color: rgb(1, 3, 35) !important;
+  }
+
+  .navbar-nav .btn-default {
+      background-color: rgb(1, 3, 35) !important;
+  }
+  .bw-body .container-bw {
+      padding-top: 0 !important;
+      max-width: 100vw !important;
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+      background: linear-gradient(180deg, rgb(1, 3, 35), #2679C6);
+      padding-bottom: 0px !important;
+  }
+  .bw-body .container-bw .simplified-page {
+      margin-top: 0 !important;
+      background: transparent !important;
+      padding: 40px 30px 40px 30px !important;
+  }
+  .bw-body .container-bw .post-title-main {
+      text-align: center !important;
+      color: white !important;
+      font-size: 35px;
+  }
+  .compare-exchanges {
+      max-width: 670px;
+      margin-left: auto;
+      min-height: 370px;
+      border: 0px !important;
+      color: black;
+      margin-right: auto;
+      background: transparent !important;
+  }
+  .compare-exchanges.is--table {
+      max-width: 100%;
+  }
+  .compare-exchanges-inner {
+      display: flex;
+      justify-content: space-between;
+      grid-gap: 25px;
+      margin-bottom: 5px;
+  }
+  .exchange-card {
+      background: rgb(23, 35, 66);
+      padding: 20px 0px;
+      flex: 1;
+      border-radius: 10px;
+      min-width: 275px;
+  }
+  .exchange-card-top {
+      border-bottom: 1px solid rgba(1, 3, 35, 0.4);
+      padding-bottom: 20px;
+  }
+  .header-exchange-winner {
+      font-size: 16px;
+      color: rgb(239, 208, 122);
+      font-weight: 600;
+      text-align: center;
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .header-exchange-winner.is--runnerup {
+      color: #E8EEFC;
+  }
+  .compare-exchange-cta {
+      margin-top: 0px;
+  }
+  .header-exchange-winner-icon {
+      width: 17px;
+      margin-right: 7px;
+  }
+  .exchange-card-bottom {
+      padding-top: 20px;
+  }
+  .header-exchange-label {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      padding-top: 5px;
+      text-align: center;
+      font-weight: 400;
+  }
+  .header-exchange-logo-wrapper {
+      background: white;
+      width: 75px;
+      height: 75px;
+      margin: -60px auto 20px auto;
+      align-items: center;
+      border-radius: 6px;
+      justify-content: center;
+      display: flex;
+      padding-bottom: 0;
+  }
+
+  .header-exchange-logo-wrapper img {
+      width: 95%;
+      display: block;
+      box-shadow: transparent 0 0 0 0, transparent 0 0 0 0, rgb(0 0 0 / 10%) 0 10px 15px -3px, rgb(0 0 0 / 10%) 0 4px 6px -4px;
+      border-radius: 5px;
+  }
+  .item-rating {
+      margin-bottom: 0px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 5px;
+      width: 130px;
+  }
+
+  .item-rating img {
+      width: 100% !important;
+      box-shadow: unset !important;
+      height: 22px;
+  }
+
+  .compare-exchanges th, .compare-exchanges td {
+      background: transparent;
+      border-right: none !important;
+      border-left: none !important;
+      border-bottom: none;
+  }
+  .compare-exchanges td {
+      padding-top: 25px !important;
+      opacity: 1;
+  }
+
+  .compare-exchanges thead {
+      text-align: center;
+  }
+
+  .compare-exchanges .center-this {
+      text-align: center;
+      font-weight: 600 !important;
+  }
+
+  .header-exchange-name {
+      text-align: center;
+      font-size: 21px !important;
+      font-weight: 600;
+      color: white;
+      background: transparent !important;
+  }
+  table {
+      border-collapse:separate;
+      border-spacing:0 25px;
+  }
+  table tr {
+      background: white !important;
+  }
+  table tr:nth-child(2n) {
+      background-color: white !important;
+  }
+  .row-divider {
+      width: 100%;
+      height: 30px;
+      background: transparent;
+  }
+
+  .header-exchange-summary {
+      padding-bottom: 20px !important;
+      padding-left: 0px !important;
+      opacity: 1;
+  }
+  .exchange-countries ul {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 15px;
+      list-style: none;
+  }
+
+  .exchange-header-info {
+      background: white !important;
+      color: #4A4B4E !important;
+      font-weight: 600 !important;
+      border-bottom: 1px solid #4A4B4E !important;
+      text-align: center;
+      padding-bottom: 15px !important;
+      font-size: 18px !important;
+  }
+
+  .compare-exchanges .fa-check {
+      color: green;
+      font-size: 30px !important;
+  }
+
+  .compare-exchanges .fa-times {
+      color: red;
+      font-size: 30px !important;
+  }
+
+  .extra-padding {
+      padding: 35px !important;
+  }
+  @media(max-width: 1050px) {
+      .post-inner-wrapper {
+          padding-left: 0px;
+          padding-right: 0px;
+      }
+      .compare-exchanges {
+          padding-left: 25px;
+          padding-right: 25px;
+          padding-top: 20px;
+      }
+      .compare-exchanges.is--table {
+          padding-left: 0px;
+          padding-right: 0px;
+      }
+      .exchanges-details-card {
+          grid-template-columns: 30% 70%;
+      }
+      .section-left-heading {
+          font-size: 16px;
+          max-width: 250px;
+          line-height: 24px;
+          margin-left: 10px;
+      }
+      .compare-exchanges-inner {
+          grid-gap: 20px;
+      }
+      .header-exchange-logo-wrapper {
+          width: 65px;
+          height: 65px;
+      }
+  }
+  @media(max-width: 700px) {
+      .exchanges-details-card {
+          grid-template-columns: 1fr;
+      }
+      .bw-body .container-bw .simplified-page {
+          padding: 30px 15px !important;
+      }
+      .bw-body .container-bw .post-title-main {
+          font-size: 30px;
+      }
+      .exchange-countries ul {
+          grid-template-columns: 1fr;
+      }
+      .sticky-compare-cta.fixed {
+          width: 90vw;
+          padding: 5px 0px 0px 0px;
+      }
+  }
+
+  @media(max-width: 500px) {
+      .compare-bright-section-heading {
+          font-size: 28px;
+      }
+      .compare-exchanges-inner {
+          flex-direction: column;
+          grid-row-gap: 80px;
+      }
+      .sticky-compare-cta-inner {
+          flex-direction: column;
+          grid-row-gap: 25px;
+          margin-top: 20px;
+          margin-left: auto;
+          margin-right: auto;
+      }
+      .sticky-compare-cta.fixed .sticky-compare-cta-inner {
+          flex-direction: row;
+          padding: 0px 12px;
+          grid-gap: 13px;
+      }
+      .sticky-compare-cta-button.is--dark {
+          padding: 10px 10px 14px 10px;
+          font-size: 14px;
+      }
+      .sticky-compare-cta-button.is--dark svg {
+          margin-left: 7px;
+          width: 17px;
+          top: 4px;
+      }
+  }
+
+  .vscompare-body .byline.has-tooltip,  .vscompare-body .fact-checked-by {
+    justify-content: center !important;
+    color: white !important;
+    margin-bottom: 91px;
+  }
+
+  html .vscompare-body .fact-checked-by {
+    margin-bottom: 90px !important;
+  }
+
+  .vscompare-body .byline.has-tooltip a, .vscompare-body .fact-checked-by a {
+    color: white !important;
+  }
+
+              .score-good, .score-medium, .score-poor {
+                font-weight: bold;
+                padding: 2px 9px 3px 9px;
+                border-radius: 10px;
+                display: inline-block;
+              }
+
+              .score-good {
+                background-color: #dbf5ec;
+                color: #11b981;
+              }
+              
+              .score-medium {
+                background-color: #fff3dc; 
+                color: #ffd700;
+              }
+              
+              .score-poor {
+                background-color: #ffe5e5;
+                color: #ff0000;
+              }
+
+              .info-tooltip {
+                position: relative;
+                display: inline-block;
+                margin-left: 8px;
+                cursor: help;
+                color: #0066cc;
+                vertical-align: middle;
+              }
+              
+              .info-tooltip .tooltip-text {
+                visibility: hidden;
+                width: 300px;
+                background-color: #FFDDAE;
+                color: #000;
+                text-align: left;
+                border-radius: 6px;
+                padding: 10px;
+                position: absolute;
+                z-index: 1;
+                bottom: 125%;
+                right: 0;
+                opacity: 0;
+                transition: opacity 0.2s;
+              }
+              
+              @media screen and (max-width: 768px) {
+                .info-tooltip .tooltip-text {
+                  width: 200px;
+                  right: -50px;
+                }
+              }
+              
+              @media screen and (max-width: 383px) {
+                .info-tooltip .tooltip-text {
+                  width: 150px;
+                  right: -30px;
+                }
+              }
+              
+              .info-tooltip:hover .tooltip-text {
+                visibility: visible;
+                opacity: 1;
+              }
+              
+              .info-tooltip .tooltip-text::after {
+                content: "";
+                position: absolute;
+                top: 100%;
+                right: 50px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: #FFDDAE transparent transparent transparent;
+              }
+              
+              @media screen and (max-width: 768px) {
+                .info-tooltip .tooltip-text::after {
+                  right: 60px;
+                }
+              }
+              
+              @media screen and (max-width: 383px) {
+                .info-tooltip .tooltip-text::after {
+                  right: 40px;
+                }
+              }
+
+              .rating-wrapper {
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+              }

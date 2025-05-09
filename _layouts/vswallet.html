@@ -1,0 +1,462 @@
+---
+layout: base
+---
+<h1 style="text-align: center; width: 100%;margin-bottom: 85px;">{{ page.title }}</h1>
+<div class="post-inner-wrapper">
+    {%- assign exchange1_page = site.pages | where: "title", page.wallet1 | first -%}
+    {%- assign exchange2_page = site.pages | where: "title", page.wallet2 | first -%}
+    <div class="compare-exchanges-inner">
+      <div class="exchange-card">
+        <div class="exchange-card-top">
+          <div class="header-exchange-logo-wrapper">
+            <img src="/img/{{ exchange1_page.img }}">
+          </div>
+          <div class="header-exchange-name">{{ exchange1_page.title }}</div>
+        </div>
+        <div class="exchange-card-bottom">
+          {% include item-rating.html rating=exchange1_page.rating %}
+          <div class="header-exchange-label">Overall Rating</div>
+        </div>
+      </div>
+      <div class="exchange-card">
+        <div class="exchange-card-top">
+          <div class="header-exchange-logo-wrapper">
+            <img src="/img/{{ exchange2_page.img }}">
+          </div>
+          <div class="header-exchange-name">{{ exchange2_page.title }}</div>
+        </div>
+        <div class="exchange-card-bottom">
+          {% include item-rating.html rating=exchange2_page.rating %}
+          <div class="header-exchange-label">Overall Rating</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="compare-exchange-cta">
+        {% include sticky-compare-cta.html 
+          exchange1=exchange1_page.title
+          exchange2=exchange2_page.title
+          exchange1Link=exchange1_page.link
+          exchange2Link=exchange2_page.link
+        %}
+    </div>
+    <script>
+      window.addEventListener('load', (event) => {
+        document.querySelectorAll('.sticky-compare-cta-button').forEach((button, index) => {
+          button.addEventListener('click', event => {
+            if (index === 0) {
+              fathom.trackEvent('Click Any Exchange');
+              fathom.trackEvent('Click Exchange: {{ exchange1_page.title }}');
+            } else {
+              fathom.trackEvent('Click Any Exchange');
+              fathom.trackEvent('Click Exchange: {{ exchange2_page.title }}');
+            }
+          });
+        });
+      });
+    </script>
+
+    <div id="sticky-cta">
+      <a href="{{ exchange1_page.link }}" target="_blank" id="sticky-cta-1">
+        <img src="/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }} logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px; border-radius: 50%;">
+        Visit {{ exchange1_page.title }}
+      </a>
+      <a href="{{ exchange2_page.link }}" target="_blank" id="sticky-cta-2">
+        <img src="/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }} logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px; border-radius: 50%;">
+        Visit {{ exchange2_page.title }}
+      </a>
+    </div>
+
+    <script>
+      window.addEventListener('load', (event) => {
+        document.getElementById('sticky-cta-1').addEventListener('click', event => {
+          fathom.trackEvent('Click Any Exchange');
+          fathom.trackEvent('Click Exchange: {{ exchange1_page.title }}');
+        });
+        document.getElementById('sticky-cta-2').addEventListener('click', event => {
+          fathom.trackEvent('Click Any Exchange');
+          fathom.trackEvent('Click Exchange: {{ exchange2_page.title }}');
+        });
+        document.querySelectorAll('.vs-related-comparison-link').forEach(link => {
+          link.addEventListener('click', event => {
+            fathom.trackEvent('Click Related Comparison');
+          });
+        });
+        document.querySelectorAll('.vs-review-link').forEach(link => {
+          link.addEventListener('click', event => {
+            fathom.trackEvent('Click Review');
+          });
+        });
+      });
+    </script>
+
+    <style>
+      #sticky-cta {
+        position: fixed;
+        bottom: -100px;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 15px;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        transition: bottom 0.3s ease-in-out;
+        z-index: 1000;
+      }
+
+      #sticky-cta.visible {
+        bottom: 0;
+      }
+
+      #sticky-cta a {
+        padding: 12px 24px;
+        background: #f2a900;
+        color: black !important;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background 0.2s;
+      }
+
+      #sticky-cta a:hover {
+        background: #000;
+        color: #f2a900 !important;
+      }
+    </style>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const stickyCta = document.getElementById('sticky-cta');
+        
+        window.addEventListener('scroll', function() {
+          const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+          
+          if (scrollPercent >= 10) {
+            stickyCta.classList.add('visible');
+          } else {
+            stickyCta.classList.remove('visible');
+          }
+        });
+      });
+    </script>
+
+    <div class="compare-bright-section">
+      <div class="compare-bright-section-header">
+          <div>
+          
+            <h2>Key differences</h2>
+            <ol class="key-differences-list">
+              {% if page.maindifferences.diff1 %}
+                <li>{{ page.maindifferences.diff1 }}</li>
+              {% endif %}
+              {% if page.maindifferences.diff2 %}
+                <li>{{ page.maindifferences.diff2 }}</li>
+              {% endif %}
+              {% if page.maindifferences.diff3 %}
+                <li>{{ page.maindifferences.diff3 }}</li>
+              {% endif %}
+            </ol>
+
+            <style>
+              .key-differences-list {
+                list-style: none;
+                counter-reset: key-differences;
+                padding-left: 0;
+  margin-top: 30px;
+              }
+              
+              .key-differences-list li {
+                counter-increment: key-differences;
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 10px;
+              }
+
+              .key-differences-list li::before {
+                content: counter(key-differences);
+                background: #f2a900;
+                color: black;
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 10px;
+                flex-shrink: 0;
+              }
+            </style>
+          </div>
+
+
+          
+          <br><br>
+        <h2 class="compare-bright-section-heading">{{ exchange1_page.title }} vs {{ exchange2_page.title }} in Comparison</h2>
+        <nav class="compare-bright-section-toc">
+          <ul class="compare-bright-section-toc-list">
+            <li class="compare-bright-section-toc-list-item">
+              <a href="#price" class="compare-bright-section-toc-link">Price</a>
+            </li>
+            <li class="compare-bright-section-toc-list-item">
+              <a href="#screen-size" class="compare-bright-section-toc-link">Screen Size</a>
+            </li>
+            <li class="compare-bright-section-toc-list-item">
+              <a href="#supported-countries" class="compare-bright-section-toc-link">Countries</a>
+            </li>
+            <li class="compare-bright-section-toc-list-item">
+              <a href="#platforms" class="compare-bright-section-toc-link">Platforms</a>
+            </li>
+            <li class="compare-bright-section-toc-list-item">
+              <a href="#supported-coins" class="compare-bright-section-toc-link">Supported Coins</a>
+            </li>
+            <li class="compare-bright-section-toc-list-item">
+              <a href="#secure-elements" class="compare-bright-section-toc-link">Secure Elements</a>
+            </li>
+            <li class="compare-bright-section-toc-list-item">
+              <a href="#open-source" class="compare-bright-section-toc-link">Open Source</a>
+            </li>
+            <li class="compare-bright-section-toc-list-item">
+              <a href="#interfaces" class="compare-bright-section-toc-link">Interfaces</a>
+            </li>
+            <li class="compare-bright-section-toc-list-item">
+              <a href="#size" class="compare-bright-section-toc-link">Size</a>
+            </li>
+          </ul>
+        </nav>
+
+        <script>
+          window.addEventListener('load', (event) => {
+            document.querySelectorAll('.compare-bright-section-toc-link').forEach(link => {
+              link.addEventListener('click', event => {
+                const section = link.getAttribute('href').substring(1);
+                fathom.trackEvent(`Click TOC ${section}`);
+              });
+            });
+          });
+        </script>
+      </div>
+      <div class="compare-bright-container">
+        <div class="exchange-details-wrapper">
+          <div class="compare-exchanges is--table">
+            
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="price">Price</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.price }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.price }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="screen-size">Screen Size</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.screensize }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.screensize }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="supported-countries">Countries</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.countriesvs }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.countriesvs }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="platforms">Platforms</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.platforms }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.platforms }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="supported-coins">Supported Coins</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.supportedcoins }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.supportedcoins }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="secure-elements">Secure Elements</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.secureelements }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.secureelements }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="open-source">Open Source</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.opensource }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.opensource }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="interfaces">Interfaces</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.interfaces }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.interfaces }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="size">Size</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.size }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.size }}</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="vs-compare-content">
+        {{ content }}
+
+        <div class="vs-related-comparisons">
+          <h2>Related Comparisons</h2>
+          <ul class="sidebar-list logo-sidebar two-column-list">
+          {% assign comparison_pages = site.pages | where_exp: "page", "page.maindifferences" | sort: "vssort" %}
+          {% for comparison in comparison_pages %}
+              {% if comparison.title != page.title and (comparison.exchange1 == page.exchange1 or comparison.exchange1 == page.exchange2 or comparison.exchange2 == page.exchange1 or comparison.exchange2 == page.exchange2) %}
+                  {% assign exchange1_page = site.pages | where: "title", comparison.exchange1 | first %}
+                  {% assign exchange2_page = site.pages | where: "title", comparison.exchange2 | first %}
+                  <li>
+                    <a class="vs-related-comparison-link" href="{{ comparison.permalink }}">
+                      <img src="/img/{{ exchange1_page.img }}" style="height:20px;vertical-align:middle;border-radius:100%"> {{ exchange1_page.title }} vs 
+                      <img src="/img/{{ exchange2_page.img }}" style="height:20px;vertical-align:middle;border-radius:100%;margin-left:4px"> {{ exchange2_page.title }}
+                    </a>
+                  </li>
+              {% endif %}
+          {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+    </div> 
+</div>
+
