@@ -311,7 +311,13 @@ layout: base
                     <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.passphrase }}</p>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange1_page.passphrase %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -319,7 +325,13 @@ layout: base
                     <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.passphrase }}</p>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange2_page.passphrase %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
                 </div>
               </div>
             </div>
@@ -332,7 +344,13 @@ layout: base
                     <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.pinprotection }}</p>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange1_page.pinprotection %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -340,7 +358,13 @@ layout: base
                     <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.pinprotection }}</p>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange2_page.pinprotection %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
                 </div>
               </div>
             </div>
