@@ -15,10 +15,10 @@
 }
 
 .section-category-heading {
-  font-size: 29px;
+  font-size: 49px;
   font-weight: 600;
-  color: #000;
-  margin-bottom: 20px;
+  color: #000 !important;
+  margin: 100px 15px;
   text-align: center;
 }
 
