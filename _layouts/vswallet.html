@@ -333,6 +333,39 @@ layout: base
             </div>
 
             <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="passphrase-entry">Passphrase Entry</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange1_page.securityfeatures contains 'passphrase' %}
+                    {{ exchange1_page.passphrasentry }}
+                    {% else %}
+                    -
+                    {% endif %}
+                  </p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange2_page.securityfeatures contains 'passphrase' %}
+                    {{ exchange2_page.passphrasentry }}
+                    {% else %}
+                    -
+                    {% endif %}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
               <h2 class="section-left-heading" id="pin">PIN Protection</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
