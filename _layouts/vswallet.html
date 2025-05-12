@@ -558,7 +558,6 @@ layout: base
               </div>
             </div>
 
-           
             <div class="exchanges-details-card">
               <h2 class="section-left-heading" id="size">Size</h2>
               <div class="exchanges-details-right">
@@ -576,6 +575,33 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange2_page.size }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="weight">Weight</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% assign ounces = exchange1_page.weightingrams | times: 0.035274 | round: 1 %}
+                    {{ exchange1_page.weightingrams }}g ({{ ounces }}oz)
+                  </p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% assign ounces = exchange2_page.weightingrams | times: 0.035274 | round: 1 %}
+                    {{ exchange2_page.weightingrams }}g ({{ ounces }}oz)
+                  </p>
                 </div>
               </div>
             </div>
