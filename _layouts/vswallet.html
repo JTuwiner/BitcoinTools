@@ -643,14 +643,17 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
+                    <ul class="bullet-list">
                     {% for integration in exchange1_page.integrations %}
+                      <li>
                       {% if integration == "Unchained" %}
                         <a href="https://links.bitbo.io/Unchained-Vault">{{ integration }}</a>
                       {% else %}
                         {{ integration }}
                       {% endif %}
-                      {% unless forloop.last %}, {% endunless %}
+                      </li>
                     {% endfor %}
+                    </ul>
                   </p>
                 </div>
     
@@ -660,14 +663,17 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
+                    <ul class="bullet-list">
                     {% for integration in exchange2_page.integrations %}
+                      <li>
                       {% if integration == "Unchained" %}
                         <a href="https://links.bitbo.io/Unchained-Vault">{{ integration }}</a>
                       {% else %}
                         {{ integration }}
                       {% endif %}
-                      {% unless forloop.last %}, {% endunless %}
+                      </li>
                     {% endfor %}
+                    </ul>
                   </p>
                 </div>
               </div>
@@ -682,14 +688,17 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
+                    <ul class="bullet-list">
                     {% for integration in exchange1_page.multisig %}
+                      <li>
                       {% if integration == "Unchained" %}
                         <a href="https://links.bitbo.io/Unchained-Vault">{{ integration }}</a>
                       {% else %}
                         {{ integration }}
                       {% endif %}
-                      {% unless forloop.last %}, {% endunless %}
+                      </li>
                     {% endfor %}
+                    </ul>
                   </p>
                 </div>
     
@@ -699,14 +708,17 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
+                    <ul class="bullet-list">
                     {% for integration in exchange2_page.multisig %}
+                      <li>
                       {% if integration == "Unchained" %}
                         <a href="https://links.bitbo.io/Unchained-Vault">{{ integration }}</a>
                       {% else %}
                         {{ integration }}
                       {% endif %}
-                      {% unless forloop.last %}, {% endunless %}
+                      </li>
                     {% endfor %}
+                    </ul>
                   </p>
                 </div>
               </div>
