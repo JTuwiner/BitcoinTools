@@ -257,7 +257,7 @@ layout: base
               </div>
             </div>
 
-            <div class="exchanges-details-card">
+            <!-- <div class="exchanges-details-card">
               <h2 class="section-left-heading" id="wallet-type">Wallet Type</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
@@ -276,7 +276,28 @@ layout: base
                   <p class="exchanges-details-side-subtitle">{{ exchange2_page.wallettype }}</p>
                 </div>
               </div>
+            </div> -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="launch">Launch</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.launched }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.launched }}</p>
+                </div>
+              </div>
             </div>
+
             <div class="exchanges-details-card">
               <h2 class="section-left-heading" id="screen-size">Screen Size</h2>
               <div class="exchanges-details-right">
@@ -443,6 +464,39 @@ layout: base
                   </div>
                   <p class="exchanges-details-side-subtitle">
                     {% if exchange2_page.securityfeatures contains 'shamirsecret' %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="tor">Tor Support</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange1_page.securityfeatures contains 'tor' %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange2_page.securityfeatures contains 'tor' %}
                     {% include vscheck.html %}
                     {% else %}
                     {% include vsx.html %}
@@ -878,6 +932,27 @@ layout: base
                       {% endif %}
                     </svg>
                   </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="security-incidents">Security Incidents</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.securityincidents }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.securityincidents }}</p>
                 </div>
               </div>
             </div>
