@@ -257,7 +257,8 @@ layout: base
               </div>
             </div>
 
-            <!-- <div class="exchanges-details-card">
+           {% if exchange1_page.wallettype != exchange2_page.wallettype %}
+           <div class="exchanges-details-card">
               <h2 class="section-left-heading" id="wallet-type">Wallet Type</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
@@ -276,7 +277,9 @@ layout: base
                   <p class="exchanges-details-side-subtitle">{{ exchange2_page.wallettype }}</p>
                 </div>
               </div>
-            </div> -->
+            </div>
+            {% endif %}
+            
             <div class="exchanges-details-card">
               <h2 class="section-left-heading" id="launch">Launch</h2>
               <div class="exchanges-details-right">
