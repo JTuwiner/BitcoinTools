@@ -45,11 +45,11 @@ layout: base
         document.querySelectorAll('.sticky-compare-cta-button').forEach((button, index) => {
           button.addEventListener('click', event => {
             if (index === 0) {
-              fathom.trackEvent('Click Any Exchange');
-              fathom.trackEvent('Click Exchange: {{ exchange1_page.title }}');
+              fathom.trackEvent('Click Wallet');
+              fathom.trackEvent('Click Wallet: {{ exchange1_page.title }}');
             } else {
-              fathom.trackEvent('Click Any Exchange');
-              fathom.trackEvent('Click Exchange: {{ exchange2_page.title }}');
+              fathom.trackEvent('Click Wallet');
+              fathom.trackEvent('Click Wallet: {{ exchange2_page.title }}');
             }
           });
         });
