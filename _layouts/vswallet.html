@@ -299,7 +299,6 @@ layout: base
             </div>
 
             <h2 class="section-category-heading" id="security-features">Security Features</h2>
-
             <div class="exchanges-details-card">
               <h2 class="section-left-heading" id="passphrase">Passphrase Support</h2>
               <div class="exchanges-details-right">
@@ -309,7 +308,7 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
-                    {% if exchange1_page.passphrase %}
+                    {% if exchange1_page.securityfeatures contains 'passphrase' %}
                     {% include vscheck.html %}
                     {% else %}
                     {% include vsx.html %}
@@ -323,7 +322,7 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
-                    {% if exchange2_page.passphrase %}
+                    {% if exchange2_page.securityfeatures contains 'passphrase' %}
                     {% include vscheck.html %}
                     {% else %}
                     {% include vsx.html %}
@@ -342,7 +341,7 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
-                    {% if exchange1_page.pinprotection %}
+                    {% if exchange1_page.securityfeatures contains 'pin' %}
                     {% include vscheck.html %}
                     {% else %}
                     {% include vsx.html %}
@@ -356,7 +355,40 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
-                    {% if exchange2_page.pinprotection %}
+                    {% if exchange2_page.securityfeatures contains 'pin' %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="shamir">Shamir Secret Sharing</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange1_page.securityfeatures contains 'shamirsecret' %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange2_page.securityfeatures contains 'shamirsecret' %}
                     {% include vscheck.html %}
                     {% else %}
                     {% include vsx.html %}
@@ -610,7 +642,16 @@ layout: base
                     <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.integrations }}</p>
+                  <p class="exchanges-details-side-subtitle">
+                    {% for integration in exchange1_page.integrations %}
+                      {% if integration == "Unchained" %}
+                        <a href="https://links.bitbo.io/Unchained-Vault">{{ integration }}</a>
+                      {% else %}
+                        {{ integration }}
+                      {% endif %}
+                      {% unless forloop.last %}, {% endunless %}
+                    {% endfor %}
+                  </p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -618,7 +659,55 @@ layout: base
                     <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.integrations }}</p>
+                  <p class="exchanges-details-side-subtitle">
+                    {% for integration in exchange2_page.integrations %}
+                      {% if integration == "Unchained" %}
+                        <a href="https://links.bitbo.io/Unchained-Vault">{{ integration }}</a>
+                      {% else %}
+                        {{ integration }}
+                      {% endif %}
+                      {% unless forloop.last %}, {% endunless %}
+                    {% endfor %}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="multisig">Multisig Support</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% for integration in exchange1_page.multisig %}
+                      {% if integration == "Unchained" %}
+                        <a href="https://links.bitbo.io/Unchained-Vault">{{ integration }}</a>
+                      {% else %}
+                        {{ integration }}
+                      {% endif %}
+                      {% unless forloop.last %}, {% endunless %}
+                    {% endfor %}
+                  </p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% for integration in exchange2_page.multisig %}
+                      {% if integration == "Unchained" %}
+                        <a href="https://links.bitbo.io/Unchained-Vault">{{ integration }}</a>
+                      {% else %}
+                        {{ integration }}
+                      {% endif %}
+                      {% unless forloop.last %}, {% endunless %}
+                    {% endfor %}
+                  </p>
                 </div>
               </div>
             </div>
