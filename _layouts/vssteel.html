@@ -141,7 +141,6 @@ layout: base
         });
       });
     </script>
-
     <div class="compare-bright-section">
       <div class="compare-bright-section-header">
           <div>
@@ -337,6 +336,90 @@ layout: base
               </div>
             </div>
 
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="entry-method">Entry Method</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.entrymethod }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.entrymethod }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="error-handling">Error Handling</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.entry_error_handling }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.entry_error_handling }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="tools-required">Tools Required</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.entry_tool_required }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.entry_tool_required }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="reusability">Reusability</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.reusability }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.reusability }}</p>
+                </div>
+              </div>
+            </div>
+
             <h2 class="section-category-heading" id="durability">Durability</h2>
 
             <div class="exchanges-details-card">
@@ -347,7 +430,7 @@ layout: base
                     <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.fireproof }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.fire_resistance }}</p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -355,20 +438,20 @@ layout: base
                     <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.fireproof }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.fire_resistance }}</p>
                 </div>
               </div>
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="waterproof">Water Resistance</h2>
+              <h2 class="section-left-heading" id="waterproof">Water & Corrosion Resistance</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
                     <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.waterproof }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.water_corrosion }}</p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -376,7 +459,28 @@ layout: base
                     <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.waterproof }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.water_corrosion }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="real-proofs">Real World Proofs</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.real_proofs }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.real_proofs }}</p>
                 </div>
               </div>
             </div>
@@ -405,14 +509,14 @@ layout: base
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="wallet-compatibility">Wallet Compatibility</h2>
+              <h2 class="section-left-heading" id="seed-compatibility">Seed Compatibility</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
                     <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.walletcompatibility }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.seed_compatibility }}</p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -420,7 +524,28 @@ layout: base
                     <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.walletcompatibility }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.seed_compatibility }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="wallet-compatibility">Wallet Compatibility</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.wallet_compatibility }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.wallet_compatibility }}</p>
                 </div>
               </div>
             </div>
@@ -435,7 +560,7 @@ layout: base
                     <img src="/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.tamperevidence }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.tamper_evident }}</p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -443,7 +568,7 @@ layout: base
                     <img src="/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.tamperevidence }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.tamper_evident }}</p>
                 </div>
               </div>
             </div>
