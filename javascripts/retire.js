@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	const retirementYearInput = document.getElementById("retirementYear");
 	const resultDiv = document.getElementById("result");
 
-	const apiUrl = 'https://firebasestorage.googleapis.com/v0/b/buy-bitcoin-worldwide.appspot.com/o/prices%2Fcurrent%2Fbtc%2Fusd.json?alt=media';
+	const apiUrl = 'https://treasuries.bitbo.io/api/price/current/?format=json';
 
 	// Fetch current Bitcoin price and display it
 	$.getJSON(apiUrl, function(data) {
