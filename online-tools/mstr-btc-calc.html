@@ -20,11 +20,11 @@ capture: yes
             <div class="share-type-selector">
                 <label class="radio-label">
                     <input type="radio" name="shareType" value="regular" checked>
-                    Regular Shares (245,459,000)
+                    Regular Shares (278,400,000)
                 </label>
                 <label class="radio-label">
                     <input type="radio" name="shareType" value="diluted">
-                    Diluted Shares (281,418,000)
+                    Diluted Shares (311,846,000)
                 </label>
             </div>
             <div class="entry-row">
@@ -69,7 +69,7 @@ capture: yes
 </p>
 
 <p>
-    <strong>Note on Share Count:</strong> While MicroStrategy has 245,459,000 regular outstanding shares, this calculator uses the fully diluted share count of 281,418,000. The diluted count includes potential additional shares from convertible securities and stock options, providing a more conservative estimate of Bitcoin exposure per share.
+    <strong>Note on Share Count:</strong> While MicroStrategy has 278,400,000 regular outstanding shares, this calculator uses the fully diluted share count of 311,846,000. The diluted count includes potential additional shares from convertible securities and stock options, providing a more conservative estimate of Bitcoin exposure per share.
 </p>
 
 <h2>Why Use This Calculator?</h2>
@@ -295,8 +295,8 @@ input:checked + .slider:before {
 
 <script>
     // MSTR shares per BTC ratios
-    const REGULAR_SHARES_PER_BTC = 1291.89; // 245.459M shares / 190K BTC
-    const DILUTED_SHARES_PER_BTC = 1481.15; // 281.418M shares / 190K BTC
+    const REGULAR_SHARES_PER_BTC = 1465.26; // 278.4M shares / 190K BTC
+    const DILUTED_SHARES_PER_BTC = 1641.29; // 311.846M shares / 190K BTC
 
     function getSharesPerBTC() {
         const shareType = document.querySelector('input[name="shareType"]:checked').value;
