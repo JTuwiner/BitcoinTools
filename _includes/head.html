@@ -69,13 +69,13 @@
 
 {% if page.include_javascript %}
   {% for filename in page.include_javascript %}
-    <script defer src="/javascripts/{{filename}}.js"></script>
+    <script defer src="/tools/javascripts/{{filename}}.js"></script>
   {% endfor %}
 {% endif %}
 
 {% if page.include_module_javascript %}
   {% for filename in page.include_module_javascript %}
-    <script defer type="module" src="/javascripts/{{filename}}.js"></script>
+    <script defer type="module" src="/tools/javascripts/{{filename}}.js"></script>
   {% endfor %}
 {% endif %}
 
