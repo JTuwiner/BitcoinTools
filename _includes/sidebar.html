@@ -58,7 +58,7 @@
       {% for cat in catlist %}
       {% if cat.category %}
       <li>
-        <a title="{{ cat.title }}" class="sidebar-category" href="{{ cat.permalink }}">
+        <a title="{{ cat.title }}" class="sidebar-category" href="/tools{{ cat.permalink }}">
           {% if cat.svgicon %}{{ cat.svgicon }}{% else %}<i class="fa-solid fa-{{ cat.icon }}"></i>{% endif %} {{ cat.title }}
         </a>
       </li>
