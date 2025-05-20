@@ -14,14 +14,14 @@
         }
       </script>
     {% else %}
-      <script src="/tools/{{ js | relative_url }}"></script>
+      <script src="/tools{{ js | relative_url }}"></script>
     {% endif %}
   {% endfor %}
 {% endif %}
 
 {% if site.site-js %}
   {% for js in site.site-js %}
-    <script src="/tools/{{ js | relative_url }}"></script>
+    <script src="/tools{{ js | relative_url }}"></script>
   {% endfor %}
 {% endif %}
 
@@ -33,6 +33,6 @@
 
 {% if page.js %}
   {% for js in page.js %}
-    <script src="/tools/{{ js | relative_url }}"></script>
+    <script src="/tools{{ js | relative_url }}"></script>
   {% endfor %}
 {% endif %}
