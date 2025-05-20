@@ -6,7 +6,26 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="main-navbar">
+  <style>
+    @media (max-width: 800px) {
+      .desktop-nav {
+        display: none;
+      }
+      .mobile-nav {
+        display: block;
+      }
+    }
+    @media (min-width: 801px) {
+      .desktop-nav {
+        display: block;
+      }
+      .mobile-nav {
+        display: none;
+      }
+    }
+  </style>
+
+  <div class="collapse navbar-collapse desktop-nav" id="main-navbar">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" href="/">Bitcoin Tools</a>
@@ -31,6 +50,10 @@
       </li> -->
        
     </ul>
+  </div>
+
+  <div class="mobile-nav">
+    {% include mobilenav.html %}
   </div>
 
   {% if site.navbar-extra %}
