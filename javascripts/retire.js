@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	}).fail(function(_jqXHR, textStatus, errorThrown) {
 		console.error('Error fetching current price data:', textStatus, errorThrown);
 		btcValueInput.value = 'Error fetching price';
-	});
+	}); 
 
 	// Calculate the required growth rate when the button is clicked
 	document.getElementById("calculate").addEventListener("click", function() {
