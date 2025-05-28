@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	const retirementYearInput = document.getElementById("retirementYear");
 	const resultDiv = document.getElementById("result");
 
-	const apiUrl = 'https://treasuries.bitbo.io/api/price/current/?format=json';
+	const apiUrl = 'https://bitcointreasuries-e392a1613714.herokuapp.com/api/price/current/?format=json';
 
 	// Fetch current Bitcoin price and display it
 	$.getJSON(apiUrl, function(data) {
