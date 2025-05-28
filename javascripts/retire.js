@@ -5,11 +5,11 @@ document.addEventListener("DOMContentLoaded", function() {
 	const retirementYearInput = document.getElementById("retirementYear");
 	const resultDiv = document.getElementById("result");
 
-	const apiUrl = 'https://bitcointreasuries-e392a1613714.herokuapp.com/api/price/current/?format=json';
+	const apiUrl = 'https://satochi.co/latest';
 
 	// Fetch current Bitcoin price and display it
 	$.getJSON(apiUrl, function(data) {
-		const currentPrice = data.price;
+		const currentPrice = data.Price;
 		btcValueInput.value = `$${currentPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 	}).fail(function(_jqXHR, textStatus, errorThrown) {
 		console.error('Error fetching current price data:', textStatus, errorThrown);
