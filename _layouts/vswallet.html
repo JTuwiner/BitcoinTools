@@ -982,7 +982,7 @@ layout: base
           <div class="related-comparisons-container" style="display: flex; gap: 40px;">
             <div class="related-wallet-column" style="flex: 1;">
               <h3>{{ page.wallet1 }} vs</h3>
-              <ul class="sidebar-list logo-sidebar">
+              <ul style="padding-left: 0px !important;" class="sidebar-list logo-sidebar">
               {% assign comparison_pages = site.pages | where: "layout", "vswallet" | sort: "vssort" %}
               {% for comparison in comparison_pages %}
                 {% if comparison.title != page.title and (comparison.wallet1 == page.wallet1 or comparison.wallet2 == page.wallet1) %}
@@ -1004,7 +1004,7 @@ layout: base
 
             <div class="related-wallet-column" style="flex: 1;">
               <h3>{{ page.wallet2 }} vs</h3>
-              <ul class="sidebar-list logo-sidebar">
+              <ul style="padding-left: 0px !important;" class="sidebar-list logo-sidebar">
               {% for comparison in comparison_pages %}
                 {% if comparison.title != page.title and (comparison.wallet1 == page.wallet2 or comparison.wallet2 == page.wallet2) %}
                   {% assign other_wallet = comparison.wallet1 %}
