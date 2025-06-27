@@ -978,25 +978,24 @@ layout: base
 
       <div class="vs-compare-content">
         {{ content }}
-
-        <!-- <div class="vs-related-comparisons">
+        <div class="vs-related-comparisons">
           <h2>Related Comparisons</h2>
           <ul class="sidebar-list logo-sidebar two-column-list">
-          {% assign comparison_pages = site.pages | where_exp: "page", "page.maindifferences" | sort: "vssort" %}
+          {% assign comparison_pages = site.pages | where: "layout", "vswallet" | sort: "vssort" %}
           {% for comparison in comparison_pages %}
-              {% if comparison.title != page.title and (comparison.exchange1 == page.exchange1 or comparison.exchange1 == page.exchange2 or comparison.exchange2 == page.exchange1 or comparison.exchange2 == page.exchange2) %}
-                  {% assign exchange1_page = site.pages | where: "title", comparison.exchange1 | first %}
-                  {% assign exchange2_page = site.pages | where: "title", comparison.exchange2 | first %}
+              {% if comparison.title != page.title and (comparison.wallet1 == page.wallet1 or comparison.wallet1 == page.wallet2 or comparison.wallet2 == page.wallet1 or comparison.wallet2 == page.wallet2) %}
+                  {% assign wallet1_page = site.pages | where: "title", comparison.wallet1 | first %}
+                  {% assign wallet2_page = site.pages | where: "title", comparison.wallet2 | first %}
                   <li>
                     <a class="vs-related-comparison-link" href="{{ comparison.permalink }}">
-                      <img src="/img/{{ exchange1_page.img }}" style="height:20px;vertical-align:middle;border-radius:100%"> {{ exchange1_page.title }} vs 
-                      <img src="/img/{{ exchange2_page.img }}" style="height:20px;vertical-align:middle;border-radius:100%;margin-left:4px"> {{ exchange2_page.title }}
+                      <img src="/tools/img/{{ wallet1_page.img }}" style="height:20px;vertical-align:middle;border-radius:100%"> {{ wallet1_page.title }} vs 
+                      <img src="/tools/img/{{ wallet2_page.img }}" style="height:20px;vertical-align:middle;border-radius:100%;margin-left:4px"> {{ wallet2_page.title }}
                     </a>
                   </li>
               {% endif %}
           {% endfor %}
           </ul>
-        </div> -->
+        </div>
       </div>
 
     </div>
