@@ -975,13 +975,12 @@ layout: base
           </div>
         </div>
       </div>
-
-      <div class="vs-compare-content">
+   <div class="vs-compare-content">
         {{ content }}
         <div class="vs-related-comparisons">
           <h2>Related Comparisons</h2>
-          <div class="related-comparisons-container">
-            <div class="related-wallet-column">
+          <div class="related-comparisons-container" style="display: flex; gap: 40px;">
+            <div class="related-wallet-column" style="flex: 1;">
               <h3>{{ page.wallet1 }} vs</h3>
               <ul class="sidebar-list logo-sidebar">
               {% assign comparison_pages = site.pages | where: "layout", "vswallet" | sort: "vssort" %}
@@ -1003,7 +1002,7 @@ layout: base
               </ul>
             </div>
 
-            <div class="related-wallet-column">
+            <div class="related-wallet-column" style="flex: 1;">
               <h3>{{ page.wallet2 }} vs</h3>
               <ul class="sidebar-list logo-sidebar">
               {% for comparison in comparison_pages %}
@@ -1026,6 +1025,4 @@ layout: base
           </div>
         </div>
       </div>
-
     </div>
-</div>
