@@ -987,7 +987,7 @@ layout: base
                   {% assign wallet1_page = site.pages | where: "title", comparison.wallet1 | first %}
                   {% assign wallet2_page = site.pages | where: "title", comparison.wallet2 | first %}
                   <li>
-                    <a class="vs-related-comparison-link" href="{{ comparison.permalink }}">
+                    <a class="vs-related-comparison-link" href="/tools{{ comparison.permalink }}">
                       <img src="/tools/img/{{ wallet1_page.img }}" style="height:20px;vertical-align:middle;border-radius:100%"> {{ wallet1_page.title }} vs 
                       <img src="/tools/img/{{ wallet2_page.img }}" style="height:20px;vertical-align:middle;border-radius:100%;margin-left:4px"> {{ wallet2_page.title }}
                     </a>
