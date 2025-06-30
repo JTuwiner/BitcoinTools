@@ -1,0 +1,34 @@
+---
+layout: null
+sitemap:
+  exclude: 'yes'
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://sitemaps.org/schemas/sitemap/0.9">
+  {% for page in site.pages %}
+    {% unless page.sitemap.exclude == "yes" %}
+      {% unless page.url contains 'index.html' %}
+      	{% unless page.url contains 'style.css' %}
+      <url>
+        <loc>https://bitbo.io/tools{{ page.url | remove: "index.html" }}</loc>
+        {% if page.sitemap.lastmod %}
+          <lastmod>{{ page.sitemap.lastmod | date: "%Y-%m-%d" }}</lastmod>
+        {% elsif page.update %}
+          <lastmod>{{ page.update | date_to_xmlschema }}</lastmod>
+        {% elsif page.date %}
+          <lastmod>{{ page.date | date_to_xmlschema }}</lastmod>
+        {% else %}
+          <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+        {% endif %}
+        {% if page.sitemap.changefreq %}
+          <changefreq>{{ page.sitemap.changefreq }}</changefreq>
+        {% else %}
+          <changefreq>monthly</changefreq>
+        {% endif %}
+          <priority>1.0</priority>
+      </url>
+      	{% endunless %}
+      {% endunless %}
+    {% endunless %}
+  {% endfor %} 
+</urlset>
