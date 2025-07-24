@@ -641,7 +641,7 @@ layout: base
                   {% endif %}
                   {% assign other_wallet_page = site.pages | where: "title", other_wallet | first %}
                   <li>
-                    <a class="vs-related-comparison-link" href="{{ comparison.permalink }}">
+                    <a class="vs-related-comparison-link" href="/tools{{ comparison.permalink }}">
                       <img src="/tools/img/{{ other_wallet_page.img }}" style="height:20px;vertical-align:middle;border-radius:100%;margin-right:4px">
                       {{ other_wallet }}
                     </a>
@@ -662,7 +662,7 @@ layout: base
                   {% endif %}
                   {% assign other_wallet_page = site.pages | where: "title", other_wallet | first %}
                   <li>
-                    <a class="vs-related-comparison-link" href="{{ comparison.permalink }}">
+                    <a class="vs-related-comparison-link" href="/tools{{ comparison.permalink }}">
                       <img src="/tools/img/{{ other_wallet_page.img }}" style="height:20px;vertical-align:middle;border-radius:100%;margin-right:4px">
                       {{ other_wallet }}
                     </a>
