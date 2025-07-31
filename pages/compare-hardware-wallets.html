@@ -87,12 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const wallet2Select = document.getElementById('wallet2');
   
   // Get all available wallets for the first dropdown
-  const allWallets = [
-    {% assign all_wallets = site.pages | where: "layout", "tool" | where: "tool", "yes" | sort: "title" %}
-    {% for wallet in all_wallets %}
-      "{{ wallet.title }}"{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  ];
+  const allWallets = document.getElementById('comparison-data').getAttribute('data-wallets').split(',').filter(wallet => wallet.trim() !== '');
   
   // Get comparison data
   const comparisonData = document.getElementById('comparison-data').getAttribute('data-comparisons');
