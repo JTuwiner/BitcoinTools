@@ -12,51 +12,103 @@ desc: Compare any two hardware wallets side by side with detailed specifications
     Select any two hardware wallets to compare their features, security, and specifications side by side.
   </p>
 
-  <div class="comparison-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 40px;">
-    {% assign comparison_pages = site.pages | where: "layout", "vswallet" | sort: "title" %}
-    {% for comparison in comparison_pages %}
-      {% assign wallet1_page = site.pages | where: "title", comparison.wallet1 | first %}
-      {% assign wallet2_page = site.pages | where: "title", comparison.wallet2 | first %}
-      
-      <div class="comparison-card" style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <div class="comparison-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
-          <div class="wallet-logos" style="display: flex; align-items: center; gap: 10px;">
-            <img src="/tools/img/{{ wallet1_page.img }}" alt="{{ wallet1_page.title }}" style="width: 30px; height: 30px; border-radius: 50%;">
-            <span style="font-weight: bold; color: #666;">vs</span>
-            <img src="/tools/img/{{ wallet2_page.img }}" alt="{{ wallet2_page.title }}" style="width: 30px; height: 30px; border-radius: 50%;">
-          </div>
+  <!-- Wallet Selection Form -->
+  <div class="wallet-selection" style="max-width: 600px; margin: 0 auto; padding: 30px; background: #f8f9fa; border-radius: 8px; margin-bottom: 40px;">
+    <form id="comparison-form">
+      <div style="display: flex; gap: 20px; align-items: center; justify-content: center; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 200px;">
+          <label for="wallet1" style="display: block; margin-bottom: 8px; font-weight: bold;">Select First Wallet:</label>
+          <select id="wallet1" name="wallet1" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+            <option value="">Choose a wallet...</option>
+            {% assign all_wallets = site.pages | where: "layout", "tool" | where: "cat", "Hardware Wallets" | sort: "title" %}
+            {% for wallet in all_wallets %}
+              <option value="{{ wallet.title }}">{{ wallet.title }}</option>
+            {% endfor %}
+          </select>
         </div>
         
-        <h3 style="margin: 0 0 10px 0; font-size: 16px;">
-          <a href="/tools{{ comparison.permalink }}" style="color: #333; text-decoration: none;">
-            {{ comparison.wallet1 }} vs {{ comparison.wallet2 }}
-          </a>
-        </h3>
+        <div style="display: flex; align-items: center; font-size: 18px; font-weight: bold; color: #666;">
+          vs
+        </div>
         
-        {% if comparison.maindifferences %}
-          <div class="key-differences" style="margin-top: 15px;">
-            <h4 style="font-size: 14px; color: #666; margin-bottom: 8px;">Key Differences:</h4>
-            <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #555;">
-              {% if comparison.maindifferences.diff1 %}
-                <li>{{ comparison.maindifferences.diff1 }}</li>
-              {% endif %}
-              {% if comparison.maindifferences.diff2 %}
-                <li>{{ comparison.maindifferences.diff2 }}</li>
-              {% endif %}
-              {% if comparison.maindifferences.diff3 %}
-                <li>{{ comparison.maindifferences.diff3 }}</li>
-              {% endif %}
-            </ul>
-          </div>
-        {% endif %}
-        
-        <div class="comparison-link" style="margin-top: 15px;">
-          <a href="/tools{{ comparison.permalink }}" style="display: inline-block; background: #f2a900; color: black; padding: 8px 16px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px;">
-            View Full Comparison →
-          </a>
+        <div style="flex: 1; min-width: 200px;">
+          <label for="wallet2" style="display: block; margin-bottom: 8px; font-weight: bold;">Select Second Wallet:</label>
+          <select id="wallet2" name="wallet2" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+            <option value="">Choose a wallet...</option>
+            {% for wallet in all_wallets %}
+              <option value="{{ wallet.title }}">{{ wallet.title }}</option>
+            {% endfor %}
+          </select>
         </div>
       </div>
-    {% endfor %}
+      
+      <div style="text-align: center; margin-top: 20px;">
+        <button type="submit" style="background: #f2a900; color: black; padding: 12px 24px; border: none; border-radius: 4px; font-weight: bold; font-size: 16px; cursor: pointer;">
+          Compare Wallets
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Comparison Results -->
+  <div id="comparison-results" style="display: none;">
+    <div id="comparison-content"></div>
+  </div>
+
+  <!-- Hidden data for JavaScript -->
+  <div id="comparison-data" style="display: none;" 
+       data-comparisons="{% assign comparison_pages = site.pages | where: 'layout', 'vswallet' %}{% for comparison in comparison_pages %}{{ comparison.wallet1 }}|{{ comparison.wallet2 }}|{{ comparison.permalink }}{% unless forloop.last %};{% endunless %}{% endfor %}">
+  </div>
+
+  <!-- Available Comparisons List -->
+  <div class="available-comparisons" style="margin-top: 40px;">
+    <h3 style="text-align: center; margin-bottom: 20px;">Available Comparisons</h3>
+    <div class="comparison-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+      {% assign comparison_pages = site.pages | where: "layout", "vswallet" | sort: "title" %}
+      {% for comparison in comparison_pages %}
+        {% assign wallet1_page = site.pages | where: "title", comparison.wallet1 | first %}
+        {% assign wallet2_page = site.pages | where: "title", comparison.wallet2 | first %}
+        
+        <div class="comparison-card" style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          <div class="comparison-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+            <div class="wallet-logos" style="display: flex; align-items: center; gap: 10px;">
+              <img src="/tools/img/{{ wallet1_page.img }}" alt="{{ wallet1_page.title }}" style="width: 30px; height: 30px; border-radius: 50%;">
+              <span style="font-weight: bold; color: #666;">vs</span>
+              <img src="/tools/img/{{ wallet2_page.img }}" alt="{{ wallet2_page.title }}" style="width: 30px; height: 30px; border-radius: 50%;">
+            </div>
+          </div>
+          
+          <h3 style="margin: 0 0 10px 0; font-size: 16px;">
+            <a href="/tools{{ comparison.permalink }}" style="color: #333; text-decoration: none;">
+              {{ comparison.wallet1 }} vs {{ comparison.wallet2 }}
+            </a>
+          </h3>
+          
+          {% if comparison.maindifferences %}
+            <div class="key-differences" style="margin-top: 15px;">
+              <h4 style="font-size: 14px; color: #666; margin-bottom: 8px;">Key Differences:</h4>
+              <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #555;">
+                {% if comparison.maindifferences.diff1 %}
+                  <li>{{ comparison.maindifferences.diff1 }}</li>
+                {% endif %}
+                {% if comparison.maindifferences.diff2 %}
+                  <li>{{ comparison.maindifferences.diff2 }}</li>
+                {% endif %}
+                {% if comparison.maindifferences.diff3 %}
+                  <li>{{ comparison.maindifferences.diff3 }}</li>
+                {% endif %}
+              </ul>
+            </div>
+          {% endif %}
+          
+          <div class="comparison-link" style="margin-top: 15px;">
+            <a href="/tools{{ comparison.permalink }}" style="display: inline-block; background: #f2a900; color: black; padding: 8px 16px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px;">
+              View Full Comparison →
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 
 
@@ -77,4 +129,62 @@ desc: Compare any two hardware wallets side by side with detailed specifications
     background: #000 !important;
     color: #f2a900 !important;
   }
-</style> 
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('comparison-form');
+  const resultsDiv = document.getElementById('comparison-results');
+  const contentDiv = document.getElementById('comparison-content');
+  
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const wallet1 = document.getElementById('wallet1').value;
+    const wallet2 = document.getElementById('wallet2').value;
+    
+    if (!wallet1 || !wallet2) {
+      alert('Please select both wallets to compare.');
+      return;
+    }
+    
+    if (wallet1 === wallet2) {
+      alert('Please select two different wallets to compare.');
+      return;
+    }
+    
+    // Find existing comparison
+    const comparisonData = document.getElementById('comparison-data').getAttribute('data-comparisons');
+    const comparisonPages = comparisonData.split(';').map(item => {
+      const [wallet1, wallet2, permalink] = item.split('|');
+      return { wallet1, wallet2, permalink };
+    });
+    
+    let foundComparison = null;
+    
+    for (const comparison of comparisonPages) {
+      if ((comparison.wallet1 === wallet1 && comparison.wallet2 === wallet2) ||
+          (comparison.wallet1 === wallet2 && comparison.wallet2 === wallet1)) {
+        foundComparison = comparison;
+        break;
+      }
+    }
+    
+    if (foundComparison) {
+      // Redirect to existing comparison page
+      window.location.href = '/tools' + foundComparison.permalink;
+    } else {
+      // Show message that comparison doesn't exist yet
+      contentDiv.innerHTML = `
+        <div style="text-align: center; padding: 40px; background: #f8f9fa; border-radius: 8px;">
+          <h3>Comparison Not Available</h3>
+          <p>The comparison between <strong>${wallet1}</strong> and <strong>${wallet2}</strong> is not available yet.</p>
+          <p>Please check the "Available Comparisons" section below for existing comparisons, or contact us to request this comparison.</p>
+        </div>
+      `;
+      resultsDiv.style.display = 'block';
+      resultsDiv.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+</script> 
