@@ -1,0 +1,86 @@
+---
+layout: tool
+title: Compare Hardware Wallets
+full-width: yes
+permalink: "/compare-hardware-wallets/"
+tool: yes
+cat: Hardware Wallets
+desc: Compare any two hardware wallets side by side with detailed specifications and features
+img: ledger.png
+sort: 5.0
+secondcat: Offline Wallets
+---
+
+<div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+  <h1 style="text-align: center; margin-bottom: 40px;">Compare Hardware Wallets</h1>
+  
+  <p style="text-align: center; margin-bottom: 40px; font-size: 18px;">
+    Select any two hardware wallets to compare their features, security, and specifications side by side.
+  </p>
+
+  <div class="comparison-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 40px;">
+    {% assign comparison_pages = site.pages | where: "layout", "vswallet" | sort: "title" %}
+    {% for comparison in comparison_pages %}
+      {% assign wallet1_page = site.pages | where: "title", comparison.wallet1 | first %}
+      {% assign wallet2_page = site.pages | where: "title", comparison.wallet2 | first %}
+      
+      <div class="comparison-card" style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <div class="comparison-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+          <div class="wallet-logos" style="display: flex; align-items: center; gap: 10px;">
+            <img src="/tools/img/{{ wallet1_page.img }}" alt="{{ wallet1_page.title }}" style="width: 30px; height: 30px; border-radius: 50%;">
+            <span style="font-weight: bold; color: #666;">vs</span>
+            <img src="/tools/img/{{ wallet2_page.img }}" alt="{{ wallet2_page.title }}" style="width: 30px; height: 30px; border-radius: 50%;">
+          </div>
+        </div>
+        
+        <h3 style="margin: 0 0 10px 0; font-size: 16px;">
+          <a href="/tools{{ comparison.permalink }}" style="color: #333; text-decoration: none;">
+            {{ comparison.wallet1 }} vs {{ comparison.wallet2 }}
+          </a>
+        </h3>
+        
+        {% if comparison.maindifferences %}
+          <div class="key-differences" style="margin-top: 15px;">
+            <h4 style="font-size: 14px; color: #666; margin-bottom: 8px;">Key Differences:</h4>
+            <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #555;">
+              {% if comparison.maindifferences.diff1 %}
+                <li>{{ comparison.maindifferences.diff1 }}</li>
+              {% endif %}
+              {% if comparison.maindifferences.diff2 %}
+                <li>{{ comparison.maindifferences.diff2 }}</li>
+              {% endif %}
+              {% if comparison.maindifferences.diff3 %}
+                <li>{{ comparison.maindifferences.diff3 }}</li>
+              {% endif %}
+            </ul>
+          </div>
+        {% endif %}
+        
+        <div class="comparison-link" style="margin-top: 15px;">
+          <a href="/tools{{ comparison.permalink }}" style="display: inline-block; background: #f2a900; color: black; padding: 8px 16px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px;">
+            View Full Comparison →
+          </a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+
+</div>
+
+<style>
+  .comparison-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transition: all 0.2s ease;
+  }
+  
+  .comparison-card a:hover {
+    color: #f2a900 !important;
+  }
+  
+  .comparison-link a:hover {
+    background: #000 !important;
+    color: #f2a900 !important;
+  }
+</style> 
