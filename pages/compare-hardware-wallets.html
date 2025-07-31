@@ -16,7 +16,7 @@ desc: Compare any two hardware wallets side by side with detailed specifications
     <form id="comparison-form">
       <div style="display: flex; gap: 20px; align-items: center; justify-content: center; flex-wrap: wrap;">
         <div style="flex: 1; min-width: 200px;">
-          <label for="wallet1" style="display: block; margin-bottom: 8px; font-weight: bold;">Select First Wallet:</label>
+          <label for="wallet1" style="color: #000; display: block; margin-bottom: 8px; font-weight: bold;">Select First Wallet:</label>
           <select id="wallet1" name="wallet1" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
             <option value="">Choose a wallet...</option>
             {% assign all_wallets = site.pages | where: "layout", "tool" | where: "tool", "yes" | sort: "title" %}
@@ -31,7 +31,7 @@ desc: Compare any two hardware wallets side by side with detailed specifications
         </div>
         
         <div style="flex: 1; min-width: 200px;">
-          <label for="wallet2" style="display: block; margin-bottom: 8px; font-weight: bold;">Select Second Wallet:</label>
+          <label for="wallet2" style="color: #000; display: block; margin-bottom: 8px; font-weight: bold;">Select Second Wallet:</label>
           <select id="wallet2" name="wallet2" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
             <option value="">Choose a wallet...</option>
           </select>
