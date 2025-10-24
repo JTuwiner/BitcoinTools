@@ -64,7 +64,13 @@ With that in mind, let’s look at the Coldcard and what makes it different from
 
 ## Advantages of the Coldcard Mk 4
 
-{% include takeaways.html bullet1="ColdCard is Open Source: anyone can look at the code running on ColdCard and make sure it is safe. " bullet2="ColdCard has an NFC chip: you can simply tap the Coldcard against your phone to complete PSBTs (partially signed Bitcoin transactions)." bullet3="ColdCard comes with a protective plastic case to protect your hardware and coins." %}
+<div class="takeaways">
+  <ul>
+    <li><strong>ColdCard is Open Source:</strong> anyone can look at the code running on ColdCard and make sure it is safe.</li>
+    <li><strong>ColdCard has an NFC chip:</strong> you can simply tap the Coldcard against your phone to complete PSBTs (partially signed Bitcoin transactions).</li>
+    <li><strong>ColdCard comes with a protective plastic case</strong> to protect your hardware and coins.</li>
+  </ul>
+</div>
 
 Here are some of the main advantages of using a Coldcard.
 
