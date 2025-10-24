@@ -6,7 +6,7 @@ full-width: yes
 permalink: "/coldcard-mk4-review/"
 capture: yes
 ---
-
+<div style="max-width: 800px;">
 <div style="max-width: 700px; margin: 30px auto; background: #f7f7f9; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 32px 26px; font-family: 'Segoe UI', 'Arial', sans-serif;">
   <h2 style="margin-top:0; font-size: 2rem; color: #232323; border-bottom: 2.5px solid #e3e3e3; padding-bottom: 8px;">Contents</h2>
   <ol style="list-style-position: inside; font-size: 1.14rem; color: #3a3a3a; line-height: 2;">
@@ -350,7 +350,7 @@ So far, the Coldcard has not been shown to have any serious security vulnerabili
 If you’d like to purchase a Coldcard, the best option is to buy it directly from the Coldcard website. 
 
 <center>
-    <img class="half-img" alt="CardCard Mk 4 info page" src="/pages/wallet-reviews/articles/img/coldcard-home.png" />
+    <img class="half-img" alt="CardCard Mk 4 info page" src="https://buybitcoinworldwide.com/pages/wallet-reviews/articles/img/coldcard-home.png" />
 </center>
 <br>
 
@@ -420,4 +420,6 @@ Unchained works with
     <li><a href="https://en.bitcoin.it/wiki/Private_key" target="_blank" rel="noopener">Wikipedia - Secure Elements</a></li>
     <li><a href="https://buybitcoinworldwide.com/wallets/billfodl-review/" target="_blank" rel="noopener">BuyBitcoinWorldWide.com - Billfodl Review</a></li>
   </ul>
+</div>
+
 </div>
