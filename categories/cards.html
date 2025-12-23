@@ -93,7 +93,17 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
             <div style="font-size: 18px; font-weight: 600; color: #333;">
               {% if card.vs_rewardsrate %}
                 {% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}
-                {{ rewards_text | truncate: 40 }}
+                {% if rewards_text contains '2-4%' or rewards_text contains '2%' and rewards_text contains '4%' %}
+                  2-4%
+                {% elsif rewards_text contains '4%' %}
+                  Up to 4%
+                {% elsif rewards_text contains '3%' %}
+                  Up to 3%
+                {% elsif rewards_text contains '2%' %}
+                  Up to 2%
+                {% else %}
+                  {{ rewards_text | truncate: 30 }}
+                {% endif %}
               {% else %}
                 N/A
               {% endif %}
