@@ -3,8 +3,14 @@ layout: base
 ---
 <h1 style="text-align: center; width: 100%;margin-bottom: 85px;">{{ page.title }}</h1>
 <div class="post-inner-wrapper">
-    {%- assign card1_page = site.pages | where: "title", page.card1 | first -%}
-    {%- assign card2_page = site.pages | where: "title", page.card2 | first -%}
+    {%- assign card1_page = site.pages | where: "title", page.card1 | where: "tool", true | first -%}
+    {%- assign card2_page = site.pages | where: "title", page.card2 | where: "tool", true | first -%}
+    {%- unless card1_page -%}
+      {%- assign card1_page = site.pages | where: "title", page.card1 | first -%}
+    {%- endunless -%}
+    {%- unless card2_page -%}
+      {%- assign card2_page = site.pages | where: "title", page.card2 | first -%}
+    {%- endunless -%}
     <div class="compare-exchanges-inner">
       <div class="exchange-card">
         <div class="exchange-card-top">
