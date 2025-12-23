@@ -11,7 +11,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 
 {% assign cards = site.pages | where: "cat", "Credit & Debit Cards" | where: "tool", true | sort: "sort" %}
 
-<div class="cards-geographic-table" style="margin-bottom: 40px;">
+<!-- <div class="cards-geographic-table" style="margin-bottom: 40px;">
   <h2 style="margin-bottom: 20px;">Geographic Availability</h2>
   <div style="overflow-x: auto;">
     <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -154,15 +154,12 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
           {% endif %}
         </div>
         
-        <!-- Link to details -->
-        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e9ecef;">
-          <a href="{{ card.permalink }}" style="color: #007bff; text-decoration: none; font-weight: 500;">View full details →</a>
-        </div>
+    
       </div>
     </div>
   </div>
   {% endfor %}
-</div>
+</div> -->
 
 <style>
   @media (max-width: 768px) {

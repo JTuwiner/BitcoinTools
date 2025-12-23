@@ -4,9 +4,18 @@ layout: base
 <h1 style="text-align: center; width: 100%;margin-bottom: 85px;">{{ page.title }}</h1>
 <div class="post-inner-wrapper">
     {%- assign all_pages = site.pages -%}
-    {%- assign card1_page = all_pages | where: "title", page.card1 | first -%}
-    {%- assign card2_page = all_pages | where: "title", page.card2 | first -%}
+    {%- assign card1_page = nil -%}
+    {%- assign card2_page = nil -%}
+    {%- for p in all_pages -%}
+      {%- if p.title == page.card1 -%}
+        {%- assign card1_page = p -%}
+      {%- endif -%}
+      {%- if p.title == page.card2 -%}
+        {%- assign card2_page = p -%}
+      {%- endif -%}
+    {%- endfor -%}
     <div class="compare-exchanges-inner">
+      {%- if card1_page -%}
       <div class="exchange-card">
         <div class="exchange-card-top">
           <div class="header-exchange-logo-wrapper">
@@ -19,6 +28,8 @@ layout: base
           <div class="header-exchange-label">Overall Rating</div>
         </div>
       </div>
+      {%- endif -%}
+      {%- if card2_page -%}
       <div class="exchange-card">
         <div class="exchange-card-top">
           <div class="header-exchange-logo-wrapper">
@@ -31,15 +42,18 @@ layout: base
           <div class="header-exchange-label">Overall Rating</div>
         </div>
       </div>
+      {%- endif -%}
     </div>
 
     <div class="compare-exchange-cta">
+        {% if card1_page and card2_page %}
         {% include sticky-compare-cta.html 
           exchange1=card1_page.brand
           exchange2=card2_page.brand
           exchange1Link=card1_page.link
           exchange2Link=card2_page.link
         %}
+        {% endif %}
     </div>
     <script>
       window.addEventListener('load', (event) => {
@@ -58,14 +72,18 @@ layout: base
     </script>
 
     <div id="sticky-cta">
+      {% if card1_page %}
       <a href="{{ card1_page.link }}" target="_blank" id="sticky-cta-1">
         <img src="/tools/img/{{ card1_page.img }}" alt="{{ card1_page.title }} logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px; border-radius: 50%;">
         Visit {{ card1_page.brand }}'s Website
       </a>
+      {% endif %}
+      {% if card2_page %}
       <a href="{{ card2_page.link }}" target="_blank" id="sticky-cta-2">
         <img src="/tools/img/{{ card2_page.img }}" alt="{{ card2_page.title }} logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px; border-radius: 50%;">
         Visit {{ card2_page.brand }}'s Website
       </a>
+      {% endif %}
     </div>
 
     <script>
