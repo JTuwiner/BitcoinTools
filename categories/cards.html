@@ -165,8 +165,15 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  padding: 8px 0;
+  padding: 8px 12px;
+  margin: -8px -12px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
   user-select: none;
+}
+
+.rewards-breakdown-header:hover {
+  background-color: #f3f4f6;
 }
 
 .rewards-breakdown-title {
@@ -175,11 +182,20 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   font-weight: 600;
   font-size: 14px;
   color: #111827;
+  transition: color 0.2s;
+}
+
+.rewards-breakdown-header:hover .rewards-breakdown-title {
+  color: #059669;
 }
 
 .rewards-breakdown-chevron {
   color: #6b7280;
-  transition: transform 0.2s;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.rewards-breakdown-header:hover .rewards-breakdown-chevron {
+  color: #059669;
 }
 
 .rewards-breakdown-section.expanded .rewards-breakdown-chevron {
@@ -191,6 +207,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   overflow: hidden;
   transition: max-height 0.3s ease-out;
   padding-top: 0;
+  color: #111827;
 }
 
 .rewards-breakdown-section.expanded .rewards-breakdown-content {
@@ -202,6 +219,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   list-style: none;
   padding-left: 0;
   margin: 0;
+  color: #111827;
 }
 
 .rewards-breakdown-content li {
@@ -209,6 +227,11 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   align-items: flex-start;
   margin-bottom: 12px;
   padding: 8px 0;
+  color: #111827;
+}
+
+.rewards-breakdown-content p {
+  color: #111827;
 }
 
 .rewards-breakdown-content li b {
