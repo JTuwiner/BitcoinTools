@@ -259,7 +259,7 @@ layout: base
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="free-trial">Free Trial?</h2>
+              <h2 class="section-left-heading" id="card-type">Card Type</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -267,11 +267,7 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
-                    {% if exchange1_page.vs_freetrial %}
-                    {% include vscheck.html %}
-                    {% else %}
-                    {% include vsx.html %}
-                    {% endif %}
+                    {{ exchange1_page.vs_cardtype }}
                   </p>
                 </div>
     
@@ -281,11 +277,7 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
-                    {% if exchange2_page.vs_freetrial %}
-                    {% include vscheck.html %}
-                    {% else %}
-                    {% include vsx.html %}
-                    {% endif %}
+                    {{ exchange2_page.vs_cardtype }}
                   </p>
                 </div>
               </div>
