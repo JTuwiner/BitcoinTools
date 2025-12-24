@@ -154,52 +154,96 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   text-transform: uppercase;
 }
 
-.tooltip-icon {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  color: #6b7280;
+.rewards-breakdown-section {
+  margin-top: 24px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 16px;
 }
 
-.tooltip-icon:hover {
+.rewards-breakdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 0;
+  user-select: none;
+}
+
+.rewards-breakdown-title {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
   color: #111827;
 }
 
-.tooltip-content {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-bottom: 8px;
-  padding: 12px;
-  background: #111827;
+.rewards-breakdown-chevron {
+  color: #6b7280;
+  transition: transform 0.2s;
+}
+
+.rewards-breakdown-section.expanded .rewards-breakdown-chevron {
+  transform: rotate(180deg);
+}
+
+.rewards-breakdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  padding-top: 0;
+}
+
+.rewards-breakdown-section.expanded .rewards-breakdown-content {
+  max-height: 1000px;
+  padding-top: 16px;
+}
+
+.rewards-breakdown-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.rewards-breakdown-content li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  padding: 8px 0;
+}
+
+.rewards-breakdown-content li b {
+  display: inline-block;
+  min-width: 50px;
+  margin-right: 12px;
+}
+
+.rewards-breakdown-content li b:first-child {
+  background: #10b981;
   color: white;
-  border-radius: 8px;
+  padding: 4px 10px;
+  border-radius: 6px;
   font-size: 13px;
-  line-height: 1.5;
-  white-space: normal;
-  width: 300px;
-  max-width: 90vw;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s;
-  z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  text-align: left;
+  font-weight: 600;
+  text-align: center;
+  flex-shrink: 0;
 }
 
-.tooltip-content::before {
-  content: '';
-  position: absolute;
-  bottom: -6px;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 6px solid transparent;
-  border-top-color: #111827;
+/* Darker green for higher percentages */
+.rewards-breakdown-content li b:first-child:contains("6%"),
+.rewards-breakdown-content li b:first-child:contains("5%"),
+.rewards-breakdown-content li b:first-child:contains("4%") {
+  background: #059669;
 }
 
-.tooltip-icon:hover .tooltip-content {
-  opacity: 1;
+.rewards-breakdown-content li b:first-child:contains("3%"),
+.rewards-breakdown-content li b:first-child:contains("2.5%") {
+  background: #10b981;
+}
+
+.rewards-breakdown-content li b:first-child:contains("2%"),
+.rewards-breakdown-content li b:first-child:contains("1.5%"),
+.rewards-breakdown-content li b:first-child:contains("1%") {
+  background: #34d399;
 }
 
 @media (max-width: 768px) {
@@ -322,8 +366,30 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
               <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          
+          <a href="{{ card.permalink }}" class="card-link">View details</a>
+          {% if card.link %}
+          <a href="{{ card.link }}" target="_blank" class="card-link">on {{ card.brand }}'s website</a>
+          {% endif %}
         </div>
+        
+        {% if card.vs_rewardsrate %}
+        <div class="rewards-breakdown-section">
+          <div class="rewards-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="rewards-breakdown-title">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                <path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              Rewards breakdown
+            </div>
+            <svg class="rewards-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="rewards-breakdown-content">
+            {{ card.vs_rewardsrate }}
+          </div>
+        </div>
+        {% endif %}
       </div>
     </div>
   </div>
