@@ -264,21 +264,12 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
           
           <div class="data-item">
             <div class="data-label">Rewards rate</div>
-            <div class="data-value" style="display: flex; align-items: center; gap: 6px;">
+            <div class="data-value">
               {% if card.vs_rewardsrate_short %}
-                <span>{{ card.vs_rewardsrate_short }}</span>
+                {{ card.vs_rewardsrate_short }}
               {% else %}
                 {% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}
-                <span>{{ rewards_text | truncate: 40 }}</span>
-              {% endif %}
-              {% if card.vs_rewardsrate %}
-              <span class="tooltip-icon">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.6; cursor: help;">
-                  <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                  <text x="8" y="11" text-anchor="middle" font-size="10" font-weight="bold" fill="currentColor">?</text>
-                </svg>
-                <div class="tooltip-content">{{ card.vs_rewardsrate }}</div>
-              </span>
+                {{ rewards_text | truncate: 40 }}
               {% endif %}
             </div>
           </div>
