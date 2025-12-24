@@ -165,8 +165,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   color: #111827;
 }
 
-.tooltip-icon::after {
-  content: attr(data-tooltip);
+.tooltip-content {
   position: absolute;
   bottom: 100%;
   left: 50%;
@@ -189,23 +188,17 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   text-align: left;
 }
 
-.tooltip-icon::before {
+.tooltip-content::before {
   content: '';
   position: absolute;
-  bottom: 100%;
+  bottom: -6px;
   left: 50%;
   transform: translateX(-50%);
-  margin-bottom: 2px;
   border: 6px solid transparent;
   border-top-color: #111827;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s;
-  z-index: 1001;
 }
 
-.tooltip-icon:hover::after,
-.tooltip-icon:hover::before {
+.tooltip-icon:hover .tooltip-content {
   opacity: 1;
 }
 
