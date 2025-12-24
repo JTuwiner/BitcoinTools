@@ -226,23 +226,19 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   font-weight: 600;
   text-align: center;
   flex-shrink: 0;
+  min-width: 45px;
 }
 
-/* Darker green for higher percentages */
-.rewards-breakdown-content li b:first-child:contains("6%"),
-.rewards-breakdown-content li b:first-child:contains("5%"),
-.rewards-breakdown-content li b:first-child:contains("4%") {
+/* Darker green for higher percentages - applied via JavaScript */
+.rewards-breakdown-content li b.percent-high {
   background: #059669;
 }
 
-.rewards-breakdown-content li b:first-child:contains("3%"),
-.rewards-breakdown-content li b:first-child:contains("2.5%") {
+.rewards-breakdown-content li b.percent-medium {
   background: #10b981;
 }
 
-.rewards-breakdown-content li b:first-child:contains("2%"),
-.rewards-breakdown-content li b:first-child:contains("1.5%"),
-.rewards-breakdown-content li b:first-child:contains("1%") {
+.rewards-breakdown-content li b.percent-low {
   background: #34d399;
 }
 
@@ -395,3 +391,24 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   </div>
   {% endfor %}
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Style percentage badges with different green shades
+  document.querySelectorAll('.rewards-breakdown-content li b:first-child').forEach(function(badge) {
+    const text = badge.textContent.trim();
+    const percentMatch = text.match(/([\d.]+)%/);
+    if (percentMatch) {
+      const percent = parseFloat(percentMatch[1]);
+      badge.classList.remove('percent-high', 'percent-medium', 'percent-low');
+      if (percent >= 4) {
+        badge.classList.add('percent-high');
+      } else if (percent >= 2) {
+        badge.classList.add('percent-medium');
+      } else {
+        badge.classList.add('percent-low');
+      }
+    }
+  });
+});
+</script>
