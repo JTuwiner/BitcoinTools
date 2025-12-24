@@ -141,6 +141,32 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   font-weight: 500;
 }
 
+.mobile-card-header {
+  display: none;
+}
+
+.mobile-card-img {
+  width: 50px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.mobile-card-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: #111827;
+}
+
+.mobile-comparison-label {
+  display: none;
+  font-size: 12px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
 @media (max-width: 768px) {
   .comparison-table-header {
     flex-direction: column;
@@ -156,12 +182,62 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   }
   
   .comparison-table {
-    font-size: 12px;
+    display: block;
   }
   
-  .comparison-table th,
+  .comparison-table thead {
+    display: none;
+  }
+  
+  .comparison-table tbody {
+    display: block;
+  }
+  
+  .comparison-table tbody tr {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: none;
+  }
+  
   .comparison-table td {
-    padding: 8px 12px;
+    display: none;
+  }
+  
+  .comparison-table td:first-child {
+    display: none;
+  }
+  
+  .comparison-table td.comparison-value {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 16px;
+    min-width: unset;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  
+  .mobile-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .mobile-comparison-label {
+    display: block;
+  }
+  
+  .comparison-value-text {
+    font-size: 15px;
+    font-weight: 500;
+    color: #111827;
+    line-height: 1.5;
   }
 }
 
@@ -227,11 +303,17 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 .stars {
   color: #10b981;
   font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
 }
 
 .rating-text {
   font-size: 14px;
   color: #6b7280;
+  line-height: 1;
+  display: flex;
+  align-items: center;
 }
 
 .card-data-grid {
@@ -258,6 +340,36 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   font-size: 16px;
   font-weight: 600;
   color: #111827;
+}
+
+.coins-available {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btc-coin {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #FFF7ED 0%, #FEF3C7 100%);
+  padding: 4px 10px 4px 6px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #F7931A;
+  border: 1px solid #FDBA74;
+}
+
+.btc-coin svg {
+  flex-shrink: 0;
+}
+
+.more-coins {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
 }
 
 .card-actions {
@@ -300,14 +412,16 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 .no-annual-fee-badge {
   position: absolute;
   top: 8px;
-  right: 8px;
+  left: 50%;
+  transform: translateX(-50%);
   background: #fbbf24;
   color: #111827;
-  padding: 4px 8px;
+  padding: 4px 10px;
   border-radius: 4px;
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .rewards-breakdown-section {
@@ -321,15 +435,18 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  padding: 8px 12px;
+  padding: 10px 14px;
   margin: -8px -12px;
-  border-radius: 6px;
-  transition: background-color 0.2s;
+  border-radius: 8px;
+  transition: all 0.2s ease;
   user-select: none;
+  border: 1px solid transparent;
 }
 
 .rewards-breakdown-header:hover {
-  background-color: #f3f4f6;
+  background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+  border-color: #A7F3D0;
+  transform: translateX(4px);
 }
 
 .rewards-breakdown-title {
@@ -339,6 +456,27 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   font-size: 14px;
   color: #111827;
   transition: color 0.2s;
+}
+
+.rewards-breakdown-icon {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.rewards-breakdown-header:hover .rewards-breakdown-icon {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.rewards-breakdown-icon svg {
+  color: white;
 }
 
 .rewards-breakdown-header:hover .rewards-breakdown-title {
@@ -471,15 +609,22 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
       </thead>
       <tbody id="comparison-table-body">
         <tr>
-          <td><strong>Rewards Rate</strong></td>
+          <td><strong id="comparison-label">Rewards Rate</strong></td>
           {% for card in cards %}
-          <td class="comparison-value" data-field="rewards-rate" data-card="{{ card.title | escape }}">
+          <td class="comparison-value" data-field="rewards-rate" data-card="{{ card.title | escape }}" data-img="/tools/img/{{ card.img }}">
+            <span class="mobile-card-header">
+              <img src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="mobile-card-img">
+              <span class="mobile-card-name">{{ card.title }}</span>
+            </span>
+            <span class="mobile-comparison-label">Rewards Rate</span>
+            <span class="comparison-value-text">
             {% if card.vs_rewardsrate_short %}
               {{ card.vs_rewardsrate_short }}
             {% else %}
               {% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}
               {{ rewards_text }}
             {% endif %}
+            </span>
           </td>
           {% endfor %}
         </tr>
@@ -526,10 +671,18 @@ function updateComparisonTable() {
   // Update all comparison cells
   row.querySelectorAll('td[data-field]').forEach((cell, index) => {
     const cardName = cell.getAttribute('data-card');
-    if (cardData[cardName] && cardData[cardName][field]) {
-      cell.textContent = cardData[cardName][field];
-    } else {
-      cell.textContent = 'N/A';
+    const valueText = cell.querySelector('.comparison-value-text');
+    const mobileLabel = cell.querySelector('.mobile-comparison-label');
+    
+    // Update the value
+    const newValue = (cardData[cardName] && cardData[cardName][field]) ? cardData[cardName][field] : 'N/A';
+    if (valueText) {
+      valueText.textContent = newValue;
+    }
+    
+    // Update the mobile label
+    if (mobileLabel) {
+      mobileLabel.textContent = labels[field];
     }
   });
 }
@@ -557,14 +710,10 @@ function updateComparisonTable() {
           <div class="stars">
             {% assign rating_int = card.rating | floor %}
             {% for i in (1..5) %}
-              {% if i <= rating_int %}
-                ★
-              {% else %}
-                ☆
-              {% endif %}
+              {% if i <= rating_int %}★{% else %}☆{% endif %}
             {% endfor %}
           </div>
-          <span class="rating-text">{{ card.rating }} rating</span>
+          <span class="rating-text">{% assign rating_str = card.rating | append: "" %}{% if rating_str contains "." %}{{ card.rating }}{% else %}{{ card.rating }}.0{% endif %} rating</span>
         </div>
         {% endif %}
         
@@ -576,7 +725,7 @@ function updateComparisonTable() {
               {% if fee_text contains '$0' or fee_text contains 'No annual fee' %}
                 $0
               {% else %}
-                {{ fee_text | truncate: 30 }}
+                {{ fee_text }}
               {% endif %}
             </div>
           </div>
@@ -588,7 +737,7 @@ function updateComparisonTable() {
                 {{ card.vs_rewardsrate_short }}
               {% else %}
                 {% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}
-                {{ rewards_text | truncate: 40 }}
+                {{ rewards_text }}
               {% endif %}
             </div>
           </div>
@@ -598,40 +747,24 @@ function updateComparisonTable() {
             <div class="data-label">Intro offer</div>
             <div class="data-value">
               {% assign bonus_text = card.vs_signupbonus | strip_html | strip %}
-              {{ bonus_text | truncate: 40 }}
+              {{ bonus_text }}
             </div>
           </div>
           {% endif %}
           
-          {% if card.vs_introapr %}
           <div class="data-item">
-            <div class="data-label">Purchase intro APR</div>
-            <div class="data-value">
-              {% assign intro_apr = card.vs_introapr | strip_html | strip %}
-              {{ intro_apr | truncate: 50 }}
+            <div class="data-label">Rewards paid in</div>
+            <div class="data-value coins-available">
+              <span class="btc-coin">
+                <svg width="18" height="18" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="16" cy="16" r="16" fill="#F7931A"/>
+                  <path fill="#FFF" d="M22.5 14.1c.3-2-1.2-3.1-3.3-3.8l.7-2.7-1.7-.4-.7 2.6c-.4-.1-.9-.2-1.4-.3l.7-2.7-1.7-.4-.7 2.7c-.4-.1-.7-.2-1-.2v-.1l-2.3-.6-.4 1.8s1.2.3 1.2.3c.7.2.8.6.8 1l-.8 3.3c0 0 .1 0 .2.1h-.2l-1.2 4.6c-.1.2-.3.6-.8.4 0 0-1.2-.3-1.2-.3l-.8 1.9 2.2.5c.4.1.8.2 1.2.3l-.7 2.8 1.7.4.7-2.7c.5.1.9.2 1.4.3l-.7 2.7 1.7.4.7-2.8c2.8.5 4.9.3 5.8-2.2.7-2-.1-3.2-1.5-3.9 1.1-.3 1.9-1 2.1-2.5zm-3.8 5.3c-.5 2-4 .9-5.1.6l.9-3.7c1.1.3 4.7.8 4.2 3.1zm.5-5.4c-.5 1.8-3.4.9-4.3.7l.8-3.3c.9.2 4 .6 3.5 2.6z"/>
+                </svg>
+                Bitcoin
+              </span>
+              <span class="more-coins">& 50+ more</span>
             </div>
           </div>
-          {% endif %}
-          
-          {% if card.vs_regularapr %}
-          <div class="data-item">
-            <div class="data-label">Regular APR</div>
-            <div class="data-value">
-              {% assign regular_apr = card.vs_regularapr | strip_html | strip %}
-              {{ regular_apr | truncate: 40 }}
-            </div>
-          </div>
-          {% endif %}
-          
-          {% if card.vs_creditcheck %}
-          <div class="data-item">
-            <div class="data-label">Recommended credit score</div>
-            <div class="data-value">
-              {% assign credit_text = card.vs_creditcheck | strip_html | strip %}
-              {{ credit_text | truncate: 50 }}
-            </div>
-          </div>
-          {% endif %}
         </div>
         
         <div class="card-actions">
@@ -648,12 +781,14 @@ function updateComparisonTable() {
         <div class="rewards-breakdown-section">
           <div class="rewards-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
             <div class="rewards-breakdown-title">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
-                <path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
+              <div class="rewards-breakdown-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
+                </svg>
+              </div>
               Rewards breakdown
             </div>
-            <svg class="rewards-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="rewards-breakdown-chevron" width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
