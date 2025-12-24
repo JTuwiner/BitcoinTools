@@ -383,6 +383,31 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   font-weight: 500;
 }
 
+.card-type-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.card-type-badge.credit {
+  background: #DBEAFE;
+  color: #1E40AF;
+}
+
+.card-type-badge.debit {
+  background: #D1FAE5;
+  color: #065F46;
+}
+
+.card-type-badge.prepaid {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
 .card-actions {
   display: flex;
   align-items: center;
@@ -721,6 +746,22 @@ function updateComparisonTable() {
         {% endif %}
         
         <div class="card-data-grid">
+          <div class="data-item">
+            <div class="data-label">Card type</div>
+            <div class="data-value">
+              {% assign card_type = card.vs_cardtype | strip_html | strip %}
+              {% if card_type contains "Credit" %}
+                <span class="card-type-badge credit">Credit Card</span>
+              {% elsif card_type contains "Debit" %}
+                <span class="card-type-badge debit">Debit Card</span>
+              {% elsif card_type contains "Prepaid" %}
+                <span class="card-type-badge prepaid">Prepaid</span>
+              {% else %}
+                <span class="card-type-badge">{{ card_type }}</span>
+              {% endif %}
+            </div>
+          </div>
+          
           <div class="data-item">
             <div class="data-label">Annual fee</div>
             <div class="data-value">
