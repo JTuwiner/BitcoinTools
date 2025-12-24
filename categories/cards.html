@@ -8,3 +8,277 @@ category: yes
 subdesc: Credit cards that let you earn Bitcoin & crypto rewards.
 svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M2 7a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v1H2zm0 3v7a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-7zm5 2a1 1 0 1 0 0 2h5a1 1 0 1 0 0-2z" clip-rule="evenodd"/></svg>'
 ---
+
+{% assign cards = site.pages | where: "cat", "Credit & Debit Cards" | sort: "sort" %}
+
+<style>
+.cards-listing {
+  margin-top: 40px;
+}
+
+.card-item {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: box-shadow 0.2s;
+}
+
+.card-item:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.card-header {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.card-image-wrapper {
+  position: relative;
+  width: 200px;
+  height: 126px;
+  flex-shrink: 0;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #f9fafb;
+  padding: 8px;
+}
+
+.card-info {
+  flex: 1;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px 0;
+}
+
+.card-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.stars {
+  color: #10b981;
+  font-size: 18px;
+}
+
+.rating-text {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.card-data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.data-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.data-label {
+  font-size: 12px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.data-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.apply-button {
+  background: #10b981;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+
+.apply-button:hover {
+  background: #059669;
+  color: white;
+}
+
+.card-link {
+  color: #6b7280;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.card-link:hover {
+  color: #111827;
+  text-decoration: underline;
+}
+
+.no-annual-fee-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #fbbf24;
+  color: #111827;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .card-header {
+    flex-direction: column;
+  }
+  
+  .card-image-wrapper {
+    width: 100%;
+    height: 200px;
+  }
+  
+  .card-data-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<div class="cards-listing">
+  {% for card in cards %}
+  <div class="card-item">
+    <div class="card-header">
+      <div class="card-image-wrapper">
+        <img src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="card-image">
+        {% assign annual_fee_text = card.vs_annualfee | strip_html | strip %}
+        {% if annual_fee_text contains '$0' or annual_fee_text contains 'No annual fee' %}
+        <div class="no-annual-fee-badge">NO ANNUAL FEE</div>
+        {% endif %}
+      </div>
+      
+      <div class="card-info">
+        <h2 class="card-title">{{ card.title }}</h2>
+        
+        {% if card.rating %}
+        <div class="card-rating">
+          <div class="stars">
+            {% assign rating_int = card.rating | floor %}
+            {% for i in (1..5) %}
+              {% if i <= rating_int %}
+                ★
+              {% else %}
+                ☆
+              {% endif %}
+            {% endfor %}
+          </div>
+          <span class="rating-text">{{ card.rating }} rating</span>
+        </div>
+        {% endif %}
+        
+        <div class="card-data-grid">
+          <div class="data-item">
+            <div class="data-label">Annual fee</div>
+            <div class="data-value">
+              {% assign fee_text = card.vs_annualfee | strip_html | strip %}
+              {% if fee_text contains '$0' or fee_text contains 'No annual fee' %}
+                $0
+              {% else %}
+                {{ fee_text | truncate: 30 }}
+              {% endif %}
+            </div>
+          </div>
+          
+          <div class="data-item">
+            <div class="data-label">Rewards rate</div>
+            <div class="data-value">
+              {% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}
+              {{ rewards_text | truncate: 40 }}
+            </div>
+          </div>
+          
+          {% if card.vs_signupbonus and card.vs_signupbonus != 'None' %}
+          <div class="data-item">
+            <div class="data-label">Intro offer</div>
+            <div class="data-value">
+              {% assign bonus_text = card.vs_signupbonus | strip_html | strip %}
+              {{ bonus_text | truncate: 40 }}
+            </div>
+          </div>
+          {% endif %}
+          
+          {% if card.vs_introapr %}
+          <div class="data-item">
+            <div class="data-label">Purchase intro APR</div>
+            <div class="data-value">
+              {% assign intro_apr = card.vs_introapr | strip_html | strip %}
+              {{ intro_apr | truncate: 50 }}
+            </div>
+          </div>
+          {% endif %}
+          
+          {% if card.vs_regularapr %}
+          <div class="data-item">
+            <div class="data-label">Regular APR</div>
+            <div class="data-value">
+              {% assign regular_apr = card.vs_regularapr | strip_html | strip %}
+              {{ regular_apr | truncate: 40 }}
+            </div>
+          </div>
+          {% endif %}
+          
+          {% if card.vs_creditcheck %}
+          <div class="data-item">
+            <div class="data-label">Recommended credit score</div>
+            <div class="data-value">
+              {% assign credit_text = card.vs_creditcheck | strip_html | strip %}
+              {{ credit_text | truncate: 50 }}
+            </div>
+          </div>
+          {% endif %}
+        </div>
+        
+        <div class="card-actions">
+          <a href="{{ card.link }}" target="_blank" class="apply-button" onclick="fathom.trackEvent('Click Card Apply'); fathom.trackEvent('Click Card Apply: {{ card.title }}');">
+            APPLY NOW
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="{{ card.permalink }}" class="card-link">View details</a>
+          {% if card.link %}
+          <a href="{{ card.link }}" target="_blank" class="card-link">on {{ card.brand }}'s website</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
