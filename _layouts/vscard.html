@@ -707,7 +707,7 @@ layout: base
                   {% assign card2_page = site.pages | where: "title", comparison.wallet2 | first %}
                   {% if card1_page and card2_page %}
                   <li>
-                    <a class="vs-related-comparison-link" href="{{ comparison.permalink }}">
+                    <a class="vs-related-comparison-link" href="/tools/{{ comparison.permalink }}">
                       <img src="/tools/img/{{ card1_page.img }}" style="height:20px;vertical-align:middle;border-radius:100%"> {{ card1_page.title }} vs 
                       <img src="/tools/img/{{ card2_page.img }}" style="height:20px;vertical-align:middle;border-radius:100%;margin-left:4px"> {{ card2_page.title }}
                     </a>
