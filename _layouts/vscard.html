@@ -447,7 +447,7 @@ layout: base
                     <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_foreigntransactionfees }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_foreigntransactionfee }}</p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -455,7 +455,7 @@ layout: base
                     <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_foreigntransactionfees }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_foreigntransactionfee }}</p>
                 </div>
               </div>
             </div>
@@ -635,7 +635,7 @@ layout: base
       <div class="vs-compare-content">
         {{ content }}
 
-        <!-- <div class="vs-related-comparisons">
+       <div class="vs-related-comparisons">
           <h2>Related Comparisons</h2>
           <ul class="sidebar-list logo-sidebar two-column-list">
           {% assign comparison_pages = site.pages | where_exp: "page", "page.maindifferences" | sort: "vssort" %}
@@ -652,7 +652,7 @@ layout: base
               {% endif %}
           {% endfor %}
           </ul>
-        </div> -->
+        </div>
       </div>
 
     </div>
