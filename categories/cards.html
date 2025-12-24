@@ -12,6 +12,165 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 {% assign cards = site.pages | where: "cat", "Credit & Debit Cards" | sort: "sort" %}
 
 <style>
+.comparison-table-wrapper {
+  margin-bottom: 40px;
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.comparison-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.comparison-table-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.comparison-selector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.comparison-selector label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.comparison-selector select {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  color: #111827;
+  cursor: pointer;
+  min-width: 180px;
+}
+
+.comparison-selector select:hover {
+  border-color: #9ca3af;
+}
+
+.comparison-selector select:focus {
+  outline: none;
+  border-color: #f2a900;
+  box-shadow: 0 0 0 3px rgba(242, 169, 0, 0.1);
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-x: auto;
+  display: block;
+}
+
+.comparison-table thead {
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.comparison-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+  white-space: nowrap;
+}
+
+.comparison-table th:first-child {
+  position: sticky;
+  left: 0;
+  background: #f9fafb;
+  z-index: 10;
+  min-width: 200px;
+}
+
+.comparison-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s;
+}
+
+.comparison-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.comparison-table td {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #111827;
+  vertical-align: middle;
+}
+
+.comparison-table td:first-child {
+  position: sticky;
+  left: 0;
+  background: white;
+  z-index: 5;
+  font-weight: 500;
+  min-width: 200px;
+}
+
+.comparison-table tbody tr:hover td:first-child {
+  background: #f9fafb;
+}
+
+.comparison-table-card-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.comparison-table-card-img {
+  width: 40px;
+  height: 25px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.comparison-value {
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .comparison-table-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .comparison-selector {
+    width: 100%;
+  }
+  
+  .comparison-selector select {
+    width: 100%;
+  }
+  
+  .comparison-table {
+    font-size: 12px;
+  }
+  
+  .comparison-table th,
+  .comparison-table td {
+    padding: 8px 12px;
+  }
+}
+
+.cards-listing {
+  margin-top: 40px;
+}
 .cards-listing {
   margin-top: 40px;
 }
@@ -280,6 +439,102 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   }
 }
 </style>
+
+<div class="comparison-table-wrapper">
+  <div class="comparison-table-header">
+    <h2 class="comparison-table-title">Compare Cards</h2>
+    <div class="comparison-selector">
+      <label for="comparison-field">Compare by:</label>
+      <select id="comparison-field" onchange="updateComparisonTable()">
+        <option value="rewards-rate">Rewards Rate</option>
+        <option value="sign-up-bonus">Sign-Up Bonus</option>
+        <option value="annual-fee">Annual Fee</option>
+        <option value="foreign-transaction-fee">Foreign Transaction Fee</option>
+        <option value="regular-apr">Regular APR</option>
+      </select>
+    </div>
+  </div>
+  
+  <div style="overflow-x: auto;">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Card</th>
+          {% for card in cards %}
+          <th>
+            <div class="comparison-table-card-name">
+              <img src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="comparison-table-card-img">
+              <span>{{ card.title }}</span>
+            </div>
+          </th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody id="comparison-table-body">
+        <tr>
+          <td><strong>Rewards Rate</strong></td>
+          {% for card in cards %}
+          <td class="comparison-value" data-field="rewards-rate" data-card="{{ card.title | escape }}">
+            {% if card.vs_rewardsrate_short %}
+              {{ card.vs_rewardsrate_short }}
+            {% else %}
+              {% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}
+              {{ rewards_text | truncate: 30 }}
+            {% endif %}
+          </td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+// Store card data for dynamic updates
+const cardData = {
+  {% for card in cards %}
+  "{{ card.title | escape }}": {
+    "rewards-rate": {% if card.vs_rewardsrate_short %}"{{ card.vs_rewardsrate_short }}"{% else %}{% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}"{{ rewards_text | truncate: 40 | escape }}"{% endif %},
+    "sign-up-bonus": {% if card.vs_signupbonus and card.vs_signupbonus != 'None' %}{% assign bonus_text = card.vs_signupbonus | strip_html | strip %}"{{ bonus_text | truncate: 50 | escape }}"{% else %}"None"{% endif %},
+    "annual-fee": {% assign fee_text = card.vs_annualfee | strip_html | strip %}{% if fee_text contains '$0' or fee_text contains 'No annual fee' %}"$0"{% else %}"{{ fee_text | truncate: 30 | escape }}"{% endif %},
+    "foreign-transaction-fee": {% assign ftf_text = card.vs_foreigntransactionfee | strip_html | strip %}"{{ ftf_text | truncate: 30 | escape }}",
+    "regular-apr": {% if card.vs_regularapr %}{% assign apr_text = card.vs_regularapr | strip_html | strip %}"{{ apr_text | truncate: 30 | escape }}"{% else %}"N/A"{% endif %}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+};
+
+const cardOrder = [
+  {% for card in cards %}
+  "{{ card.title | escape }}"{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+];
+
+function updateComparisonTable() {
+  const field = document.getElementById('comparison-field').value;
+  const tbody = document.getElementById('comparison-table-body');
+  const row = tbody.querySelector('tr');
+  
+  // Update the label in the first cell
+  const labels = {
+    'rewards-rate': 'Rewards Rate',
+    'sign-up-bonus': 'Sign-Up Bonus',
+    'annual-fee': 'Annual Fee',
+    'foreign-transaction-fee': 'Foreign Transaction Fee',
+    'regular-apr': 'Regular APR'
+  };
+  row.querySelector('td:first-child').innerHTML = '<strong>' + labels[field] + '</strong>';
+  
+  // Update all comparison cells
+  row.querySelectorAll('td[data-field]').forEach((cell, index) => {
+    const cardName = cell.getAttribute('data-card');
+    if (cardData[cardName] && cardData[cardName][field]) {
+      cell.textContent = cardData[cardName][field];
+    } else {
+      cell.textContent = 'N/A';
+    }
+  });
+}
+</script>
 
 <div class="cards-listing">
   {% for card in cards %}
