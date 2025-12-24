@@ -154,6 +154,61 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   text-transform: uppercase;
 }
 
+.tooltip-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  color: #6b7280;
+}
+
+.tooltip-icon:hover {
+  color: #111827;
+}
+
+.tooltip-icon::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  padding: 12px;
+  background: #111827;
+  color: white;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: normal;
+  width: 300px;
+  max-width: 90vw;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  text-align: left;
+}
+
+.tooltip-icon::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 2px;
+  border: 6px solid transparent;
+  border-top-color: #111827;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 1001;
+}
+
+.tooltip-icon:hover::after,
+.tooltip-icon:hover::before {
+  opacity: 1;
+}
+
 @media (max-width: 768px) {
   .card-header {
     flex-direction: column;
@@ -216,9 +271,21 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
           
           <div class="data-item">
             <div class="data-label">Rewards rate</div>
-            <div class="data-value">
-              {% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}
-              {{ rewards_text | truncate: 40 }}
+            <div class="data-value" style="display: flex; align-items: center; gap: 6px;">
+              {% if card.vs_rewardsrate_short %}
+                <span>{{ card.vs_rewardsrate_short }}</span>
+              {% else %}
+                {% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}
+                <span>{{ rewards_text | truncate: 40 }}</span>
+              {% endif %}
+              {% if card.vs_rewardsrate %}
+              <span class="tooltip-icon" data-tooltip="{{ card.vs_rewardsrate | strip_html | escape }}">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.6; cursor: help;">
+                  <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                  <text x="8" y="11" text-anchor="middle" font-size="10" font-weight="bold" fill="currentColor">?</text>
+                </svg>
+              </span>
+              {% endif %}
             </div>
           </div>
           
