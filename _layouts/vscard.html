@@ -3,19 +3,9 @@ layout: base
 ---
 <h1 style="text-align: center; width: 100%;margin-bottom: 85px;">{{ page.title }}</h1>
 <div class="post-inner-wrapper">
-    {%- assign all_pages = site.pages -%}
-    {%- assign exchange1_page = nil -%}
-    {%- assign exchange2_page = nil -%}
-    {%- for p in all_pages -%}
-      {%- if p.title == page.card1 -%}
-        {%- assign exchange1_page = p -%}
-      {%- endif -%}
-      {%- if p.title == page.card2 -%}
-        {%- assign exchange2_page = p -%}
-      {%- endif -%}
-    {%- endfor -%}
+    {%- assign exchange1_page = site.pages | where: "title", page.wallet1 | first -%}
+    {%- assign exchange2_page = site.pages | where: "title", page.wallet2 | first -%}
     <div class="compare-exchanges-inner">
-      {%- if exchange1_page -%}
       <div class="exchange-card">
         <div class="exchange-card-top">
           <div class="header-exchange-logo-wrapper">
@@ -28,8 +18,6 @@ layout: base
           <div class="header-exchange-label">Overall Rating</div>
         </div>
       </div>
-      {%- endif -%}
-      {%- if exchange2_page -%}
       <div class="exchange-card">
         <div class="exchange-card-top">
           <div class="header-exchange-logo-wrapper">
@@ -42,29 +30,26 @@ layout: base
           <div class="header-exchange-label">Overall Rating</div>
         </div>
       </div>
-      {%- endif -%}
     </div>
 
     <div class="compare-exchange-cta">
-        {% if exchange1_page and exchange2_page %}
         {% include sticky-compare-cta.html 
           exchange1=exchange1_page.brand
           exchange2=exchange2_page.brand
           exchange1Link=exchange1_page.link
           exchange2Link=exchange2_page.link
         %}
-        {% endif %}
     </div>
     <script>
       window.addEventListener('load', (event) => {
         document.querySelectorAll('.sticky-compare-cta-button').forEach((button, index) => {
           button.addEventListener('click', event => {
             if (index === 0) {
-              fathom.trackEvent('Click Card');
-              fathom.trackEvent('Click Card: {{ exchange1_page.title }}');
+              fathom.trackEvent('Click Software');
+              fathom.trackEvent('Click Software: {{ exchange1_page.title }}');
             } else {
-              fathom.trackEvent('Click Card');
-              fathom.trackEvent('Click Card: {{ exchange2_page.title }}');
+              fathom.trackEvent('Click Software');
+              fathom.trackEvent('Click Software: {{ exchange2_page.title }}');
             }
           });
         });
@@ -72,34 +57,26 @@ layout: base
     </script>
 
     <div id="sticky-cta">
-      {% if exchange1_page %}
       <a href="{{ exchange1_page.link }}" target="_blank" id="sticky-cta-1">
         <img src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }} logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px; border-radius: 50%;">
         Visit {{ exchange1_page.brand }}'s Website
       </a>
-      {% endif %}
-      {% if exchange2_page %}
       <a href="{{ exchange2_page.link }}" target="_blank" id="sticky-cta-2">
         <img src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }} logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px; border-radius: 50%;">
         Visit {{ exchange2_page.brand }}'s Website
       </a>
-      {% endif %}
     </div>
 
     <script>
       window.addEventListener('load', (event) => {
-        {% if exchange1_page %}
         document.getElementById('sticky-cta-1').addEventListener('click', event => {
-          fathom.trackEvent('Click Card');
-          fathom.trackEvent('Click Card: {{ exchange1_page.title }}');
+          fathom.trackEvent('Click Software');
+          fathom.trackEvent('Click Software: {{ exchange1_page.title }}');
         });
-        {% endif %}
-        {% if exchange2_page %}
         document.getElementById('sticky-cta-2').addEventListener('click', event => {
-          fathom.trackEvent('Click Card');
-          fathom.trackEvent('Click Card: {{ exchange2_page.title }}');
+          fathom.trackEvent('Click Software');
+          fathom.trackEvent('Click Software: {{ exchange2_page.title }}');
         });
-        {% endif %}
         document.querySelectorAll('.vs-related-comparison-link').forEach(link => {
           link.addEventListener('click', event => {
             fathom.trackEvent('Click Related Comparison');
@@ -218,28 +195,28 @@ layout: base
         <nav class="compare-bright-section-toc">
           <ul class="compare-bright-section-toc-list">
             <li class="compare-bright-section-toc-list-item">
-              <a href="#summary" class="compare-bright-section-toc-link">Summary</a>
+              <a href="#supported-countries" class="compare-bright-section-toc-link">Supported Countries</a>
             </li>
             <li class="compare-bright-section-toc-list-item">
-              <a href="#card-type" class="compare-bright-section-toc-link">Card Type</a>
+              <a href="#cryptocurrencies" class="compare-bright-section-toc-link">Cryptocurrencies</a>
             </li>
             <li class="compare-bright-section-toc-list-item">
-              <a href="#annual-fee" class="compare-bright-section-toc-link">Annual Fee</a>
+              <a href="#pricing" class="compare-bright-section-toc-link">Pricing</a>
             </li>
             <li class="compare-bright-section-toc-list-item">
-              <a href="#rewards" class="compare-bright-section-toc-link">Rewards</a>
+              <a href="#integrations" class="compare-bright-section-toc-link">Integrations</a>
             </li>
             <li class="compare-bright-section-toc-list-item">
-              <a href="#sign-up-bonus" class="compare-bright-section-toc-link">Sign-Up Bonus</a>
+              <a href="#irs-forms" class="compare-bright-section-toc-link">IRS Forms</a>
             </li>
             <li class="compare-bright-section-toc-list-item">
-              <a href="#fees" class="compare-bright-section-toc-link">Fees</a>
+              <a href="#turbotax" class="compare-bright-section-toc-link">TurboTax</a>
             </li>
             <li class="compare-bright-section-toc-list-item">
-              <a href="#card-details" class="compare-bright-section-toc-link">Card Details</a>
+              <a href="#nfts" class="compare-bright-section-toc-link">NFTs</a>
             </li>
             <li class="compare-bright-section-toc-list-item">
-              <a href="#eligibility" class="compare-bright-section-toc-link">Eligibility</a>
+              <a href="#hacks" class="compare-bright-section-toc-link">Hacks</a>
             </li>
           </ul>
         </nav>
@@ -259,8 +236,9 @@ layout: base
         <div class="exchange-details-wrapper">
           <div class="compare-exchanges is--table">
             
+
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="summary">Summary</h2>
+              <h2 class="section-left-heading" id="description">Description</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -280,39 +258,21 @@ layout: base
               </div>
             </div>
 
-            <h2 class="section-category-heading" id="card-basics">Card Basics</h2>
-
-           <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="card-type">Card Type</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_cardtype }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_cardtype }}</p>
-                </div>
-              </div>
-            </div>
-            
-            {% if exchange1_page.vs_network or exchange2_page.vs_network %}
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="network">Network</h2>
+              <h2 class="section-left-heading" id="free-trial">Free Trial?</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
                     <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_network }}</p>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange1_page.vs_freetrial %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -320,182 +280,26 @@ layout: base
                     <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_network }}</p>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-
-            {% if exchange1_page.vs_issuer or exchange2_page.vs_issuer %}
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="issuer">Issuer</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_issuer }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_issuer }}</p>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-
-            {% if exchange1_page.vs_launched or exchange2_page.vs_launched %}
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="launched">Launched</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_launched }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_launched }}</p>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-
-            <h2 class="section-category-heading" id="fees-costs">Fees & Costs</h2>
-
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="annual-fee">Annual Fee</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_annualfee }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_annualfee }}</p>
-                </div>
-              </div>
-            </div>
-
-            {% if exchange1_page.vs_foreigntransactionfee or exchange2_page.vs_foreigntransactionfee %}
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="foreign-transaction-fee">Foreign Transaction Fee</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_foreigntransactionfee }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_foreigntransactionfee }}</p>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-
-            {% if exchange1_page.vs_regularapr or exchange2_page.vs_regularapr %}
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="regular-apr">Regular APR</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_regularapr }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_regularapr }}</p>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-
-            {% if exchange1_page.vs_introapr or exchange2_page.vs_introapr %}
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="intro-apr">Intro APR</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_introapr }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_introapr }}</p>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-
-            <h2 class="section-category-heading" id="rewards">Rewards</h2>
-
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="rewards-rate">Rewards Rate</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_rewardsrate }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_rewardsrate }}</p>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange2_page.vs_freetrial %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
                 </div>
               </div>
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="rewards-type">Rewards Type</h2>
+              <h2 class="section-left-heading" id="supported-countries">Supported Countries</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
                     <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_rewardstype }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_countries }}</p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -503,20 +307,20 @@ layout: base
                     <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_rewardstype }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_countries }}</p>
                 </div>
               </div>
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="sign-up-bonus">Sign-Up Bonus</h2>
+              <h2 class="section-left-heading" id="cryptocurrencies">Supported Cryptocurrencies</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
                     <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_signupbonus }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_cryptosavailable }}</p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -524,300 +328,20 @@ layout: base
                     <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_signupbonus }}</p>
-                </div>
-              </div>
-            </div>
-
-            {% if exchange1_page.vs_rewardscap or exchange2_page.vs_rewardscap %}
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="rewards-cap">Rewards Cap</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_rewardscap }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_rewardscap }}</p>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-
-            {% if exchange1_page.vs_howrewards or exchange2_page.vs_howrewards %}
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="how-rewards">How Rewards Work</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_howrewards }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_howrewards }}</p>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-
-            {% if exchange1_page.vs_referralprogram or exchange2_page.vs_referralprogram %}
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="referral-program">Referral Program</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_referralprogram }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_referralprogram }}</p>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-
-            {% if exchange1_page.vs_vaultrewards or exchange2_page.vs_vaultrewards %}
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="vault-rewards">Vault Rewards</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_vaultrewards }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_vaultrewards }}</p>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-
-            <h2 class="section-category-heading" id="card-details">Card Details</h2>
-
-            {% if exchange1_page.vs_cardmaterial or exchange2_page.vs_cardmaterial %}
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="card-material">Card Material</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_cardmaterial }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_cardmaterial }}</p>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-
-            {% if exchange1_page.vs_cardweight or exchange2_page.vs_cardweight %}
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="card-weight">Card Weight</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_cardweight }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_cardweight }}</p>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-
-            <h2 class="section-category-heading" id="eligibility-requirements">Eligibility & Requirements</h2>
-
-            {% if exchange1_page.vs_membershiprequired or exchange2_page.vs_membershiprequired %}
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="membership-required">Membership Required</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_membershiprequired }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_membershiprequired }}</p>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-
-            {% if exchange1_page.vs_creditcheck or exchange2_page.vs_creditcheck %}
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="credit-check">Credit Check</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_creditcheck }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_creditcheck }}</p>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="eligibility">Eligibility</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_eligibility }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_eligibility }}</p>
-                </div>
-              </div>
-            </div>
-
-            <h2 class="section-category-heading" id="additional-benefits">Additional Benefits</h2>
-
-            {% if exchange1_page.vs_coinbaseonebenefits or exchange2_page.vs_coinbaseonebenefits %}
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="coinbase-one-benefits">Coinbase One Benefits</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_coinbaseonebenefits }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_coinbaseonebenefits }}</p>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-
-            {% if exchange1_page.vs_amexbenefits or exchange2_page.vs_amexbenefits %}
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="network-benefits">Network Benefits</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_amexbenefits }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_amexbenefits }}</p>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-
-            <h2 class="section-category-heading" id="pros-cons">Pros & Cons</h2>
-
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="pros">Pros</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_pros }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_pros }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_cryptosavailable }}</p>
                 </div>
               </div>
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="cons">Cons</h2>
+              <h2 class="section-left-heading" id="pricing">Pricing</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
                     <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_cons }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_price }}</p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -825,21 +349,28 @@ layout: base
                     <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_cons }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_price }}</p>
                 </div>
               </div>
             </div>
 
-            {% if exchange1_page.vs_restrictions or exchange2_page.vs_restrictions %}
+            <h2 class="section-category-heading" id="tax-forms">Tax Forms & Integration</h2>
+
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="restrictions">Restrictions</h2>
+              <h2 class="section-left-heading" id="irs-forms">IRS Forms</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
                     <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_restrictions }}</p>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange1_page.vs_irsform %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -847,11 +378,265 @@ layout: base
                     <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_restrictions }}</p>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange2_page.vs_irsform %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
                 </div>
               </div>
             </div>
-            {% endif %}
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="schedule-d">Schedule D Support</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% include vscheck.html %}
+                  </p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% include vscheck.html %}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="turbotax">TurboTax Integration</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange1_page.vs_turbotax %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange2_page.vs_turbotax %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="taxact">TaxAct Integration</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% include vscheck.html %}
+                  </p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% include vscheck.html %}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <h2 class="section-category-heading" id="features">Features</h2>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="integrations">Integrations</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_integrations }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_integrations }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="tax-loss-harvesting">Tax Loss Harvesting</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange1_page.vs_taxlossharvesting %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange2_page.vs_taxlossharvesting %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="portfolio">Portfolio Tracking</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange1_page.vs_portfolio %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange2_page.vs_portfolio %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="nfts">NFT Support</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange1_page.vs_nfts %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">
+                    {% if exchange2_page.vs_nfts %}
+                    {% include vscheck.html %}
+                    {% else %}
+                    {% include vsx.html %}
+                    {% endif %}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <h2 class="section-category-heading" id="support-security">Support & Security</h2>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="hacks">Security Incidents</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_hackedbefore }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_hackedbefore }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="live-chat">Live Chat Support</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_livechat }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_livechat }}</p>
+                </div>
+              </div>
+            </div>
 
             <div class="exchanges-details-card">
               <h2 class="section-left-heading" id="official-site">Official Site</h2>
@@ -881,69 +666,29 @@ layout: base
           </div>
         </div>
       </div>
-   <div class="vs-compare-content">
-        {{ content }}
-        <div class="vs-related-comparisons" style="margin-top: 0px !important; border-top: 0px !important;">
-          <h2>Related Comparisons</h2>
-          <div class="related-comparisons-container" style="display: flex; gap: 40px;">
-            <div class="related-wallet-column" style="flex: 1;">
-              <h3>{{ page.card1 }} vs</h3>
-              <ul style="padding-left: 0px !important;" class="sidebar-list logo-sidebar">
-              {% assign comparison_pages = site.pages | where: "layout", "vscard" | sort: "title" %}
-              {% for comparison in comparison_pages %}
-                {% if comparison.title != page.title and (comparison.card1 == page.card1 or comparison.card2 == page.card1) %}
-                  {% assign other_card = comparison.card1 %}
-                  {% if comparison.card1 == page.card1 %}
-                    {% assign other_card = comparison.card2 %}
-                  {% endif %}
-                  {% assign other_card_page = nil %}
-                  {% for p in all_pages %}
-                    {% if p.title == other_card %}
-                      {% assign other_card_page = p %}
-                    {% endif %}
-                  {% endfor %}
-                  {% if other_card_page %}
-                  <li>
-                    <a class="vs-related-comparison-link" href="/tools{{ comparison.permalink }}">
-                      <img src="/tools/img/{{ other_card_page.img }}" style="height:20px;vertical-align:middle;border-radius:100%;margin-right:4px">
-                      {{ other_card }}
-                    </a>
-                  </li>
-                  {% endif %}
-                {% endif %}
-              {% endfor %}
-              </ul>
-            </div>
 
-            <div class="related-wallet-column" style="flex: 1;">
-              <h3>{{ page.card2 }} vs</h3>
-              <ul style="padding-left: 0px !important;" class="sidebar-list logo-sidebar">
-              {% for comparison in comparison_pages %}
-                {% if comparison.title != page.title and (comparison.card1 == page.card2 or comparison.card2 == page.card2) %}
-                  {% assign other_card = comparison.card1 %}
-                  {% if comparison.card1 == page.card2 %}
-                    {% assign other_card = comparison.card2 %}
-                  {% endif %}
-                  {% assign other_card_page = nil %}
-                  {% for p in all_pages %}
-                    {% if p.title == other_card %}
-                      {% assign other_card_page = p %}
-                    {% endif %}
-                  {% endfor %}
-                  {% if other_card_page %}
+      <div class="vs-compare-content">
+        {{ content }}
+
+        <!-- <div class="vs-related-comparisons">
+          <h2>Related Comparisons</h2>
+          <ul class="sidebar-list logo-sidebar two-column-list">
+          {% assign comparison_pages = site.pages | where_exp: "page", "page.maindifferences" | sort: "vssort" %}
+          {% for comparison in comparison_pages %}
+              {% if comparison.title != page.title and (comparison.exchange1 == page.exchange1 or comparison.exchange1 == page.exchange2 or comparison.exchange2 == page.exchange1 or comparison.exchange2 == page.exchange2) %}
+                  {% assign exchange1_page = site.pages | where: "title", comparison.exchange1 | first %}
+                  {% assign exchange2_page = site.pages | where: "title", comparison.exchange2 | first %}
                   <li>
-                    <a class="vs-related-comparison-link" href="/tools{{ comparison.permalink }}">
-                      <img src="/tools/img/{{ other_card_page.img }}" style="height:20px;vertical-align:middle;border-radius:100%;margin-right:4px">
-                      {{ other_card }}
+                    <a class="vs-related-comparison-link" href="{{ comparison.permalink }}">
+                      <img src="/img/{{ exchange1_page.img }}" style="height:20px;vertical-align:middle;border-radius:100%"> {{ exchange1_page.title }} vs 
+                      <img src="/img/{{ exchange2_page.img }}" style="height:20px;vertical-align:middle;border-radius:100%;margin-left:4px"> {{ exchange2_page.title }}
                     </a>
                   </li>
-                  {% endif %}
-                {% endif %}
-              {% endfor %}
-              </ul>
-            </div>
-            </div>
-          </div>
-        </div>
+              {% endif %}
+          {% endfor %}
+          </ul>
+        </div> -->
       </div>
+
     </div>
+</div>
