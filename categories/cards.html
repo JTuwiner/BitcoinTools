@@ -18,7 +18,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 
 .comparison-table-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
   flex-wrap: wrap;
@@ -26,20 +25,17 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 }
 
 .comparison-table-title {
-  font-size: 24px;
   font-weight: 700;
   color: #111827;
   margin: 0;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 16px;
 }
 
 .comparison-selector {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-left: auto;
 }
 
 .comparison-selector label {
@@ -442,17 +438,19 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 <br><br><br>
 <div class="comparison-table-wrapper">
   <div class="comparison-table-header">
-    <h2 class="comparison-table-title">Compare Cards</h2>
-    <div class="comparison-selector">
-      <label for="comparison-field">Compare by:</label>
-      <select id="comparison-field" onchange="updateComparisonTable()">
-        <option value="rewards-rate">Rewards Rate</option>
-        <option value="sign-up-bonus">Sign-Up Bonus</option>
-        <option value="annual-fee">Annual Fee</option>
-        <option value="foreign-transaction-fee">Foreign Transaction Fee</option>
-        <option value="regular-apr">Regular APR</option>
-      </select>
-    </div>
+    <h2 class="comparison-table-title">
+      Compare Cards
+      <div class="comparison-selector" style="margin-left: 16px;">
+        <label for="comparison-field" style="font-size: 14px; font-weight: 500; color: #6b7280;">Compare by:</label>
+        <select id="comparison-field" onchange="updateComparisonTable()">
+          <option value="rewards-rate">Rewards Rate</option>
+          <option value="sign-up-bonus">Sign-Up Bonus</option>
+          <option value="annual-fee">Annual Fee</option>
+          <option value="foreign-transaction-fee">Foreign Transaction Fee</option>
+          <option value="regular-apr">Regular APR</option>
+        </select>
+      </div>
+    </h2>
   </div>
   
   <div style="overflow-x: auto;">
@@ -535,9 +533,9 @@ function updateComparisonTable() {
   });
 }
 </script>
-
-<h2>Card Details</h2>
 <br><br><br>
+<h2>Card Details</h2>
+<br>
 
 <div class="cards-listing">
   {% for card in cards %}
