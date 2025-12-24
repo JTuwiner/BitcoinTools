@@ -408,6 +408,10 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   color: #92400E;
 }
 
+.card-type-above-title {
+  margin-bottom: 8px;
+}
+
 .card-actions {
   display: flex;
   align-items: center;
@@ -445,20 +449,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   text-decoration: underline;
 }
 
-.no-annual-fee-badge {
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fbbf24;
-  color: #111827;
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
 
 .rewards-breakdown-section {
   margin-top: 24px;
@@ -587,18 +577,148 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   background: #34d399;
 }
 
+/* Other Important Info styling */
+.other-info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.info-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border-left: 3px solid #f2a900;
+}
+
+.info-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-label svg {
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.info-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+  padding-left: 24px;
+}
+
 @media (max-width: 768px) {
   .card-header {
     flex-direction: column;
+    padding: 16px;
   }
   
   .card-image-wrapper {
     width: 100%;
-    height: 200px;
+    height: 180px;
+    margin-bottom: 16px;
+  }
+  
+  .card-info {
+    padding: 0;
+  }
+  
+  .card-type-above-title {
+    margin-bottom: 6px;
+  }
+  
+  .card-title {
+    font-size: 20px;
+    margin: 0 0 6px 0;
+  }
+  
+  .card-rating {
+    margin-bottom: 12px;
   }
   
   .card-data-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  
+  .data-label {
+    font-size: 11px;
+    margin-bottom: 2px;
+  }
+  
+  .data-value {
+    font-size: 14px;
+  }
+  
+  .coins-available {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .card-actions {
+    margin-top: 16px;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .apply-button {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+  }
+  
+  .rewards-breakdown-section {
+    margin-top: 16px;
+    padding-top: 12px;
+  }
+  
+  .rewards-breakdown-header {
+    padding: 10px 12px;
+    margin: -6px -10px;
+  }
+  
+  .rewards-breakdown-title {
+    font-size: 13px;
+  }
+  
+  .info-row {
+    padding: 8px 10px;
+  }
+  
+  .info-label {
+    font-size: 11px;
+  }
+  
+  .info-value {
+    font-size: 13px;
+    padding-left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-data-grid {
     grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .card-item {
+    margin-bottom: 16px;
+    border-radius: 10px;
+  }
+  
+  .card-image-wrapper {
+    height: 160px;
   }
 }
 </style>
@@ -724,13 +844,22 @@ function updateComparisonTable() {
     <div class="card-header">
       <div class="card-image-wrapper">
         <img src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="card-image">
-        {% assign annual_fee_text = card.vs_annualfee | strip_html | strip %}
-        {% if annual_fee_text contains '$0' or annual_fee_text contains 'No annual fee' %}
-        <div class="no-annual-fee-badge">NO ANNUAL FEE</div>
-        {% endif %}
       </div>
       
       <div class="card-info">
+        <div class="card-type-above-title">
+          {% assign card_type = card.vs_cardtype | strip_html | strip %}
+          {% if card_type contains "Credit" %}
+            <span class="card-type-badge credit">Credit Card</span>
+          {% elsif card_type contains "Debit" %}
+            <span class="card-type-badge debit">Debit Card</span>
+          {% elsif card_type contains "Prepaid" %}
+            <span class="card-type-badge prepaid">Prepaid</span>
+          {% else %}
+            <span class="card-type-badge">{{ card_type }}</span>
+          {% endif %}
+        </div>
+        
         <h2 class="card-title">{{ card.title }}</h2>
         
         {% if card.rating %}
@@ -746,22 +875,6 @@ function updateComparisonTable() {
         {% endif %}
         
         <div class="card-data-grid">
-          <div class="data-item">
-            <div class="data-label">Card type</div>
-            <div class="data-value">
-              {% assign card_type = card.vs_cardtype | strip_html | strip %}
-              {% if card_type contains "Credit" %}
-                <span class="card-type-badge credit">Credit Card</span>
-              {% elsif card_type contains "Debit" %}
-                <span class="card-type-badge debit">Debit Card</span>
-              {% elsif card_type contains "Prepaid" %}
-                <span class="card-type-badge prepaid">Prepaid</span>
-              {% else %}
-                <span class="card-type-badge">{{ card_type }}</span>
-              {% endif %}
-            </div>
-          </div>
-          
           <div class="data-item">
             <div class="data-label">Annual fee</div>
             <div class="data-value">
@@ -861,6 +974,73 @@ function updateComparisonTable() {
           </div>
         </div>
         {% endif %}
+        
+        {% if card.vs_rewardscap %}
+        <div class="rewards-breakdown-section">
+          <div class="rewards-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="rewards-breakdown-title">
+              <div class="rewards-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              Rewards limits
+            </div>
+            <svg class="rewards-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="rewards-breakdown-content">
+            {{ card.vs_rewardscap }}
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if card.vs_foreigntransactionfee or card.vs_availability %}
+        <div class="rewards-breakdown-section">
+          <div class="rewards-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="rewards-breakdown-title">
+              <div class="rewards-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              Other important info
+            </div>
+            <svg class="rewards-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="rewards-breakdown-content other-info-content">
+            {% if card.vs_foreigntransactionfee %}
+            <div class="info-row">
+              <div class="info-label">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                  <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                Foreign Transaction Fee
+              </div>
+              <div class="info-value">{{ card.vs_foreigntransactionfee }}</div>
+            </div>
+            {% endif %}
+            {% if card.vs_availability %}
+            <div class="info-row">
+              <div class="info-label">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="currentColor" stroke-width="2"/>
+                  <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                Availability
+              </div>
+              <div class="info-value">{{ card.vs_availability }}</div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -887,3 +1067,35 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
+<div class="cards-disclaimer">
+  <p>Disclaimer: The information provided on this page is for informational purposes only and does not constitute financial advice. Credit card terms, rewards rates, and offers are subject to change at any time without notice. Always review the official terms and conditions on the card issuer's website before applying. Some links on this page may be affiliate links, which means we may receive compensation if you apply for or are approved for a card.</p>
+</div>
+
+<style>
+.cards-disclaimer {
+  margin-top: 48px;
+  padding: 20px 24px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border-left: 3px solid #d1d5db;
+}
+
+.cards-disclaimer p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .cards-disclaimer {
+    margin-top: 32px;
+    padding: 16px;
+  }
+  
+  .cards-disclaimer p {
+    font-size: 11px;
+  }
+}
+</style>
