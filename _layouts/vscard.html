@@ -237,26 +237,7 @@ layout: base
           <div class="compare-exchanges is--table">
             
 
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="description">Description</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_summary }}</p>
-                </div>
     
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_summary }}</p>
-                </div>
-              </div>
-            </div>
 
             <div class="exchanges-details-card">
               <h2 class="section-left-heading" id="card-type">Card Type</h2>
@@ -405,7 +386,7 @@ layout: base
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="taxact">TaxAct Integration</h2>
+              <h2 class="section-left-heading" id="rewards-cap">Rewards Cap</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -413,7 +394,7 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
-                    {% include vscheck.html %}
+                    {{ exchange1_page.vs_rewardscap }}
                   </p>
                 </div>
     
@@ -423,23 +404,23 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
-                    {% include vscheck.html %}
+                    {{ exchange2_page.vs_rewardscap }}
                   </p>
                 </div>
               </div>
             </div>
 
-            <h2 class="section-category-heading" id="features">Features</h2>
-
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="integrations">Integrations</h2>
+              <h2 class="section-left-heading" id="how-rewards-work">How Rewards Work</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
                     <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_integrations }}</p>
+                  <p class="exchanges-details-side-subtitle">
+                    {{ exchange1_page.vs_howrewards }}
+                  </p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -447,7 +428,34 @@ layout: base
                     <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_integrations }}</p>
+                  <p class="exchanges-details-side-subtitle">
+                    {{ exchange2_page.vs_howrewards }}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            
+
+            <h2 class="section-category-heading" id="features">Using The Card</h2>
+
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="integrations">Foreign Transaction Fees</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_foreigntransactionfees }}</p>
+                </div>
+    
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_foreigntransactionfees }}</p>
                 </div>
               </div>
             </div>
@@ -551,17 +559,17 @@ layout: base
               </div>
             </div>
 
-            <h2 class="section-category-heading" id="support-security">Support & Security</h2>
+            <h2 class="section-category-heading" id="support-security">APR</h2>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="hacks">Security Incidents</h2>
+              <h2 class="section-left-heading" id="regular-apr">Regular APR</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
                     <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_hackedbefore }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_regularapr }}</p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -569,20 +577,20 @@ layout: base
                     <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_hackedbefore }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_regularapr }}</p>
                 </div>
               </div>
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="live-chat">Live Chat Support</h2>
+              <h2 class="section-left-heading" id="intro-apr">Intro APR</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
                     <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_livechat }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_introapr }}</p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -590,7 +598,7 @@ layout: base
                     <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_livechat }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_introapr }}</p>
                 </div>
               </div>
             </div>
