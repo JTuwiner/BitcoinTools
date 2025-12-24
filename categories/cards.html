@@ -20,7 +20,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   background: white;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
-  padding: 24px;
   margin-bottom: 24px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   transition: box-shadow 0.2s;
@@ -33,7 +32,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 .card-header {
   display: flex;
   gap: 24px;
-  margin-bottom: 24px;
 }
 
 .card-image-wrapper {
@@ -114,8 +112,8 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 }
 
 .apply-button {
-  background: #10b981;
-  color: white;
+  background: #f2a900;
+  color: black;
   padding: 12px 24px;
   border-radius: 8px;
   text-decoration: none;
@@ -272,10 +270,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
               <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          <a href="{{ card.permalink }}" class="card-link">View details</a>
-          {% if card.link %}
-          <a href="{{ card.link }}" target="_blank" class="card-link">on {{ card.brand }}'s website</a>
-          {% endif %}
+          
         </div>
       </div>
     </div>
