@@ -284,14 +284,14 @@ layout: base
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="supported-countries">Supported Countries</h2>
+              <h2 class="section-left-heading" id="network">Network</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
                     <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_countries }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_network }}</p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -299,20 +299,20 @@ layout: base
                     <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_countries }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_network }}</p>
                 </div>
               </div>
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="cryptocurrencies">Supported Cryptocurrencies</h2>
+              <h2 class="section-left-heading" id="annual-fee">Annual Fee</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
                     <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_cryptosavailable }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_annualfee }}</p>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -320,36 +320,17 @@ layout: base
                     <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_cryptosavailable }}</p>
+                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_annualfee }}</p>
                 </div>
               </div>
             </div>
 
-            <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="pricing">Pricing</h2>
-              <div class="exchanges-details-right">
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange1_page.vs_price }}</p>
-                </div>
-    
-                <div class="exchanges-details-side">
-                  <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
-                    <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
-                  </div>
-                  <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_price }}</p>
-                </div>
-              </div>
-            </div>
+        
 
-            <h2 class="section-category-heading" id="tax-forms">Tax Forms & Integration</h2>
+            <h2 class="section-category-heading" id="rewards-rate">Rewards Details</h2>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="irs-forms">IRS Forms</h2>
+              <h2 class="section-left-heading" id="rewards-rate">Rewards Rate</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -357,11 +338,7 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
-                    {% if exchange1_page.vs_irsform %}
-                    {% include vscheck.html %}
-                    {% else %}
-                    {% include vsx.html %}
-                    {% endif %}
+                    {{ exchange1_page.vs_rewardsrate }}
                   </p>
                 </div>
     
@@ -371,18 +348,14 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
-                    {% if exchange2_page.vs_irsform %}
-                    {% include vscheck.html %}
-                    {% else %}
-                    {% include vsx.html %}
-                    {% endif %}
+                    {{ exchange2_page.vs_rewardsrate }}
                   </p>
                 </div>
               </div>
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="schedule-d">Schedule D Support</h2>
+              <h2 class="section-left-heading" id="rewards-type">Rewards Type</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -390,7 +363,7 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
-                    {% include vscheck.html %}
+                    {{ exchange1_page.vs_rewardstype }}
                   </p>
                 </div>
     
@@ -400,14 +373,14 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
-                    {% include vscheck.html %}
+                    {{ exchange2_page.vs_rewardstype }}
                   </p>
                 </div>
               </div>
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="turbotax">TurboTax Integration</h2>
+              <h2 class="section-left-heading" id="sign-up-bonus">Sign-Up Bonus</h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -415,11 +388,7 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
-                    {% if exchange1_page.vs_turbotax %}
-                    {% include vscheck.html %}
-                    {% else %}
-                    {% include vsx.html %}
-                    {% endif %}
+                    {{ exchange1_page.vs_signupbonus }}
                   </p>
                 </div>
     
@@ -429,11 +398,7 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
-                    {% if exchange2_page.vs_turbotax %}
-                    {% include vscheck.html %}
-                    {% else %}
-                    {% include vsx.html %}
-                    {% endif %}
+                    {{ exchange2_page.vs_signupbonus }}
                   </p>
                 </div>
               </div>
