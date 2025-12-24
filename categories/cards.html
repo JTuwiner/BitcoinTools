@@ -289,7 +289,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 .card-title {
   font-size: 24px;
   font-weight: 700;
-  color: #111827;
+  color: #111827 !important;
   margin: 0 0 8px 0;
 }
 
@@ -301,7 +301,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 }
 
 .stars {
-  color: #10b981;
+  color: #f2a900;
   font-size: 18px;
   line-height: 1;
   display: flex;
@@ -370,6 +370,17 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   font-size: 14px;
   font-weight: 500;
   color: #6b7280;
+}
+
+.coin-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.no-intro-offer {
+  color: #9ca3af;
+  font-weight: 500;
 }
 
 .card-actions {
@@ -742,27 +753,46 @@ function updateComparisonTable() {
             </div>
           </div>
           
-          {% if card.vs_signupbonus and card.vs_signupbonus != 'None' %}
           <div class="data-item">
             <div class="data-label">Intro offer</div>
             <div class="data-value">
-              {% assign bonus_text = card.vs_signupbonus | strip_html | strip %}
-              {{ bonus_text }}
+              {% if card.vs_signupbonus and card.vs_signupbonus != 'None' %}
+                {% assign bonus_text = card.vs_signupbonus | strip_html | strip %}
+                {{ bonus_text }}
+              {% else %}
+                <span class="no-intro-offer">No intro offer</span>
+              {% endif %}
             </div>
           </div>
-          {% endif %}
           
           <div class="data-item">
             <div class="data-label">Rewards paid in</div>
             <div class="data-value coins-available">
-              <span class="btc-coin">
-                <svg width="18" height="18" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="16" cy="16" r="16" fill="#F7931A"/>
-                  <path fill="#FFF" d="M22.5 14.1c.3-2-1.2-3.1-3.3-3.8l.7-2.7-1.7-.4-.7 2.6c-.4-.1-.9-.2-1.4-.3l.7-2.7-1.7-.4-.7 2.7c-.4-.1-.7-.2-1-.2v-.1l-2.3-.6-.4 1.8s1.2.3 1.2.3c.7.2.8.6.8 1l-.8 3.3c0 0 .1 0 .2.1h-.2l-1.2 4.6c-.1.2-.3.6-.8.4 0 0-1.2-.3-1.2-.3l-.8 1.9 2.2.5c.4.1.8.2 1.2.3l-.7 2.8 1.7.4.7-2.7c.5.1.9.2 1.4.3l-.7 2.7 1.7.4.7-2.8c2.8.5 4.9.3 5.8-2.2.7-2-.1-3.2-1.5-3.9 1.1-.3 1.9-1 2.1-2.5zm-3.8 5.3c-.5 2-4 .9-5.1.6l.9-3.7c1.1.3 4.7.8 4.2 3.1zm.5-5.4c-.5 1.8-3.4.9-4.3.7l.8-3.3c.9.2 4 .6 3.5 2.6z"/>
-                </svg>
-                Bitcoin
-              </span>
-              <span class="more-coins">& 50+ more</span>
+              {% if card.coins_reward_short contains "only" %}
+                {% if card.coins_reward_short contains "Bitcoin" %}
+                <span class="btc-coin">
+                  <svg width="18" height="18" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16" cy="16" r="16" fill="#F7931A"/>
+                    <path fill="#FFF" d="M22.5 14.1c.3-2-1.2-3.1-3.3-3.8l.7-2.7-1.7-.4-.7 2.6c-.4-.1-.9-.2-1.4-.3l.7-2.7-1.7-.4-.7 2.7c-.4-.1-.7-.2-1-.2v-.1l-2.3-.6-.4 1.8s1.2.3 1.2.3c.7.2.8.6.8 1l-.8 3.3c0 0 .1 0 .2.1h-.2l-1.2 4.6c-.1.2-.3.6-.8.4 0 0-1.2-.3-1.2-.3l-.8 1.9 2.2.5c.4.1.8.2 1.2.3l-.7 2.8 1.7.4.7-2.7c.5.1.9.2 1.4.3l-.7 2.7 1.7.4.7-2.8c2.8.5 4.9.3 5.8-2.2.7-2-.1-3.2-1.5-3.9 1.1-.3 1.9-1 2.1-2.5zm-3.8 5.3c-.5 2-4 .9-5.1.6l.9-3.7c1.1.3 4.7.8 4.2 3.1zm.5-5.4c-.5 1.8-3.4.9-4.3.7l.8-3.3c.9.2 4 .6 3.5 2.6z"/>
+                  </svg>
+                  Bitcoin only
+                </span>
+                {% else %}
+                <span class="coin-text">{{ card.coins_reward_short }}</span>
+                {% endif %}
+              {% else %}
+                <span class="btc-coin">
+                  <svg width="18" height="18" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16" cy="16" r="16" fill="#F7931A"/>
+                    <path fill="#FFF" d="M22.5 14.1c.3-2-1.2-3.1-3.3-3.8l.7-2.7-1.7-.4-.7 2.6c-.4-.1-.9-.2-1.4-.3l.7-2.7-1.7-.4-.7 2.7c-.4-.1-.7-.2-1-.2v-.1l-2.3-.6-.4 1.8s1.2.3 1.2.3c.7.2.8.6.8 1l-.8 3.3c0 0 .1 0 .2.1h-.2l-1.2 4.6c-.1.2-.3.6-.8.4 0 0-1.2-.3-1.2-.3l-.8 1.9 2.2.5c.4.1.8.2 1.2.3l-.7 2.8 1.7.4.7-2.7c.5.1.9.2 1.4.3l-.7 2.7 1.7.4.7-2.8c2.8.5 4.9.3 5.8-2.2.7-2-.1-3.2-1.5-3.9 1.1-.3 1.9-1 2.1-2.5zm-3.8 5.3c-.5 2-4 .9-5.1.6l.9-3.7c1.1.3 4.7.8 4.2 3.1zm.5-5.4c-.5 1.8-3.4.9-4.3.7l.8-3.3c.9.2 4 .6 3.5 2.6z"/>
+                  </svg>
+                  Bitcoin
+                </span>
+                {% assign coins_extra = card.coins_reward_short | remove: "Bitcoin" | strip %}
+                {% if coins_extra != "" %}
+                <span class="more-coins">{{ coins_extra }}</span>
+                {% endif %}
+              {% endif %}
             </div>
           </div>
         </div>
