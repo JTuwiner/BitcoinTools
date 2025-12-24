@@ -83,7 +83,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   font-weight: 600;
   font-size: 14px;
   color: #111827;
-  white-space: nowrap;
+  min-width: 150px;
 }
 
 .comparison-table th:first-child {
@@ -108,6 +108,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   font-size: 14px;
   color: #111827;
   vertical-align: middle;
+  min-width: 150px;
 }
 
 .comparison-table td:first-child {
@@ -477,7 +478,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
               {{ card.vs_rewardsrate_short }}
             {% else %}
               {% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}
-              {{ rewards_text | truncate: 30 }}
+              {{ rewards_text }}
             {% endif %}
           </td>
           {% endfor %}
@@ -492,11 +493,11 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 const cardData = {
   {% for card in cards %}
   "{{ card.title | escape }}": {
-    "rewards-rate": {% if card.vs_rewardsrate_short %}"{{ card.vs_rewardsrate_short }}"{% else %}{% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}"{{ rewards_text | truncate: 40 | escape }}"{% endif %},
-    "sign-up-bonus": {% if card.vs_signupbonus and card.vs_signupbonus != 'None' %}{% assign bonus_text = card.vs_signupbonus | strip_html | strip %}"{{ bonus_text | truncate: 50 | escape }}"{% else %}"None"{% endif %},
-    "annual-fee": {% assign fee_text = card.vs_annualfee | strip_html | strip %}{% if fee_text contains '$0' or fee_text contains 'No annual fee' %}"$0"{% else %}"{{ fee_text | truncate: 30 | escape }}"{% endif %},
-    "foreign-transaction-fee": {% assign ftf_text = card.vs_foreigntransactionfee | strip_html | strip %}"{{ ftf_text | truncate: 30 | escape }}",
-    "regular-apr": {% if card.vs_regularapr %}{% assign apr_text = card.vs_regularapr | strip_html | strip %}"{{ apr_text | truncate: 30 | escape }}"{% else %}"N/A"{% endif %}
+    "rewards-rate": {% if card.vs_rewardsrate_short %}"{{ card.vs_rewardsrate_short }}"{% else %}{% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}"{{ rewards_text | escape }}"{% endif %},
+    "sign-up-bonus": {% if card.vs_signupbonus and card.vs_signupbonus != 'None' %}{% assign bonus_text = card.vs_signupbonus | strip_html | strip %}"{{ bonus_text | escape }}"{% else %}"None"{% endif %},
+    "annual-fee": {% assign fee_text = card.vs_annualfee | strip_html | strip %}{% if fee_text contains '$0' or fee_text contains 'No annual fee' %}"$0"{% else %}"{{ fee_text | escape }}"{% endif %},
+    "foreign-transaction-fee": {% assign ftf_text = card.vs_foreigntransactionfee | strip_html | strip %}"{{ ftf_text | escape }}",
+    "regular-apr": {% if card.vs_regularapr %}{% assign apr_text = card.vs_regularapr | strip_html | strip %}"{{ apr_text | escape }}"{% else %}"N/A"{% endif %}
   }{% unless forloop.last %},{% endunless %}
   {% endfor %}
 };
@@ -535,7 +536,6 @@ function updateComparisonTable() {
 </script>
 <br><br><br>
 <h2>Card Details</h2>
-<br>
 
 <div class="cards-listing">
   {% for card in cards %}
