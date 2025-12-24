@@ -451,9 +451,13 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 
 
 .rewards-breakdown-section {
-  margin-top: 24px;
+  margin-top: 12px;
   border-top: 1px solid #e5e7eb;
-  padding-top: 16px;
+  padding-top: 12px;
+}
+
+.rewards-breakdown-section:first-of-type {
+  margin-top: 20px;
 }
 
 .rewards-breakdown-header {
@@ -461,10 +465,10 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  padding: 12px 14px;
-  margin: -8px -12px;
+  padding: 8px 12px;
+  margin: -4px -8px;
   border-radius: 6px;
-  transition: all 0.15s ease;
+  transition: background 0.15s ease, border-color 0.15s ease;
   user-select: none;
   border: 1px solid transparent;
 }
@@ -517,14 +521,14 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 .rewards-breakdown-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-out;
+  transition: max-height 0.25s ease-out, padding-top 0.2s ease-out;
   padding-top: 0;
   color: #111827;
 }
 
 .rewards-breakdown-section.expanded .rewards-breakdown-content {
-  max-height: 1000px;
-  padding-top: 12px;
+  max-height: 400px;
+  padding-top: 10px;
 }
 
 .rewards-breakdown-content ul {
