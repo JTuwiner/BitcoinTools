@@ -446,18 +446,17 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  padding: 10px 14px;
+  padding: 12px 14px;
   margin: -8px -12px;
-  border-radius: 8px;
-  transition: all 0.2s ease;
+  border-radius: 6px;
+  transition: all 0.15s ease;
   user-select: none;
   border: 1px solid transparent;
 }
 
 .rewards-breakdown-header:hover {
-  background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
-  border-color: #A7F3D0;
-  transform: translateX(4px);
+  background: #FEF9E7;
+  border-color: #F2A900;
 }
 
 .rewards-breakdown-title {
@@ -465,42 +464,35 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   align-items: center;
   font-weight: 600;
   font-size: 14px;
-  color: #111827;
-  transition: color 0.2s;
+  color: #374151;
+  transition: color 0.15s;
 }
 
 .rewards-breakdown-icon {
-  width: 28px;
-  height: 28px;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  border-radius: 6px;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #6b7280;
   margin-right: 10px;
-  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .rewards-breakdown-header:hover .rewards-breakdown-icon {
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-}
-
-.rewards-breakdown-icon svg {
-  color: white;
+  color: #D97706;
 }
 
 .rewards-breakdown-header:hover .rewards-breakdown-title {
-  color: #059669;
+  color: #111827;
 }
 
 .rewards-breakdown-chevron {
-  color: #6b7280;
-  transition: transform 0.2s, color 0.2s;
+  color: #9ca3af;
+  transition: transform 0.15s, color 0.15s;
 }
 
 .rewards-breakdown-header:hover .rewards-breakdown-chevron {
-  color: #059669;
+  color: #D97706;
 }
 
 .rewards-breakdown-section.expanded .rewards-breakdown-chevron {
@@ -812,13 +804,14 @@ function updateComparisonTable() {
           <div class="rewards-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
             <div class="rewards-breakdown-title">
               <div class="rewards-breakdown-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                  <path d="M7 9h10M7 13h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
               </div>
               Rewards breakdown
             </div>
-            <svg class="rewards-breakdown-chevron" width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="rewards-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
