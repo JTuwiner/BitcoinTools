@@ -86,13 +86,32 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   display: flex;
   align-items: center;
   gap: 12px;
+  text-decoration: none;
+  color: #111827 !important;
+  transition: background-color 0.15s;
+  padding: 4px 8px;
+  margin: -4px -8px;
+  border-radius: 6px;
+}
+
+.comparison-table-card-name:hover {
+  background-color: #FEF3C7;
+}
+
+.comparison-table-card-name:hover span {
+  text-decoration: underline;
+}
+
+.comparison-table-card-name:hover img {
+  transform: scale(1.05);
 }
 
 .comparison-table-card-img {
   width: 40px;
   height: 25px;
   object-fit: contain;
-  border-radius: 4px;
+  border-radius: 8px;
+  transition: transform 0.15s;
 }
 
 
@@ -146,7 +165,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   width: 50px;
   height: 32px;
   object-fit: contain;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .mobile-card-name {
@@ -221,9 +240,31 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 12px;
   background: #f9fafb;
   padding: 8px;
+  transition: transform 0.15s;
+}
+
+.card-image-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.card-image-link:hover .card-image {
+  transform: scale(1.02);
+}
+
+.card-title-link {
+  color: #111827 !important;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.card-title-link:hover {
+  color: #F7931A !important;
+  text-decoration: underline;
 }
 
 .card-info {
@@ -396,6 +437,40 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   gap: 10px;
   flex-wrap: wrap;
   margin-bottom: 8px;
+}
+
+.card-cons {
+  margin-top: 16px;
+  padding: 14px 16px;
+  background: #FEF2F2;
+  border-radius: 8px;
+  border-left: 3px solid #EF4444;
+}
+
+.card-cons-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #991B1B;
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-cons-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: #7F1D1D;
+  line-height: 1.5;
+}
+
+.card-cons-list li {
+  margin-bottom: 4px;
+}
+
+.card-cons-list li:last-child {
+  margin-bottom: 0;
 }
 
 .card-actions {
@@ -737,10 +812,10 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
         {% for card in cards %}
         <tr>
           <td>
-            <div class="comparison-table-card-name">
+            <a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="comparison-table-card-name" onclick="fathom.trackEvent('Click Card: {{ card.title }}');">
               <img src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="comparison-table-card-img">
               <span>{{ card.title }}</span>
-            </div>
+            </a>
           </td>
           <td>
             {% if card.vs_bestfor %}
@@ -846,7 +921,9 @@ function updateMobileComparison() {
   <div class="card-item">
     <div class="card-header">
       <div class="card-image-wrapper">
-        <img src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="card-image">
+        <a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="card-image-link" onclick="fathom.trackEvent('Click Card: {{ card.title }}');">
+          <img src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="card-image">
+        </a>
       </div>
       
       <div class="card-info">
@@ -871,7 +948,7 @@ function updateMobileComparison() {
           {% endif %}
         </div>
         
-        <h2 class="card-title">{{ card.title }}</h2>
+        <h2 class="card-title"><a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="card-title-link" onclick="fathom.trackEvent('Click Card: {{ card.title }}');">{{ card.title }}</a></h2>
         
         {% if card.rating %}
         <div class="card-rating">
@@ -1048,6 +1125,20 @@ function updateMobileComparison() {
             </div>
             {% endif %}
           </div>
+        </div>
+        {% endif %}
+        
+        {% if card.vs_watchout %}
+        <div class="card-cons">
+          <div class="card-cons-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Watch Out For
+          </div>
+          <ul class="card-cons-list">
+            {{ card.vs_watchout }}
+          </ul>
         </div>
         {% endif %}
       </div>
@@ -1235,13 +1326,88 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </div>
 
+<div class="finance-considerations">
+  <h3 class="finance-considerations-title">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+      <path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    Important Credit Considerations
+  </h3>
+  <ul class="finance-considerations-list">
+    <li><strong>APRs vary</strong> by creditworthiness and issuer—always check current rates before applying</li>
+    <li><strong>Credit requirements:</strong> Most rewards cards require good to excellent credit (680+ score)</li>
+    <li><strong>Excluded transactions:</strong> Cash advances, balance transfers, and cash-like purchases typically don't earn rewards</li>
+    <li><strong>Tax implications:</strong> Crypto rewards may be taxable events depending on your jurisdiction—consult a tax professional</li>
+    <li><strong>Reward volatility:</strong> Cryptocurrency rewards can lose value—consider your risk tolerance</li>
+  </ul>
+</div>
+
 <div class="cards-disclaimer">
   <p>Disclaimer: The information provided on this page is for informational purposes only and does not constitute financial advice. Credit card terms, rewards rates, and offers are subject to change at any time without notice. Always review the official terms and conditions on the card issuer's website before applying. Some links on this page may be affiliate links, which means we may receive compensation if you apply for or are approved for a card.</p>
 </div>
 
 <style>
+.finance-considerations {
+  margin-top: 40px;
+  margin-bottom: 24px;
+  padding: 24px;
+  background: #F0FDF4;
+  border-radius: 10px;
+  border: 1px solid #86EFAC;
+}
+
+.finance-considerations-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #166534;
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.finance-considerations-title svg {
+  color: #22C55E;
+}
+
+.finance-considerations-list {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #14532D;
+}
+
+.finance-considerations-list li {
+  margin-bottom: 8px;
+}
+
+.finance-considerations-list li:last-child {
+  margin-bottom: 0;
+}
+
+.finance-considerations-list strong {
+  color: #166534;
+}
+
+@media (max-width: 768px) {
+  .finance-considerations {
+    padding: 18px;
+    margin-top: 32px;
+  }
+  
+  .finance-considerations-title {
+    font-size: 16px;
+  }
+  
+  .finance-considerations-list {
+    font-size: 13px;
+  }
+}
+
 .cards-disclaimer {
-  margin-top: 48px;
+  margin-top: 24px;
   padding: 20px 24px;
   background: #f9fafb;
   border-radius: 8px;
@@ -1608,3 +1774,48 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Best Crypto Credit & Debit Cards 2025",
+  "description": "Compare the best credit and debit cards for earning Bitcoin and cryptocurrency rewards",
+  "numberOfItems": {{ cards | size }},
+  "itemListElement": [
+    {% for card in cards %}
+    {
+      "@type": "ListItem",
+      "position": {{ forloop.index }},
+      "item": {
+        "@type": "Product",
+        "name": "{{ card.title }}",
+        "description": "{{ card.desc | strip_html | escape }}",
+        "image": "https://bitbo.io/tools/img/{{ card.img }}",
+        "brand": {
+          "@type": "Brand",
+          "name": "{{ card.brand }}"
+        },
+        "category": "Credit & Debit Cards",
+        {% if card.rating %}
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "{{ card.rating }}",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": "1",
+          "reviewCount": "1"
+        },
+        {% endif %}
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "price": "0",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+</script>
