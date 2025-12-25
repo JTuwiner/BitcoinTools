@@ -250,12 +250,18 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   line-height: 1;
   display: flex;
   align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.stars .star-empty {
+  opacity: 0.4;
 }
 
 .rating-text {
   font-size: 14px;
-  color: #6b7280;
-  line-height: 1;
+  font-weight: 600;
+  color: #374151;
+  line-height: 18px;
   display: flex;
   align-items: center;
 }
@@ -818,9 +824,7 @@ function updateMobileComparison() {
         <div class="card-rating">
           <div class="stars">
             {% assign rating_int = card.rating | floor %}
-            {% for i in (1..5) %}
-              {% if i <= rating_int %}★{% else %}☆{% endif %}
-            {% endfor %}
+            {% for i in (1..5) %}{% if i <= rating_int %}★{% else %}<span class="star-empty">★</span>{% endif %}{% endfor %}
           </div>
           <span class="rating-text">{% assign rating_str = card.rating | append: "" %}{% if rating_str contains "." %}{{ card.rating }}{% else %}{{ card.rating }}.0{% endif %} rating</span>
         </div>
