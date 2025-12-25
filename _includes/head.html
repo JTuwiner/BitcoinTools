@@ -21,6 +21,10 @@
       {{ page.share-description | strip_html | xml_escape }}
     {%- elsif page.subtitle -%}
       {{ page.subtitle | strip_html | xml_escape }}
+    {%- elsif page.subdesc -%}
+      {{ page.subdesc | strip_html | xml_escape }}
+    {%- elsif page.desc -%}
+      {{ page.desc | strip_html | xml_escape }}
     {%- else -%}
       {%- assign excerpt_length = site.excerpt_length | default: 50 -%}
       {{ page.content | strip_html | xml_escape | truncatewords: excerpt_length | strip }}
@@ -42,7 +46,9 @@
   {% if page.desc %}
   <meta name="description" content="{{ page.desc }}">
   {% elsif page.subtitle %}
- <meta name="description" content="{{ page.subtitle }}">
+  <meta name="description" content="{{ page.subtitle }}">
+  {% elsif page.subdesc %}
+  <meta name="description" content="{{ page.subdesc }}">
   {% else %}
   <meta name="description" content="{{ description }}">
   {% endif %}
@@ -140,6 +146,8 @@
   <meta property="og:description" content="{{ page.desc }}">
   {% elsif page.subtitle %}
   <meta property="og:description" content="{{ page.subtitle }}">
+  {% elsif page.subdesc %}
+  <meta property="og:description" content="{{ page.subdesc }}">
   {% else %}
   <meta property="og:description" content="{{ description }}">
   {% endif %}
