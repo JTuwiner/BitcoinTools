@@ -16,6 +16,8 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 .ira-comparison-table-wrapper {
   margin-bottom: 40px;
   margin-top: 30px;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .ira-comparison-table-header {
@@ -37,8 +39,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 .ira-comparison-table {
   width: 100%;
   border-collapse: collapse;
-  overflow-x: auto;
-  display: block;
 }
 
 .ira-comparison-table thead {
@@ -231,19 +231,19 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
+  background: #f3f4f6;
   padding: 4px 10px;
-  border-radius: 20px;
+  border-radius: 6px;
   font-size: 13px;
-  font-weight: 600;
-  color: #065F46;
-  border: 1px solid #6EE7B7;
+  font-weight: 500;
+  color: #374151;
+  border: 1px solid #e5e7eb;
 }
 
 .ira-custody-badge.custodial {
-  background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%);
-  color: #991B1B;
-  border-color: #FCA5A5;
+  background: #f3f4f6;
+  color: #374151;
+  border-color: #e5e7eb;
 }
 
 .ira-actions {
@@ -416,13 +416,48 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 }
 
 @media (max-width: 768px) {
+  .ira-comparison-table-wrapper {
+    margin-left: -16px;
+    margin-right: -16px;
+    padding: 0 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .ira-comparison-table {
+    min-width: 600px;
+  }
+  
+  .ira-comparison-table th,
+  .ira-comparison-table td {
+    min-width: 80px;
+    padding: 8px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  
+  .ira-comparison-table th:first-child,
+  .ira-comparison-table td:first-child {
+    min-width: 120px;
+    position: static;
+  }
+  
+  .ira-table-provider-img {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .ira-table-provider-name {
+    gap: 8px;
+  }
+  
   .ira-header {
     flex-direction: column;
   }
   
   .ira-image-wrapper {
-    width: 100%;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     margin-bottom: 16px;
   }
   
@@ -430,9 +465,27 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
     font-size: 20px;
   }
   
+  .ira-keyfact {
+    padding: 10px 12px;
+  }
+  
+  .ira-keyfact-text {
+    font-size: 13px;
+  }
+  
   .ira-data-grid {
     grid-template-columns: 1fr 1fr;
     gap: 12px;
+  }
+  
+  .ira-data-value {
+    font-size: 13px;
+    word-break: break-word;
+  }
+  
+  .ira-custody-badge {
+    font-size: 11px;
+    padding: 3px 8px;
   }
   
   .ira-actions {
@@ -445,15 +498,15 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
     justify-content: center;
   }
   
-  .ira-comparison-table th,
-  .ira-comparison-table td {
-    min-width: 100px;
-    padding: 10px 12px;
-    font-size: 13px;
-  }
-  
   .ira-fees-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .ira-item {
+    padding: 16px;
+    margin-left: -8px;
+    margin-right: -8px;
+    border-radius: 8px;
   }
 }
 
@@ -463,7 +516,25 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   }
   
   .ira-item {
-    padding: 16px;
+    padding: 14px;
+  }
+  
+  .ira-title {
+    font-size: 18px;
+  }
+  
+  .ira-keyfact {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  
+  .ira-breakdown-header {
+    padding: 6px 8px;
+  }
+  
+  .ira-breakdown-title {
+    font-size: 13px;
   }
 }
 </style>
@@ -503,9 +574,9 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
           <td>{{ ira.ira_min | default: "—" }}</td>
           <td>
             {% if ira.ira_custody contains "Self" or ira.ira_custody contains "self" %}
-              <span class="ira-custody-badge">🔐 Self-custody</span>
+              <span class="ira-custody-badge">🔑 Self-custody</span>
             {% else %}
-              <span class="ira-custody-badge custodial">{{ ira.ira_custody | default: "Custodial" }}</span>
+              <span class="ira-custody-badge custodial">🏦 Custodial</span>
             {% endif %}
           </td>
         </tr>
@@ -564,9 +635,9 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
             <div class="ira-data-label">Custody Model</div>
             <div class="ira-data-value">
               {% if ira.ira_custody contains "Self" or ira.ira_custody contains "self" %}
-                <span class="ira-custody-badge">🔐 Self-custody</span>
+                <span class="ira-custody-badge">🔑 Self-custody</span>
               {% else %}
-                <span class="ira-custody-badge custodial">{{ ira.ira_custody | default: "Custodial" }}</span>
+                <span class="ira-custody-badge custodial">🏦 Custodial</span>
               {% endif %}
             </div>
           </div>
