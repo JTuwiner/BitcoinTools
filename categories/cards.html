@@ -716,7 +716,9 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
             {% endif %}
           </td>
           <td>
-            {% if card.vs_signupbonus and card.vs_signupbonus != 'None' %}
+            {% if card.vs_signupbonus_short %}
+              {{ card.vs_signupbonus_short }}
+            {% elsif card.vs_signupbonus and card.vs_signupbonus != 'None' %}
               {% assign bonus_text = card.vs_signupbonus | strip_html | strip %}
               {{ bonus_text | truncate: 60 }}
             {% else %}
@@ -753,7 +755,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
         <span class="mobile-card-name">{{ card.title }}</span>
       </div>
       <div class="mobile-comparison-label">Rewards Rate</div>
-      <div class="mobile-comparison-value" data-rewards-rate="{% if card.vs_rewardsrate_short %}{{ card.vs_rewardsrate_short }}{% else %}{% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}{{ rewards_text }}{% endif %}" data-sign-up-bonus="{% if card.vs_signupbonus and card.vs_signupbonus != 'None' %}{% assign bonus_text = card.vs_signupbonus | strip_html | strip %}{{ bonus_text }}{% else %}None{% endif %}" data-annual-fee="{% assign fee_text = card.vs_annualfee | strip_html | strip %}{% if fee_text contains '$0' or fee_text contains 'No annual fee' %}$0{% else %}{{ fee_text }}{% endif %}" data-availability="{% if card.vs_availability %}{{ card.vs_availability | strip_html | strip }}{% else %}—{% endif %}">
+      <div class="mobile-comparison-value" data-rewards-rate="{% if card.vs_rewardsrate_short %}{{ card.vs_rewardsrate_short }}{% else %}{% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}{{ rewards_text }}{% endif %}" data-sign-up-bonus="{% if card.vs_signupbonus_short %}{{ card.vs_signupbonus_short }}{% elsif card.vs_signupbonus and card.vs_signupbonus != 'None' %}{% assign bonus_text = card.vs_signupbonus | strip_html | strip %}{{ bonus_text }}{% else %}None{% endif %}" data-annual-fee="{% assign fee_text = card.vs_annualfee | strip_html | strip %}{% if fee_text contains '$0' or fee_text contains 'No annual fee' %}$0{% else %}{{ fee_text }}{% endif %}" data-availability="{% if card.vs_availability %}{{ card.vs_availability | strip_html | strip }}{% else %}—{% endif %}">
         {% if card.vs_rewardsrate_short %}
           {{ card.vs_rewardsrate_short }}
         {% else %}
