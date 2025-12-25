@@ -528,17 +528,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
       <div class="ira-info">
         <h2 class="ira-title">{{ ira.title }}</h2>
         
-        {% if ira.rating %}
-        <div class="ira-rating">
-          <div class="ira-stars">
-            {% assign rating_int = ira.rating | floor %}
-            {% for i in (1..5) %}
-              {% if i <= rating_int %}★{% else %}☆{% endif %}
-            {% endfor %}
-          </div>
-          <span class="ira-rating-text">{% assign rating_str = ira.rating | append: "" %}{% if rating_str contains "." %}{{ ira.rating }}{% else %}{{ ira.rating }}.0{% endif %} rating</span>
-        </div>
-        {% endif %}
         
         {% if ira.ira_keyfact %}
         <div class="ira-keyfact">
@@ -582,12 +571,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
             </div>
           </div>
           
-          {% if ira.ira_setup_time %}
-          <div class="ira-data-item">
-            <div class="ira-data-label">Setup Time</div>
-            <div class="ira-data-value">{{ ira.ira_setup_time }}</div>
-          </div>
-          {% endif %}
         </div>
         
         <div class="ira-actions">
