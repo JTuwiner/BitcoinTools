@@ -362,6 +362,42 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   margin-bottom: 8px;
 }
 
+.best-for-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+  color: #92400E;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.best-for-badge svg {
+  flex-shrink: 0;
+}
+
+.comparison-best-for {
+  font-size: 11px;
+  color: #92400E;
+  background: #FEF3C7;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.card-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
 .card-actions {
   display: flex;
   align-items: center;
@@ -690,6 +726,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
       <thead>
         <tr>
           <th>Card</th>
+          <th>Best For</th>
           <th>Rewards Rate</th>
           <th>Annual Fee</th>
           <th>Sign-Up Bonus</th>
@@ -704,6 +741,13 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
               <img src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="comparison-table-card-img">
               <span>{{ card.title }}</span>
             </div>
+          </td>
+          <td>
+            {% if card.vs_bestfor %}
+              <span class="comparison-best-for">{{ card.vs_bestfor }}</span>
+            {% else %}
+              <span style="color: #9ca3af;">—</span>
+            {% endif %}
           </td>
           <td>
             {% if card.vs_rewardsrate_short %}
@@ -748,6 +792,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
     <div class="mobile-comparison-selector">
       <label for="mobile-comparison-field">Compare by:</label>
       <select id="mobile-comparison-field" onchange="updateMobileComparison()">
+        <option value="best-for">Best For</option>
         <option value="rewards-rate">Rewards Rate</option>
         <option value="sign-up-bonus">Sign-Up Bonus</option>
         <option value="annual-fee">Annual Fee</option>
@@ -760,13 +805,12 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
         <img src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="mobile-card-img">
         <span class="mobile-card-name">{{ card.title }}</span>
       </div>
-      <div class="mobile-comparison-label">Rewards Rate</div>
-      <div class="mobile-comparison-value" data-rewards-rate="{% if card.vs_rewardsrate_short %}{{ card.vs_rewardsrate_short }}{% else %}{% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}{{ rewards_text }}{% endif %}" data-sign-up-bonus="{% if card.vs_signupbonus_short %}{{ card.vs_signupbonus_short }}{% elsif card.vs_signupbonus and card.vs_signupbonus != 'None' %}{% assign bonus_text = card.vs_signupbonus | strip_html | strip %}{{ bonus_text }}{% else %}None{% endif %}" data-annual-fee="{% assign fee_text = card.vs_annualfee | strip_html | strip %}{% if fee_text contains '$0' or fee_text contains 'No annual fee' %}$0{% else %}{{ fee_text }}{% endif %}" data-availability="{% if card.vs_availability %}{{ card.vs_availability | strip_html | strip }}{% else %}—{% endif %}">
-        {% if card.vs_rewardsrate_short %}
-          {{ card.vs_rewardsrate_short }}
+      <div class="mobile-comparison-label">Best For</div>
+      <div class="mobile-comparison-value" data-best-for="{% if card.vs_bestfor %}{{ card.vs_bestfor }}{% else %}—{% endif %}" data-rewards-rate="{% if card.vs_rewardsrate_short %}{{ card.vs_rewardsrate_short }}{% else %}{% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}{{ rewards_text }}{% endif %}" data-sign-up-bonus="{% if card.vs_signupbonus_short %}{{ card.vs_signupbonus_short }}{% elsif card.vs_signupbonus and card.vs_signupbonus != 'None' %}{% assign bonus_text = card.vs_signupbonus | strip_html | strip %}{{ bonus_text }}{% else %}None{% endif %}" data-annual-fee="{% assign fee_text = card.vs_annualfee | strip_html | strip %}{% if fee_text contains '$0' or fee_text contains 'No annual fee' %}$0{% else %}{{ fee_text }}{% endif %}" data-availability="{% if card.vs_availability %}{{ card.vs_availability | strip_html | strip }}{% else %}—{% endif %}">
+        {% if card.vs_bestfor %}
+          {{ card.vs_bestfor }}
         {% else %}
-          {% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}
-          {{ rewards_text }}
+          —
         {% endif %}
       </div>
     </div>
@@ -778,6 +822,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 function updateMobileComparison() {
   const field = document.getElementById('mobile-comparison-field').value;
   const labels = {
+    'best-for': 'Best For',
     'rewards-rate': 'Rewards Rate',
     'sign-up-bonus': 'Sign-Up Bonus',
     'annual-fee': 'Annual Fee',
@@ -805,7 +850,7 @@ function updateMobileComparison() {
       </div>
       
       <div class="card-info">
-        <div class="card-type-above-title">
+        <div class="card-badges-row">
           {% assign card_type = card.vs_cardtype | strip_html | strip %}
           {% if card_type contains "Credit" %}
             <span class="card-type-badge credit">Credit Card</span>
@@ -815,6 +860,14 @@ function updateMobileComparison() {
             <span class="card-type-badge prepaid">Prepaid</span>
           {% else %}
             <span class="card-type-badge">{{ card_type }}</span>
+          {% endif %}
+          {% if card.vs_bestfor %}
+          <span class="best-for-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#F59E0B" stroke="#F59E0B" stroke-width="1.5"/>
+            </svg>
+            Best for: {{ card.vs_bestfor }}
+          </span>
           {% endif %}
         </div>
         
@@ -1024,6 +1077,112 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<div class="decision-support-section">
+  <h2 class="decision-support-title">Which Card Is Best For You?</h2>
+  <p class="decision-support-intro">Not sure which crypto rewards card fits your spending habits? Here's our quick guide:</p>
+  
+  <div class="decision-grid">
+    <div class="decision-item">
+      <div class="decision-icon">💰</div>
+      <h3>High Spenders ($50k+ assets)</h3>
+      <p><strong>Best pick: Coinbase One Card</strong></p>
+      <p>Up to 4% back if you hold $200k+ on Coinbase. The tiered rewards system benefits those with significant crypto holdings.</p>
+    </div>
+    
+    <div class="decision-item">
+      <div class="decision-icon">🆓</div>
+      <h3>No-Fee Beginners</h3>
+      <p><strong>Best pick: Fold Debit Card</strong></p>
+      <p>Zero annual fee on the base tier. No crypto ownership required to start earning Bitcoin. Great for cautious newcomers.</p>
+    </div>
+    
+    <div class="decision-item">
+      <div class="decision-icon">₿</div>
+      <h3>BTC Maximalists</h3>
+      <p><strong>Best pick: Gemini Credit Card</strong></p>
+      <p>Earn rewards directly in Bitcoin (or 50+ other cryptos). No foreign transaction fees. $200 sign-up bonus.</p>
+    </div>
+    
+    <div class="decision-item">
+      <div class="decision-icon">🌍</div>
+      <h3>Non-US Users</h3>
+      <p><strong>Best pick: Crypto.com Card</strong></p>
+      <p>Available globally in 100+ countries. Multiple card tiers with up to 6% back. No credit check required.</p>
+    </div>
+    
+    <div class="decision-item">
+      <div class="decision-icon">💳</div>
+      <h3>Debit-Only Users</h3>
+      <p><strong>Best picks: Fold or Crypto.com</strong></p>
+      <p>Both are prepaid/debit cards. No credit check, no debt risk. Spend only what you load.</p>
+    </div>
+    
+    <div class="decision-item">
+      <div class="decision-icon">📱</div>
+      <h3>Casual Spenders</h3>
+      <p><strong>Best pick: Venmo Credit Card</strong></p>
+      <p>Auto-optimizes categories based on your spending. Easy crypto conversion. Great for Venmo app users.</p>
+    </div>
+  </div>
+</div>
+
+<div class="rating-methodology-section">
+  <h2 class="rating-methodology-title">How We Rate Cards</h2>
+  <p class="rating-methodology-intro">Our ratings are based on a weighted rubric that reflects what matters most to crypto-focused cardholders:</p>
+  
+  <div class="rating-criteria">
+    <div class="rating-criterion">
+      <div class="criterion-weight">40%</div>
+      <div class="criterion-details">
+        <h4>Rewards Rate & Value</h4>
+        <p>Base rewards percentage, bonus categories, and overall earning potential for crypto back.</p>
+      </div>
+    </div>
+    
+    <div class="rating-criterion">
+      <div class="criterion-weight">25%</div>
+      <div class="criterion-details">
+        <h4>Fees & Caps</h4>
+        <p>Annual fees, foreign transaction fees, and any monthly or yearly rewards caps that limit earnings.</p>
+      </div>
+    </div>
+    
+    <div class="rating-criterion">
+      <div class="criterion-weight">15%</div>
+      <div class="criterion-details">
+        <h4>Reward Flexibility</h4>
+        <p>Choice of crypto rewards, withdrawal options, and how easily you can use or convert your rewards.</p>
+      </div>
+    </div>
+    
+    <div class="rating-criterion">
+      <div class="criterion-weight">10%</div>
+      <div class="criterion-details">
+        <h4>Availability & Requirements</h4>
+        <p>Geographic availability, credit requirements, and membership/staking requirements to access the card.</p>
+      </div>
+    </div>
+    
+    <div class="rating-criterion">
+      <div class="criterion-weight">10%</div>
+      <div class="criterion-details">
+        <h4>User Experience</h4>
+        <p>App quality, customer support reputation, card material/design, and overall ease of use.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="rating-scale">
+    <h4>Rating Scale</h4>
+    <div class="scale-items">
+      <div class="scale-item"><span class="scale-score">5.0</span> Exceptional — Best-in-class across most criteria</div>
+      <div class="scale-item"><span class="scale-score">4.0</span> Very Good — Strong performer with minor drawbacks</div>
+      <div class="scale-item"><span class="scale-score">3.0</span> Average — Decent option for specific use cases</div>
+      <div class="scale-item"><span class="scale-score">2.0</span> Below Average — Significant limitations</div>
+    </div>
+  </div>
+</div>
+
 <div class="methodology-section">
   <h2 class="methodology-title">Our Methodology</h2>
   <div class="methodology-content">
@@ -1179,6 +1338,242 @@ document.addEventListener('DOMContentLoaded', function() {
   line-height: 1.6;
   color: #4B5563;
   margin: 0;
+}
+
+/* Decision Support Section */
+.decision-support-section {
+  margin-top: 60px;
+  margin-bottom: 40px;
+  padding: 32px;
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+  border-radius: 12px;
+  border: 1px solid #3B82F6;
+}
+
+.decision-support-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.decision-support-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 28px;
+  background: #3B82F6;
+  border-radius: 2px;
+}
+
+.decision-support-intro {
+  font-size: 16px;
+  color: #374151;
+  margin: 0 0 24px 0;
+}
+
+.decision-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.decision-item {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border: 1px solid #E5E7EB;
+}
+
+.decision-icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.decision-item h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 8px 0;
+}
+
+.decision-item p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #4B5563;
+  margin: 0 0 6px 0;
+}
+
+.decision-item p:last-child {
+  margin-bottom: 0;
+}
+
+.decision-item strong {
+  color: #1E40AF;
+}
+
+/* Rating Methodology Section */
+.rating-methodology-section {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 32px;
+  background: #F9FAFB;
+  border-radius: 12px;
+  border: 1px solid #E5E7EB;
+}
+
+.rating-methodology-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rating-methodology-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 24px;
+  background: #F7931A;
+  border-radius: 2px;
+}
+
+.rating-methodology-intro {
+  font-size: 15px;
+  color: #374151;
+  margin: 0 0 24px 0;
+}
+
+.rating-criteria {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.rating-criterion {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #E5E7EB;
+}
+
+.criterion-weight {
+  background: linear-gradient(135deg, #F7931A 0%, #F59E0B 100%);
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 6px;
+  min-width: 50px;
+  text-align: center;
+}
+
+.criterion-details h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 4px 0;
+}
+
+.criterion-details p {
+  font-size: 13px;
+  color: #6B7280;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.rating-scale {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #E5E7EB;
+}
+
+.rating-scale h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 12px 0;
+}
+
+.scale-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.scale-item {
+  font-size: 13px;
+  color: #4B5563;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.scale-score {
+  background: #FEF3C7;
+  color: #92400E;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 36px;
+  text-align: center;
+}
+
+@media (max-width: 992px) {
+  .decision-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .decision-support-section {
+    padding: 20px;
+    margin-top: 40px;
+  }
+  
+  .decision-support-title {
+    font-size: 22px;
+  }
+  
+  .decision-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .decision-item {
+    padding: 16px;
+  }
+  
+  .rating-methodology-section {
+    padding: 20px;
+  }
+  
+  .rating-methodology-title {
+    font-size: 20px;
+  }
+  
+  .rating-criterion {
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+  }
+  
+  .criterion-weight {
+    align-self: flex-start;
+  }
 }
 
 @media (max-width: 768px) {
