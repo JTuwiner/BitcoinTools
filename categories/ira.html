@@ -4,8 +4,741 @@ title: IRAs
 full-width: yes
 permalink: "/iras/"
 category: yes
-seotitle: Bitcoin IRAs
-subdesc: 
+seotitle: Best Bitcoin IRAs [2025] - Compare Fees, Custody & IRA Types
+subdesc: Self-directed Bitcoin IRAs for tax-advantaged retirement savings.
 icon: money-bill-transfer
 svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="currentColor" d="M16 11q.425 0 .713-.288T17 10t-.288-.712T16 9t-.712.288T15 10t.288.713T16 11M8 9h5V7H8zM4.5 21q-.85-2.85-1.675-5.687T2 9.5q0-2.3 1.6-3.9T7.5 4h5q.725-.95 1.763-1.475T16.5 2q.625 0 1.063.438T18 3.5q0 .125-.125.575q-.1.275-.187.563t-.138.587L19.825 7.5H22v6.975l-2.825.925L17.5 21H12v-2h-2v2z"/></svg>'
---- 
+---
+
+{% assign iras = site.pages | where: "glance", "ira-only" | sort: "sort" %}
+
+<style>
+.ira-comparison-table-wrapper {
+  margin-bottom: 40px;
+  margin-top: 30px;
+}
+
+.ira-comparison-table-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.ira-comparison-table-title {
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ira-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-x: auto;
+  display: block;
+}
+
+.ira-comparison-table thead {
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.ira-comparison-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+  min-width: 120px;
+}
+
+.ira-comparison-table th:first-child {
+  position: sticky;
+  left: 0;
+  background: #f9fafb;
+  z-index: 10;
+  min-width: 180px;
+}
+
+.ira-comparison-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s;
+}
+
+.ira-comparison-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.ira-comparison-table td {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #111827;
+  vertical-align: middle;
+  min-width: 120px;
+}
+
+.ira-comparison-table td:first-child {
+  position: sticky;
+  left: 0;
+  background: white;
+  z-index: 5;
+  font-weight: 500;
+  min-width: 180px;
+}
+
+.ira-comparison-table tbody tr:hover td:first-child {
+  background: #f9fafb;
+}
+
+.ira-table-provider-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ira-table-provider-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.ira-listing {
+  margin-top: 40px;
+}
+
+.ira-item {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: box-shadow 0.2s;
+  padding: 24px;
+}
+
+.ira-item:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.ira-header {
+  display: flex;
+  gap: 24px;
+}
+
+.ira-image-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.ira-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #f9fafb;
+  padding: 8px;
+}
+
+.ira-info {
+  flex: 1;
+}
+
+.ira-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827 !important;
+  margin: 0 0 8px 0;
+}
+
+.ira-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.ira-stars {
+  color: #f2a900;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.ira-rating-text {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.ira-keyfact {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ira-keyfact-icon {
+  color: #D97706;
+  flex-shrink: 0;
+}
+
+.ira-keyfact-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #92400E;
+}
+
+.ira-data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.ira-data-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.ira-data-label {
+  font-size: 12px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.ira-data-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.ira-custody-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #065F46;
+  border: 1px solid #6EE7B7;
+}
+
+.ira-custody-badge.custodial {
+  background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%);
+  color: #991B1B;
+  border-color: #FCA5A5;
+}
+
+.ira-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.ira-apply-button {
+  background: #f2a900;
+  color: black !important;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+
+.ira-apply-button:hover {
+  background: #059669;
+  color: white !important;
+}
+
+.ira-breakdown-section {
+  margin-top: 12px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 12px;
+}
+
+.ira-breakdown-section:first-of-type {
+  margin-top: 20px;
+}
+
+.ira-breakdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 12px;
+  margin: -4px -8px;
+  border-radius: 6px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  user-select: none;
+  border: 1px solid transparent;
+}
+
+.ira-breakdown-header:hover {
+  background: #FEF9E7;
+  border-color: #F2A900;
+}
+
+.ira-breakdown-title {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  transition: color 0.15s;
+}
+
+.ira-breakdown-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  margin-right: 10px;
+}
+
+.ira-breakdown-header:hover .ira-breakdown-icon {
+  color: #D97706;
+}
+
+.ira-breakdown-header:hover .ira-breakdown-title {
+  color: #111827;
+}
+
+.ira-breakdown-chevron {
+  color: #9ca3af;
+  transition: transform 0.15s, color 0.15s;
+}
+
+.ira-breakdown-header:hover .ira-breakdown-chevron {
+  color: #D97706;
+}
+
+.ira-breakdown-section.expanded .ira-breakdown-chevron {
+  transform: rotate(180deg);
+}
+
+.ira-breakdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease-out, padding-top 0.2s ease-out;
+  padding-top: 0;
+  color: #111827;
+}
+
+.ira-breakdown-section.expanded .ira-breakdown-content {
+  max-height: 500px;
+  padding-top: 10px;
+}
+
+.ira-breakdown-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  color: #111827;
+}
+
+.ira-breakdown-content li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 6px;
+  padding: 4px 0;
+  color: #111827;
+}
+
+.ira-breakdown-content li::before {
+  content: "✓";
+  color: #10b981;
+  font-weight: bold;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.ira-cons-content li::before {
+  content: "✗";
+  color: #EF4444;
+}
+
+.ira-summary-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #374151;
+}
+
+.ira-fees-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.ira-fee-item {
+  background: #f9fafb;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.ira-fee-label {
+  font-size: 11px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.ira-fee-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+@media (max-width: 768px) {
+  .ira-header {
+    flex-direction: column;
+  }
+  
+  .ira-image-wrapper {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 16px;
+  }
+  
+  .ira-title {
+    font-size: 20px;
+  }
+  
+  .ira-data-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  
+  .ira-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .ira-apply-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .ira-comparison-table th,
+  .ira-comparison-table td {
+    min-width: 100px;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .ira-fees-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .ira-data-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ira-item {
+    padding: 16px;
+  }
+}
+</style>
+
+<br><br>
+
+{% if iras.size > 0 %}
+<div class="ira-comparison-table-wrapper">
+  <div class="ira-comparison-table-header">
+    <h2 class="ira-comparison-table-title">Compare Bitcoin IRAs</h2>
+  </div>
+  
+  <div style="overflow-x: auto;">
+    <table class="ira-comparison-table">
+      <thead>
+        <tr>
+          <th>Provider</th>
+          <th>IRA Types</th>
+          <th>Annual Fee</th>
+          <th>Trading Fee</th>
+          <th>Minimum</th>
+          <th>Custody</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for ira in iras %}
+        <tr>
+          <td>
+            <div class="ira-table-provider-name">
+              <img src="/tools/img/{{ ira.img }}" alt="{{ ira.title }}" class="ira-table-provider-img">
+              <span>{{ ira.title }}</span>
+            </div>
+          </td>
+          <td>{{ ira.ira_types | default: "—" }}</td>
+          <td>{{ ira.ira_fee_annual | default: "—" }}</td>
+          <td>{{ ira.ira_fee_trading | default: "—" }}</td>
+          <td>{{ ira.ira_min | default: "—" }}</td>
+          <td>
+            {% if ira.ira_custody contains "Self" or ira.ira_custody contains "self" %}
+              <span class="ira-custody-badge">🔐 Self-custody</span>
+            {% else %}
+              <span class="ira-custody-badge custodial">{{ ira.ira_custody | default: "Custodial" }}</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h2>IRA Provider Details</h2>
+
+<div class="ira-listing">
+  {% for ira in iras %}
+  <div class="ira-item">
+    <div class="ira-header">
+      <div class="ira-image-wrapper">
+        <img src="/tools/img/{{ ira.img }}" alt="{{ ira.title }}" class="ira-image">
+      </div>
+      
+      <div class="ira-info">
+        <h2 class="ira-title">{{ ira.title }}</h2>
+        
+        {% if ira.rating %}
+        <div class="ira-rating">
+          <div class="ira-stars">
+            {% assign rating_int = ira.rating | floor %}
+            {% for i in (1..5) %}
+              {% if i <= rating_int %}★{% else %}☆{% endif %}
+            {% endfor %}
+          </div>
+          <span class="ira-rating-text">{% assign rating_str = ira.rating | append: "" %}{% if rating_str contains "." %}{{ ira.rating }}{% else %}{{ ira.rating }}.0{% endif %} rating</span>
+        </div>
+        {% endif %}
+        
+        {% if ira.ira_keyfact %}
+        <div class="ira-keyfact">
+          <svg class="ira-keyfact-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 16V12M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="ira-keyfact-text">{{ ira.ira_keyfact }}</span>
+        </div>
+        {% endif %}
+        
+        <div class="ira-data-grid">
+          <div class="ira-data-item">
+            <div class="ira-data-label">IRA Types</div>
+            <div class="ira-data-value">{{ ira.ira_types | default: "—" }}</div>
+          </div>
+          
+          <div class="ira-data-item">
+            <div class="ira-data-label">Annual Fee</div>
+            <div class="ira-data-value">{{ ira.ira_fee_annual | default: "—" }}</div>
+          </div>
+          
+          <div class="ira-data-item">
+            <div class="ira-data-label">Trading Fee</div>
+            <div class="ira-data-value">{{ ira.ira_fee_trading | default: "—" }}</div>
+          </div>
+          
+          <div class="ira-data-item">
+            <div class="ira-data-label">Minimum</div>
+            <div class="ira-data-value">{{ ira.ira_min | default: "—" }}</div>
+          </div>
+          
+          <div class="ira-data-item">
+            <div class="ira-data-label">Custody Model</div>
+            <div class="ira-data-value">
+              {% if ira.ira_custody contains "Self" or ira.ira_custody contains "self" %}
+                <span class="ira-custody-badge">🔐 Self-custody</span>
+              {% else %}
+                <span class="ira-custody-badge custodial">{{ ira.ira_custody | default: "Custodial" }}</span>
+              {% endif %}
+            </div>
+          </div>
+          
+          {% if ira.ira_setup_time %}
+          <div class="ira-data-item">
+            <div class="ira-data-label">Setup Time</div>
+            <div class="ira-data-value">{{ ira.ira_setup_time }}</div>
+          </div>
+          {% endif %}
+        </div>
+        
+        <div class="ira-actions">
+          <a href="{{ ira.link }}" target="_blank" class="ira-apply-button" onclick="fathom.trackEvent('Click IRA Apply'); fathom.trackEvent('Click IRA Apply: {{ ira.title }}');">
+            GET STARTED
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        
+        {% if ira.ira_summary %}
+        <div class="ira-breakdown-section">
+          <div class="ira-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="ira-breakdown-title">
+              <div class="ira-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                  <path d="M7 9h10M7 13h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              Overview
+            </div>
+            <svg class="ira-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="ira-breakdown-content">
+            <p class="ira-summary-text">{{ ira.ira_summary }}</p>
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if ira.ira_optional_concierge or ira.ira_optional_signature or ira.ira_optional_hwwallet %}
+        <div class="ira-breakdown-section">
+          <div class="ira-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="ira-breakdown-title">
+              <div class="ira-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              Optional Add-ons
+            </div>
+            <svg class="ira-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="ira-breakdown-content">
+            <div class="ira-fees-grid">
+              {% if ira.ira_optional_concierge %}
+              <div class="ira-fee-item">
+                <div class="ira-fee-label">Concierge Onboarding</div>
+                <div class="ira-fee-value">{{ ira.ira_optional_concierge }}</div>
+              </div>
+              {% endif %}
+              {% if ira.ira_optional_signature %}
+              <div class="ira-fee-item">
+                <div class="ira-fee-label">Signature Membership</div>
+                <div class="ira-fee-value">{{ ira.ira_optional_signature }}</div>
+              </div>
+              {% endif %}
+              {% if ira.ira_optional_hwwallet %}
+              <div class="ira-fee-item">
+                <div class="ira-fee-label">Hardware Wallet</div>
+                <div class="ira-fee-value">{{ ira.ira_optional_hwwallet }}</div>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if ira.ira_pros %}
+        <div class="ira-breakdown-section">
+          <div class="ira-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="ira-breakdown-title">
+              <div class="ira-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              Pros
+            </div>
+            <svg class="ira-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="ira-breakdown-content">
+            {{ ira.ira_pros }}
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if ira.ira_cons %}
+        <div class="ira-breakdown-section">
+          <div class="ira-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="ira-breakdown-title">
+              <div class="ira-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              Cons
+            </div>
+            <svg class="ira-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="ira-breakdown-content ira-cons-content">
+            {{ ira.ira_cons }}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>No Bitcoin IRA providers available at this time.</p>
+{% endif %}
+
+<div class="ira-disclaimer">
+  <p>Disclaimer: The information provided on this page is for informational purposes only and does not constitute financial or tax advice. Bitcoin IRA products involve investment risk and may not be suitable for all investors. Consult with a qualified financial advisor and tax professional before making any investment decisions. IRA rules and tax implications vary based on your individual circumstances. Some links on this page may be affiliate links.</p>
+</div>
+
+<style>
+.ira-disclaimer {
+  margin-top: 48px;
+  padding: 20px 24px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border-left: 3px solid #d1d5db;
+}
+
+.ira-disclaimer p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .ira-disclaimer {
+    margin-top: 32px;
+    padding: 16px;
+  }
+  
+  .ira-disclaimer p {
+    font-size: 11px;
+  }
+}
+</style> 
