@@ -403,6 +403,11 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   margin-bottom: 8px;
 }
 
+.card-type-below-image {
+  margin-top: 10px;
+  text-align: center;
+}
+
 .best-for-badge {
   display: inline-flex;
   align-items: center;
@@ -867,7 +872,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
     <div class="mobile-comparison-selector">
       <label for="mobile-comparison-field">Compare by:</label>
       <select id="mobile-comparison-field" onchange="updateMobileComparison()">
-        <option value="best-for">Best For</option>
+        <option value="best-for" selected>Best For</option>
         <option value="rewards-rate">Rewards Rate</option>
         <option value="sign-up-bonus">Sign-Up Bonus</option>
         <option value="annual-fee">Annual Fee</option>
@@ -924,10 +929,7 @@ function updateMobileComparison() {
         <a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="card-image-link" onclick="fathom.trackEvent('Click Card: {{ card.title }}');">
           <img src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="card-image">
         </a>
-      </div>
-      
-      <div class="card-info">
-        <div class="card-badges-row">
+        <div class="card-type-below-image">
           {% assign card_type = card.vs_cardtype | strip_html | strip %}
           {% if card_type contains "Credit" %}
             <span class="card-type-badge credit">Credit Card</span>
@@ -938,15 +940,20 @@ function updateMobileComparison() {
           {% else %}
             <span class="card-type-badge">{{ card_type }}</span>
           {% endif %}
-          {% if card.vs_bestfor %}
+        </div>
+      </div>
+      
+      <div class="card-info">
+        {% if card.vs_bestfor %}
+        <div class="card-badges-row">
           <span class="best-for-badge">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#F59E0B" stroke="#F59E0B" stroke-width="1.5"/>
             </svg>
             Best for: {{ card.vs_bestfor }}
           </span>
-          {% endif %}
         </div>
+        {% endif %}
         
         <h2 class="card-title"><a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="card-title-link" onclick="fathom.trackEvent('Click Card: {{ card.title }}');">{{ card.title }}</a></h2>
         
@@ -988,7 +995,9 @@ function updateMobileComparison() {
           <div class="data-item">
             <div class="data-label">Intro offer</div>
             <div class="data-value">
-              {% if card.vs_signupbonus and card.vs_signupbonus != 'None' %}
+              {% if card.vs_signupbonus_short %}
+                {{ card.vs_signupbonus_short }}
+              {% elsif card.vs_signupbonus and card.vs_signupbonus != 'None' %}
                 {% assign bonus_text = card.vs_signupbonus | strip_html | strip %}
                 {{ bonus_text }}
               {% else %}
