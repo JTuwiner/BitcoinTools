@@ -14,6 +14,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 <style>
 .comparison-table-wrapper {
   margin-bottom: 40px;
+  max-width: 100%;
 }
 
 .comparison-table-header {
@@ -32,44 +33,14 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   align-items: center;
 }
 
-.comparison-selector {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.comparison-selector label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #6b7280;
-}
-
-.comparison-selector select {
-  padding: 8px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 14px;
-  background: white;
-  color: #111827;
-  cursor: pointer;
-  min-width: 180px;
-}
-
-.comparison-selector select:hover {
-  border-color: #9ca3af;
-}
-
-.comparison-selector select:focus {
-  outline: none;
-  border-color: #f2a900;
-  box-shadow: 0 0 0 3px rgba(242, 169, 0, 0.1);
-}
 
 .comparison-table {
   width: 100%;
   border-collapse: collapse;
-  overflow-x: auto;
-  display: block;
+}
+
+.comparison-table-desktop {
+  display: table;
 }
 
 .comparison-table thead {
@@ -83,15 +54,11 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   font-weight: 600;
   font-size: 14px;
   color: #111827;
-  min-width: 150px;
+  white-space: nowrap;
 }
 
 .comparison-table th:first-child {
-  position: sticky;
-  left: 0;
-  background: #f9fafb;
-  z-index: 10;
-  min-width: 200px;
+  min-width: 180px;
 }
 
 .comparison-table tbody tr {
@@ -108,20 +75,11 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   font-size: 14px;
   color: #111827;
   vertical-align: middle;
-  min-width: 150px;
 }
 
 .comparison-table td:first-child {
-  position: sticky;
-  left: 0;
-  background: white;
-  z-index: 5;
   font-weight: 500;
-  min-width: 200px;
-}
-
-.comparison-table tbody tr:hover td:first-child {
-  background: #f9fafb;
+  min-width: 180px;
 }
 
 .comparison-table-card-name {
@@ -137,12 +95,51 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   border-radius: 4px;
 }
 
-.comparison-value {
+
+.mobile-comparison-cards {
+  display: none;
+}
+
+.mobile-comparison-selector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.mobile-comparison-selector label {
+  font-size: 14px;
   font-weight: 500;
+  color: #6b7280;
+}
+
+.mobile-comparison-selector select {
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+  color: #111827;
+  cursor: pointer;
+  flex: 1;
+}
+
+.mobile-comparison-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
 .mobile-card-header {
-  display: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .mobile-card-img {
@@ -159,7 +156,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 }
 
 .mobile-comparison-label {
-  display: none;
   font-size: 12px;
   color: #6b7280;
   text-transform: uppercase;
@@ -167,77 +163,25 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   margin-bottom: 4px;
 }
 
+.mobile-comparison-value {
+  font-size: 15px;
+  font-weight: 500;
+  color: #111827;
+  line-height: 1.5;
+}
+
 @media (max-width: 768px) {
+  .desktop-comparison-table {
+    display: none;
+  }
+  
+  .mobile-comparison-cards {
+    display: block;
+  }
+  
   .comparison-table-header {
     flex-direction: column;
     align-items: flex-start;
-  }
-  
-  .comparison-selector {
-    width: 100%;
-  }
-  
-  .comparison-selector select {
-    width: 100%;
-  }
-  
-  .comparison-table {
-    display: block;
-  }
-  
-  .comparison-table thead {
-    display: none;
-  }
-  
-  .comparison-table tbody {
-    display: block;
-  }
-  
-  .comparison-table tbody tr {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    border: none;
-  }
-  
-  .comparison-table td {
-    display: none;
-  }
-  
-  .comparison-table td:first-child {
-    display: none;
-  }
-  
-  .comparison-table td.comparison-value {
-    display: flex;
-    flex-direction: column;
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    padding: 16px;
-    min-width: unset;
-    position: relative;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  }
-  
-  .mobile-card-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #e5e7eb;
-  }
-  
-  .mobile-comparison-label {
-    display: block;
-  }
-  
-  .comparison-value-text {
-    font-size: 15px;
-    font-weight: 500;
-    color: #111827;
-    line-height: 1.5;
   }
 }
 
@@ -732,113 +676,112 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 <br><br><br>
 <div class="comparison-table-wrapper">
   <div class="comparison-table-header">
-    <h2 class="comparison-table-title">
-      Compare Cards
-      <div class="comparison-selector" style="margin-left: 16px;">
-        <label for="comparison-field" style="font-size: 14px; font-weight: 500; color: #6b7280;">Compare by:</label>
-        <select id="comparison-field" onchange="updateComparisonTable()">
-          <option value="rewards-rate">Rewards Rate</option>
-          <option value="sign-up-bonus">Sign-Up Bonus</option>
-          <option value="annual-fee">Annual Fee</option>
-          <option value="foreign-transaction-fee">Foreign Transaction Fee</option>
-          <option value="regular-apr">Regular APR</option>
-        </select>
-      </div>
-    </h2>
+    <h2 class="comparison-table-title">Compare Cards</h2>
   </div>
   
-  <div style="overflow-x: auto;">
-    <table class="comparison-table">
+  <div class="desktop-comparison-table" style="overflow-x: auto;">
+    <table class="comparison-table comparison-table-desktop">
       <thead>
         <tr>
           <th>Card</th>
-          {% for card in cards %}
-          <th>
+          <th>Rewards Rate</th>
+          <th>Annual Fee</th>
+          <th>Sign-Up Bonus</th>
+          <th>Availability</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for card in cards %}
+        <tr>
+          <td>
             <div class="comparison-table-card-name">
               <img src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="comparison-table-card-img">
               <span>{{ card.title }}</span>
             </div>
-          </th>
-          {% endfor %}
-        </tr>
-      </thead>
-      <tbody id="comparison-table-body">
-        <tr>
-          <td><strong id="comparison-label">Rewards Rate</strong></td>
-          {% for card in cards %}
-          <td class="comparison-value" data-field="rewards-rate" data-card="{{ card.title | escape }}" data-img="/tools/img/{{ card.img }}">
-            <span class="mobile-card-header">
-              <img src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="mobile-card-img">
-              <span class="mobile-card-name">{{ card.title }}</span>
-            </span>
-            <span class="mobile-comparison-label">Rewards Rate</span>
-            <span class="comparison-value-text">
+          </td>
+          <td>
             {% if card.vs_rewardsrate_short %}
               {{ card.vs_rewardsrate_short }}
             {% else %}
               {% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}
-              {{ rewards_text }}
+              {{ rewards_text | truncate: 50 }}
             {% endif %}
-            </span>
           </td>
-          {% endfor %}
+          <td>
+            {% assign fee_text = card.vs_annualfee | strip_html | strip %}
+            {% if fee_text contains '$0' or fee_text contains 'No annual fee' %}
+              $0
+            {% else %}
+              {{ fee_text }}
+            {% endif %}
+          </td>
+          <td>
+            {% if card.vs_signupbonus and card.vs_signupbonus != 'None' %}
+              {% assign bonus_text = card.vs_signupbonus | strip_html | strip %}
+              {{ bonus_text | truncate: 60 }}
+            {% else %}
+              <span style="color: #9ca3af;">None</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if card.vs_availability %}
+              {{ card.vs_availability | strip_html | strip }}
+            {% else %}
+              <span style="color: #9ca3af;">—</span>
+            {% endif %}
+          </td>
         </tr>
+        {% endfor %}
       </tbody>
     </table>
+  </div>
+  
+  <div class="mobile-comparison-cards">
+    <div class="mobile-comparison-selector">
+      <label for="mobile-comparison-field">Compare by:</label>
+      <select id="mobile-comparison-field" onchange="updateMobileComparison()">
+        <option value="rewards-rate">Rewards Rate</option>
+        <option value="sign-up-bonus">Sign-Up Bonus</option>
+        <option value="annual-fee">Annual Fee</option>
+        <option value="availability">Availability</option>
+      </select>
+    </div>
+    {% for card in cards %}
+    <div class="mobile-comparison-card" data-card="{{ card.title | escape }}">
+      <div class="mobile-card-header">
+        <img src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="mobile-card-img">
+        <span class="mobile-card-name">{{ card.title }}</span>
+      </div>
+      <div class="mobile-comparison-label">Rewards Rate</div>
+      <div class="mobile-comparison-value" data-rewards-rate="{% if card.vs_rewardsrate_short %}{{ card.vs_rewardsrate_short }}{% else %}{% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}{{ rewards_text }}{% endif %}" data-sign-up-bonus="{% if card.vs_signupbonus and card.vs_signupbonus != 'None' %}{% assign bonus_text = card.vs_signupbonus | strip_html | strip %}{{ bonus_text }}{% else %}None{% endif %}" data-annual-fee="{% assign fee_text = card.vs_annualfee | strip_html | strip %}{% if fee_text contains '$0' or fee_text contains 'No annual fee' %}$0{% else %}{{ fee_text }}{% endif %}" data-availability="{% if card.vs_availability %}{{ card.vs_availability | strip_html | strip }}{% else %}—{% endif %}">
+        {% if card.vs_rewardsrate_short %}
+          {{ card.vs_rewardsrate_short }}
+        {% else %}
+          {% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}
+          {{ rewards_text }}
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
   </div>
 </div>
 
 <script>
-// Store card data for dynamic updates
-const cardData = {
-  {% for card in cards %}
-  "{{ card.title | escape }}": {
-    "rewards-rate": {% if card.vs_rewardsrate_short %}"{{ card.vs_rewardsrate_short }}"{% else %}{% assign rewards_text = card.vs_rewardsrate | strip_html | strip %}"{{ rewards_text | escape }}"{% endif %},
-    "sign-up-bonus": {% if card.vs_signupbonus and card.vs_signupbonus != 'None' %}{% assign bonus_text = card.vs_signupbonus | strip_html | strip %}"{{ bonus_text | escape }}"{% else %}"None"{% endif %},
-    "annual-fee": {% assign fee_text = card.vs_annualfee | strip_html | strip %}{% if fee_text contains '$0' or fee_text contains 'No annual fee' %}"$0"{% else %}"{{ fee_text | escape }}"{% endif %},
-    "foreign-transaction-fee": {% assign ftf_text = card.vs_foreigntransactionfee | strip_html | strip %}"{{ ftf_text | escape }}",
-    "regular-apr": {% if card.vs_regularapr %}{% assign apr_text = card.vs_regularapr | strip_html | strip %}"{{ apr_text | escape }}"{% else %}"N/A"{% endif %}
-  }{% unless forloop.last %},{% endunless %}
-  {% endfor %}
-};
-
-const cardOrder = [
-  {% for card in cards %}
-  "{{ card.title | escape }}"{% unless forloop.last %},{% endunless %}
-  {% endfor %}
-];
-
-function updateComparisonTable() {
-  const field = document.getElementById('comparison-field').value;
-  const tbody = document.getElementById('comparison-table-body');
-  const row = tbody.querySelector('tr');
-  
-  // Update the label in the first cell
+function updateMobileComparison() {
+  const field = document.getElementById('mobile-comparison-field').value;
   const labels = {
     'rewards-rate': 'Rewards Rate',
     'sign-up-bonus': 'Sign-Up Bonus',
     'annual-fee': 'Annual Fee',
-    'foreign-transaction-fee': 'Foreign Transaction Fee',
-    'regular-apr': 'Regular APR'
+    'availability': 'Availability'
   };
-  row.querySelector('td:first-child').innerHTML = '<strong>' + labels[field] + '</strong>';
   
-  // Update all comparison cells
-  row.querySelectorAll('td[data-field]').forEach((cell, index) => {
-    const cardName = cell.getAttribute('data-card');
-    const valueText = cell.querySelector('.comparison-value-text');
-    const mobileLabel = cell.querySelector('.mobile-comparison-label');
+  document.querySelectorAll('.mobile-comparison-card').forEach(card => {
+    const labelEl = card.querySelector('.mobile-comparison-label');
+    const valueEl = card.querySelector('.mobile-comparison-value');
     
-    // Update the value
-    const newValue = (cardData[cardName] && cardData[cardName][field]) ? cardData[cardName][field] : 'N/A';
-    if (valueText) {
-      valueText.textContent = newValue;
-    }
-    
-    // Update the mobile label
-    if (mobileLabel) {
-      mobileLabel.textContent = labels[field];
-    }
+    labelEl.textContent = labels[field];
+    valueEl.textContent = valueEl.getAttribute('data-' + field) || '—';
   });
 }
 </script>
