@@ -1,7 +1,7 @@
 ---
 layout: page
-title: "9 Best Crypto Affiliate Programs [2025]"
-seotitle: "9 Best Crypto Affiliate Programs [2025]"
+title: "9 Best Crypto Affiliate Programs [2026]"
+seotitle: "9 Best Crypto Affiliate Programs [2026]"
 full-width: yes
 permalink: "/affiliate-programs/"
 capture: yes
