@@ -1,421 +1,996 @@
 ---
-layout: multicat
+layout: page
 title: Offline Wallets
 full-width: yes
 permalink: "/offline-wallets/"
 category: yes
-seotitle: Offline Bitcoin Wallets for Cold Storage [Secure]
-subdesc: A guide to offline Bitcoin wallets for secure cold storage. 
+seotitle: 8 Best Offline Bitcoin Wallets for Cold Storage [2025]
+subdesc: Hardware wallets, steel backups, and vaults for secure Bitcoin cold storage.
 icon: wallet
 svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path fill="currentColor" d="M216 64H56a8 8 0 0 1 0-16h136a8 8 0 0 0 0-16H56a24 24 0 0 0-24 24v128a24 24 0 0 0 24 24h160a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16m-36 80a12 12 0 1 1 12-12a12 12 0 0 1-12 12"/></svg>'
 ---
-<br><br><br>
 
-<p>An offline, cold storage Bitcoin or crypto wallet is a major step in upgrading your cryptocurrency security.</p>
+{% assign wallets = site.pages | where: "secondcat", "Offline Wallets" | sort: "sort" %}
 
-<p>Cold storage wallets keep your Bitcoins offline, and away from online computers where hackers would be able to access and steal them.</p>
+<style>
+.wallet-intro {
+  max-width: 800px;
+  margin-bottom: 32px;
+}
 
-<h2>Best Offline Wallets</h2>
-<p>Hardware wallets are the most common form of cold storage today.</p>
+.wallet-intro p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #374151;
+  margin-bottom: 16px;
+}
 
-<p><b>Why?</b></p>
-<p>They offer the best security per dollar spent and are very good at preventing <b>you</b>, the user, from making mistakes that can lose all of your Bitcoins.</p>
-<p>More bitcoins are lost due to users making mistakes than from hackers.</p>
+.wallet-intro-highlight {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 24px 0;
+}
 
-<h2>Best Overall: Unchained</h2>
-<div class="wallet-list-item lock-bug col-sm-12 buy-info-full">
-	<h4>
-		<a href="https://bitbo.io/buy/o/unchained/" rel="nofollow noopener" target="_blank">
-			Unchained
-		</a>
-	</h4>
-	<p><b>Price:</b> $250</p>
-	<p class="new-desc-box">Take control of your bitcoin in the safest way possible with multisig vaults.</p>
-	<p>Storing bitcoins in cold storage makes sure your wealth is not exposed to the risk of hacks and exchange failures. Take your bitcoins offline with an Unchained vault and real human help to setup.</p>
-	<div class="exchange-pros exchange-pros-buylist col-md-6">
-		<div class="exchange-pros-title">Pros</div>
-		<ul class="quick-info-pros">
-			<li>Easy Set up</li>
-			<li>Simple to use</li>
-		</ul>
+.wallet-intro-highlight p {
+  margin: 0;
+  font-weight: 500;
+  color: #92400E;
+}
+
+.comparison-table-wrapper {
+  margin-bottom: 40px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.comparison-table-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.comparison-table-title {
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparison-table thead {
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.comparison-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+  white-space: nowrap;
+}
+
+.comparison-table th:first-child {
+  min-width: 180px;
+}
+
+.comparison-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s;
+}
+
+.comparison-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.comparison-table td {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #111827;
+  vertical-align: middle;
+}
+
+.comparison-table td:first-child {
+  font-weight: 500;
+  min-width: 180px;
+}
+
+.comparison-table-wallet-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.comparison-table-wallet-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.wallet-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+}
+
+.wallet-type-badge.hardware {
+  background: #DBEAFE;
+  color: #1E40AF;
+  border-color: #93C5FD;
+}
+
+.wallet-type-badge.steel {
+  background: #E5E7EB;
+  color: #374151;
+  border-color: #9CA3AF;
+}
+
+.wallet-type-badge.vault {
+  background: #D1FAE5;
+  color: #065F46;
+  border-color: #6EE7B7;
+}
+
+.wallet-type-badge.custodial {
+  background: #FEF3C7;
+  color: #92400E;
+  border-color: #FCD34D;
+}
+
+.mobile-comparison-cards {
+  display: none;
+}
+
+.mobile-comparison-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.mobile-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.mobile-card-img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.mobile-card-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: #111827;
+}
+
+.mobile-card-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.mobile-detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-detail-label {
+  font-size: 11px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.mobile-detail-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+}
+
+@media (max-width: 768px) {
+  .desktop-comparison-table {
+    display: none;
+  }
+  
+  .mobile-comparison-cards {
+    display: block;
+  }
+}
+
+.wallets-listing {
+  margin-top: 40px;
+}
+
+.wallet-item {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: box-shadow 0.2s;
+  padding: 24px;
+}
+
+.wallet-item:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.wallet-header {
+  display: flex;
+  gap: 24px;
+}
+
+.wallet-image-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.wallet-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #f9fafb;
+  padding: 8px;
+}
+
+.wallet-info {
+  flex: 1;
+}
+
+.wallet-type-above-title {
+  margin-bottom: 8px;
+}
+
+.wallet-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827 !important;
+  margin: 0 0 8px 0;
+}
+
+.wallet-keyfact {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wallet-keyfact-icon {
+  color: #D97706;
+  flex-shrink: 0;
+}
+
+.wallet-keyfact-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #92400E;
+}
+
+.wallet-data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.wallet-data-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.wallet-data-label {
+  font-size: 12px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.wallet-data-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.wallet-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.wallet-apply-button {
+  background: #f2a900;
+  color: black !important;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+
+.wallet-apply-button:hover {
+  background: #059669;
+  color: white !important;
+}
+
+.wallet-breakdown-section {
+  margin-top: 12px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 12px;
+}
+
+.wallet-breakdown-section:first-of-type {
+  margin-top: 20px;
+}
+
+.wallet-breakdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 12px;
+  margin: -4px -8px;
+  border-radius: 6px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  user-select: none;
+  border: 1px solid transparent;
+}
+
+.wallet-breakdown-header:hover {
+  background: #FEF9E7;
+  border-color: #F2A900;
+}
+
+.wallet-breakdown-title {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  transition: color 0.15s;
+}
+
+.wallet-breakdown-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  margin-right: 10px;
+}
+
+.wallet-breakdown-header:hover .wallet-breakdown-icon {
+  color: #D97706;
+}
+
+.wallet-breakdown-header:hover .wallet-breakdown-title {
+  color: #111827;
+}
+
+.wallet-breakdown-chevron {
+  color: #9ca3af;
+  transition: transform 0.15s, color 0.15s;
+}
+
+.wallet-breakdown-header:hover .wallet-breakdown-chevron {
+  color: #D97706;
+}
+
+.wallet-breakdown-section.expanded .wallet-breakdown-chevron {
+  transform: rotate(180deg);
+}
+
+.wallet-breakdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease-out, padding-top 0.2s ease-out;
+  padding-top: 0;
+  color: #111827;
+}
+
+.wallet-breakdown-section.expanded .wallet-breakdown-content {
+  max-height: 500px;
+  padding-top: 10px;
+}
+
+.wallet-breakdown-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.wallet-breakdown-content li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 6px;
+  padding: 4px 0;
+  color: #111827;
+}
+
+.wallet-breakdown-content li::before {
+  content: "✓";
+  color: #10b981;
+  font-weight: bold;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.wallet-cons-content li::before {
+  content: "✗";
+  color: #EF4444;
+}
+
+.wallet-summary-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #374151;
+}
+
+@media (max-width: 768px) {
+  .wallet-header {
+    flex-direction: column;
+  }
+  
+  .wallet-image-wrapper {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 16px;
+  }
+  
+  .wallet-title {
+    font-size: 20px;
+  }
+  
+  .wallet-keyfact {
+    padding: 10px 12px;
+  }
+  
+  .wallet-keyfact-text {
+    font-size: 13px;
+  }
+  
+  .wallet-data-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  
+  .wallet-data-value {
+    font-size: 13px;
+    word-break: break-word;
+  }
+  
+  .wallet-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .wallet-apply-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .wallet-item {
+    padding: 16px;
+    margin-left: -8px;
+    margin-right: -8px;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wallet-data-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .wallet-item {
+    padding: 14px;
+  }
+  
+  .wallet-title {
+    font-size: 18px;
+  }
+  
+  .wallet-keyfact {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}
+
+.faq-section {
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+.faq-section h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 24px;
+}
+
+.faq-item {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  color: #111827;
+  background: #f9fafb;
+  transition: background 0.15s;
+}
+
+.faq-question:hover {
+  background: #f3f4f6;
+}
+
+.faq-chevron {
+  color: #9ca3af;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.faq-item.expanded .faq-chevron {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.faq-item.expanded .faq-answer {
+  max-height: 500px;
+}
+
+.faq-answer-content {
+  padding: 16px 20px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #374151;
+}
+
+.faq-answer-content ul {
+  margin: 12px 0;
+  padding-left: 20px;
+}
+
+.faq-answer-content li {
+  margin-bottom: 6px;
+}
+
+.wallet-disclaimer {
+  margin-top: 48px;
+  padding: 20px 24px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border-left: 3px solid #d1d5db;
+}
+
+.wallet-disclaimer p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .wallet-disclaimer {
+    margin-top: 32px;
+    padding: 16px;
+  }
+  
+  .wallet-disclaimer p {
+    font-size: 11px;
+  }
+  
+  .faq-section h2 {
+    font-size: 22px;
+  }
+  
+  .faq-question {
+    font-size: 14px;
+    padding: 14px 16px;
+  }
+  
+  .faq-answer-content {
+    padding: 14px 16px;
+    font-size: 13px;
+  }
+}
+</style>
+
+<br><br>
+
+<div class="wallet-intro">
+  <p>An offline Bitcoin wallet keeps your private keys disconnected from the internet, dramatically reducing the risk of hacks and theft. Cold storage is essential for securing larger Bitcoin holdings.</p>
+  
+  <div class="wallet-intro-highlight">
+    <p>💡 <strong>Key insight:</strong> More bitcoins are lost due to user error than from hackers. Hardware wallets protect against both threats by keeping keys offline and preventing mistakes.</p>
 	</div>
-	<div class="exchange-pros exchange-pros-buylist col-md-6">
-		<div class="exchange-pros-title">Cons</div>
-		<ul class="quick-info-cons">
-			<li>Better for holders of larger amounts of Bitcoin</li>
-		</ul>
-	</div>
-	<a href="https://bitbo.io/buy/o/unchained/" rel="nofollow noopener" target="_blank" class="buy-card-link btn-success" style="font-size: 28px; display: inline-block; width: 100%; text-align: center; margin-top: 30px; margin-right: 10px; margin-bottom: 30px; padding: 15px; border-radius: 20px;">Visit Unchained's Website</a>
 </div>
 
-<h2>Most Advanced Features: Coldcard Mk 4</h2>
-<div class="wallet-list-item lock-bug col-sm-12 buy-info-full">
-	<h4>
-		
-		<a href="https://store.coinkite.com/promo/1E0DD7D50340FEFAF900">Coldcard Mk 4</a>
-	</h4>
-	<p><b>Price:</b> $148</p>
-	<p><b>Release Date:</b> March, 2023</p>
-	<p class="new-desc-box">The Coldcard MK 4 is Coinkite's latest version of their hardware wallet models. Like the Passport, this is also an advanced wallet with lots of features to make the kinds of bitcoin transactions you want!</p>
-	<div class="exchange-pros exchange-pros-buylist col-md-6">
-		<div class="exchange-pros-title">Pros</div>
-		<ul class="quick-info-pros">
-			<li>Tons of backup options</li>
-			<li>Very tough cover</li>
-			<li>Integrates with lots of different software wallets</li>
-		</ul>
-	</div>
-	<div class="exchange-pros exchange-pros-buylist col-md-6">
-		<div class="exchange-pros-title">Cons</div>
-		<ul class="quick-info-cons">
-			<li>Screen makes navigation difficult</li>
-			<li>Expensive</li>
-		</ul>
-	</div>
-	<a href="https://store.coinkite.com/promo/1E0DD7D50340FEFAF900" rel="nofollow noopener" target="_blank" class="buy-card-link btn-success" style="font-size: 28px; display: inline-block; width: 100%; text-align: center; margin-top: 30px; padding: 15px; border-radius: 20px;">Visit Coldcard's Website</a>
+{% if wallets.size > 0 %}
+<div class="comparison-table-wrapper">
+  <div class="comparison-table-header">
+    <h2 class="comparison-table-title">Compare Offline Wallets</h2>
 </div>
 
-<h2>Best for Beginners: Ledger Nano X</h2>
-<div class="wallet-list-item lock-bug col-sm-12 buy-info-full">
-	<h4>
-		<a href="https://ledger.pxf.io/0ZyKyR" rel="nofollow noopener" target="_blank">
-			Ledger Nano X
-		</a>
-	</h4>
-	<p><b>Price:</b> $166</p>
-	<p><b>Release Date:</b> May 15th, 2019</p>
-	<p class="new-desc-box">There is a reason Ledger is the largest hardware wallet manufacturer in the world. Their wallets are simple to set-up, easy to use, and have a very strong security record. Their main downsides are their non-ergonomic design, and some complain of Ledger's recent change in direction as a company.</p>
-	<div class="exchange-pros exchange-pros-buylist col-md-6">
-		<div class="exchange-pros-title">Pros</div>
-		<ul class="quick-info-pros">
-			<li>Easy Set up</li>
-			<li>Simple to use hardware</li>
-			<li>Hardware has never been hacked</li>
-		</ul>
-	</div>
-	<div class="exchange-pros exchange-pros-buylist col-md-6">
-		<div class="exchange-pros-title">Cons</div>
-		<ul class="quick-info-cons">
-			<li>Physical design of wallet is not ergonomic</li>
-			<li>Recent software changes have put security into question</li>
-		</ul>
-	</div>
-</div>
-
-<h2>Biggest Screen: Trezor Model T</h2>
-<div class="wallet-list-item lock-bug col-sm-12 buy-info-full">
-	<h4>
-		<a href="https://affil.trezor.io/SHuO" target="_blank" rel="nofollow noopener noreferrer">
-			Trezor Model T
-		</a>
-	</h4>
-	<p><b>Price:</b> $219</p>
-	<p><b>Release Date:</b> October 31, 2017</p>
-	<p class="new-desc-box">If you are looking for a hardware wallet with a big screen that is very easy to navigate, then the Trezor Model T is the hardware wallet for you. If you want a wallet from the original inventor of the hardware wallet, then all the more reason to Grab a Trezor Model T. This is an expensive wallet though, and because of some design choices Trezor made early on, it is <b>NOT</b> the most secure if someone physically gets their hands on it and they know what they are doing.</p>
-	<div class="exchange-pros exchange-pros-buylist col-md-6">
-		<div class="exchange-pros-title">Pros</div>
-		<ul class="quick-info-pros">
-			<li>Trezor is the original inventor of the hardware wallet</li>
-			<li>Big, color screen makes it easy to navigate</li>
-			<li>Some interesting security features only Trezor supports</li>
-		</ul>
-	</div>
-	<div class="exchange-pros exchange-pros-buylist col-md-6">
-		<div class="exchange-pros-title">Cons</div>
-		<ul class="quick-info-cons">
-			<li>VERY expensive</li>
-			<li>Not the best physical security</li>
-		</ul>
-	</div>
-</div>
-
-<h2>Most Secure: Foundation Passport</h2>
-<div class="wallet-list-item lock-bug col-sm-12 buy-info-full">
-	<h4>
-		Foundation Passport
-	</h4>
-	<p><b>Price:</b> $199</p>
-	<p><b>Release Date:</b> March 31, 2021</p>
-	<p class="new-desc-box">If security is your number one priority in a wallet, some would say you can't do better than Foundation Device's Passport hardware wallet. It's unassuming look of a mobile phone, air-gap features, and multiple security validation checkpoints make this a holder's security dream.</p>
-	<div class="exchange-pros exchange-pros-buylist col-md-6">
-		<div class="exchange-pros-title">Pros</div>
-		<ul class="quick-info-pros">
-			<li>By far, the most security features of any hardware wallet</li>
-			<li>Multiple security checkpoints prevent user error</li>
-			<li>Mobile phone-like design makes this hardware wallet hard to spot</li>
-		</ul>
-	</div>
-	<div class="exchange-pros exchange-pros-buylist col-md-6">
-		<div class="exchange-pros-title">Cons</div>
-		<ul class="quick-info-cons">
-			<li>Expensive</li>
-			<li>Newer company</li>
-		</ul>
-	</div>
-	<center><img class="wallet-hero" src="https://buybitcoinworldwide.com/img/pages/wallets/img/passport.png" /></center>
-</div>
-
-<h2>Best Value: Ledger Nano S Plus</h2>
-<div class="wallet-list-item lock-bug col-sm-12 buy-info-full">
-	<h4>
-		Ledger Nano S Plus
-	</h4>
-	<p><b>Price:</b> $79</p>
-	<p><b>Release Date:</b> April 4th, 2022</p>
-	<p class="new-desc-box">Ledger also gets awarded "best value" hardware wallet with its newest addition to the Nano family of hardware wallets. For a mere $88, you get basically all of the features of the Nano X, just without any Bluetooth capabilities and a slightly lower resolution screen.</p>
-	<div class="exchange-pros exchange-pros-buylist col-md-6">
-		<div class="exchange-pros-title">Pros</div>
-		<ul class="quick-info-pros">
-			<li>Very attractive price point</li>
-			<li>Arguably more secure than the Nano X</li>
-		</ul>
-	</div>
-	<div class="exchange-pros exchange-pros-buylist col-md-6">
-		<div class="exchange-pros-title">Cons</div>
-		<ul class="quick-info-cons">
-			<li>No Bluetooth</li>
-			<li>Lower resolution screen</li>
-		</ul>
-	</div>
-</div>
-
-<p style="color:white">-</p>
-<h2>Cold Wallets Compared</h2>
-
-
-<table class="table table-bordered">
+  <div class="desktop-comparison-table">
+    <table class="comparison-table">
   <thead>
 	<tr>
-	  <th> </th>
-	  <th>Nano X</th>
-	  <th>Passport</th>
-	  <th>Coldcard Mk 4</th>
-	  <th>Trezor Model T</th>
-	  <th>Nano S Plus</th>
+          <th>Wallet</th>
+          <th>Type</th>
+          <th>Price</th>
+          <th>Coins</th>
+          <th>Custody</th>
+          <th>Open Source</th>
 	</tr>
   </thead>
   <tbody>
-	<tr>
-	  <th scope="row">Price</th>
-	  <td>$166</td>
-	  <td>$199</td>
-	  <td>$148</td>
-	  <td>$219</td>
-	  <td>$88</td>
+        {% for wallet in wallets %}
+        <tr>
+          <td>
+            <div class="comparison-table-wallet-name">
+              <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="comparison-table-wallet-img">
+              <span>{{ wallet.title }}</span>
+            </div>
+          </td>
+          <td>
+            {% if wallet.wallet_type == "Hardware Wallet" %}
+              <span class="wallet-type-badge hardware">🔐 Hardware</span>
+            {% elsif wallet.wallet_type == "Steel Backup" %}
+              <span class="wallet-type-badge steel">🛡️ Steel</span>
+            {% elsif wallet.wallet_type == "Vault" %}
+              <span class="wallet-type-badge vault">🏦 Vault</span>
+            {% elsif wallet.wallet_type == "Custodial" %}
+              <span class="wallet-type-badge custodial">☁️ Custodial</span>
+            {% else %}
+              <span class="wallet-type-badge">{{ wallet.wallet_type | default: "—" }}</span>
+            {% endif %}
+          </td>
+          <td>{{ wallet.wallet_price | default: "—" }}</td>
+          <td>{{ wallet.wallet_coins | default: "—" }}</td>
+          <td>{{ wallet.wallet_custody | default: "—" }}</td>
+          <td>{{ wallet.wallet_opensource | default: "—" }}</td>
 	</tr>
-	<tr>
-	  <th scope="row">Screen Res.</th>
-	  <td>128x64 LCD</td>
-	  <td>High-Rez Color IPS</td>
-	  <td>128x64 LCD</td>
-	  <td>240x240 Color Touch LCD</td>
-	  <td>128x64 LCD</td>
-	</tr>
-	<tr>
-	  <th scope="row">Secure Elements</th>
-	  <td>1</td>
-	  <td>1</td>
-	  <td>2</td>
-	  <td>0</td>
-	  <td>1</td>
-	</tr>
-	<tr>
-	  <th scope="row">Battery</th>
-	  <td>8 hours</td>
-	  <td>None</td>
-	  <td>None</td>
-	  <td>None</td>
-	  <td>None</td>
-	</tr>
-	<tr>
-	  <th scope="row">Storage Size</th>
-	  <td>2MB</td>
-	  <td>Variable</td>
-	  <td>512kB</td>
-	  <td>Variable</td>
-	  <td>1.5MB</td>
-	</tr>
-	<tr>
-	  <th scope="row">Bluetooth Connection</th>
-	  <td>Yes</td>
-	  <td>No</td>
-	  <td>No</td>
-	  <td>No</td>
-	  <td>No</td>
-	</tr>
-	<tr>
-	  <th scope="row">NFC Connection</th>
-	  <td>No</td>
-	  <td>No</td>
-	  <td>Yes</td>
-	  <td>No</td>
-	  <td>No</td>
-	</tr>
-	<tr>
-	  <th scope="row">Coin Support</th>
-	  <td>5500</td>
-	  <td>Bitcoin Only</td>
-	  <td>Bitcoin Only</td>
-	  <td>1450</td>
-	  <td>5000</td>
-	</tr>
-	<tr>
-	  <th scope="row">PSBT Support</th>
-	  <td>Yes</td>
-	  <td>Yes</td>
-	  <td>Yes</td>
-	  <td>Yes</td>
-	  <td>Yes</td>
-	</tr>
-	<tr>
-	  <th scope="row">Camera</th>
-	  <td>No</td>
-	  <td>Yes</td>
-	  <td>No</td>
-	  <td>No</td>
-	  <td>No</td>
-	</tr>
-	<tr>
-	  <th scope="row">Open Source Code</th>
-	  <td>No</td>
-	  <td>Yes</td>
-	  <td>Yes</td>
-	  <td>Yes</td>
-	  <td>No</td>
-	</tr>
+        {% endfor %}
   </tbody>
 </table>
-
-<h2>Hot Wallets vs Cold Wallet</h2>
-<p>A hot Bitcoin wallet refers to any wallet that requires the internet to function properly. Hot wallets derive their name from the fact that they need electricity to work.</p>
-<p>A cold wallet means your wallet is stored offline and on a device that's not connected to the internet. "Cold" is a reference to the device being offline.</p>
-
-<h2>Types of Cold Storage - Cold Wallet Examples</h2>
-
-<h3>1. Hardware Wallets</h3>
-<p>Hardware wallets are little mini computers that store your Bitcoin offline.</p>
-
-<h4>Why are hardware wallets <b>good</b>?</h4>
-<ul class="quick-info-pros">
-	<li>Easiest way to securely store bitcoins and other coins</li>
-	<li>Easy to backup and secure</li>
-	<li>Less margin for error; setup is easy even for less technical users</li>
-	<li>Multiple hardware wallets can be used together for extra security</li>
-	<li>Hardware wallets often offer a support team, which can be helpful for new users</li>
-</ul>
-
-<h4>Why are hardware wallets <b>bad</b>?</h4>
-<ul class="quick-info-cons">
-	<li>They're not free!</li>
-	<li>They can be challenging for new users to understand</li>
-</ul>
-
-<h3>2. Steel Wallets</h3>
-<p>A steel wallet is a piece of nearly indestructible stainless steel that you can use to carry your bitcoin private keys or backups.</p>
-<p>You do this by etching or tiling the words into the steel.</p>
-<p>This makes it an excellent choice if you are:</p>
-<ul>
-	<li>concerned about losing paper or whatever material your seed is on</li>
-	<li>live in an area with lots of flooding, fires or earthquakes</li>
-</ul>
-<p>Steel wallets are interesting because they can act as both a "paper wallet" or as a backup for any kind of Bitcoin wallet in case yours is lost, stolen, or destroyed.</p>
-<p>Almost any crypto holder can benefit from one of these steel wallets regardless of how they choose to store their coins.</p>
-
-<h3>3. Paper Wallets</h3>
-<p>If you're concerned about malicious computer hackers getting access to your wallet, then a paper wallet is one of your best options.</p>
-<center>
-	<img alt="bitcoin paper wallet" src="https://buybitcoinworldwide.com/img/pages/wallets/en/steel/img/paper-wallet.jpg"/> 
-	<div class="kb-helper">A very common Bitcoin paper wallet</div>
-</center>
-<br>
-
-<div class="warning-box">
-	<h3>WARNING</h3>
-	<p>Setting up a paper wallet is for HIGHLY advanced users only. There are many ways to get a paper wallet wrong - all of which can result in a total loss of funds. Proceed at your own risk.</p>
+  </div>
+  
+  <div class="mobile-comparison-cards">
+    {% for wallet in wallets %}
+    <div class="mobile-comparison-card">
+      <div class="mobile-card-header">
+        <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-card-img">
+        <div>
+          <div class="mobile-card-name">{{ wallet.title }}</div>
+          {% if wallet.wallet_type == "Hardware Wallet" %}
+            <span class="wallet-type-badge hardware">🔐 Hardware</span>
+          {% elsif wallet.wallet_type == "Steel Backup" %}
+            <span class="wallet-type-badge steel">🛡️ Steel</span>
+          {% elsif wallet.wallet_type == "Vault" %}
+            <span class="wallet-type-badge vault">🏦 Vault</span>
+          {% elsif wallet.wallet_type == "Custodial" %}
+            <span class="wallet-type-badge custodial">☁️ Custodial</span>
+          {% else %}
+            <span class="wallet-type-badge">{{ wallet.wallet_type | default: "—" }}</span>
+          {% endif %}
+        </div>
+      </div>
+      <div class="mobile-card-details">
+        <div class="mobile-detail-item">
+          <span class="mobile-detail-label">Price</span>
+          <span class="mobile-detail-value">{{ wallet.wallet_price | default: "—" }}</span>
+        </div>
+        <div class="mobile-detail-item">
+          <span class="mobile-detail-label">Coins</span>
+          <span class="mobile-detail-value">{{ wallet.wallet_coins | default: "—" }}</span>
+        </div>
+        <div class="mobile-detail-item">
+          <span class="mobile-detail-label">Custody</span>
+          <span class="mobile-detail-value">{{ wallet.wallet_custody | default: "—" }}</span>
+        </div>
+        <div class="mobile-detail-item">
+          <span class="mobile-detail-label">Open Source</span>
+          <span class="mobile-detail-value">{{ wallet.wallet_opensource | default: "—" }}</span>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 </div>
-<br>
-<p>The main drawback of a paper wallet is that it's extremely prone to damage. If it's burned, your coins are gone. An upgrade to a paper wallet would to at least be to store in a fire and flood-proof safe or case.</p>
-<p>Paper wallets don't have support teams like hardware wallets. If you get stuck, you'll have to figure it out on your own using the internet.</p>
 
-<h3>4. OpenDime</h3>
-<p>As the world's first bitcoin credit stick, the OpenDime device lets you spend your bitcoin balance in the same way that you would use a traditional credit card.</p>
-<p>Here are some pictures I took of my old OpenDimes that I bought to test:</p>
-<img src="https://buybitcoinworldwide.com/img/pages/wallets/img/opendime.jpg" />
-<br>
+<h2>Wallet Details</h2>
 
-<p>The main difference between OpenDimes and other wallets is that OpenDime only has one address. It's not a full-fledged hardware wallet that can generate and sign transactions.</p>
-<br>
-<img src="https://buybitcoinworldwide.com/img/pages/wallets/img/dimes.jpg" />
-<br><br>
-<p>The open dime is very much like a Bitcoin piggy bank.</p>
-<p>You can add as much bitcoin to it as you want and as many times as you want, however you can only spend from it once.</p>
-<p>At that point, the private key is exposed and the funds are no longer safe on the hardware.</p>
-<p>Because of this, its best to send all the coins to a new address once you are ready to use them.</p>
+<div class="wallets-listing">
+  {% for wallet in wallets %}
+  <div class="wallet-item">
+    <div class="wallet-header">
+      <div class="wallet-image-wrapper">
+        <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="wallet-image">
+      </div>
+      
+      <div class="wallet-info">
+        <div class="wallet-type-above-title">
+          {% if wallet.wallet_type == "Hardware Wallet" %}
+            <span class="wallet-type-badge hardware">🔐 Hardware Wallet</span>
+          {% elsif wallet.wallet_type == "Steel Backup" %}
+            <span class="wallet-type-badge steel">🛡️ Steel Backup</span>
+          {% elsif wallet.wallet_type == "Vault" %}
+            <span class="wallet-type-badge vault">🏦 Vault</span>
+          {% elsif wallet.wallet_type == "Custodial" %}
+            <span class="wallet-type-badge custodial">☁️ Custodial</span>
+          {% else %}
+            <span class="wallet-type-badge">{{ wallet.wallet_type | default: "Wallet" }}</span>
+          {% endif %}
+        </div>
+        
+        <h2 class="wallet-title">{{ wallet.title }}</h2>
+        
+        {% if wallet.wallet_bestfor %}
+        <div class="wallet-keyfact">
+          <svg class="wallet-keyfact-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 16V12M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="wallet-keyfact-text">Best for: {{ wallet.wallet_bestfor }}</span>
+        </div>
+        {% endif %}
+        
+        <div class="wallet-data-grid">
+          <div class="wallet-data-item">
+            <div class="wallet-data-label">Price</div>
+            <div class="wallet-data-value">{{ wallet.wallet_price | default: "—" }}</div>
+          </div>
+          
+          <div class="wallet-data-item">
+            <div class="wallet-data-label">Coins Supported</div>
+            <div class="wallet-data-value">{{ wallet.wallet_coins | default: "—" }}</div>
+          </div>
+          
+          <div class="wallet-data-item">
+            <div class="wallet-data-label">Custody</div>
+            <div class="wallet-data-value">{{ wallet.wallet_custody | default: "—" }}</div>
+          </div>
+          
+          <div class="wallet-data-item">
+            <div class="wallet-data-label">Open Source</div>
+            <div class="wallet-data-value">{{ wallet.wallet_opensource | default: "—" }}</div>
+          </div>
+</div>
+        
+        <div class="wallet-actions">
+          <a href="{{ wallet.link }}" target="_blank" class="wallet-apply-button" onclick="fathom.trackEvent('Click Wallet'); fathom.trackEvent('Click Wallet: {{ wallet.title }}');">
+            GET {{ wallet.title | upcase }}
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        
+        {% if wallet.wallet_summary %}
+        <div class="wallet-breakdown-section">
+          <div class="wallet-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="wallet-breakdown-title">
+              <div class="wallet-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                  <path d="M7 9h10M7 13h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              Overview
+            </div>
+            <svg class="wallet-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="wallet-breakdown-content">
+            <p class="wallet-summary-text">{{ wallet.wallet_summary }}</p>
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if wallet.wallet_pros %}
+        <div class="wallet-breakdown-section">
+          <div class="wallet-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="wallet-breakdown-title">
+              <div class="wallet-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              Pros
+            </div>
+            <svg class="wallet-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="wallet-breakdown-content">
+            {{ wallet.wallet_pros }}
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if wallet.wallet_cons %}
+        <div class="wallet-breakdown-section">
+          <div class="wallet-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="wallet-breakdown-title">
+              <div class="wallet-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              Cons
+            </div>
+            <svg class="wallet-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="wallet-breakdown-content wallet-cons-content">
+            {{ wallet.wallet_cons }}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>No offline wallets available at this time.</p>
+{% endif %}
 
-<h2>Who Needs a Cold Storage Wallet?</h2>
-<img alt="offline and cold bitcoin wallets" src="https://buybitcoinworldwide.com/img/newimages/offline.png">
-<ul>
-	<li><b>Long-Term Investors:</b> Those who buy and hold cryptocurrencies for extended periods benefit from cold wallets because they prioritize security over frequent transactions.</li>
-	<li><b>High-Value Portfolio Holders:</b> People with significant cryptocurrency investments will prefer the air-gapped security offered by cold wallets to protect substantial assets.</li>
-	<li><b>Privacy Advocates:</b> Users who value privacy and want full custody of their funds without third-party interference.</li>
-	<li><b>Diversified Portfolio Owners:</b> Individuals owning a range of cryptocurrencies, including NFTs and various tokens, might prefer cold wallets that support multiple assets.</li>
-</ul>
-<p>However, active traders or those frequently engaging in crypto transactions might find cold wallets cumbersome and might prefer the convenience of hot wallets.</p>
-
+<div class="faq-section">
 <h2>Frequently Asked Questions</h2>
 
-<h3>Is "cold storage" different than using a cold wallet?</h3>
-<p>In general, "cold storage" refers to any bitcoin storage storage device that does not require an internet connection.</p>
-<p>A cold storage device can be:</p>
-<ul>
-	<li>a physical box</li>
-	<li>a piece of paper</li>
-	<li>a hardware wallet</li>
-	<li>a list of numbers and letters that you keep in your head</li>
+  <div class="faq-item">
+    <div class="faq-question" onclick="this.parentElement.classList.toggle('expanded')">
+      What is cold storage vs a hot wallet?
+      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-content">
+        <p><strong>Hot wallet:</strong> A wallet connected to the internet (mobile apps, browser extensions, exchange accounts). Convenient for daily transactions but more vulnerable to hacks.</p>
+        <p><strong>Cold storage:</strong> Any wallet that keeps private keys completely offline. This includes hardware wallets, paper wallets, and steel backups. Much more secure for long-term holdings.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="this.parentElement.classList.toggle('expanded')">
+      What happens if my hardware wallet company goes out of business?
+      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-content">
+        <p>Your Bitcoin is safe! Hardware wallets use standard BIP39 seed phrases. If Trezor or Ledger shut down tomorrow, you could restore your wallet using any compatible software (like Electrum, Sparrow, or BlueWallet) with your 24-word seed phrase.</p>
+        <p>This is why backing up your seed phrase on steel is so important — it's your ultimate recovery tool.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="this.parentElement.classList.toggle('expanded')">
+      Do I need both a hardware wallet AND a steel backup?
+      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-content">
+        <p><strong>Yes, we recommend both.</strong> A hardware wallet secures your daily signing operations, but the seed phrase is the master key to your funds.</p>
+        <p>If your hardware wallet is lost, stolen, or damaged, you can recover everything from your seed phrase. A steel backup protects that seed from fire, flood, and corrosion — threats that would destroy paper.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="this.parentElement.classList.toggle('expanded')">
+      What's the difference between self-custody and collaborative custody?
+      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-content">
+        <p><strong>Self-custody:</strong> You hold all the keys. Full control, full responsibility. If you lose your seed phrase, your Bitcoin is gone forever.</p>
+        <p><strong>Collaborative custody (multisig):</strong> Multiple keys are required to move funds (e.g., 2-of-3). Services like Unchained hold one key while you hold two. This provides recovery assistance without giving up control — you can always move your Bitcoin without their permission.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="this.parentElement.classList.toggle('expanded')">
+      Is it safe to use a custodial wallet like River?
+      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-content">
+        <p>Custodial wallets mean someone else holds your keys — "not your keys, not your coins." However, reputable custodians like River offer proof of reserves so you can verify they actually hold your Bitcoin.</p>
+        <p>Custodial options can be a good starting point for beginners not yet comfortable with self-custody. River specifically offers automatic withdrawals to self-custody, making it easy to transition when you're ready.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="this.parentElement.classList.toggle('expanded')">
+      Which hardware wallet is best for beginners?
+      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-content">
+        <p>For most beginners, we recommend <strong>Trezor Safe 5</strong> or <strong>Blockstream Jade</strong>:</p>
+        <ul>
+          <li><strong>Trezor Safe 5</strong> ($169) — Beautiful touchscreen, intuitive setup, excellent documentation</li>
+          <li><strong>Blockstream Jade</strong> ($65) — Best value, fully open source, great for Bitcoin-only users</li>
 </ul>
+        <p>Both are open source and have strong track records. Jade is the budget pick; Trezor offers a more premium experience.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h3>What are the differences between cold storage and a hot wallet?</h3>
-<p>In contrast to hot storage, cold storage provides:</p>
-<ul>
-	<li>Increased security protections</li>
-	<li>A reliable way to keep your bitcoin offline</li>
-	<li>An easy way to transport your bitcoin between your various wallets</li>
-</ul>
-
-<h3>What happens if the offline or cold storage wallet company goes out of business?</h3>
-<p>If Sony went out of business tomorrow, you would still be able to play your PlayStation with mostly no issues.</p>
-<p>Offline crypto wallets are the same. You do not need a company to remain in business in order to continue using your hardware wallet.</p>
-<p>Let’s say you use TREZOR with TREZOR’s myTREZOR wallet. TREZOR Wallet goes out of business and no longer supports myTREZOR wallet and it gets shut down.</p>
-<p>You could, in just a few minutes, download Electrum on your computer. Once installed, you’d setup your TREZOR and all of your transaction history and balance would get imported and be exactly the same. This is because Electrum will use the same 24-word seed you generated with TREZOR or Ledger on setup.</p>
-
-<h3>What is deep cold storage vs cold storage?</h3>
-<p><b>Cold Storage</b>: Safeguarding Bitcoin by keeping its private keys offline, eliminating online hacking risks.</p>
-<p><b>Deep Cold Storage</b>: An enhanced form of cold storage with added layers of protection.</p>
-<p><b>Cold Storage Methods</b>:</p>
-<ul>
-	<li>Uses devices like paper wallets, hardware wallets, or air-gapped computers.</li>
-	<li>The key is ensuring no internet connection, ever.</li>
-</ul>
-<p><b>Deep Cold Storage Methods</b>:</p>
-<ul>
-	<li>Storing private keys in physical vaults.</li>
-	<li>Breaking keys into multiple pieces for storage.</li>
-</ul>
-<p><b>Cold Storage Purpose</b>: Protects Bitcoin from basic online threats.</p>
-<p><b>Deep Cold Storage Purpose</b>: Provides the utmost security available, ideal for substantial Bitcoin holdings.</p>
-<p>In essence, while both methods aim to secure Bitcoin, <b>deep cold storage</b> offers additional layers of safeguarding against potential threats.</p>
-<p>Whether you need deep cold storage or normal cold storage will depend on your holdings.</p>
-
-<h2>Offline Wallets We Don't Like</h2>
-<p>We didn't include KeepKey on our list. While it used to be one of the more popular offline wallets, it's not being updated frequently.</p>
-<p>We also did not include Ledger Stax, as it is not available to purchase yet.</p>
-<p>There are also a number of hardware wallets that are not open source, so we didn't include them.</p>
-
-<h2>Downsides of Cold and Offline Wallets</h2>
-<p>There is one main downside of cold storage and offline wallets:</p>
-<p><b>It can be complicated to access your funds.</b></p>
-<p>Since cold storage wallets are secure, they are harder to access.</p>
-<p>If you want to get your money off the wallet, it can be a time consuming task. This is really a pro, because only by adding this time can you get the extra security.</p>
-
-<h2>Recovery Process for Cold Wallets</h2>
-<p>The recovery process for cold wallets will differ depending on the type of cold
+<div class="wallet-disclaimer">
+  <p>Disclaimer: The information provided on this page is for informational purposes only and does not constitute financial advice. Always verify security practices and do your own research before purchasing any wallet. Cryptocurrency storage involves risk — never invest more than you can afford to lose. Some links on this page may be affiliate links.</p>
+</div>
