@@ -107,6 +107,17 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   display: flex;
   align-items: center;
   gap: 12px;
+  text-decoration: none;
+  color: #111827;
+  transition: color 0.15s;
+}
+
+.comparison-table-wallet-name:hover {
+  color: #f2a900;
+}
+
+.comparison-table-wallet-name:hover span {
+  text-decoration: underline;
 }
 
 .comparison-table-wallet-img {
@@ -166,13 +177,19 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
-.mobile-card-header {
+a.mobile-card-header {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 12px;
   padding-bottom: 12px;
   border-bottom: 1px solid #e5e7eb;
+  text-decoration: none;
+}
+
+a.mobile-card-header:hover .mobile-card-name {
+  color: #f2a900;
+  text-decoration: underline;
 }
 
 .mobile-card-img {
@@ -186,6 +203,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   font-weight: 600;
   font-size: 15px;
   color: #111827;
+  transition: color 0.15s;
 }
 
 .mobile-card-details {
@@ -246,13 +264,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   gap: 24px;
 }
 
-.wallet-image-wrapper {
-  position: relative;
-  width: 120px;
-  height: 120px;
-  flex-shrink: 0;
-}
-
 .wallet-image {
   width: 100%;
   height: 100%;
@@ -260,43 +271,48 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   border-radius: 8px;
   background: #f9fafb;
   padding: 8px;
+  transition: box-shadow 0.15s;
 }
 
 .wallet-info {
   flex: 1;
 }
 
-.wallet-type-above-title {
-  margin-bottom: 8px;
+.wallet-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.wallet-title-link {
+  text-decoration: none;
+}
+
+.wallet-title-link:hover .wallet-title {
+  color: #f2a900 !important;
+  text-decoration: underline;
 }
 
 .wallet-title {
   font-size: 24px;
   font-weight: 700;
   color: #111827 !important;
-  margin: 0 0 8px 0;
+  margin: 0;
+  transition: color 0.15s;
 }
 
-.wallet-keyfact {
-  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
-  border: 1px solid #F59E0B;
-  border-radius: 8px;
-  padding: 12px 16px;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.wallet-keyfact-icon {
-  color: #D97706;
+.wallet-image-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
   flex-shrink: 0;
+  display: block;
 }
 
-.wallet-keyfact-text {
-  font-size: 14px;
-  font-weight: 600;
-  color: #92400E;
+.wallet-image-wrapper:hover .wallet-image {
+  box-shadow: 0 4px 12px rgba(242, 169, 0, 0.3);
 }
 
 .wallet-data-grid {
@@ -480,12 +496,9 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
     font-size: 20px;
   }
   
-  .wallet-keyfact {
-    padding: 10px 12px;
-  }
-  
-  .wallet-keyfact-text {
-    font-size: 13px;
+  .wallet-title-row {
+    gap: 8px;
+    margin-bottom: 12px;
   }
   
   .wallet-data-grid {
@@ -529,7 +542,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
     font-size: 18px;
   }
   
-  .wallet-keyfact {
+  .wallet-title-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
@@ -675,17 +688,16 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
           <th>Price</th>
           <th>Coins</th>
           <th>Custody</th>
-          <th>Open Source</th>
 	</tr>
   </thead>
   <tbody>
         {% for wallet in wallets %}
         <tr>
           <td>
-            <div class="comparison-table-wallet-name">
+            <a href="{{ wallet.link }}" target="_blank" class="comparison-table-wallet-name" onclick="fathom.trackEvent('Click Offline Wallet: {{ wallet.title }}');">
               <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="comparison-table-wallet-img">
               <span>{{ wallet.title }}</span>
-            </div>
+            </a>
           </td>
           <td>
             {% if wallet.wallet_type == "Hardware Wallet" %}
@@ -703,7 +715,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
           <td>{{ wallet.wallet_price | default: "—" }}</td>
           <td>{{ wallet.wallet_coins | default: "—" }}</td>
           <td>{{ wallet.wallet_custody | default: "—" }}</td>
-          <td>{{ wallet.wallet_opensource | default: "—" }}</td>
 	</tr>
         {% endfor %}
   </tbody>
@@ -713,7 +724,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   <div class="mobile-comparison-cards">
     {% for wallet in wallets %}
     <div class="mobile-comparison-card">
-      <div class="mobile-card-header">
+      <a href="{{ wallet.link }}" target="_blank" class="mobile-card-header" onclick="fathom.trackEvent('Click Offline Wallet: {{ wallet.title }}');">
         <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-card-img">
         <div>
           <div class="mobile-card-name">{{ wallet.title }}</div>
@@ -729,7 +740,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
             <span class="wallet-type-badge">{{ wallet.wallet_type | default: "—" }}</span>
           {% endif %}
         </div>
-      </div>
+      </a>
       <div class="mobile-card-details">
         <div class="mobile-detail-item">
           <span class="mobile-detail-label">Price</span>
@@ -743,10 +754,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
           <span class="mobile-detail-label">Custody</span>
           <span class="mobile-detail-value">{{ wallet.wallet_custody | default: "—" }}</span>
         </div>
-        <div class="mobile-detail-item">
-          <span class="mobile-detail-label">Open Source</span>
-          <span class="mobile-detail-value">{{ wallet.wallet_opensource | default: "—" }}</span>
-        </div>
       </div>
     </div>
     {% endfor %}
@@ -759,16 +766,19 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   {% for wallet in wallets %}
   <div class="wallet-item">
     <div class="wallet-header">
-      <div class="wallet-image-wrapper">
+      <a href="{{ wallet.link }}" target="_blank" class="wallet-image-wrapper" onclick="fathom.trackEvent('Click Offline Wallet: {{ wallet.title }}');">
         <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="wallet-image">
-      </div>
+      </a>
       
       <div class="wallet-info">
-        <div class="wallet-type-above-title">
+        <div class="wallet-title-row">
+          <a href="{{ wallet.link }}" target="_blank" class="wallet-title-link" onclick="fathom.trackEvent('Click Offline Wallet: {{ wallet.title }}');">
+            <h2 class="wallet-title">{{ wallet.title }}</h2>
+          </a>
           {% if wallet.wallet_type == "Hardware Wallet" %}
-            <span class="wallet-type-badge hardware">🔐 Hardware Wallet</span>
+            <span class="wallet-type-badge hardware">🔐 Hardware</span>
           {% elsif wallet.wallet_type == "Steel Backup" %}
-            <span class="wallet-type-badge steel">🛡️ Steel Backup</span>
+            <span class="wallet-type-badge steel">🛡️ Steel</span>
           {% elsif wallet.wallet_type == "Vault" %}
             <span class="wallet-type-badge vault">🏦 Vault</span>
           {% elsif wallet.wallet_type == "Custodial" %}
@@ -777,18 +787,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
             <span class="wallet-type-badge">{{ wallet.wallet_type | default: "Wallet" }}</span>
           {% endif %}
         </div>
-        
-        <h2 class="wallet-title">{{ wallet.title }}</h2>
-        
-        {% if wallet.wallet_bestfor %}
-        <div class="wallet-keyfact">
-          <svg class="wallet-keyfact-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
-            <path d="M12 16V12M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <span class="wallet-keyfact-text">Best for: {{ wallet.wallet_bestfor }}</span>
-        </div>
-        {% endif %}
         
         <div class="wallet-data-grid">
           <div class="wallet-data-item">
@@ -806,20 +804,22 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
             <div class="wallet-data-value">{{ wallet.wallet_custody | default: "—" }}</div>
           </div>
           
+          {% if wallet.wallet_bestfor %}
           <div class="wallet-data-item">
-            <div class="wallet-data-label">Open Source</div>
-            <div class="wallet-data-value">{{ wallet.wallet_opensource | default: "—" }}</div>
+            <div class="wallet-data-label">Best For</div>
+            <div class="wallet-data-value">{{ wallet.wallet_bestfor }}</div>
           </div>
-</div>
+          {% endif %}
+        </div>
         
         <div class="wallet-actions">
-          <a href="{{ wallet.link }}" target="_blank" class="wallet-apply-button" onclick="fathom.trackEvent('Click Wallet'); fathom.trackEvent('Click Wallet: {{ wallet.title }}');">
+          <a href="{{ wallet.link }}" target="_blank" class="wallet-apply-button" onclick="fathom.trackEvent('Click Offline Wallet: {{ wallet.title }}');">
             GET {{ wallet.title | upcase }}
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-        </div>
+</div>
         
         {% if wallet.wallet_summary %}
         <div class="wallet-breakdown-section">
