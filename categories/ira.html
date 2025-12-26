@@ -80,10 +80,28 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   min-width: 180px;
 }
 
-.ira-table-provider-name {
+a.ira-table-provider-name {
   display: flex;
   align-items: center;
   gap: 12px;
+  text-decoration: none;
+  color: #111827 !important;
+  transition: background-color 0.15s;
+  padding: 4px 8px;
+  margin: -4px -8px;
+  border-radius: 6px;
+}
+
+a.ira-table-provider-name:hover {
+  background-color: #FEF3C7;
+}
+
+a.ira-table-provider-name:hover span {
+  text-decoration: underline;
+}
+
+a.ira-table-provider-name:hover img {
+  transform: scale(1.05);
 }
 
 .ira-table-provider-img {
@@ -91,6 +109,33 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   height: 40px;
   object-fit: contain;
   border-radius: 6px;
+  transition: transform 0.15s;
+}
+
+.best-for-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+  color: #92400E;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.best-for-badge svg {
+  flex-shrink: 0;
+}
+
+.ira-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
 }
 
 /* Desktop table wrapper */
@@ -104,6 +149,30 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   display: none;
 }
 
+.mobile-ira-comparison-selector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.mobile-ira-comparison-selector label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.mobile-ira-comparison-selector select {
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+  color: #111827;
+  cursor: pointer;
+  flex: 1;
+}
+
 .mobile-ira-card {
   background: white;
   border: 1px solid #e5e7eb;
@@ -113,13 +182,19 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
-.mobile-ira-card-header {
+a.mobile-ira-card-header {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 12px;
   padding-bottom: 12px;
   border-bottom: 1px solid #e5e7eb;
+  text-decoration: none;
+}
+
+a.mobile-ira-card-header:hover .mobile-ira-card-name {
+  color: #f2a900;
+  text-decoration: underline;
 }
 
 .mobile-ira-card-img {
@@ -133,31 +208,22 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   font-weight: 600;
   font-size: 15px;
   color: #111827;
+  transition: color 0.15s;
 }
 
-.mobile-ira-card-details {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.mobile-ira-detail-item {
-  display: flex;
-  flex-direction: column;
-}
-
-.mobile-ira-detail-label {
-  font-size: 11px;
+.mobile-ira-comparison-label {
+  font-size: 12px;
   color: #6b7280;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 
-.mobile-ira-detail-value {
-  font-size: 14px;
+.mobile-ira-comparison-value {
+  font-size: 15px;
   font-weight: 500;
   color: #111827;
+  line-height: 1.5;
 }
 
 .ira-listing {
@@ -188,6 +254,11 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   width: 120px;
   height: 120px;
   flex-shrink: 0;
+  display: block;
+}
+
+.ira-image-wrapper:hover .ira-image {
+  box-shadow: 0 4px 12px rgba(242, 169, 0, 0.3);
 }
 
 .ira-image {
@@ -197,6 +268,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   border-radius: 8px;
   background: #f9fafb;
   padding: 8px;
+  transition: box-shadow 0.15s;
 }
 
 .ira-info {
@@ -204,11 +276,21 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   min-width: 0;
 }
 
+.ira-title-link {
+  text-decoration: none;
+}
+
+.ira-title-link:hover .ira-title {
+  color: #f2a900 !important;
+  text-decoration: underline;
+}
+
 .ira-title {
   font-size: 24px;
   font-weight: 700;
   color: #111827 !important;
   margin: 0 0 8px 0;
+  transition: color 0.15s;
 }
 
 .ira-rating {
@@ -232,28 +314,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   line-height: 1;
   display: flex;
   align-items: center;
-}
-
-.ira-keyfact {
-  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
-  border: 1px solid #F59E0B;
-  border-radius: 8px;
-  padding: 12px 16px;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.ira-keyfact-icon {
-  color: #D97706;
-  flex-shrink: 0;
-}
-
-.ira-keyfact-text {
-  font-size: 14px;
-  font-weight: 600;
-  color: #92400E;
 }
 
 .ira-data-grid {
@@ -495,18 +555,15 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
     text-align: center;
   }
   
+  .ira-badges-row {
+    justify-content: center;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  
   .ira-title {
     font-size: 22px;
     text-align: center;
-  }
-  
-  .ira-keyfact {
-    padding: 10px 12px;
-    text-align: left;
-  }
-  
-  .ira-keyfact-text {
-    font-size: 13px;
   }
   
   .ira-data-grid {
@@ -557,6 +614,11 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   
   .ira-breakdown-section {
     text-align: left;
+  }
+  
+  .best-for-badge {
+    font-size: 11px;
+    padding: 3px 8px;
   }
 }
 
@@ -613,7 +675,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
       <thead>
         <tr>
           <th>Provider</th>
-          <th>IRA Types</th>
+          <th>Best For</th>
           <th>Annual Fee</th>
           <th>Trading Fee</th>
           <th>Minimum</th>
@@ -624,12 +686,12 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
         {% for ira in iras %}
         <tr>
           <td>
-            <div class="ira-table-provider-name">
+            <a href="{{ ira.link }}" target="_blank" rel="nofollow noopener" class="ira-table-provider-name" onclick="fathom.trackEvent('Click IRA: {{ ira.title }}');">
               <img src="/tools/img/{{ ira.img }}" alt="{{ ira.title }}" class="ira-table-provider-img">
               <span>{{ ira.title }}</span>
-            </div>
+            </a>
           </td>
-          <td>{{ ira.ira_types | default: "—" }}</td>
+          <td>{{ ira.ira_bestfor | default: "—" }}</td>
           <td>{{ ira.ira_fee_annual | default: "—" }}</td>
           <td>{{ ira.ira_fee_trading | default: "—" }}</td>
           <td>{{ ira.ira_min | default: "—" }}</td>
@@ -648,9 +710,19 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   
   <!-- Mobile Cards -->
   <div class="mobile-ira-cards">
+    <div class="mobile-ira-comparison-selector">
+      <label for="mobile-ira-comparison-field">Compare by:</label>
+      <select id="mobile-ira-comparison-field" onchange="updateMobileIRAComparison()">
+        <option value="best-for" selected>Best For</option>
+        <option value="annual-fee">Annual Fee</option>
+        <option value="trading-fee">Trading Fee</option>
+        <option value="minimum">Minimum</option>
+        <option value="ira-types">IRA Types</option>
+      </select>
+    </div>
     {% for ira in iras %}
     <div class="mobile-ira-card">
-      <div class="mobile-ira-card-header">
+      <a href="{{ ira.link }}" target="_blank" rel="nofollow noopener" class="mobile-ira-card-header" onclick="fathom.trackEvent('Click IRA: {{ ira.title }}');">
         <img src="/tools/img/{{ ira.img }}" alt="{{ ira.title }}" class="mobile-ira-card-img">
         <div>
           <div class="mobile-ira-card-name">{{ ira.title }}</div>
@@ -660,29 +732,36 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
             <span class="ira-custody-badge custodial">🏦 Custodial</span>
           {% endif %}
         </div>
-      </div>
-      <div class="mobile-ira-card-details">
-        <div class="mobile-ira-detail-item">
-          <span class="mobile-ira-detail-label">IRA Types</span>
-          <span class="mobile-ira-detail-value">{{ ira.ira_types | default: "—" }}</span>
-        </div>
-        <div class="mobile-ira-detail-item">
-          <span class="mobile-ira-detail-label">Annual Fee</span>
-          <span class="mobile-ira-detail-value">{{ ira.ira_fee_annual | default: "—" }}</span>
-        </div>
-        <div class="mobile-ira-detail-item">
-          <span class="mobile-ira-detail-label">Trading Fee</span>
-          <span class="mobile-ira-detail-value">{{ ira.ira_fee_trading | default: "—" }}</span>
-        </div>
-        <div class="mobile-ira-detail-item">
-          <span class="mobile-ira-detail-label">Minimum</span>
-          <span class="mobile-ira-detail-value">{{ ira.ira_min | default: "—" }}</span>
-        </div>
+      </a>
+      <div class="mobile-ira-comparison-label">Best For</div>
+      <div class="mobile-ira-comparison-value" data-best-for="{{ ira.ira_bestfor | default: '—' }}" data-annual-fee="{{ ira.ira_fee_annual | default: '—' }}" data-trading-fee="{{ ira.ira_fee_trading | default: '—' }}" data-minimum="{{ ira.ira_min | default: '—' }}" data-ira-types="{{ ira.ira_types | default: '—' }}">
+        {{ ira.ira_bestfor | default: "—" }}
       </div>
     </div>
     {% endfor %}
   </div>
 </div>
+
+<script>
+function updateMobileIRAComparison() {
+  const field = document.getElementById('mobile-ira-comparison-field').value;
+  const labels = {
+    'best-for': 'Best For',
+    'annual-fee': 'Annual Fee',
+    'trading-fee': 'Trading Fee',
+    'minimum': 'Minimum',
+    'ira-types': 'IRA Types'
+  };
+  
+  document.querySelectorAll('.mobile-ira-card').forEach(card => {
+    const labelEl = card.querySelector('.mobile-ira-comparison-label');
+    const valueEl = card.querySelector('.mobile-ira-comparison-value');
+    
+    labelEl.textContent = labels[field];
+    valueEl.textContent = valueEl.getAttribute('data-' + field) || '—';
+  });
+}
+</script>
 
 <h2>IRA Provider Details</h2>
 
@@ -690,30 +769,27 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   {% for ira in iras %}
   <div class="ira-item">
     <div class="ira-header">
-      <div class="ira-image-wrapper">
+      <a href="{{ ira.link }}" target="_blank" rel="nofollow noopener" class="ira-image-wrapper" onclick="fathom.trackEvent('Click IRA: {{ ira.title }}');">
         <img src="/tools/img/{{ ira.img }}" alt="{{ ira.title }}" class="ira-image">
-      </div>
+      </a>
       
       <div class="ira-info">
-        <h2 class="ira-title">{{ ira.title }}</h2>
-        
-        
-        {% if ira.ira_keyfact %}
-        <div class="ira-keyfact">
-          <svg class="ira-keyfact-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
-            <path d="M12 16V12M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <span class="ira-keyfact-text">{{ ira.ira_keyfact }}</span>
+        {% if ira.ira_bestfor %}
+        <div class="ira-badges-row">
+          <span class="best-for-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#F59E0B" stroke="#F59E0B" stroke-width="1.5"/>
+            </svg>
+            Best for: {{ ira.ira_bestfor }}
+          </span>
         </div>
         {% endif %}
         
+        <a href="{{ ira.link }}" target="_blank" rel="nofollow noopener" class="ira-title-link" onclick="fathom.trackEvent('Click IRA: {{ ira.title }}');">
+          <h2 class="ira-title">{{ ira.title }}</h2>
+        </a>
+        
         <div class="ira-data-grid">
-          <div class="ira-data-item">
-            <div class="ira-data-label">IRA Types</div>
-            <div class="ira-data-value">{{ ira.ira_types | default: "—" }}</div>
-          </div>
-          
           <div class="ira-data-item">
             <div class="ira-data-label">Annual Fee</div>
             <div class="ira-data-value">{{ ira.ira_fee_annual | default: "—" }}</div>
@@ -730,6 +806,11 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
           </div>
           
           <div class="ira-data-item">
+            <div class="ira-data-label">IRA Types</div>
+            <div class="ira-data-value">{{ ira.ira_types | default: "—" }}</div>
+          </div>
+          
+          <div class="ira-data-item">
             <div class="ira-data-label">Custody Model</div>
             <div class="ira-data-value">
               {% if ira.ira_custody contains "Self" or ira.ira_custody contains "self" %}
@@ -739,7 +820,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
               {% endif %}
             </div>
           </div>
-          
         </div>
         
         <div class="ira-actions">
