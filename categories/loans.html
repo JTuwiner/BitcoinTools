@@ -218,6 +218,29 @@ a.mobile-loan-card-header:hover .mobile-loan-card-name {
   flex-shrink: 0;
 }
 
+.loan-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.loan-type-badge.retail {
+  background: #DBEAFE;
+  color: #1E40AF;
+  border: 1px solid #93C5FD;
+}
+
+.loan-type-badge.commercial {
+  background: #FEF3C7;
+  color: #92400E;
+  border: 1px solid #FCD34D;
+}
+
 .loan-badges-row {
   display: flex;
   align-items: center;
@@ -874,9 +897,9 @@ a.mobile-loan-card-header:hover .mobile-loan-card-name {
         <tr>
           <th>Provider</th>
           <th>Best For</th>
+          <th>Type</th>
           <th>APR</th>
           <th>LTV</th>
-          <th>Term</th>
           <th>Minimum</th>
         </tr>
       </thead>
@@ -890,9 +913,15 @@ a.mobile-loan-card-header:hover .mobile-loan-card-name {
             </a>
           </td>
           <td>{{ loan.loan_bestfor | default: "—" }}</td>
+          <td>
+            {% if loan.loan_type contains "Commercial only" %}
+              <span class="loan-type-badge commercial">🏢 Commercial</span>
+            {% else %}
+              <span class="loan-type-badge retail">👤 Retail</span>
+            {% endif %}
+          </td>
           <td>{{ loan.loan_apr | default: "—" }}</td>
           <td>{{ loan.loan_ltv | default: "—" }}</td>
-          <td>{{ loan.loan_term | default: "—" }}</td>
           <td>{{ loan.loan_min | default: "—" }}</td>
         </tr>
         {% endfor %}
