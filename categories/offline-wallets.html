@@ -192,7 +192,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 a.mobile-card-header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 12px;
   padding-bottom: 12px;
   border-bottom: 1px solid #e5e7eb;
@@ -209,6 +209,7 @@ a.mobile-card-header:hover .mobile-card-name {
   height: 44px;
   object-fit: contain;
   border-radius: 8px;
+  flex-shrink: 0;
 }
 
 .mobile-card-name {
@@ -216,6 +217,13 @@ a.mobile-card-header:hover .mobile-card-name {
   font-size: 15px;
   color: #111827;
   transition: color 0.15s;
+  flex: 1;
+}
+
+a.mobile-card-header .wallet-type-badge {
+  flex-shrink: 0;
+  font-size: 11px;
+  padding: 3px 8px;
 }
 
 .mobile-card-details {
@@ -511,6 +519,13 @@ a.mobile-card-header:hover .mobile-card-name {
   .wallet-title-row {
     gap: 8px;
     margin-bottom: 12px;
+    flex-wrap: nowrap;
+  }
+  
+  .wallet-title-row .wallet-type-badge {
+    font-size: 11px;
+    padding: 3px 8px;
+    flex-shrink: 0;
   }
   
   .wallet-data-grid {
@@ -555,9 +570,14 @@ a.mobile-card-header:hover .mobile-card-name {
   }
   
   .wallet-title-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .wallet-title-row .wallet-type-badge {
+    font-size: 10px;
+    padding: 2px 6px;
   }
 }
 
@@ -842,20 +862,18 @@ a.mobile-card-header:hover .mobile-card-name {
     <div class="mobile-comparison-card">
       <a href="{{ wallet.link }}" target="_blank" class="mobile-card-header" onclick="fathom.trackEvent('Click Offline Wallet: {{ wallet.title }}');">
         <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-card-img">
-        <div>
-          <div class="mobile-card-name">{{ wallet.title }}</div>
-          {% if wallet.wallet_type == "Hardware Wallet" %}
-            <span class="wallet-type-badge hardware">🔐 Hardware</span>
-          {% elsif wallet.wallet_type == "Steel Backup" %}
-            <span class="wallet-type-badge steel">🛡️ Steel</span>
-          {% elsif wallet.wallet_type == "Vault" %}
-            <span class="wallet-type-badge vault">🏦 Vault</span>
-          {% elsif wallet.wallet_type == "Custodial" %}
-            <span class="wallet-type-badge custodial">☁️ Custodial</span>
-          {% else %}
-            <span class="wallet-type-badge">{{ wallet.wallet_type | default: "—" }}</span>
-          {% endif %}
-        </div>
+        <div class="mobile-card-name">{{ wallet.title }}</div>
+        {% if wallet.wallet_type == "Hardware Wallet" %}
+          <span class="wallet-type-badge hardware">🔐 Hardware</span>
+        {% elsif wallet.wallet_type == "Steel Backup" %}
+          <span class="wallet-type-badge steel">🛡️ Steel</span>
+        {% elsif wallet.wallet_type == "Vault" %}
+          <span class="wallet-type-badge vault">🏦 Vault</span>
+        {% elsif wallet.wallet_type == "Custodial" %}
+          <span class="wallet-type-badge custodial">☁️ Custodial</span>
+        {% else %}
+          <span class="wallet-type-badge">{{ wallet.wallet_type | default: "—" }}</span>
+        {% endif %}
       </a>
       <div class="mobile-card-details">
         <div class="mobile-detail-item">
