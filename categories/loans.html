@@ -1,5 +1,5 @@
 ---
-layout: category
+layout: page
 title: Best Bitcoin Loan Providers
 full-width: yes
 permalink: "/loans/"
@@ -183,6 +183,12 @@ a.mobile-loan-card-header:hover .mobile-loan-card-name {
   color: #111827;
   transition: color 0.15s;
   flex: 1;
+}
+
+a.mobile-loan-card-header .loan-type-badge {
+  flex-shrink: 0;
+  font-size: 10px;
+  padding: 2px 6px;
 }
 
 .mobile-loan-comparison-label {
@@ -937,7 +943,6 @@ a.mobile-loan-card-header:hover .mobile-loan-card-name {
         <option value="best-for" selected>Best For</option>
         <option value="apr">APR</option>
         <option value="ltv">LTV</option>
-        <option value="term">Term</option>
         <option value="minimum">Minimum</option>
       </select>
     </div>
@@ -946,9 +951,14 @@ a.mobile-loan-card-header:hover .mobile-loan-card-name {
       <a href="{{ loan.link }}" target="_blank" rel="nofollow noopener" class="mobile-loan-card-header" onclick="fathom.trackEvent('Click Loan: {{ loan.title }}');">
         <img src="/tools/img/{{ loan.img }}" alt="{{ loan.title }}" class="mobile-loan-card-img">
         <div class="mobile-loan-card-name">{{ loan.title }}</div>
+        {% if loan.loan_type contains "Commercial only" %}
+          <span class="loan-type-badge commercial">🏢 Commercial</span>
+        {% else %}
+          <span class="loan-type-badge retail">👤 Retail</span>
+        {% endif %}
       </a>
       <div class="mobile-loan-comparison-label">Best For</div>
-      <div class="mobile-loan-comparison-value" data-best-for="{{ loan.loan_bestfor | default: '—' }}" data-apr="{{ loan.loan_apr | default: '—' }}" data-ltv="{{ loan.loan_ltv | default: '—' }}" data-term="{{ loan.loan_term | default: '—' }}" data-minimum="{{ loan.loan_min | default: '—' }}">
+      <div class="mobile-loan-comparison-value" data-best-for="{{ loan.loan_bestfor | default: '—' }}" data-apr="{{ loan.loan_apr | default: '—' }}" data-ltv="{{ loan.loan_ltv | default: '—' }}" data-minimum="{{ loan.loan_min | default: '—' }}">
         {{ loan.loan_bestfor | default: "—" }}
       </div>
     </div>
@@ -963,7 +973,6 @@ function updateMobileLoanComparison() {
     'best-for': 'Best For',
     'apr': 'APR',
     'ltv': 'LTV',
-    'term': 'Term',
     'minimum': 'Minimum'
   };
   
