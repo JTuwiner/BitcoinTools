@@ -1,11 +1,848 @@
 ---
 layout: page
-title: Loans
+title: Bitcoin Loans
 full-width: yes
 permalink: "/loans/"
 category: yes
-seotitle: Bitcoin Loan Companies
-subdesc: Use bitcoin to acquire loans. 
+seotitle: Best Bitcoin-Backed Loan Providers [2026]
+subdesc: Access liquidity without selling your Bitcoin. Compare BTC-backed loan providers.
 icon: building-columns
 svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" fill="none"/><path fill="currentColor" fill-rule="evenodd" d="M16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16s-7.163 16-16 16m6.5-12.846c0-2.523-1.576-3.948-5.263-4.836v-4.44c1.14.234 2.231.725 3.298 1.496l1.359-2.196a9.49 9.49 0 0 0-4.56-1.776V6h-2.11v1.355c-3.032.234-5.093 1.963-5.093 4.486c0 2.64 1.649 3.925 5.19 4.813v4.58c-1.577-.234-2.886-.935-4.269-2.01L9.5 21.35a11.495 11.495 0 0 0 5.724 2.314V26h2.11v-2.313c3.08-.257 5.166-1.963 5.166-4.533m-7.18-5.327c-1.867-.537-2.327-1.168-2.327-2.15c0-1.027.8-1.845 2.328-1.962zm4.318 5.49c0 1.122-.873 1.893-2.401 2.01v-4.229c1.892.538 2.401 1.168 2.401 2.22z"/></svg>'
 ---
+
+{% assign loans = site.pages | where: "cat", "Loans" | sort: "sort" %}
+
+<style>
+.loan-comparison-table-wrapper {
+  margin-bottom: 40px;
+  margin-top: 30px;
+  max-width: 100%;
+}
+
+.loan-comparison-table-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.loan-comparison-table-title {
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+.loan-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.loan-comparison-table thead {
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.loan-comparison-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+  min-width: 100px;
+}
+
+.loan-comparison-table th:first-child {
+  min-width: 160px;
+}
+
+.loan-comparison-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s;
+}
+
+.loan-comparison-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.loan-comparison-table td {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #111827;
+  vertical-align: middle;
+}
+
+.loan-comparison-table td:first-child {
+  font-weight: 500;
+}
+
+a.loan-table-provider-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #111827 !important;
+  transition: background-color 0.15s;
+  padding: 4px 8px;
+  margin: -4px -8px;
+  border-radius: 6px;
+}
+
+a.loan-table-provider-name:hover {
+  background-color: #FEF3C7;
+}
+
+a.loan-table-provider-name:hover span {
+  text-decoration: underline;
+}
+
+a.loan-table-provider-name:hover img {
+  transform: scale(1.05);
+}
+
+.loan-table-provider-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+  transition: transform 0.15s;
+}
+
+/* Desktop table wrapper */
+.desktop-loan-table {
+  display: block;
+  overflow-x: auto;
+}
+
+/* Mobile comparison cards */
+.mobile-loan-cards {
+  display: none;
+}
+
+.mobile-loan-comparison-selector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.mobile-loan-comparison-selector label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.mobile-loan-comparison-selector select {
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+  color: #111827;
+  cursor: pointer;
+  flex: 1;
+}
+
+.mobile-loan-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+a.mobile-loan-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  text-decoration: none;
+}
+
+a.mobile-loan-card-header:hover .mobile-loan-card-name {
+  color: #f2a900;
+  text-decoration: underline;
+}
+
+.mobile-loan-card-img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.mobile-loan-card-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: #111827;
+  transition: color 0.15s;
+  flex: 1;
+}
+
+.mobile-loan-comparison-label {
+  font-size: 12px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.mobile-loan-comparison-value {
+  font-size: 15px;
+  font-weight: 500;
+  color: #111827;
+  line-height: 1.5;
+}
+
+.best-for-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+  color: #92400E;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.best-for-badge svg {
+  flex-shrink: 0;
+}
+
+.loan-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.loan-listing {
+  margin-top: 40px;
+}
+
+.loan-item {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: box-shadow 0.2s;
+  padding: 24px;
+}
+
+.loan-item:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.loan-header {
+  display: flex;
+  gap: 24px;
+}
+
+.loan-image-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.loan-image-wrapper:hover .loan-image {
+  box-shadow: 0 4px 12px rgba(242, 169, 0, 0.3);
+}
+
+.loan-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #f9fafb;
+  padding: 8px;
+  transition: box-shadow 0.15s;
+}
+
+.loan-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.loan-title-link {
+  text-decoration: none;
+}
+
+.loan-title-link:hover .loan-title {
+  color: #f2a900 !important;
+  text-decoration: underline;
+}
+
+.loan-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827 !important;
+  margin: 0 0 8px 0;
+  transition: color 0.15s;
+}
+
+.loan-data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.loan-data-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.loan-data-label {
+  font-size: 12px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.loan-data-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.loan-collateral-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #D1FAE5;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #065F46;
+  border: 1px solid #6EE7B7;
+}
+
+.loan-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.loan-apply-button {
+  background: #f2a900;
+  color: black !important;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+
+.loan-apply-button:hover {
+  background: #059669;
+  color: white !important;
+}
+
+.loan-breakdown-section {
+  margin-top: 12px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 12px;
+}
+
+.loan-breakdown-section:first-of-type {
+  margin-top: 20px;
+}
+
+.loan-breakdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 12px;
+  margin: -4px -8px;
+  border-radius: 6px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  user-select: none;
+  border: 1px solid transparent;
+}
+
+.loan-breakdown-header:hover {
+  background: #FEF9E7;
+  border-color: #F2A900;
+}
+
+.loan-breakdown-title {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  transition: color 0.15s;
+}
+
+.loan-breakdown-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  margin-right: 10px;
+}
+
+.loan-breakdown-header:hover .loan-breakdown-icon {
+  color: #D97706;
+}
+
+.loan-breakdown-header:hover .loan-breakdown-title {
+  color: #111827;
+}
+
+.loan-breakdown-chevron {
+  color: #9ca3af;
+  transition: transform 0.15s, color 0.15s;
+}
+
+.loan-breakdown-header:hover .loan-breakdown-chevron {
+  color: #D97706;
+}
+
+.loan-breakdown-section.expanded .loan-breakdown-chevron {
+  transform: rotate(180deg);
+}
+
+.loan-breakdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease-out, padding-top 0.2s ease-out;
+  padding-top: 0;
+  color: #111827;
+}
+
+.loan-breakdown-section.expanded .loan-breakdown-content {
+  max-height: 500px;
+  padding-top: 10px;
+}
+
+.loan-breakdown-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  color: #111827;
+}
+
+.loan-breakdown-content li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 6px;
+  padding: 4px 0;
+  color: #111827;
+}
+
+.loan-breakdown-content li::before {
+  content: "✓";
+  color: #10b981;
+  font-weight: bold;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.loan-cons-content li::before {
+  content: "✗";
+  color: #EF4444;
+}
+
+.loan-summary-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #374151;
+}
+
+@media (max-width: 768px) {
+  .desktop-loan-table {
+    display: none;
+  }
+  
+  .mobile-loan-cards {
+    display: block;
+  }
+  
+  .loan-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .loan-image-wrapper {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 16px;
+  }
+  
+  .loan-info {
+    text-align: center;
+  }
+  
+  .loan-badges-row {
+    justify-content: center;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .loan-title {
+    font-size: 22px;
+    text-align: center;
+  }
+  
+  .loan-data-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 12px;
+    text-align: left;
+  }
+  
+  .loan-data-item {
+    padding: 12px;
+    background: #f9fafb;
+    border-radius: 8px;
+  }
+  
+  .loan-data-label {
+    margin-bottom: 4px;
+  }
+  
+  .loan-data-value {
+    font-size: 14px;
+    word-break: break-word;
+  }
+  
+  .loan-actions {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  
+  .loan-apply-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .loan-item {
+    padding: 16px;
+    border-radius: 10px;
+  }
+  
+  .loan-breakdown-section {
+    text-align: left;
+  }
+  
+  .best-for-badge {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loan-data-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .loan-data-item {
+    padding: 14px 16px;
+  }
+  
+  .loan-item {
+    padding: 14px;
+  }
+  
+  .loan-title {
+    font-size: 20px;
+  }
+  
+  .loan-breakdown-header {
+    padding: 6px 8px;
+  }
+  
+  .loan-breakdown-title {
+    font-size: 13px;
+  }
+}
+
+.loan-disclaimer {
+  margin-top: 48px;
+  padding: 20px 24px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border-left: 3px solid #d1d5db;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.loan-disclaimer p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #6b7280;
+  word-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  .loan-disclaimer {
+    margin-top: 32px;
+    padding: 16px;
+  }
+  
+  .loan-disclaimer p {
+    font-size: 11px;
+  }
+}
+</style>
+
+<br><br>
+
+{% if loans.size > 0 %}
+<div class="loan-comparison-table-wrapper">
+  <div class="loan-comparison-table-header">
+    <h2 class="loan-comparison-table-title">Compare Bitcoin Loan Providers</h2>
+  </div>
+  
+  <!-- Desktop Table -->
+  <div class="desktop-loan-table">
+    <table class="loan-comparison-table">
+      <thead>
+        <tr>
+          <th>Provider</th>
+          <th>Best For</th>
+          <th>APR</th>
+          <th>LTV</th>
+          <th>Term</th>
+          <th>Minimum</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for loan in loans %}
+        <tr>
+          <td>
+            <a href="{{ loan.link }}" target="_blank" rel="nofollow noopener" class="loan-table-provider-name" onclick="fathom.trackEvent('Click Loan: {{ loan.title }}');">
+              <img src="/tools/img/{{ loan.img }}" alt="{{ loan.title }}" class="loan-table-provider-img">
+              <span>{{ loan.title }}</span>
+            </a>
+          </td>
+          <td>{{ loan.loan_bestfor | default: "—" }}</td>
+          <td>{{ loan.loan_apr | default: "—" }}</td>
+          <td>{{ loan.loan_ltv | default: "—" }}</td>
+          <td>{{ loan.loan_term | default: "—" }}</td>
+          <td>{{ loan.loan_min | default: "—" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Mobile Cards -->
+  <div class="mobile-loan-cards">
+    <div class="mobile-loan-comparison-selector">
+      <label for="mobile-loan-comparison-field">Compare by:</label>
+      <select id="mobile-loan-comparison-field" onchange="updateMobileLoanComparison()">
+        <option value="best-for" selected>Best For</option>
+        <option value="apr">APR</option>
+        <option value="ltv">LTV</option>
+        <option value="term">Term</option>
+        <option value="minimum">Minimum</option>
+      </select>
+    </div>
+    {% for loan in loans %}
+    <div class="mobile-loan-card">
+      <a href="{{ loan.link }}" target="_blank" rel="nofollow noopener" class="mobile-loan-card-header" onclick="fathom.trackEvent('Click Loan: {{ loan.title }}');">
+        <img src="/tools/img/{{ loan.img }}" alt="{{ loan.title }}" class="mobile-loan-card-img">
+        <div class="mobile-loan-card-name">{{ loan.title }}</div>
+      </a>
+      <div class="mobile-loan-comparison-label">Best For</div>
+      <div class="mobile-loan-comparison-value" data-best-for="{{ loan.loan_bestfor | default: '—' }}" data-apr="{{ loan.loan_apr | default: '—' }}" data-ltv="{{ loan.loan_ltv | default: '—' }}" data-term="{{ loan.loan_term | default: '—' }}" data-minimum="{{ loan.loan_min | default: '—' }}">
+        {{ loan.loan_bestfor | default: "—" }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+function updateMobileLoanComparison() {
+  const field = document.getElementById('mobile-loan-comparison-field').value;
+  const labels = {
+    'best-for': 'Best For',
+    'apr': 'APR',
+    'ltv': 'LTV',
+    'term': 'Term',
+    'minimum': 'Minimum'
+  };
+  
+  document.querySelectorAll('.mobile-loan-card').forEach(card => {
+    const labelEl = card.querySelector('.mobile-loan-comparison-label');
+    const valueEl = card.querySelector('.mobile-loan-comparison-value');
+    
+    labelEl.textContent = labels[field];
+    valueEl.textContent = valueEl.getAttribute('data-' + field) || '—';
+  });
+}
+</script>
+
+<h2>Provider Details</h2>
+
+<div class="loan-listing">
+  {% for loan in loans %}
+  <div class="loan-item">
+    <div class="loan-header">
+      <a href="{{ loan.link }}" target="_blank" rel="nofollow noopener" class="loan-image-wrapper" onclick="fathom.trackEvent('Click Loan: {{ loan.title }}');">
+        <img src="/tools/img/{{ loan.img }}" alt="{{ loan.title }}" class="loan-image">
+      </a>
+      
+      <div class="loan-info">
+        {% if loan.loan_bestfor %}
+        <div class="loan-badges-row">
+          <span class="best-for-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#F59E0B" stroke="#F59E0B" stroke-width="1.5"/>
+            </svg>
+            Best for: {{ loan.loan_bestfor }}
+          </span>
+        </div>
+        {% endif %}
+        
+        <a href="{{ loan.link }}" target="_blank" rel="nofollow noopener" class="loan-title-link" onclick="fathom.trackEvent('Click Loan: {{ loan.title }}');">
+          <h2 class="loan-title">{{ loan.title }}</h2>
+        </a>
+        
+        <div class="loan-data-grid">
+          <div class="loan-data-item">
+            <div class="loan-data-label">APR</div>
+            <div class="loan-data-value">{{ loan.loan_apr | default: "—" }}</div>
+          </div>
+          
+          <div class="loan-data-item">
+            <div class="loan-data-label">Loan-to-Value</div>
+            <div class="loan-data-value">{{ loan.loan_ltv | default: "—" }}</div>
+          </div>
+          
+          <div class="loan-data-item">
+            <div class="loan-data-label">Term</div>
+            <div class="loan-data-value">{{ loan.loan_term | default: "—" }}</div>
+          </div>
+          
+          <div class="loan-data-item">
+            <div class="loan-data-label">Minimum</div>
+            <div class="loan-data-value">{{ loan.loan_min | default: "—" }}</div>
+          </div>
+          
+          <div class="loan-data-item">
+            <div class="loan-data-label">Collateral</div>
+            <div class="loan-data-value">
+              <span class="loan-collateral-badge">🔒 {{ loan.loan_collateral | default: "Custodied" }}</span>
+            </div>
+          </div>
+          
+          <div class="loan-data-item">
+            <div class="loan-data-label">Availability</div>
+            <div class="loan-data-value">{{ loan.loan_countries | default: "—" }}</div>
+          </div>
+        </div>
+        
+        <div class="loan-actions">
+          <a href="{{ loan.link }}" target="_blank" class="loan-apply-button" onclick="fathom.trackEvent('Click Loan Apply'); fathom.trackEvent('Click Loan Apply: {{ loan.title }}');">
+            GET A LOAN
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        
+        {% if loan.loan_summary %}
+        <div class="loan-breakdown-section">
+          <div class="loan-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="loan-breakdown-title">
+              <div class="loan-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                  <path d="M7 9h10M7 13h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              Overview
+            </div>
+            <svg class="loan-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="loan-breakdown-content">
+            <p class="loan-summary-text">{{ loan.loan_summary }}</p>
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if loan.loan_pros %}
+        <div class="loan-breakdown-section">
+          <div class="loan-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="loan-breakdown-title">
+              <div class="loan-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              Pros
+            </div>
+            <svg class="loan-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="loan-breakdown-content">
+            {{ loan.loan_pros }}
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if loan.loan_cons %}
+        <div class="loan-breakdown-section">
+          <div class="loan-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="loan-breakdown-title">
+              <div class="loan-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              Cons
+            </div>
+            <svg class="loan-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="loan-breakdown-content loan-cons-content">
+            {{ loan.loan_cons }}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>No Bitcoin loan providers available at this time.</p>
+{% endif %}
+
+<div class="loan-disclaimer">
+  <p>Disclaimer: The information provided on this page is for informational purposes only and does not constitute financial advice. Bitcoin-backed loans involve significant risk—if the value of your collateral drops significantly, you may be required to add more collateral or face liquidation. Interest rates, terms, and availability are subject to change without notice. Always read the full terms and conditions before taking out any loan. Some links on this page may be affiliate links.</p>
+</div>
