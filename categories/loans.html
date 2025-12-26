@@ -1,10 +1,10 @@
 ---
-layout: page
-title: Bitcoin Loans
+layout: category
+title: Best Bitcoin Loan Providers
 full-width: yes
 permalink: "/loans/"
 category: yes
-seotitle: Best Bitcoin-Backed Loan Providers [2026]
+seotitle: 3 Best Bitcoin-Backed Loan Providers [2026]
 subdesc: Access liquidity without selling your Bitcoin. Compare BTC-backed loan providers.
 icon: building-columns
 svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" fill="none"/><path fill="currentColor" fill-rule="evenodd" d="M16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16s-7.163 16-16 16m6.5-12.846c0-2.523-1.576-3.948-5.263-4.836v-4.44c1.14.234 2.231.725 3.298 1.496l1.359-2.196a9.49 9.49 0 0 0-4.56-1.776V6h-2.11v1.355c-3.032.234-5.093 1.963-5.093 4.486c0 2.64 1.649 3.925 5.19 4.813v4.58c-1.577-.234-2.886-.935-4.269-2.01L9.5 21.35a11.495 11.495 0 0 0 5.724 2.314V26h2.11v-2.313c3.08-.257 5.166-1.963 5.166-4.533m-7.18-5.327c-1.867-.537-2.327-1.168-2.327-2.15c0-1.027.8-1.845 2.328-1.962zm4.318 5.49c0 1.122-.873 1.893-2.401 2.01v-4.229c1.892.538 2.401 1.168 2.401 2.22z"/></svg>'
@@ -224,6 +224,252 @@ a.mobile-loan-card-header:hover .mobile-loan-card-name {
   gap: 10px;
   flex-wrap: wrap;
   margin-bottom: 8px;
+}
+
+/* Loan Calculator Styles */
+.loan-calculator-section {
+  margin: 50px 0;
+  padding: 32px;
+  background: linear-gradient(135deg, #1E3A5F 0%, #0F172A 100%);
+  border-radius: 16px;
+  color: white;
+}
+
+.loan-calculator-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.loan-calculator-title svg {
+  color: #F7931A;
+}
+
+.loan-calculator-subtitle {
+  color: #94A3B8;
+  font-size: 15px;
+  margin: 0 0 24px 0;
+}
+
+.loan-calculator-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  color: #111827;
+}
+
+.calculator-inputs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.calculator-input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.calculator-input-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.calculator-input-group select,
+.calculator-input-group input {
+  padding: 12px 14px;
+  border: 2px solid #E5E7EB;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #111827;
+  background: white;
+  transition: border-color 0.15s;
+}
+
+.calculator-input-group select:focus,
+.calculator-input-group input:focus {
+  outline: none;
+  border-color: #F7931A;
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  color: #6B7280;
+  font-weight: 500;
+}
+
+.input-with-icon input {
+  padding-left: 28px;
+  width: 100%;
+}
+
+.calculator-results {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 20px;
+  background: #F9FAFB;
+  border-radius: 10px;
+  margin-bottom: 24px;
+}
+
+.result-item {
+  text-align: center;
+}
+
+.result-item.result-highlight {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  padding: 16px;
+  border-radius: 8px;
+  margin: -8px;
+}
+
+.result-label {
+  font-size: 12px;
+  color: #6B7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.result-highlight .result-label {
+  color: #92400E;
+}
+
+.result-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.result-highlight .result-value {
+  color: #92400E;
+}
+
+.calculator-compare {
+  border-top: 1px solid #E5E7EB;
+  padding-top: 20px;
+}
+
+.calculator-compare h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 16px 0;
+}
+
+.compare-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.compare-bar-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.compare-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.compare-bar-cost {
+  font-weight: 700;
+  color: #111827;
+}
+
+.compare-bar-track {
+  height: 24px;
+  background: #E5E7EB;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.compare-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.compare-bar-fill.coinbase {
+  background: linear-gradient(90deg, #0052FF 0%, #3B82F6 100%);
+}
+
+.compare-bar-fill.ledn {
+  background: linear-gradient(90deg, #F7931A 0%, #FBBF24 100%);
+}
+
+.compare-bar-fill.unchained {
+  background: linear-gradient(90deg, #1E3A5F 0%, #334155 100%);
+}
+
+.calculator-disclaimer {
+  font-size: 11px;
+  color: #9CA3AF;
+  margin: 16px 0 0 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .loan-calculator-section {
+    padding: 20px;
+    margin: 30px 0;
+  }
+  
+  .loan-calculator-title {
+    font-size: 20px;
+  }
+  
+  .calculator-inputs {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .calculator-results {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 16px;
+  }
+  
+  .result-item.result-highlight {
+    grid-column: span 2;
+  }
+  
+  .result-value {
+    font-size: 18px;
+  }
+  
+  .loan-calculator-card {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .calculator-results {
+    grid-template-columns: 1fr;
+  }
+  
+  .result-item.result-highlight {
+    grid-column: span 1;
+  }
 }
 
 .loan-listing {
@@ -700,6 +946,160 @@ function updateMobileLoanComparison() {
     valueEl.textContent = valueEl.getAttribute('data-' + field) || '—';
   });
 }
+</script>
+
+<!-- Loan Calculator Section -->
+<div class="loan-calculator-section">
+  <h2 class="loan-calculator-title">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
+      <path d="M8 6h8M8 10h8M8 14h2M12 14h2M16 14h0M8 18h2M12 18h2M16 18h0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    Loan Cost Calculator
+  </h2>
+  <p class="loan-calculator-subtitle">Estimate your interest costs across different providers</p>
+  
+  <div class="loan-calculator-card">
+    <div class="calculator-inputs">
+      <div class="calculator-input-group">
+        <label for="calc-provider">Provider</label>
+        <select id="calc-provider" onchange="updateCalculator()">
+          <option value="coinbase" data-apr="5" data-fee="0">Coinbase (From 5% APR)</option>
+          <option value="ledn" data-apr="11.9" data-fee="0">Ledn (11.9% APR)</option>
+          <option value="unchained" data-apr="15.2" data-fee="0">Unchained (From 15.2% APR)</option>
+        </select>
+      </div>
+      
+      <div class="calculator-input-group">
+        <label for="calc-amount">Loan Amount (USD)</label>
+        <div class="input-with-icon">
+          <span class="input-icon">$</span>
+          <input type="number" id="calc-amount" value="10000" min="1000" max="5000000" onchange="updateCalculator()" oninput="updateCalculator()">
+        </div>
+      </div>
+      
+      <div class="calculator-input-group">
+        <label for="calc-term">Loan Term (Months)</label>
+        <select id="calc-term" onchange="updateCalculator()">
+          <option value="3">3 months</option>
+          <option value="6">6 months</option>
+          <option value="12" selected>12 months</option>
+          <option value="24">24 months</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="calculator-results">
+      <div class="result-item result-highlight">
+        <div class="result-label">Estimated Interest Cost</div>
+        <div class="result-value" id="result-interest">$500</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Total Repayment</div>
+        <div class="result-value" id="result-total">$10,500</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Monthly Interest</div>
+        <div class="result-value" id="result-monthly">$41.67</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">APR Used</div>
+        <div class="result-value" id="result-apr">5%</div>
+      </div>
+    </div>
+    
+    <div class="calculator-compare">
+      <h4>Quick Comparison (12-month, $10,000 loan)</h4>
+      <div class="compare-bars">
+        <div class="compare-bar-item">
+          <div class="compare-bar-label">
+            <span>Coinbase</span>
+            <span class="compare-bar-cost">$500</span>
+          </div>
+          <div class="compare-bar-track">
+            <div class="compare-bar-fill coinbase" style="width: 33%"></div>
+          </div>
+        </div>
+        <div class="compare-bar-item">
+          <div class="compare-bar-label">
+            <span>Ledn</span>
+            <span class="compare-bar-cost">$1,190</span>
+          </div>
+          <div class="compare-bar-track">
+            <div class="compare-bar-fill ledn" style="width: 78%"></div>
+          </div>
+        </div>
+        <div class="compare-bar-item">
+          <div class="compare-bar-label">
+            <span>Unchained</span>
+            <span class="compare-bar-cost">$1,520</span>
+          </div>
+          <div class="compare-bar-track">
+            <div class="compare-bar-fill unchained" style="width: 100%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <p class="calculator-disclaimer">* Estimates are for illustrative purposes only. Actual rates may vary based on loan amount, collateral, and market conditions. Does not include potential fees.</p>
+  </div>
+</div>
+
+<script>
+function updateCalculator() {
+  const provider = document.getElementById('calc-provider');
+  const amount = parseFloat(document.getElementById('calc-amount').value) || 10000;
+  const term = parseInt(document.getElementById('calc-term').value) || 12;
+  
+  const selectedOption = provider.options[provider.selectedIndex];
+  const apr = parseFloat(selectedOption.dataset.apr) || 5;
+  
+  // Calculate interest (simple interest for estimate)
+  const annualInterest = amount * (apr / 100);
+  const totalInterest = annualInterest * (term / 12);
+  const totalRepayment = amount + totalInterest;
+  const monthlyInterest = totalInterest / term;
+  
+  // Update results
+  document.getElementById('result-interest').textContent = '$' + totalInterest.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+  document.getElementById('result-total').textContent = '$' + totalRepayment.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+  document.getElementById('result-monthly').textContent = '$' + monthlyInterest.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+  document.getElementById('result-apr').textContent = apr + '%';
+  
+  // Update comparison bars based on current amount and term
+  updateComparisonBars(amount, term);
+}
+
+function updateComparisonBars(amount, term) {
+  const rates = { coinbase: 5, ledn: 11.9, unchained: 15.2 };
+  const costs = {};
+  let maxCost = 0;
+  
+  for (const [provider, apr] of Object.entries(rates)) {
+    const annualInterest = amount * (apr / 100);
+    costs[provider] = annualInterest * (term / 12);
+    if (costs[provider] > maxCost) maxCost = costs[provider];
+  }
+  
+  // Update bars
+  document.querySelector('.compare-bar-fill.coinbase').style.width = (costs.coinbase / maxCost * 100) + '%';
+  document.querySelector('.compare-bar-fill.ledn').style.width = (costs.ledn / maxCost * 100) + '%';
+  document.querySelector('.compare-bar-fill.unchained').style.width = (costs.unchained / maxCost * 100) + '%';
+  
+  // Update cost labels
+  const costLabels = document.querySelectorAll('.compare-bar-cost');
+  costLabels[0].textContent = '$' + costs.coinbase.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+  costLabels[1].textContent = '$' + costs.ledn.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+  costLabels[2].textContent = '$' + costs.unchained.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+  
+  // Update comparison title
+  document.querySelector('.calculator-compare h4').textContent = `Quick Comparison (${term}-month, $${amount.toLocaleString()} loan)`;
+}
+
+// Initialize calculator on page load
+document.addEventListener('DOMContentLoaded', function() {
+  updateCalculator();
+});
 </script>
 
 <h2>Provider Details</h2>
