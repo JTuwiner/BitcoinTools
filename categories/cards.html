@@ -670,33 +670,52 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   
   .card-info {
     padding: 0;
+    text-align: center;
   }
   
   .card-type-above-title {
     margin-bottom: 6px;
   }
   
+  .card-type-below-image {
+    margin-top: 12px;
+  }
+  
+  .card-badges-row {
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+  
   .card-title {
-    font-size: 20px;
-    margin: 0 0 6px 0;
+    font-size: 22px;
+    margin: 0 0 10px 0;
+    text-align: center;
   }
   
   .card-rating {
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    justify-content: center;
   }
   
   .card-data-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 16px 12px;
+    text-align: left;
+  }
+  
+  .data-item {
+    padding: 12px;
+    background: #f9fafb;
+    border-radius: 8px;
   }
   
   .data-label {
     font-size: 11px;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
   }
   
   .data-value {
-    font-size: 14px;
+    font-size: 15px;
   }
   
   .coins-available {
@@ -706,7 +725,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   }
   
   .card-actions {
-    margin-top: 16px;
+    margin-top: 20px;
     flex-direction: column;
     gap: 12px;
   }
@@ -748,7 +767,11 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 @media (max-width: 480px) {
   .card-data-grid {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 12px;
+  }
+  
+  .data-item {
+    padding: 14px 16px;
   }
   
   .card-item {
@@ -758,6 +781,15 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   
   .card-image-wrapper {
     height: 160px;
+  }
+  
+  .card-title {
+    font-size: 20px;
+  }
+  
+  .best-for-badge {
+    font-size: 11px;
+    padding: 3px 8px;
   }
 }
 </style>
