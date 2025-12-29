@@ -4,216 +4,1199 @@ title: iOS Wallets
 full-width: yes
 permalink: "/ios-wallets/"
 category: yes
-seotitle: Bitcoin iOS & iPhone Wallets
-subdesc: iOS wallets to store, send, and receive Bitcoin on your iPhone or iPad. 
+seotitle: 7 Best Bitcoin iOS & iPhone Wallets [2026]
+subdesc: iOS wallets to store, send, and receive Bitcoin on your iPhone or iPad.
 svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M20 9.801v4.067c0 3.833 0 5.75-1.172 6.941S15.771 22 12 22s-5.657 0-6.828-1.191C4 19.619 4 17.701 4 13.868V9.8c0-3.833 0-5.75 1.172-6.94c.375-.383.825-.642 1.386-.819c.353-.11.728.047.942.35l.154.236c.634.97.855 1.307 1.368 1.631q.165.105.342.186c.591.274 1.273.274 2.636.274s2.044 0 2.636-.274q.177-.081.342-.186c.513-.324.734-.662 1.368-1.631l.154-.235c.2-.305.564-.467.91-.36c.577.176 1.036.438 1.418.827C20 4.051 20 5.968 20 9.801M9 18.23a.75.75 0 0 0-.75.755c0 .416.336.754.75.754h6c.414 0 .75-.338.75-.755a.75.75 0 0 0-.75-.754z" clip-rule="evenodd"/></svg>'
 ---
 
-<div style="max-width: 800px;">
-
-<p>Looking for an iOS Bitcoin wallet?</p>
-
-<p>We've curated a list of the best based on <strong><em>what is important to you</em></strong>.</p>
-
-<p>Such as:</p>
-
-<ul>
-    <li>Most private</li>
-    <li>Easiest to Use</li>
-    <li>Most secure</li>
-</ul>
-
-<p>As well as a few other categories that may speak to you.</p>
-
-<h2>iOS Wallet Comparison</h2>
+{% assign wallets = site.pages | where: "cat", "iOS Wallets" | sort: "sort" %}
 
 <style>
-    table {
-        max-width: 800px;
-        color: black;
-        margin-bottom: 30px;
-    }
-    table td {
-        color: black;
-    }
-    .table-striped tbody tr:nth-of-type(2n+1) {
-        background-color: #ccc;
-    }
+.ios-intro {
+  max-width: 800px;
+  margin-bottom: 32px;
+}
+
+.ios-intro p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #e5e7eb;
+  margin-bottom: 16px;
+}
+
+.ios-intro-highlight {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 24px 0;
+}
+
+.ios-intro-highlight p {
+  margin: 0;
+  font-weight: 500;
+  color: #92400E;
+}
+
+.comparison-table-wrapper {
+  margin-bottom: 40px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.comparison-table-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.comparison-table-title {
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparison-table thead {
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.comparison-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+  white-space: nowrap;
+}
+
+.comparison-table th:first-child {
+  min-width: 180px;
+}
+
+.comparison-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s;
+}
+
+.comparison-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.comparison-table td {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #111827;
+  vertical-align: middle;
+}
+
+.comparison-table td:first-child {
+  font-weight: 500;
+  min-width: 180px;
+}
+
+.comparison-table-wallet-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #111827 !important;
+  transition: all 0.2s ease;
+  padding: 4px 8px;
+  margin: -4px -8px;
+  border-radius: 6px;
+}
+
+.comparison-table-wallet-name:hover {
+  color: #111827;
+  background: #FEF3C7;
+}
+
+.comparison-table-wallet-name:hover span {
+  text-decoration: underline;
+  text-decoration-color: #f2a900;
+  text-underline-offset: 2px;
+}
+
+.comparison-table-wallet-name:hover .comparison-table-wallet-img {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(242, 169, 0, 0.3);
+}
+
+.comparison-table-wallet-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.custody-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+}
+
+.custody-badge.self {
+  background: #D1FAE5;
+  color: #065F46;
+  border-color: #6EE7B7;
+}
+
+.custody-badge.custodial {
+  background: #FEF3C7;
+  color: #92400E;
+  border-color: #FCD34D;
+}
+
+.custody-badge.collaborative {
+  background: #DBEAFE;
+  color: #1E40AF;
+  border-color: #93C5FD;
+}
+
+.feature-yes {
+  color: #059669;
+  font-weight: 600;
+}
+
+.feature-no {
+  color: #9ca3af;
+}
+
+.best-for-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+  color: #92400E;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.best-for-badge svg {
+  flex-shrink: 0;
+}
+
+.mobile-comparison-cards {
+  display: none;
+}
+
+.mobile-comparison-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+a.mobile-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  text-decoration: none;
+}
+
+a.mobile-card-header:hover .mobile-card-name {
+  color: #f2a900;
+  text-decoration: underline;
+}
+
+.mobile-card-img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.mobile-card-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: #111827;
+  transition: color 0.15s;
+  flex: 1;
+}
+
+a.mobile-card-header .custody-badge {
+  flex-shrink: 0;
+  font-size: 11px;
+  padding: 3px 8px;
+}
+
+.mobile-card-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.mobile-detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-detail-label {
+  font-size: 11px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.mobile-detail-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+}
+
+@media (max-width: 768px) {
+  .desktop-comparison-table {
+    display: none;
+  }
+  
+  .mobile-comparison-cards {
+    display: block;
+  }
+}
+
+.wallets-listing {
+  margin-top: 40px;
+}
+
+.wallet-item {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: box-shadow 0.2s;
+  padding: 24px;
+}
+
+.wallet-item:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.wallet-header {
+  display: flex;
+  gap: 24px;
+}
+
+.wallet-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #f9fafb;
+  padding: 8px;
+  transition: box-shadow 0.15s;
+}
+
+.wallet-info {
+  flex: 1;
+}
+
+.wallet-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.wallet-title-link {
+  text-decoration: none;
+}
+
+.wallet-title-link:hover .wallet-title {
+  color: #f2a900 !important;
+  text-decoration: underline;
+}
+
+.wallet-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827 !important;
+  margin: 0 0 8px 0;
+  transition: color 0.15s;
+}
+
+.wallet-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.wallet-stars {
+  color: #f2a900;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.wallet-stars .star-empty {
+  opacity: 0.4;
+}
+
+.wallet-rating-text {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.wallet-image-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.wallet-image-wrapper:hover .wallet-image {
+  box-shadow: 0 4px 12px rgba(242, 169, 0, 0.3);
+}
+
+.wallet-data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.wallet-data-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.wallet-data-label {
+  font-size: 12px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.wallet-data-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.wallet-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.wallet-apply-button {
+  background: #f2a900;
+  color: black !important;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+
+.wallet-apply-button:hover {
+  background: #059669;
+  color: white !important;
+}
+
+.wallet-breakdown-section {
+  margin-top: 12px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 12px;
+}
+
+.wallet-breakdown-section:first-of-type {
+  margin-top: 20px;
+}
+
+.wallet-breakdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 12px;
+  margin: -4px -8px;
+  border-radius: 6px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  user-select: none;
+  border: 1px solid transparent;
+}
+
+.wallet-breakdown-header:hover {
+  background: #FEF9E7;
+  border-color: #F2A900;
+}
+
+.wallet-breakdown-title {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  transition: color 0.15s;
+}
+
+.wallet-breakdown-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  margin-right: 10px;
+}
+
+.wallet-breakdown-header:hover .wallet-breakdown-icon {
+  color: #D97706;
+}
+
+.wallet-breakdown-header:hover .wallet-breakdown-title {
+  color: #111827;
+}
+
+.wallet-breakdown-chevron {
+  color: #9ca3af;
+  transition: transform 0.15s, color 0.15s;
+}
+
+.wallet-breakdown-header:hover .wallet-breakdown-chevron {
+  color: #D97706;
+}
+
+.wallet-breakdown-section.expanded .wallet-breakdown-chevron {
+  transform: rotate(180deg);
+}
+
+.wallet-breakdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease-out, padding-top 0.2s ease-out;
+  padding-top: 0;
+  color: #111827;
+}
+
+.wallet-breakdown-section.expanded .wallet-breakdown-content {
+  max-height: 500px;
+  padding-top: 10px;
+}
+
+.wallet-breakdown-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.wallet-breakdown-content li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 6px;
+  padding: 4px 0;
+  color: #111827;
+}
+
+.wallet-breakdown-content li::before {
+  content: "✓";
+  color: #10b981;
+  font-weight: bold;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.wallet-cons-content li::before {
+  content: "✗";
+  color: #EF4444;
+}
+
+.wallet-summary-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #374151;
+}
+
+@media (max-width: 768px) {
+  .wallet-header {
+    flex-direction: column;
+  }
+  
+  .wallet-image-wrapper {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 16px;
+  }
+  
+  .wallet-title {
+    font-size: 20px;
+  }
+  
+  .wallet-badges-row {
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .wallet-data-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  
+  .wallet-data-value {
+    font-size: 13px;
+    word-break: break-word;
+  }
+  
+  .wallet-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .wallet-apply-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .wallet-item {
+    padding: 16px;
+    margin-left: -8px;
+    margin-right: -8px;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wallet-data-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .wallet-item {
+    padding: 14px;
+  }
+  
+  .wallet-title {
+    font-size: 18px;
+  }
+  
+  .best-for-badge {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+}
+
+.decision-support-section {
+  margin-top: 60px;
+  margin-bottom: 40px;
+  padding: 32px;
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+  border-radius: 12px;
+  border: 1px solid #3B82F6;
+}
+
+.decision-support-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.decision-support-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 28px;
+  background: #3B82F6;
+  border-radius: 2px;
+}
+
+.decision-support-intro {
+  font-size: 16px;
+  color: #374151;
+  margin: 0 0 24px 0;
+}
+
+.decision-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.decision-item {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border: 1px solid #E5E7EB;
+}
+
+.decision-icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.decision-item h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 8px 0;
+}
+
+.decision-item p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #4B5563;
+  margin: 0 0 6px 0;
+}
+
+.decision-item p:last-child {
+  margin-bottom: 0;
+}
+
+.decision-item strong {
+  color: #1E40AF;
+}
+
+.methodology-section {
+  margin-top: 60px;
+  margin-bottom: 32px;
+  padding: 32px;
+  background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+  border-radius: 12px;
+  border: 1px solid #F59E0B;
+}
+
+.methodology-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.methodology-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 28px;
+  background: #F7931A;
+  border-radius: 2px;
+}
+
+.methodology-content > p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #374151;
+  margin: 0 0 24px 0;
+}
+
+.methodology-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.methodology-item {
+  background: white;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border: 1px solid #E5E7EB;
+}
+
+.methodology-icon {
+  width: 48px;
+  height: 48px;
+  background: #FEF3C7;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.methodology-item h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 10px 0;
+}
+
+.methodology-item p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4B5563;
+  margin: 0;
+}
+
+.wallet-disclaimer {
+  margin-top: 48px;
+  padding: 20px 24px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border-left: 3px solid #d1d5db;
+}
+
+.wallet-disclaimer p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #6b7280;
+}
+
+@media (max-width: 992px) {
+  .decision-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .decision-support-section {
+    padding: 20px;
+    margin-top: 40px;
+  }
+  
+  .decision-support-title {
+    font-size: 22px;
+  }
+  
+  .decision-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .decision-item {
+    padding: 16px;
+  }
+  
+  .methodology-section {
+    margin-top: 40px;
+    padding: 20px;
+  }
+  
+  .methodology-title {
+    font-size: 22px;
+  }
+  
+  .methodology-content > p {
+    font-size: 14px;
+  }
+  
+  .methodology-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .methodology-item {
+    padding: 18px;
+  }
+  
+  .methodology-item h3 {
+    font-size: 16px;
+  }
+  
+  .methodology-item p {
+    font-size: 13px;
+  }
+  
+  .wallet-disclaimer {
+    margin-top: 32px;
+    padding: 16px;
+  }
+  
+  .wallet-disclaimer p {
+    font-size: 11px;
+  }
+}
 </style>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Wallet</th>
-            <th>Rating</th>
-            <th>Best For</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Muun</td>
-            <td>4.4/5</td>
-            <td>Beginners</td>
-        </tr>
-        <tr>
-            <td>Aqua</td>
-            <td>4.0/5</td>
-            <td>Privacy</td>
-        </tr>
-        <tr>
-            <td>Green</td>
-            <td>4.7/5</td>
-            <td>Security</td>
-        </tr>
-        <tr>
-            <td>Blue Wallet</td>
-            <td>4.3/5</td>
-            <td>Lightning</td>
-        </tr>
-        <tr>
-            <td>Strike</td>
-            <td>4.8/5</td>
-            <td>Buying Bitcoin</td>
-        </tr>
-    </tbody>
-</table>
+<br><br>
 
-<h2>Easiest to Use: Muun</h2>
-
-<div class="wallet-list-item lock-bug col-sm-12 buy-info-full">
-    <h4>
-        <img alt="Bitcoin Wallet Logo" src="/tools/img/muun.png" style="max-width: 80px; margin-right: 5px;">Muun Wallet
-    </h4>
-    <p><b>Average Rating:</b> 4.4/5</p>
-    <p class="new-desc-box">Muun wallet is another popular wallet. Muun's very easy-to-understand user interface makes navigating and using this app very simple. Some other stand-out features of Muun are built-in Lightning Network integration and <a href="/tools/fee-calculator/">fee calculator</a>, as well as its multi-factor authentication support. All these features make Muun a very well-rounded wallet for new Bitcoin holders who want a wallet to grow into.</p>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Pros</div>
-        <ul class="quick-info-pros">
-            <li>Muun is highly rated on the Google Play Store</li>
-            <li>Muun has a simple and easy-to-use interface</li>
-        </ul>
-    </div>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Cons</div>
-        <ul class="quick-info-cons">
-            <li>Limited features</li>
-        </ul>
-    </div>
+<div class="ios-intro">
+  <p>Looking for the best Bitcoin wallet for your iPhone or iPad? We've evaluated the top iOS Bitcoin wallets based on security, ease of use, and features to help you find the right one for your needs.</p>
+  
+  <div class="ios-intro-highlight">
+    <p>💡 <strong>Key insight:</strong> The "best" wallet depends on your priorities. Self-custody wallets give you full control but more responsibility. Custodial wallets are easier but require trusting a third party.</p>
+  </div>
 </div>
 
-<h2>Most Private: Aqua</h2>
+{% if wallets.size > 0 %}
+<div class="comparison-table-wrapper">
+  <div class="comparison-table-header">
+    <h2 class="comparison-table-title">Compare iOS Wallets</h2>
+  </div>
 
-<div class="wallet-list-item lock-bug col-sm-12 buy-info-full">
-    <h4>
-        <img alt="Aqua Wallet Logo" src="/tools/img/aqua.png" style="max-width: 80px; margin-right: 5px;">Aqua
-    </h4>
-    <p><b>Average Rating:</b> 4.0/5</p>
-    <p class="new-desc-box">Aqua is not only simple but also fairly private if you use it correctly. Aqua is made my Blockstream, with the goal of making using Bitcoin on iOS extremely simple.</p>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Pros</div>
-        <ul class="quick-info-pros">
-            <li>Blockstream makes Aqua and is a trusted Bitcoin company</li>
-            <li>Aqua has a simple, intuitive user interface</li>
-        </ul>
+  <div class="desktop-comparison-table">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Wallet</th>
+          <th>Best For</th>
+          <th>Custody</th>
+          <th>Lightning</th>
+          <th>Buy/Sell</th>
+          <th>Availability</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for wallet in wallets %}
+        <tr>
+          <td>
+            <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="comparison-table-wallet-name" onclick="fathom.trackEvent('Click iOS Wallet: {{ wallet.title }}');">
+              <img src="/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="comparison-table-wallet-img">
+              <span>{{ wallet.title }}</span>
+            </a>
+          </td>
+          <td>{{ wallet.ios_bestfor | default: "—" }}</td>
+          <td>
+            {% if wallet.ios_custody contains "Self" %}
+              <span class="custody-badge self">🔑 Self-custody</span>
+            {% elsif wallet.ios_custody contains "Collaborative" %}
+              <span class="custody-badge collaborative">🤝 Collaborative</span>
+            {% else %}
+              <span class="custody-badge custodial">☁️ Custodial</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if wallet.ios_lightning == "Yes" %}
+              <span class="feature-yes">✓ Yes</span>
+            {% else %}
+              <span class="feature-no">No</span>
+            {% endif %}
+          </td>
+          <td>{{ wallet.ios_buy_sell | default: "No" }}</td>
+          <td>{{ wallet.ios_availability | default: "—" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="mobile-comparison-cards">
+    {% for wallet in wallets %}
+    <div class="mobile-comparison-card">
+      <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="mobile-card-header" onclick="fathom.trackEvent('Click iOS Wallet: {{ wallet.title }}');">
+        <img src="/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-card-img">
+        <div class="mobile-card-name">{{ wallet.title }}</div>
+        {% if wallet.ios_custody contains "Self" %}
+          <span class="custody-badge self">🔑 Self</span>
+        {% elsif wallet.ios_custody contains "Collaborative" %}
+          <span class="custody-badge collaborative">🤝 Collab</span>
+        {% else %}
+          <span class="custody-badge custodial">☁️ Custodial</span>
+        {% endif %}
+      </a>
+      <div class="mobile-card-details">
+        <div class="mobile-detail-item">
+          <span class="mobile-detail-label">Best For</span>
+          <span class="mobile-detail-value">{{ wallet.ios_bestfor | default: "—" }}</span>
+        </div>
+        <div class="mobile-detail-item">
+          <span class="mobile-detail-label">Lightning</span>
+          <span class="mobile-detail-value">{{ wallet.ios_lightning | default: "No" }}</span>
+        </div>
+        <div class="mobile-detail-item">
+          <span class="mobile-detail-label">Buy/Sell</span>
+          <span class="mobile-detail-value">{{ wallet.ios_buy_sell | default: "No" }}</span>
+        </div>
+        <div class="mobile-detail-item">
+          <span class="mobile-detail-label">Availability</span>
+          <span class="mobile-detail-value">{{ wallet.ios_availability | default: "—" }}</span>
+        </div>
+      </div>
     </div>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Cons</div>
-        <ul class="quick-info-cons">
-            <li>Not many user-ratings on this wallet</li>
-            <li>Many reports of Aqua wallet crashing</li>
-        </ul>
-    </div>
+    {% endfor %}
+  </div>
 </div>
 
-<h2>Most Secure: Blockstream Green</h2>
+<h2>Wallet Details</h2>
 
-<div class="wallet-list-item lock-bug col-sm-12 buy-info-full">
-    <h4>
-        <img alt="Blockstream Green Wallet Logo" src="/tools/img/green.png" style="max-width: 80px; margin-right: 5px;">Green
-    </h4>
-    <p><b>Average Rating:</b> 4.7/5</p>
-    <p class="new-desc-box">Green is an advanced iOS Bitcoin wallet for experienced users. Blockstream Green's security and technical features are unmatched by any other wallet on iOS and iPhone. Blockstream Green also supports hardware wallets, full node support, as well as many other nice features.</p>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Pros</div>
-        <ul class="quick-info-pros">
-            <li>Blockstream Green is a secure iOS wallet</li>
-            <li>Blockstream Green has tons of advanced features</li>
-            <li>Multi-sig wallet available</li>
-        </ul>
+<div class="wallets-listing">
+  {% for wallet in wallets %}
+  <div class="wallet-item">
+    <div class="wallet-header">
+      <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="wallet-image-wrapper" onclick="fathom.trackEvent('Click iOS Wallet: {{ wallet.title }}');">
+        <img src="/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="wallet-image">
+      </a>
+      
+      <div class="wallet-info">
+        {% if wallet.ios_bestfor %}
+        <div class="wallet-badges-row">
+          <span class="best-for-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#F59E0B" stroke="#F59E0B" stroke-width="1.5"/>
+            </svg>
+            Best for: {{ wallet.ios_bestfor }}
+          </span>
+        </div>
+        {% endif %}
+        
+        <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="wallet-title-link" onclick="fathom.trackEvent('Click iOS Wallet: {{ wallet.title }}');">
+          <h2 class="wallet-title">{{ wallet.title }}</h2>
+        </a>
+        
+        {% if wallet.rating %}
+        <div class="wallet-rating">
+          <div class="wallet-stars">
+            {% assign rating_int = wallet.rating | floor %}
+            {% for i in (1..5) %}{% if i <= rating_int %}★{% else %}<span class="star-empty">★</span>{% endif %}{% endfor %}
+          </div>
+          <span class="wallet-rating-text">{% assign rating_str = wallet.rating | append: "" %}{% if rating_str contains "." %}{{ wallet.rating }}{% else %}{{ wallet.rating }}.0{% endif %} rating</span>
+        </div>
+        {% endif %}
+        
+        <div class="wallet-data-grid">
+          <div class="wallet-data-item">
+            <div class="wallet-data-label">Custody</div>
+            <div class="wallet-data-value">
+              {% if wallet.ios_custody contains "Self" %}
+                <span class="custody-badge self">🔑 Self-custody</span>
+              {% elsif wallet.ios_custody contains "Collaborative" %}
+                <span class="custody-badge collaborative">🤝 Collaborative</span>
+              {% else %}
+                <span class="custody-badge custodial">☁️ Custodial</span>
+              {% endif %}
+            </div>
+          </div>
+          
+          <div class="wallet-data-item">
+            <div class="wallet-data-label">Lightning Network</div>
+            <div class="wallet-data-value">
+              {% if wallet.ios_lightning == "Yes" %}
+                <span class="feature-yes">✓ Supported</span>
+              {% else %}
+                <span class="feature-no">Not supported</span>
+              {% endif %}
+            </div>
+          </div>
+          
+          <div class="wallet-data-item">
+            <div class="wallet-data-label">Buy/Sell Bitcoin</div>
+            <div class="wallet-data-value">{{ wallet.ios_buy_sell | default: "No" }}</div>
+          </div>
+          
+          <div class="wallet-data-item">
+            <div class="wallet-data-label">Availability</div>
+            <div class="wallet-data-value">{{ wallet.ios_availability | default: "Worldwide" }}</div>
+          </div>
+        </div>
+        
+        <div class="wallet-actions">
+          <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="wallet-apply-button" onclick="fathom.trackEvent('Click iOS Wallet: {{ wallet.title }}');">
+            GET {{ wallet.title | upcase }}
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        
+        {% if wallet.ios_summary %}
+        <div class="wallet-breakdown-section">
+          <div class="wallet-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="wallet-breakdown-title">
+              <div class="wallet-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                  <path d="M7 9h10M7 13h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              Overview
+            </div>
+            <svg class="wallet-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="wallet-breakdown-content">
+            <p class="wallet-summary-text">{{ wallet.ios_summary }}</p>
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if wallet.ios_pros %}
+        <div class="wallet-breakdown-section">
+          <div class="wallet-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="wallet-breakdown-title">
+              <div class="wallet-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              Pros
+            </div>
+            <svg class="wallet-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="wallet-breakdown-content">
+            {{ wallet.ios_pros }}
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if wallet.ios_cons %}
+        <div class="wallet-breakdown-section">
+          <div class="wallet-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="wallet-breakdown-title">
+              <div class="wallet-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              Cons
+            </div>
+            <svg class="wallet-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="wallet-breakdown-content wallet-cons-content">
+            {{ wallet.ios_cons }}
+          </div>
+        </div>
+        {% endif %}
+      </div>
     </div>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Cons</div>
-        <ul class="quick-info-cons">
-            <li>Difficult for new users to use and set up</li>
-        </ul>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>No iOS wallets available at this time.</p>
+{% endif %}
+
+<div class="decision-support-section">
+  <h2 class="decision-support-title">Which Wallet Is Best For You?</h2>
+  <p class="decision-support-intro">Not sure which iOS wallet fits your needs? Here's our quick guide:</p>
+  
+  <div class="decision-grid">
+    <div class="decision-item">
+      <div class="decision-icon">🔒</div>
+      <h3>Maximum Security</h3>
+      <p><strong>Best pick: Unchained iOS App</strong></p>
+      <p>Multisig cold storage directly from your phone. Best for larger holdings where security is the top priority. Requires $250/year vault subscription.</p>
     </div>
+    
+    <div class="decision-item">
+      <div class="decision-icon">🛒</div>
+      <h3>Buying Bitcoin</h3>
+      <p><strong>Best picks: River or Strike</strong></p>
+      <p>Both offer seamless in-app purchasing with competitive fees. River has zero-fee recurring buys and proof of reserves. Strike is great for Lightning payments.</p>
+    </div>
+    
+    <div class="decision-item">
+      <div class="decision-icon">🔑</div>
+      <h3>Self-Custody Beginners</h3>
+      <p><strong>Best pick: Muun</strong></p>
+      <p>Simple interface with Lightning built-in. You control your keys without the complexity. Great for learning self-custody.</p>
+    </div>
+    
+    <div class="decision-item">
+      <div class="decision-icon">⚡</div>
+      <h3>Lightning Power Users</h3>
+      <p><strong>Best pick: Blue Wallet</strong></p>
+      <p>Full-featured Lightning support with advanced options. Open source and self-custody. Great for those already familiar with Bitcoin.</p>
+    </div>
+    
+    <div class="decision-item">
+      <div class="decision-icon">🛡️</div>
+      <h3>Advanced Security</h3>
+      <p><strong>Best pick: Blockstream Green</strong></p>
+      <p>2-of-2 multisig, hardware wallet support, and connect to your own node. The most feature-rich self-custody option for power users.</p>
+    </div>
+    
+    <div class="decision-item">
+      <div class="decision-icon">🔐</div>
+      <h3>Privacy-Focused</h3>
+      <p><strong>Best pick: Aqua</strong></p>
+      <p>Made by Blockstream with Liquid Network support for more private transactions. Simple interface with solid privacy features.</p>
+    </div>
+  </div>
 </div>
 
-<h2>Lightning Network: Blue Wallet</h2>
-
-<div class="wallet-list-item lock-bug col-sm-12 buy-info-full">
-    <h4>
-       <!-- <img src="/img/wallets/bluewallet-logo.png" alt="blue wallet logo">Blue Wallet -->
-    </h4>
-    <p><b>Average Rating:</b> 4.3/5</p>
-    <p class="new-desc-box">Blue Wallet is a newer app that has become very popular in recent years. It is most notable for how easy it is to use and its native integration of the Lightning Network, Bitcoin's second layer for cheaper, faster payments. If you want easy access to the Lightning Network, this is the app for you!</p>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Pros</div>
-        <ul class="quick-info-pros">
-            <li>Built-in Lightning Network access</li>
-            <li>Beautiful, easy-to-use interface</li>
-            <li>Very Secure</li>
-        </ul>
+<div class="methodology-section">
+  <h2 class="methodology-title">Our Methodology</h2>
+  <div class="methodology-content">
+    <p>We evaluated iOS Bitcoin wallets based on security, ease of use, features, and what type of user each wallet best serves. Here's how we approached our analysis:</p>
+    
+    <div class="methodology-grid">
+      <div class="methodology-item">
+        <div class="methodology-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#F7931A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Security & Custody</h3>
+        <p>We clearly distinguish between self-custody (you hold your keys), custodial (company holds your keys), and collaborative custody (shared control). Each model has trade-offs between convenience and control.</p>
+      </div>
+      
+      <div class="methodology-item">
+        <div class="methodology-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="#F7931A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Lightning Network Support</h3>
+        <p>Lightning enables fast, cheap Bitcoin payments. We note which wallets support Lightning natively, as this is increasingly important for everyday Bitcoin use.</p>
+      </div>
+      
+      <div class="methodology-item">
+        <div class="methodology-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="5" width="20" height="14" rx="2" stroke="#F7931A" stroke-width="2"/>
+            <line x1="2" y1="10" x2="22" y2="10" stroke="#F7931A" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>Built-In Buying</h3>
+        <p>Some wallets let you buy Bitcoin directly in-app, which is convenient but usually means custodial or KYC requirements. We highlight which wallets offer this and the trade-offs involved.</p>
+      </div>
+      
+      <div class="methodology-item">
+        <div class="methodology-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="#F7931A" stroke-width="2"/>
+            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="#F7931A" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>Availability</h3>
+        <p>Some wallets are restricted to certain countries (like USA only) due to regulatory requirements. We clearly note geographic restrictions so you know what's available to you.</p>
+      </div>
     </div>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Cons</div>
-        <ul class="quick-info-cons">
-            <li>Lacks some of the more advanced features</li>
-            <li>Some reports of freezing and crashing</li>
-        </ul>
-    </div>
+  </div>
 </div>
 
-<h2>Built-In Exchange: Strike</h2>
-
-<div class="wallet-list-item lock-bug col-sm-12 buy-info-full">
-    <h4>
-        <!-- <img src="/img/wallets/strike-logo.png" alt="Strike bitcoin wallet logo">Strike -->
-    </h4>
-    <p><b>Average Rating:</b> 4.8/5</p>
-    <p class="new-desc-box">Strike is a Bitcoin-only wallet with an in-app store. While there are many apps like this on iOS, none are as simple to use and easy to set up. There is also the added benefit of being able to use the Lightning Network in the app whenever you want. This makes it easy to send money to others quickly and cheaply anywhere in the world.</p>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Pros</div>
-        <ul class="quick-info-pros">
-            <li>Built-in exchange</li>
-            <li>Very simple to use</li>
-            <li>Face or Touch ID enabled</li>
-        </ul>
-    </div>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Cons</div>
-        <ul class="quick-info-cons">
-            <li>Must have an account with photo ID uploaded to Strike</li>
-        </ul>
-    </div>
-</div>
-
-<h2>iOS Wallet FAQ</h2>
-
-
-<h3><strong>What is the difference between Blockstream Green and Aqua?</strong></h3>
-
-<p>While both of these Bitcoin and Liquid wallets are made by Blockstream, there are some differences. Mainly, it's that Blockstream Green uses a 2-of-2 multi-sig to protect your coins from hackers. This makes it ideal for an advanced user.</p>
-
-<br>
-
-<h3><strong>Does Blockstream Jade work with Blockstream Green on iOS?</strong></h3>
-
-<p>Yes, you can now use the Blockstream Green app on your iOS device to set up your wallet on your Blockstream Jade hardware wallet.</p>
-
-
-<h3>Can I Use Electrum on iOS?</h3>
-
-<p>Unfortunately, Electrum cannot be used on iOS devices at this time. The only mobile devices that support Electrum are devices running Linux or Android.</p>
-
+<div class="wallet-disclaimer">
+  <p>Disclaimer: The information provided on this page is for informational purposes only and does not constitute financial advice. Cryptocurrency wallets involve technical complexity and risks — always back up your seed phrase securely and understand the custody model before storing significant funds. Features and availability may change without notice. Some links on this page may be affiliate links, which help support our research at no extra cost to you.</p>
 </div>
