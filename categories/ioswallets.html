@@ -911,7 +911,7 @@ a.mobile-card-header .custody-badge {
     {% for wallet in wallets %}
     <div class="mobile-comparison-card">
       <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="mobile-card-header" onclick="fathom.trackEvent('Click iOS Wallet: {{ wallet.title }}');">
-        <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-card-img">
+        <img src="/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-card-img">
         <div class="mobile-card-name">{{ wallet.title }}</div>
         {% if wallet.ios_custody contains "Self" %}
           <span class="custody-badge self">🔑 Self</span>
