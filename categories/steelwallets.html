@@ -21,7 +21,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="26.67" height="32" view
 .steel-intro p {
   font-size: 16px;
   line-height: 1.7;
-  color: #e5e7eb;
+  color: #374151;
   margin-bottom: 16px;
 }
 
@@ -68,7 +68,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="26.67" height="32" view
 }
 
 .toc-box nav ul li a {
-  color: #e5e7eb;
+  color: #d1d5db;
   text-decoration: none;
   font-size: 14px;
   transition: color 0.15s;
@@ -777,7 +777,6 @@ a.mobile-card-header .method-badge {
           <th>Price</th>
           <th>Material</th>
           <th>Method</th>
-          <th>Reusable</th>
         </tr>
       </thead>
       <tbody>
@@ -791,7 +790,7 @@ a.mobile-card-header .method-badge {
           </td>
           <td>{{ steel.steel_bestfor | default: "—" }}</td>
           <td>{{ steel.price | default: "—" }}</td>
-          <td>{{ steel.material | default: "Stainless Steel" | truncate: 20 }}</td>
+          <td>{{ steel.material | default: "Stainless Steel" }}</td>
           <td>
             {% if steel.steel_method contains "Tile" %}
               <span class="method-badge tile">🔤 Tiles</span>
@@ -799,13 +798,6 @@ a.mobile-card-header .method-badge {
               <span class="method-badge hammer">🔨 Hammer</span>
             {% else %}
               <span class="method-badge punch">🔘 Punch</span>
-            {% endif %}
-          </td>
-          <td>
-            {% if steel.steel_reusable == "Yes" %}
-              <span class="reusable-yes">✓ Yes</span>
-            {% else %}
-              <span class="reusable-no">No</span>
             {% endif %}
           </td>
         </tr>
@@ -839,12 +831,8 @@ a.mobile-card-header .method-badge {
               </div>
         <div class="mobile-detail-item">
           <span class="mobile-detail-label">Material</span>
-          <span class="mobile-detail-value">{{ steel.material | default: "Steel" | truncate: 15 }}</span>
+          <span class="mobile-detail-value">{{ steel.material | default: "Steel" }}</span>
           </div>
-        <div class="mobile-detail-item">
-          <span class="mobile-detail-label">Reusable</span>
-          <span class="mobile-detail-value">{{ steel.steel_reusable | default: "No" }}</span>
-        </div>
       </div>
     </div>
     {% endfor %}
@@ -940,17 +928,6 @@ a.mobile-card-header .method-badge {
               {% endif %}
     </div>
     </div>
-    
-          <div class="steel-data-item">
-            <div class="steel-data-label">Reusable</div>
-            <div class="steel-data-value">
-              {% if steel.steel_reusable == "Yes" %}
-                <span class="reusable-yes">✓ Yes</span>
-              {% else %}
-                <span class="reusable-no">No (single use)</span>
-              {% endif %}
-</div>
-    </div>
     </div>
     
         <div class="steel-actions">
@@ -1001,7 +978,7 @@ a.mobile-card-header .method-badge {
     </div>
           <div class="steel-breakdown-content">
             {{ steel.wallet_pros | default: steel.steel_pros }}
-          </div>
+</div>
         </div>
         {% endif %}
         
@@ -1013,13 +990,13 @@ a.mobile-card-header .method-badge {
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-</div>
+    </div>
               Cons
-            </div>
+    </div>
             <svg class="steel-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </div>
+</div>
           <div class="steel-breakdown-content steel-cons-content">
             {{ steel.wallet_cons | default: steel.steel_cons }}
           </div>
