@@ -850,6 +850,8 @@ a.mobile-card-header .custody-badge {
 <div class="ios-intro">
   <p>Looking for the best Bitcoin wallet for your iPhone or iPad? We've evaluated the top iOS Bitcoin wallets based on security, ease of use, and features to help you find the right one for your needs.</p>
   
+  <p style="font-size: 14px; color: #6b7280; margin-top: 16px;"><em>⭐ Ratings shown are actual iOS App Store ratings as of December 2025.</em></p>
+  
   <div class="ios-intro-highlight">
     <p>💡 <strong>Key insight:</strong> The "best" wallet depends on your priorities. Self-custody wallets give you full control but more responsibility. Custodial wallets are easier but require trusting a third party.</p>
   </div>
@@ -866,9 +868,9 @@ a.mobile-card-header .custody-badge {
     <thead>
         <tr>
             <th>Wallet</th>
-            <th>Best For</th>
+          <th>Best For</th>
+            <th>Rating</th>
           <th>Custody</th>
-          <th>Lightning</th>
           <th>Buy/Sell</th>
           <th>Availability</th>
         </tr>
@@ -884,19 +886,19 @@ a.mobile-card-header .custody-badge {
           </td>
           <td>{{ wallet.ios_bestfor | default: "—" }}</td>
           <td>
+            {% if wallet.rating %}
+              <span style="color: #f2a900; font-weight: 600;">★ {{ wallet.rating }}</span>
+            {% else %}
+              <span style="color: #9ca3af;">—</span>
+            {% endif %}
+          </td>
+          <td>
             {% if wallet.ios_custody contains "Self" %}
               <span class="custody-badge self">🔑 Self-custody</span>
             {% elsif wallet.ios_custody contains "Collaborative" %}
               <span class="custody-badge collaborative">🤝 Collaborative</span>
             {% else %}
               <span class="custody-badge custodial">☁️ Custodial</span>
-            {% endif %}
-          </td>
-          <td>
-            {% if wallet.ios_lightning == "Yes" %}
-              <span class="feature-yes">✓ Yes</span>
-            {% else %}
-              <span class="feature-no">No</span>
             {% endif %}
           </td>
           <td>{{ wallet.ios_buy_sell | default: "No" }}</td>
@@ -927,8 +929,8 @@ a.mobile-card-header .custody-badge {
           <span class="mobile-detail-value">{{ wallet.ios_bestfor | default: "—" }}</span>
         </div>
         <div class="mobile-detail-item">
-          <span class="mobile-detail-label">Lightning</span>
-          <span class="mobile-detail-value">{{ wallet.ios_lightning | default: "No" }}</span>
+          <span class="mobile-detail-label">Rating</span>
+          <span class="mobile-detail-value" style="color: #f2a900; font-weight: 600;">{% if wallet.rating %}★ {{ wallet.rating }}{% else %}—{% endif %}</span>
         </div>
         <div class="mobile-detail-item">
           <span class="mobile-detail-label">Buy/Sell</span>
