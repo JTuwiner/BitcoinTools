@@ -4,260 +4,873 @@ title: Steel Wallets
 full-width: yes
 permalink: "/steel-wallets/"
 category: yes
-seotitle: Crypto Steel Wallets [Metal Seed Storage]
-subdesc: Steel wallets to protect your Bitcoin seed phrase. 
+seotitle: 9 Best Steel Crypto Wallets [Metal Seed Storage 2026]
+subdesc: Steel wallets to protect your Bitcoin seed phrase from fire, flood, and corrosion.
 icon: shield
 svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="26.67" height="32" viewBox="0 0 20 24"><rect width="20" height="24" fill="none"/><path fill="currentColor" d="M17 13V3h-7v17.766a22.036 22.036 0 0 0 3.376-2.177l-.048.036Q17 15.751 17 13m3-12v12a7.15 7.15 0 0 1-.541 2.712l.017-.048a9.968 9.968 0 0 1-1.315 2.37l.018-.026a14.545 14.545 0 0 1-1.827 1.98l-.013.012a21.487 21.487 0 0 1-1.915 1.567l-.062.043q-.906.64-1.89 1.211t-1.398.774t-.664.313a.932.932 0 0 1-.818-.002l.005.002q-.25-.11-.664-.313t-1.398-.774t-1.89-1.211a21.613 21.613 0 0 1-1.996-1.624l.015.014a14.574 14.574 0 0 1-1.815-1.958l-.025-.034a9.813 9.813 0 0 1-1.273-2.277l-.024-.067a7.034 7.034 0 0 1-.523-2.663V1c.008-.549.451-.992.999-1h18.001c.549.008.992.451 1 .999V1z"/></svg>'
 ---
 
-<style>
-    .table-striped tbody tr:nth-of-type(2n+1) {
-        background-color: #fff;
-    }
+{% assign steels = site.pages | where: "cat", "Steel Wallets" | sort: "sort" %}
 
-    div h2 img {
-        border-radius: 5px;
-        max-width: 75px !important;
-    }
+<style>
+.steel-intro {
+  max-width: 800px;
+  margin-bottom: 32px;
+}
+
+.steel-intro p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #e5e7eb;
+  margin-bottom: 16px;
+}
+
+.steel-intro-highlight {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 24px 0;
+}
+
+.steel-intro-highlight p {
+  margin: 0;
+  font-weight: 500;
+  color: #92400E;
+}
+
+.toc-box {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  max-width: 400px;
+}
+
+.toc-box-label {
+  font-weight: 700;
+  color: #f2a900;
+  margin-bottom: 12px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.toc-box nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-box nav ul li {
+  margin-bottom: 8px;
+}
+
+.toc-box nav ul li a {
+  color: #e5e7eb;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.15s;
+}
+
+.toc-box nav ul li a:hover {
+  color: #f2a900;
+  text-decoration: underline;
+}
+
+.comparison-table-wrapper {
+  margin-bottom: 40px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.comparison-table-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.comparison-table-title {
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparison-table thead {
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.comparison-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+  white-space: nowrap;
+}
+
+.comparison-table th:first-child {
+  min-width: 180px;
+}
+
+.comparison-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s;
+}
+
+.comparison-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.comparison-table td {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #111827;
+  vertical-align: middle;
+}
+
+.comparison-table td:first-child {
+  font-weight: 500;
+  min-width: 180px;
+}
+
+.comparison-table-steel-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #111827 !important;
+  transition: all 0.2s ease;
+  padding: 4px 8px;
+  margin: -4px -8px;
+  border-radius: 6px;
+}
+
+.comparison-table-steel-name:hover {
+  color: #111827;
+  background: #FEF3C7;
+}
+
+.comparison-table-steel-name:hover span {
+  text-decoration: underline;
+  text-decoration-color: #f2a900;
+  text-underline-offset: 2px;
+}
+
+.comparison-table-steel-name:hover .comparison-table-steel-img {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(242, 169, 0, 0.3);
+}
+
+.comparison-table-steel-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.method-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+}
+
+.method-badge.tile {
+  background: #D1FAE5;
+  color: #065F46;
+  border-color: #6EE7B7;
+}
+
+.method-badge.punch {
+  background: #DBEAFE;
+  color: #1E40AF;
+  border-color: #93C5FD;
+}
+
+.method-badge.hammer {
+  background: #FEF3C7;
+  color: #92400E;
+  border-color: #FCD34D;
+}
+
+.reusable-yes {
+  color: #059669;
+  font-weight: 600;
+}
+
+.reusable-no {
+  color: #9ca3af;
+}
+
+.best-for-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+  color: #92400E;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.best-for-badge svg {
+  flex-shrink: 0;
+}
+
+.mobile-comparison-cards {
+  display: none;
+}
+
+.mobile-comparison-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+a.mobile-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  text-decoration: none;
+}
+
+a.mobile-card-header:hover .mobile-card-name {
+  color: #f2a900;
+  text-decoration: underline;
+}
+
+.mobile-card-img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+    border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.mobile-card-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: #111827;
+  transition: color 0.15s;
+  flex: 1;
+}
+
+a.mobile-card-header .method-badge {
+  flex-shrink: 0;
+  font-size: 11px;
+  padding: 3px 8px;
+}
+
+.mobile-card-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.mobile-detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-detail-label {
+  font-size: 11px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.mobile-detail-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+}
+
+@media (max-width: 768px) {
+  .desktop-comparison-table {
+    display: none;
+  }
+  
+  .mobile-comparison-cards {
+    display: block;
+  }
+}
+
+.steels-listing {
+  margin-top: 40px;
+}
+
+.steel-item {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: box-shadow 0.2s;
+  padding: 24px;
+}
+
+.steel-item:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.steel-header {
+  display: flex;
+  gap: 24px;
+}
+
+.steel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #f9fafb;
+  padding: 8px;
+  transition: box-shadow 0.15s;
+}
+
+.steel-info {
+  flex: 1;
+}
+
+.steel-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.steel-title-link {
+  text-decoration: none;
+}
+
+.steel-title-link:hover .steel-title {
+  color: #f2a900 !important;
+  text-decoration: underline;
+}
+
+.steel-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827 !important;
+  margin: 0 0 8px 0;
+  transition: color 0.15s;
+}
+
+.steel-image-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.steel-image-wrapper:hover .steel-image {
+  box-shadow: 0 4px 12px rgba(242, 169, 0, 0.3);
+}
+
+.steel-data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.steel-data-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.steel-data-label {
+  font-size: 12px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.steel-data-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.steel-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.steel-apply-button {
+  background: #f2a900;
+  color: black !important;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+
+.steel-apply-button:hover {
+  background: #059669;
+  color: white !important;
+}
+
+.steel-breakdown-section {
+  margin-top: 12px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 12px;
+}
+
+.steel-breakdown-section:first-of-type {
+  margin-top: 20px;
+}
+
+.steel-breakdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 12px;
+  margin: -4px -8px;
+  border-radius: 6px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  user-select: none;
+  border: 1px solid transparent;
+}
+
+.steel-breakdown-header:hover {
+  background: #FEF9E7;
+  border-color: #F2A900;
+}
+
+.steel-breakdown-title {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  transition: color 0.15s;
+}
+
+.steel-breakdown-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  margin-right: 10px;
+}
+
+.steel-breakdown-header:hover .steel-breakdown-icon {
+  color: #D97706;
+}
+
+.steel-breakdown-header:hover .steel-breakdown-title {
+  color: #111827;
+}
+
+.steel-breakdown-chevron {
+  color: #9ca3af;
+  transition: transform 0.15s, color 0.15s;
+}
+
+.steel-breakdown-header:hover .steel-breakdown-chevron {
+  color: #D97706;
+}
+
+.steel-breakdown-section.expanded .steel-breakdown-chevron {
+  transform: rotate(180deg);
+}
+
+.steel-breakdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease-out, padding-top 0.2s ease-out;
+  padding-top: 0;
+  color: #111827;
+}
+
+.steel-breakdown-section.expanded .steel-breakdown-content {
+  max-height: 500px;
+  padding-top: 10px;
+}
+
+.steel-breakdown-content ul {
+    list-style: none;
+  padding-left: 0;
+    margin: 0;
+}
+
+.steel-breakdown-content li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 6px;
+  padding: 4px 0;
+  color: #111827;
+}
+
+.steel-breakdown-content li::before {
+  content: "✓";
+  color: #10b981;
+    font-weight: bold;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.steel-cons-content li::before {
+  content: "✗";
+  color: #EF4444;
+}
+
+.steel-summary-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #374151;
+}
+
+.content-section {
+  max-width: 800px;
+  margin-top: 60px;
+}
+
+.content-section h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.content-section p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #374151;
+  margin-bottom: 16px;
+}
+
+.content-section ul {
+  margin-bottom: 16px;
+}
+
+.content-section ul li {
+  margin-bottom: 8px;
+  color: #374151;
+}
+
+.backup-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+}
+
+.backup-comparison-table th,
+.backup-comparison-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border: 1px solid #e5e7eb;
+}
+
+.backup-comparison-table th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #111827;
+}
+
+.backup-comparison-table td {
+  color: #374151;
+}
+
+.backup-comparison-table tr:hover {
+  background: #f9fafb;
+}
+
+@media (max-width: 768px) {
+  .steel-header {
+    flex-direction: column;
+  }
+  
+  .steel-image-wrapper {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 16px;
+  }
+  
+  .steel-title {
+    font-size: 20px;
+  }
+  
+  .steel-badges-row {
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .steel-data-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  
+  .steel-data-value {
+    font-size: 13px;
+    word-break: break-word;
+  }
+  
+  .steel-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .steel-apply-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .steel-item {
+    padding: 16px;
+    margin-left: -8px;
+    margin-right: -8px;
+    border-radius: 8px;
+  }
+  
+  .toc-box {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .steel-data-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .steel-item {
+    padding: 14px;
+  }
+  
+  .steel-title {
+    font-size: 18px;
+  }
+  
+  .best-for-badge {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+}
+
+.takeaway-box {
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+  border: 1px solid #3B82F6;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+
+.takeaway-box h3 {
+  color: #1E40AF;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+.takeaway-box ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.takeaway-box li {
+  color: #1E3A8A;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.steel-disclaimer {
+  margin-top: 48px;
+  padding: 20px 24px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border-left: 3px solid #d1d5db;
+}
+
+.steel-disclaimer p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #6b7280;
+}
 </style>
 
 <br><br>
 
-<div style="max-width: 800px;">
+<div class="steel-intro">
 
 <div class="toc-box">
     <div class="toc-box-label">Table Of Contents</div>
     <nav>
         <ul>
-            <li>
-                <a href="#what-is-a-steel-wallet">What is a Steel Wallet?</a>
-            </li>
-            <li>
-                <a href="#benefits-of-steel-wallets">Benefits of Steel Wallets</a>
-            </li>
-            <li>
-                <a href="#best-crypto-steel-wallets">Best Crypto Steel Wallets</a>
-            </li>
-            <li>
-                <a href="#cons-of-a-steel-backup">Cons of a Steel Backup</a>
-            </li>
-            <li>
-                <a href="#titanium-vs-steel">Titanium vs Steel</a>
-            </li>
-            <li>
-                <a href="#do-steel-wallets-work-with-all-hardware-wallets">Which Wallets Work with Steel?</a>
-            </li>
+            <li><a href="#compare-steel-wallets">Compare Steel Wallets</a></li>
+            <li><a href="#what-is-a-steel-wallet">What is a Steel Wallet?</a></li>
+            <li><a href="#benefits-of-steel-wallets">Benefits of Steel Wallets</a></li>
+            <li><a href="#steel-wallet-details">Steel Wallet Details</a></li>
+            <li><a href="#comparison-of-backup-methods">Comparison of Backup Methods</a></li>
+            <li><a href="#cons-of-a-steel-backup">Cons of a Steel Backup</a></li>
+            <li><a href="#titanium-vs-steel">Titanium vs Steel</a></li>
         </ul>
     </nav>
-</div>
+          </div>
 
-<img loading="lazy" alt="bitcoin steel wallets" class="halfimg-right color-guide-img" src="https://buybitcoinworldwide.com/pages/wallets/en/steel/img/steel-header.png" style="float: right; max-width: 250px;">
-
-<p>Steel wallets have become the standard for crypto seed storage security.</p>
-
-<p>If you are storing your own Bitcoin or crypto seed phrase, a steel/metal wallet is a must-have.</p>
-
-<p>In this article, we'll cover:</p>
-
-<ul class="quick-info-pros">
-    <li>Risks associated with seed phrase storage</li>
-    <li>What a steel wallet is</li>
-    <li>Importance of getting a metal/steel wallet</li>
-    <li>Top 6 steel wallets on the market</li>
-</ul>
-<br>
+<p>Steel wallets have become the standard for crypto seed storage security. If you are storing your own Bitcoin or crypto seed phrase, a steel/metal wallet is a must-have.</p>
 
 <div class="takeaway-box" id="key-takeaways">
-    <h3 style="margin-left: 17px;">Key Takeaways</h3>
+    <h3>🔑 Key Takeaways</h3>
     <ul>
         <li>Your wallet seed words allow you to recover your Bitcoins. It's critical to have a secure backup like a steel wallet.</li>
         <li>Steel wallets will protect your wallet seed from corrosion, fire, hackers, rust, water, and more.</li>
-        <li>Steel wallets cost between $30 to $120. Spending money will get you more security.</li>
-    </ul>
-</div>
-<br><br>
+        <li>Steel wallets cost between $70 to $415. Spending more typically gets you better materials (titanium) or included tools.</li>
+                  </ul>
+              </div>
 
-<h2 id="what-is-a-steel-wallet">What is a Steel Wallet?</h2>
+          </div>
+
+{% if steels.size > 0 %}
+<div class="comparison-table-wrapper" id="compare-steel-wallets">
+  <div class="comparison-table-header">
+    <h2 class="comparison-table-title">Compare Steel Wallets</h2>
+          </div>
+
+  <div class="desktop-comparison-table">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Steel Wallet</th>
+          <th>Best For</th>
+          <th>Price</th>
+          <th>Material</th>
+          <th>Method</th>
+          <th>Reusable</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for steel in steels %}
+        <tr>
+          <td>
+            <a href="{{ steel.link }}" target="_blank" rel="nofollow noopener" class="comparison-table-steel-name" onclick="fathom.trackEvent('Click Steel Wallet: {{ steel.title }}');">
+              <img src="/tools/img/{{ steel.img }}" alt="{{ steel.title }}" class="comparison-table-steel-img">
+              <span>{{ steel.title }}</span>
+            </a>
+          </td>
+          <td>{{ steel.steel_bestfor | default: "—" }}</td>
+          <td>{{ steel.price | default: "—" }}</td>
+          <td>{{ steel.material | default: "Stainless Steel" | truncate: 20 }}</td>
+          <td>
+            {% if steel.steel_method contains "Tile" %}
+              <span class="method-badge tile">🔤 Tiles</span>
+            {% elsif steel.steel_method contains "Hammer" %}
+              <span class="method-badge hammer">🔨 Hammer</span>
+            {% else %}
+              <span class="method-badge punch">🔘 Punch</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if steel.steel_reusable == "Yes" %}
+              <span class="reusable-yes">✓ Yes</span>
+            {% else %}
+              <span class="reusable-no">No</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+              </div>
+  
+  <div class="mobile-comparison-cards">
+    {% for steel in steels %}
+    <div class="mobile-comparison-card">
+      <a href="{{ steel.link }}" target="_blank" rel="nofollow noopener" class="mobile-card-header" onclick="fathom.trackEvent('Click Steel Wallet: {{ steel.title }}');">
+        <img src="/tools/img/{{ steel.img }}" alt="{{ steel.title }}" class="mobile-card-img">
+        <div class="mobile-card-name">{{ steel.title }}</div>
+        {% if steel.steel_method contains "Tile" %}
+          <span class="method-badge tile">🔤 Tiles</span>
+        {% elsif steel.steel_method contains "Hammer" %}
+          <span class="method-badge hammer">🔨 Hammer</span>
+        {% else %}
+          <span class="method-badge punch">🔘 Punch</span>
+        {% endif %}
+      </a>
+      <div class="mobile-card-details">
+        <div class="mobile-detail-item">
+          <span class="mobile-detail-label">Best For</span>
+          <span class="mobile-detail-value">{{ steel.steel_bestfor | default: "—" }}</span>
+          </div>
+        <div class="mobile-detail-item">
+          <span class="mobile-detail-label">Price</span>
+          <span class="mobile-detail-value">{{ steel.price | default: "—" }}</span>
+              </div>
+        <div class="mobile-detail-item">
+          <span class="mobile-detail-label">Material</span>
+          <span class="mobile-detail-value">{{ steel.material | default: "Steel" | truncate: 15 }}</span>
+          </div>
+        <div class="mobile-detail-item">
+          <span class="mobile-detail-label">Reusable</span>
+          <span class="mobile-detail-value">{{ steel.steel_reusable | default: "No" }}</span>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="content-section" id="what-is-a-steel-wallet">
+<h2>What is a Steel Wallet?</h2>
 
 <p>Hardware wallets like the Ledger Nano X and Trezor T are popular because they offer a much more secure way to store your Bitcoins or Ethereum than the software wallets you get from crypto exchanges, like a Coinbase wallet.</p>
 
-<p>The downside of hardware wallets is that you can lose all your Bitcoins if you accidentally break or misplace your Bitcoin wallet -- or it gets stolen.</p>
+<p>The downside of hardware wallets is that you can lose all your Bitcoins if you accidentally break or misplace your Bitcoin wallet — or it gets stolen.</p>
 
-<p>That's where the seed phrase comes in.</p>
+<p>That's where the seed phrase comes in. It's a combination of random words that enable you to access your Bitcoins on the blockchain in case you lose access to your hardware wallet.</p>
 
-<center>
-<img alt="24 word seed" src="https://buybitcoinworldwide.com/pages/wallets/en/img/24-word.png" loading="lazy">
-<div class="kb-helper">What a mnemonic seed phrase looks like.</div>
-</center>
+<p>But private keys and seed phrases can also be a major security risk. Enter the cryptocurrency and Bitcoin steel wallet.</p>
 
-<p>It's a combination of random words that enable you to access your Bitcoins on the blockchain in case you lose access to your hardware wallet.</p>
-
-<p>But private keys and seed phrases can also be a major security risk.</p>
-
-<p>Enter the cryptocurrency and Bitcoin steel wallet.</p>
-
-<p>A metal wallet is another <a href="/tools/offline-wallets/">cold storage and offline wallet</a> that securely backs up the recovery phrase (another word for private keys and seed phrases) to your other hardware wallets so you never lose access to your Bitcoins.</p>
-
-<h2>Compare Amazon Review Scores</h2>
-
-<p>Use the tool below to compare customer review scores from Amazon.com. These scores and number of reviews are as of November 22, 2023.</p>
-
-<div id="wallets">
-    <input type="checkbox" id="billfodl"> Billfodl<br>
-    <input type="checkbox" id="cryptotag"> CryptoTag<br>
-    <input type="checkbox" id="cryptosteel"> Cryptosteel<br>
-    <input type="checkbox" id="bitbox"> BitBox Steel<br>
-    <input type="checkbox" id="secux"> SecuX<br>
-    <input type="checkbox" id="hodlr"> Hodlr Swiss<br>
-    <input type="checkbox" id="keystone"> Keystone<br>
-    <input type="checkbox" id="safepal"> SafePal Cypher<br>
-    <input type="checkbox" id="cryo"> CRYO<br>
-</div>
-<br>
-
-<button onclick="showScores()">Show Scores</button>
-
-<div id="results"></div>
-
-<br><br>
-
-<h2>Our Steel Wallet Picks</h2>
-
-<style>
-.country-compare-table {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin: 20px 0;
-    max-width: 100%;
-}
-
-.country-compare-table .main-table {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.country-compare-table .main-header {
-    background: #f8f9fa;
-    color: #333;
-    font-size: 1.2em;
-    font-weight: bold;
-    padding: 15px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-}
-
-.country-compare-table .list-item {
-    padding: 20px;
-    border-bottom: 1px solid #eee;
-}
-
-.country-compare-table .icon-cover {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
-}
-
-.country-compare-table .product-style {
-    color: #333;
-}
-
-.country-compare-table .product-name {
-    display: block;
-    font-size: 1.1em;
-    margin-bottom: 10px;
-}
-
-.country-compare-table .product-name a {
-    color: #2a71d0;
-    text-decoration: none;
-}
-
-.country-compare-table .product-name a:hover {
-    text-decoration: underline;
-}
-
-.country-compare-table ul {
-    margin: 0;
-    padding-left: 20px;
-}
-
-.country-compare-table ul li {
-    margin: 5px 0;
-    color: #555;
-}
-</style>
-
-<div class="table-responsive country-compare-table main-layout">
-    <ul class="table main-table">
-      <li class="row main-header">
-          <div class="col-md-12">STEEL WALLETS</div>
-      </li>
-
-      <li class="row list-item">
-          <div class="col-md-3">
-              <img loading="lazy" class="icon-cover" alt="billfodl logo" src="https://buybitcoinworldwide.com/pages/wallets/en/steel/billfodl.jpg">
-          </div>
-          <div class="col-md-9">
-              <div class="product-style">
-                  <u class="product-name"><b><a target="_blank" rel="nofollow noopener" href="https://ledger.pxf.io/APPWRN">Billfodl</a></b></u>
-                  <ul style="list-style-type:disc;">
-                      <li>Highest grade steel wallet</li>
-                      <li>125% money-back guarantee</li>
-                      <li>Lots of accessories to up your security</li>
-                      <li>Recommended by Ledger</li>            
-                  </ul>
-              </div>
-          </div>
-      </li>
- 
-    <li class="row list-item">
-          <div class="col-md-3">
-              <img loading="lazy" class="icon-cover" alt="cryptotag zeus" src="https://buybitcoinworldwide.com/pages/wallets/en/steel/tag.jpg">
-          </div>
-          <div class="col-md-9">
-              <div class="product-style">
-                  <u class="product-name"><b><a target="_blank" rel="nofollow noopener" href="https://ledger.pxf.io/555g13">CRYPTOTAG Zeus</a></b></u>
-                  <ul style="list-style-type:disc;">
-                      <li>6mm-thick titanium</li>
-                      <li>Waterproof, fireproof, corrosion-proof, hacker-proof, bulletproof</li>
-                  </ul>
-              </div>
-          </div>
-      </li>
-
- <li class="row list-item">
-          <div class="col-md-3">
-              <img loading="lazy" class="icon-cover" alt="ledger logo" src="https://buybitcoinworldwide.com/pages/wallets/en/steel/img/ledger-logo.jpg">
-          </div>
-          <div class="col-md-9">
-              <div class="product-style">
-                  <u class="product-name"><b><a target="_blank" rel="nofollow noopener" href="https://ledger.pxf.io/199rZx">Cryptosteel Capsule</a></b></u>
-                  <ul style="list-style-type:disc;">
-                      <li>Second backup from Cryptosteel</li>
-                      <li>Sold by Ledger</li>
-                      <li>Different from cassette styles</li>
-                  </ul>
-              </div>
-          </div>
-      </li>
-  </ul>
+<p>A metal wallet is another <a href="/offline-wallets/">cold storage and offline wallet</a> that securely backs up the recovery phrase (another word for private keys and seed phrases) to your other hardware wallets so you never lose access to your Bitcoins.</p>
 </div>
 
-<br><br>
+<div class="content-section" id="benefits-of-steel-wallets">
+<h2>Benefits of Steel Wallets</h2>
 
-
-<h2 id="benefits-of-steel-wallets">Benefits of Steel Wallets</h2>
-
-<p>You could just write down your private key or seed phrase on a piece of paper and store it in a safe place. But that makes it no more secure than a paper wallet -- and that is risky business.</p>
+<p>You could just write down your private key or seed phrase on a piece of paper and store it in a safe place. But that makes it no more secure than a paper wallet — and that is risky business.</p>
 
 <p>Most steel wallets, on the other hand, are resistant to pretty much any physical threat or natural disaster.</p>
-
-<center>
-    <img alt="fires floods and atomic bombs" src="https://buybitcoinworldwide.com/pages/wallets/en/steel/img/threats.png" loading="lazy">
-    <div class="kb-helper">Steel wallets protect you from fires, floods, and even nuclear fallout.</div>
-</center>
 
 <p>Some examples of threats steel wallets protect your seed from include:</p>
 
@@ -271,208 +884,170 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="26.67" height="32" view
 </ul>
 
 <p>That makes steel wallets almost indestructible. Some manufacturers even go so far as to make videos where they try (and fail) to break them.</p>
+</div>
 
-<br>
-<iframe style="max-width: 100%;" width="560" height="315" src="https://www.youtube.com/embed/bm-pm_ERYIA?si=WHwjY9IGkBsdSSzt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-<br>
+<h2 id="steel-wallet-details">Steel Wallet Details</h2>
 
-<p>Now that you know how steel wallets work and why they're important, it's time to look at some of the best-selling steel wallets on the market right now.</p>
-
-<h2 id="best-crypto-steel-wallets">Best Crypto Steel Wallets</h2>
-
-<div class="wallet-list-item lock-bug col-sm-12 buy-info-full">
-    <h2>
-        <img loading="lazy" src="https://buybitcoinworldwide.com/pages/wallets/en/steel/billfodl.jpg" alt="Billfodl logo" style="max-width: 120px; margin-right: 10px;">Billfodl Backup
+<div class="steels-listing">
+  {% for steel in steels %}
+  <div class="steel-item">
+    <div class="steel-header">
+      <a href="{{ steel.link }}" target="_blank" rel="nofollow noopener" class="steel-image-wrapper" onclick="fathom.trackEvent('Click Steel Wallet: {{ steel.title }}');">
+        <img src="/tools/img/{{ steel.img }}" alt="{{ steel.title }}" class="steel-image">
+      </a>
+      
+      <div class="steel-info">
+        {% if steel.steel_bestfor %}
+        <div class="steel-badges-row">
+          <span class="best-for-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#F59E0B" stroke="#F59E0B" stroke-width="1.5"/>
+            </svg>
+            Best for: {{ steel.steel_bestfor }}
+          </span>
+        </div>
+        {% endif %}
         
-    </h2>
-    <center>
-        <img class="wallet-hero" loading="lazy" src="https://buybitcoinworldwide.com/pages/wallets/en/steel/img/billfodl-hero.png" />
-    </center>
-    <p class="new-desc-box">Privacy Pro's Billfodl is made from stainless steel (grade 316), which makes it a particularly corrosion-resistant and very tough wallet. At $99, it is a great choice for the holder who wants value for money without compromising on quality. They are the only backup that offers a 125% money-back guarantee for life.</p>
-    <br>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Pros</div>
-        <ul class="quick-info-pros">
-            <li>Simple setup process</li>
-            <li>Compatible with all crypto wallets</li>
-            <li>Scientifically tested at a Dept. of Defense ordinance testing facility</li>
-            <li>Very strong and competitively priced</li>
-        </ul>
+        <a href="{{ steel.link }}" target="_blank" rel="nofollow noopener" class="steel-title-link" onclick="fathom.trackEvent('Click Steel Wallet: {{ steel.title }}');">
+          <h3 class="steel-title">{{ steel.title }}</h3>
+        </a>
+        
+        <div class="steel-data-grid">
+          <div class="steel-data-item">
+            <div class="steel-data-label">Price</div>
+            <div class="steel-data-value">{{ steel.price | default: "—" }}</div>
     </div>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Cons</div>
-        <ul class="quick-info-cons">
-            <li>You may need to pre-order to get one since so many people order them.</li>
-        </ul>
+          
+          <div class="steel-data-item">
+            <div class="steel-data-label">Material</div>
+            <div class="steel-data-value">{{ steel.material | default: "Stainless Steel" | truncate: 25 }}</div>
     </div>
 
-    <br />
+          <div class="steel-data-item">
+            <div class="steel-data-label">Fire Resistance</div>
+            <div class="steel-data-value">{{ steel.fire_resistance | default: steel.fireproof | default: "—" }}</div>
 </div>
 
-<div class="wallet-list-item lock-bug col-sm-12 buy-info-full">
-    <h2>
-        <img loading="lazy" src="https://buybitcoinworldwide.com/pages/wallets/en/steel/cryptosteel.jpg" alt="Cryptosteel logo" style="max-width: 120px; margin-right: 10px;">Cryptosteel Capsule
-    </h2>
-    <center>
-        <img class="wallet-hero" loading="lazy" src="https://buybitcoinworldwide.com/pages/wallets/en/steel/img/capsule-banner.jpg" />
-    </center>
-    <p class="new-desc-box">This second-generation backup from Cryptosteel is made from stainless steel (grade 304). It sells for $99 on Ledger Wallet's store, making it slightly more expensive than the Cryptosteel Cassette. It features a tube shape where tiles are dropped onto a core held within the tube. The idea is that metal bending is less likely in a house fire and so the structure of the tube should be more robust.</p>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Pros</div>
-        <ul class="quick-info-pros">
-            <li>Very reasonably priced</li>
-            <li>Beautiful packaging makes it easy to change seed</li>
-            <li>Easier to load than a cassette-style backup</li>
-        </ul>
+          <div class="steel-data-item">
+            <div class="steel-data-label">Entry Method</div>
+            <div class="steel-data-value">
+              {% if steel.steel_method contains "Tile" %}
+                <span class="method-badge tile">🔤 Tiles</span>
+              {% elsif steel.steel_method contains "Hammer" %}
+                <span class="method-badge hammer">🔨 Hammer</span>
+              {% else %}
+                <span class="method-badge punch">🔘 Punch</span>
+              {% endif %}
     </div>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Cons</div>
-        <ul class="quick-info-cons">
-            <li>Not very easy to recover a wallet from</li>
-            <li>Easier to lose the seed when recovering</li>
-        </ul>
     </div>
     
-    
-    <br>
+          <div class="steel-data-item">
+            <div class="steel-data-label">Reusable</div>
+            <div class="steel-data-value">
+              {% if steel.steel_reusable == "Yes" %}
+                <span class="reusable-yes">✓ Yes</span>
+              {% else %}
+                <span class="reusable-no">No (single use)</span>
+              {% endif %}
 </div>
-
-<div class="wallet-list-item lock-bug col-sm-12 buy-info-full">
-    <h2>
-       <img loading="lazy" src="https://buybitcoinworldwide.com/pages/wallets/en/steel/tag.jpg" alt="Cryptotag logo" style="max-width: 120px; margin-right: 10px;">Cryptotag
-       
-    </h2>
-    <center>
-        <img class="wallet-hero" loading="lazy" src="https://buybitcoinworldwide.com/pages/wallets/en/steel/img/cryptotag-hero.jpg" />
-    </center>
-    <p class="new-desc-box">CRYPTOTAG is a titanium wallet that differs from Privacy Pro's Billfodl and Cryptosteel in that the owner uses a hammer or engraving pen to stamp or engrave letters into the metal plate itself. It comes in two versions, the Cryptotag Thor ($199) and the CryptoTag Zeus ($109). Because the Thor comes with a hammer, 26 letter bits, a bit holder, two stainless steel plates, earplugs, matches, and an anvil in the package, it is the more expensive set.</p>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Pros</div>
-        <ul class="quick-info-pros">
-            <li>Allows for up to 48 words</li>
-            <li>Extremely high melting point</li>
-            <li>Includes all necessary tools</li>
-            <li>Tamper-resistant</li>
-        </ul>
     </div>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Cons</div>
-        <ul class="quick-info-cons">
-            <li>Cryptotag requires hammer and stamping kit to record seed phrases</li>
-            <li>Not re-usable</li>
-        </ul>
     </div>
     
-    <br>
+        <div class="steel-actions">
+          <a href="{{ steel.link }}" target="_blank" rel="nofollow noopener" class="steel-apply-button" onclick="fathom.trackEvent('Click Steel Wallet: {{ steel.title }}');">
+            GET {{ steel.title | upcase | truncate: 20, "" }}
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
 </div>
 
-<div class="wallet-list-item lock-bug col-sm-12 buy-info-full">
-    <h2>
-        <img loading="lazy" src="https://buybitcoinworldwide.com/pages/wallets/en/steel/cypherwheel-logo.jpg" alt="Cypherwheel logo" style="max-width: 120px; margin-right: 10px;">CypherWheel
-    </h2>
-    <center>
-        <img class="wallet-hero" loading="lazy" src="https://buybitcoinworldwide.com/pages/wallets/en/steel/img/cypherwheel.jpg" />
-    </center>
-    <p class="new-desc-box">The CypherWheel is a steel backup wallet that also uses a tile system, similar to Billfodl and Cryptosteel, but instead opts for a rotating mechanism for loading and viewing. This steel wallet features a thicker 303 5/16" cut which means it is quite heavy and strong. You do pay for it though at its $215 price point, but it is important to remember this is storing very precious data!</p>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Pros</div>
-        <ul class="quick-info-pros">
-            <li>Very robust and heavy</li>
-            <li>Simple, intuitive tile-loading system</li>
-        </ul>
+        {% if steel.desc %}
+        <div class="steel-breakdown-section">
+          <div class="steel-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="steel-breakdown-title">
+              <div class="steel-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                  <path d="M7 9h10M7 13h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
     </div>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Cons</div>
-        <ul class="quick-info-cons">
-            <li>Very high Price point at $250</li>
-            <li>Often out of Stock</li>
-            <li>Tiles can be hard to read</li>
-        </ul>
+              Overview
     </div>
-    
-    <br> 
+            <svg class="steel-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
 </div>
-
-<div class="wallet-list-item lock-bug col-sm-12 buy-info-full">
-    <h2>
-        <img loading="lazy" src="https://buybitcoinworldwide.com/pages/wallets/en/steel/bitbox-logo.jpg" alt="Bitbox logo" style="max-width: 120px; margin-right: 10px;">SteelWallet by BitBox
-    </h2>
-    <center>
-        <img class="wallet-hero" loading="lazy" src="https://buybitcoinworldwide.com/pages/wallets/en/steel/img/bitbox-steelwallet.jpg" />
-    </center>
-    <p class="new-desc-box">SteelWallet is the steel backup wallet made by the same people who make the BitBox02 hardware wallet. This steel wallet utilizes a steel punch mechanism, where the user applies pressure to a punching tool to make an indent on a grid. Each punch represents one letter. This wallet utilizes 303 stainless steel.</p>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Pros</div>
-        <ul class="quick-info-pros">
-            <li>A less expensive solution at $71</li>
-            <li>Relatively quiet setup</li>
-            <li>Reasonably strong</li>
-        </ul>
+          <div class="steel-breakdown-content">
+            <p class="steel-summary-text">{{ steel.desc }}</p>
     </div>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Cons</div>
-        <ul class="quick-info-cons">
-            <li>Longer recovery time</li>
-            <li>Must throw away and start over if you make a single mistake</li>
-            <li>Tiresome to set up</li>
-            <li>Not re-usable</li>
-        </ul>
     </div>
-    
-    <br> 
+        {% endif %}
+        
+        {% if steel.wallet_pros or steel.steel_pros %}
+        <div class="steel-breakdown-section">
+          <div class="steel-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="steel-breakdown-title">
+              <div class="steel-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
 </div>
-
-<div class="wallet-list-item lock-bug col-sm-12 buy-info-full">
-    <h2>
-        <img loading="lazy" src="https://buybitcoinworldwide.com/pages/wallets/en/steel/blockplate-logo.jpg" alt="blockplate logo" style="max-width: 120px; margin-right: 10px;">BlockPlate 24
-    </h2>
-    <center>
-        <img class="wallet-hero" loading="lazy" src="https://buybitcoinworldwide.com/pages/wallets/en/steel/img/blockplate.jpg" />
-    </center>
-    <p class="new-desc-box">BlockPlate is another steel punch design like the Bitbox SteelWallet. It uses 304 stainless steel instead of 303. Unfortunately, Blockplate does not include the punching tool like SteelWallet does.</p>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Pros</div>
-        <ul class="quick-info-pros">
-            <li>A less expensive solution at $79</li>
-            <li>Relatively quiet setup</li>
-            <li>Reasonably strong</li>
-        </ul>
+              Pros
     </div>
-    <div class="exchange-pros exchange-pros-buylist col-md-6">
-        <div class="exchange-pros-title">Cons</div>
-        <ul class="quick-info-cons">
-            <li>Longer recovery time</li>
-            <li>Must throw away and start over if you make a single mistake</li>
-            <li>Tiresome to set up</li>
-            <li>Not re-usable</li>
-            <li>No punching tool included</li>
-        </ul>
+            <svg class="steel-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
     </div>
-
-    <br> 
+          <div class="steel-breakdown-content">
+            {{ steel.wallet_pros | default: steel.steel_pros }}
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if steel.wallet_cons or steel.steel_cons %}
+        <div class="steel-breakdown-section">
+          <div class="steel-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="steel-breakdown-title">
+              <div class="steel-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
 </div>
-<br>
-<br>
-<h2>User Testimonials</h2>
+              Cons
+            </div>
+            <svg class="steel-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="steel-breakdown-content steel-cons-content">
+            {{ steel.wallet_cons | default: steel.steel_cons }}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>No steel wallets available at this time.</p>
+{% endif %}
 
-<p>One Billfodl customer recounted having stored around a million dollars of Bitcoin on a hardware wallet they stored with a paper backup inside of a fireproof safe.</p>
-
-<p>Their house was flooded and the fireproof safe was filled with water, <strong>destroying the hardware wallet and disintegrating the paper backup</strong>.</p>
-
-<p>This customer lost everything and now stores their backup on a Billfodl.</p>
-
+<div class="content-section" id="comparison-of-backup-methods">
 <h2>Comparison of Various Backup Methods</h2>
 
-<p>There are 4 main types of wallet backups.</p>
+<p>There are 4 main types of wallet backups:</p>
 
-<p><strong>Metal:</strong> This backup is what we are covering in this article - you use some sort of steel or titanium casing or plates to write down your seed phrase.<br>
-<strong>Paper:</strong> Writing down your seed phrase on paper using pen and ink is what most people use before they realize how dangerous it is due to the risks outlined in this article.<br> 
-<strong>Digital:</strong> Some store their seed phrase on a USB drive. These digital copies are risky to create and can easily be destroyed or hacked.<br> 
-<strong>Cloud:</strong> Some people keep their seed phrase on a text document stored on Google Drive or Dropbox; a dangerous practice since these are third-party services you must trust.</p>
+<p><strong>Metal:</strong> This backup is what we are covering in this article — you use some sort of steel or titanium casing or plates to write down your seed phrase.</p>
 
-<br>
-<div class="table-responsive">
-    <table class="table table-striped table-bordered">
+<p><strong>Paper:</strong> Writing down your seed phrase on paper using pen and ink is what most people use before they realize how dangerous it is due to the risks outlined in this article.</p>
+
+<p><strong>Digital:</strong> Some store their seed phrase on a USB drive. These digital copies are risky to create and can easily be destroyed or hacked.</p>
+
+<p><strong>Cloud:</strong> Some people keep their seed phrase on a text document stored on Google Drive or Dropbox; a dangerous practice since these are third-party services you must trust.</p>
+
+<table class="backup-comparison-table">
         <thead>
             <tr>
             <th>Method</th>
@@ -482,22 +1057,22 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="26.67" height="32" view
         </thead>
         <tbody>
             <tr>
-            <th>Steel/Metal</th>
+            <td><strong>Steel/Metal</strong></td>
             <td>Highly durable, resistant to fire, water, and acts of God.</td>
             <td>Can be expensive, risk of physical theft.</td>
             </tr>
             <tr>
-            <th>Paper</th>
+            <td><strong>Paper</strong></td>
             <td>Easy and cheap to create, with no digital footprint.</td>
-            <td>fire and water damage, and risk of physical theft.</td>
+            <td>Fire and water damage, and risk of physical theft.</td>
             </tr>
             <tr>
-            <th>Digital</th>
+            <td><strong>Digital</strong></td>
             <td>Easy to store and replicate.</td>
             <td>Vulnerable to hacking and malware, risk of total data loss.</td>
             </tr>
             <tr>
-            <th>Cloud Storage</th>
+            <td><strong>Cloud Storage</strong></td>
             <td>Easy to access from any location, usually backed up by a service provider.</td>
             <td>Dependent on third-party security, risk of hacking, and unauthorized access.</td>
             </tr>
@@ -505,7 +1080,8 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="26.67" height="32" view
     </table>
 </div>
 
-<h2 id="cons-of-a-steel-backup">Cons of a Steel Backup</h2>
+<div class="content-section" id="cons-of-a-steel-backup">
+<h2>Cons of a Steel Backup</h2>
 
 <p>It's important to remember that anyone who finds your steel backup will have access to your coins.</p>
 
@@ -515,23 +1091,21 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="26.67" height="32" view
 
 <p>You may even want to instruct your spouse or significant others that they can use this device to access your funds in the case of your death.</p>
 
-<p>The point is, that steel wallets are meant to protect your Bitcoin seed phrase from destruction by fire and water damage.</p>
+<p>The point is, steel wallets are meant to protect your Bitcoin seed phrase from destruction by fire and water damage.</p>
 
-<h2>How do I back up a Multi-sig?</h2>
+<h3>How do I back up a Multi-sig?</h3>
 
-<p>If you have a multi-sig wallet, you will have several recovery seeds.</p>
-
-<p>One of these devices will, therefore, not be enough to back up all of the recovery seeds.</p>
+<p>If you have a multi-sig wallet, you will have several recovery seeds. One of these devices will, therefore, not be enough to back up all of the recovery seeds.</p>
 
 <p>You will need to buy one device for each recovery seed you have. So for instance, if you have a 2-of-3 multisig, you will need to buy three of these backup devices.</p>
 
-<br>
-<div class="buy-btc-cc-info">
-<h3>QUICK TIP</h3>
-<p>Do not store all three of your backups in the same place. This eliminates much of the protection that a multisig gives you since anyone who finds one of your recovery seeds has found all of them. They will then be able to recover all of your signatures and take your coins.</p>
+<div class="steel-intro-highlight">
+    <p>⚠️ <strong>Important:</strong> Do not store all three of your backups in the same place. This eliminates much of the protection that a multisig gives you since anyone who finds one of your recovery seeds has found all of them.</p>
+</div>
 </div>
 
-<h2 id="titanium-vs-steel">Titanium vs Steel</h2>
+<div class="content-section" id="titanium-vs-steel">
+<h2>Titanium vs Steel</h2>
 
 <p>You may have noticed most of the wallets on this list are made of steel. That is mainly for cost reasons.</p>
 
@@ -539,66 +1113,22 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="26.67" height="32" view
 
 <p>For these reasons, most wallets opt for some kind of stainless steel because they offer good performance for the money.</p>
 
-<h2>Jameson Lopp's Steel Stress Test</h2>
+<h3>Jameson Lopp's Steel Stress Test</h3>
 
 <p>Jameson Lopp is one of Bitcoin's most well-known security researchers. He's considered a Bitcoin expert and has been in the space since 2011.</p>
 
 <p>He published a Bitcoin steel stress test report, and these were his main findings:</p>
 
-<p><strong>Loss Via Destruction/Degradation:</strong> Melting points and corrosion resistance are critical for storage devices. Brass is best against fire, while stainless steel excels in corrosion resistance.</p>
-
-<p><strong>Loss Via Physical Attack:</strong> Security against unauthorized access is crucial.</p>
-
-<p><strong>Other Loss Vectors:</strong> Storing an HD seed is safer than a single private key. Digital storage of seeds is risky.</p>
-
-<p><strong>Stress Tests:</strong> Corrosion: ColdTi's screws dissolved in muriatic acid.</p>
-
-<p><strong>Crushing:</strong> All devices deformed under 20 tons, but only some lost data.</p>
-
-<p><strong>Optimal Solution:</strong> None are perfect, but a proposed design involves titanium rods and multiple engraving methods.</p>
-
-<p>Overall, <strong>Bitkee</strong> and <strong>Crypto Key Stack</strong> performed best in tests.</p>
+<ul>
+    <li><strong>Loss Via Destruction/Degradation:</strong> Melting points and corrosion resistance are critical for storage devices. Brass is best against fire, while stainless steel excels in corrosion resistance.</li>
+    <li><strong>Loss Via Physical Attack:</strong> Security against unauthorized access is crucial.</li>
+    <li><strong>Crushing:</strong> All devices deformed under 20 tons, but only some lost data.</li>
+    <li><strong>Optimal Solution:</strong> None are perfect, but a proposed design involves titanium rods and multiple engraving methods.</li>
+</ul>
 
 <p>These were extreme tests. Most steel wallets will be good enough for most holders.</p>
-
 </div>
 
-<style>
-    .buy-info-full img {
-        max-width: 100%;
-    }
-</style>
-
-<script>
-    const scores = {
-    'billfodl': '4.7 (294 reviews)',
-    'cryptotag': '4.7 (30 reviews)',
-    'cryptosteel': 'No reviews, not on Amazon',
-    'bitbox': '5.0 (only 2 reviews)',
-    'secux': '4.1 (155 reviews)',
-    'hodlr': '4.3 (10 reviews)',
-    'keystone': '4.4 (1,132 ratings)',
-    'safepal': '4.4 (127 reviews)',
-    'cryo': '4.5 (67 reviews)'
-};
-
-function showScores() {
-    let results = document.getElementById('results');
-    results.innerHTML = '';
-
-    for (let id in scores) {
-        if (document.getElementById(id).checked) {
-            let score = scores[id];
-            results.innerHTML += `<p><b>${id.charAt(0).toUpperCase() + id.slice(1).replace('_', ' ')}:</b> ${score}</p>`;
-        }
-    }
-
-    if (results.innerHTML === '') {
-        results.innerHTML = '<p>No wallets selected.</p>';
-    }
-}
-
-document.getElementById('wallets').addEventListener('change', () => {
-    document.getElementById('results').innerHTML = '';
-}); 
-</script>
+<div class="steel-disclaimer">
+  <p>Disclaimer: The information provided on this page is for informational purposes only and does not constitute financial advice. Steel wallets protect against physical damage but anyone who finds your backup can access your coins — store them securely. Prices and features may change without notice. Some links on this page may be affiliate links, which help support our research at no extra cost to you.</p>
+</div>
