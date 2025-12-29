@@ -5,7 +5,7 @@ full-width: yes
 permalink: "/ios-wallets/"
 category: yes
 seotitle: 7 Best Bitcoin iOS & iPhone Wallets [2026]
-subdesc: iOS wallets to store, send, and receive Bitcoin on your iPhone or iPad.
+subdesc: iOS wallets to store, send, and receive Bitcoin on your iPhone or iPad. 
 svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M20 9.801v4.067c0 3.833 0 5.75-1.172 6.941S15.771 22 12 22s-5.657 0-6.828-1.191C4 19.619 4 17.701 4 13.868V9.8c0-3.833 0-5.75 1.172-6.94c.375-.383.825-.642 1.386-.819c.353-.11.728.047.942.35l.154.236c.634.97.855 1.307 1.368 1.631q.165.105.342.186c.591.274 1.273.274 2.636.274s2.044 0 2.636-.274q.177-.081.342-.186c.513-.324.734-.662 1.368-1.631l.154-.235c.2-.305.564-.467.91-.36c.577.176 1.036.438 1.418.827C20 4.051 20 5.968 20 9.801M9 18.23a.75.75 0 0 0-.75.755c0 .416.336.754.75.754h6c.414 0 .75-.338.75-.755a.75.75 0 0 0-.75-.754z" clip-rule="evenodd"/></svg>'
 ---
 
@@ -842,7 +842,7 @@ a.mobile-card-header .custody-badge {
   .wallet-disclaimer p {
     font-size: 11px;
   }
-}
+    }
 </style>
 
 <br><br>
@@ -863,17 +863,17 @@ a.mobile-card-header .custody-badge {
 
   <div class="desktop-comparison-table">
     <table class="comparison-table">
-      <thead>
+    <thead>
         <tr>
-          <th>Wallet</th>
-          <th>Best For</th>
+            <th>Wallet</th>
+            <th>Best For</th>
           <th>Custody</th>
           <th>Lightning</th>
           <th>Buy/Sell</th>
           <th>Availability</th>
         </tr>
-      </thead>
-      <tbody>
+    </thead>
+    <tbody>
         {% for wallet in wallets %}
         <tr>
           <td>
@@ -903,15 +903,15 @@ a.mobile-card-header .custody-badge {
           <td>{{ wallet.ios_availability | default: "—" }}</td>
         </tr>
         {% endfor %}
-      </tbody>
-    </table>
+    </tbody>
+</table>
   </div>
   
   <div class="mobile-comparison-cards">
     {% for wallet in wallets %}
     <div class="mobile-comparison-card">
       <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="mobile-card-header" onclick="fathom.trackEvent('Click iOS Wallet: {{ wallet.title }}');">
-        <img src="/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-card-img">
+        <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-card-img">
         <div class="mobile-card-name">{{ wallet.title }}</div>
         {% if wallet.ios_custody contains "Self" %}
           <span class="custody-badge self">🔑 Self</span>
@@ -941,7 +941,7 @@ a.mobile-card-header .custody-badge {
       </div>
     </div>
     {% endfor %}
-  </div>
+    </div>
 </div>
 
 <h2>Wallet Details</h2>
@@ -951,7 +951,7 @@ a.mobile-card-header .custody-badge {
   <div class="wallet-item">
     <div class="wallet-header">
       <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="wallet-image-wrapper" onclick="fathom.trackEvent('Click iOS Wallet: {{ wallet.title }}');">
-        <img src="/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="wallet-image">
+        <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="wallet-image">
       </a>
       
       <div class="wallet-info">
@@ -1008,14 +1008,14 @@ a.mobile-card-header .custody-badge {
           <div class="wallet-data-item">
             <div class="wallet-data-label">Buy/Sell Bitcoin</div>
             <div class="wallet-data-value">{{ wallet.ios_buy_sell | default: "No" }}</div>
-          </div>
+    </div>
           
           <div class="wallet-data-item">
             <div class="wallet-data-label">Availability</div>
             <div class="wallet-data-value">{{ wallet.ios_availability | default: "Worldwide" }}</div>
-          </div>
-        </div>
-        
+    </div>
+</div>
+
         <div class="wallet-actions">
           <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="wallet-apply-button" onclick="fathom.trackEvent('Click iOS Wallet: {{ wallet.title }}');">
             GET {{ wallet.title | upcase }}
@@ -1090,7 +1090,7 @@ a.mobile-card-header .custody-badge {
         {% endif %}
       </div>
     </div>
-  </div>
+    </div>
   {% endfor %}
 </div>
 {% else %}
@@ -1121,8 +1121,8 @@ a.mobile-card-header .custody-badge {
       <h3>Self-Custody Beginners</h3>
       <p><strong>Best pick: Muun</strong></p>
       <p>Simple interface with Lightning built-in. You control your keys without the complexity. Great for learning self-custody.</p>
-    </div>
-    
+</div>
+
     <div class="decision-item">
       <div class="decision-icon">⚡</div>
       <h3>Lightning Power Users</h3>
@@ -1143,7 +1143,7 @@ a.mobile-card-header .custody-badge {
       <p><strong>Best pick: Aqua</strong></p>
       <p>Made by Blockstream with Liquid Network support for more private transactions. Simple interface with solid privacy features.</p>
     </div>
-  </div>
+    </div>
 </div>
 
 <div class="methodology-section">
@@ -1194,7 +1194,39 @@ a.mobile-card-header .custody-badge {
         <p>Some wallets are restricted to certain countries (like USA only) due to regulatory requirements. We clearly note geographic restrictions so you know what's available to you.</p>
       </div>
     </div>
-  </div>
+    </div>
+</div>
+
+<div style="max-width: 800px; margin-top: 60px;">
+<h2>iOS Wallet FAQ</h2>
+
+<h3><strong>What is the difference between Blockstream Green and Aqua?</strong></h3>
+
+<p>While both of these Bitcoin and Liquid wallets are made by Blockstream, there are some differences. Mainly, it's that Blockstream Green uses a 2-of-2 multi-sig to protect your coins from hackers. This makes it ideal for an advanced user.</p>
+
+<br>
+
+<h3><strong>Does Blockstream Jade work with Blockstream Green on iOS?</strong></h3>
+
+<p>Yes, you can now use the Blockstream Green app on your iOS device to set up your wallet on your Blockstream Jade hardware wallet.</p>
+
+<br>
+
+<h3><strong>Can I Use Electrum on iOS?</strong></h3>
+
+<p>Unfortunately, Electrum cannot be used on iOS devices at this time. The only mobile devices that support Electrum are devices running Linux or Android.</p>
+
+<br>
+
+<h3><strong>What is the difference between custodial and self-custody wallets?</strong></h3>
+
+<p>Self-custody wallets give you complete control over your Bitcoin by letting you hold your own private keys. Custodial wallets, like River and Strike, hold your keys for you — which is more convenient but means you're trusting a third party with your funds.</p>
+
+<br>
+
+<h3><strong>Which iOS wallet is best for beginners?</strong></h3>
+
+<p>Muun is excellent for beginners who want self-custody without complexity. For those who want to buy Bitcoin easily, River or Strike are great custodial options with simple interfaces.</p>
 </div>
 
 <div class="wallet-disclaimer">
