@@ -107,28 +107,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   display: flex;
   align-items: center;
   gap: 12px;
-  text-decoration: none;
-  color: #111827 !important;
-  transition: all 0.2s ease;
-  padding: 4px 8px;
-  margin: -4px -8px;
-  border-radius: 6px;
-}
-
-.comparison-table-wallet-name:hover {
   color: #111827;
-  background: #FEF3C7;
-}
-
-.comparison-table-wallet-name:hover span {
-  text-decoration: underline;
-  text-decoration-color: #f2a900;
-  text-underline-offset: 2px;
-}
-
-.comparison-table-wallet-name:hover .comparison-table-wallet-img {
-  transform: scale(1.05);
-  box-shadow: 0 2px 8px rgba(242, 169, 0, 0.3);
 }
 
 .comparison-table-wallet-img {
@@ -189,19 +168,13 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
-a.mobile-card-header {
+.mobile-card-header {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 12px;
   padding-bottom: 12px;
   border-bottom: 1px solid #e5e7eb;
-  text-decoration: none;
-}
-
-a.mobile-card-header:hover .mobile-card-name {
-  color: #f2a900;
-  text-decoration: underline;
 }
 
 .mobile-card-img {
@@ -220,7 +193,7 @@ a.mobile-card-header:hover .mobile-card-name {
   flex: 1;
 }
 
-a.mobile-card-header .wallet-type-badge {
+.mobile-card-header .wallet-type-badge {
   flex-shrink: 0;
   font-size: 11px;
   padding: 3px 8px;
@@ -830,10 +803,10 @@ a.mobile-card-header .wallet-type-badge {
         {% for wallet in wallets %}
         <tr>
           <td>
-            <a href="{{ wallet.link }}" target="_blank" class="comparison-table-wallet-name" onclick="fathom.trackEvent('Click Offline Wallet: {{ wallet.title }}');">
+            <div class="comparison-table-wallet-name">
               <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="comparison-table-wallet-img">
               <span>{{ wallet.title }}</span>
-            </a>
+            </div>
           </td>
           <td>
             {% if wallet.wallet_type == "Hardware Wallet" %}
@@ -860,7 +833,7 @@ a.mobile-card-header .wallet-type-badge {
   <div class="mobile-comparison-cards">
     {% for wallet in wallets %}
     <div class="mobile-comparison-card">
-      <a href="{{ wallet.link }}" target="_blank" class="mobile-card-header" onclick="fathom.trackEvent('Click Offline Wallet: {{ wallet.title }}');">
+      <div class="mobile-card-header">
         <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-card-img">
         <div class="mobile-card-name">{{ wallet.title }}</div>
         {% if wallet.wallet_type == "Hardware Wallet" %}
@@ -874,7 +847,7 @@ a.mobile-card-header .wallet-type-badge {
         {% else %}
           <span class="wallet-type-badge">{{ wallet.wallet_type | default: "—" }}</span>
         {% endif %}
-      </a>
+      </div>
       <div class="mobile-card-details">
         <div class="mobile-detail-item">
           <span class="mobile-detail-label">Price</span>

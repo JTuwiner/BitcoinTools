@@ -86,24 +86,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   display: flex;
   align-items: center;
   gap: 12px;
-  text-decoration: none;
-  color: #111827 !important;
-  transition: background-color 0.15s;
-  padding: 4px 8px;
-  margin: -4px -8px;
-  border-radius: 6px;
-}
-
-.comparison-table-card-name:hover {
-  background-color: #FEF3C7;
-}
-
-.comparison-table-card-name:hover span {
-  text-decoration: underline;
-}
-
-.comparison-table-card-name:hover img {
-  transform: scale(1.05);
+  color: #111827;
 }
 
 .comparison-table-card-img {
@@ -817,10 +800,10 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
         {% for card in cards %}
         <tr>
           <td>
-            <a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="comparison-table-card-name" onclick="fathom.trackEvent('Click Card: {{ card.title }}');">
+            <div class="comparison-table-card-name">
               <img src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="comparison-table-card-img">
               <span>{{ card.title }}</span>
-            </a>
+            </div>
           </td>
           <td>
             {% if card.vs_bestfor %}

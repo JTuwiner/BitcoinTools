@@ -147,28 +147,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="26.67" height="32" view
   display: flex;
   align-items: center;
   gap: 12px;
-  text-decoration: none;
-  color: #111827 !important;
-  transition: all 0.2s ease;
-  padding: 4px 8px;
-  margin: -4px -8px;
-  border-radius: 6px;
-}
-
-.comparison-table-steel-name:hover {
   color: #111827;
-  background: #FEF3C7;
-}
-
-.comparison-table-steel-name:hover span {
-  text-decoration: underline;
-  text-decoration-color: #f2a900;
-  text-underline-offset: 2px;
-}
-
-.comparison-table-steel-name:hover .comparison-table-steel-img {
-  transform: scale(1.05);
-  box-shadow: 0 2px 8px rgba(242, 169, 0, 0.3);
 }
 
 .comparison-table-steel-img {
@@ -250,19 +229,13 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="26.67" height="32" view
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
-a.mobile-card-header {
+.mobile-card-header {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 12px;
   padding-bottom: 12px;
   border-bottom: 1px solid #e5e7eb;
-  text-decoration: none;
-}
-
-a.mobile-card-header:hover .mobile-card-name {
-  color: #f2a900;
-  text-decoration: underline;
 }
 
 .mobile-card-img {
@@ -726,7 +699,7 @@ a.mobile-card-header .method-badge {
   font-size: 12px;
   line-height: 1.6;
   color: #6b7280;
-}
+    }
 </style>
 
 <br><br>
@@ -746,7 +719,7 @@ a.mobile-card-header .method-badge {
             <li><a href="#titanium-vs-steel">Titanium vs Steel</a></li>
         </ul>
     </nav>
-          </div>
+</div>
 
 <p>Steel wallets have become the standard for crypto seed storage security. If you are storing your own Bitcoin or crypto seed phrase, a steel/metal wallet is a must-have.</p>
 
@@ -782,10 +755,10 @@ a.mobile-card-header .method-badge {
         {% for steel in steels %}
         <tr>
           <td>
-            <a href="{{ steel.link }}" target="_blank" rel="nofollow noopener" class="comparison-table-steel-name" onclick="fathom.trackEvent('Click Steel Wallet: {{ steel.title }}');">
+            <div class="comparison-table-steel-name">
               <img src="/tools/img/{{ steel.img }}" alt="{{ steel.title }}" class="comparison-table-steel-img">
               <span>{{ steel.title }}</span>
-            </a>
+              </div>
           </td>
           <td>{{ steel.steel_bestfor | default: "—" }}</td>
           <td>{{ steel.price | default: "—" }}</td>
@@ -803,12 +776,12 @@ a.mobile-card-header .method-badge {
         {% endfor %}
       </tbody>
     </table>
-              </div>
+          </div>
   
   <div class="mobile-comparison-cards">
     {% for steel in steels %}
     <div class="mobile-comparison-card">
-      <a href="{{ steel.link }}" target="_blank" rel="nofollow noopener" class="mobile-card-header" onclick="fathom.trackEvent('Click Steel Wallet: {{ steel.title }}');">
+      <div class="mobile-card-header">
         <img src="/tools/img/{{ steel.img }}" alt="{{ steel.title }}" class="mobile-card-img">
         <div class="mobile-card-name">{{ steel.title }}</div>
         {% if steel.steel_method contains "Tile" %}
@@ -818,16 +791,16 @@ a.mobile-card-header .method-badge {
         {% else %}
           <span class="method-badge punch">🔘 Punch</span>
         {% endif %}
-      </a>
+          </div>
       <div class="mobile-card-details">
         <div class="mobile-detail-item">
           <span class="mobile-detail-label">Best For</span>
           <span class="mobile-detail-value">{{ steel.steel_bestfor | default: "—" }}</span>
-          </div>
+              </div>
         <div class="mobile-detail-item">
           <span class="mobile-detail-label">Price</span>
           <span class="mobile-detail-value">{{ steel.price | default: "—" }}</span>
-              </div>
+          </div>
         <div class="mobile-detail-item">
           <span class="mobile-detail-label">Material</span>
           <span class="mobile-detail-value">{{ steel.material | default: "Steel" }}</span>
