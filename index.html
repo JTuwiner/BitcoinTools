@@ -31,91 +31,82 @@ desc: An exclusive list of the best Bitcoin tools. Carefully vetted and maintain
 .categories-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 16px;
   max-width: 1100px;
   margin: 0 auto;
 }
 
 .category-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  padding: 32px 28px;
-  text-decoration: none;
-  transition: all 0.2s ease;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.15s ease;
 }
 
 .category-card:hover {
-  border-color: #f2a900;
-  box-shadow: 0 8px 24px rgba(242, 169, 0, 0.12);
-  transform: translateY(-4px);
+  background: rgba(242, 169, 0, 0.08);
 }
 
 .category-icon {
-  width: 56px;
-  height: 56px;
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-  border-radius: 14px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
-  color: #b45309;
+  flex-shrink: 0;
+  color: #f2a900;
 }
 
 .category-icon svg {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
 }
 
 .category-card h3 {
-  font-size: 20px;
-  font-weight: 700;
-  color: #111827;
-  margin: 0 0 16px 0;
-}
-
-.category-cta {
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 600;
-  color: #f2a900;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+  color: #e5e7eb;
+  margin: 0;
+  flex: 1;
 }
 
-.category-cta svg {
-  width: 16px;
-  height: 16px;
-  transition: transform 0.2s ease;
-}
-
-.category-card:hover .category-cta svg {
-  transform: translateX(4px);
-}
 
 @media (max-width: 900px) {
   .categories-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 12px;
   }
 }
 
 @media (max-width: 600px) {
   .categories-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 8px;
   }
   
   .category-card {
-    padding: 24px 20px;
+    padding: 14px 16px;
   }
   
   .categories-intro h2 {
     font-size: 24px;
+  }
+  
+  .category-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .category-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .category-card h3 {
+    font-size: 15px;
   }
 }
 </style>
@@ -126,16 +117,11 @@ desc: An exclusive list of the best Bitcoin tools. Carefully vetted and maintain
 </div>
 
 <div class="categories-grid">
-  
   <a href="/cards/" class="category-card">
     <div class="category-icon">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M2 7a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v1H2zm0 3v7a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-7zm5 2a1 1 0 1 0 0 2h5a1 1 0 1 0 0-2z" clip-rule="evenodd"/></svg>
     </div>
     <h3>Bitcoin Credit Cards</h3>
-    <span class="category-cta">
-      Compare Cards
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M13.3 17.3a1 1 0 0 1-.3-.7a1 1 0 0 1 .3-.7l3.29-3.3H5a1 1 0 0 1 0-2h11.59l-3.3-3.3a1 1 0 1 1 1.42-1.4l5 5a1 1 0 0 1 0 1.4l-5 5a1 1 0 0 1-1.42 0Z"/></svg>
-    </span>
   </a>
 
   <a href="/hardware-wallets/" class="category-card">
@@ -143,10 +129,6 @@ desc: An exclusive list of the best Bitcoin tools. Carefully vetted and maintain
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path fill="currentColor" d="M216 40H40a16 16 0 0 0-16 16v136a16 16 0 0 0 16 16h16v16a8 8 0 0 0 16 0v-16h112v16a8 8 0 0 0 16 0v-16h16a16 16 0 0 0 16-16V56a16 16 0 0 0-16-16m-8 96h-28.91a36 36 0 1 1 0-16H208a8 8 0 0 1 0 16m-44-8a20 20 0 1 1-20-20a20 20 0 0 1 20 20"/></svg>
     </div>
     <h3>Hardware Wallets</h3>
-    <span class="category-cta">
-      Compare Wallets
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M13.3 17.3a1 1 0 0 1-.3-.7a1 1 0 0 1 .3-.7l3.29-3.3H5a1 1 0 0 1 0-2h11.59l-3.3-3.3a1 1 0 1 1 1.42-1.4l5 5a1 1 0 0 1 0 1.4l-5 5a1 1 0 0 1-1.42 0Z"/></svg>
-    </span>
   </a>
 
   <a href="/steel-wallets/" class="category-card">
@@ -154,10 +136,6 @@ desc: An exclusive list of the best Bitcoin tools. Carefully vetted and maintain
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 24"><path fill="currentColor" d="M17 13V3h-7v17.766a22.036 22.036 0 0 0 3.376-2.177l-.048.036Q17 15.751 17 13m3-12v12a7.15 7.15 0 0 1-.541 2.712l.017-.048a9.968 9.968 0 0 1-1.315 2.37l.018-.026a14.545 14.545 0 0 1-1.827 1.98l-.013.012a21.487 21.487 0 0 1-1.915 1.567l-.062.043q-.906.64-1.89 1.211t-1.398.774t-.664.313a.932.932 0 0 1-.818-.002l.005.002q-.25-.11-.664-.313t-1.398-.774t-1.89-1.211a21.613 21.613 0 0 1-1.996-1.624l.015.014a14.574 14.574 0 0 1-1.815-1.958l-.025-.034a9.813 9.813 0 0 1-1.273-2.277l-.024-.067a7.034 7.034 0 0 1-.523-2.663V1c.008-.549.451-.992.999-1h18.001c.549.008.992.451 1 .999V1z"/></svg>
     </div>
     <h3>Steel Wallets</h3>
-    <span class="category-cta">
-      Compare Steel Wallets
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M13.3 17.3a1 1 0 0 1-.3-.7a1 1 0 0 1 .3-.7l3.29-3.3H5a1 1 0 0 1 0-2h11.59l-3.3-3.3a1 1 0 1 1 1.42-1.4l5 5a1 1 0 0 1 0 1.4l-5 5a1 1 0 0 1-1.42 0Z"/></svg>
-    </span>
   </a>
 
   <a href="/offline-wallets/" class="category-card">
@@ -165,10 +143,6 @@ desc: An exclusive list of the best Bitcoin tools. Carefully vetted and maintain
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path fill="currentColor" d="M216 64H56a8 8 0 0 1 0-16h136a8 8 0 0 0 0-16H56a24 24 0 0 0-24 24v128a24 24 0 0 0 24 24h160a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16m-36 80a12 12 0 1 1 12-12a12 12 0 0 1-12 12"/></svg>
     </div>
     <h3>Offline Wallets</h3>
-    <span class="category-cta">
-      Explore Cold Storage
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M13.3 17.3a1 1 0 0 1-.3-.7a1 1 0 0 1 .3-.7l3.29-3.3H5a1 1 0 0 1 0-2h11.59l-3.3-3.3a1 1 0 1 1 1.42-1.4l5 5a1 1 0 0 1 0 1.4l-5 5a1 1 0 0 1-1.42 0Z"/></svg>
-    </span>
   </a>
 
   <a href="/iras/" class="category-card">
@@ -176,10 +150,6 @@ desc: An exclusive list of the best Bitcoin tools. Carefully vetted and maintain
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M16 11q.425 0 .713-.288T17 10t-.288-.712T16 9t-.712.288T15 10t.288.713T16 11M8 9h5V7H8zM4.5 21q-.85-2.85-1.675-5.687T2 9.5q0-2.3 1.6-3.9T7.5 4h5q.725-.95 1.763-1.475T16.5 2q.625 0 1.063.438T18 3.5q0 .125-.125.575q-.1.275-.187.563t-.138.587L19.825 7.5H22v6.975l-2.825.925L17.5 21H12v-2h-2v2z"/></svg>
     </div>
     <h3>Bitcoin IRAs</h3>
-    <span class="category-cta">
-      Compare IRAs
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M13.3 17.3a1 1 0 0 1-.3-.7a1 1 0 0 1 .3-.7l3.29-3.3H5a1 1 0 0 1 0-2h11.59l-3.3-3.3a1 1 0 1 1 1.42-1.4l5 5a1 1 0 0 1 0 1.4l-5 5a1 1 0 0 1-1.42 0Z"/></svg>
-    </span>
   </a>
 
   <a href="/accepting-btc/" class="category-card">
@@ -187,10 +157,5 @@ desc: An exclusive list of the best Bitcoin tools. Carefully vetted and maintain
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path fill="currentColor" d="m239.76 158.06l-22.48-89.94A16 16 0 0 0 201.75 56H136V40a16 16 0 0 0-16-16H80a16 16 0 0 0-16 16v16h-9.75a16 16 0 0 0-15.53 12.12l-22.48 89.94A8 8 0 0 0 16 160v32a16 16 0 0 0 16 16h192a16 16 0 0 0 16-16v-32a8 8 0 0 0-.24-1.94M80 40h40v16H80ZM54.25 72h147.5l20 80H34.25ZM32 192v-24h192v24Z"/></svg>
     </div>
     <h3>Accept Bitcoin</h3>
-    <span class="category-cta">
-      View Payment Tools
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M13.3 17.3a1 1 0 0 1-.3-.7a1 1 0 0 1 .3-.7l3.29-3.3H5a1 1 0 0 1 0-2h11.59l-3.3-3.3a1 1 0 1 1 1.42-1.4l5 5a1 1 0 0 1 0 1.4l-5 5a1 1 0 0 1-1.42 0Z"/></svg>
-    </span>
   </a>
-
-  </div>
+</div>

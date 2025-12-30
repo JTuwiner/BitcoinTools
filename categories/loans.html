@@ -78,28 +78,11 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   font-weight: 500;
 }
 
-a.loan-table-provider-name {
+.loan-table-provider-name {
   display: flex;
   align-items: center;
   gap: 12px;
-  text-decoration: none;
-  color: #111827 !important;
-  transition: background-color 0.15s;
-  padding: 4px 8px;
-  margin: -4px -8px;
-  border-radius: 6px;
-}
-
-a.loan-table-provider-name:hover {
-  background-color: #FEF3C7;
-}
-
-a.loan-table-provider-name:hover span {
-  text-decoration: underline;
-}
-
-a.loan-table-provider-name:hover img {
-  transform: scale(1.05);
+  color: #111827;
 }
 
 .loan-table-provider-img {
@@ -154,19 +137,13 @@ a.loan-table-provider-name:hover img {
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
-a.mobile-loan-card-header {
+.mobile-loan-card-header {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 12px;
   padding-bottom: 12px;
   border-bottom: 1px solid #e5e7eb;
-  text-decoration: none;
-}
-
-a.mobile-loan-card-header:hover .mobile-loan-card-name {
-  color: #f2a900;
-  text-decoration: underline;
 }
 
 .mobile-loan-card-img {
@@ -185,7 +162,7 @@ a.mobile-loan-card-header:hover .mobile-loan-card-name {
   flex: 1;
 }
 
-a.mobile-loan-card-header .loan-type-badge {
+.mobile-loan-card-header .loan-type-badge {
   flex-shrink: 0;
   font-size: 10px;
   padding: 2px 6px;
@@ -913,10 +890,10 @@ a.mobile-loan-card-header .loan-type-badge {
         {% for loan in loans %}
         <tr>
           <td>
-            <a href="{{ loan.link }}" target="_blank" rel="nofollow noopener" class="loan-table-provider-name" onclick="fathom.trackEvent('Click Loan: {{ loan.title }}');">
+            <div class="loan-table-provider-name">
               <img src="/tools/img/{{ loan.img }}" alt="{{ loan.title }}" class="loan-table-provider-img">
               <span>{{ loan.title }}</span>
-            </a>
+            </div>
           </td>
           <td>{{ loan.loan_bestfor | default: "—" }}</td>
           <td>
@@ -948,7 +925,7 @@ a.mobile-loan-card-header .loan-type-badge {
     </div>
     {% for loan in loans %}
     <div class="mobile-loan-card">
-      <a href="{{ loan.link }}" target="_blank" rel="nofollow noopener" class="mobile-loan-card-header" onclick="fathom.trackEvent('Click Loan: {{ loan.title }}');">
+      <div class="mobile-loan-card-header">
         <img src="/tools/img/{{ loan.img }}" alt="{{ loan.title }}" class="mobile-loan-card-img">
         <div class="mobile-loan-card-name">{{ loan.title }}</div>
         {% if loan.loan_type contains "Commercial only" %}
@@ -956,7 +933,7 @@ a.mobile-loan-card-header .loan-type-badge {
         {% else %}
           <span class="loan-type-badge retail">👤 Retail</span>
         {% endif %}
-      </a>
+      </div>
       <div class="mobile-loan-comparison-label">Best For</div>
       <div class="mobile-loan-comparison-value" data-best-for="{{ loan.loan_bestfor | default: '—' }}" data-apr="{{ loan.loan_apr | default: '—' }}" data-ltv="{{ loan.loan_ltv | default: '—' }}" data-minimum="{{ loan.loan_min | default: '—' }}">
         {{ loan.loan_bestfor | default: "—" }}
