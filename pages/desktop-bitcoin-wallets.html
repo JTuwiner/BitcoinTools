@@ -198,6 +198,119 @@ morelikethis: Wallets
     }
 }
 
+/* Chapter Header Styles */
+.blue-row, .purple-row, .green-row, .darkblue-row {
+    border-radius: 20px;
+    padding: 40px 30px 30px;
+    margin: 40px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.blue-row::before, .purple-row::before, .green-row::before, .darkblue-row::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.blue-row {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+}
+
+.purple-row {
+    background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+    box-shadow: 0 10px 40px rgba(139, 92, 246, 0.3);
+}
+
+.green-row {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    box-shadow: 0 10px 40px rgba(16, 185, 129, 0.3);
+}
+
+.darkblue-row {
+    background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+    box-shadow: 0 10px 40px rgba(30, 58, 95, 0.4);
+}
+
+.chapter-link {
+    display: inline-block;
+    font-size: 0.85em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.15);
+    padding: 8px 20px;
+    border-radius: 30px;
+    margin-bottom: 16px;
+    backdrop-filter: blur(10px);
+}
+
+.chapter-name {
+    font-size: 2em;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nice-divider-white {
+    width: 80px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+    margin: 16px 0 0;
+}
+
+.special-letters {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.15em;
+    line-height: 1.7;
+}
+
+.special-letters p {
+    margin-bottom: 12px;
+}
+
+.special-letters a {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.wallet-top-part {
+    max-width: 200px;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+}
+
+@media (max-width: 768px) {
+    .blue-row, .purple-row, .green-row, .darkblue-row {
+        padding: 30px 20px;
+        border-radius: 16px;
+    }
+    
+    .chapter-name {
+        font-size: 1.5em;
+    }
+    
+    .chapter-link {
+        font-size: 0.75em;
+        padding: 6px 14px;
+    }
+    
+    .wallet-top-part {
+        max-width: 150px;
+        margin: 20px auto 0;
+    }
+}
+
 /* FAQ Section Styles */
 .faq-item {
     display: flex;
