@@ -1,5 +1,5 @@
 <style>
-.koinly-link {
+.coinledger-link {
     background-color: #f8f9fa;
     border-radius: 8px;
     padding: 30px;
@@ -8,18 +8,18 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.koinly-link h2 {
+.coinledger-link h2 {
     margin-top: 0;
     color: #333;
 }
 
-.koinly-link p {
+.coinledger-link p {
     font-size: 18px;
     margin: 15px 0;
     color:black;
 }
 
-.button-koinly {
+.button-coinledger {
     display: inline-block;
     background-color: #f2a900;
     color: black !important;
@@ -31,28 +31,28 @@
     transition: background-color 0.2s;
 }
 
-.button-koinly:hover {
+.button-coinledger:hover {
     background-color: #218838;
     color: white;
     text-decoration: none;
 }
 </style>
 
-<div class="koinly-link">
+<div class="coinledger-link">
 
 <h2>Have a complex trading history?</h2>
 
-<p>Use <b>Koinly</b> to import your transactions and calculate your taxes.</p>
+<p>Use <b>CoinLedger</b> to import your transactions and calculate your taxes.</p>
 
-<a href="{{ include.link }}" class="button-koinly">Calculate for free</a>
+<a href="{{ include.link }}" class="button-coinledger">Calculate for free</a>
 
 </div>
 
 <script> 
     window.addEventListener('load', (event) => {
-      document.querySelectorAll('.button-koinly').forEach(item => {
+      document.querySelectorAll('.button-coinledger').forEach(item => {
       item.addEventListener('click', event => {
-        fathom.trackEvent('Click Koinly Link');
+        fathom.trackEvent('Click CoinLedger Link');
       });
       });
     });
