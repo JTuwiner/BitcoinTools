@@ -21,6 +21,274 @@ bs: yes
 morelikethis: Wallets
 ---
 
+<style>
+/* Desktop Wallet Card Styles */
+.wallet-list-item {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+}
+
+.wallet-list-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.03);
+}
+
+.wallet-list-item h4 {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+.wallet-list-item h4 img {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.wallet-list-item .new-desc-box {
+    font-size: 1.05em;
+    line-height: 1.7;
+    color: #475569;
+    margin-bottom: 16px;
+}
+
+.wallet-list-item .exchange-pros {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 16px;
+    border: 1px solid #e2e8f0;
+}
+
+.wallet-list-item .exchange-pros-title {
+    font-weight: 700;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid;
+}
+
+.wallet-list-item .col-md-6:first-of-type .exchange-pros-title {
+    color: #059669;
+    border-color: #10b981;
+}
+
+.wallet-list-item .col-md-6:last-of-type .exchange-pros-title {
+    color: #dc2626;
+    border-color: #ef4444;
+}
+
+.wallet-list-item .quick-info-pros,
+.wallet-list-item .quick-info-cons {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.wallet-list-item .quick-info-pros li,
+.wallet-list-item .quick-info-cons li {
+    padding: 8px 0 8px 28px;
+    position: relative;
+    font-size: 0.95em;
+    color: #334155;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.wallet-list-item .quick-info-pros li:last-child,
+.wallet-list-item .quick-info-cons li:last-child {
+    border-bottom: none;
+}
+
+.wallet-list-item .quick-info-pros li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: bold;
+}
+
+.wallet-list-item .quick-info-cons li::before {
+    content: "✗";
+    position: absolute;
+    left: 0;
+    color: #ef4444;
+    font-weight: bold;
+}
+
+.wallet-list-item .wallet-hero {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin-top: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+}
+
+.wallet-list-item .btn-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85em;
+    font-weight: 600;
+    margin-left: auto;
+    transition: all 0.2s ease;
+}
+
+.wallet-list-item .btn-primary:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    transform: translateY(-1px);
+}
+
+.wallet-list-item .warning-box {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border: 1px solid #f59e0b;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 0;
+}
+
+.wallet-list-item .warning-box h3 {
+    color: #b45309;
+    font-size: 1em;
+    margin: 0 0 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.wallet-list-item .warning-box h3::before {
+    content: "⚠️";
+}
+
+.wallet-list-item .warning-box p {
+    color: #92400e;
+    margin: 0;
+    font-size: 0.95em;
+}
+
+@media (max-width: 768px) {
+    .wallet-list-item {
+        padding: 20px;
+    }
+    
+    .wallet-list-item h4 {
+        font-size: 1.25em;
+        flex-wrap: wrap;
+    }
+    
+    .wallet-list-item .exchange-pros {
+        margin-bottom: 12px;
+    }
+}
+
+/* FAQ Section Styles */
+.faq-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 32px;
+    padding: 24px;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+.faq-item-reverse {
+    flex-direction: row-reverse;
+}
+
+.faq-icon {
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    object-fit: contain;
+    padding: 8px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.faq-content {
+    flex: 1;
+}
+
+.faq-content h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.15em;
+    color: #1e293b;
+}
+
+.faq-content p {
+    margin-bottom: 8px;
+    color: #475569;
+    line-height: 1.7;
+}
+
+.faq-content p:last-child {
+    margin-bottom: 0;
+}
+
+.halfimg-right-sm {
+    float: right;
+    width: 64px;
+    height: 64px;
+    margin: 0 0 16px 20px;
+    padding: 8px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    object-fit: contain;
+}
+
+.halfimg-left-sm {
+    float: left;
+    width: 64px;
+    height: 64px;
+    margin: 0 20px 16px 0;
+    padding: 8px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .faq-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .faq-icon {
+        margin: 0 auto 16px;
+    }
+    
+    .halfimg-right-sm,
+    .halfimg-left-sm {
+        float: none;
+        display: block;
+        margin: 0 auto 16px;
+    }
+}
+</style>
+
 <img class="halfimg-right img-lift color-guide-img" src="https://buybitcoinworldwide.com/wp-content/uploads/2017/03/i1000-_0029_Vector-Smart-Object-300x300.png" alt="desktop wallets bitcoin" />
 
 <p>Desktop wallets are a great option for anyone sending frequent Bitcoin payments from their computer.</p>
@@ -419,12 +687,14 @@ bullet6="Desktop Wallet FAQ" bullet6tag="#faq"
 </div>
 <br>
 
-<img class="halfimg-left-sm" src="https://buybitcoinworldwide.com/pages/wallets/img/desktop.png" alt="desktop icon" />
+<img class="halfimg-right-sm" src="https://buybitcoinworldwide.com/pages/wallets/img/desktop.png" alt="desktop icon" />
 <h3><b>When should I use a desktop Bitcoin wallet?</b></h3>
 
 <p>If you're on your computer a lot and don't need super secure storage, a desktop wallet is a good choice.</p>
 
-<img class="halfimg-left-sm" src="https://buybitcoinworldwide.com/pages/wallets/img/hardware.png" alt="hardware wallet icon" />
+<div style="clear:both"></div>
+
+<img class="halfimg-right-sm" src="https://buybitcoinworldwide.com/pages/wallets/img/hardware.png" alt="hardware wallet icon" />
 <h3><b>Do desktop wallets work with hardware wallets?</b></h3>
 
 <p>Yes, many desktop wallets allow the user to utilize a hardware wallet as the signer of transactions. This means that the private key is not help on the computer the desktop wallet is installed on.</p>
@@ -436,7 +706,9 @@ bullet6="Desktop Wallet FAQ" bullet6tag="#faq"
 <div class="kb-helper">Ledger's Desktop wallet manager application, <i>Ledger Live</i></div>
 </center>
 
-<img class="halfimg-left-sm" src="https://buybitcoinworldwide.com/pages/wallets/img/large-amounts.png" alt="safe icon" />
+<div style="clear:both"></div>
+
+<img class="halfimg-right-sm" src="https://buybitcoinworldwide.com/pages/wallets/img/large-amounts.png" alt="safe icon" />
 <h3><b>Can I store large amounts of bitcoins in a desktop wallet?</b></h3>
 
 <p>You can, but this isn't recommended.</p>
@@ -451,53 +723,55 @@ bullet6="Desktop Wallet FAQ" bullet6tag="#faq"
 
 <p>Setup is very easy and you can have your hardware wallet securely signing transactions via your desktop wallet in just a few minutes.</p>
 
-<br>
+<div style="clear:both"></div>
 
-<img class="halfimg-left-sm" src="https://buybitcoinworldwide.com/pages/wallets/img/web.png" alt="desktop announcement" />
+<img class="halfimg-right-sm" src="https://buybitcoinworldwide.com/pages/wallets/img/web.png" alt="desktop announcement" />
 <h3><b>What's the difference between a desktop wallet and a web wallet?</b></h3>
 
 <p>Web wallets are more like accounts. A web wallet makes you set a passwords which it uses to encrypt your wallet on the web wallet server.</p>
 
 <p>Desktop wallets are actual apps that are installed on your computer.</p>
 
-<br>
+<div style="clear:both"></div>
 
-<img class="halfimg-left-sm" src="https://buybitcoinworldwide.com/pages/wallets/img/free.png" alt="free icon" />
+<img class="halfimg-right-sm" src="https://buybitcoinworldwide.com/pages/wallets/img/free.png" alt="free icon" />
 <h3><b>Are desktop wallets free?</b></h3>
 
 <p>Yes, all desktop wallets are free. Hardware wallets are the only type of wallet that costs money.</p>
 
-<br>
+<div style="clear:both"></div>
 
-<img class="halfimg-left-sm" src="https://buybitcoinworldwide.com/pages/wallets/img/thief.png" alt="thief icon" />
+<img class="halfimg-right-sm" src="https://buybitcoinworldwide.com/pages/wallets/img/thief.png" alt="thief icon" />
 <h3><b>If someone has access to my computer can they access my bitcoins?</b></h3>
 
 <p>It depends. Many desktop wallets encrypt your private keys and request a password to decrypt it every time you open the wallet. This means that you need to enter a password in order to send bitcoins from most desktop wallets.</p>
 
-<br>
+<div style="clear:both"></div>
 
-<img class="halfimg-left-sm" src="https://buybitcoinworldwide.com/pages/wallets/img/backup.png" alt="backup icon" />
+<img class="halfimg-right-sm" src="https://buybitcoinworldwide.com/pages/wallets/img/backup.png" alt="backup icon" />
 <h3><b>How do I backup my desktop wallet?</b></h3>
 
 <p>Most wallets generate a seed on setup. You write this seed down on a piece of paper and it can be used to restore your wallet if you lose your computer of have it stolen.</p>
 
-<br>
+<div style="clear:both"></div>
 
-<img class="halfimg-left-sm" src="https://buybitcoinworldwide.com/pages/wallets/img/2-desktop.png" alt="more than one desktop wallet" />
+<img class="halfimg-right-sm" src="https://buybitcoinworldwide.com/pages/wallets/img/2-desktop.png" alt="more than one desktop wallet" />
 <h3><b>Can I use more than one desktop wallet at a time?</b></h3>
 
 <p>Yes, of course. We suggest trying many different desktop wallets and then deciding which one has the features you're interested in.</p>
 
-<br>
+<div style="clear:both"></div>
 
-<img class="halfimg-left-sm" src="https://buybitcoinworldwide.com/img/wallets/aqua-logo.png" alt="aqua wallet logo" />
+<img class="halfimg-right-sm" src="https://buybitcoinworldwide.com/img/wallets/aqua-logo.png" alt="aqua wallet logo" />
 <h3><b>What is the difference between Blockstream Green and Aqua?</b></h3>
 
 <p>While both of these Bitcoin and Liquid wallets are made by Blockstream, only Blockstream Green is available for desktop. Aqua is only available as a mobile wallet on IOS (Android version available late 2021). The other difference is that Blockstream green uses a 2-of-2 multisig to protect your coins from hackers. Aqua is a single signature wallet, meaning anyone with access to your phone (either physically or remotely) could steal your coins. In exchange for the increased risk, the wallet is easier to use.</p>
 
 <p>Aqua is new, and if you have an iOS device, it can be a great addition to Blockstream Green Desktop.</p>
 
-<img class="halfimg-left-sm" src="https://buybitcoinworldwide.com/img/wallets/jade-logo.png" alt="Blockstream Jade wallet logo" />
+<div style="clear:both"></div>
+
+<img class="halfimg-right-sm" src="https://buybitcoinworldwide.com/img/wallets/jade-logo.png" alt="Blockstream Jade wallet logo" />
 <h3><b>Does Blockstream Jade work with Blockstream Green Desktop?</b></h3>
 
 <p>Yes, you can now use the Blockstream Green app on your desktop to set up your wallet on your Blockstream Jade hardware wallet!</p>
