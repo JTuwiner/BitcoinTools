@@ -4,9 +4,1051 @@ title: Hardware Wallets
 customcategory: Hardware Wallets
 full-width: yes
 permalink: "/hardware-wallets/"
-seotitle: Bitcoin Hardware Wallets
+seotitle: 5 Best Bitcoin Hardware Wallets [2026]
 category: yes
-subdesc: Bitcoin hardware wallets, some Bitcoin-only. 
+subdesc: Bitcoin hardware wallets, some Bitcoin-only.
 icon: lock
 svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path fill="currentColor" d="M216 40H40a16 16 0 0 0-16 16v136a16 16 0 0 0 16 16h16v16a8 8 0 0 0 16 0v-16h112v16a8 8 0 0 0 16 0v-16h16a16 16 0 0 0 16-16V56a16 16 0 0 0-16-16m-8 96h-28.91a36 36 0 1 1 0-16H208a8 8 0 0 1 0 16m-44-8a20 20 0 1 1-20-20a20 20 0 0 1 20 20"/></svg>'
---- 
+---
+
+{% assign wallets = site.pages | where: "cat", "Hardware Wallets" | sort: "sort" %}
+
+<style>
+.hw-intro {
+  max-width: 800px;
+  margin-bottom: 32px;
+}
+
+.hw-intro p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #e5e7eb;
+  margin-bottom: 16px;
+}
+
+.hw-intro-highlight {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 24px 0;
+}
+
+.hw-intro-highlight p {
+  margin: 0;
+  font-weight: 500;
+  color: #92400E;
+}
+
+.hw-comparison-table-wrapper {
+  margin-bottom: 40px;
+  margin-top: 30px;
+  max-width: 100%;
+}
+
+.hw-comparison-table-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.hw-comparison-table-title {
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.hw-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.hw-comparison-table thead {
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.hw-comparison-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+  min-width: 100px;
+}
+
+.hw-comparison-table th:first-child {
+  min-width: 160px;
+}
+
+.hw-comparison-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s;
+}
+
+.hw-comparison-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.hw-comparison-table td {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #111827;
+  vertical-align: middle;
+}
+
+.hw-comparison-table td:first-child {
+  font-weight: 500;
+}
+
+.hw-table-wallet-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #111827;
+}
+
+.hw-table-wallet-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.best-for-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+  color: #92400E;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.best-for-badge svg {
+  flex-shrink: 0;
+}
+
+.opensource-yes {
+  color: #059669;
+  font-weight: 600;
+}
+
+.opensource-partial {
+  color: #D97706;
+  font-weight: 500;
+}
+
+/* Desktop table wrapper */
+.desktop-hw-table {
+  display: block;
+  overflow-x: auto;
+}
+
+/* Mobile comparison cards */
+.mobile-hw-cards {
+  display: none;
+}
+
+.mobile-hw-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.mobile-hw-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.mobile-hw-card-img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.mobile-hw-card-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: #111827;
+  flex: 1;
+}
+
+.mobile-hw-card-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.mobile-hw-detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-hw-detail-label {
+  font-size: 11px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.mobile-hw-detail-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+}
+
+@media (max-width: 768px) {
+  .desktop-hw-table {
+    display: none;
+  }
+  
+  .mobile-hw-cards {
+    display: block;
+  }
+}
+
+/* Brand Lineup Section */
+.brand-lineup-section {
+  margin: 48px 0;
+  padding: 32px;
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+  border-radius: 12px;
+  border: 1px solid #3B82F6;
+}
+
+.brand-lineup-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-lineup-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 24px;
+  background: #3B82F6;
+  border-radius: 2px;
+}
+
+.brand-lineup-intro {
+  font-size: 15px;
+  color: #374151;
+  margin: 0 0 24px 0;
+}
+
+.brand-lineup-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.brand-lineup-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border: 1px solid #E5E7EB;
+}
+
+.brand-lineup-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.brand-lineup-card-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.brand-lineup-card-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.brand-lineup-card-badge {
+  font-size: 11px;
+  background: #f3f4f6;
+  color: #6b7280;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-left: auto;
+}
+
+.brand-lineup-devices {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.brand-device-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #f9fafb;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.brand-device-name {
+  color: #111827;
+  font-weight: 500;
+}
+
+.brand-device-price {
+  color: #059669;
+  font-weight: 600;
+}
+
+.brand-device-highlight {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+}
+
+@media (max-width: 768px) {
+  .brand-lineup-section {
+    padding: 20px;
+    margin: 32px 0;
+  }
+  
+  .brand-lineup-title {
+    font-size: 20px;
+  }
+  
+  .brand-lineup-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Wallet Listings */
+.hw-listing {
+  margin-top: 40px;
+}
+
+.hw-item {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: box-shadow 0.2s;
+  padding: 24px;
+}
+
+.hw-item:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.hw-header {
+  display: flex;
+  gap: 24px;
+}
+
+.hw-image-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.hw-image-wrapper:hover .hw-image {
+  box-shadow: 0 4px 12px rgba(242, 169, 0, 0.3);
+}
+
+.hw-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #f9fafb;
+  padding: 8px;
+  transition: box-shadow 0.15s;
+}
+
+.hw-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.hw-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.hw-title-link {
+  text-decoration: none;
+}
+
+.hw-title-link:hover .hw-title {
+  color: #f2a900 !important;
+  text-decoration: underline;
+}
+
+.hw-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827 !important;
+  margin: 0 0 12px 0;
+  transition: color 0.15s;
+}
+
+.hw-data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.hw-data-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.hw-data-label {
+  font-size: 12px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.hw-data-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.hw-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.hw-apply-button {
+  background: #f2a900;
+  color: black !important;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+
+.hw-apply-button:hover {
+  background: #059669;
+  color: white !important;
+}
+
+.hw-breakdown-section {
+  margin-top: 12px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 12px;
+}
+
+.hw-breakdown-section:first-of-type {
+  margin-top: 20px;
+}
+
+.hw-breakdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 12px;
+  margin: -4px -8px;
+  border-radius: 6px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  user-select: none;
+  border: 1px solid transparent;
+}
+
+.hw-breakdown-header:hover {
+  background: #FEF9E7;
+  border-color: #F2A900;
+}
+
+.hw-breakdown-title {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  transition: color 0.15s;
+}
+
+.hw-breakdown-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  margin-right: 10px;
+}
+
+.hw-breakdown-header:hover .hw-breakdown-icon {
+  color: #D97706;
+}
+
+.hw-breakdown-header:hover .hw-breakdown-title {
+  color: #111827;
+}
+
+.hw-breakdown-chevron {
+  color: #9ca3af;
+  transition: transform 0.15s, color 0.15s;
+}
+
+.hw-breakdown-header:hover .hw-breakdown-chevron {
+  color: #D97706;
+}
+
+.hw-breakdown-section.expanded .hw-breakdown-chevron {
+  transform: rotate(180deg);
+}
+
+.hw-breakdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease-out, padding-top 0.2s ease-out;
+  padding-top: 0;
+  color: #111827;
+}
+
+.hw-breakdown-section.expanded .hw-breakdown-content {
+  max-height: 500px;
+  padding-top: 10px;
+}
+
+.hw-breakdown-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.hw-breakdown-content li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 6px;
+  padding: 4px 0;
+  color: #111827;
+}
+
+.hw-breakdown-content li::before {
+  content: "✓";
+  color: #10b981;
+  font-weight: bold;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.hw-cons-content li::before {
+  content: "✗";
+  color: #EF4444;
+}
+
+.hw-summary-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #374151;
+}
+
+@media (max-width: 768px) {
+  .hw-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hw-image-wrapper {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 16px;
+  }
+  
+  .hw-info {
+    text-align: center;
+  }
+  
+  .hw-badges-row {
+    justify-content: center;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .hw-title {
+    font-size: 22px;
+    text-align: center;
+  }
+  
+  .hw-data-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    text-align: left;
+  }
+  
+  .hw-data-item {
+    padding: 12px;
+    background: #f9fafb;
+    border-radius: 8px;
+  }
+  
+  .hw-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .hw-apply-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .hw-item {
+    padding: 16px;
+    border-radius: 10px;
+  }
+  
+  .hw-breakdown-section {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .hw-data-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hw-item {
+    padding: 14px;
+  }
+  
+  .hw-title {
+    font-size: 20px;
+  }
+}
+
+.hw-disclaimer {
+  margin-top: 48px;
+  padding: 20px 24px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border-left: 3px solid #d1d5db;
+}
+
+.hw-disclaimer p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .hw-disclaimer {
+    margin-top: 32px;
+    padding: 16px;
+  }
+  
+  .hw-disclaimer p {
+    font-size: 11px;
+  }
+}
+</style>
+
+<br><br>
+
+<div class="hw-intro">
+  <p>A hardware wallet keeps your Bitcoin private keys offline on a dedicated device, protecting them from hackers and malware. It's the gold standard for securing any significant Bitcoin holdings.</p>
+  
+  <div class="hw-intro-highlight">
+    <p>💡 <strong>Key insight:</strong> Hardware wallets don't store your Bitcoin — they store the private keys that control your Bitcoin on the blockchain. Even if the device breaks, you can recover your funds with your seed phrase backup.</p>
+  </div>
+</div>
+
+{% if wallets.size > 0 %}
+<div class="hw-comparison-table-wrapper">
+  <div class="hw-comparison-table-header">
+    <h2 class="hw-comparison-table-title">Compare Hardware Wallets</h2>
+  </div>
+  
+  <!-- Desktop Table -->
+  <div class="desktop-hw-table">
+    <table class="hw-comparison-table">
+      <thead>
+        <tr>
+          <th>Wallet</th>
+          <th>Best For</th>
+          <th>Price</th>
+          <th>Coins</th>
+          <th>Open Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for wallet in wallets %}
+        <tr>
+          <td>
+            <div class="hw-table-wallet-name">
+              <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="hw-table-wallet-img">
+              <span>{{ wallet.title }}</span>
+            </div>
+          </td>
+          <td>{{ wallet.hw_bestfor | default: wallet.wallet_bestfor | default: "—" }}</td>
+          <td>{{ wallet.wallet_price | default: "—" }}</td>
+          <td>{{ wallet.wallet_coins | default: "—" }}</td>
+          <td>
+            {% if wallet.wallet_opensource == "Yes" %}
+              <span class="opensource-yes">✓ Yes</span>
+            {% elsif wallet.wallet_opensource == "Partial" %}
+              <span class="opensource-partial">Partial</span>
+            {% else %}
+              <span>{{ wallet.wallet_opensource | default: "—" }}</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Mobile Cards -->
+  <div class="mobile-hw-cards">
+    {% for wallet in wallets %}
+    <div class="mobile-hw-card">
+      <div class="mobile-hw-card-header">
+        <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-hw-card-img">
+        <div class="mobile-hw-card-name">{{ wallet.title }}</div>
+      </div>
+      <div class="mobile-hw-card-details">
+        <div class="mobile-hw-detail-item">
+          <span class="mobile-hw-detail-label">Best For</span>
+          <span class="mobile-hw-detail-value">{{ wallet.hw_bestfor | default: wallet.wallet_bestfor | default: "—" }}</span>
+        </div>
+        <div class="mobile-hw-detail-item">
+          <span class="mobile-hw-detail-label">Price</span>
+          <span class="mobile-hw-detail-value">{{ wallet.wallet_price | default: "—" }}</span>
+        </div>
+        <div class="mobile-hw-detail-item">
+          <span class="mobile-hw-detail-label">Coins</span>
+          <span class="mobile-hw-detail-value">{{ wallet.wallet_coins | default: "—" }}</span>
+        </div>
+        <div class="mobile-hw-detail-item">
+          <span class="mobile-hw-detail-label">Open Source</span>
+          <span class="mobile-hw-detail-value">
+            {% if wallet.wallet_opensource == "Yes" %}
+              <span class="opensource-yes">✓ Yes</span>
+            {% elsif wallet.wallet_opensource == "Partial" %}
+              <span class="opensource-partial">Partial</span>
+            {% else %}
+              {{ wallet.wallet_opensource | default: "—" }}
+            {% endif %}
+          </span>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Brand Lineup Section -->
+<div class="brand-lineup-section">
+  <h2 class="brand-lineup-title">Hardware Wallet Brands & Devices</h2>
+  <p class="brand-lineup-intro">Each brand offers multiple devices at different price points. Here's what each manufacturer sells:</p>
+  
+  <div class="brand-lineup-grid">
+    <!-- Trezor -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img src="/tools/img/trezor.png" alt="Trezor" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">Trezor</span>
+        <span class="brand-lineup-card-badge">5 devices</span>
+      </div>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">⭐ Safe 7 (newest)</span>
+          <span class="brand-device-price">$249</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Safe 5</span>
+          <span class="brand-device-price">$169</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Safe 3</span>
+          <span class="brand-device-price">$79</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Model T (legacy)</span>
+          <span class="brand-device-price">$219</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Model One (legacy)</span>
+          <span class="brand-device-price">$69</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Ledger -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img src="/tools/img/ledger.png" alt="Ledger" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">Ledger</span>
+        <span class="brand-lineup-card-badge">5 devices</span>
+      </div>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">⭐ Stax (premium)</span>
+          <span class="brand-device-price">$399</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Flex</span>
+          <span class="brand-device-price">$249</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Nano Gen5</span>
+          <span class="brand-device-price">$179</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Nano X</span>
+          <span class="brand-device-price">$149</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Nano S Plus</span>
+          <span class="brand-device-price">$79</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Blockstream Jade -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img src="/tools/img/jade.png" alt="Blockstream Jade" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">Blockstream</span>
+        <span class="brand-lineup-card-badge">2 devices</span>
+      </div>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">⭐ Jade Plus</span>
+          <span class="brand-device-price">$149</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Jade Classic</span>
+          <span class="brand-device-price">$65</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Coldcard -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img src="/tools/img/coldcard.jpeg" alt="Coldcard" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">Coldcard</span>
+        <span class="brand-lineup-card-badge">2 devices</span>
+      </div>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">⭐ Q (full keyboard)</span>
+          <span class="brand-device-price">$219</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Mk4</span>
+          <span class="brand-device-price">$157</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- BitBox -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img src="/tools/img/bitbox.png" alt="BitBox" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">BitBox</span>
+        <span class="brand-lineup-card-badge">2 devices</span>
+      </div>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">⭐ BitBox02 Nova</span>
+          <span class="brand-device-price">$169</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">BitBox02</span>
+          <span class="brand-device-price">$149</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>Wallet Details</h2>
+
+<div class="hw-listing">
+  {% for wallet in wallets %}
+  <div class="hw-item">
+    <div class="hw-header">
+      <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-image-wrapper" onclick="fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}');">
+        <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="hw-image">
+      </a>
+      
+      <div class="hw-info">
+        {% if wallet.hw_bestfor or wallet.wallet_bestfor %}
+        <div class="hw-badges-row">
+          <span class="best-for-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#F59E0B" stroke="#F59E0B" stroke-width="1.5"/>
+            </svg>
+            Best for: {{ wallet.hw_bestfor | default: wallet.wallet_bestfor }}
+          </span>
+        </div>
+        {% endif %}
+        
+        <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-title-link" onclick="fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}');">
+          <h2 class="hw-title">{{ wallet.title }}</h2>
+        </a>
+        
+        <div class="hw-data-grid">
+          <div class="hw-data-item">
+            <div class="hw-data-label">Price</div>
+            <div class="hw-data-value">{{ wallet.wallet_price | default: "—" }}</div>
+          </div>
+          
+          <div class="hw-data-item">
+            <div class="hw-data-label">Coins Supported</div>
+            <div class="hw-data-value">{{ wallet.wallet_coins | default: "—" }}</div>
+          </div>
+          
+          <div class="hw-data-item">
+            <div class="hw-data-label">Custody</div>
+            <div class="hw-data-value">{{ wallet.wallet_custody | default: "—" }}</div>
+          </div>
+          
+          <div class="hw-data-item">
+            <div class="hw-data-label">Open Source</div>
+            <div class="hw-data-value">
+              {% if wallet.wallet_opensource == "Yes" %}
+                <span class="opensource-yes">✓ Yes</span>
+              {% elsif wallet.wallet_opensource == "Partial" %}
+                <span class="opensource-partial">Partial</span>
+              {% else %}
+                {{ wallet.wallet_opensource | default: "—" }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        
+        <div class="hw-actions">
+          <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-apply-button" onclick="fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}');">
+            GET {{ wallet.title | upcase }}
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        
+        {% if wallet.wallet_summary %}
+        <div class="hw-breakdown-section">
+          <div class="hw-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="hw-breakdown-title">
+              <div class="hw-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                  <path d="M7 9h10M7 13h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              Overview
+            </div>
+            <svg class="hw-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="hw-breakdown-content">
+            <p class="hw-summary-text">{{ wallet.wallet_summary }}</p>
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if wallet.wallet_pros %}
+        <div class="hw-breakdown-section">
+          <div class="hw-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="hw-breakdown-title">
+              <div class="hw-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              Pros
+            </div>
+            <svg class="hw-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="hw-breakdown-content">
+            {{ wallet.wallet_pros }}
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if wallet.wallet_cons %}
+        <div class="hw-breakdown-section">
+          <div class="hw-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="hw-breakdown-title">
+              <div class="hw-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              Cons
+            </div>
+            <svg class="hw-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="hw-breakdown-content hw-cons-content">
+            {{ wallet.wallet_cons }}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>No hardware wallets available at this time.</p>
+{% endif %}
+
+<div class="hw-disclaimer">
+  <p>Disclaimer: The information provided on this page is for informational purposes only and does not constitute financial advice. Hardware wallets involve technical complexity — always follow manufacturer instructions carefully and test your backup recovery process before storing significant funds. We recommend purchasing hardware wallets directly from manufacturers to avoid tampered devices. Some links on this page may be affiliate links, which help support our research at no extra cost to you.</p>
+</div>
