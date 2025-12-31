@@ -40,6 +40,52 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   color: #92400E;
 }
 
+.toc-box {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  max-width: 400px;
+}
+
+.toc-box-label {
+  font-weight: 700;
+  color: #f2a900;
+  margin-bottom: 12px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.toc-box nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-box nav ul li {
+  margin-bottom: 8px;
+}
+
+.toc-box nav ul li a {
+  color: #d1d5db;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.15s;
+}
+
+.toc-box nav ul li a:hover {
+  color: #f2a900;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .toc-box {
+    max-width: 100%;
+  }
+}
+
 .hw-comparison-table-wrapper {
   margin-bottom: 40px;
   margin-top: 30px;
@@ -829,6 +875,19 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 <br><br>
 
 <div class="hw-intro">
+
+<div class="toc-box">
+    <div class="toc-box-label">Table Of Contents</div>
+    <nav>
+        <ul>
+            <li><a href="#compare-hardware-wallets">Compare Hardware Wallets</a></li>
+            <li><a href="#hardware-wallet-details">Hardware Wallet Details</a></li>
+            <li><a href="#multisig-integrations">Multisig Integrations</a></li>
+            <li><a href="#hardware-wallet-brands">Hardware Wallet Brands & Devices</a></li>
+        </ul>
+    </nav>
+</div>
+
   <p>A hardware wallet keeps your Bitcoin private keys offline on a dedicated device, protecting them from hackers and malware. It's the gold standard for securing any significant Bitcoin holdings.</p>
   
   <div class="hw-intro-highlight">
@@ -837,7 +896,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 </div>
 
 {% if wallets.size > 0 %}
-<div class="hw-comparison-table-wrapper">
+<div class="hw-comparison-table-wrapper" id="compare-hardware-wallets">
   <div class="hw-comparison-table-header">
     <h2 class="hw-comparison-table-title">Compare Hardware Wallets</h2>
   </div>
@@ -920,134 +979,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   </div>
 </div>
 
-<!-- Brand Lineup Section -->
-<div class="brand-lineup-section">
-  <h2 class="brand-lineup-title">Hardware Wallet Brands & Devices</h2>
-  <p class="brand-lineup-intro">Each of the top brands sells multiple devices, so we've listed them here to help clear up any confusion.</p>
-  
-  <div class="brand-lineup-grid">
-    <!-- Trezor -->
-    <div class="brand-lineup-card">
-      <div class="brand-lineup-card-header">
-        <img src="/tools/img/trezor.png" alt="Trezor" class="brand-lineup-card-img">
-        <span class="brand-lineup-card-name">Trezor</span>
-        <span class="brand-lineup-card-badge">5 devices</span>
-      </div>
-      <div class="brand-lineup-devices">
-        <div class="brand-device-item brand-device-highlight">
-          <span class="brand-device-name">Safe 7 (newest)</span>
-          <span class="brand-device-price">$249</span>
-        </div>
-        <div class="brand-device-item">
-          <span class="brand-device-name">Safe 5</span>
-          <span class="brand-device-price">$169</span>
-        </div>
-        <div class="brand-device-item">
-          <span class="brand-device-name">Safe 3</span>
-          <span class="brand-device-price">$79</span>
-        </div>
-        <div class="brand-device-item">
-          <span class="brand-device-name">Model T (legacy)</span>
-          <span class="brand-device-price">$219</span>
-        </div>
-        <div class="brand-device-item">
-          <span class="brand-device-name">Model One (legacy)</span>
-          <span class="brand-device-price">$69</span>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Ledger -->
-    <div class="brand-lineup-card">
-      <div class="brand-lineup-card-header">
-        <img src="/tools/img/ledger.png" alt="Ledger" class="brand-lineup-card-img">
-        <span class="brand-lineup-card-name">Ledger</span>
-        <span class="brand-lineup-card-badge">5 devices</span>
-      </div>
-      <div class="brand-lineup-devices">
-        <div class="brand-device-item brand-device-highlight">
-          <span class="brand-device-name">Stax (premium)</span>
-          <span class="brand-device-price">$399</span>
-        </div>
-        <div class="brand-device-item">
-          <span class="brand-device-name">Flex</span>
-          <span class="brand-device-price">$249</span>
-        </div>
-        <div class="brand-device-item">
-          <span class="brand-device-name">Nano Gen5</span>
-          <span class="brand-device-price">$179</span>
-        </div>
-        <div class="brand-device-item">
-          <span class="brand-device-name">Nano X</span>
-          <span class="brand-device-price">$149</span>
-        </div>
-        <div class="brand-device-item">
-          <span class="brand-device-name">Nano S Plus</span>
-          <span class="brand-device-price">$79</span>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Blockstream Jade -->
-    <div class="brand-lineup-card">
-      <div class="brand-lineup-card-header">
-        <img src="/tools/img/jade.png" alt="Blockstream Jade" class="brand-lineup-card-img">
-        <span class="brand-lineup-card-name">Blockstream</span>
-        <span class="brand-lineup-card-badge">2 devices</span>
-      </div>
-      <div class="brand-lineup-devices">
-        <div class="brand-device-item brand-device-highlight">
-          <span class="brand-device-name">Jade Plus</span>
-          <span class="brand-device-price">$149</span>
-        </div>
-        <div class="brand-device-item">
-          <span class="brand-device-name">Jade Classic</span>
-          <span class="brand-device-price">$65</span>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Coldcard -->
-    <div class="brand-lineup-card">
-      <div class="brand-lineup-card-header">
-        <img src="/tools/img/coldcard.jpeg" alt="Coldcard" class="brand-lineup-card-img">
-        <span class="brand-lineup-card-name">Coldcard</span>
-        <span class="brand-lineup-card-badge">2 devices</span>
-      </div>
-      <div class="brand-lineup-devices">
-        <div class="brand-device-item brand-device-highlight">
-          <span class="brand-device-name">Q (full keyboard)</span>
-          <span class="brand-device-price">$219</span>
-        </div>
-        <div class="brand-device-item">
-          <span class="brand-device-name">Mk4</span>
-          <span class="brand-device-price">$157</span>
-        </div>
-      </div>
-    </div>
-    
-    <!-- BitBox -->
-    <div class="brand-lineup-card">
-      <div class="brand-lineup-card-header">
-        <img src="/tools/img/bitbox.png" alt="BitBox" class="brand-lineup-card-img">
-        <span class="brand-lineup-card-name">BitBox</span>
-        <span class="brand-lineup-card-badge">2 devices</span>
-      </div>
-      <div class="brand-lineup-devices">
-        <div class="brand-device-item brand-device-highlight">
-          <span class="brand-device-name">BitBox02 Nova</span>
-          <span class="brand-device-price">$169</span>
-        </div>
-        <div class="brand-device-item">
-          <span class="brand-device-name">BitBox02</span>
-          <span class="brand-device-price">$149</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<h2>Wallet Details</h2>
+<h2 id="hardware-wallet-details">Wallet Details</h2>
 
 <div class="hw-listing">
   {% for wallet in wallets %}
@@ -1185,7 +1117,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 {% endif %}
 
 <!-- Integrations Section -->
-<div class="integrations-section">
+<div class="integrations-section" id="multisig-integrations">
   <h2 class="integrations-title">Multisig Integrations</h2>
   <p class="integrations-intro">Many hardware wallets integrate with multisig custody solutions for enhanced security. Here's which wallets work with the major providers:</p>
   
@@ -1269,6 +1201,133 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+<!-- Brand Lineup Section -->
+<div class="brand-lineup-section" id="hardware-wallet-brands">
+  <h2 class="brand-lineup-title">Hardware Wallet Brands & Devices</h2>
+  <p class="brand-lineup-intro">Each of the top brands sells multiple devices, so we've listed them here to help clear up any confusion.</p>
+  
+  <div class="brand-lineup-grid">
+    <!-- Trezor -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img src="/tools/img/trezor.png" alt="Trezor" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">Trezor</span>
+        <span class="brand-lineup-card-badge">5 devices</span>
+      </div>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">Safe 7 (newest)</span>
+          <span class="brand-device-price">$249</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Safe 5</span>
+          <span class="brand-device-price">$169</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Safe 3</span>
+          <span class="brand-device-price">$79</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Model T (legacy)</span>
+          <span class="brand-device-price">$219</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Model One (legacy)</span>
+          <span class="brand-device-price">$69</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Ledger -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img src="/tools/img/ledger.png" alt="Ledger" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">Ledger</span>
+        <span class="brand-lineup-card-badge">5 devices</span>
+      </div>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">Stax (premium)</span>
+          <span class="brand-device-price">$399</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Flex</span>
+          <span class="brand-device-price">$249</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Nano Gen5</span>
+          <span class="brand-device-price">$179</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Nano X</span>
+          <span class="brand-device-price">$149</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Nano S Plus</span>
+          <span class="brand-device-price">$79</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Blockstream Jade -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img src="/tools/img/jade.png" alt="Blockstream Jade" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">Blockstream</span>
+        <span class="brand-lineup-card-badge">2 devices</span>
+      </div>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">Jade Plus</span>
+          <span class="brand-device-price">$149</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Jade Classic</span>
+          <span class="brand-device-price">$65</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Coldcard -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img src="/tools/img/coldcard.jpeg" alt="Coldcard" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">Coldcard</span>
+        <span class="brand-lineup-card-badge">2 devices</span>
+      </div>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">Q (full keyboard)</span>
+          <span class="brand-device-price">$219</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Mk4</span>
+          <span class="brand-device-price">$157</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- BitBox -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img src="/tools/img/bitbox.png" alt="BitBox" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">BitBox</span>
+        <span class="brand-lineup-card-badge">2 devices</span>
+      </div>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">BitBox02 Nova</span>
+          <span class="brand-device-price">$169</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">BitBox02</span>
+          <span class="brand-device-price">$149</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
