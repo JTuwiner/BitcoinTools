@@ -690,6 +690,152 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
     font-size: 11px;
   }
 }
+
+/* Integrations Section */
+.integrations-section {
+  margin: 60px 0 40px 0;
+}
+
+.integrations-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.integrations-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 24px;
+  background: #f2a900;
+  border-radius: 2px;
+}
+
+.integrations-intro {
+  font-size: 15px;
+  color: #374151;
+  margin: 0 0 24px 0;
+  max-width: 700px;
+}
+
+.integrations-table-wrapper {
+  overflow-x: auto;
+}
+
+.integrations-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.integrations-table thead {
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.integrations-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+}
+
+.integrations-table th:first-child {
+  min-width: 140px;
+}
+
+.integrations-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.integrations-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.integrations-table td {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #374151;
+  vertical-align: top;
+}
+
+.integrations-table td:first-child {
+  font-weight: 600;
+  color: #111827;
+}
+
+.integration-provider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.integration-provider-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.integration-devices {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.integration-device {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.integration-device .check {
+  color: #10b981;
+  font-weight: bold;
+}
+
+.integration-device.deprecated {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.integration-device.deprecated .check {
+  color: #d1d5db;
+}
+
+@media (max-width: 768px) {
+  .integrations-section {
+    margin: 40px 0 32px 0;
+  }
+  
+  .integrations-title {
+    font-size: 20px;
+  }
+  
+  .integrations-table th,
+  .integrations-table td {
+    padding: 12px;
+    font-size: 13px;
+  }
+  
+  .integration-provider-img {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .integration-device {
+    font-size: 12px;
+  }
+}
 </style>
 
 <br><br>
@@ -1049,6 +1195,94 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 {% else %}
 <p>No hardware wallets available at this time.</p>
 {% endif %}
+
+<!-- Integrations Section -->
+<div class="integrations-section">
+  <h2 class="integrations-title">Multisig Integrations</h2>
+  <p class="integrations-intro">Many hardware wallets integrate with multisig custody solutions for enhanced security. Here's which wallets work with the major providers:</p>
+  
+  <div class="integrations-table-wrapper">
+    <table class="integrations-table">
+      <thead>
+        <tr>
+          <th>Provider</th>
+          <th>Trezor</th>
+          <th>Ledger</th>
+          <th>Coldcard</th>
+          <th>Other</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="integration-provider">
+              <img src="/tools/img/unchained.png" alt="Unchained" class="integration-provider-img">
+              <span>Unchained</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Safe 7</span>
+              <span class="integration-device"><span class="check">✓</span> Safe 5</span>
+              <span class="integration-device"><span class="check">✓</span> Safe 3</span>
+              <span class="integration-device"><span class="check">✓</span> Model T</span>
+              <span class="integration-device"><span class="check">✓</span> Model One</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Stax</span>
+              <span class="integration-device"><span class="check">✓</span> Flex</span>
+              <span class="integration-device"><span class="check">✓</span> Nano X</span>
+              <span class="integration-device"><span class="check">✓</span> Nano S Plus</span>
+              <span class="integration-device deprecated"><span class="check">✓</span> Nano S (legacy)</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Q</span>
+              <span class="integration-device"><span class="check">✓</span> Mk4</span>
+              <span class="integration-device deprecated"><span class="check">✓</span> Mk3/Mk2 (legacy)</span>
+            </div>
+          </td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="integration-provider">
+              <img src="/img/casa.png" alt="Casa" class="integration-provider-img">
+              <span>Casa</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Safe 3</span>
+              <span class="integration-device"><span class="check">✓</span> Model T</span>
+              <span class="integration-device"><span class="check">✓</span> Model One</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> All models</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Coldcard</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Keystone</span>
+              <span class="integration-device"><span class="check">✓</span> Passport</span>
+              <span class="integration-device"><span class="check">✓</span> YubiKey</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <div class="hw-disclaimer">
   <p>Disclaimer: The information provided on this page is for informational purposes only and does not constitute financial advice. Hardware wallets involve technical complexity — always follow manufacturer instructions carefully and test your backup recovery process before storing significant funds. We recommend purchasing hardware wallets directly from manufacturers to avoid tampered devices. Some links on this page may be affiliate links, which help support our research at no extra cost to you.</p>
