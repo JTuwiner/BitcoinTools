@@ -43,7 +43,7 @@ capture: yes
      <h2>How Our Calculations Are Made:</h2>
     <ul>
         <li><strong>Capital Gains:</strong> First, we determine your total capital gain by subtracting the purchase cost from the sale amount.</li>
-        <li><strong>Tax Bracket:</strong> Based on your provided annual income, you are categorized into one of the tax brackets: Basic (18%), Higher (24%), or Additional (24%).</li>
+        <li><strong>Tax Bracket:</strong> Based on your provided annual income, you are categorized into one of the tax brackets: Basic (10%), Higher (20%), or Additional (20%). Note: These are CGT rates for crypto and other assets, not residential property.</li>
         <li><strong>Allowance Deduction:</strong> If your gains exceed £3,000, this allowance is subtracted, ensuring you are only taxed on gains above this threshold.</li>
         <li><strong>Tax Calculation:</strong> Finally, we apply the appropriate tax rate to the adjusted gains to determine the tax you owe.</li>
     </ul>
@@ -151,15 +151,16 @@ function calculateUKTax() {
         taxableGain = capitalGain - 3000; // Deduct the allowance directly from gains only if gains exceed £3,000
     }
 
+    // UK CGT rates for crypto/other assets (not residential property)
     if (income <= 50270) {
-        taxRate = 0.18; 
-        taxBracket = "Basic Rate (18%)";
-    } else if (income <= 150000) {
-        taxRate = 0.24; 
-        taxBracket = "Higher Rate (24%)";
+        taxRate = 0.10; 
+        taxBracket = "Basic Rate (10%)";
+    } else if (income <= 125140) {
+        taxRate = 0.20; 
+        taxBracket = "Higher Rate (20%)";
     } else {
-        taxRate = 0.24; 
-        taxBracket = "Additional Rate (24%)";
+        taxRate = 0.20; 
+        taxBracket = "Additional Rate (20%)";
     }
 
     taxDue = taxableGain * taxRate;

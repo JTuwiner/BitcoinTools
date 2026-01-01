@@ -11,23 +11,14 @@ capture: yes
 
 <p>We built this free crypto tax calculator for residents of Louisiana who want to check calculations quickly. Our calculator is for informational purposes only. Please consult a CPA or tax professional. Use <a href="/tools/tax/">cryptocurrency tax accounting software if you have lots of trades</a>.</p>
 
-<p>Louisiana taxes capital gains as regular income, with rates ranging from 1.85% to 4.25%. To calculate Federal taxes, please <a href="/tools/usa-tax-calculator/">use our USA tax calculator</a>.</p>
+<p>Louisiana taxes all capital gains at a flat rate of 3%, regardless of income level or holding period. To calculate Federal taxes, please <a href="/tools/usa-tax-calculator/">use our USA tax calculator</a>.</p>
 
 <div id="cryptoTaxCalculator">
-    <label for="totalIncome">Enter your total income (without capital gains):</label>
-    <input type="number" step="0.01" id="totalIncome" placeholder="Enter income">
-    
     <label for="purchaseCost">Total Cost of First Purchase:</label>
     <input type="number" step="0.01" id="purchaseCost" placeholder="Cost of first crypto buy">
     
     <label for="saleAmount">Amount of Sale:</label>
     <input type="number" step="0.01" id="saleAmount" placeholder="Amount you received when sold">
-
-    <label for="filingStatus">Filing Status:</label>
-    <select id="filingStatus">
-        <option value="single">Single</option>
-        <option value="marriedJointly">Married Filing Jointly</option>
-    </select>
 <br>
     <button onclick="calculateTax()">Calculate Tax</button>
 
@@ -37,37 +28,14 @@ capture: yes
 
 <script>
 function calculateTax() {
-    const totalIncome = parseFloat(document.getElementById("totalIncome").value);
     const purchaseCost = parseFloat(document.getElementById("purchaseCost").value);
     const saleAmount = parseFloat(document.getElementById("saleAmount").value);
-    const filingStatus = document.getElementById("filingStatus").value;
 
     let capitalGains = saleAmount - purchaseCost;
-    
-    const brackets = {
-        single: [12500, 50000, Infinity],
-        marriedJointly: [25000, 100000, Infinity]
-    };
-
-    const rates = [0.0185, 0.0350, 0.0425];
-    
-    const taxableIncome = totalIncome + capitalGains;
-    let tax = 0;
-    let previousBracket = 0;
-
-    for (let i = 0; i < brackets[filingStatus].length; i++) {
-        if (taxableIncome > previousBracket) {
-            const incomeInBracket = Math.min(taxableIncome, brackets[filingStatus][i]) - previousBracket;
-            const gainsPortion = (capitalGains / taxableIncome) * incomeInBracket;
-            tax += gainsPortion * rates[i];
-        }
-        previousBracket = brackets[filingStatus][i];
-    }
-    
-    let effectiveRate = (tax / capitalGains) * 100;
+    let tax = capitalGains * 0.03; // Louisiana's flat 3% rate
     
     let explanation = `Capital gains: $${capitalGains.toFixed(2)}<br>` +
-                     `Effective tax rate: ${effectiveRate.toFixed(2)}%`;
+                     `Tax rate: 3%`;
 
     document.getElementById("taxOwed").innerHTML = `Estimated Louisiana Tax on Crypto Capital Gains: $${tax.toFixed(2)}`;
     document.getElementById("explanation").innerHTML = explanation;
@@ -78,30 +46,18 @@ function calculateTax() {
 {% include koinlylink.html link="https://coinledger.io/?fpr=bitcoinww&fp_sid=tools" %}
 <br><br>
 
-<h2>Louisiana Tax Brackets (2025)</h2>
+<h2>Louisiana Tax Rate (2025)</h2>
 <table>
     <thead>
         <tr>
-            <th>Single Filers</th>
-            <th>Married Filing Jointly</th>
+            <th>Type of Gain</th>
             <th>Tax Rate</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>$0 to $12,500</td>
-            <td>$0 to $25,000</td>
-            <td>1.85%</td>
-        </tr>
-        <tr>
-            <td>$12,500 to $50,000</td>
-            <td>$25,000 to $100,000</td>
-            <td>3.50%</td>
-        </tr>
-        <tr>
-            <td>Over $50,000</td>
-            <td>Over $100,000</td>
-            <td>4.25%</td>
+            <td>All Capital Gains</td>
+            <td>3%</td>
         </tr>
     </tbody>
 </table>
@@ -110,22 +66,22 @@ function calculateTax() {
 
 <h3>Key Points</h3>
 <ul>
-    <li><strong>Income-Based Taxation:</strong> Louisiana treats crypto gains as regular income, with rates from 1.85% to 4.25%.</li>
-    <li><strong>Progressive System:</strong> Tax rates increase with income across three brackets.</li>
-    <li><strong>No Distinction:</strong> Louisiana makes no distinction between short-term and long-term gains.</li>
-    <li><strong>Mining Income:</strong> Crypto mining is treated as self-employment income and taxed at regular income rates.</li>
+    <li><strong>Flat Rate Taxation:</strong> Louisiana applies a flat 3% tax rate to all capital gains.</li>
+    <li><strong>Simplified System:</strong> No distinction between short-term and long-term gains.</li>
+    <li><strong>Predictable Tax:</strong> Same rate applies regardless of income level.</li>
+    <li><strong>Mining Income:</strong> Crypto mining is treated as self-employment income and taxed at the same 3% rate.</li>
 </ul>
 
 <h3>Common Tax Situations</h3>
 <div class="tax-situations">
     <div class="situation">
         <h4>Trading & Investment</h4>
-        <p>All crypto trades, including crypto-to-crypto transactions, are taxable events. Gains are taxed based on your total income bracket.</p>
+        <p>All crypto trades, including crypto-to-crypto transactions, are taxable events. The flat 3% rate applies to all gains.</p>
     </div>
 
     <div class="situation">
         <h4>Tax Planning Tips</h4>
-        <p>Consider timing your crypto sales to manage your tax bracket position. Keep detailed records of all transactions for accurate reporting.</p>
+        <p>Louisiana's flat rate makes tax planning straightforward. Keep detailed records of all transactions for accurate reporting.</p>
     </div>
 </div>
 
@@ -134,7 +90,7 @@ function calculateTax() {
         color: black;
         width: 100%;
         margin: 0;
-        max-width: 600px;
+        max-width: 400px;
         margin-bottom: 20px;
     }
 
@@ -160,8 +116,7 @@ function calculateTax() {
         margin-top: 15px;
     }
     
-    #cryptoTaxCalculator input[type="number"],
-    #cryptoTaxCalculator select {
+    #cryptoTaxCalculator input[type="number"] {
         width: 100%;
         padding: 10px;
         border: 1px solid #ccc;
@@ -225,4 +180,4 @@ function calculateTax() {
         line-height: 1.4;
     }
 </style>
-</div> 
+</div>

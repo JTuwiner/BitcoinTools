@@ -11,7 +11,7 @@ capture: yes
 
 <p>We built this free crypto tax calculator for residents of Indiana who want to check calculations quickly. Our calculator is for informational purposes only. Please consult a CPA or tax professional. Use <a href="/tools/tax/">cryptocurrency tax accounting software if you have lots of trades</a>.</p>
 
-<p>Indiana taxes all capital gains at a flat rate of 3.15%, regardless of income level or holding period. To calculate Federal taxes, please <a href="/tools/usa-tax-calculator/">use our USA tax calculator</a>.</p>
+<p>Indiana taxes all capital gains at a flat rate of 3%, regardless of income level or holding period. To calculate Federal taxes, please <a href="/tools/usa-tax-calculator/">use our USA tax calculator</a>.</p>
 
 <div id="cryptoTaxCalculator">
     <label for="purchaseCost">Total Cost of First Purchase:</label>
@@ -32,10 +32,10 @@ function calculateTax() {
     const saleAmount = parseFloat(document.getElementById("saleAmount").value);
 
     let capitalGains = saleAmount - purchaseCost;
-    let tax = capitalGains * 0.0315; // Indiana's flat 3.15% rate
+    let tax = capitalGains * 0.03; // Indiana's flat 3% rate
     
     let explanation = `Capital gains: $${capitalGains.toFixed(2)}<br>` +
-                     `Tax rate: 3.15%`;
+                     `Tax rate: 3%`;
 
     document.getElementById("taxOwed").innerHTML = `Estimated Indiana Tax on Crypto Capital Gains: $${tax.toFixed(2)}`;
     document.getElementById("explanation").innerHTML = explanation;
@@ -57,7 +57,7 @@ function calculateTax() {
     <tbody>
         <tr>
             <td>All Capital Gains</td>
-            <td>3.15%</td>
+            <td>3%</td>
         </tr>
     </tbody>
 </table>
@@ -66,17 +66,17 @@ function calculateTax() {
 
 <h3>Key Points</h3>
 <ul>
-    <li><strong>Flat Rate Taxation:</strong> Indiana applies a flat 3.15% tax rate to all capital gains.</li>
+    <li><strong>Flat Rate Taxation:</strong> Indiana applies a flat 3% tax rate to all capital gains.</li>
     <li><strong>Simplified System:</strong> Unlike other states, Indiana's capital gains tax is not tied to income levels.</li>
     <li><strong>No Distinction:</strong> Indiana makes no distinction between short-term and long-term gains.</li>
-    <li><strong>Mining Income:</strong> Crypto mining is treated as self-employment income and taxed at the same 3.15% rate.</li>
+    <li><strong>Mining Income:</strong> Crypto mining is treated as self-employment income and taxed at the same 3% rate.</li>
 </ul>
 
 <h3>Common Tax Situations</h3>
 <div class="tax-situations">
     <div class="situation">
         <h4>Trading & Investment</h4>
-        <p>All crypto trades, including crypto-to-crypto transactions, are taxable events. The flat 3.15% rate applies to all gains, regardless of holding period or amount.</p>
+        <p>All crypto trades, including crypto-to-crypto transactions, are taxable events. The flat 3% rate applies to all gains, regardless of holding period or amount.</p>
     </div>
 
     <div class="situation">

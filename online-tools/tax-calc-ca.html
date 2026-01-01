@@ -123,13 +123,14 @@ capture: yes
             let federalTax = 0;
             const totalIncome = income + taxableGain;
             
-            if(totalIncome <= 55867) {
-                federalTax = taxableGain * 0.15;
-            } else if(totalIncome <= 111733) {
+            // 2025 Federal tax brackets
+            if(totalIncome <= 57375) {
+                federalTax = taxableGain * 0.145;
+            } else if(totalIncome <= 114750) {
                 federalTax = taxableGain * 0.205;
-            } else if(totalIncome <= 173205) {
+            } else if(totalIncome <= 177882) {
                 federalTax = taxableGain * 0.26;
-            } else if(totalIncome <= 246752) {
+            } else if(totalIncome <= 253414) {
                 federalTax = taxableGain * 0.29;
             } else {
                 federalTax = taxableGain * 0.33;
@@ -266,7 +267,7 @@ capture: yes
 
     <br><br><br>
 
-    <h2>Federal Tax Rates Used</h2>
+    <h2>2025 Federal Tax Rates</h2>
 
     <table border="1">
         <thead>
@@ -277,24 +278,24 @@ capture: yes
         </thead>
         <tbody>
             <tr>
-                <td>15%</td>
-                <td>Up to $55,867 of taxable income</td>
+                <td>14.5%</td>
+                <td>Up to $57,375 of taxable income</td>
             </tr>
             <tr>
                 <td>20.5%</td>
-                <td>Between $55,867 and $111,733</td>
+                <td>Between $57,375 and $114,750</td>
             </tr>
             <tr>
                 <td>26%</td>
-                <td>Between $111,733 and $173,205</td>
+                <td>Between $114,750 and $177,882</td>
             </tr>
             <tr>
                 <td>29%</td>
-                <td>Between $173,205 and $246,752</td>
+                <td>Between $177,882 and $253,414</td>
             </tr>
             <tr>
                 <td>33%</td>
-                <td>On any amount taxable income exceeding $246,752</td>
+                <td>On any taxable income exceeding $253,414</td>
             </tr>
         </tbody>
     </table>

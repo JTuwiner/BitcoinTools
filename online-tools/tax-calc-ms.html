@@ -11,12 +11,9 @@ capture: yes
 
 <p>We built this free crypto tax calculator for residents of Mississippi who want to check calculations quickly. Our calculator is for informational purposes only. Please consult a CPA or tax professional. Use <a href="/tools/tax/">cryptocurrency tax accounting software if you have lots of trades</a>.</p>
 
-<p>Mississippi taxes capital gains as regular income at 5% for most taxpayers (income over $10,000). To calculate Federal taxes, please <a href="/tools/usa-tax-calculator/">use our USA tax calculator</a>.</p>
+<p>Mississippi taxes all capital gains at a flat rate of 4.4%, regardless of income level or holding period. To calculate Federal taxes, please <a href="/tools/usa-tax-calculator/">use our USA tax calculator</a>.</p>
 
 <div id="cryptoTaxCalculator">
-    <label for="totalIncome">Enter your total income (without capital gains):</label>
-    <input type="number" step="0.01" id="totalIncome" placeholder="Enter income">
-    
     <label for="purchaseCost">Total Cost of First Purchase:</label>
     <input type="number" step="0.01" id="purchaseCost" placeholder="Cost of first crypto buy">
     
@@ -31,27 +28,14 @@ capture: yes
 
 <script>
 function calculateTax() {
-    const totalIncome = parseFloat(document.getElementById("totalIncome").value);
     const purchaseCost = parseFloat(document.getElementById("purchaseCost").value);
     const saleAmount = parseFloat(document.getElementById("saleAmount").value);
 
     let capitalGains = saleAmount - purchaseCost;
-    const taxableIncome = totalIncome + capitalGains;
-    
-    // Calculate tax based on total income
-    let tax = 0;
-    if (taxableIncome <= 4000) {
-        tax = capitalGains * 0.03;
-    } else if (taxableIncome <= 5000) {
-        tax = capitalGains * 0.04;
-    } else {
-        tax = capitalGains * 0.05;
-    }
-    
-    let effectiveRate = (tax / capitalGains) * 100;
+    let tax = capitalGains * 0.044; // Mississippi's flat 4.4% rate
     
     let explanation = `Capital gains: $${capitalGains.toFixed(2)}<br>` +
-                     `Effective tax rate: ${effectiveRate.toFixed(2)}%`;
+                     `Tax rate: 4.4%`;
 
     document.getElementById("taxOwed").innerHTML = `Estimated Mississippi Tax on Crypto Capital Gains: $${tax.toFixed(2)}`;
     document.getElementById("explanation").innerHTML = explanation;
@@ -62,51 +46,42 @@ function calculateTax() {
 {% include koinlylink.html link="https://coinledger.io/?fpr=bitcoinww&fp_sid=tools" %}
 <br><br>
 
-<h2>Mississippi Tax Brackets (2025)</h2>
+<h2>Mississippi Tax Rate (2025)</h2>
 <table>
     <thead>
         <tr>
-            <th>Taxable Income</th>
+            <th>Type of Gain</th>
             <th>Tax Rate</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>$0 to $4,000</td>
-            <td>3%</td>
-        </tr>
-        <tr>
-            <td>$4,000 to $5,000</td>
-            <td>4%</td>
-        </tr>
-        <tr>
-            <td>Over $5,000</td>
-            <td>5%</td>
+            <td>All Capital Gains</td>
+            <td>4.4%</td>
         </tr>
     </tbody>
 </table>
-<p style="font-size: 0.9em;">Note: Most taxpayers with income over $10,000 will pay 5% on their capital gains.</p>
 
 <h2>Cryptocurrency Taxation in Mississippi</h2>
 
 <h3>Key Points</h3>
 <ul>
-    <li><strong>Simple Rate Structure:</strong> Most taxpayers will pay 5% on their crypto gains.</li>
-    <li><strong>Income-Based Taxation:</strong> Gains are treated as regular income.</li>
-    <li><strong>No Distinction:</strong> Mississippi makes no distinction between short-term and long-term gains.</li>
-    <li><strong>Mining Income:</strong> Crypto mining is treated as self-employment income and taxed at regular income rates.</li>
+    <li><strong>Flat Rate Taxation:</strong> Mississippi applies a flat 4.4% tax rate to all capital gains.</li>
+    <li><strong>Simplified System:</strong> No distinction between short-term and long-term gains.</li>
+    <li><strong>Predictable Tax:</strong> Same rate applies regardless of income level.</li>
+    <li><strong>Mining Income:</strong> Crypto mining is treated as self-employment income and taxed at the same 4.4% rate.</li>
 </ul>
 
 <h3>Common Tax Situations</h3>
 <div class="tax-situations">
     <div class="situation">
         <h4>Trading & Investment</h4>
-        <p>All crypto trades, including crypto-to-crypto transactions, are taxable events. Most traders will pay the 5% rate on their gains.</p>
+        <p>All crypto trades, including crypto-to-crypto transactions, are taxable events. The flat 4.4% rate applies to all gains.</p>
     </div>
 
     <div class="situation">
         <h4>Tax Planning Tips</h4>
-        <p>While Mississippi's tax system is relatively simple, keep detailed records of all transactions for accurate reporting. Consider timing sales to offset gains with losses.</p>
+        <p>Mississippi's flat rate makes tax planning straightforward. Keep detailed records of all transactions for accurate reporting.</p>
     </div>
 </div>
 
@@ -115,7 +90,7 @@ function calculateTax() {
         color: black;
         width: 100%;
         margin: 0;
-        max-width: 600px;
+        max-width: 400px;
         margin-bottom: 20px;
     }
 
@@ -141,8 +116,7 @@ function calculateTax() {
         margin-top: 15px;
     }
     
-    #cryptoTaxCalculator input[type="number"],
-    #cryptoTaxCalculator select {
+    #cryptoTaxCalculator input[type="number"] {
         width: 100%;
         padding: 10px;
         border: 1px solid #ccc;
@@ -206,4 +180,4 @@ function calculateTax() {
         line-height: 1.4;
     }
 </style>
-</div> 
+</div>
