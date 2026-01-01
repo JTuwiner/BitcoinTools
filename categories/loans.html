@@ -427,6 +427,10 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   background: linear-gradient(90deg, #1E3A5F 0%, #334155 100%);
 }
 
+.compare-bar-fill.strike {
+  background: linear-gradient(90deg, #00D632 0%, #32E85E 100%);
+}
+
 .calculator-disclaimer {
   font-size: 11px;
   color: #9CA3AF;
@@ -980,6 +984,7 @@ function updateMobileLoanComparison() {
         <label for="calc-provider">Provider</label>
         <select id="calc-provider" onchange="updateCalculator()">
           <option value="coinbase" data-apr="5" data-fee="0">Coinbase (From 5% APR)</option>
+          <option value="strike" data-apr="9.5" data-fee="0">Strike (From 9.5% APR)</option>
           <option value="ledn" data-apr="11.9" data-fee="0">Ledn (11.9% APR)</option>
           <option value="unchained" data-apr="15.2" data-fee="0">Unchained (From 15.2% APR)</option>
         </select>
@@ -1037,6 +1042,15 @@ function updateMobileLoanComparison() {
         </div>
         <div class="compare-bar-item">
           <div class="compare-bar-label">
+            <span>Strike</span>
+            <span class="compare-bar-cost">$950</span>
+          </div>
+          <div class="compare-bar-track">
+            <div class="compare-bar-fill strike" style="width: 63%"></div>
+          </div>
+        </div>
+        <div class="compare-bar-item">
+          <div class="compare-bar-label">
             <span>Ledn</span>
             <span class="compare-bar-cost">$1,190</span>
           </div>
@@ -1086,7 +1100,7 @@ function updateCalculator() {
 }
 
 function updateComparisonBars(amount, term) {
-  const rates = { coinbase: 5, ledn: 11.9, unchained: 15.2 };
+  const rates = { coinbase: 5, strike: 9.5, ledn: 11.9, unchained: 15.2 };
   const costs = {};
   let maxCost = 0;
   
@@ -1098,14 +1112,16 @@ function updateComparisonBars(amount, term) {
   
   // Update bars
   document.querySelector('.compare-bar-fill.coinbase').style.width = (costs.coinbase / maxCost * 100) + '%';
+  document.querySelector('.compare-bar-fill.strike').style.width = (costs.strike / maxCost * 100) + '%';
   document.querySelector('.compare-bar-fill.ledn').style.width = (costs.ledn / maxCost * 100) + '%';
   document.querySelector('.compare-bar-fill.unchained').style.width = (costs.unchained / maxCost * 100) + '%';
   
   // Update cost labels
   const costLabels = document.querySelectorAll('.compare-bar-cost');
   costLabels[0].textContent = '$' + costs.coinbase.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
-  costLabels[1].textContent = '$' + costs.ledn.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
-  costLabels[2].textContent = '$' + costs.unchained.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+  costLabels[1].textContent = '$' + costs.strike.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+  costLabels[2].textContent = '$' + costs.ledn.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+  costLabels[3].textContent = '$' + costs.unchained.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
   
   // Update comparison title
   document.querySelector('.calculator-compare h4').textContent = `Quick Comparison (${term}-month, $${amount.toLocaleString()} loan)`;
