@@ -260,6 +260,65 @@ desc: This is a complete guide to Lightning wallets. Find our top picks for Andr
     color: rgba(255, 255, 255, 0.9);
     text-decoration: underline;
 }
+
+/* Table of Contents */
+.toc-box {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 28px 32px;
+    margin: 36px 0;
+}
+
+.toc-box-label {
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.toc-box ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 32px;
+    grid-row-gap: 14px;
+    padding: 0;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .toc-box ul {
+        grid-template-columns: 1fr;
+    }
+}
+
+.toc-box li {
+    position: relative;
+    padding-left: 20px;
+}
+
+.toc-box li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.toc-box a {
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.toc-box a:hover {
+    opacity: 0.7;
+}
 </style>
 
 <div class="lightning-wallets-content">
@@ -290,7 +349,19 @@ desc: This is a complete guide to Lightning wallets. Find our top picks for Andr
 
 <p>Let's jump in.</p>
 
-<h2>Easiest to Use: Wallet of Satoshi</h2>
+<div class="toc-box">
+    <div class="toc-box-label">Table of Contents</div>
+    <ul>
+        <li><a href="#easiest-to-use">Easiest to Use LN Wallet</a></li>
+        <li><a href="#most-private">Most Private LN Wallet</a></li>
+        <li><a href="#most-secure">Most Secure LN Wallet</a></li>
+        <li><a href="#most-popular-android">Most Popular on Android</a></li>
+        <li><a href="#most-popular-ios">Most Popular on iOS</a></li>
+        <li><a href="#best-for-merchants">Best for Merchants</a></li>
+    </ul>
+</div>
+
+<h2 id="easiest-to-use">Easiest to Use: Wallet of Satoshi</h2>
 
 <div class="wallet-list-item col-sm-12">
     <h4>
@@ -315,7 +386,7 @@ desc: This is a complete guide to Lightning wallets. Find our top picks for Andr
     <img class="wallet-hero" src="https://buybitcoinworldwide.com/pages/wallets/lightning-wallets/img/satoshi-phone.png" alt="Wallet of Satoshi screenshot">
 </div>
 
-<h2>Most Private: Zap Wallet</h2>
+<h2 id="most-private">Most Private: Zap Wallet</h2>
 
 <div class="wallet-list-item col-sm-12">
     <h4>
@@ -340,7 +411,7 @@ desc: This is a complete guide to Lightning wallets. Find our top picks for Andr
     <img class="wallet-hero" src="https://buybitcoinworldwide.com/pages/wallets/lightning-wallets/img/zap-phone.png" alt="Zap Wallet screenshot">
 </div>
 
-<h2>Most Secure: Blue Wallet</h2>
+<h2 id="most-secure">Most Secure: Blue Wallet</h2>
 
 <div class="wallet-list-item col-sm-12">
     <h4>
@@ -365,7 +436,7 @@ desc: This is a complete guide to Lightning wallets. Find our top picks for Andr
     <img class="wallet-hero" src="https://buybitcoinworldwide.com/pages/wallets/lightning-wallets/img/blue-phone.png" alt="Blue Wallet screenshot">
 </div>
 
-<h2>Most Popular on Android: Muun Wallet</h2>
+<h2 id="most-popular-android">Most Popular on Android: Muun Wallet</h2>
 
 <div class="wallet-list-item col-sm-12">
     <h4>
@@ -388,7 +459,7 @@ desc: This is a complete guide to Lightning wallets. Find our top picks for Andr
     <img class="wallet-hero" src="https://buybitcoinworldwide.com/pages/wallets/lightning-wallets/img/muun-phone.png" alt="Muun Wallet screenshot">
 </div>
 
-<h2>Most Popular on iOS: Zeus Wallet</h2>
+<h2 id="most-popular-ios">Most Popular on iOS: Zeus Wallet</h2>
 
 <div class="wallet-list-item col-sm-12">
     <h4>
@@ -411,7 +482,7 @@ desc: This is a complete guide to Lightning wallets. Find our top picks for Andr
     <img class="wallet-hero" src="https://buybitcoinworldwide.com/pages/wallets/lightning-wallets/img/zeus-phone.png" alt="Zeus Wallet screenshot">
 </div>
 
-<h2>Best for Merchants: Breez</h2>
+<h2 id="best-for-merchants">Best for Merchants: Breez</h2>
 
 <div class="wallet-list-item col-sm-12">
     <h4>
