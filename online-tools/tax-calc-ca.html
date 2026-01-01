@@ -64,23 +64,26 @@ capture: yes
         </label>
         <input type="number" id="cryptoSaleAmount" placeholder="Enter crypto sale amount"><br><br>
 
-        <label for="provinceDropdown">Select Province:
+        <label for="provinceDropdown">Select Province/Territory:
             <span class="info-tooltip info-icon" data-tooltip="Province selection is needed to calculate additional provincial tax">
                 {% include infoicon.html %}
             </span>
         </label>
         <select id="provinceDropdown">
             <option value="none">None</option>
-            <option value="ontario">Ontario</option>
-            <option value="quebec">Quebec</option> 
-            <option value="british-columbia">British Columbia</option>
             <option value="alberta">Alberta</option>
+            <option value="british-columbia">British Columbia</option>
             <option value="manitoba">Manitoba</option>
-            <option value="saskatchewan">Saskatchewan</option> 
-            <option value="nova-scotia">Nova Scotia</option>
             <option value="new-brunswick">New Brunswick</option> 
             <option value="newfoundland-labrador">Newfoundland and Labrador</option> 
+            <option value="northwest-territories">Northwest Territories</option>
+            <option value="nova-scotia">Nova Scotia</option>
+            <option value="nunavut">Nunavut</option>
+            <option value="ontario">Ontario</option>
             <option value="prince-edward-island">Prince Edward Island</option> 
+            <option value="quebec">Quebec</option> 
+            <option value="saskatchewan">Saskatchewan</option> 
+            <option value="yukon">Yukon</option>
         </select><br><br>
 
         <button id="calculateButton">Calculate Tax</button>
@@ -136,76 +139,98 @@ capture: yes
                 federalTax = taxableGain * 0.33;
             }
     
-            // Calculate provincial tax
+            // Calculate provincial tax - 2025 rates
             let provincialTax = 0;
             
             switch(province) {
+                case 'alberta':
+                    if(totalIncome <= 60000) provincialTax = taxableGain * 0.08;
+                    else if(totalIncome <= 151234) provincialTax = taxableGain * 0.10;
+                    else if(totalIncome <= 181481) provincialTax = taxableGain * 0.12;
+                    else if(totalIncome <= 241974) provincialTax = taxableGain * 0.13;
+                    else if(totalIncome <= 362961) provincialTax = taxableGain * 0.14;
+                    else provincialTax = taxableGain * 0.15;
+                    break;
+                case 'british-columbia':
+                    if(totalIncome <= 49279) provincialTax = taxableGain * 0.0506;
+                    else if(totalIncome <= 98560) provincialTax = taxableGain * 0.077;
+                    else if(totalIncome <= 113158) provincialTax = taxableGain * 0.105;
+                    else if(totalIncome <= 137407) provincialTax = taxableGain * 0.1229;
+                    else if(totalIncome <= 186306) provincialTax = taxableGain * 0.147;
+                    else if(totalIncome <= 259829) provincialTax = taxableGain * 0.168;
+                    else provincialTax = taxableGain * 0.205;
+                    break;
+                case 'manitoba':
+                    if(totalIncome <= 47564) provincialTax = taxableGain * 0.108;
+                    else if(totalIncome <= 101200) provincialTax = taxableGain * 0.1275;
+                    else provincialTax = taxableGain * 0.174;
+                    break;
+                case 'new-brunswick':
+                    if(totalIncome <= 51306) provincialTax = taxableGain * 0.094;
+                    else if(totalIncome <= 102614) provincialTax = taxableGain * 0.14;
+                    else if(totalIncome <= 190060) provincialTax = taxableGain * 0.16;
+                    else provincialTax = taxableGain * 0.195;
+                    break;
+                case 'newfoundland-labrador':
+                    if(totalIncome <= 44192) provincialTax = taxableGain * 0.087;
+                    else if(totalIncome <= 88382) provincialTax = taxableGain * 0.145;
+                    else if(totalIncome <= 157792) provincialTax = taxableGain * 0.158;
+                    else if(totalIncome <= 220910) provincialTax = taxableGain * 0.178;
+                    else if(totalIncome <= 282214) provincialTax = taxableGain * 0.198;
+                    else if(totalIncome <= 564429) provincialTax = taxableGain * 0.208;
+                    else if(totalIncome <= 1128858) provincialTax = taxableGain * 0.213;
+                    else provincialTax = taxableGain * 0.218;
+                    break;
+                case 'northwest-territories':
+                    if(totalIncome <= 51964) provincialTax = taxableGain * 0.059;
+                    else if(totalIncome <= 103930) provincialTax = taxableGain * 0.086;
+                    else if(totalIncome <= 168967) provincialTax = taxableGain * 0.122;
+                    else provincialTax = taxableGain * 0.1405;
+                    break;
+                case 'nova-scotia':
+                    if(totalIncome <= 30507) provincialTax = taxableGain * 0.0879;
+                    else if(totalIncome <= 61015) provincialTax = taxableGain * 0.1495;
+                    else if(totalIncome <= 95883) provincialTax = taxableGain * 0.1667;
+                    else if(totalIncome <= 154650) provincialTax = taxableGain * 0.175;
+                    else provincialTax = taxableGain * 0.21;
+                    break;
+                case 'nunavut':
+                    if(totalIncome <= 54707) provincialTax = taxableGain * 0.04;
+                    else if(totalIncome <= 109413) provincialTax = taxableGain * 0.07;
+                    else if(totalIncome <= 177881) provincialTax = taxableGain * 0.09;
+                    else provincialTax = taxableGain * 0.115;
+                    break;
                 case 'ontario':
-                    if(totalIncome <= 49231) provincialTax = taxableGain * 0.0505;
-                    else if(totalIncome <= 98463) provincialTax = taxableGain * 0.0915;
+                    if(totalIncome <= 52886) provincialTax = taxableGain * 0.0505;
+                    else if(totalIncome <= 105775) provincialTax = taxableGain * 0.0915;
                     else if(totalIncome <= 150000) provincialTax = taxableGain * 0.1116;
                     else if(totalIncome <= 220000) provincialTax = taxableGain * 0.1216;
                     else provincialTax = taxableGain * 0.1316;
                     break;
+                case 'prince-edward-island':
+                    if(totalIncome <= 33328) provincialTax = taxableGain * 0.095;
+                    else if(totalIncome <= 64656) provincialTax = taxableGain * 0.1347;
+                    else if(totalIncome <= 105000) provincialTax = taxableGain * 0.166;
+                    else if(totalIncome <= 140000) provincialTax = taxableGain * 0.1762;
+                    else provincialTax = taxableGain * 0.19;
+                    break;
                 case 'quebec':
-                    if(totalIncome <= 49275) provincialTax = taxableGain * 0.15;
-                    else if(totalIncome <= 98540) provincialTax = taxableGain * 0.20;
-                    else if(totalIncome <= 119910) provincialTax = taxableGain * 0.24;
+                    if(totalIncome <= 53255) provincialTax = taxableGain * 0.14;
+                    else if(totalIncome <= 106495) provincialTax = taxableGain * 0.19;
+                    else if(totalIncome <= 129590) provincialTax = taxableGain * 0.24;
                     else provincialTax = taxableGain * 0.2575;
                     break;
-                case 'alberta':
-                    if(totalIncome <= 142292) provincialTax = taxableGain * 0.10;
-                    else if(totalIncome <= 170751) provincialTax = taxableGain * 0.12;
-                    else if(totalIncome <= 227668) provincialTax = taxableGain * 0.13;
-                    else if(totalIncome <= 341502) provincialTax = taxableGain * 0.14;
-                    else provincialTax = taxableGain * 0.15;
-                    break;
-                case 'british-columbia':
-                    if(totalIncome <= 45654) provincialTax = taxableGain * 0.0506;
-                    else if(totalIncome <= 91310) provincialTax = taxableGain * 0.077;
-                    else if(totalIncome <= 104835) provincialTax = taxableGain * 0.105;
-                    else if(totalIncome <= 127299) provincialTax = taxableGain * 0.1229;
-                    else if(totalIncome <= 172602) provincialTax = taxableGain * 0.147;
-                    else if(totalIncome <= 240716) provincialTax = taxableGain * 0.168;
-                    else provincialTax = taxableGain * 0.205;
-                    break;
-                case 'manitoba':
-                    if(totalIncome <= 36842) provincialTax = taxableGain * 0.108;
-                    else if(totalIncome <= 79625) provincialTax = taxableGain * 0.1275;
-                    else provincialTax = taxableGain * 0.174;
-                    break;
-                case 'new-brunswick':
-                    if(totalIncome <= 47715) provincialTax = taxableGain * 0.094;
-                    else if(totalIncome <= 95431) provincialTax = taxableGain * 0.14;
-                    else if(totalIncome <= 176756) provincialTax = taxableGain * 0.16;
-                    else provincialTax = taxableGain * 0.195;
-                    break;
-                case 'newfoundland-labrador':
-                    if(totalIncome <= 41457) provincialTax = taxableGain * 0.087;
-                    else if(totalIncome <= 82913) provincialTax = taxableGain * 0.145;
-                    else if(totalIncome <= 148027) provincialTax = taxableGain * 0.158;
-                    else if(totalIncome <= 207239) provincialTax = taxableGain * 0.178;
-                    else if(totalIncome <= 264750) provincialTax = taxableGain * 0.198;
-                    else if(totalIncome <= 529500) provincialTax = taxableGain * 0.208;
-                    else if(totalIncome <= 1059000) provincialTax = taxableGain * 0.213;
-                    else provincialTax = taxableGain * 0.218;
-                    break;
-                case 'nova-scotia':
-                    if(totalIncome <= 29590) provincialTax = taxableGain * 0.0879;
-                    else if(totalIncome <= 59180) provincialTax = taxableGain * 0.1495;
-                    else if(totalIncome <= 93000) provincialTax = taxableGain * 0.1667;
-                    else if(totalIncome <= 150000) provincialTax = taxableGain * 0.175;
-                    else provincialTax = taxableGain * 0.21;
-                    break;
-                case 'prince-edward-island':
-                    if(totalIncome <= 31984) provincialTax = taxableGain * 0.098;
-                    else if(totalIncome <= 63969) provincialTax = taxableGain * 0.138;
-                    else provincialTax = taxableGain * 0.167;
-                    break;
                 case 'saskatchewan':
-                    if(totalIncome <= 49720) provincialTax = taxableGain * 0.105;
-                    else if(totalIncome <= 142058) provincialTax = taxableGain * 0.125;
+                    if(totalIncome <= 53463) provincialTax = taxableGain * 0.105;
+                    else if(totalIncome <= 152750) provincialTax = taxableGain * 0.125;
                     else provincialTax = taxableGain * 0.145;
+                    break;
+                case 'yukon':
+                    if(totalIncome <= 57375) provincialTax = taxableGain * 0.064;
+                    else if(totalIncome <= 114750) provincialTax = taxableGain * 0.09;
+                    else if(totalIncome <= 177882) provincialTax = taxableGain * 0.109;
+                    else if(totalIncome <= 500000) provincialTax = taxableGain * 0.128;
+                    else provincialTax = taxableGain * 0.15;
                     break;
             }
     
@@ -248,7 +273,7 @@ capture: yes
     <ul>
     <li>Begin by entering your financial information for the year 2025.</li>
     <li>Input your total income, the amount you invested in cryptocurrency, and the amount you received from cryptocurrency sales.</li>
-    <li>Click the "Calculate Federal Tax" button to process your data.</li>
+    <li>Click the "Calculate Tax" button to process your data.</li>
     <li>The calculator will quickly estimate your federal and provincial tax obligations.</li>
     <li>You'll see the results, including federal tax, provincial tax, and the total tax owed.</li>
     </ul>
@@ -301,9 +326,9 @@ capture: yes
     </table>
 
     <br><br><br>
-    <h2>Province Rates</h2>
+    <h2>2025 Provincial & Territorial Rates</h2>
 
-    <p>Each province in Canada has its own additional tax rates.</p>
+    <p>Each province and territory in Canada has its own additional tax rates.</p>
 
     <h4>Alberta</h4>
     <table border="1">
@@ -315,24 +340,28 @@ capture: yes
         </thead>
         <tbody>
             <tr>
+                <td>8%</td>
+                <td>Up to $60,000</td>
+            </tr>
+            <tr>
                 <td>10%</td>
-                <td>Up to $142,292</td>
+                <td>Between $60,000 and $151,234</td>
             </tr>
             <tr>
                 <td>12%</td>
-                <td>Between $142,292 and $170,751</td>
+                <td>Between $151,234 and $181,481</td>
             </tr>
             <tr>
                 <td>13%</td>
-                <td>Between $170,751 and $227,668</td>
+                <td>Between $181,481 and $241,974</td>
             </tr>
             <tr>
                 <td>14%</td>
-                <td>Between $227,668 and $341,502</td>
+                <td>Between $241,974 and $362,961</td>
             </tr>
             <tr>
                 <td>15%</td>
-                <td>On any taxable income exceeding $341,502</td>
+                <td>On any taxable income exceeding $362,961</td>
             </tr>
         </tbody>
     </table>
@@ -350,31 +379,31 @@ capture: yes
         <tbody>
             <tr>
                 <td>5.06%</td>
-                <td>Up to $45,654</td>
+                <td>Up to $49,279</td>
             </tr>
             <tr>
                 <td>7.7%</td>
-                <td>Between $45,654 and $91,310</td>
+                <td>Between $49,279 and $98,560</td>
             </tr>
             <tr>
                 <td>10.5%</td>
-                <td>Between $91,310 and $104,835</td>
+                <td>Between $98,560 and $113,158</td>
             </tr>
             <tr>
                 <td>12.29%</td>
-                <td>Between $104,835 and $127,299</td>
+                <td>Between $113,158 and $137,407</td>
             </tr>
             <tr>
                 <td>14.7%</td>
-                <td>Between $127,299 and $172,602</td>
+                <td>Between $137,407 and $186,306</td>
             </tr>
             <tr>
                 <td>16.8%</td>
-                <td>On any amount exceeding $172,602 and $240,716</td>
+                <td>Between $186,306 and $259,829</td>
             </tr>
             <tr>
                 <td>20.5%</td>
-                <td>On any taxable income exceeding $240,716</td>
+                <td>On any taxable income exceeding $259,829</td>
             </tr>
         </tbody>
     </table>
@@ -393,22 +422,22 @@ capture: yes
         <tbody>
             <tr>
                 <td>10.8%</td>
-                <td>Up to $36,842</td>
+                <td>Up to $47,564</td>
             </tr>
             <tr>
                 <td>12.75%</td>
-                <td>Between $36,842 and $79,625</td>
+                <td>Between $47,564 and $101,200</td>
             </tr>
             <tr>
                 <td>17.4%</td>
-                <td>On any taxable income exceeding $79,625</td>
+                <td>On any taxable income exceeding $101,200</td>
             </tr>
         </tbody>
     </table>
 
     <br><br>
 
-    <h4> New Brunswick</h4>
+    <h4>New Brunswick</h4>
 
     <table border="1">
         <thead>
@@ -420,19 +449,19 @@ capture: yes
         <tbody>
             <tr>
                 <td>9.4%</td>
-                <td>Up to $47,715</td>
+                <td>Up to $51,306</td>
             </tr>
             <tr>
                 <td>14%</td>
-                <td>Between $47,715 and $95,431</td>
+                <td>Between $51,306 and $102,614</td>
             </tr>
             <tr>
                 <td>16%</td>
-                <td>Between $95,431 and $176,756</td>
+                <td>Between $102,614 and $190,060</td>
             </tr>
             <tr>
                 <td>19.5%</td>
-                <td>On any taxable income exceeding $176,756</td>
+                <td>On any taxable income exceeding $190,060</td>
             </tr>
         </tbody>
     </table>
@@ -451,35 +480,66 @@ capture: yes
         <tbody>
             <tr>
                 <td>8.7%</td>
-                <td>Up to $41,457</td>
+                <td>Up to $44,192</td>
             </tr>
             <tr>
                 <td>14.5%</td>
-                <td>Between $41,457 and $82,913</td>
+                <td>Between $44,192 and $88,382</td>
             </tr>
             <tr>
                 <td>15.8%</td>
-                <td>Between $82,913 and $148,027</td>
+                <td>Between $88,382 and $157,792</td>
             </tr>
             <tr>
                 <td>17.8%</td>
-                <td>Between $148,027 and $207,239</td>
+                <td>Between $157,792 and $220,910</td>
             </tr>
             <tr>
                 <td>19.8%</td>
-                <td>Between $207,239 and $264,750</td>
+                <td>Between $220,910 and $282,214</td>
             </tr>
             <tr>
                 <td>20.8%</td>
-                <td>Between $264,750 and $529,500</td>
+                <td>Between $282,214 and $564,429</td>
             </tr>
             <tr>
                 <td>21.3%</td>
-                <td>Between $529,500 and $1,059,000</td>
+                <td>Between $564,429 and $1,128,858</td>
             </tr>
             <tr>
                 <td>21.8%</td>
-                <td>On any taxable income exceeding $1,059,000</td>
+                <td>On any taxable income exceeding $1,128,858</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br><br>
+
+    <h4>Northwest Territories</h4>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Tax Rate</th>
+                <th>Taxable Income Threshold</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>5.9%</td>
+                <td>Up to $51,964</td>
+            </tr>
+            <tr>
+                <td>8.6%</td>
+                <td>Between $51,964 and $103,930</td>
+            </tr>
+            <tr>
+                <td>12.2%</td>
+                <td>Between $103,930 and $168,967</td>
+            </tr>
+            <tr>
+                <td>14.05%</td>
+                <td>On any taxable income exceeding $168,967</td>
             </tr>
         </tbody>
     </table>
@@ -498,23 +558,54 @@ capture: yes
         <tbody>
             <tr>
                 <td>8.79%</td>
-                <td>Up to $29,590</td>
+                <td>Up to $30,507</td>
             </tr>
             <tr>
                 <td>14.95%</td>
-                <td>Between $29,590 and $59,180</td>
+                <td>Between $30,507 and $61,015</td>
             </tr>
             <tr>
                 <td>16.67%</td>
-                <td>Between $59,180 and $93,000</td>
+                <td>Between $61,015 and $95,883</td>
             </tr>
             <tr>
                 <td>17.5%</td>
-                <td>Between $93,000 and $150,000</td>
+                <td>Between $95,883 and $154,650</td>
             </tr>
             <tr>
                 <td>21%</td>
-                <td>On any taxable income exceeding $150,000</td>
+                <td>On any taxable income exceeding $154,650</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br><br>
+
+    <h4>Nunavut</h4>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Tax Rate</th>
+                <th>Taxable Income Threshold</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>4%</td>
+                <td>Up to $54,707</td>
+            </tr>
+            <tr>
+                <td>7%</td>
+                <td>Between $54,707 and $109,413</td>
+            </tr>
+            <tr>
+                <td>9%</td>
+                <td>Between $109,413 and $177,881</td>
+            </tr>
+            <tr>
+                <td>11.5%</td>
+                <td>On any taxable income exceeding $177,881</td>
             </tr>
         </tbody>
     </table>
@@ -533,15 +624,15 @@ capture: yes
         <tbody>
             <tr>
                 <td>5.05%</td>
-                <td>Up to $49,231</td>
+                <td>Up to $52,886</td>
             </tr>
             <tr>
                 <td>9.15%</td>
-                <td>Between $49,231 and $98,463</td>
+                <td>Between $52,886 and $105,775</td>
             </tr>
             <tr>
                 <td>11.16%</td>
-                <td>Between $98,463 and $150,000</td>
+                <td>Between $105,775 and $150,000</td>
             </tr>
             <tr>
                 <td>12.16%</td>
@@ -568,16 +659,24 @@ capture: yes
         </thead>
         <tbody>
             <tr>
-                <td>9.8%</td>
-                <td>Up to $31,984</td>
+                <td>9.5%</td>
+                <td>Up to $33,328</td>
             </tr>
             <tr>
-                <td>13.8%</td>
-                <td>Between $31,984 and $63,969</td>
+                <td>13.47%</td>
+                <td>Between $33,328 and $64,656</td>
             </tr>
             <tr>
-                <td>16.7%</td>
-                <td>On any taxable income exceeding $63,969</td>
+                <td>16.6%</td>
+                <td>Between $64,656 and $105,000</td>
+            </tr>
+            <tr>
+                <td>17.62%</td>
+                <td>Between $105,000 and $140,000</td>
+            </tr>
+            <tr>
+                <td>19%</td>
+                <td>On any taxable income exceeding $140,000</td>
             </tr>
         </tbody>
     </table>
@@ -595,20 +694,20 @@ capture: yes
         </thead>
         <tbody>
             <tr>
-                <td>15%</td>
-                <td>Up to $49,275</td>
+                <td>14%</td>
+                <td>Up to $53,255</td>
             </tr>
             <tr>
-                <td>20%</td>
-                <td>Between $49,275 and $98,540</td>
+                <td>19%</td>
+                <td>Between $53,255 and $106,495</td>
             </tr>
             <tr>
                 <td>24%</td>
-                <td>Between $98,540 and $119,910</td>
+                <td>Between $106,495 and $129,590</td>
             </tr>
             <tr>
                 <td>25.75%</td>
-                <td>On any taxable income exceeding $119,910</td>
+                <td>On any taxable income exceeding $129,590</td>
             </tr>
         </tbody>
     </table>
@@ -625,15 +724,49 @@ capture: yes
         <tbody>
             <tr>
                 <td>10.5%</td>
-                <td>Up to $49,720</td>
+                <td>Up to $53,463</td>
             </tr>
             <tr>
                 <td>12.5%</td>
-                <td>Between $49,720 and $142,058</td>
+                <td>Between $53,463 and $152,750</td>
             </tr>
             <tr>
                 <td>14.5%</td>
-                <td>On the amount over $142,058</td>
+                <td>On the amount over $152,750</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br><br>
+
+    <h4>Yukon</h4>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Tax Rate</th>
+                <th>Taxable Income Threshold</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>6.4%</td>
+                <td>Up to $57,375</td>
+            </tr>
+            <tr>
+                <td>9%</td>
+                <td>Between $57,375 and $114,750</td>
+            </tr>
+            <tr>
+                <td>10.9%</td>
+                <td>Between $114,750 and $177,882</td>
+            </tr>
+            <tr>
+                <td>12.8%</td>
+                <td>Between $177,882 and $500,000</td>
+            </tr>
+            <tr>
+                <td>15%</td>
+                <td>On the amount over $500,000</td>
             </tr>
         </tbody>
     </table>
