@@ -10,343 +10,758 @@ capture: yes
 <p><b>We built this free crypto tax calculator for USA users who want to check their Federal tax status quickly. This calculator is for informational purposes only. Consult an expert CPA or tax pro always. Use <a href="/tools/tax/">crypto tax software if you have a lot of trades</a>.</b></p>
 
 <style>
+    :root {
+        --apple-bg: #fbfbfd;
+        --apple-card: #ffffff;
+        --apple-border: #d2d2d7;
+        --apple-text: #1d1d1f;
+        --apple-text-secondary: #86868b;
+        --apple-blue: #0071e3;
+        --apple-blue-hover: #0077ed;
+        --apple-green: #34c759;
+        --apple-input-bg: #f5f5f7;
+        --apple-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        --apple-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+        --apple-radius: 12px;
+        --apple-radius-sm: 8px;
+    }
+
     .info-icon {
-        display: inline-block;
-        margin-left: 5px;
-        color: #666;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 6px;
+        color: var(--apple-text-secondary);
         cursor: help;
         vertical-align: middle;
+        opacity: 0.6;
+        transition: opacity 0.2s ease;
+    }
+    .info-icon:hover {
+        opacity: 1;
     }
     .info-icon svg {
-        width: 16px;
-        height: 16px;
+        width: 14px;
+        height: 14px;
     }
     .info-tooltip {
         position: relative;
-        display: inline-block;
-        margin-top: -8px;
+        display: inline-flex;
+        align-items: center;
     }
     .info-tooltip:hover::after {
         content: attr(data-tooltip);
         position: absolute;
-        left: 25px;
-        top: -5px;
-        background: #333;
+        left: 28px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: var(--apple-text);
         color: white;
-        padding: 5px 10px;
-        border-radius: 4px;
-        font-size: 14px;
+        padding: 8px 12px;
+        border-radius: var(--apple-radius-sm);
+        font-size: 13px;
+        font-weight: 400;
         white-space: nowrap;
         z-index: 100;
+        box-shadow: var(--apple-shadow);
     }
 </style>
 
 <div id="cryptoTaxCalculator">
-    <label for="filingStatus">Filing Status
-        <span class="info-tooltip info-icon" data-tooltip="Your tax filing status affects your tax brackets and rates">
-            {% include infoicon.html %}
-        </span>
-    </label>
-    <select id="filingStatus">
-        <option value="single">Single</option>
-        <option value="marriedJointly">Married filing jointly</option>
-        <option value="marriedSeparately">Married filing separately</option>
-        <option value="headOfHousehold">Head of household</option>
-    </select>
-
-    <label for="totalIncome">Total Income
-        <span class="info-tooltip info-icon" data-tooltip="Your total taxable income for 2024, which determines your tax bracket">
-            {% include infoicon.html %}
-        </span>
-    </label>
-    <input type="number" id="totalIncome" placeholder="Enter your total income">
-
-    <label for="purchaseCost">Total Cost of First Purchase
-        <span class="info-tooltip info-icon" data-tooltip="The amount you originally paid to acquire the cryptocurrency">
-            {% include infoicon.html %}
-        </span>
-    </label>
-    <input type="number" id="purchaseCost" placeholder="Enter cost of purchase">
-
-    <label for="saleAmount">Amount of Sale
-        <span class="info-tooltip info-icon" data-tooltip="The amount you received when selling your cryptocurrency">
-            {% include infoicon.html %}
-        </span>
-    </label>
-    <input type="number" id="saleAmount" placeholder="Enter sale amount">
+    <div class="calc-header">
+        <h2>Tax Estimator</h2>
+        <span class="year-badge">2025</span>
+    </div>
     
-    <label for="holdingDuration">Held Crypto For
-        <span class="info-tooltip info-icon" data-tooltip="Determines short term or long term capital gains">
-            {% include infoicon.html %}
-        </span>
-    </label>
-    <select id="holdingDuration">
-        <option value="shortTerm">Less than 1 year</option>
-        <option value="longTerm">More than 1 year</option>
-    </select>
-    <br><br>
+    <div class="form-group">
+        <label for="filingStatus">Filing Status
+            <span class="info-tooltip info-icon" data-tooltip="Your tax filing status affects your tax brackets">
+                {% include infoicon.html %}
+            </span>
+        </label>
+        <select id="filingStatus">
+            <option value="single">Single</option>
+            <option value="marriedJointly">Married filing jointly</option>
+            <option value="marriedSeparately">Married filing separately</option>
+            <option value="headOfHousehold">Head of household</option>
+        </select>
+    </div>
 
-    <button onclick="calculateTax()">Calculate Tax</button>
+    <div class="form-group">
+        <label for="totalIncome">Total Income
+            <span class="info-tooltip info-icon" data-tooltip="Your total taxable income for 2025">
+                {% include infoicon.html %}
+            </span>
+        </label>
+        <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="totalIncome" placeholder="0">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group half">
+            <label for="purchaseCost">Cost Basis
+                <span class="info-tooltip info-icon" data-tooltip="Amount you paid to acquire the crypto">
+                    {% include infoicon.html %}
+                </span>
+            </label>
+            <div class="input-wrapper">
+                <span class="input-prefix">$</span>
+                <input type="number" id="purchaseCost" placeholder="0">
+            </div>
+        </div>
+
+        <div class="form-group half">
+            <label for="saleAmount">Sale Amount
+                <span class="info-tooltip info-icon" data-tooltip="Amount received when selling">
+                    {% include infoicon.html %}
+                </span>
+            </label>
+            <div class="input-wrapper">
+                <span class="input-prefix">$</span>
+                <input type="number" id="saleAmount" placeholder="0">
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="holdingDuration">Holding Period
+            <span class="info-tooltip info-icon" data-tooltip="Determines short or long term rates">
+                {% include infoicon.html %}
+            </span>
+        </label>
+        <div class="toggle-container">
+            <button type="button" class="toggle-btn active" data-value="shortTerm" onclick="setHoldingDuration('shortTerm')">
+                <span class="toggle-label">Short Term</span>
+                <span class="toggle-sub">&lt; 1 year</span>
+            </button>
+            <button type="button" class="toggle-btn" data-value="longTerm" onclick="setHoldingDuration('longTerm')">
+                <span class="toggle-label">Long Term</span>
+                <span class="toggle-sub">&gt; 1 year</span>
+            </button>
+        </div>
+        <input type="hidden" id="holdingDuration" value="shortTerm">
+    </div>
+
+    <button class="calculate-btn" onclick="calculateTax()">Calculate Tax</button>
 
     <div id="result">
-        <!-- This is where the result will be displayed -->
+        <div class="result-placeholder">
+            Enter your details above to see your estimated tax
+        </div>
     </div>
 </div>
 
 <script>
-    function calculateTax() {
-    const purchaseCost = parseFloat(document.getElementById("purchaseCost").value);
-    const saleAmount = parseFloat(document.getElementById("saleAmount").value);
-    const totalIncome = parseFloat(document.getElementById("totalIncome").value);
-    const filingStatus = document.getElementById("filingStatus").value;
-    const holdingDuration = document.getElementById("holdingDuration").value;
-
-    const gain = saleAmount - purchaseCost;
-
-    let federalTaxRate;
-    if (holdingDuration === "longTerm") {
-        switch (filingStatus) {
-            case 'single':
-                federalTaxRate = totalIncome <= 44625 ? 0 : (totalIncome <= 492300 ? 15 : 20);
-                break;
-            case 'marriedJointly':
-                federalTaxRate = totalIncome <= 89250 ? 0 : (totalIncome <= 553850 ? 15 : 20);
-                break;
-            case 'marriedSeparately':
-                federalTaxRate = totalIncome <= 44625 ? 0 : (totalIncome <= 276900 ? 15 : 20);
-                break;
-            case 'headOfHousehold':
-                federalTaxRate = totalIncome <= 59750 ? 0 : (totalIncome <= 523050 ? 15 : 20);
-                break;
-            default:
-                federalTaxRate = 0;
-        }
-    } else { // shortTerm
-        switch (filingStatus) {
-            case 'single':
-                federalTaxRate = totalIncome <= 11600 ? 10 : 
-                                totalIncome <= 47150 ? 12 : 
-                                totalIncome <= 100525 ? 22 :
-                                totalIncome <= 191950 ? 24 :
-                                totalIncome <= 243725 ? 32 :
-                                totalIncome <= 609350 ? 35 : 37;
-                break;
-            case 'headOfHousehold':
-                federalTaxRate = totalIncome <= 16550 ? 10 : 
-                                totalIncome <= 63100 ? 12 : 
-                                totalIncome <= 100500 ? 22 :
-                                totalIncome <= 191950 ? 24 :
-                                totalIncome <= 243700 ? 32 :
-                                totalIncome <= 609350 ? 35 : 37;
-                break;
-            case 'marriedJointly':
-                federalTaxRate = totalIncome <= 23200 ? 10 : 
-                                totalIncome <= 94300 ? 12 : 
-                                totalIncome <= 201050 ? 22 :
-                                totalIncome <= 383900 ? 24 :
-                                totalIncome <= 487450 ? 32 :
-                                totalIncome <= 731200 ? 35 : 37;
-                break;
-            case 'marriedSeparately':
-                federalTaxRate = totalIncome <= 11600 ? 10 : 
-                                totalIncome <= 47150 ? 12 : 
-                                totalIncome <= 100525 ? 22 :
-                                totalIncome <= 191950 ? 24 :
-                                totalIncome <= 243725 ? 32 :
-                                totalIncome <= 365600 ? 35 : 37;
-                break;
-            default:
-                federalTaxRate = 0;
-        }
+    function setHoldingDuration(value) {
+        document.getElementById('holdingDuration').value = value;
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.value === value);
+        });
     }
 
-    const federalTaxOwed = gain * (federalTaxRate / 100);
+    function formatCurrency(num) {
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        }).format(num);
+    }
 
-    document.getElementById("result").innerHTML = `
-    <strong>Total Gain:</strong> $${new Intl.NumberFormat().format(gain.toFixed(2))}<br>
-    <strong>Federal Tax Owed at ${federalTaxRate}%:</strong> $${new Intl.NumberFormat().format(federalTaxOwed.toFixed(2))}`;
-}
+    function calculateTax() {
+        const purchaseCost = parseFloat(document.getElementById("purchaseCost").value) || 0;
+        const saleAmount = parseFloat(document.getElementById("saleAmount").value) || 0;
+        const totalIncome = parseFloat(document.getElementById("totalIncome").value) || 0;
+        const filingStatus = document.getElementById("filingStatus").value;
+        const holdingDuration = document.getElementById("holdingDuration").value;
+
+        const gain = saleAmount - purchaseCost;
+
+        let federalTaxRate;
+        let rateType;
+
+        if (holdingDuration === "longTerm") {
+            rateType = "Long-term capital gains";
+            // 2025 Long-term capital gains rates
+            switch (filingStatus) {
+                case 'single':
+                    federalTaxRate = totalIncome <= 48350 ? 0 : (totalIncome <= 533400 ? 15 : 20);
+                    break;
+                case 'marriedJointly':
+                    federalTaxRate = totalIncome <= 96700 ? 0 : (totalIncome <= 600050 ? 15 : 20);
+                    break;
+                case 'marriedSeparately':
+                    federalTaxRate = totalIncome <= 48350 ? 0 : (totalIncome <= 300000 ? 15 : 20);
+                    break;
+                case 'headOfHousehold':
+                    federalTaxRate = totalIncome <= 64750 ? 0 : (totalIncome <= 566700 ? 15 : 20);
+                    break;
+                default:
+                    federalTaxRate = 0;
+            }
+        } else {
+            rateType = "Short-term (ordinary income)";
+            // 2025 Ordinary income tax rates
+            switch (filingStatus) {
+                case 'single':
+                    federalTaxRate = totalIncome <= 11925 ? 10 : 
+                                    totalIncome <= 48475 ? 12 : 
+                                    totalIncome <= 103350 ? 22 :
+                                    totalIncome <= 197300 ? 24 :
+                                    totalIncome <= 250525 ? 32 :
+                                    totalIncome <= 626350 ? 35 : 37;
+                    break;
+                case 'headOfHousehold':
+                    federalTaxRate = totalIncome <= 17000 ? 10 : 
+                                    totalIncome <= 64850 ? 12 : 
+                                    totalIncome <= 103350 ? 22 :
+                                    totalIncome <= 197300 ? 24 :
+                                    totalIncome <= 250500 ? 32 :
+                                    totalIncome <= 626350 ? 35 : 37;
+                    break;
+                case 'marriedJointly':
+                    federalTaxRate = totalIncome <= 23850 ? 10 : 
+                                    totalIncome <= 96950 ? 12 : 
+                                    totalIncome <= 206700 ? 22 :
+                                    totalIncome <= 394600 ? 24 :
+                                    totalIncome <= 501050 ? 32 :
+                                    totalIncome <= 751600 ? 35 : 37;
+                    break;
+                case 'marriedSeparately':
+                    federalTaxRate = totalIncome <= 11925 ? 10 : 
+                                    totalIncome <= 48475 ? 12 : 
+                                    totalIncome <= 103350 ? 22 :
+                                    totalIncome <= 197300 ? 24 :
+                                    totalIncome <= 250525 ? 32 :
+                                    totalIncome <= 375800 ? 35 : 37;
+                    break;
+                default:
+                    federalTaxRate = 0;
+            }
+        }
+
+        const federalTaxOwed = gain * (federalTaxRate / 100);
+        const isLoss = gain < 0;
+
+        let resultHTML = `
+            <div class="result-grid">
+                <div class="result-item">
+                    <span class="result-label">Capital ${isLoss ? 'Loss' : 'Gain'}</span>
+                    <span class="result-value ${isLoss ? 'loss' : 'gain'}">${formatCurrency(Math.abs(gain))}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Tax Rate</span>
+                    <span class="result-value">${federalTaxRate}%</span>
+                </div>
+                <div class="result-item highlight">
+                    <span class="result-label">Estimated Federal Tax</span>
+                    <span class="result-value">${isLoss ? '$0' : formatCurrency(federalTaxOwed)}</span>
+                </div>
+            </div>
+            <div class="result-note">
+                ${rateType} rate applied
+            </div>
+        `;
+
+        document.getElementById("result").innerHTML = resultHTML;
+    }
 </script>
 
 {% include koinlylink.html link="https://coinledger.io/?fpr=bitcoinww&fp_sid=tools" %}
 <br><br>
 
 <div id="howToUseCalculator">
-    <h3>How to Use Our Crypto Tax Calculator</h3>
-    <p>
-        Follow these steps to quickly estimate your crypto tax:
-    </p>
+    <h3>How to Use This Calculator</h3>
     <ol>
-        <li><strong>Select Your Filing Status:</strong> Choose the option that corresponds to your tax filing status. This helps in determining your federal tax rate.</li>
-        <li><strong>Enter Your Total Income:</strong> Input your overall annual income. This will help in estimating your taxable amount.</li>
-        <li><strong>Provide Purchase & Sale Amounts:</strong> Add the total cost of your first crypto purchase and the sale amount to determine your capital gain.</li>
-        <li><strong>Specify Holding Duration:</strong> Select whether you held your crypto for less than or more than a year. Short-term holdings may have different tax implications.</li>
-        <li><strong>Calculate Tax:</strong> Click the 'Calculate Tax' button. Your estimated federal tax will be displayed below.</li>
+        <li><strong>Select Your Filing Status:</strong> Choose the option that corresponds to your tax filing status.</li>
+        <li><strong>Enter Your Total Income:</strong> Input your overall annual taxable income for 2025.</li>
+        <li><strong>Provide Cost Basis & Sale Amount:</strong> Enter what you paid and what you sold for.</li>
+        <li><strong>Select Holding Period:</strong> Short-term (≤1 year) is taxed as ordinary income. Long-term (&gt;1 year) gets preferential rates.</li>
+        <li><strong>Calculate:</strong> Click the button to see your estimated federal tax.</li>
     </ol>
     <p>
-        Always consult with a tax professional to get precise numbers. This calculator provides a general estimate based on the provided information.
+        Always consult with a tax professional for precise numbers. This calculator provides estimates based on 2025 IRS rates.
     </p>
 </div>
 
-<h2>US Federal Cap Gains Rates</h2>
+<h2>2025 Long-Term Capital Gains Rates</h2>
+<p class="rate-note">Assets held more than one year qualify for these preferential rates.</p>
 
-<h3>Single Filer</h3>
-<table>
-<tr>
-    <th>Taxable Income Range</th>
-    <th>Capital Gains Tax Rate</th>
-</tr>
-<tr>
-    <td>Up to $47,025</td>
-    <td>0%</td>
-</tr>
-<tr>
-    <td>$47,026 to $518,900</td>
-    <td>15%</td>
-</tr>
-<tr>
-    <td>Over $518,900</td>
-    <td>20%</td>
-</tr>
-</table>
+<div class="tax-tables">
+    <div class="tax-table-card">
+        <h3>Single</h3>
+        <table>
+            <tr><th>Taxable Income</th><th>Rate</th></tr>
+            <tr><td>Up to $48,350</td><td class="rate-cell zero">0%</td></tr>
+            <tr><td>$48,351 – $533,400</td><td class="rate-cell fifteen">15%</td></tr>
+            <tr><td>Over $533,400</td><td class="rate-cell twenty">20%</td></tr>
+        </table>
+    </div>
 
-<h3>Married Filing Separately</h3>
-<table>
-<tr>
-    <th>Taxable Income Range</th>
-    <th>Capital Gains Tax Rate</th>
-</tr>
-<tr>
-    <td>Up to $47,025</td>
-    <td>0%</td>
-</tr>
-<tr>
-    <td>$47,026 to $291,850</td>
-    <td>15%</td>
-</tr>
-<tr>
-    <td>Over $291,850</td>
-    <td>20%</td>
-</tr>
-</table>
+    <div class="tax-table-card">
+        <h3>Married Filing Jointly</h3>
+        <table>
+            <tr><th>Taxable Income</th><th>Rate</th></tr>
+            <tr><td>Up to $96,700</td><td class="rate-cell zero">0%</td></tr>
+            <tr><td>$96,701 – $600,050</td><td class="rate-cell fifteen">15%</td></tr>
+            <tr><td>Over $600,050</td><td class="rate-cell twenty">20%</td></tr>
+        </table>
+    </div>
 
-<h3>Head of Household</h3>
-<table>
-<tr>
-    <th>Taxable Income Range</th>
-    <th>Capital Gains Tax Rate</th>
-</tr>
-<tr>
-    <td>Up to $63,000</td>
-    <td>0%</td>
-</tr>
-<tr>
-    <td>$63,001 to $551,350</td>
-    <td>15%</td>
-</tr>
-<tr>
-    <td>Over $551,350</td>
-    <td>20%</td>
-</tr>
-</table>
+    <div class="tax-table-card">
+        <h3>Married Filing Separately</h3>
+        <table>
+            <tr><th>Taxable Income</th><th>Rate</th></tr>
+            <tr><td>Up to $48,350</td><td class="rate-cell zero">0%</td></tr>
+            <tr><td>$48,351 – $300,000</td><td class="rate-cell fifteen">15%</td></tr>
+            <tr><td>Over $300,000</td><td class="rate-cell twenty">20%</td></tr>
+        </table>
+    </div>
 
-<h3>Married Filing Jointly</h3>
-<table>
-<tr>
-    <th>Taxable Income Range</th>
-    <th>Capital Gains Tax Rate</th>
-</tr>
-<tr>
-    <td>Up to $94,050</td>
-    <td>0%</td>
-</tr>
-<tr>
-    <td>$94,051 to $583,750</td>
-    <td>15%</td>
-</tr>
-<tr>
-    <td>Over $583,750</td>
-    <td>20%</td>
-</tr>
-</table>
+    <div class="tax-table-card">
+        <h3>Head of Household</h3>
+        <table>
+            <tr><th>Taxable Income</th><th>Rate</th></tr>
+            <tr><td>Up to $64,750</td><td class="rate-cell zero">0%</td></tr>
+            <tr><td>$64,751 – $566,700</td><td class="rate-cell fifteen">15%</td></tr>
+            <tr><td>Over $566,700</td><td class="rate-cell twenty">20%</td></tr>
+        </table>
+    </div>
+</div>
 
+<h2>2025 Short-Term Rates (Ordinary Income)</h2>
+<p class="rate-note">Assets held one year or less are taxed at your ordinary income rate.</p>
 
+<div class="tax-tables">
+    <div class="tax-table-card">
+        <h3>Single</h3>
+        <table>
+            <tr><th>Taxable Income</th><th>Rate</th></tr>
+            <tr><td>$0 – $11,925</td><td class="rate-cell">10%</td></tr>
+            <tr><td>$11,926 – $48,475</td><td class="rate-cell">12%</td></tr>
+            <tr><td>$48,476 – $103,350</td><td class="rate-cell">22%</td></tr>
+            <tr><td>$103,351 – $197,300</td><td class="rate-cell">24%</td></tr>
+            <tr><td>$197,301 – $250,525</td><td class="rate-cell">32%</td></tr>
+            <tr><td>$250,526 – $626,350</td><td class="rate-cell">35%</td></tr>
+            <tr><td>Over $626,350</td><td class="rate-cell">37%</td></tr>
+        </table>
+    </div>
+
+    <div class="tax-table-card">
+        <h3>Married Filing Jointly</h3>
+        <table>
+            <tr><th>Taxable Income</th><th>Rate</th></tr>
+            <tr><td>$0 – $23,850</td><td class="rate-cell">10%</td></tr>
+            <tr><td>$23,851 – $96,950</td><td class="rate-cell">12%</td></tr>
+            <tr><td>$96,951 – $206,700</td><td class="rate-cell">22%</td></tr>
+            <tr><td>$206,701 – $394,600</td><td class="rate-cell">24%</td></tr>
+            <tr><td>$394,601 – $501,050</td><td class="rate-cell">32%</td></tr>
+            <tr><td>$501,051 – $751,600</td><td class="rate-cell">35%</td></tr>
+            <tr><td>Over $751,600</td><td class="rate-cell">37%</td></tr>
+        </table>
+    </div>
+</div>
+
+<p class="source-note">Source: IRS Revenue Procedure 2024-40</p>
 
 </div>
 
 <style>
-
-table {
-    color: black;
-}
-
     #cryptoTaxCalculator {
-        max-width: 500px;
+        max-width: 480px;
         margin: 2rem auto;
-        padding: 1.5rem;
-        color: black;
-        border-radius: 8px;
-        background-color: #f5f5f5;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        padding: 32px;
+        color: var(--apple-text);
+        border-radius: 20px;
+        background: var(--apple-card);
+        box-shadow: var(--apple-shadow);
+        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        border: 1px solid rgba(0, 0, 0, 0.04);
     }
-    
-    #cryptoTaxCalculator h2 {
-        text-align: center;
-        margin-bottom: 1.5rem;
+
+    .calc-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 28px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--apple-border);
     }
-    
-    #cryptoTaxCalculator select,
-    #cryptoTaxCalculator input,
-    #cryptoTaxCalculator button {
-        width: 100%;
-        margin-bottom: 1rem;
-        box-sizing: border-box;
+
+    .calc-header h2 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--apple-text);
     }
-    
+
+    .year-badge {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-row {
+        display: flex;
+        gap: 16px;
+    }
+
+    .form-group.half {
+        flex: 1;
+    }
+
     #cryptoTaxCalculator label {
-      width: 100%;
-      margin: 1rem 0 1rem 0 !important;
-      box-sizing: border-box;
-      font-weight: bold;
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--apple-text-secondary);
+        letter-spacing: 0.01em;
     }
-    
+
+    .input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .input-prefix {
+        position: absolute;
+        left: 14px;
+        color: var(--apple-text-secondary);
+        font-size: 16px;
+        font-weight: 400;
+        pointer-events: none;
+    }
+
     #cryptoTaxCalculator select,
     #cryptoTaxCalculator input {
-        padding: 0.5rem;
-        border-radius: 4px;
-        border: 1px solid #ccc;
+        width: 100%;
+        padding: 14px 16px;
+        border-radius: var(--apple-radius);
+        border: 1px solid var(--apple-border);
+        background: var(--apple-input-bg);
         font-size: 16px;
+        font-family: inherit;
+        color: var(--apple-text);
+        transition: all 0.2s ease;
+        -webkit-appearance: none;
+        appearance: none;
     }
-    
-    #cryptoTaxCalculator button {
-        padding: 0.75rem 1rem;
-        background-color: #007BFF;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
+
+    #cryptoTaxCalculator input {
+        padding-left: 32px;
+    }
+
+    #cryptoTaxCalculator select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2386868b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 14px center;
+        padding-right: 40px;
         cursor: pointer;
-        transition: background-color 0.3s;
     }
-    
-    #cryptoTaxCalculator button:hover {
-        background-color: #0056b3;
+
+    #cryptoTaxCalculator select:focus,
+    #cryptoTaxCalculator input:focus {
+        outline: none;
+        border-color: var(--apple-blue);
+        background: var(--apple-card);
+        box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
     }
-    
+
+    #cryptoTaxCalculator input::placeholder {
+        color: var(--apple-text-secondary);
+        opacity: 0.6;
+    }
+
+    .toggle-container {
+        display: flex;
+        gap: 12px;
+    }
+
+    .toggle-btn {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 14px 16px;
+        border: 1px solid var(--apple-border);
+        border-radius: var(--apple-radius);
+        background: var(--apple-input-bg);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: inherit;
+    }
+
+    .toggle-btn:hover {
+        border-color: var(--apple-blue);
+    }
+
+    .toggle-btn.active {
+        background: linear-gradient(135deg, rgba(0, 113, 227, 0.08) 0%, rgba(0, 113, 227, 0.04) 100%);
+        border-color: var(--apple-blue);
+        box-shadow: 0 0 0 1px var(--apple-blue);
+    }
+
+    .toggle-label {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--apple-text);
+        margin-bottom: 2px;
+    }
+
+    .toggle-sub {
+        font-size: 12px;
+        color: var(--apple-text-secondary);
+    }
+
+    .calculate-btn {
+        width: 100%;
+        padding: 16px 24px;
+        margin-top: 8px;
+        background: var(--apple-blue);
+        color: white;
+        border: none;
+        border-radius: var(--apple-radius);
+        font-size: 16px;
+        font-weight: 500;
+        font-family: inherit;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .calculate-btn:hover {
+        background: var(--apple-blue-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
+    }
+
+    .calculate-btn:active {
+        transform: translateY(0);
+    }
+
     #result {
-        margin-top: 1rem;
-        padding: 1rem;
-        border: 1px solid #e0e0e0;
-        border-radius: 4px;
-        background-color: #fff;
+        margin-top: 24px;
+        padding: 20px;
+        border-radius: var(--apple-radius);
+        background: var(--apple-input-bg);
+        min-height: 80px;
     }
-    
+
+    .result-placeholder {
+        text-align: center;
+        color: var(--apple-text-secondary);
+        font-size: 14px;
+        padding: 20px 0;
+    }
+
+    .result-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .result-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--apple-border);
+    }
+
+    .result-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .result-item.highlight {
+        background: linear-gradient(135deg, rgba(52, 199, 89, 0.1) 0%, rgba(52, 199, 89, 0.05) 100%);
+        margin: 8px -12px -12px;
+        padding: 16px 12px;
+        border-radius: var(--apple-radius-sm);
+        border-bottom: none;
+    }
+
+    .result-label {
+        font-size: 14px;
+        color: var(--apple-text-secondary);
+    }
+
+    .result-value {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--apple-text);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .result-value.gain {
+        color: var(--apple-green);
+    }
+
+    .result-value.loss {
+        color: #ff3b30;
+    }
+
+    .result-note {
+        margin-top: 12px;
+        font-size: 12px;
+        color: var(--apple-text-secondary);
+        text-align: center;
+    }
+
+    /* Tables */
+    .tax-tables {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin: 24px 0;
+    }
+
+    .tax-table-card {
+        background: var(--apple-card);
+        border-radius: var(--apple-radius);
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border: 1px solid var(--apple-border);
+    }
+
+    .tax-table-card h3 {
+        margin: 0 0 16px 0;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--apple-text);
+        letter-spacing: -0.01em;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        color: var(--apple-text);
+        font-size: 14px;
+    }
+
+    table th {
+        text-align: left;
+        padding: 10px 12px;
+        background: var(--apple-input-bg);
+        font-weight: 500;
+        font-size: 12px;
+        color: var(--apple-text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+
+    table th:first-child {
+        border-radius: var(--apple-radius-sm) 0 0 var(--apple-radius-sm);
+    }
+
+    table th:last-child {
+        border-radius: 0 var(--apple-radius-sm) var(--apple-radius-sm) 0;
+        text-align: right;
+    }
+
+    table td {
+        padding: 12px;
+        border-bottom: 1px solid var(--apple-border);
+    }
+
+    table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .rate-cell {
+        text-align: right;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .rate-cell.zero {
+        color: var(--apple-green);
+    }
+
+    .rate-cell.fifteen {
+        color: #ff9500;
+    }
+
+    .rate-cell.twenty {
+        color: #ff3b30;
+    }
+
+    .rate-note {
+        font-size: 14px;
+        color: var(--apple-text-secondary);
+        margin-bottom: 16px;
+    }
+
+    .source-note {
+        font-size: 12px;
+        color: var(--apple-text-secondary);
+        margin-top: 32px;
+        text-align: center;
+    }
+
+    #howToUseCalculator {
+        margin-top: 40px;
+        padding: 24px;
+        background: var(--apple-card);
+        border-radius: var(--apple-radius);
+        border: 1px solid var(--apple-border);
+    }
+
+    #howToUseCalculator h3 {
+        margin: 0 0 16px 0;
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--apple-text);
+    }
+
+    #howToUseCalculator ol {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+    #howToUseCalculator li {
+        margin-bottom: 10px;
+        line-height: 1.5;
+        color: var(--apple-text);
+    }
+
+    #howToUseCalculator p {
+        margin: 16px 0 0 0;
+        font-size: 14px;
+        color: var(--apple-text-secondary);
+    }
+
     /* Mobile Styles */
     @media (max-width: 768px) {
         #cryptoTaxCalculator {
             margin: 1rem;
-            padding: 1rem;
+            padding: 24px;
+        }
+
+        .form-row {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .calc-header h2 {
+            font-size: 20px;
+        }
+
+        .tax-tables {
+            grid-template-columns: 1fr;
         }
     }
-
-
 </style>
