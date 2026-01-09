@@ -9,7 +9,8 @@ subdesc: Find the best Bitcoin wallet for your Android device.
 svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M17.523 2.236a.75.75 0 0 0-1.046 1.078l.652.633a7.5 7.5 0 0 0-3.378-.947H11.5v-1.5a.75.75 0 0 0-1.5 0V3h-.249a7.5 7.5 0 0 0-3.378.947l.652-.633a.75.75 0 0 0-1.046-1.078l-1.5 1.455a.75.75 0 0 0 0 1.078l1.5 1.455a.75.75 0 0 0 1.046-1.078l-.303-.294A6 6 0 0 1 9.751 4.5h.249V6a.75.75 0 0 0 1.5 0V4.5h.251a6 6 0 0 1 3.029.352l-.303.294a.75.75 0 0 0 1.046 1.078l1.5-1.455a.75.75 0 0 0 0-1.078zM6 9.75A.75.75 0 0 1 6.75 9h10.5a.75.75 0 0 1 .75.75v9a3.75 3.75 0 0 1-3.75 3.75h-3.5A3.75 3.75 0 0 1 7 18.75v-9a.75.75 0 0 1-.75-.75z"/></svg>'
 ---
 
-{% assign wallets = site.pages | where: "cat", "Android Wallets" | sort: "sort" %}
+{% assign wallets_unsorted = site.pages | where: "cat", "Android Wallets" %}
+{% assign wallets = wallets_unsorted | sort: "rating" | reverse %}
 
 <style>
 /* Wallet Comparison Table Styles */
@@ -763,9 +764,8 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
         <tr>
           <th>Wallet</th>
           <th>Best For</th>
-          <th>Rating</th>
+          <th>Play Store Rating</th>
           <th>Play Store</th>
-          <th>Lightning</th>
           <th>Open Source</th>
         </tr>
       </thead>
@@ -774,7 +774,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
         <tr>
           <td>
             <div class="wallet-table-provider-name">
-              <img src="/img/wallets/{{ wallet.img }}" alt="{{ wallet.title }}" class="wallet-table-provider-img">
+              <img src="/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="wallet-table-provider-img">
               <span>{{ wallet.title }}</span>
             </div>
           </td>
@@ -790,13 +790,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
               <span class="feature-badge yes">✓ Yes</span>
             {% elsif wallet.android_playstore == "GitHub Only" %}
               <span class="feature-badge limited">GitHub</span>
-            {% else %}
-              <span class="feature-badge no">✗ No</span>
-            {% endif %}
-          </td>
-          <td>
-            {% if wallet.android_lightning == "Yes" %}
-              <span class="feature-badge yes">✓ Yes</span>
             {% else %}
               <span class="feature-badge no">✗ No</span>
             {% endif %}
@@ -820,19 +813,19 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
       <label for="mobile-wallet-comparison-field">Compare by:</label>
       <select id="mobile-wallet-comparison-field" onchange="updateMobileWalletComparison()">
         <option value="best-for" selected>Best For</option>
-        <option value="rating">Rating</option>
+        <option value="rating">Play Store Rating</option>
         <option value="playstore">Play Store</option>
-        <option value="lightning">Lightning</option>
+        <option value="opensource">Open Source</option>
       </select>
     </div>
     {% for wallet in wallets %}
     <div class="mobile-wallet-card">
       <div class="mobile-wallet-card-header">
-        <img src="/img/wallets/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-wallet-card-img">
+        <img src="/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-wallet-card-img">
         <div class="mobile-wallet-card-name">{{ wallet.title }}</div>
       </div>
       <div class="mobile-wallet-comparison-label">Best For</div>
-      <div class="mobile-wallet-comparison-value" data-best-for="{{ wallet.android_bestfor | default: '—' }}" data-rating="{{ wallet.rating | default: '—' }}" data-playstore="{{ wallet.android_playstore | default: '—' }}" data-lightning="{{ wallet.android_lightning | default: '—' }}">
+      <div class="mobile-wallet-comparison-value" data-best-for="{{ wallet.android_bestfor | default: '—' }}" data-rating="{{ wallet.rating | default: '—' }}" data-playstore="{{ wallet.android_playstore | default: '—' }}" data-opensource="{{ wallet.android_opensource | default: '—' }}">
         {{ wallet.android_bestfor | default: "—" }}
       </div>
     </div>
@@ -845,9 +838,9 @@ function updateMobileWalletComparison() {
   const field = document.getElementById('mobile-wallet-comparison-field').value;
   const labels = {
     'best-for': 'Best For',
-    'rating': 'Rating',
+    'rating': 'Play Store Rating',
     'playstore': 'Play Store',
-    'lightning': 'Lightning'
+    'opensource': 'Open Source'
   };
   
   document.querySelectorAll('.mobile-wallet-card').forEach(card => {
@@ -867,7 +860,7 @@ function updateMobileWalletComparison() {
   <div class="wallet-item">
     <div class="wallet-header">
       <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="wallet-image-wrapper" onclick="fathom.trackEvent('Click Android Wallet: {{ wallet.title }}');">
-        <img src="/img/wallets/{{ wallet.img }}" alt="{{ wallet.title }}" class="wallet-image">
+        <img src="/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="wallet-image">
       </a>
       
       <div class="wallet-info">
@@ -889,7 +882,7 @@ function updateMobileWalletComparison() {
         {% if wallet.rating %}
         <div class="wallet-rating" style="margin-bottom: 16px;">
           <span class="stars">{% assign rating_int = wallet.rating | floor %}{% for i in (1..5) %}{% if i <= rating_int %}★{% else %}<span class="star-empty">★</span>{% endif %}{% endfor %}</span>
-          <span class="rating-text">{{ wallet.rating }} rating</span>
+          <span class="rating-text">{{ wallet.rating }} Play Store rating</span>
         </div>
         {% endif %}
         
