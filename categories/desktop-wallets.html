@@ -2,7 +2,7 @@
 layout: page
 title: Desktop Wallets
 full-width: yes
-seotitle: 6 Best Desktop Bitcoin Wallets (Mac, Windows, Linux) [2026]
+seotitle: 7 Best Desktop Bitcoin Wallets (Mac, Windows, Linux) [2026]
 permalink: "/desktop-wallets/"
 category: yes
 subdesc: Find the best Bitcoin wallet for your desktop computer.
@@ -487,7 +487,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   color: #374151;
 }
 
-/* Warning box */
+/* Warning box (yellow/orange) */
 .wallet-warning-box {
   background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
   border: 1px solid #f59e0b;
@@ -508,6 +508,30 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   margin: 0;
   font-size: 13px;
   color: #92400e;
+  line-height: 1.5;
+}
+
+/* Note box (light blue) */
+.wallet-note-box {
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+  border: 1px solid #3B82F6;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.wallet-note-box svg {
+  flex-shrink: 0;
+  color: #2563EB;
+}
+
+.wallet-note-box p {
+  margin: 0;
+  font-size: 13px;
+  color: #1E40AF;
   line-height: 1.5;
 }
 
@@ -664,7 +688,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   .wallet-image-wrapper {
     width: 80px;
     height: 80px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
   }
   
   .wallet-info {
@@ -991,6 +1015,16 @@ function updateMobileWalletComparison() {
             <path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <p><strong>Warning:</strong> {{ wallet.desktop_warning }}</p>
+        </div>
+        {% endif %}
+        
+        {% if wallet.desktop_note %}
+        <div class="wallet-note-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <p><strong>Note:</strong> {{ wallet.desktop_note }}</p>
         </div>
         {% endif %}
         
