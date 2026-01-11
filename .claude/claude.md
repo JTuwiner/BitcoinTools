@@ -1,0 +1,21 @@
+# BitcoinTools Project Rules
+
+## Brand Colors
+
+Use these colors for all new CSS/HTML/design changes:
+- **Primary Accent**: `#f2a900` (Bitcoin gold/orange)
+- **Dark Background**: `#232939` (dark blue-gray)
+- **Black**: `#000000`
+- **White**: `#ffffff`
+
+## Project Structure
+
+- Category pages go in `/categories/`
+- Tool pages go in `/tools/`
+- Images for tools are in `/img/`
+
+## Page Formats
+
+- Category pages (like IRAs, cards, loans, wallets) should use comparison tables with mobile-responsive cards
+- Tool pages use the `tool` layout with front matter for metadata
+- FAQs should be clickable/expandable accordions
