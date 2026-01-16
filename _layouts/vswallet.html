@@ -87,6 +87,38 @@ layout: base
             fathom.trackEvent('Click Review');
           });
         });
+
+        // Track inline CTA clicks for wallet 1
+        document.querySelectorAll('.inline-cta-wallet1').forEach(link => {
+          link.addEventListener('click', event => {
+            fathom.trackEvent('Click Wallet');
+            fathom.trackEvent('Click Wallet: {{ exchange1_page.title }}');
+          });
+        });
+
+        // Track inline CTA clicks for wallet 2
+        document.querySelectorAll('.inline-cta-wallet2').forEach(link => {
+          link.addEventListener('click', event => {
+            fathom.trackEvent('Click Wallet');
+            fathom.trackEvent('Click Wallet: {{ exchange2_page.title }}');
+          });
+        });
+
+        // Track quick buy link clicks for wallet 1
+        document.querySelectorAll('.quick-buy-wallet1').forEach(link => {
+          link.addEventListener('click', event => {
+            fathom.trackEvent('Click Wallet');
+            fathom.trackEvent('Click Wallet: {{ exchange1_page.title }}');
+          });
+        });
+
+        // Track quick buy link clicks for wallet 2
+        document.querySelectorAll('.quick-buy-wallet2').forEach(link => {
+          link.addEventListener('click', event => {
+            fathom.trackEvent('Click Wallet');
+            fathom.trackEvent('Click Wallet: {{ exchange2_page.title }}');
+          });
+        });
       });
     </script>
 
@@ -124,6 +156,106 @@ layout: base
         background: #000;
         color: #f2a900 !important;
       }
+
+      /* Inline Section CTAs */
+      .inline-section-cta {
+        text-align: center;
+        padding: 30px 20px;
+        margin: 40px auto;
+        max-width: 600px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      }
+      .inline-section-cta-bottom {
+        margin-top: 30px;
+        margin-bottom: 40px;
+      }
+      .inline-cta-label {
+        display: block;
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 15px;
+        font-weight: 500;
+      }
+      .inline-cta-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+      .inline-cta-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 20px;
+        background: #f2a900;
+        color: black !important;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 15px;
+        transition: all 0.2s ease;
+      }
+      .inline-cta-link:hover {
+        background: #000;
+        color: #f2a900 !important;
+        text-decoration: none;
+      }
+      .inline-cta-link img {
+        width: 22px;
+        height: 22px;
+        border-radius: 4px;
+      }
+      .inline-cta-divider {
+        color: #999;
+        font-size: 14px;
+      }
+      .social-proof-text {
+        margin-top: 15px;
+        font-size: 12px;
+        color: #666;
+      }
+      .social-proof-text span {
+        display: inline-block;
+        padding: 6px 12px;
+        background: #f8f9fa;
+        border-radius: 20px;
+      }
+
+      /* Quick Buy Links in Price Section */
+      .quick-buy-link {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 16px;
+        background: #f2a900;
+        color: black !important;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.2s ease;
+      }
+      .quick-buy-link:hover {
+        background: #000;
+        color: #f2a900 !important;
+        text-decoration: none;
+      }
+
+      @media (max-width: 500px) {
+        .inline-cta-buttons {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .inline-cta-divider {
+          display: none;
+        }
+        .inline-cta-link {
+          width: 100%;
+          justify-content: center;
+        }
+      }
     </style>
 
     <script>
@@ -133,7 +265,7 @@ layout: base
         window.addEventListener('scroll', function() {
           const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
           
-          if (scrollPercent >= 10) {
+          if (scrollPercent >= 5) {
             stickyCta.classList.add('visible');
           } else {
             stickyCta.classList.remove('visible');
@@ -245,6 +377,7 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange1_page.price }}</p>
+                  <a href="{{ exchange1_page.link }}" target="_blank" class="quick-buy-link quick-buy-wallet1">Buy Now →</a>
                 </div>
     
                 <div class="exchanges-details-side">
@@ -253,6 +386,7 @@ layout: base
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange2_page.price }}</p>
+                  <a href="{{ exchange2_page.link }}" target="_blank" class="quick-buy-link quick-buy-wallet2">Buy Now →</a>
                 </div>
               </div>
             </div>
@@ -341,6 +475,27 @@ layout: base
                   <p class="exchanges-details-side-subtitle">{{ exchange2_page.boxincludes }}</p>
                 </div>
               </div>
+            </div>
+
+            <!-- Inline CTA before Security Features -->
+            <div class="inline-section-cta">
+              <span class="inline-cta-label">Ready to decide?</span>
+              <div class="inline-cta-buttons">
+                <a href="{{ exchange1_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet1">
+                  <img src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}">
+                  Get {{ exchange1_page.brand }}
+                </a>
+                <span class="inline-cta-divider">or</span>
+                <a href="{{ exchange2_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet2">
+                  <img src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}">
+                  Get {{ exchange2_page.brand }}
+                </a>
+              </div>
+              {% if exchange1_page.title contains 'Trezor' or exchange2_page.title contains 'Trezor' %}
+              <div class="social-proof-text">
+                <span>Trezor: Trusted by 2M+ users • 12+ years in crypto security • Rated 4.6/5</span>
+              </div>
+              {% endif %}
             </div>
 
             <h2 class="section-category-heading" id="security-features">Security Features</h2>
@@ -507,6 +662,27 @@ layout: base
                   </p>
                 </div>
               </div>
+            </div>
+
+            <!-- Inline CTA before Usage -->
+            <div class="inline-section-cta">
+              <span class="inline-cta-label">Ready to decide?</span>
+              <div class="inline-cta-buttons">
+                <a href="{{ exchange1_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet1">
+                  <img src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}">
+                  Get {{ exchange1_page.brand }}
+                </a>
+                <span class="inline-cta-divider">or</span>
+                <a href="{{ exchange2_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet2">
+                  <img src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}">
+                  Get {{ exchange2_page.brand }}
+                </a>
+              </div>
+              {% if exchange1_page.title contains 'Trezor' or exchange2_page.title contains 'Trezor' %}
+              <div class="social-proof-text">
+                <span>Trezor: Trusted by 2M+ users • 12+ years in crypto security • Rated 4.6/5</span>
+              </div>
+              {% endif %}
             </div>
 
             <h2 class="section-category-heading" id="usage-details"> Usage</h2>
@@ -977,6 +1153,28 @@ layout: base
       </div>
    <div class="vs-compare-content">
         {{ content }}
+
+        <!-- Inline CTA before Related Comparisons -->
+        <div class="inline-section-cta inline-section-cta-bottom">
+          <span class="inline-cta-label">Ready to decide?</span>
+          <div class="inline-cta-buttons">
+            <a href="{{ exchange1_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet1">
+              <img src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}">
+              Get {{ exchange1_page.brand }}
+            </a>
+            <span class="inline-cta-divider">or</span>
+            <a href="{{ exchange2_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet2">
+              <img src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}">
+              Get {{ exchange2_page.brand }}
+            </a>
+          </div>
+          {% if exchange1_page.title contains 'Trezor' or exchange2_page.title contains 'Trezor' %}
+          <div class="social-proof-text">
+            <span>Trezor: Trusted by 2M+ users • 12+ years in crypto security • Rated 4.6/5</span>
+          </div>
+          {% endif %}
+        </div>
+
         <div class="vs-related-comparisons" style="margin-top: 0px !important; border-top: 0px !important;">
           <h2>Related Comparisons</h2>
           <div class="related-comparisons-container" style="display: flex; gap: 40px;">
