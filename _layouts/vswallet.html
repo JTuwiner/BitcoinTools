@@ -483,17 +483,17 @@ layout: base
               <div class="inline-cta-buttons">
                 <a href="{{ exchange1_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet1">
                   <img src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}">
-                  Get {{ exchange1_page.brand }}
+                  Get {{ exchange1_page.title }}
                 </a>
                 <span class="inline-cta-divider">or</span>
                 <a href="{{ exchange2_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet2">
                   <img src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}">
-                  Get {{ exchange2_page.brand }}
+                  Get {{ exchange2_page.title }}
                 </a>
               </div>
               {% if exchange1_page.title contains 'Trezor' or exchange2_page.title contains 'Trezor' %}
               <div class="social-proof-text">
-                <span>Trezor: Trusted by 2M+ users • 12+ years in crypto security • Rated 4.6/5</span>
+                <span>Trusted by 2M+ users • 12+ years in crypto security • ⭐ 4.6/5</span>
               </div>
               {% endif %}
             </div>
@@ -670,17 +670,17 @@ layout: base
               <div class="inline-cta-buttons">
                 <a href="{{ exchange1_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet1">
                   <img src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}">
-                  Get {{ exchange1_page.brand }}
+                  Get {{ exchange1_page.title }}
                 </a>
                 <span class="inline-cta-divider">or</span>
                 <a href="{{ exchange2_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet2">
                   <img src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}">
-                  Get {{ exchange2_page.brand }}
+                  Get {{ exchange2_page.title }}
                 </a>
               </div>
               {% if exchange1_page.title contains 'Trezor' or exchange2_page.title contains 'Trezor' %}
               <div class="social-proof-text">
-                <span>Trezor: Trusted by 2M+ users • 12+ years in crypto security • Rated 4.6/5</span>
+                <span>Trusted by 2M+ users • 12+ years in crypto security • ⭐ 4.6/5</span>
               </div>
               {% endif %}
             </div>
@@ -1153,28 +1153,30 @@ layout: base
       </div>
    <div class="vs-compare-content">
         {{ content }}
+      </div>
 
-        <!-- Inline CTA before Related Comparisons -->
-        <div class="inline-section-cta inline-section-cta-bottom">
-          <span class="inline-cta-label">Ready to decide?</span>
-          <div class="inline-cta-buttons">
-            <a href="{{ exchange1_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet1">
-              <img src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}">
-              Get {{ exchange1_page.brand }}
-            </a>
-            <span class="inline-cta-divider">or</span>
-            <a href="{{ exchange2_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet2">
-              <img src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}">
-              Get {{ exchange2_page.brand }}
-            </a>
-          </div>
-          {% if exchange1_page.title contains 'Trezor' or exchange2_page.title contains 'Trezor' %}
-          <div class="social-proof-text">
-            <span>Trezor: Trusted by 2M+ users • 12+ years in crypto security • Rated 4.6/5</span>
-          </div>
-          {% endif %}
+      <!-- Inline CTA before Related Comparisons -->
+      <div class="inline-section-cta inline-section-cta-bottom">
+        <span class="inline-cta-label">Ready to decide?</span>
+        <div class="inline-cta-buttons">
+          <a href="{{ exchange1_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet1">
+            <img src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}">
+            Get {{ exchange1_page.title }}
+          </a>
+          <span class="inline-cta-divider">or</span>
+          <a href="{{ exchange2_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet2">
+            <img src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}">
+            Get {{ exchange2_page.title }}
+          </a>
         </div>
+        {% if exchange1_page.title contains 'Trezor' or exchange2_page.title contains 'Trezor' %}
+        <div class="social-proof-text">
+          <span>Trusted by 2M+ users • 12+ years in crypto security • ⭐ 4.6/5</span>
+        </div>
+        {% endif %}
+      </div>
 
+      <div class="vs-compare-content">
         <div class="vs-related-comparisons" style="margin-top: 0px !important; border-top: 0px !important;">
           <h2>Related Comparisons</h2>
           <div class="related-comparisons-container" style="display: flex; gap: 40px;">
