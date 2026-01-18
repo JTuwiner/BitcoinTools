@@ -1,0 +1,1021 @@
+---
+layout: base
+---
+{%- assign brand1_models = site.pages | where: "brand", page.brand1 | sort: "sort" -%}
+{%- assign brand2_models = site.pages | where: "brand", page.brand2 | sort: "sort" -%}
+{%- assign default_wallet1 = site.pages | where: "title", page.default_model1 | first -%}
+{%- assign default_wallet2 = site.pages | where: "title", page.default_model2 | first -%}
+
+<h1 style="text-align: center; width: 100%;margin-bottom: 40px;">{{ page.title }}</h1>
+
+<!-- Model Selectors -->
+<div class="brand-model-selectors">
+  <div class="brand-model-selector">
+    <label for="brand1-model">{{ page.brand1 }} Model:</label>
+    <select id="brand1-model">
+      {% for model in brand1_models %}
+      <option value="{{ model.title }}" {% if model.title == page.default_model1 %}selected{% endif %}>
+        {{ model.title }}
+      </option>
+      {% endfor %}
+    </select>
+  </div>
+  
+  <span class="brand-vs-divider">vs</span>
+  
+  <div class="brand-model-selector">
+    <label for="brand2-model">{{ page.brand2 }} Model:</label>
+    <select id="brand2-model">
+      {% for model in brand2_models %}
+      <option value="{{ model.title }}" {% if model.title == page.default_model2 %}selected{% endif %}>
+        {{ model.title }}
+      </option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+
+<style>
+  .brand-model-selectors {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+  }
+  
+  .brand-model-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .brand-model-selector label {
+    font-weight: 600;
+    color: #232939;
+    font-size: 14px;
+  }
+  
+  .brand-model-selector select {
+    padding: 12px 40px 12px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    border: 2px solid #232939;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    min-width: 220px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23232939' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    transition: all 0.2s ease;
+  }
+  
+  .brand-model-selector select:hover {
+    border-color: #f2a900;
+  }
+  
+  .brand-model-selector select:focus {
+    outline: none;
+    border-color: #f2a900;
+    box-shadow: 0 0 0 3px rgba(242, 169, 0, 0.2);
+  }
+  
+  .brand-vs-divider {
+    font-size: 24px;
+    font-weight: 700;
+    color: #f2a900;
+    padding: 0 10px;
+  }
+  
+  @media (max-width: 600px) {
+    .brand-model-selectors {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .brand-vs-divider {
+      padding: 5px 0;
+    }
+    
+    .brand-model-selector select {
+      min-width: 280px;
+    }
+  }
+</style>
+
+<div class="post-inner-wrapper">
+    <div class="compare-exchanges-inner" id="comparison-header">
+      <div class="exchange-card">
+        <div class="exchange-card-top">
+          <div class="header-exchange-logo-wrapper">
+            <img id="wallet1-header-img" src="/tools/img/{{ default_wallet1.img }}">
+          </div>
+          <div class="header-exchange-name" id="wallet1-header-name">{{ default_wallet1.title }}</div>
+        </div>
+        <div class="exchange-card-bottom">
+          <div id="wallet1-header-rating">{% include item-rating.html rating=default_wallet1.rating %}</div>
+          <div class="header-exchange-label">Overall Rating</div>
+        </div>
+      </div>
+      <div class="exchange-card">
+        <div class="exchange-card-top">
+          <div class="header-exchange-logo-wrapper">
+            <img id="wallet2-header-img" src="/tools/img/{{ default_wallet2.img }}">
+          </div>
+          <div class="header-exchange-name" id="wallet2-header-name">{{ default_wallet2.title }}</div>
+        </div>
+        <div class="exchange-card-bottom">
+          <div id="wallet2-header-rating">{% include item-rating.html rating=default_wallet2.rating %}</div>
+          <div class="header-exchange-label">Overall Rating</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sticky-cta">
+      <a href="{{ default_wallet1.link }}" target="_blank" id="sticky-cta-1">
+        <img id="sticky-cta-1-img" src="/tools/img/{{ default_wallet1.img }}" alt="{{ default_wallet1.title }} logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px; border-radius: 50%;">
+        <span id="sticky-cta-1-text">Visit {{ default_wallet1.brand }}'s Website</span>
+      </a>
+      <a href="{{ default_wallet2.link }}" target="_blank" id="sticky-cta-2">
+        <img id="sticky-cta-2-img" src="/tools/img/{{ default_wallet2.img }}" alt="{{ default_wallet2.title }} logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px; border-radius: 50%;">
+        <span id="sticky-cta-2-text">Visit {{ default_wallet2.brand }}'s Website</span>
+      </a>
+    </div>
+
+    <style>
+      #sticky-cta {
+        position: fixed;
+        bottom: -100px;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 15px;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        transition: bottom 0.3s ease-in-out;
+        z-index: 1000;
+      }
+
+      #sticky-cta.visible {
+        bottom: 0;
+      }
+
+      #sticky-cta a {
+        padding: 12px 24px;
+        background: #f2a900;
+        color: black !important;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background 0.2s;
+      }
+
+      #sticky-cta a:hover {
+        background: #000;
+        color: #f2a900 !important;
+      }
+
+      /* Inline Section CTAs */
+      .inline-section-cta {
+        text-align: center;
+        padding: 30px 20px;
+        margin: 40px auto;
+        max-width: 600px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      }
+      .inline-section-cta-bottom {
+        margin-top: 30px;
+        margin-bottom: 40px;
+      }
+      .inline-cta-label {
+        display: block;
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 15px;
+        font-weight: 500;
+      }
+      .inline-cta-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+      .inline-cta-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 18px;
+        background: #f2a900;
+        color: black !important;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 15px;
+        transition: all 0.2s ease;
+      }
+      .inline-cta-link:hover {
+        background: #000;
+        color: #f2a900 !important;
+        text-decoration: none;
+      }
+      .inline-cta-link img {
+        width: 28px;
+        height: 28px;
+        border-radius: 4px;
+      }
+      .inline-cta-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+      }
+      .inline-cta-name {
+        font-weight: 600;
+        font-size: 15px;
+      }
+      .inline-cta-divider {
+        color: #999;
+        font-size: 14px;
+      }
+
+      /* Quick Buy Links in Price Section */
+      .quick-buy-link {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 16px;
+        background: #f2a900;
+        color: black !important;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.2s ease;
+      }
+      .quick-buy-link:hover {
+        background: #000;
+        color: #f2a900 !important;
+        text-decoration: none;
+      }
+
+      @media (max-width: 500px) {
+        .inline-cta-buttons {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .inline-cta-divider {
+          display: none;
+        }
+        .inline-cta-link {
+          width: 100%;
+          justify-content: center;
+        }
+        #sticky-cta {
+          flex-direction: column;
+          gap: 10px;
+          padding: 10px;
+        }
+        #sticky-cta a {
+          padding: 10px 16px;
+          font-size: 14px;
+          text-align: center;
+        }
+      }
+    </style>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const stickyCta = document.getElementById('sticky-cta');
+        
+        window.addEventListener('scroll', function() {
+          const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+          
+          if (scrollPercent >= 5) {
+            stickyCta.classList.add('visible');
+          } else {
+            stickyCta.classList.remove('visible');
+          }
+        });
+      });
+    </script>
+
+    <div class="compare-bright-section">
+      <div class="compare-bright-section-header">
+        <h2 class="compare-bright-section-heading">Jump to section</h2>
+        <nav class="compare-bright-section-toc">
+          <ul class="compare-bright-section-toc-list">
+            <li class="compare-bright-section-toc-list-item">
+              <a href="#price" class="compare-bright-section-toc-link">Price</a>
+            </li>
+            <li class="compare-bright-section-toc-list-item">
+              <a href="#screen-size" class="compare-bright-section-toc-link">Screen Size</a>
+            </li>
+            <li class="compare-bright-section-toc-list-item">
+              <a href="#platforms" class="compare-bright-section-toc-link">Platforms</a>
+            </li>
+            <li class="compare-bright-section-toc-list-item">
+              <a href="#supported-coins" class="compare-bright-section-toc-link">Supported Coins</a>
+            </li>
+            <li class="compare-bright-section-toc-list-item">
+              <a href="#secure-elements" class="compare-bright-section-toc-link">Secure Elements</a>
+            </li>
+            <li class="compare-bright-section-toc-list-item">
+              <a href="#open-source" class="compare-bright-section-toc-link">Open Source</a>
+            </li>
+            <li class="compare-bright-section-toc-list-item">
+              <a href="#interfaces" class="compare-bright-section-toc-link">Interfaces</a>
+            </li>
+            <li class="compare-bright-section-toc-list-item">
+              <a href="#size" class="compare-bright-section-toc-link">Size</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      
+      <div class="compare-bright-container">
+        <div class="exchange-details-wrapper">
+          <div class="compare-exchanges is--table" id="comparison-table">
+            
+            <!-- Price -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="price">Price</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet1.img }}" class="exchanges-details-img wallet1-img">
+                    <div class="exchanges-details-title-text wallet1-title">{{ default_wallet1.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet1-price">{{ default_wallet1.price }}</p>
+                  <a href="{{ default_wallet1.link }}" target="_blank" class="quick-buy-link wallet1-link">Buy Now →</a>
+                </div>
+  
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet2.img }}" class="exchanges-details-img wallet2-img">
+                    <div class="exchanges-details-title-text wallet2-title">{{ default_wallet2.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet2-price">{{ default_wallet2.price }}</p>
+                  <a href="{{ default_wallet2.link }}" target="_blank" class="quick-buy-link wallet2-link">Buy Now →</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Launch -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="launch">Launch</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet1.img }}" class="exchanges-details-img wallet1-img">
+                    <div class="exchanges-details-title-text wallet1-title">{{ default_wallet1.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet1-launched">{{ default_wallet1.launched }}</p>
+                </div>
+  
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet2.img }}" class="exchanges-details-img wallet2-img">
+                    <div class="exchanges-details-title-text wallet2-title">{{ default_wallet2.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet2-launched">{{ default_wallet2.launched }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Screen Size -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="screen-size">Screen Size</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet1.img }}" class="exchanges-details-img wallet1-img">
+                    <div class="exchanges-details-title-text wallet1-title">{{ default_wallet1.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet1-screensize">{{ default_wallet1.screensize }}</p>
+                </div>
+  
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet2.img }}" class="exchanges-details-img wallet2-img">
+                    <div class="exchanges-details-title-text wallet2-title">{{ default_wallet2.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet2-screensize">{{ default_wallet2.screensize }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Box Includes -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="box-includes">Box Includes</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet1.img }}" class="exchanges-details-img wallet1-img">
+                    <div class="exchanges-details-title-text wallet1-title">{{ default_wallet1.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet1-boxincludes">{{ default_wallet1.boxincludes }}</p>
+                </div>
+  
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet2.img }}" class="exchanges-details-img wallet2-img">
+                    <div class="exchanges-details-title-text wallet2-title">{{ default_wallet2.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet2-boxincludes">{{ default_wallet2.boxincludes }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Inline CTA -->
+            <div class="inline-section-cta">
+              <span class="inline-cta-label">Ready to decide?</span>
+              <div class="inline-cta-buttons">
+                <a href="{{ default_wallet1.link }}" target="_blank" class="inline-cta-link wallet1-cta-link">
+                  <img src="/tools/img/{{ default_wallet1.img }}" class="wallet1-cta-img">
+                  <span class="inline-cta-text">
+                    <span class="inline-cta-name wallet1-cta-name">Get {{ default_wallet1.title }}</span>
+                  </span>
+                </a>
+                <span class="inline-cta-divider">or</span>
+                <a href="{{ default_wallet2.link }}" target="_blank" class="inline-cta-link wallet2-cta-link">
+                  <img src="/tools/img/{{ default_wallet2.img }}" class="wallet2-cta-img">
+                  <span class="inline-cta-text">
+                    <span class="inline-cta-name wallet2-cta-name">Get {{ default_wallet2.title }}</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <h2 class="section-category-heading" id="security-features">Security Features</h2>
+
+            <!-- Passphrase Support -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="passphrase">Passphrase Support</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet1.img }}" class="exchanges-details-img wallet1-img">
+                    <div class="exchanges-details-title-text wallet1-title">{{ default_wallet1.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet1-passphrase">
+                    {% if default_wallet1.securityfeatures contains 'passphrase' %}{% include vscheck.html %}{% else %}{% include vsx.html %}{% endif %}
+                  </p>
+                </div>
+  
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet2.img }}" class="exchanges-details-img wallet2-img">
+                    <div class="exchanges-details-title-text wallet2-title">{{ default_wallet2.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet2-passphrase">
+                    {% if default_wallet2.securityfeatures contains 'passphrase' %}{% include vscheck.html %}{% else %}{% include vsx.html %}{% endif %}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- PIN Protection -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="pin">PIN Protection</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet1.img }}" class="exchanges-details-img wallet1-img">
+                    <div class="exchanges-details-title-text wallet1-title">{{ default_wallet1.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet1-pin">
+                    {% if default_wallet1.securityfeatures contains 'pin' %}{% include vscheck.html %}{% else %}{% include vsx.html %}{% endif %}
+                  </p>
+                </div>
+  
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet2.img }}" class="exchanges-details-img wallet2-img">
+                    <div class="exchanges-details-title-text wallet2-title">{{ default_wallet2.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet2-pin">
+                    {% if default_wallet2.securityfeatures contains 'pin' %}{% include vscheck.html %}{% else %}{% include vsx.html %}{% endif %}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Shamir Secret Sharing -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="shamir">Shamir Secret Sharing</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet1.img }}" class="exchanges-details-img wallet1-img">
+                    <div class="exchanges-details-title-text wallet1-title">{{ default_wallet1.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet1-shamir">
+                    {% if default_wallet1.securityfeatures contains 'shamirsecret' %}{% include vscheck.html %}{% else %}{% include vsx.html %}{% endif %}
+                  </p>
+                </div>
+  
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet2.img }}" class="exchanges-details-img wallet2-img">
+                    <div class="exchanges-details-title-text wallet2-title">{{ default_wallet2.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet2-shamir">
+                    {% if default_wallet2.securityfeatures contains 'shamirsecret' %}{% include vscheck.html %}{% else %}{% include vsx.html %}{% endif %}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tor Support -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="tor">Tor Support</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet1.img }}" class="exchanges-details-img wallet1-img">
+                    <div class="exchanges-details-title-text wallet1-title">{{ default_wallet1.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet1-tor">
+                    {% if default_wallet1.securityfeatures contains 'tor' %}{% include vscheck.html %}{% else %}{% include vsx.html %}{% endif %}
+                  </p>
+                </div>
+  
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet2.img }}" class="exchanges-details-img wallet2-img">
+                    <div class="exchanges-details-title-text wallet2-title">{{ default_wallet2.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet2-tor">
+                    {% if default_wallet2.securityfeatures contains 'tor' %}{% include vscheck.html %}{% else %}{% include vsx.html %}{% endif %}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <h2 class="section-category-heading" id="usage-details">Usage</h2>
+
+            <!-- Platforms -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="platforms">Platforms</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet1.img }}" class="exchanges-details-img wallet1-img">
+                    <div class="exchanges-details-title-text wallet1-title">{{ default_wallet1.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet1-platforms">{{ default_wallet1.platforms | join: ", " }}</p>
+                </div>
+  
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet2.img }}" class="exchanges-details-img wallet2-img">
+                    <div class="exchanges-details-title-text wallet2-title">{{ default_wallet2.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet2-platforms">{{ default_wallet2.platforms | join: ", " }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Supported Coins -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="supported-coins">Supported Coins</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet1.img }}" class="exchanges-details-img wallet1-img">
+                    <div class="exchanges-details-title-text wallet1-title">{{ default_wallet1.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet1-supportedcoins">{{ default_wallet1.supportedcoins }}</p>
+                </div>
+  
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet2.img }}" class="exchanges-details-img wallet2-img">
+                    <div class="exchanges-details-title-text wallet2-title">{{ default_wallet2.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet2-supportedcoins">{{ default_wallet2.supportedcoins }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interfaces -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="interfaces">Interfaces</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet1.img }}" class="exchanges-details-img wallet1-img">
+                    <div class="exchanges-details-title-text wallet1-title">{{ default_wallet1.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet1-interfaces">{{ default_wallet1.interfaces }}</p>
+                </div>
+  
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet2.img }}" class="exchanges-details-img wallet2-img">
+                    <div class="exchanges-details-title-text wallet2-title">{{ default_wallet2.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet2-interfaces">{{ default_wallet2.interfaces }}</p>
+                </div>
+              </div>
+            </div>
+
+            <h2 class="section-category-heading" id="technical-details">Technical Details</h2>
+
+            <!-- Secure Elements -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="secure-elements">Secure Elements</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet1.img }}" class="exchanges-details-img wallet1-img">
+                    <div class="exchanges-details-title-text wallet1-title">{{ default_wallet1.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet1-secureelements">{{ default_wallet1.secureelements }}</p>
+                </div>
+  
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet2.img }}" class="exchanges-details-img wallet2-img">
+                    <div class="exchanges-details-title-text wallet2-title">{{ default_wallet2.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet2-secureelements">{{ default_wallet2.secureelements }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Open Source -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="open-source">Open Source</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet1.img }}" class="exchanges-details-img wallet1-img">
+                    <div class="exchanges-details-title-text wallet1-title">{{ default_wallet1.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet1-opensource">
+                    {% if default_wallet1.osource %}{% include vscheck.html %}{% else %}{% include vsx.html %}{% endif %}
+                    <br>{{ default_wallet1.opensourceinfo }}
+                  </p>
+                </div>
+  
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet2.img }}" class="exchanges-details-img wallet2-img">
+                    <div class="exchanges-details-title-text wallet2-title">{{ default_wallet2.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet2-opensource">
+                    {% if default_wallet2.osource %}{% include vscheck.html %}{% else %}{% include vsx.html %}{% endif %}
+                    <br>{{ default_wallet2.opensourceinfo }}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Size -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="size">Size</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet1.img }}" class="exchanges-details-img wallet1-img">
+                    <div class="exchanges-details-title-text wallet1-title">{{ default_wallet1.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet1-size">{{ default_wallet1.size }}</p>
+                </div>
+  
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet2.img }}" class="exchanges-details-img wallet2-img">
+                    <div class="exchanges-details-title-text wallet2-title">{{ default_wallet2.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet2-size">{{ default_wallet2.size }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Weight -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="weight">Weight</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet1.img }}" class="exchanges-details-img wallet1-img">
+                    <div class="exchanges-details-title-text wallet1-title">{{ default_wallet1.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet1-weight">
+                    {% assign ounces = default_wallet1.weightingrams | times: 0.035274 | round: 1 %}
+                    {{ default_wallet1.weightingrams }}g ({{ ounces }}oz)
+                  </p>
+                </div>
+  
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet2.img }}" class="exchanges-details-img wallet2-img">
+                    <div class="exchanges-details-title-text wallet2-title">{{ default_wallet2.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet2-weight">
+                    {% assign ounces = default_wallet2.weightingrams | times: 0.035274 | round: 1 %}
+                    {{ default_wallet2.weightingrams }}g ({{ ounces }}oz)
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bitcoin Only -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="bitcoin-only">Bitcoin-Only Version</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet1.img }}" class="exchanges-details-img wallet1-img">
+                    <div class="exchanges-details-title-text wallet1-title">{{ default_wallet1.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet1-bitcoinonly">
+                    {% if default_wallet1.bitcoinonlyversion %}{% include vscheck.html %}{% else %}{% include vsx.html %}{% endif %}
+                  </p>
+                </div>
+  
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet2.img }}" class="exchanges-details-img wallet2-img">
+                    <div class="exchanges-details-title-text wallet2-title">{{ default_wallet2.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet2-bitcoinonly">
+                    {% if default_wallet2.bitcoinonlyversion %}{% include vscheck.html %}{% else %}{% include vsx.html %}{% endif %}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <h2 class="section-category-heading" id="company-details">Company Details</h2>
+
+            <!-- Parent Company -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="parent-company">Parent Company</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet1.img }}" class="exchanges-details-img wallet1-img">
+                    <div class="exchanges-details-title-text wallet1-title">{{ default_wallet1.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet1-parentcompany">{{ default_wallet1.parentcompany }}</p>
+                </div>
+  
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet2.img }}" class="exchanges-details-img wallet2-img">
+                    <div class="exchanges-details-title-text wallet2-title">{{ default_wallet2.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet2-parentcompany">{{ default_wallet2.parentcompany }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Founded -->
+            <div class="exchanges-details-card">
+              <h2 class="section-left-heading" id="founded">Company Founded</h2>
+              <div class="exchanges-details-right">
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet1.img }}" class="exchanges-details-img wallet1-img">
+                    <div class="exchanges-details-title-text wallet1-title">{{ default_wallet1.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet1-founded">{{ default_wallet1.founded }}</p>
+                </div>
+  
+                <div class="exchanges-details-side">
+                  <div class="exchanges-details-title">
+                    <img src="/tools/img/{{ default_wallet2.img }}" class="exchanges-details-img wallet2-img">
+                    <div class="exchanges-details-title-text wallet2-title">{{ default_wallet2.title }}</div>
+                  </div>
+                  <p class="exchanges-details-side-subtitle wallet2-founded">{{ default_wallet2.founded }}</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {{ content }}
+
+      <!-- Final CTA -->
+      <div class="inline-section-cta inline-section-cta-bottom">
+        <span class="inline-cta-label">Ready to decide?</span>
+        <div class="inline-cta-buttons">
+          <a href="{{ default_wallet1.link }}" target="_blank" class="inline-cta-link wallet1-cta-link" id="final-cta-1">
+            <img src="/tools/img/{{ default_wallet1.img }}" class="wallet1-cta-img">
+            <span class="inline-cta-text">
+              <span class="inline-cta-name wallet1-cta-name">Get {{ default_wallet1.title }}</span>
+            </span>
+          </a>
+          <span class="inline-cta-divider">or</span>
+          <a href="{{ default_wallet2.link }}" target="_blank" class="inline-cta-link wallet2-cta-link" id="final-cta-2">
+            <img src="/tools/img/{{ default_wallet2.img }}" class="wallet2-cta-img">
+            <span class="inline-cta-text">
+              <span class="inline-cta-name wallet2-cta-name">Get {{ default_wallet2.title }}</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+</div>
+
+<!-- Embed wallet data as JSON for JavaScript -->
+<script>
+const walletData = {
+  {% for model in brand1_models %}
+  "{{ model.title }}": {
+    title: "{{ model.title }}",
+    img: "{{ model.img }}",
+    price: "{{ model.price }}",
+    brand: "{{ model.brand }}",
+    link: "{{ model.link }}",
+    rating: {{ model.rating | default: 0 }},
+    launched: "{{ model.launched }}",
+    screensize: "{{ model.screensize }}",
+    platforms: {{ model.platforms | jsonify }},
+    supportedcoins: "{{ model.supportedcoins | escape }}",
+    secureelements: "{{ model.secureelements | escape }}",
+    osource: {{ model.osource | default: false }},
+    opensourceinfo: "{{ model.opensourceinfo | escape }}",
+    interfaces: "{{ model.interfaces | escape }}",
+    size: "{{ model.size | escape }}",
+    weightingrams: {{ model.weightingrams | default: 0 }},
+    bitcoinonlyversion: {{ model.bitcoinonlyversion | default: false }},
+    securityfeatures: {{ model.securityfeatures | jsonify | default: "[]" }},
+    parentcompany: "{{ model.parentcompany | escape }}",
+    founded: "{{ model.founded }}",
+    boxincludes: `{{ model.boxincludes | strip_newlines }}`
+  },
+  {% endfor %}
+  {% for model in brand2_models %}
+  "{{ model.title }}": {
+    title: "{{ model.title }}",
+    img: "{{ model.img }}",
+    price: "{{ model.price }}",
+    brand: "{{ model.brand }}",
+    link: "{{ model.link }}",
+    rating: {{ model.rating | default: 0 }},
+    launched: "{{ model.launched }}",
+    screensize: "{{ model.screensize }}",
+    platforms: {{ model.platforms | jsonify }},
+    supportedcoins: "{{ model.supportedcoins | escape }}",
+    secureelements: "{{ model.secureelements | escape }}",
+    osource: {{ model.osource | default: false }},
+    opensourceinfo: "{{ model.opensourceinfo | escape }}",
+    interfaces: "{{ model.interfaces | escape }}",
+    size: "{{ model.size | escape }}",
+    weightingrams: {{ model.weightingrams | default: 0 }},
+    bitcoinonlyversion: {{ model.bitcoinonlyversion | default: false }},
+    securityfeatures: {{ model.securityfeatures | jsonify | default: "[]" }},
+    parentcompany: "{{ model.parentcompany | escape }}",
+    founded: "{{ model.founded }}",
+    boxincludes: `{{ model.boxincludes | strip_newlines }}`
+  },
+  {% endfor %}
+};
+
+const checkSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path fill="#C4EDE6" d="M21.993 8.238v7.524c0 1.232-.66 2.376-1.727 3.003l-6.534 3.773a3.48 3.48 0 0 1-3.465 0l-6.534-3.773a3.46 3.46 0 0 1-1.727-3.003V8.238c0-1.232.66-2.376 1.727-3.003l6.534-3.773a3.48 3.48 0 0 1 3.465 0l6.534 3.773a3.48 3.48 0 0 1 1.727 3.003"></path><path stroke="#4A756D" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m7.322 12 3.113 3.113 6.237-6.226"></path></svg>`;
+const xSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path fill="#FFE5E5" d="M21.993 8.238v7.524c0 1.232-.66 2.376-1.727 3.003l-6.534 3.773a3.48 3.48 0 0 1-3.465 0l-6.534-3.773a3.46 3.46 0 0 1-1.727-3.003V8.238c0-1.232.66-2.376 1.727-3.003l6.534-3.773a3.48 3.48 0 0 1 3.465 0l6.534 3.773a3.48 3.48 0 0 1 1.727 3.003"></path><path stroke="#B94D4D" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.536 8.464L12 12m0 0l-3.536 3.536M12 12l3.536 3.536M12 12L8.464 8.464"></path></svg>`;
+
+function generateRatingStars(rating) {
+  let stars = '';
+  for (let i = 1; i <= 5; i++) {
+    if (i <= rating) {
+      stars += '<span class="star filled">★</span>';
+    } else {
+      stars += '<span class="star">☆</span>';
+    }
+  }
+  return `<div class="item-rating">${stars}</div>`;
+}
+
+function updateComparison() {
+  const wallet1Title = document.getElementById('brand1-model').value;
+  const wallet2Title = document.getElementById('brand2-model').value;
+  
+  const w1 = walletData[wallet1Title];
+  const w2 = walletData[wallet2Title];
+  
+  if (!w1 || !w2) return;
+  
+  // Update URL params
+  const url = new URL(window.location);
+  url.searchParams.set('m1', wallet1Title);
+  url.searchParams.set('m2', wallet2Title);
+  history.replaceState({}, '', url);
+  
+  // Update header cards
+  document.getElementById('wallet1-header-img').src = `/tools/img/${w1.img}`;
+  document.getElementById('wallet1-header-name').textContent = w1.title;
+  document.getElementById('wallet1-header-rating').innerHTML = generateRatingStars(w1.rating);
+  
+  document.getElementById('wallet2-header-img').src = `/tools/img/${w2.img}`;
+  document.getElementById('wallet2-header-name').textContent = w2.title;
+  document.getElementById('wallet2-header-rating').innerHTML = generateRatingStars(w2.rating);
+  
+  // Update sticky CTA
+  document.getElementById('sticky-cta-1').href = w1.link;
+  document.getElementById('sticky-cta-1-img').src = `/tools/img/${w1.img}`;
+  document.getElementById('sticky-cta-1-text').textContent = `Visit ${w1.brand}'s Website`;
+  
+  document.getElementById('sticky-cta-2').href = w2.link;
+  document.getElementById('sticky-cta-2-img').src = `/tools/img/${w2.img}`;
+  document.getElementById('sticky-cta-2-text').textContent = `Visit ${w2.brand}'s Website`;
+  
+  // Update all wallet1 elements
+  document.querySelectorAll('.wallet1-img').forEach(el => el.src = `/tools/img/${w1.img}`);
+  document.querySelectorAll('.wallet1-title').forEach(el => el.textContent = w1.title);
+  document.querySelectorAll('.wallet1-price').forEach(el => el.textContent = w1.price);
+  document.querySelectorAll('.wallet1-link').forEach(el => el.href = w1.link);
+  document.querySelectorAll('.wallet1-launched').forEach(el => el.textContent = w1.launched);
+  document.querySelectorAll('.wallet1-screensize').forEach(el => el.textContent = w1.screensize);
+  document.querySelectorAll('.wallet1-boxincludes').forEach(el => el.innerHTML = w1.boxincludes);
+  document.querySelectorAll('.wallet1-platforms').forEach(el => el.textContent = w1.platforms.join(', '));
+  document.querySelectorAll('.wallet1-supportedcoins').forEach(el => el.textContent = w1.supportedcoins);
+  document.querySelectorAll('.wallet1-interfaces').forEach(el => el.textContent = w1.interfaces);
+  document.querySelectorAll('.wallet1-secureelements').forEach(el => el.textContent = w1.secureelements);
+  document.querySelectorAll('.wallet1-opensource').forEach(el => el.innerHTML = (w1.osource ? checkSvg : xSvg) + '<br>' + w1.opensourceinfo);
+  document.querySelectorAll('.wallet1-size').forEach(el => el.textContent = w1.size);
+  document.querySelectorAll('.wallet1-weight').forEach(el => el.textContent = `${w1.weightingrams}g (${(w1.weightingrams * 0.035274).toFixed(1)}oz)`);
+  document.querySelectorAll('.wallet1-bitcoinonly').forEach(el => el.innerHTML = w1.bitcoinonlyversion ? checkSvg : xSvg);
+  document.querySelectorAll('.wallet1-parentcompany').forEach(el => el.textContent = w1.parentcompany);
+  document.querySelectorAll('.wallet1-founded').forEach(el => el.textContent = w1.founded);
+  
+  // Security features for wallet1
+  document.querySelectorAll('.wallet1-passphrase').forEach(el => el.innerHTML = w1.securityfeatures.includes('passphrase') ? checkSvg : xSvg);
+  document.querySelectorAll('.wallet1-pin').forEach(el => el.innerHTML = w1.securityfeatures.includes('pin') ? checkSvg : xSvg);
+  document.querySelectorAll('.wallet1-shamir').forEach(el => el.innerHTML = w1.securityfeatures.includes('shamirsecret') ? checkSvg : xSvg);
+  document.querySelectorAll('.wallet1-tor').forEach(el => el.innerHTML = w1.securityfeatures.includes('tor') ? checkSvg : xSvg);
+  
+  // Update CTA links for wallet1
+  document.querySelectorAll('.wallet1-cta-link').forEach(el => el.href = w1.link);
+  document.querySelectorAll('.wallet1-cta-img').forEach(el => el.src = `/tools/img/${w1.img}`);
+  document.querySelectorAll('.wallet1-cta-name').forEach(el => el.textContent = `Get ${w1.title}`);
+  
+  // Update all wallet2 elements
+  document.querySelectorAll('.wallet2-img').forEach(el => el.src = `/tools/img/${w2.img}`);
+  document.querySelectorAll('.wallet2-title').forEach(el => el.textContent = w2.title);
+  document.querySelectorAll('.wallet2-price').forEach(el => el.textContent = w2.price);
+  document.querySelectorAll('.wallet2-link').forEach(el => el.href = w2.link);
+  document.querySelectorAll('.wallet2-launched').forEach(el => el.textContent = w2.launched);
+  document.querySelectorAll('.wallet2-screensize').forEach(el => el.textContent = w2.screensize);
+  document.querySelectorAll('.wallet2-boxincludes').forEach(el => el.innerHTML = w2.boxincludes);
+  document.querySelectorAll('.wallet2-platforms').forEach(el => el.textContent = w2.platforms.join(', '));
+  document.querySelectorAll('.wallet2-supportedcoins').forEach(el => el.textContent = w2.supportedcoins);
+  document.querySelectorAll('.wallet2-interfaces').forEach(el => el.textContent = w2.interfaces);
+  document.querySelectorAll('.wallet2-secureelements').forEach(el => el.textContent = w2.secureelements);
+  document.querySelectorAll('.wallet2-opensource').forEach(el => el.innerHTML = (w2.osource ? checkSvg : xSvg) + '<br>' + w2.opensourceinfo);
+  document.querySelectorAll('.wallet2-size').forEach(el => el.textContent = w2.size);
+  document.querySelectorAll('.wallet2-weight').forEach(el => el.textContent = `${w2.weightingrams}g (${(w2.weightingrams * 0.035274).toFixed(1)}oz)`);
+  document.querySelectorAll('.wallet2-bitcoinonly').forEach(el => el.innerHTML = w2.bitcoinonlyversion ? checkSvg : xSvg);
+  document.querySelectorAll('.wallet2-parentcompany').forEach(el => el.textContent = w2.parentcompany);
+  document.querySelectorAll('.wallet2-founded').forEach(el => el.textContent = w2.founded);
+  
+  // Security features for wallet2
+  document.querySelectorAll('.wallet2-passphrase').forEach(el => el.innerHTML = w2.securityfeatures.includes('passphrase') ? checkSvg : xSvg);
+  document.querySelectorAll('.wallet2-pin').forEach(el => el.innerHTML = w2.securityfeatures.includes('pin') ? checkSvg : xSvg);
+  document.querySelectorAll('.wallet2-shamir').forEach(el => el.innerHTML = w2.securityfeatures.includes('shamirsecret') ? checkSvg : xSvg);
+  document.querySelectorAll('.wallet2-tor').forEach(el => el.innerHTML = w2.securityfeatures.includes('tor') ? checkSvg : xSvg);
+  
+  // Update CTA links for wallet2
+  document.querySelectorAll('.wallet2-cta-link').forEach(el => el.href = w2.link);
+  document.querySelectorAll('.wallet2-cta-img').forEach(el => el.src = `/tools/img/${w2.img}`);
+  document.querySelectorAll('.wallet2-cta-name').forEach(el => el.textContent = `Get ${w2.title}`);
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  // Check for URL params
+  const urlParams = new URLSearchParams(window.location.search);
+  const m1 = urlParams.get('m1');
+  const m2 = urlParams.get('m2');
+  
+  if (m1 && walletData[m1]) {
+    document.getElementById('brand1-model').value = m1;
+  }
+  if (m2 && walletData[m2]) {
+    document.getElementById('brand2-model').value = m2;
+  }
+  
+  // If URL params were set, update the comparison
+  if (m1 || m2) {
+    updateComparison();
+  }
+  
+  // Add event listeners
+  document.getElementById('brand1-model').addEventListener('change', updateComparison);
+  document.getElementById('brand2-model').addEventListener('change', updateComparison);
+});
+</script>
