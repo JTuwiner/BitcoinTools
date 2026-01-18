@@ -195,12 +195,6 @@ function updateModels() {
   
   if (!w1 || !w2) return;
   
-  // Update URL params for shareability
-  const url = new URL(window.location);
-  url.searchParams.set('m1', model1);
-  url.searchParams.set('m2', model2);
-  history.replaceState({}, '', url);
-  
   // Update header cards
   document.querySelectorAll('.exchange-card').forEach((card, index) => {
     const w = index === 0 ? w1 : w2;
@@ -342,20 +336,9 @@ function updateModels() {
   });
 }
 
-// Initialize on page load - check for URL params
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const m1 = urlParams.get('m1');
-  const m2 = urlParams.get('m2');
-  
-  if (m1 && walletData[m1]) {
-    document.getElementById('brand1-model').value = m1;
-  }
-  if (m2 && walletData[m2]) {
-    document.getElementById('brand2-model').value = m2;
-  }
-  
-  // Always call updateModels to initialize all dynamic content
+  // Initialize all dynamic content with default selections
   updateModels();
 });
 </script>
