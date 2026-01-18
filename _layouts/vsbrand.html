@@ -3,8 +3,8 @@ layout: base
 ---
 {%- assign brand1_models = site.pages | where: "brand", page.brand1 | sort: "sort" -%}
 {%- assign brand2_models = site.pages | where: "brand", page.brand2 | sort: "sort" -%}
-{%- assign default_wallet1 = site.pages | where: "title", page.default_model1 | first -%}
-{%- assign default_wallet2 = site.pages | where: "title", page.default_model2 | first -%}
+{%- assign default_wallet1 = brand1_models | where: "title", page.default_model1 | first -%}
+{%- assign default_wallet2 = brand2_models | where: "title", page.default_model2 | first -%}
 
 <h1 style="text-align: center; width: 100%;margin-bottom: 40px;">{{ page.title }}</h1>
 
@@ -941,23 +941,24 @@ function updateComparison() {
   document.querySelectorAll('.wallet1-link').forEach(el => el.href = w1.link);
   document.querySelectorAll('.wallet1-launched').forEach(el => el.textContent = w1.launched);
   document.querySelectorAll('.wallet1-screensize').forEach(el => el.textContent = w1.screensize);
-  document.querySelectorAll('.wallet1-boxincludes').forEach(el => el.innerHTML = w1.boxincludes);
-  document.querySelectorAll('.wallet1-platforms').forEach(el => el.textContent = w1.platforms.join(', '));
-  document.querySelectorAll('.wallet1-supportedcoins').forEach(el => el.textContent = w1.supportedcoins);
-  document.querySelectorAll('.wallet1-interfaces').forEach(el => el.textContent = w1.interfaces);
-  document.querySelectorAll('.wallet1-secureelements').forEach(el => el.textContent = w1.secureelements);
-  document.querySelectorAll('.wallet1-opensource').forEach(el => el.innerHTML = (w1.osource ? checkSvg : xSvg) + '<br>' + w1.opensourceinfo);
-  document.querySelectorAll('.wallet1-size').forEach(el => el.textContent = w1.size);
+  document.querySelectorAll('.wallet1-boxincludes').forEach(el => el.innerHTML = w1.boxincludes || '');
+  document.querySelectorAll('.wallet1-platforms').forEach(el => el.textContent = (w1.platforms || []).join(', '));
+  document.querySelectorAll('.wallet1-supportedcoins').forEach(el => el.textContent = w1.supportedcoins || '');
+  document.querySelectorAll('.wallet1-interfaces').forEach(el => el.textContent = w1.interfaces || '');
+  document.querySelectorAll('.wallet1-secureelements').forEach(el => el.textContent = w1.secureelements || '');
+  document.querySelectorAll('.wallet1-opensource').forEach(el => el.innerHTML = (w1.osource ? checkSvg : xSvg) + '<br>' + (w1.opensourceinfo || ''));
+  document.querySelectorAll('.wallet1-size').forEach(el => el.textContent = w1.size || '');
   document.querySelectorAll('.wallet1-weight').forEach(el => el.textContent = `${w1.weightingrams}g (${(w1.weightingrams * 0.035274).toFixed(1)}oz)`);
   document.querySelectorAll('.wallet1-bitcoinonly').forEach(el => el.innerHTML = w1.bitcoinonlyversion ? checkSvg : xSvg);
   document.querySelectorAll('.wallet1-parentcompany').forEach(el => el.textContent = w1.parentcompany);
   document.querySelectorAll('.wallet1-founded').forEach(el => el.textContent = w1.founded);
   
   // Security features for wallet1
-  document.querySelectorAll('.wallet1-passphrase').forEach(el => el.innerHTML = w1.securityfeatures.includes('passphrase') ? checkSvg : xSvg);
-  document.querySelectorAll('.wallet1-pin').forEach(el => el.innerHTML = w1.securityfeatures.includes('pin') ? checkSvg : xSvg);
-  document.querySelectorAll('.wallet1-shamir').forEach(el => el.innerHTML = w1.securityfeatures.includes('shamirsecret') ? checkSvg : xSvg);
-  document.querySelectorAll('.wallet1-tor').forEach(el => el.innerHTML = w1.securityfeatures.includes('tor') ? checkSvg : xSvg);
+  const w1Features = w1.securityfeatures || [];
+  document.querySelectorAll('.wallet1-passphrase').forEach(el => el.innerHTML = w1Features.includes('passphrase') ? checkSvg : xSvg);
+  document.querySelectorAll('.wallet1-pin').forEach(el => el.innerHTML = w1Features.includes('pin') ? checkSvg : xSvg);
+  document.querySelectorAll('.wallet1-shamir').forEach(el => el.innerHTML = w1Features.includes('shamirsecret') ? checkSvg : xSvg);
+  document.querySelectorAll('.wallet1-tor').forEach(el => el.innerHTML = w1Features.includes('tor') ? checkSvg : xSvg);
   
   // Update CTA links for wallet1
   document.querySelectorAll('.wallet1-cta-link').forEach(el => el.href = w1.link);
@@ -971,23 +972,24 @@ function updateComparison() {
   document.querySelectorAll('.wallet2-link').forEach(el => el.href = w2.link);
   document.querySelectorAll('.wallet2-launched').forEach(el => el.textContent = w2.launched);
   document.querySelectorAll('.wallet2-screensize').forEach(el => el.textContent = w2.screensize);
-  document.querySelectorAll('.wallet2-boxincludes').forEach(el => el.innerHTML = w2.boxincludes);
-  document.querySelectorAll('.wallet2-platforms').forEach(el => el.textContent = w2.platforms.join(', '));
-  document.querySelectorAll('.wallet2-supportedcoins').forEach(el => el.textContent = w2.supportedcoins);
-  document.querySelectorAll('.wallet2-interfaces').forEach(el => el.textContent = w2.interfaces);
-  document.querySelectorAll('.wallet2-secureelements').forEach(el => el.textContent = w2.secureelements);
-  document.querySelectorAll('.wallet2-opensource').forEach(el => el.innerHTML = (w2.osource ? checkSvg : xSvg) + '<br>' + w2.opensourceinfo);
-  document.querySelectorAll('.wallet2-size').forEach(el => el.textContent = w2.size);
+  document.querySelectorAll('.wallet2-boxincludes').forEach(el => el.innerHTML = w2.boxincludes || '');
+  document.querySelectorAll('.wallet2-platforms').forEach(el => el.textContent = (w2.platforms || []).join(', '));
+  document.querySelectorAll('.wallet2-supportedcoins').forEach(el => el.textContent = w2.supportedcoins || '');
+  document.querySelectorAll('.wallet2-interfaces').forEach(el => el.textContent = w2.interfaces || '');
+  document.querySelectorAll('.wallet2-secureelements').forEach(el => el.textContent = w2.secureelements || '');
+  document.querySelectorAll('.wallet2-opensource').forEach(el => el.innerHTML = (w2.osource ? checkSvg : xSvg) + '<br>' + (w2.opensourceinfo || ''));
+  document.querySelectorAll('.wallet2-size').forEach(el => el.textContent = w2.size || '');
   document.querySelectorAll('.wallet2-weight').forEach(el => el.textContent = `${w2.weightingrams}g (${(w2.weightingrams * 0.035274).toFixed(1)}oz)`);
   document.querySelectorAll('.wallet2-bitcoinonly').forEach(el => el.innerHTML = w2.bitcoinonlyversion ? checkSvg : xSvg);
   document.querySelectorAll('.wallet2-parentcompany').forEach(el => el.textContent = w2.parentcompany);
   document.querySelectorAll('.wallet2-founded').forEach(el => el.textContent = w2.founded);
   
   // Security features for wallet2
-  document.querySelectorAll('.wallet2-passphrase').forEach(el => el.innerHTML = w2.securityfeatures.includes('passphrase') ? checkSvg : xSvg);
-  document.querySelectorAll('.wallet2-pin').forEach(el => el.innerHTML = w2.securityfeatures.includes('pin') ? checkSvg : xSvg);
-  document.querySelectorAll('.wallet2-shamir').forEach(el => el.innerHTML = w2.securityfeatures.includes('shamirsecret') ? checkSvg : xSvg);
-  document.querySelectorAll('.wallet2-tor').forEach(el => el.innerHTML = w2.securityfeatures.includes('tor') ? checkSvg : xSvg);
+  const w2Features = w2.securityfeatures || [];
+  document.querySelectorAll('.wallet2-passphrase').forEach(el => el.innerHTML = w2Features.includes('passphrase') ? checkSvg : xSvg);
+  document.querySelectorAll('.wallet2-pin').forEach(el => el.innerHTML = w2Features.includes('pin') ? checkSvg : xSvg);
+  document.querySelectorAll('.wallet2-shamir').forEach(el => el.innerHTML = w2Features.includes('shamirsecret') ? checkSvg : xSvg);
+  document.querySelectorAll('.wallet2-tor').forEach(el => el.innerHTML = w2Features.includes('tor') ? checkSvg : xSvg);
   
   // Update CTA links for wallet2
   document.querySelectorAll('.wallet2-cta-link').forEach(el => el.href = w2.link);
