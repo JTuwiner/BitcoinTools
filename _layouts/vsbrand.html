@@ -108,32 +108,280 @@ layout: base
 </style>
 
 <script>
-// Map model titles to their comparison page URLs
-const comparisonUrls = {
-  {% assign all_vs_pages = site.pages | where: "layout", "vswallet" %}
-  {% for vs_page in all_vs_pages %}
-  "{{ vs_page.wallet1 }}|{{ vs_page.wallet2 }}": "{{ vs_page.url }}",
-  "{{ vs_page.wallet2 }}|{{ vs_page.wallet1 }}": "{{ vs_page.url }}",
+// Wallet data for dynamic updates
+const walletData = {
+  {% for model in brand1_models %}
+  "{{ model.title | escape }}": {
+    title: "{{ model.title | escape }}",
+    img: "{{ model.img }}",
+    price: "{{ model.price | escape }}",
+    brand: "{{ model.brand | escape }}",
+    link: "{{ model.link }}",
+    rating: {{ model.rating | default: 0 }},
+    launched: "{{ model.launched }}",
+    screensize: "{{ model.screensize | escape }}",
+    platforms: {{ model.platforms | jsonify | default: "[]" }},
+    supportedcoins: "{{ model.supportedcoins | escape }}",
+    secureelements: "{{ model.secureelements | escape }}",
+    osource: {{ model.osource | default: false }},
+    opensourceinfo: "{{ model.opensourceinfo | escape }}",
+    interfaces: "{{ model.interfaces | escape }}",
+    size: "{{ model.size | escape }}",
+    weightingrams: {{ model.weightingrams | default: 0 }},
+    bitcoinonlyversion: {{ model.bitcoinonlyversion | default: false }},
+    securityfeatures: {{ model.securityfeatures | jsonify | default: "[]" }},
+    parentcompany: "{{ model.parentcompany | escape }}",
+    founded: "{{ model.founded }}",
+    boxincludes: `{{ model.boxincludes | strip_newlines }}`,
+    passphrasentry: "{{ model.passphrasentry | escape }}",
+    securityincidents: "{{ model.securityincidents | escape }}",
+    fidoauth: {{ model.fidoauth | default: false }},
+    wallettype: "{{ model.wallettype | escape }}",
+    integrations: {{ model.integrations | jsonify | default: "[]" }},
+    multisig: {{ model.multisig | jsonify | default: "[]" }}
+  },
+  {% endfor %}
+  {% for model in brand2_models %}
+  "{{ model.title | escape }}": {
+    title: "{{ model.title | escape }}",
+    img: "{{ model.img }}",
+    price: "{{ model.price | escape }}",
+    brand: "{{ model.brand | escape }}",
+    link: "{{ model.link }}",
+    rating: {{ model.rating | default: 0 }},
+    launched: "{{ model.launched }}",
+    screensize: "{{ model.screensize | escape }}",
+    platforms: {{ model.platforms | jsonify | default: "[]" }},
+    supportedcoins: "{{ model.supportedcoins | escape }}",
+    secureelements: "{{ model.secureelements | escape }}",
+    osource: {{ model.osource | default: false }},
+    opensourceinfo: "{{ model.opensourceinfo | escape }}",
+    interfaces: "{{ model.interfaces | escape }}",
+    size: "{{ model.size | escape }}",
+    weightingrams: {{ model.weightingrams | default: 0 }},
+    bitcoinonlyversion: {{ model.bitcoinonlyversion | default: false }},
+    securityfeatures: {{ model.securityfeatures | jsonify | default: "[]" }},
+    parentcompany: "{{ model.parentcompany | escape }}",
+    founded: "{{ model.founded }}",
+    boxincludes: `{{ model.boxincludes | strip_newlines }}`,
+    passphrasentry: "{{ model.passphrasentry | escape }}",
+    securityincidents: "{{ model.securityincidents | escape }}",
+    fidoauth: {{ model.fidoauth | default: false }},
+    wallettype: "{{ model.wallettype | escape }}",
+    integrations: {{ model.integrations | jsonify | default: "[]" }},
+    multisig: {{ model.multisig | jsonify | default: "[]" }}
+  },
   {% endfor %}
 };
+
+const checkSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path fill="#C4EDE6" d="M21.993 8.238v7.524c0 1.232-.66 2.376-1.727 3.003l-6.534 3.773a3.48 3.48 0 0 1-3.465 0l-6.534-3.773a3.46 3.46 0 0 1-1.727-3.003V8.238c0-1.232.66-2.376 1.727-3.003l6.534-3.773a3.48 3.48 0 0 1 3.465 0l6.534 3.773a3.48 3.48 0 0 1 1.727 3.003"></path><path stroke="#4A756D" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m7.322 12 3.113 3.113 6.237-6.226"></path></svg>`;
+const xSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path fill="#FFE5E5" d="M21.993 8.238v7.524c0 1.232-.66 2.376-1.727 3.003l-6.534 3.773a3.48 3.48 0 0 1-3.465 0l-6.534-3.773a3.46 3.46 0 0 1-1.727-3.003V8.238c0-1.232.66-2.376 1.727-3.003l6.534-3.773a3.48 3.48 0 0 1 3.465 0l6.534 3.773a3.48 3.48 0 0 1 1.727 3.003"></path><path stroke="#B94D4D" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.536 8.464L12 12m0 0l-3.536 3.536M12 12l3.536 3.536M12 12L8.464 8.464"></path></svg>`;
+
+function generateRatingHtml(rating) {
+  if (rating === 4) {
+    return `<div class="item-rating"><img src="https://buybitcoinworldwide.com/pages/img/star-rating-four.svg" role="presentation" /></div>`;
+  } else if (rating === 5) {
+    return `<div class="item-rating"><img src="https://buybitcoinworldwide.com/pages/img/star-rating-five.svg" role="presentation" /></div>`;
+  } else if (rating === 3) {
+    return `<div class="item-rating"><img src="https://buybitcoinworldwide.com/pages/img/star-rating-three.svg" role="presentation" /></div>`;
+  }
+  return `<div class="item-rating"></div>`;
+}
+
+function generatePlatformsList(platforms) {
+  if (!platforms || platforms.length === 0) return '';
+  const icons = {
+    'Windows': `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M6.555 1.375 0 2.237v5.45h6.555V1.375zM0 13.795l6.555.933V8.313H0v5.482zm7.278-5.4.026 6.378L16 16V8.395H7.278zM16 0 7.33 1.244v6.414H16V0z"/></svg>`,
+    'macOS': `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43Zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282Z"/></svg>`,
+    'Linux': `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M3.1.7a.5.5 0 0 1 .4-.2h9a.5.5 0 0 1 .4.2l2.976 3.974c.149.185.156.45.01.644L8.4 15.3a.5.5 0 0 1-.8 0L.1 5.3a.5.5 0 0 1 0-.6l3-4z"/></svg>`,
+    'Android': `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M2.76 3.061a.5.5 0 0 1 .679.2l1.283 2.352A8.94 8.94 0 0 1 8 5a8.94 8.94 0 0 1 3.278.613l1.283-2.352a.5.5 0 1 1 .878.478l-1.252 2.295C14.475 7.266 16 9.477 16 12H0c0-2.523 1.525-4.734 3.813-5.966L2.56 3.74a.5.5 0 0 1 .2-.679ZM5 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm6 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/></svg>`,
+    'iOS': `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43Zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282Z"/></svg>`
+  };
+  return `<ul class="bullet-list" style="list-style-type: none; padding-left: 0;">` + 
+    platforms.map(p => `<li>${icons[p] || ''} ${p}</li>`).join('') + 
+    `</ul>`;
+}
+
+function generateIntegrationsList(integrations) {
+  if (!integrations || integrations.length === 0) return '';
+  return `<ul class="bullet-list">` + 
+    integrations.map(i => `<li>${i === 'Unchained' ? `<a href="https://bitbo.io/buy/unchained/">${i}</a>` : i}</li>`).join('') + 
+    `</ul>`;
+}
 
 function updateModels() {
   const model1 = document.getElementById('brand1-model').value;
   const model2 = document.getElementById('brand2-model').value;
   
-  // Check if a comparison page exists for this pair
-  const key1 = model1 + '|' + model2;
-  const key2 = model2 + '|' + model1;
+  const w1 = walletData[model1];
+  const w2 = walletData[model2];
   
-  if (comparisonUrls[key1]) {
-    window.location.href = '/tools' + comparisonUrls[key1];
-  } else if (comparisonUrls[key2]) {
-    window.location.href = '/tools' + comparisonUrls[key2];
-  } else {
-    // No comparison page exists, show alert
-    alert('No comparison page exists for ' + model1 + ' vs ' + model2 + ' yet.');
+  if (!w1 || !w2) return;
+  
+  // Update URL params for shareability
+  const url = new URL(window.location);
+  url.searchParams.set('m1', model1);
+  url.searchParams.set('m2', model2);
+  history.replaceState({}, '', url);
+  
+  // Update header cards
+  document.querySelectorAll('.exchange-card').forEach((card, index) => {
+    const w = index === 0 ? w1 : w2;
+    card.querySelector('.header-exchange-logo-wrapper img').src = `/tools/img/${w.img}`;
+    card.querySelector('.header-exchange-name').textContent = w.title;
+    card.querySelector('.exchange-card-bottom > div:first-child').innerHTML = generateRatingHtml(w.rating);
+  });
+  
+  // Update sticky CTAs
+  const stickyCta1 = document.getElementById('sticky-cta-1');
+  const stickyCta2 = document.getElementById('sticky-cta-2');
+  if (stickyCta1) {
+    stickyCta1.href = w1.link;
+    stickyCta1.querySelector('img').src = `/tools/img/${w1.img}`;
+    stickyCta1.querySelector('img').alt = `${w1.title} logo`;
+    stickyCta1.childNodes[stickyCta1.childNodes.length - 1].textContent = ` Visit ${w1.brand}'s Website`;
   }
+  if (stickyCta2) {
+    stickyCta2.href = w2.link;
+    stickyCta2.querySelector('img').src = `/tools/img/${w2.img}`;
+    stickyCta2.querySelector('img').alt = `${w2.title} logo`;
+    stickyCta2.childNodes[stickyCta2.childNodes.length - 1].textContent = ` Visit ${w2.brand}'s Website`;
+  }
+  
+  // Update all comparison rows
+  document.querySelectorAll('.exchanges-details-card').forEach(card => {
+    const sides = card.querySelectorAll('.exchanges-details-side');
+    if (sides.length !== 2) return;
+    
+    sides.forEach((side, index) => {
+      const w = index === 0 ? w1 : w2;
+      const wFeatures = w.securityfeatures || [];
+      
+      // Update title and image
+      const titleEl = side.querySelector('.exchanges-details-title');
+      if (titleEl) {
+        const img = titleEl.querySelector('img');
+        const text = titleEl.querySelector('.exchanges-details-title-text');
+        if (img) img.src = `/tools/img/${w.img}`;
+        if (text) text.textContent = w.title;
+      }
+      
+      // Update subtitle based on section
+      const subtitle = side.querySelector('.exchanges-details-side-subtitle');
+      if (!subtitle) return;
+      
+      const sectionHeading = card.querySelector('.section-left-heading');
+      if (!sectionHeading) return;
+      const sectionId = sectionHeading.id;
+      
+      switch(sectionId) {
+        case 'price':
+          subtitle.textContent = w.price || '';
+          const buyLink = side.querySelector('.quick-buy-link');
+          if (buyLink) buyLink.href = w.link;
+          break;
+        case 'wallet-type':
+          subtitle.textContent = w.wallettype || '';
+          break;
+        case 'launch':
+          subtitle.textContent = w.launched || '';
+          break;
+        case 'screen-size':
+          subtitle.textContent = w.screensize || '';
+          break;
+        case 'box-includes':
+          subtitle.innerHTML = w.boxincludes || '';
+          break;
+        case 'passphrase':
+          subtitle.innerHTML = wFeatures.includes('passphrase') ? checkSvg : xSvg;
+          break;
+        case 'passphrase-entry':
+          subtitle.textContent = wFeatures.includes('passphrase') ? (w.passphrasentry || '') : '-';
+          break;
+        case 'pin':
+          subtitle.innerHTML = wFeatures.includes('pin') ? checkSvg : xSvg;
+          break;
+        case 'shamir':
+          subtitle.innerHTML = wFeatures.includes('shamirsecret') ? checkSvg : xSvg;
+          break;
+        case 'tor':
+          subtitle.innerHTML = wFeatures.includes('tor') ? checkSvg : xSvg;
+          break;
+        case 'platforms':
+          subtitle.innerHTML = generatePlatformsList(w.platforms);
+          break;
+        case 'supported-coins':
+          subtitle.textContent = w.supportedcoins || '';
+          break;
+        case 'interfaces':
+          subtitle.textContent = w.interfaces || '';
+          break;
+        case 'secure-elements':
+          subtitle.textContent = w.secureelements || '';
+          break;
+        case 'open-source':
+          subtitle.innerHTML = (w.osource ? checkSvg : xSvg) + '<br>' + (w.opensourceinfo || '');
+          break;
+        case 'fido-auth':
+          subtitle.innerHTML = w.fidoauth ? checkSvg : xSvg;
+          break;
+        case 'size':
+          subtitle.textContent = w.size || '';
+          break;
+        case 'weight':
+          const oz = (w.weightingrams * 0.035274).toFixed(1);
+          subtitle.textContent = `${w.weightingrams}g (${oz}oz)`;
+          break;
+        case 'bitcoin-only':
+          subtitle.innerHTML = w.bitcoinonlyversion ? checkSvg : xSvg;
+          break;
+        case 'integrations':
+          subtitle.innerHTML = generateIntegrationsList(w.integrations);
+          break;
+        case 'multisig':
+          subtitle.innerHTML = generateIntegrationsList(w.multisig);
+          break;
+        case 'parent-company':
+          subtitle.textContent = w.parentcompany || '';
+          break;
+        case 'founded':
+          subtitle.textContent = w.founded || '';
+          break;
+        case 'security-incidents':
+          subtitle.textContent = w.securityincidents || '';
+          break;
+      }
+    });
+  });
+  
+  // Update inline CTAs
+  document.querySelectorAll('.inline-cta-link').forEach((link, index) => {
+    const w = index % 2 === 0 ? w1 : w2;
+    link.href = w.link;
+    const img = link.querySelector('img');
+    const name = link.querySelector('.inline-cta-name');
+    if (img) img.src = `/tools/img/${w.img}`;
+    if (name) name.textContent = `Get ${w.title}`;
+  });
 }
+
+// Initialize on page load - check for URL params
+document.addEventListener('DOMContentLoaded', function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const m1 = urlParams.get('m1');
+  const m2 = urlParams.get('m2');
+  
+  if (m1 && walletData[m1]) {
+    document.getElementById('brand1-model').value = m1;
+  }
+  if (m2 && walletData[m2]) {
+    document.getElementById('brand2-model').value = m2;
+  }
+  
+  if (m1 || m2) {
+    updateModels();
+  }
+});
 </script>
 
 <div class="post-inner-wrapper">
