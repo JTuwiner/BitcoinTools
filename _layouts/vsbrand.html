@@ -141,6 +141,28 @@ layout: base
     transform: translateY(-1px);
   }
   
+  .discontinued-notice {
+    display: none;
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    color: #856404;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .discontinued-notice.show {
+    display: block;
+  }
+  
+  .discontinued-notice strong {
+    color: #664d03;
+  }
+  
   @media (max-width: 700px) {
     .brand-compare-header {
       flex-direction: column;
@@ -263,6 +285,13 @@ function generateIntegrationsList(integrations) {
     `</ul>`;
 }
 
+// List of discontinued models
+const discontinuedModels = ['Trezor Model One', 'Trezor Model T'];
+
+function isDiscontinued(title) {
+  return discontinuedModels.includes(title);
+}
+
 function updateModels() {
   const model1 = document.getElementById('brand1-model').value;
   const model2 = document.getElementById('brand2-model').value;
@@ -272,16 +301,38 @@ function updateModels() {
   
   if (!w1 || !w2) return;
   
+  // Check for discontinued models
+  const w1Discontinued = isDiscontinued(w1.title);
+  const w2Discontinued = isDiscontinued(w2.title);
+  
   // Update combined header cards
   document.getElementById('brand1-card-img').src = `/tools/img/${w1.img}`;
   document.getElementById('brand1-card-name').textContent = w1.title;
   document.getElementById('brand1-card-rating').innerHTML = generateRatingHtml(w1.rating);
-  document.getElementById('brand1-cta-link').href = w1.link;
+  
+  // Update brand1 CTA link
+  const brand1CtaLink = document.getElementById('brand1-cta-link');
+  if (brand1CtaLink) brand1CtaLink.href = w1.link;
+  
+  // Show/hide discontinued notice for brand1
+  const brand1DisconEl = document.getElementById('brand1-discontinued');
+  if (brand1DisconEl) {
+    brand1DisconEl.classList.toggle('show', w1Discontinued);
+  }
   
   document.getElementById('brand2-card-img').src = `/tools/img/${w2.img}`;
   document.getElementById('brand2-card-name').textContent = w2.title;
   document.getElementById('brand2-card-rating').innerHTML = generateRatingHtml(w2.rating);
-  document.getElementById('brand2-cta-link').href = w2.link;
+  
+  // Update brand2 CTA link
+  const brand2CtaLink = document.getElementById('brand2-cta-link');
+  if (brand2CtaLink) brand2CtaLink.href = w2.link;
+  
+  // Show/hide discontinued notice for brand2
+  const brand2DisconEl = document.getElementById('brand2-discontinued');
+  if (brand2DisconEl) {
+    brand2DisconEl.classList.toggle('show', w2Discontinued);
+  }
   
   // Update sticky CTAs
   const stickyCta1 = document.getElementById('sticky-cta-1');
@@ -442,8 +493,11 @@ document.addEventListener('DOMContentLoaded', function() {
             {% endfor %}
           </select>
         </div>
-        <div class="brand-card-cta">
+        <div class="brand-card-cta" id="brand1-cta-wrapper">
           <a href="{{ exchange1_page.link }}" target="_blank" id="brand1-cta-link">Visit {{ page.brand1 }} →</a>
+        </div>
+        <div class="discontinued-notice" id="brand1-discontinued">
+          ⚠️ <strong>Discontinued</strong> — This model is no longer sold by Trezor
         </div>
       </div>
       
@@ -465,35 +519,14 @@ document.addEventListener('DOMContentLoaded', function() {
             {% endfor %}
           </select>
         </div>
-        <div class="brand-card-cta">
+        <div class="brand-card-cta" id="brand2-cta-wrapper">
           <a href="{{ exchange2_page.link }}" target="_blank" id="brand2-cta-link">Visit {{ page.brand2 }} →</a>
+        </div>
+        <div class="discontinued-notice" id="brand2-discontinued">
+          ⚠️ <strong>Discontinued</strong> — This model is no longer sold
         </div>
       </div>
     </div>
-
-    <div class="compare-exchange-cta">
-        {% include sticky-compare-cta.html 
-          exchange1=exchange1_page.brand
-          exchange2=exchange2_page.brand
-          exchange1Link=exchange1_page.link
-          exchange2Link=exchange2_page.link
-        %}
-    </div>
-    <script>
-      window.addEventListener('load', (event) => {
-        document.querySelectorAll('.sticky-compare-cta-button').forEach((button, index) => {
-          button.addEventListener('click', event => {
-            if (index === 0) {
-              fathom.trackEvent('Click Wallet');
-              fathom.trackEvent('Click Wallet: {{ exchange1_page.title }}');
-            } else {
-              fathom.trackEvent('Click Wallet');
-              fathom.trackEvent('Click Wallet: {{ exchange2_page.title }}');
-            }
-          });
-        });
-      });
-    </script>
 
     <div id="sticky-cta">
       <a href="{{ exchange1_page.link }}" target="_blank" id="sticky-cta-1">
