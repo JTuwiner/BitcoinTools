@@ -3,8 +3,9 @@ layout: base
 ---
 <h1 style="text-align: center; width: 100%;margin-bottom: 85px;">{{ page.title }}</h1>
 <div class="post-inner-wrapper">
-    {%- assign exchange1_page = site.pages | where: "title", page.wallet1 | first -%}
-    {%- assign exchange2_page = site.pages | where: "title", page.wallet2 | first -%}
+    {%- assign all_hardware_wallets = site.pages | where: "wallettype", "Hardware" -%}
+    {%- assign exchange1_page = all_hardware_wallets | where: "title", page.wallet1 | first -%}
+    {%- assign exchange2_page = all_hardware_wallets | where: "title", page.wallet2 | first -%}
     <div class="compare-exchanges-inner">
       <div class="exchange-card">
         <div class="exchange-card-top">
