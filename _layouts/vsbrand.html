@@ -13,73 +13,123 @@ layout: base
 <style>
   .brand-model-selectors {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
     margin-bottom: 50px;
     flex-wrap: wrap;
     width: 100%;
     clear: both;
+    padding: 0 20px;
   }
   
   .brand-model-selector {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+    border: 2px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 20px 25px;
+    min-width: 260px;
+    transition: all 0.3s ease;
+  }
+  
+  .brand-model-selector:hover {
+    border-color: #f2a900;
+    box-shadow: 0 8px 25px rgba(242, 169, 0, 0.15);
   }
   
   .brand-model-selector label {
-    font-weight: 600;
+    font-weight: 700;
     color: #232939;
-    font-size: 14px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .model-preview {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  
+  .model-preview-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #fff;
+    padding: 5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  
+  .model-preview-name {
+    font-weight: 600;
+    font-size: 16px;
+    color: #232939;
   }
   
   .brand-model-selector select {
-    padding: 12px 40px 12px 16px;
-    font-size: 16px;
-    font-weight: 500;
+    padding: 14px 45px 14px 18px;
+    font-size: 15px;
+    font-weight: 600;
     border: 2px solid #232939;
-    border-radius: 8px;
+    border-radius: 10px;
     background: white;
     cursor: pointer;
-    min-width: 220px;
+    width: 100%;
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23232939' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 12px center;
+    background-position: right 14px center;
     transition: all 0.2s ease;
   }
   
   .brand-model-selector select:hover {
     border-color: #f2a900;
+    background-color: #fffbf0;
   }
   
   .brand-model-selector select:focus {
     outline: none;
     border-color: #f2a900;
-    box-shadow: 0 0 0 3px rgba(242, 169, 0, 0.2);
+    box-shadow: 0 0 0 4px rgba(242, 169, 0, 0.2);
+  }
+  
+  .select-hint {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
   }
   
   .brand-vs-divider {
-    font-size: 24px;
-    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 800;
     color: #f2a900;
-    padding: 0 10px;
+    padding: 0 5px;
+    text-shadow: 0 2px 4px rgba(242, 169, 0, 0.2);
   }
   
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     .brand-model-selectors {
       flex-direction: column;
-      gap: 15px;
+      gap: 20px;
+      align-items: center;
     }
     
     .brand-vs-divider {
       padding: 5px 0;
     }
     
-    .brand-model-selector select {
-      min-width: 280px;
+    .brand-model-selector {
+      min-width: 300px;
+      max-width: 100%;
     }
   }
 </style>
@@ -194,6 +244,12 @@ function updateModels() {
   const w2 = walletData[model2];
   
   if (!w1 || !w2) return;
+  
+  // Update model selector previews
+  document.getElementById('brand1-preview-img').src = `/tools/img/${w1.img}`;
+  document.getElementById('brand1-preview-name').textContent = w1.title;
+  document.getElementById('brand2-preview-img').src = `/tools/img/${w2.img}`;
+  document.getElementById('brand2-preview-name').textContent = w2.title;
   
   // Update header cards
   document.querySelectorAll('.exchange-card').forEach((card, index) => {
@@ -347,27 +403,37 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- Model Selectors (moved inside wrapper) -->
     <div class="brand-model-selectors">
       <div class="brand-model-selector">
-        <label for="brand1-model">{{ page.brand1 }} Model:</label>
+        <label for="brand1-model">{{ page.brand1 }} Model</label>
+        <div class="model-preview" id="brand1-preview">
+          <img src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}" class="model-preview-img" id="brand1-preview-img">
+          <span class="model-preview-name" id="brand1-preview-name">{{ exchange1_page.title }}</span>
+        </div>
         <select id="brand1-model" onchange="updateModels()">
           {% for model in brand1_models %}
-          <option value="{{ model.title }}" {% if model.title == page.wallet1 %}selected{% endif %}>
+          <option value="{{ model.title }}" data-img="{{ model.img }}" {% if model.title == page.wallet1 %}selected{% endif %}>
             {{ model.title }}
           </option>
           {% endfor %}
         </select>
+        <span class="select-hint">Click to change model ↑</span>
       </div>
       
-      <span class="brand-vs-divider">vs</span>
+      <span class="brand-vs-divider">VS</span>
       
       <div class="brand-model-selector">
-        <label for="brand2-model">{{ page.brand2 }} Model:</label>
+        <label for="brand2-model">{{ page.brand2 }} Model</label>
+        <div class="model-preview" id="brand2-preview">
+          <img src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}" class="model-preview-img" id="brand2-preview-img">
+          <span class="model-preview-name" id="brand2-preview-name">{{ exchange2_page.title }}</span>
+        </div>
         <select id="brand2-model" onchange="updateModels()">
           {% for model in brand2_models %}
-          <option value="{{ model.title }}" {% if model.title == page.wallet2 %}selected{% endif %}>
+          <option value="{{ model.title }}" data-img="{{ model.img }}" {% if model.title == page.wallet2 %}selected{% endif %}>
             {{ model.title }}
           </option>
           {% endfor %}
         </select>
+        <span class="select-hint">Click to change model ↑</span>
       </div>
     </div>
 
