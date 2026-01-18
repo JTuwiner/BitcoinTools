@@ -217,6 +217,91 @@ layout: base
   .exchanges-details-side-subtitle .feature-icon {
     display: inline-flex;
   }
+  
+  /* Add padding to Jump to section */
+  .compare-bright-section-header {
+    padding-top: 30px !important;
+  }
+  
+  /* Info tooltip styling */
+  .info-tooltip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    margin-left: 6px;
+    background: #e0e0e0;
+    border-radius: 50%;
+    cursor: help;
+    vertical-align: middle;
+    font-size: 11px;
+    font-weight: 600;
+    color: #666;
+    transition: all 0.2s ease;
+  }
+  
+  .info-tooltip:hover {
+    background: #f2a900;
+    color: #000;
+  }
+  
+  .info-tooltip .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #232939;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.4;
+    width: 220px;
+    text-align: left;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: all 0.2s ease;
+  }
+  
+  .info-tooltip .tooltip-text::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #232939;
+  }
+  
+  .info-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .section-left-heading {
+    display: flex;
+    align-items: center;
+  }
+  
+  @media (max-width: 600px) {
+    .info-tooltip .tooltip-text {
+      width: 180px;
+      font-size: 12px;
+      left: auto;
+      right: -10px;
+      transform: none;
+    }
+    .info-tooltip .tooltip-text::after {
+      left: auto;
+      right: 15px;
+      transform: none;
+    }
+  }
 </style>
 
 <script>
@@ -888,6 +973,9 @@ document.addEventListener('DOMContentLoaded', function() {
               <a href="#security-features" class="compare-bright-section-toc-link">Security Features</a>
             </li>
             <li class="compare-bright-section-toc-list-item">
+              <a href="#advanced-security" class="compare-bright-section-toc-link">Advanced Security</a>
+            </li>
+            <li class="compare-bright-section-toc-list-item">
               <a href="#usage-details" class="compare-bright-section-toc-link">Usage</a>
             </li>
             <li class="compare-bright-section-toc-list-item">
@@ -1057,7 +1145,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             <h2 class="section-category-heading" id="security-features">Security Features</h2>
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="passphrase">Passphrase Support</h2>
+              <h2 class="section-left-heading" id="passphrase">Passphrase Support <span class="info-tooltip">?<span class="tooltip-text">An optional extra word added to your recovery phrase for additional security. Creates a hidden wallet that's invisible without the passphrase.</span></span></h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -1123,7 +1211,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="pin">PIN Protection</h2>
+              <h2 class="section-left-heading" id="pin">PIN Protection <span class="info-tooltip">?<span class="tooltip-text">A numeric code required to unlock your device. Protects against unauthorized physical access to your wallet.</span></span></h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -1156,7 +1244,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="shamir">Shamir Secret Sharing</h2>
+              <h2 class="section-left-heading" id="shamir">Shamir Secret Sharing <span class="info-tooltip">?<span class="tooltip-text">Splits your backup into multiple shares (e.g., 3-of-5). You need a minimum number of shares to recover your wallet, reducing single point of failure risk.</span></span></h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -1189,7 +1277,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="tor">Tor Support</h2>
+              <h2 class="section-left-heading" id="tor">Tor Support <span class="info-tooltip">?<span class="tooltip-text">Routes your connection through the Tor network for enhanced privacy. Hides your IP address and location when checking balances or broadcasting transactions.</span></span></h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -1221,8 +1309,10 @@ document.addEventListener('DOMContentLoaded', function() {
               </div>
             </div>
 
+            <h2 class="section-category-heading" id="advanced-security">Advanced Security</h2>
+
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="quantum-ready">Quantum Ready</h2>
+              <h2 class="section-left-heading" id="quantum-ready">Quantum Ready <span class="info-tooltip">?<span class="tooltip-text">Designed to receive firmware updates with quantum-resistant cryptography. Protects against future threats from quantum computers that could break current encryption.</span></span></h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -1242,7 +1332,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="dual-secure-element">Dual Secure Element</h2>
+              <h2 class="section-left-heading" id="dual-secure-element">Dual Secure Element <span class="info-tooltip">?<span class="tooltip-text">Uses two separate secure chips instead of one. Provides redundancy and additional tamper protection for storing your private keys.</span></span></h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -1262,7 +1352,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="ios-compatibility">iOS Compatibility</h2>
+              <h2 class="section-left-heading" id="ios-compatibility">iOS Compatibility <span class="info-tooltip">?<span class="tooltip-text">"Full" means you can send, receive, and manage crypto on iPhone. "Limited" typically means view-only or requires desktop for transactions.</span></span></h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -1376,7 +1466,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="secure-elements">Secure Elements</h2>
+              <h2 class="section-left-heading" id="secure-elements">Secure Elements <span class="info-tooltip">?<span class="tooltip-text">A tamper-resistant chip that securely stores your private keys. Certified chips (EAL5+/EAL6+) have passed rigorous security testing.</span></span></h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -1397,7 +1487,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="open-source">Open Source</h2>
+              <h2 class="section-left-heading" id="open-source">Open Source <span class="info-tooltip">?<span class="tooltip-text">Code that anyone can inspect, audit, and verify. Open-source wallets allow security researchers to find and report vulnerabilities.</span></span></h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -1434,7 +1524,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="fido-auth">FIDO Authentication</h2>
+              <h2 class="section-left-heading" id="fido-auth">FIDO Authentication <span class="info-tooltip">?<span class="tooltip-text">Use your hardware wallet as a security key for 2FA login to websites and services. More secure than SMS or authenticator apps.</span></span></h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -1614,7 +1704,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="ip-rating">Water Resistance (IP Rating)</h2>
+              <h2 class="section-left-heading" id="ip-rating">Water Resistance <span class="info-tooltip">?<span class="tooltip-text">IP67 rating means fully dustproof and can survive submersion in 1 meter of water for 30 minutes. Protects against accidental spills and drops.</span></span></h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -1634,7 +1724,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="haptic-feedback">Haptic Feedback</h2>
+              <h2 class="section-left-heading" id="haptic-feedback">Haptic Feedback <span class="info-tooltip">?<span class="tooltip-text">Vibration feedback when pressing buttons or confirming actions. Provides tactile confirmation that your input was registered.</span></span></h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -1656,7 +1746,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <h2 class="section-category-heading" id="connectivity-power">Connectivity & Power</h2>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="bluetooth">Bluetooth</h2>
+              <h2 class="section-left-heading" id="bluetooth">Bluetooth <span class="info-tooltip">?<span class="tooltip-text">Wireless connectivity for pairing with mobile devices. Enables cable-free transactions but some users prefer USB-only for security.</span></span></h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -1676,7 +1766,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="nfc">NFC</h2>
+              <h2 class="section-left-heading" id="nfc">NFC <span class="info-tooltip">?<span class="tooltip-text">Near Field Communication for tap-to-connect with compatible devices. Convenient for quick mobile transactions.</span></span></h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
@@ -1780,7 +1870,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
             <div class="exchanges-details-card">
-              <h2 class="section-left-heading" id="multisig">Multisig Support</h2>
+              <h2 class="section-left-heading" id="multisig">Multisig Support <span class="info-tooltip">?<span class="tooltip-text">Multi-signature wallets require multiple keys to authorize transactions (e.g., 2-of-3). Adds security by eliminating single points of failure.</span></span></h2>
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
