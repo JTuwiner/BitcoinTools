@@ -8,33 +8,6 @@ layout: base
 
 <h1 style="text-align: center; width: 100%;margin-bottom: 40px;">{{ page.title }}</h1>
 
-<!-- Model Selectors -->
-<div class="brand-model-selectors">
-  <div class="brand-model-selector">
-    <label for="brand1-model">{{ page.brand1 }} Model:</label>
-    <select id="brand1-model" onchange="updateModels()">
-      {% for model in brand1_models %}
-      <option value="{{ model.title }}" {% if model.title == page.wallet1 %}selected{% endif %}>
-        {{ model.title }}
-      </option>
-      {% endfor %}
-    </select>
-  </div>
-  
-  <span class="brand-vs-divider">vs</span>
-  
-  <div class="brand-model-selector">
-    <label for="brand2-model">{{ page.brand2 }} Model:</label>
-    <select id="brand2-model" onchange="updateModels()">
-      {% for model in brand2_models %}
-      <option value="{{ model.title }}" {% if model.title == page.wallet2 %}selected{% endif %}>
-        {{ model.title }}
-      </option>
-      {% endfor %}
-    </select>
-  </div>
-</div>
-
 <style>
   .brand-model-selectors {
     display: flex;
@@ -43,6 +16,8 @@ layout: base
     gap: 20px;
     margin-bottom: 50px;
     flex-wrap: wrap;
+    width: 100%;
+    clear: both;
   }
   
   .brand-model-selector {
@@ -385,6 +360,33 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <div class="post-inner-wrapper">
+    <!-- Model Selectors (moved inside wrapper) -->
+    <div class="brand-model-selectors">
+      <div class="brand-model-selector">
+        <label for="brand1-model">{{ page.brand1 }} Model:</label>
+        <select id="brand1-model" onchange="updateModels()">
+          {% for model in brand1_models %}
+          <option value="{{ model.title }}" {% if model.title == page.wallet1 %}selected{% endif %}>
+            {{ model.title }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+      
+      <span class="brand-vs-divider">vs</span>
+      
+      <div class="brand-model-selector">
+        <label for="brand2-model">{{ page.brand2 }} Model:</label>
+        <select id="brand2-model" onchange="updateModels()">
+          {% for model in brand2_models %}
+          <option value="{{ model.title }}" {% if model.title == page.wallet2 %}selected{% endif %}>
+            {{ model.title }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
     <div class="compare-exchanges-inner">
       <div class="exchange-card">
         <div class="exchange-card-top">
