@@ -663,53 +663,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <div class="compare-bright-section">
       <div class="compare-bright-section-header">
-          <div>
-          
-            <h2>Key differences</h2>
-            <ol class="key-differences-list">
-              {% if page.maindifferences.diff1 %}
-                <li>{{ page.maindifferences.diff1 }}</li>
-              {% endif %}
-              {% if page.maindifferences.diff2 %}
-                <li>{{ page.maindifferences.diff2 }}</li>
-              {% endif %}
-              {% if page.maindifferences.diff3 %}
-                <li>{{ page.maindifferences.diff3 }}</li>
-              {% endif %}
-            </ol>
-
-            <style>
-              .key-differences-list {
-                list-style: none;
-                counter-reset: key-differences;
-                padding-left: 0;
-                margin-top: 30px;
-              }
-              
-              .key-differences-list li {
-                counter-increment: key-differences;
-                display: flex;
-                align-items: flex-start;
-                margin-bottom: 10px;
-              }
-
-              .key-differences-list li::before {
-                content: counter(key-differences);
-                background: #f2a900;
-                color: black;
-                width: 24px;
-                height: 24px;
-                border-radius: 50%;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                margin-right: 10px;
-                flex-shrink: 0;
-              }
-            </style>
-          </div>
-
-          <br><br>
         <h2 class="compare-bright-section-heading">Jump to section</h2>
         <nav class="compare-bright-section-toc">
           <ul class="compare-bright-section-toc-list">
@@ -1576,53 +1529,4 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
-      <div class="vs-compare-content">
-        <div class="vs-related-comparisons" style="margin-top: 0px !important; border-top: 0px !important;">
-          <h2>Related Comparisons</h2>
-          <div class="related-comparisons-container" style="display: flex; gap: 40px;">
-            <div class="related-wallet-column" style="flex: 1;">
-              <h3>{{ page.wallet1 }} vs</h3>
-              <ul style="padding-left: 0px !important;" class="sidebar-list logo-sidebar">
-              {% assign comparison_pages = site.pages | where: "layout", "vswallet" | sort: "title" %}
-              {% for comparison in comparison_pages %}
-                {% if comparison.title != page.title and (comparison.wallet1 == page.wallet1 or comparison.wallet2 == page.wallet1) %}
-                  {% assign other_wallet = comparison.wallet1 %}
-                  {% if comparison.wallet1 == page.wallet1 %}
-                    {% assign other_wallet = comparison.wallet2 %}
-                  {% endif %}
-                  {% assign other_wallet_page = site.pages | where: "title", other_wallet | first %}
-                  <li>
-                    <a class="vs-related-comparison-link" href="/tools{{ comparison.permalink }}">
-                      <img src="/tools/img/{{ other_wallet_page.img }}" style="height:20px;vertical-align:middle;border-radius:100%;margin-right:4px">
-                      {{ other_wallet }}
-                    </a>
-                  </li>
-                {% endif %}
-              {% endfor %}
-              </ul>
-            </div>
-
-            <div class="related-wallet-column" style="flex: 1;">
-              <h3>{{ page.wallet2 }} vs</h3>
-              <ul style="padding-left: 0px !important;" class="sidebar-list logo-sidebar">
-              {% for comparison in comparison_pages %}
-                {% if comparison.title != page.title and (comparison.wallet1 == page.wallet2 or comparison.wallet2 == page.wallet2) %}
-                  {% assign other_wallet = comparison.wallet1 %}
-                  {% if comparison.wallet1 == page.wallet2 %}
-                    {% assign other_wallet = comparison.wallet2 %}
-                  {% endif %}
-                  {% assign other_wallet_page = site.pages | where: "title", other_wallet | first %}
-                  <li>
-                    <a class="vs-related-comparison-link" href="/tools{{ comparison.permalink }}">
-                      <img src="/tools/img/{{ other_wallet_page.img }}" style="height:20px;vertical-align:middle;border-radius:100%;margin-right:4px">
-                      {{ other_wallet }}
-                    </a>
-                  </li>
-                {% endif %}
-              {% endfor %}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
