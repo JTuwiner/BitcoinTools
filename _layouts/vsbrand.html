@@ -289,17 +289,45 @@ layout: base
   }
   
   @media (max-width: 600px) {
+    /* Fix 1: Prevent tooltip from being cut off on the left */
     .info-tooltip .tooltip-text {
-      width: 180px;
+      width: 200px;
       font-size: 12px;
-      left: auto;
-      right: -10px;
-      transform: none;
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+      /* Prevent overflow */
+      max-width: calc(100vw - 40px);
     }
     .info-tooltip .tooltip-text::after {
-      left: auto;
-      right: 15px;
-      transform: none;
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+    }
+    
+    /* Fix 2: Make wallet names smaller and more compact on mobile */
+    .brand-card-name {
+      font-size: 16px;
+      line-height: 1.2;
+      min-height: 40px; /* Ensure consistent height even with different text lengths */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .brand-card select {
+      font-size: 13px;
+      padding: 10px 35px 10px 12px;
+    }
+    
+    /* Fix 3: Center-align section titles on mobile */
+    .section-category-heading {
+      text-align: center;
+    }
+    
+    .section-left-heading {
+      justify-content: center;
+      text-align: center;
     }
   }
 </style>
