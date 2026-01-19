@@ -20,9 +20,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 .exchange-information .exchange-info-table.info-table-desktop thead th:first-of-type {
   border-top-left-radius: 16px;
 }
-table {
-    color: black !important;
-}
 </style>
 
 <div style="max-width: 800px;">
@@ -108,19 +105,24 @@ table {
 <style>
 .tax-comparison-table td a {
   text-decoration: none;
-  color: inherit;
   border-bottom: 5px solid #f2a900;
   transition: transform 0.5s ease, background-color 0.5s ease;
   padding: 0px 0px;
-  color: black !important;
   transform: translateY(0);
   display: inline-block;
   margin-bottom: 4px;
+  color: #000; /* Black for light mode */
+}
+
+@media (prefers-color-scheme: dark) {
+  .tax-comparison-table td a {
+    color: #f2a900; /* Brand gold for dark mode visibility */
+  }
 }
 
 .tax-comparison-table td a:hover {
   background-color: #f2a900;
-  color: black;
+  color: #000; /* Black text on gold background works in both modes */
 }
 </style>
 
@@ -695,7 +697,7 @@ table {
 }
 
 .faq-question {
-  background: #000;
+  background: #232939; /* Brand dark background */
   padding: 15px;
   cursor: pointer;
   position: relative;
@@ -709,8 +711,17 @@ table {
 }
 
 .faq-question:hover {
-  background: #f0f0f0;
+  background: #f2a900; /* Brand gold for hover */
   color: #000;
+}
+
+@media (prefers-color-scheme: dark) {
+  .faq-question {
+    background: #232939; /* Same for dark mode - already brand color */
+  }
+  .faq-question:hover {
+    background: #f2a900; /* Brand gold works in both modes */
+  }
 }
 
 .faq-question::after {

@@ -1669,4 +1669,8 @@ body #main-navbar .ml-auto {
   table tr td {
     border: 1px solid #232939;
   }
+  table tr td,
+  table tr th {
+    color: white;
+  }
 }

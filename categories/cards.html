@@ -777,6 +777,69 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
     padding: 3px 8px;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  /* Text colors - override all hardcoded #111827 with white */
+  .comparison-table-title,
+  .comparison-table th,
+  .comparison-table td,
+  .comparison-table-card-name,
+  .card-title,
+  .card-description,
+  .data-label,
+  .data-value,
+  .card-keyfact-label,
+  .card-keyfact-value,
+  .card-breakdown-title,
+  .mobile-comparison-selector label {
+    color: white !important;
+  }
+
+  /* Table backgrounds */
+  .comparison-table thead {
+    background: #232939;
+  }
+
+  .comparison-table tbody tr:hover {
+    background-color: #232939;
+  }
+
+  .comparison-table tbody tr {
+    border-bottom: 1px solid #232939;
+  }
+
+  /* Card backgrounds and borders */
+  .card-item {
+    background: #232939;
+    border-color: #232939;
+  }
+
+  .data-item {
+    background: #12151e;
+    border-color: #232939;
+  }
+
+  .card-breakdown {
+    border-color: #232939;
+  }
+
+  .card-breakdown-header {
+    background: #12151e;
+    border-bottom-color: #232939;
+  }
+
+  .mobile-card-details,
+  .mobile-comparison-card {
+    background: #232939;
+    border-color: #232939;
+  }
+
+  .mobile-comparison-selector select {
+    background: #12151e;
+    color: white;
+    border-color: #232939;
+  }
+}
 </style>
 <br><br><br>
 <div class="comparison-table-wrapper">
