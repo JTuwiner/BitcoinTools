@@ -20,6 +20,56 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 .exchange-information .exchange-info-table.info-table-desktop thead th:first-of-type {
   border-top-left-radius: 16px;
 }
+
+/* Light mode table styles - gray bg with black text */
+table {
+  background-color: #f8f9fa;
+}
+
+table tr td, table tr th {
+  color: #000000;
+  background-color: #f8f9fa;
+}
+
+table thead tr th {
+  background-color: #e9ecef;
+  color: #000000;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #e9ecef;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+/* Dark mode table styles - keep dark gray (not black) with white text */
+@media (prefers-color-scheme: dark) {
+  table {
+    background-color: #232939 !important;
+    color: #ffffff !important;
+  }
+  
+  table tr td, table tr th {
+    color: #ffffff !important;
+    background-color: #232939 !important;
+    border-color: #3a4255 !important;
+  }
+  
+  table thead tr th {
+    background-color: #1a1f2e !important;
+    color: #f2a900 !important;
+  }
+  
+  table tbody tr:nth-child(even) {
+    background-color: #2a3142 !important;
+  }
+  
+  table tbody tr:nth-child(odd) {
+    background-color: #232939 !important;
+  }
+}
 </style>
 
 <div style="max-width: 800px;">
