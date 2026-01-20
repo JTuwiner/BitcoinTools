@@ -114,12 +114,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   color: #000; /* Black for light mode */
 }
 
-@media (prefers-color-scheme: dark) {
-  .tax-comparison-table td a {
-    color: #f2a900; /* Brand gold for dark mode visibility */
-  }
-}
-
 .tax-comparison-table td a:hover {
   background-color: #f2a900;
   color: #000; /* Black text on gold background works in both modes */
@@ -713,15 +707,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 .faq-question:hover {
   background: #f2a900; /* Brand gold for hover */
   color: #000;
-}
-
-@media (prefers-color-scheme: dark) {
-  .faq-question {
-    background: #232939; /* Same for dark mode - already brand color */
-  }
-  .faq-question:hover {
-    background: #f2a900; /* Brand gold works in both modes */
-  }
 }
 
 .faq-question::after {
