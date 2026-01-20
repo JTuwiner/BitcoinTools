@@ -387,32 +387,40 @@ Withdrawals from Coinbase are subject to fees, whether you're taking out crypto 
      }
    }
     
-    /* Force light mode for tables to ensure readability in dark mode */
-    table {
-      background-color: #ffffff !important;
-      color: #000000 !important;
-    }
-    
+ /* Default light mode table styles */
     table tr td, table tr th {
-      color: #000000 !important;
-      background-color: #ffffff !important;
+      color: black;
     }
     
-    table thead tr th {
-      background-color: #f8f9fa !important;
-      color: #000000 !important;
-    }
-    
-    table tbody tr:nth-child(even) {
-      background-color: #f8f9fa !important;
-    }
-    
-    table tbody tr:nth-child(odd) {
-      background-color: #ffffff !important;
-    }
-    
-    .table-responsive {
-      background-color: #ffffff !important;
+    /* Dark mode table styles for readability */
+    @media (prefers-color-scheme: dark) {
+      table {
+        background-color: #232939 !important;
+        color: #ffffff !important;
+      }
+      
+      table tr td, table tr th {
+        color: #ffffff !important;
+        background-color: #232939 !important;
+        border-color: #3a4255 !important;
+      }
+      
+      table thead tr th {
+        background-color: #1a1f2e !important;
+        color: #f2a900 !important;
+      }
+      
+      table tbody tr:nth-child(even) {
+        background-color: #2a3142 !important;
+      }
+      
+      table tbody tr:nth-child(odd) {
+        background-color: #232939 !important;
+      }
+      
+      .table-responsive {
+        background-color: #232939 !important;
+      }
     }
    
     .input-label {
