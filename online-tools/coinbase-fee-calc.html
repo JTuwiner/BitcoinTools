@@ -40,9 +40,9 @@ include_javascript:
 <br>
 
 <h2>Helpful Links</h2>
-<ul></ul>
+<ul>
   <li><a class="helpful-link" href="/buy/coinbase-alternatives/">Coinbase alternatives</a></li>
-  <li><a class="helpful-link" href="/buy/robinhood-vs-coinbase/">Coinbase vs Robinhood</a></li>
+  <li><a class="helpful-link" href="https://bitbo.io/buy/coinbase-vs-kraken/">Coinbase vs Kraken</a></li>
 </ul>
 
 <br><br>
@@ -387,8 +387,32 @@ Withdrawals from Coinbase are subject to fees, whether you're taking out crypto 
      }
    }
     
+    /* Force light mode for tables to ensure readability in dark mode */
+    table {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+    }
+    
     table tr td, table tr th {
-      color: black;
+      color: #000000 !important;
+      background-color: #ffffff !important;
+    }
+    
+    table thead tr th {
+      background-color: #f8f9fa !important;
+      color: #000000 !important;
+    }
+    
+    table tbody tr:nth-child(even) {
+      background-color: #f8f9fa !important;
+    }
+    
+    table tbody tr:nth-child(odd) {
+      background-color: #ffffff !important;
+    }
+    
+    .table-responsive {
+      background-color: #ffffff !important;
     }
    
     .input-label {
