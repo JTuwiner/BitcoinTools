@@ -492,6 +492,25 @@
           width: 90vw;
           padding: 5px 0px 0px 0px;
       }
+      /* Center section headings on mobile */
+      .section-left-heading {
+          text-align: center !important;
+          max-width: 100%;
+          margin-left: 0;
+          justify-content: center;
+      }
+      .section-category-heading {
+          font-size: 32px;
+          margin: 60px 15px;
+      }
+      /* Smaller wallet names in comparison cards */
+      .exchanges-details-title {
+          font-size: 15px;
+      }
+      .exchanges-details-title-text {
+          font-size: 14px;
+          line-height: 1.3;
+      }
   }
 
   @media(max-width: 500px) {
