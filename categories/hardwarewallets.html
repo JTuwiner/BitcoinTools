@@ -947,8 +947,23 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 .integrations-intro {
   font-size: 15px;
   color: #374151;
+  margin: 0 0 16px 0;
+  max-width: 700px;
+}
+
+.expert-advice {
+  font-size: 15px;
+  color: #374151;
   margin: 0 0 24px 0;
   max-width: 700px;
+  padding: 12px 16px;
+  background: #f0fdf4;
+  border-left: 4px solid #10b981;
+  border-radius: 0 8px 8px 0;
+}
+
+.expert-advice strong {
+  color: #047857;
 }
 
 .integrations-table-wrapper {
@@ -1204,8 +1219,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   
   /* Integrations table dark mode */
   .integrations-section {
-    background: #232939;
-    border-color: #3a4255;
+    background: transparent;
   }
   
   .integrations-title {
@@ -1214,6 +1228,16 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   
   .integrations-intro {
     color: #d1d5db;
+  }
+  
+  .expert-advice {
+    background: #064e3b;
+    border-left-color: #10b981;
+    color: #d1fae5;
+  }
+  
+  .expert-advice strong {
+    color: #6ee7b7;
   }
   
   .integrations-table th {
@@ -1616,6 +1640,8 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 <div class="integrations-section" id="multisig-integrations">
   <h2 class="integrations-title">Multisig Integrations</h2>
   <p class="integrations-intro">Many hardware wallets integrate with multisig custody solutions for enhanced security. Here's which wallets work with the major providers:</p>
+  
+  <p class="expert-advice"><strong>Expert Advice:</strong> Bitcoin security expert Jameson Lopp, co-founder of Casa, recommends using multi-signature setups with hardware wallets from different manufacturers for significant holdings. Lopp states this eliminates single points of failure and provides redundancy if one device or company has security issues.</p>
   
   <div class="integrations-table-wrapper">
     <table class="integrations-table">
