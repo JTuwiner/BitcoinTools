@@ -1853,6 +1853,154 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   </div>
 </div>
 
+<!-- FAQ Section -->
+<style>
+.hw-faq-section {
+  max-width: 800px;
+  margin: 60px 0 40px 0;
+}
+
+.hw-faq-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 24px 0;
+}
+
+.hw-faq-item {
+  margin-bottom: 10px;
+}
+
+.hw-faq-question {
+  background: #232939;
+  padding: 15px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.hw-faq-question h3 {
+  margin: 0;
+  padding-right: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.hw-faq-question:hover {
+  background: #f2a900;
+}
+
+.hw-faq-question:hover h3 {
+  color: #000000;
+}
+
+.hw-faq-question::after {
+  content: '+';
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #ffffff;
+  transition: transform 0.3s ease;
+}
+
+.hw-faq-question:hover::after {
+  color: #000000;
+}
+
+.hw-faq-question.active::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.hw-faq-answer {
+  display: none;
+  padding: 15px;
+  border: 1px solid #e5e7eb;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  background: #f9fafb;
+}
+
+.hw-faq-answer p {
+  margin: 0;
+  color: #374151;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (prefers-color-scheme: dark) {
+  .hw-faq-title {
+    color: #f9fafb;
+  }
+  
+  .hw-faq-answer {
+    background: #1a1f2e;
+    border-color: #3a4255;
+  }
+  
+  .hw-faq-answer p {
+    color: #d1d5db;
+  }
+}
+</style>
+
+<div class="hw-faq-section">
+  <h2 class="hw-faq-title">Frequently Asked Questions</h2>
+  
+  <div class="hw-faq-item">
+    <div class="hw-faq-question">
+      <h3>What happens if my hardware wallet breaks?</h3>
+    </div>
+    <div class="hw-faq-answer">
+      <p>If your hardware wallet breaks, you can always restore it using a backup seed. Every hardware wallet, no matter which company, will make you create a backup when setting up your wallet.</p>
+    </div>
+  </div>
+
+  <div class="hw-faq-item">
+    <div class="hw-faq-question">
+      <h3>Can I recover my Bitcoin without the hardware wallet?</h3>
+    </div>
+    <div class="hw-faq-answer">
+      <p>Yes, you do not need to spend money on a new hardware wallet in order to recover your funds. Your seed phrase can be imported into any compatible wallet software or a new hardware wallet from any manufacturer.</p>
+    </div>
+  </div>
+
+  <div class="hw-faq-item">
+    <div class="hw-faq-question">
+      <h3>Is a hardware wallet better than a software wallet?</h3>
+    </div>
+    <div class="hw-faq-answer">
+      <p>Better depends on what you need it for. Generally, experts say that hardware wallets offer better security. Software wallets can be easier to spend from, making them more convenient.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.hw-faq-question').forEach(question => {
+  question.addEventListener('click', () => {
+    const answer = question.nextElementSibling;
+    const isOpen = answer.style.display === 'block';
+    
+    // Close all answers
+    document.querySelectorAll('.hw-faq-answer').forEach(a => {
+      a.style.display = 'none';
+    });
+    document.querySelectorAll('.hw-faq-question').forEach(q => {
+      q.classList.remove('active');
+    });
+    
+    // Open clicked answer if it was closed
+    if (!isOpen) {
+      answer.style.display = 'block';
+      question.classList.add('active');
+    }
+  });
+});
+</script>
+
 <div class="hw-disclaimer">
   <p>Disclaimer: The information provided on this page is for informational purposes only and does not constitute financial advice. Hardware wallets involve technical complexity — always follow manufacturer instructions carefully and test your backup recovery process before storing significant funds. We recommend purchasing hardware wallets directly from manufacturers to avoid tampered devices. Some links on this page may be affiliate links, which help support our research at no extra cost to you.</p>
 </div>
