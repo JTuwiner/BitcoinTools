@@ -12,34 +12,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 ---
 
 {% assign wallets = site.pages | where: "cat", "Hardware Wallets" | sort: "sort" %}
-{% assign vs_wallets = site.pages | where: "wallettype", "Hardware" %}
-
-<script>
-const vsWalletData = {
-  {% for w in vs_wallets %}"{{ w.title }}": {
-    img: "{{ w.img }}",
-    price: "{{ w.price }}",
-    screensize: "{{ w.screensize }}",
-    supportedcoins: "{{ w.supportedcoins }}",
-    osource: "{{ w.osource }}",
-    opensourceinfo: "{{ w.opensourceinfo }}",
-    secureelements: "{{ w.secureelements | escape }}",
-    launched: "{{ w.launched }}",
-    touchscreen: {{ w.touchscreen | default: "false" }},
-    bluetooth: {{ w.bluetooth | default: "false" }},
-    nfc: {{ w.nfc | default: "false" }},
-    bitcoinonlyversion: {{ w.bitcoinonlyversion | default: "false" }},
-    quantumready: {{ w.quantumready | default: "false" }},
-    brand: "{{ w.brand }}",
-    link: "{{ w.link }}",
-    size: "{{ w.size }}",
-    ioscompatibility: "{{ w.ioscompatibility }}",
-    integrations: {{ w.integrations | jsonify | default: "[]" }},
-    multisig: {{ w.multisig | jsonify | default: "[]" }}
-  }{% unless forloop.last %},{% endunless %}
-  {% endfor %}
-};
-</script>
 
 <style>
 .hw-intro {
@@ -1764,10 +1736,6 @@ const vsWalletData = {
 <div class="hw-comparison-table-wrapper" id="compare-hardware-wallets">
   <div class="hw-comparison-table-header">
     <h2 class="hw-comparison-table-title">Compare Hardware Wallets</h2>
-    <div class="hw-view-toggle">
-      <button class="hw-view-btn active" data-view="table" onclick="switchCompareView('table')">Table View</button>
-      <button class="hw-view-btn" data-view="sidebyside" onclick="switchCompareView('sidebyside')">Side-by-Side</button>
-    </div>
   </div>
   
   <!-- Desktop Table -->
