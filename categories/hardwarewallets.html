@@ -12,6 +12,34 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 ---
 
 {% assign wallets = site.pages | where: "cat", "Hardware Wallets" | sort: "sort" %}
+{% assign vs_wallets = site.pages | where: "wallettype", "Hardware" %}
+
+<script>
+const vsWalletData = {
+  {% for w in vs_wallets %}"{{ w.title }}": {
+    img: "{{ w.img }}",
+    price: "{{ w.price }}",
+    screensize: "{{ w.screensize }}",
+    supportedcoins: "{{ w.supportedcoins }}",
+    osource: "{{ w.osource }}",
+    opensourceinfo: "{{ w.opensourceinfo }}",
+    secureelements: "{{ w.secureelements | escape }}",
+    launched: "{{ w.launched }}",
+    touchscreen: {{ w.touchscreen | default: "false" }},
+    bluetooth: {{ w.bluetooth | default: "false" }},
+    nfc: {{ w.nfc | default: "false" }},
+    bitcoinonlyversion: {{ w.bitcoinonlyversion | default: "false" }},
+    quantumready: {{ w.quantumready | default: "false" }},
+    brand: "{{ w.brand }}",
+    link: "{{ w.link }}",
+    size: "{{ w.size }}",
+    ioscompatibility: "{{ w.ioscompatibility }}",
+    integrations: {{ w.integrations | jsonify | default: "[]" }},
+    multisig: {{ w.multisig | jsonify | default: "[]" }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+};
+</script>
 
 <style>
 .hw-intro {
@@ -104,6 +132,253 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   font-weight: 700;
   color: #111827;
   margin: 0;
+}
+
+/* View Toggle Buttons */
+.hw-view-toggle {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.hw-view-btn {
+  padding: 8px 16px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hw-view-btn:hover {
+  border-color: #f2a900;
+  color: #f2a900;
+}
+
+.hw-view-btn.active {
+  background: #f2a900;
+  border-color: #f2a900;
+  color: #000000;
+}
+
+/* Side-by-Side Comparison */
+.sidebyside-comparison {
+  margin-top: 20px;
+}
+
+.sidebyside-selectors {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.sidebyside-wallet-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  min-width: 200px;
+}
+
+.sidebyside-select {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #111827;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23374151' d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.sidebyside-select:focus {
+  outline: none;
+  border-color: #f2a900;
+  box-shadow: 0 0 0 3px rgba(242, 169, 0, 0.1);
+}
+
+.sidebyside-wallet-preview {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.sidebyside-wallet-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.sidebyside-wallet-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+  text-align: center;
+}
+
+.sidebyside-vs {
+  font-size: 18px;
+  font-weight: 700;
+  color: #9ca3af;
+  padding-top: 40px;
+}
+
+/* Side-by-Side Table */
+.sidebyside-table-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.sidebyside-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.sidebyside-table thead {
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.sidebyside-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+}
+
+.sidebyside-table th:first-child {
+  width: 30%;
+}
+
+.sidebyside-table td {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.sidebyside-table td:first-child {
+  font-weight: 500;
+  color: #111827;
+}
+
+.sidebyside-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.bool-yes {
+  color: #059669;
+  font-weight: 500;
+}
+
+.bool-no {
+  color: #dc2626;
+  font-weight: 500;
+}
+
+/* Expand Button */
+.sidebyside-expand-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 20px;
+  margin-top: 16px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sidebyside-expand-btn:hover {
+  background: #e5e7eb;
+  border-color: #d1d5db;
+}
+
+.expand-chevron {
+  transition: transform 0.2s ease;
+}
+
+/* Full Comparison Link */
+.sidebyside-full-link {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 12px 24px;
+  background: #f2a900;
+  color: #000000 !important;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.sidebyside-full-link:hover {
+  background: #000000;
+  color: #f2a900 !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .hw-view-toggle {
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+  }
+  
+  .hw-view-btn {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .sidebyside-selectors {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  
+  .sidebyside-wallet-card {
+    min-width: 100%;
+  }
+  
+  .sidebyside-vs {
+    padding: 0;
+    text-align: center;
+  }
+  
+  .sidebyside-table th,
+  .sidebyside-table td {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
 }
 
 .hw-comparison-table {
@@ -1107,6 +1382,93 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
     color: #f9fafb;
   }
   
+  /* View Toggle Buttons dark mode */
+  .hw-view-btn {
+    background: #232939;
+    border-color: #3a4255;
+    color: #d1d5db;
+  }
+  
+  .hw-view-btn:hover {
+    border-color: #f2a900;
+    color: #f2a900;
+  }
+  
+  .hw-view-btn.active {
+    background: #f2a900;
+    border-color: #f2a900;
+    color: #000000;
+  }
+  
+  /* Side-by-Side dark mode */
+  .sidebyside-select {
+    background-color: #232939;
+    border-color: #3a4255;
+    color: #f9fafb;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23d1d5db' d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  }
+  
+  .sidebyside-select:focus {
+    border-color: #f2a900;
+    box-shadow: 0 0 0 3px rgba(242, 169, 0, 0.2);
+  }
+  
+  .sidebyside-wallet-preview {
+    background: #1a1f2e;
+    border-color: #3a4255;
+  }
+  
+  .sidebyside-wallet-name {
+    color: #f9fafb;
+  }
+  
+  .sidebyside-vs {
+    color: #6b7280;
+  }
+  
+  .sidebyside-table {
+    background: #232939;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+  
+  .sidebyside-table thead {
+    background: #1a1f2e;
+    border-bottom-color: #3a4255;
+  }
+  
+  .sidebyside-table th {
+    color: #f2a900;
+  }
+  
+  .sidebyside-table td {
+    color: #d1d5db;
+    border-bottom-color: #3a4255;
+    background: #232939;
+  }
+  
+  .sidebyside-table td:first-child {
+    color: #f9fafb;
+  }
+  
+  .sidebyside-expand-btn {
+    background: #1a1f2e;
+    border-color: #3a4255;
+    color: #d1d5db;
+  }
+  
+  .sidebyside-expand-btn:hover {
+    background: #2a3142;
+    border-color: #4b5563;
+  }
+  
+  .bool-yes {
+    color: #34d399;
+  }
+  
+  .bool-no {
+    color: #f87171;
+  }
+  
   .hw-comparison-table thead {
     background: #1a1f2e;
     border-bottom-color: #3a4255;
@@ -1402,6 +1764,10 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 <div class="hw-comparison-table-wrapper" id="compare-hardware-wallets">
   <div class="hw-comparison-table-header">
     <h2 class="hw-comparison-table-title">Compare Hardware Wallets</h2>
+    <div class="hw-view-toggle">
+      <button class="hw-view-btn active" data-view="table" onclick="switchCompareView('table')">Table View</button>
+      <button class="hw-view-btn" data-view="sidebyside" onclick="switchCompareView('sidebyside')">Side-by-Side</button>
+    </div>
   </div>
   
   <!-- Desktop Table -->
@@ -1443,6 +1809,130 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
         {% endfor %}
       </tbody>
     </table>
+  </div>
+  
+  <!-- Side-by-Side Comparison Section (hidden by default) -->
+  <div class="sidebyside-comparison" id="sidebyside-view" style="display: none;">
+    <div class="sidebyside-selectors">
+      <div class="sidebyside-wallet-card" id="wallet1-card">
+        <select id="wallet1-select" class="sidebyside-select" onchange="updateComparison()">
+          <option value="">Select first wallet...</option>
+        </select>
+        <div class="sidebyside-wallet-preview" id="wallet1-preview">
+          <img src="" alt="" class="sidebyside-wallet-img" id="wallet1-img">
+          <span class="sidebyside-wallet-name" id="wallet1-name"></span>
+        </div>
+      </div>
+      
+      <div class="sidebyside-vs">vs</div>
+      
+      <div class="sidebyside-wallet-card" id="wallet2-card">
+        <select id="wallet2-select" class="sidebyside-select" onchange="updateComparison()">
+          <option value="">Select second wallet...</option>
+        </select>
+        <div class="sidebyside-wallet-preview" id="wallet2-preview">
+          <img src="" alt="" class="sidebyside-wallet-img" id="wallet2-img">
+          <span class="sidebyside-wallet-name" id="wallet2-name"></span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="sidebyside-table-wrapper" id="comparison-table-wrapper" style="display: none;">
+      <table class="sidebyside-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th id="col1-header">Wallet 1</th>
+            <th id="col2-header">Wallet 2</th>
+          </tr>
+        </thead>
+        <tbody id="basic-rows">
+          <tr>
+            <td>Price</td>
+            <td id="w1-price">-</td>
+            <td id="w2-price">-</td>
+          </tr>
+          <tr>
+            <td>Screen</td>
+            <td id="w1-screen">-</td>
+            <td id="w2-screen">-</td>
+          </tr>
+          <tr>
+            <td>Supported Coins</td>
+            <td id="w1-coins">-</td>
+            <td id="w2-coins">-</td>
+          </tr>
+          <tr>
+            <td>Open Source</td>
+            <td id="w1-opensource">-</td>
+            <td id="w2-opensource">-</td>
+          </tr>
+          <tr>
+            <td>Secure Element</td>
+            <td id="w1-secure">-</td>
+            <td id="w2-secure">-</td>
+          </tr>
+        </tbody>
+        <tbody id="expanded-rows" style="display: none;">
+          <tr>
+            <td>Launch Year</td>
+            <td id="w1-launched">-</td>
+            <td id="w2-launched">-</td>
+          </tr>
+          <tr>
+            <td>Touchscreen</td>
+            <td id="w1-touchscreen">-</td>
+            <td id="w2-touchscreen">-</td>
+          </tr>
+          <tr>
+            <td>Bluetooth</td>
+            <td id="w1-bluetooth">-</td>
+            <td id="w2-bluetooth">-</td>
+          </tr>
+          <tr>
+            <td>NFC</td>
+            <td id="w1-nfc">-</td>
+            <td id="w2-nfc">-</td>
+          </tr>
+          <tr>
+            <td>Bitcoin-Only Version</td>
+            <td id="w1-btconly">-</td>
+            <td id="w2-btconly">-</td>
+          </tr>
+          <tr>
+            <td>Quantum Ready</td>
+            <td id="w1-quantum">-</td>
+            <td id="w2-quantum">-</td>
+          </tr>
+          <tr>
+            <td>Size</td>
+            <td id="w1-size">-</td>
+            <td id="w2-size">-</td>
+          </tr>
+          <tr>
+            <td>iOS Support</td>
+            <td id="w1-ios">-</td>
+            <td id="w2-ios">-</td>
+          </tr>
+          <tr>
+            <td>Multisig Support</td>
+            <td id="w1-multisig">-</td>
+            <td id="w2-multisig">-</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <button class="sidebyside-expand-btn" id="expand-btn" onclick="toggleExpandedRows()">
+        <span id="expand-btn-text">Show More Details</span>
+        <svg class="expand-chevron" id="expand-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      
+      <a href="#" id="full-comparison-link" class="sidebyside-full-link" style="display: none;">
+        View Full Comparison Page →
+      </a>
+    </div>
   </div>
   
   <!-- Brand Ratings Section -->
@@ -2066,6 +2556,209 @@ document.querySelectorAll('.hw-faq-question').forEach(question => {
     }
   });
 });
+</script>
+
+<script>
+// Side-by-Side Comparison Functionality
+let expandedRows = false;
+
+// Populate dropdowns on page load
+document.addEventListener('DOMContentLoaded', function() {
+  populateDropdowns();
+});
+
+function populateDropdowns() {
+  const select1 = document.getElementById('wallet1-select');
+  const select2 = document.getElementById('wallet2-select');
+  
+  if (!select1 || !select2) return;
+  
+  const walletNames = Object.keys(vsWalletData).sort();
+  
+  walletNames.forEach(name => {
+    const option1 = document.createElement('option');
+    option1.value = name;
+    option1.textContent = name;
+    select1.appendChild(option1);
+    
+    const option2 = document.createElement('option');
+    option2.value = name;
+    option2.textContent = name;
+    select2.appendChild(option2);
+  });
+  
+  // Set default selections if wallets exist
+  if (walletNames.length >= 2) {
+    select1.value = walletNames[0];
+    select2.value = walletNames[1];
+    updateComparison();
+  }
+}
+
+function switchCompareView(view) {
+  const tableView = document.querySelector('.desktop-hw-table');
+  const mobileCards = document.querySelector('.mobile-hw-cards');
+  const sidebyside = document.getElementById('sidebyside-view');
+  const btns = document.querySelectorAll('.hw-view-btn');
+  
+  btns.forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`[data-view="${view}"]`).classList.add('active');
+  
+  if (view === 'table') {
+    if (tableView) tableView.style.display = 'block';
+    if (mobileCards) mobileCards.style.display = 'block';
+    if (sidebyside) sidebyside.style.display = 'none';
+  } else {
+    if (tableView) tableView.style.display = 'none';
+    if (mobileCards) mobileCards.style.display = 'none';
+    if (sidebyside) sidebyside.style.display = 'block';
+    updateComparison();
+  }
+}
+
+function updateComparison() {
+  const wallet1Name = document.getElementById('wallet1-select').value;
+  const wallet2Name = document.getElementById('wallet2-select').value;
+  
+  const preview1 = document.getElementById('wallet1-preview');
+  const preview2 = document.getElementById('wallet2-preview');
+  const tableWrapper = document.getElementById('comparison-table-wrapper');
+  
+  // Update wallet 1 preview
+  if (wallet1Name && vsWalletData[wallet1Name]) {
+    const w1 = vsWalletData[wallet1Name];
+    document.getElementById('wallet1-img').src = '/tools/img/' + w1.img;
+    document.getElementById('wallet1-img').alt = wallet1Name;
+    document.getElementById('wallet1-name').textContent = wallet1Name;
+    preview1.style.display = 'flex';
+  } else {
+    preview1.style.display = 'none';
+  }
+  
+  // Update wallet 2 preview
+  if (wallet2Name && vsWalletData[wallet2Name]) {
+    const w2 = vsWalletData[wallet2Name];
+    document.getElementById('wallet2-img').src = '/tools/img/' + w2.img;
+    document.getElementById('wallet2-img').alt = wallet2Name;
+    document.getElementById('wallet2-name').textContent = wallet2Name;
+    preview2.style.display = 'flex';
+  } else {
+    preview2.style.display = 'none';
+  }
+  
+  // Show table only if both wallets selected
+  if (wallet1Name && wallet2Name && vsWalletData[wallet1Name] && vsWalletData[wallet2Name]) {
+    const w1 = vsWalletData[wallet1Name];
+    const w2 = vsWalletData[wallet2Name];
+    
+    // Update column headers
+    document.getElementById('col1-header').textContent = wallet1Name;
+    document.getElementById('col2-header').textContent = wallet2Name;
+    
+    // Basic rows
+    document.getElementById('w1-price').textContent = w1.price || '-';
+    document.getElementById('w2-price').textContent = w2.price || '-';
+    
+    document.getElementById('w1-screen').textContent = w1.screensize || '-';
+    document.getElementById('w2-screen').textContent = w2.screensize || '-';
+    
+    document.getElementById('w1-coins').textContent = w1.supportedcoins || '-';
+    document.getElementById('w2-coins').textContent = w2.supportedcoins || '-';
+    
+    document.getElementById('w1-opensource').innerHTML = formatBoolean(w1.osource);
+    document.getElementById('w2-opensource').innerHTML = formatBoolean(w2.osource);
+    
+    document.getElementById('w1-secure').textContent = w1.secureelements || '-';
+    document.getElementById('w2-secure').textContent = w2.secureelements || '-';
+    
+    // Expanded rows
+    document.getElementById('w1-launched').textContent = w1.launched || '-';
+    document.getElementById('w2-launched').textContent = w2.launched || '-';
+    
+    document.getElementById('w1-touchscreen').innerHTML = formatBoolean(w1.touchscreen);
+    document.getElementById('w2-touchscreen').innerHTML = formatBoolean(w2.touchscreen);
+    
+    document.getElementById('w1-bluetooth').innerHTML = formatBoolean(w1.bluetooth);
+    document.getElementById('w2-bluetooth').innerHTML = formatBoolean(w2.bluetooth);
+    
+    document.getElementById('w1-nfc').innerHTML = formatBoolean(w1.nfc);
+    document.getElementById('w2-nfc').innerHTML = formatBoolean(w2.nfc);
+    
+    document.getElementById('w1-btconly').innerHTML = formatBoolean(w1.bitcoinonlyversion);
+    document.getElementById('w2-btconly').innerHTML = formatBoolean(w2.bitcoinonlyversion);
+    
+    document.getElementById('w1-quantum').innerHTML = formatBoolean(w1.quantumready);
+    document.getElementById('w2-quantum').innerHTML = formatBoolean(w2.quantumready);
+    
+    document.getElementById('w1-size').textContent = w1.size || '-';
+    document.getElementById('w2-size').textContent = w2.size || '-';
+    
+    document.getElementById('w1-ios').textContent = w1.ioscompatibility || '-';
+    document.getElementById('w2-ios').textContent = w2.ioscompatibility || '-';
+    
+    document.getElementById('w1-multisig').textContent = Array.isArray(w1.multisig) ? w1.multisig.join(', ') : '-';
+    document.getElementById('w2-multisig').textContent = Array.isArray(w2.multisig) ? w2.multisig.join(', ') : '-';
+    
+    tableWrapper.style.display = 'block';
+    
+    // Update full comparison link
+    updateComparisonLink(wallet1Name, wallet2Name);
+  } else {
+    tableWrapper.style.display = 'none';
+  }
+}
+
+function formatBoolean(value) {
+  if (value === true || value === 'Yes' || value === 'yes') {
+    return '<span class="bool-yes">✓ Yes</span>';
+  } else if (value === false || value === 'No' || value === 'no') {
+    return '<span class="bool-no">✗ No</span>';
+  }
+  return value || '-';
+}
+
+function toggleExpandedRows() {
+  const expandedRowsEl = document.getElementById('expanded-rows');
+  const btnText = document.getElementById('expand-btn-text');
+  const chevron = document.getElementById('expand-chevron');
+  
+  expandedRows = !expandedRows;
+  
+  if (expandedRows) {
+    expandedRowsEl.style.display = 'table-row-group';
+    btnText.textContent = 'Show Less';
+    chevron.style.transform = 'rotate(180deg)';
+  } else {
+    expandedRowsEl.style.display = 'none';
+    btnText.textContent = 'Show More Details';
+    chevron.style.transform = 'rotate(0deg)';
+  }
+}
+
+function updateComparisonLink(wallet1Name, wallet2Name) {
+  const link = document.getElementById('full-comparison-link');
+  // Map of known comparison URLs - this would ideally be generated from the vs/ pages
+  const comparisonUrls = {
+    'Trezor Safe 3|Trezor Safe 5': '/trezor-safe-3-vs-5/',
+    'Trezor Safe 5|Trezor Safe 3': '/trezor-safe-3-vs-5/',
+    'Trezor Safe 5|Trezor Safe 7': '/trezor-safe-5-vs-7/',
+    'Trezor Safe 7|Trezor Safe 5': '/trezor-safe-5-vs-7/',
+    'Trezor Safe 5|Coldcard MK4': '/trezor-safe-5-vs-coldcard-mk4/',
+    'Coldcard MK4|Trezor Safe 5': '/trezor-safe-5-vs-coldcard-mk4/',
+    'Trezor Safe 5|Ledger Nano X': '/trezor-safe-5-vs-ledger-nano-x/',
+    'Ledger Nano X|Trezor Safe 5': '/trezor-safe-5-vs-ledger-nano-x/',
+    'BitBox02|Coldcard MK4': '/bitbox02-vs-coldcard-mk4/',
+    'Coldcard MK4|BitBox02': '/bitbox02-vs-coldcard-mk4/'
+  };
+  
+  const key = wallet1Name + '|' + wallet2Name;
+  if (comparisonUrls[key]) {
+    link.href = comparisonUrls[key];
+    link.style.display = 'inline-block';
+  } else {
+    link.style.display = 'none';
+  }
+}
 </script>
 
 <div class="hw-disclaimer">
