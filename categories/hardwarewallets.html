@@ -149,11 +149,21 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   font-weight: 500;
 }
 
+.hw-table-wallet-link {
+  text-decoration: none;
+  display: block;
+}
+
+.hw-table-wallet-link:hover .hw-table-wallet-name {
+  color: #f2a900;
+}
+
 .hw-table-wallet-name {
   display: flex;
   align-items: center;
   gap: 12px;
   color: #111827;
+  transition: color 0.15s;
 }
 
 .hw-table-wallet-img {
@@ -1125,6 +1135,11 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   }
   
   /* Wallet names in comparison table */
+  .hw-table-wallet-link:hover .hw-table-wallet-name,
+  .hw-table-wallet-link:hover .hw-table-wallet-name span {
+    color: #f2a900;
+  }
+  
   .hw-table-wallet-name {
     color: #ffffff;
   }
@@ -1405,10 +1420,12 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
         {% for wallet in wallets %}
         <tr>
           <td>
-            <div class="hw-table-wallet-name">
-              <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="hw-table-wallet-img">
-              <span>{{ wallet.title }}</span>
-            </div>
+            <a href="{{ wallet.url }}" class="hw-table-wallet-link">
+              <div class="hw-table-wallet-name">
+                <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="hw-table-wallet-img">
+                <span>{{ wallet.title }}</span>
+              </div>
+            </a>
           </td>
           <td>{{ wallet.hw_bestfor | default: wallet.wallet_bestfor | default: "—" }}</td>
           <td>{{ wallet.wallet_price | default: "—" }}</td>
