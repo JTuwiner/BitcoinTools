@@ -3,7 +3,7 @@ Top Picks Include - Pass preset identifiers for each row
 Usage: {% include top-picks.html pick1="exchanges" pick2="charts" pick3="coldstorage" %}
 
 Available presets:
-- exchanges, charts, coldstorage, wallets, iras, cards
+- exchanges, charts, coldstorage, wallets, iras, cards, steel
 {% endcomment %}
 
 {% assign box_title = include.title | default: "Top Tools & Picks" %}
@@ -37,6 +37,10 @@ Available presets:
             {% assign p1_label = "Cards" %}
             {% assign p1_desc = "View the top crypto credit & debit cards" %}
             {% assign p1_url = "https://bitbo.io/tools/cards/" %}
+        {% when 'steel' %}
+            {% assign p1_label = "Steel Wallets" %}
+            {% assign p1_desc = "Protect your seed from fire & flood" %}
+            {% assign p1_url = "https://bitbo.io/tools/steel-wallets/" %}
     {% endcase %}
     <a href="{{ p1_url }}" class="pick-row" data-pick="{{ include.pick1 }}">
         <span class="pick-title">{{ p1_label }}</span>
@@ -71,6 +75,10 @@ Available presets:
             {% assign p2_label = "Cards" %}
             {% assign p2_desc = "View the top crypto credit & debit cards" %}
             {% assign p2_url = "https://bitbo.io/tools/cards/" %}
+        {% when 'steel' %}
+            {% assign p2_label = "Steel Wallets" %}
+            {% assign p2_desc = "Protect your seed from fire & flood" %}
+            {% assign p2_url = "https://bitbo.io/tools/steel-wallets/" %}
     {% endcase %}
     <a href="{{ p2_url }}" class="pick-row" data-pick="{{ include.pick2 }}">
         <span class="pick-title">{{ p2_label }}</span>
@@ -105,6 +113,10 @@ Available presets:
             {% assign p3_label = "Cards" %}
             {% assign p3_desc = "View the top crypto credit & debit cards" %}
             {% assign p3_url = "https://bitbo.io/tools/cards/" %}
+        {% when 'steel' %}
+            {% assign p3_label = "Steel Wallets" %}
+            {% assign p3_desc = "Protect your seed from fire & flood" %}
+            {% assign p3_url = "https://bitbo.io/tools/steel-wallets/" %}
     {% endcase %}
     <a href="{{ p3_url }}" class="pick-row" data-pick="{{ include.pick3 }}">
         <span class="pick-title">{{ p3_label }}</span>
