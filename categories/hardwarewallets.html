@@ -1420,12 +1420,10 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
         {% for wallet in wallets %}
         <tr>
           <td>
-            <a href="{{ wallet.url }}" class="hw-table-wallet-link">
-              <div class="hw-table-wallet-name">
-                <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="hw-table-wallet-img">
-                <span>{{ wallet.title }}</span>
-              </div>
-            </a>
+            <div class="hw-table-wallet-name">
+              <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="hw-table-wallet-img">
+              <span>{{ wallet.title }}</span>
+            </div>
           </td>
           <td>{{ wallet.hw_bestfor | default: wallet.wallet_bestfor | default: "—" }}</td>
           <td>{{ wallet.wallet_price | default: "—" }}</td>
