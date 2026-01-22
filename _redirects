@@ -14,3 +14,12 @@
 
 # BitBox vs Ledger - redirected to brand comparison page
 /bitbox02-vs-ledger-x/ /tools/bitbox-vs-ledger/ 301
+
+# Coldcard vs Ledger - redirected to brand comparison page
+/coldcard-mk4-vs-ledger-x/ /tools/coldcard-vs-ledger/ 301
+/coldcard-mk4-vs-ledger-flex/ /tools/coldcard-vs-ledger/ 301
+/coldcard-mk4-vs-ledger-stax/ /tools/coldcard-vs-ledger/ 301
+
+# Coldcard vs Jade - redirected to brand comparison page
+/coldcard-mk4-vs-jade/ /tools/coldcard-vs-jade/ 301
+/coldcard-mk4-vs-jade-plus/ /tools/coldcard-vs-jade/ 301
