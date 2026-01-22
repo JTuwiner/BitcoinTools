@@ -40,3 +40,11 @@
 # Trezor vs Trezor - redirected to Trezor comparison page
 /trezor-safe-7-vs-5/ /trezor-compare/ 301
 /trezor-safe-3-vs-5/ /trezor-compare/ 301
+
+# Trezor vs Coldcard - redirected to brand comparison page
+/trezor-safe-3-vs-coldcard-mk4/ /trezor-vs-coldcard/ 301
+/trezor-5-vs-coldcard-mk4/ /trezor-vs-coldcard/ 301
+/trezor-safe-7-vs-coldcard-mk4/ /trezor-vs-coldcard/ 301
+/trezor-3-vs-coldcard-q/ /trezor-vs-coldcard/ 301
+/trezor-5-vs-coldcard-q/ /trezor-vs-coldcard/ 301
+/trezor-safe-7-vs-coldcard-q/ /trezor-vs-coldcard/ 301
