@@ -1,0 +1,214 @@
+{% comment %}
+Top Picks Include - Pass preset identifiers for each row
+Usage: {% include top-picks.html pick1="exchanges" pick2="charts" pick3="coldstorage" %}
+
+Available presets:
+- exchanges, charts, coldstorage, wallets, iras, cards
+{% endcomment %}
+
+{% assign box_title = include.title | default: "Top Tools & Picks" %}
+
+<div class="top-picks">
+    <h3>{{ box_title }}</h3>
+    
+    {% if include.pick1 %}
+    {% case include.pick1 %}
+        {% when 'exchanges' %}
+            {% assign p1_label = "Exchanges" %}
+            {% assign p1_desc = "Best Sites to Buy Bitcoin (USA)" %}
+            {% assign p1_url = "https://bitbo.io/buy/usa/" %}
+        {% when 'charts' %}
+            {% assign p1_label = "Charts" %}
+            {% assign p1_desc = "100+ Free Bitcoin Charts" %}
+            {% assign p1_url = "https://charts.bitbo.io/index/" %}
+        {% when 'coldstorage' %}
+            {% assign p1_label = "Cold Storage" %}
+            {% assign p1_desc = "Find Top BTC Cold Storage" %}
+            {% assign p1_url = "https://bitbo.io/tools/offline-wallets/" %}
+        {% when 'wallets' %}
+            {% assign p1_label = "Hardware Wallets" %}
+            {% assign p1_desc = "View top BTC hardware wallets" %}
+            {% assign p1_url = "https://bitbo.io/tools/hardware-wallets/" %}
+        {% when 'iras' %}
+            {% assign p1_label = "IRA" %}
+            {% assign p1_desc = "Top IRAs for Bitcoin (control your keys)" %}
+            {% assign p1_url = "https://bitbo.io/tools/iras/" %}
+        {% when 'cards' %}
+            {% assign p1_label = "Cards" %}
+            {% assign p1_desc = "View the top crypto credit & debit cards" %}
+            {% assign p1_url = "https://bitbo.io/tools/cards/" %}
+    {% endcase %}
+    <a href="{{ p1_url }}" class="pick-row" data-pick="{{ include.pick1 }}">
+        <span class="pick-title">{{ p1_label }}</span>
+        <span class="pick-desc">{{ p1_desc }}</span>
+        <span class="arrow">›</span>
+    </a>
+    {% endif %}
+    
+    {% if include.pick2 %}
+    {% case include.pick2 %}
+        {% when 'exchanges' %}
+            {% assign p2_label = "Exchanges" %}
+            {% assign p2_desc = "Best Sites to Buy Bitcoin (USA)" %}
+            {% assign p2_url = "https://bitbo.io/buy/usa/" %}
+        {% when 'charts' %}
+            {% assign p2_label = "Charts" %}
+            {% assign p2_desc = "100+ Free Bitcoin Charts" %}
+            {% assign p2_url = "https://charts.bitbo.io/index/" %}
+        {% when 'coldstorage' %}
+            {% assign p2_label = "Cold Storage" %}
+            {% assign p2_desc = "Find Top BTC Cold Storage" %}
+            {% assign p2_url = "https://bitbo.io/tools/offline-wallets/" %}
+        {% when 'wallets' %}
+            {% assign p2_label = "Hardware Wallets" %}
+            {% assign p2_desc = "View top BTC hardware wallets" %}
+            {% assign p2_url = "https://bitbo.io/tools/hardware-wallets/" %}
+        {% when 'iras' %}
+            {% assign p2_label = "IRA" %}
+            {% assign p2_desc = "Top IRAs for Bitcoin (control your keys)" %}
+            {% assign p2_url = "https://bitbo.io/tools/iras/" %}
+        {% when 'cards' %}
+            {% assign p2_label = "Cards" %}
+            {% assign p2_desc = "View the top crypto credit & debit cards" %}
+            {% assign p2_url = "https://bitbo.io/tools/cards/" %}
+    {% endcase %}
+    <a href="{{ p2_url }}" class="pick-row" data-pick="{{ include.pick2 }}">
+        <span class="pick-title">{{ p2_label }}</span>
+        <span class="pick-desc">{{ p2_desc }}</span>
+        <span class="arrow">›</span>
+    </a>
+    {% endif %}
+    
+    {% if include.pick3 %}
+    {% case include.pick3 %}
+        {% when 'exchanges' %}
+            {% assign p3_label = "Exchanges" %}
+            {% assign p3_desc = "Best Sites to Buy Bitcoin (USA)" %}
+            {% assign p3_url = "https://bitbo.io/buy/usa/" %}
+        {% when 'charts' %}
+            {% assign p3_label = "Charts" %}
+            {% assign p3_desc = "100+ Free Bitcoin Charts" %}
+            {% assign p3_url = "https://charts.bitbo.io/index/" %}
+        {% when 'coldstorage' %}
+            {% assign p3_label = "Cold Storage" %}
+            {% assign p3_desc = "Find Top BTC Cold Storage" %}
+            {% assign p3_url = "https://bitbo.io/tools/offline-wallets/" %}
+        {% when 'wallets' %}
+            {% assign p3_label = "Hardware Wallets" %}
+            {% assign p3_desc = "View top BTC hardware wallets" %}
+            {% assign p3_url = "https://bitbo.io/tools/hardware-wallets/" %}
+        {% when 'iras' %}
+            {% assign p3_label = "IRA" %}
+            {% assign p3_desc = "Top IRAs for Bitcoin (control your keys)" %}
+            {% assign p3_url = "https://bitbo.io/tools/iras/" %}
+        {% when 'cards' %}
+            {% assign p3_label = "Cards" %}
+            {% assign p3_desc = "View the top crypto credit & debit cards" %}
+            {% assign p3_url = "https://bitbo.io/tools/cards/" %}
+    {% endcase %}
+    <a href="{{ p3_url }}" class="pick-row" data-pick="{{ include.pick3 }}">
+        <span class="pick-title">{{ p3_label }}</span>
+        <span class="pick-desc">{{ p3_desc }}</span>
+        <span class="arrow">›</span>
+    </a>
+    {% endif %}
+</div>
+
+<style>
+.top-picks {
+    border: 1px solid #738375;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(188, 204, 190);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top: unset;
+    font-family: var(--font-neue-plak-narrow);
+    font-weight: 700;
+    margin-bottom: 44px;
+    margin-top: 40px;
+    text-transform: uppercase;
+}
+
+body .top-picks a {
+    text-decoration: none !important;
+    width: 100% !important;
+    padding: 5px 17px 10px !important;
+    border-bottom: 1px solid #738375 !important;
+    margin-bottom: 0;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+body .top-picks a:hover {
+    background: #222 !important;
+}
+
+body .top-picks a:last-child {
+    border-bottom: 0 !important;
+}
+
+body .top-picks a:hover .pick-title {
+    color: #f2a900;
+}
+
+.top-picks h3 {
+    color: #829285;
+    display: flex;
+    flex: auto;
+    flex-direction: row;
+    font-size: 12px;
+    letter-spacing: .96px;
+    margin-bottom: 10px;
+    margin-top: 0;
+    padding-left: 16px;
+}
+
+.top-picks h3::after {
+    border-bottom: 1px solid #738375 !important;
+    content: "";
+    flex: 1 1;
+    margin-left: 16px;
+    position: relative;
+}
+
+.top-picks .pick-title {
+    color: #f2a900;
+    font-size: 14px;
+    letter-spacing: 0.12px;
+    line-height: normal;
+    margin-right: 12px;
+}
+
+.top-picks .pick-desc {
+    font-size: 15px;
+    letter-spacing: .54px;
+    line-height: normal;
+    text-transform: none;
+    font-weight: normal;
+}
+
+.top-picks .arrow {
+    margin-left: auto;
+    font-size: 20px;
+    color: #738375;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var picks = document.querySelectorAll('.top-picks .pick-row');
+    picks.forEach(function(pick) {
+        pick.addEventListener('click', function() {
+            if (typeof fathom !== "undefined" && fathom.trackEvent) {
+                fathom.trackEvent('Clicked Top Pick');
+                var pickName = pick.getAttribute('data-pick');
+                if (pickName) {
+                    fathom.trackEvent('Clicked Top Pick: ' + pickName);
+                }
+            }
+        });
+    });
+});
+</script>
