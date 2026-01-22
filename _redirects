@@ -1,16 +1,18 @@
 /mayer-multiple/ https://charts.bitbo.io/mayer-multiple-bars/ 301
 
-# Discontinued Trezor Model One comparison pages
-/trezor-5-vs-model-one/ /tools/trezor-vs-ledger/ 301
-/trezor-one-vs-ledger-s-plus/ /tools/trezor-vs-ledger/ 301
-/trezor-safe-3-vs-model-one/ /tools/trezor-vs-ledger/ 301
-/trezor-safe-7-vs-model-one/ /tools/trezor-vs-ledger/ 301
+# Discontinued Trezor Model One comparison pages (Trezor vs Trezor)
+/trezor-5-vs-model-one/ /trezor-compare/ 301
+/trezor-safe-3-vs-model-one/ /trezor-compare/ 301
+/trezor-safe-7-vs-model-one/ /trezor-compare/ 301
 
-# Discontinued Trezor Model T comparison pages
-/trezor-5-vs-t/ /tools/trezor-vs-ledger/ 301
-/trezor-t-ledger-x/ /tools/trezor-vs-ledger/ 301
-/trezor-safe-3-vs-model-t/ /tools/trezor-vs-ledger/ 301
-/trezor-safe-7-vs-model-t/ /tools/trezor-vs-ledger/ 301
+# Discontinued Trezor Model T comparison pages (Trezor vs Trezor)
+/trezor-5-vs-t/ /trezor-compare/ 301
+/trezor-safe-3-vs-model-t/ /trezor-compare/ 301
+/trezor-safe-7-vs-model-t/ /trezor-compare/ 301
+
+# Discontinued Trezor vs Ledger comparison pages
+/trezor-one-vs-ledger-s-plus/ /trezor-vs-ledger/ 301
+/trezor-t-ledger-x/ /trezor-vs-ledger/ 301
 
 # BitBox vs Ledger - redirected to brand comparison page
 /bitbox02-vs-ledger-x/ /tools/bitbox-vs-ledger/ 301
@@ -30,3 +32,7 @@
 
 # Coldcard vs BitBox - redirected to brand comparison page
 /coldcard-mk4-vs-bitbox02/ /coldcard-vs-bitbox/ 301
+
+# Ledger vs Ledger - redirected to Ledger comparison page
+/ledger-x-vs-flex/ /ledger-compare/ 301
+/ledger-x-vs-s-plus/ /ledger-compare/ 301
