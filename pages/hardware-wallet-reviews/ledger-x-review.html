@@ -7,6 +7,93 @@ permalink: "/ledger-x-review/"
 capture: yes
 ---
 
+<style>
+/* Compare Wallets Box */
+.compare-wallets-box {
+  max-width: 700px;
+  margin: 35px auto;
+  background: linear-gradient(135deg, #232939 0%, #1a1f2e 100%);
+  border-radius: 16px;
+  padding: 28px 30px 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.compare-wallets-title {
+  margin: 0 0 8px 0;
+  font-size: 1.4rem;
+  color: #f2a900;
+  font-weight: 600;
+}
+
+.compare-wallets-desc {
+  margin: 0 0 20px 0;
+  color: rgba(255,255,255,0.8);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.compare-wallets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.compare-wallet-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.compare-wallet-link:hover {
+  background: rgba(242,169,0,0.15);
+  border-color: #f2a900;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.compare-brand {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.compare-arrow {
+  color: #f2a900;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.compare-wallet-link:hover .compare-arrow {
+  transform: translateX(3px);
+}
+
+@media (max-width: 768px) {
+  .compare-wallets-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .compare-wallets-box {
+    padding: 24px 20px 20px;
+  }
+
+  .compare-wallets-title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .compare-wallets-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
 <div style="max-width: 800px;">
     {% include toc-box.html bullet1="What is Ledger Nano X?" bullet1tag="#what-is-ledger-nano-x" bullet2="Is Ledger Nano X Safe?" bullet2tag="#is-ledger-nano-x-safe" bullet3="What's in the Box" bullet3tag="#whats-in-the-box" bullet4="Price" bullet4tag="#price" bullet5="Ledger Nano X vs S" bullet5tag="#ledger-nano-x-vs-nano-s" bullet6="How to Use Ledger Nano X" bullet6tag="#how-to-use-ledger-nano-x" %}
 
@@ -74,6 +161,37 @@ capture: yes
     <p><a href="/trezor-t-ledger-x/">Ledger's Nano X is most comparable to TREZOR's Model T</a>, which is $219. TREZOR's Model T has a color touch screen, while the Nano X does not.</p>
 
     <p>The Nano X's $149 price tag still seems like a lot to pay compared to Ledger's Nano S at $79 or TREZOR's One at $69.</p>
+
+    <div class="compare-wallets-box">
+      <h3 class="compare-wallets-title">Compare Ledger to Other Wallets</h3>
+      <p class="compare-wallets-desc">See how Ledger stacks up against the top hardware wallets with detailed side-by-side comparisons.</p>
+      <div class="compare-wallets-grid">
+        <a href="/trezor-vs-ledger/" class="compare-wallet-link">
+          <span class="compare-brand">Ledger vs Trezor</span>
+          <span class="compare-arrow">&rarr;</span>
+        </a>
+        <a href="/coldcard-vs-ledger/" class="compare-wallet-link">
+          <span class="compare-brand">Ledger vs Coldcard</span>
+          <span class="compare-arrow">&rarr;</span>
+        </a>
+        <a href="/bitbox-vs-ledger/" class="compare-wallet-link">
+          <span class="compare-brand">Ledger vs BitBox</span>
+          <span class="compare-arrow">&rarr;</span>
+        </a>
+        <a href="/ledger-vs-jade/" class="compare-wallet-link">
+          <span class="compare-brand">Ledger vs Jade</span>
+          <span class="compare-arrow">&rarr;</span>
+        </a>
+        <a href="/ledger-vs-passport/" class="compare-wallet-link">
+          <span class="compare-brand">Ledger vs Passport</span>
+          <span class="compare-arrow">&rarr;</span>
+        </a>
+        <a href="/ledger-compare/" class="compare-wallet-link">
+          <span class="compare-brand">Ledger vs Ledger</span>
+          <span class="compare-arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
 
     <h2>Pros and Cons</h2>
 

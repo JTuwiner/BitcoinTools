@@ -444,15 +444,100 @@ capture: yes
         grid-template-columns: 1fr;
         text-align: center;
     }
-    
+
     .comparison-row img {
         margin: 0 auto;
     }
-    
+
     .review-author {
         flex-direction: column;
         text-align: center;
     }
+}
+
+/* Compare Wallets Box */
+.compare-wallets-box {
+  max-width: 700px;
+  margin: 35px auto;
+  background: linear-gradient(135deg, #232939 0%, #1a1f2e 100%);
+  border-radius: 16px;
+  padding: 28px 30px 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.compare-wallets-title {
+  margin: 0 0 8px 0;
+  font-size: 1.4rem;
+  color: #f2a900;
+  font-weight: 600;
+}
+
+.compare-wallets-desc {
+  margin: 0 0 20px 0;
+  color: rgba(255,255,255,0.8);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.compare-wallets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.compare-wallet-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.compare-wallet-link:hover {
+  background: rgba(242,169,0,0.15);
+  border-color: #f2a900;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.compare-brand {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.compare-arrow {
+  color: #f2a900;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.compare-wallet-link:hover .compare-arrow {
+  transform: translateX(3px);
+}
+
+@media (max-width: 768px) {
+  .compare-wallets-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .compare-wallets-box {
+    padding: 24px 20px 20px;
+  }
+
+  .compare-wallets-title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .compare-wallets-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 
@@ -507,35 +592,35 @@ capture: yes
 
     <p>Here is the TREZOR compared to another popular cryptocurrency hardware wallet:</p>
 
-    <!-- Comparison Table -->
-    <div class="comparison-section">
-        <div class="comparison-header">Comparison</div>
-        <div class="comparison-table">
-            <div class="comparison-row">
-                <img alt="Ledger Nano X" src="/img/ledger-nano-x.png">
-                <div>
-                    <h4><a href="/ledger-x-review/">Ledger Nano X</a></h4>
-                    <ul>
-                        <li><b>SCREEN:</b> <span class="has-screen"></span></li>
-                        <li><b>RELEASED:</b> 2019</li>
-                        <li><b>PRICE:</b> $149</li>
-                    </ul>
-                </div>
-                <a href="/ledger-x-review/" class="comparison-btn">Learn More →</a>
-            </div>
-            <div class="comparison-row">
-                <img alt="Trezor One" src="/img/trezor-model-one.png">
-                <div>
-                    <h4><a href="/trezor-one-review/">TREZOR One</a></h4>
-                    <ul>
-                        <li><b>SCREEN:</b> <span class="has-screen"></span></li>
-                        <li><b>RELEASED:</b> 2014</li>
-                        <li><b>PRICE:</b> $72</li>
-                    </ul>
-                </div>
-                <a href="https://trezor.go2cloud.org/SH6L" target="_blank" rel="nofollow noopener" class="comparison-btn">Buy Now →</a>
-            </div>
-        </div>
+    <div class="compare-wallets-box">
+      <h3 class="compare-wallets-title">Compare Trezor to Other Wallets</h3>
+      <p class="compare-wallets-desc">See how Trezor stacks up against the top hardware wallets with detailed side-by-side comparisons.</p>
+      <div class="compare-wallets-grid">
+        <a href="/trezor-vs-ledger/" class="compare-wallet-link">
+          <span class="compare-brand">Trezor vs Ledger</span>
+          <span class="compare-arrow">&rarr;</span>
+        </a>
+        <a href="/trezor-vs-coldcard/" class="compare-wallet-link">
+          <span class="compare-brand">Trezor vs Coldcard</span>
+          <span class="compare-arrow">&rarr;</span>
+        </a>
+        <a href="/trezor-vs-bitbox/" class="compare-wallet-link">
+          <span class="compare-brand">Trezor vs BitBox</span>
+          <span class="compare-arrow">&rarr;</span>
+        </a>
+        <a href="/trezor-vs-jade/" class="compare-wallet-link">
+          <span class="compare-brand">Trezor vs Jade</span>
+          <span class="compare-arrow">&rarr;</span>
+        </a>
+        <a href="/trezor-vs-passport/" class="compare-wallet-link">
+          <span class="compare-brand">Trezor vs Passport</span>
+          <span class="compare-arrow">&rarr;</span>
+        </a>
+        <a href="/trezor-vs-bitkey/" class="compare-wallet-link">
+          <span class="compare-brand">Trezor vs Bitkey</span>
+          <span class="compare-arrow">&rarr;</span>
+        </a>
+      </div>
     </div>
 
     <h2 id="security">Security</h2>
