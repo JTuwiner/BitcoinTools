@@ -21,5 +21,12 @@
 /coldcard-mk4-vs-ledger-stax/ /tools/coldcard-vs-ledger/ 301
 
 # Coldcard vs Jade - redirected to brand comparison page
-/coldcard-mk4-vs-jade/ /tools/coldcard-vs-jade/ 301
-/coldcard-mk4-vs-jade-plus/ /tools/coldcard-vs-jade/ 301
+/coldcard-mk4-vs-jade/ /coldcard-vs-jade/ 301
+/coldcard-mk4-vs-jade-plus/ /coldcard-vs-jade/ 301
+
+# BitBox vs Jade - redirected to brand comparison page
+/bitbox02-vs-jade/ /bitbox-vs-jade/ 301
+/bitbox02-vs-jade-plus/ /bitbox-vs-jade/ 301
+
+# Coldcard vs BitBox - redirected to brand comparison page
+/coldcard-mk4-vs-bitbox02/ /coldcard-vs-bitbox/ 301
