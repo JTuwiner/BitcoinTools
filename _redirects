@@ -70,3 +70,13 @@
 /trezor-5-vs-bitbox02/ /trezor-vs-bitbox/ 301
 /trezor-safe-7-vs-bitbox02/ /trezor-vs-bitbox/ 301
 /bitbox02-vs-safe-3/ /trezor-vs-bitbox/ 301
+
+# Trezor vs Bitkey - redirected to brand comparison page
+/trezor-5-vs-bitkey/ /trezor-vs-bitkey/ 301
+/trezor-safe-7-vs-bitkey/ /trezor-vs-bitkey/ 301
+
+# Coldcard vs Bitkey - redirected to brand comparison page
+/coldcard-mk4-vs-bitkey/ /coldcard-vs-bitkey/ 301
+
+# BitBox vs Bitkey - redirected to brand comparison page
+/bitbox02-vs-bitkey/ /bitbox-vs-bitkey/ 301

@@ -730,6 +730,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="brand-card-rating" id="brand1-card-rating">
           {% include item-rating.html rating=exchange1_page.rating %}
         </div>
+        {% if brand1_models.size > 1 %}
         <div class="brand-card-select-wrapper">
           <label class="brand-card-select-label" for="brand1-model">Change {{ page.brand1 }} Model</label>
           <select id="brand1-model" onchange="updateModels()">
@@ -740,6 +741,9 @@ document.addEventListener('DOMContentLoaded', function() {
             {% endfor %}
           </select>
         </div>
+        {% else %}
+        <input type="hidden" id="brand1-model" value="{{ page.wallet1 }}">
+        {% endif %}
         <div class="brand-card-cta" id="brand1-cta-wrapper">
           <a href="{{ exchange1_page.link }}" target="_blank" id="brand1-cta-link">Visit {{ page.brand1 }} →</a>
         </div>
@@ -756,6 +760,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="brand-card-rating" id="brand2-card-rating">
           {% include item-rating.html rating=exchange2_page.rating %}
         </div>
+        {% if brand2_models.size > 1 %}
         <div class="brand-card-select-wrapper">
           <label class="brand-card-select-label" for="brand2-model">Change {{ page.brand2 }} Model</label>
           <select id="brand2-model" onchange="updateModels()">
@@ -766,6 +771,9 @@ document.addEventListener('DOMContentLoaded', function() {
             {% endfor %}
           </select>
         </div>
+        {% else %}
+        <input type="hidden" id="brand2-model" value="{{ page.wallet2 }}">
+        {% endif %}
         <div class="brand-card-cta" id="brand2-cta-wrapper">
           <a href="{{ exchange2_page.link }}" target="_blank" id="brand2-cta-link">Visit {{ page.brand2 }} →</a>
         </div>
