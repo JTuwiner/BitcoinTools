@@ -79,13 +79,13 @@
 /coldcard-mk4-vs-bitkey/ /tools/coldcard-vs-bitkey/ 301
 
 # BitBox vs Bitkey - redirected to brand comparison page
-/bitbox02-vs-bitkey/ /bitbox-vs-bitkey/ 301
+/bitbox02-vs-bitkey/ /tools/bitbox-vs-bitkey/ 301
 
 # Trezor vs Passport - redirected to brand comparison page
-/trezor-5-vs-passport-core/ /trezor-vs-passport/ 301
+/trezor-5-vs-passport-core/ /tools/trezor-vs-passport/ 301
 
 # Coldcard vs Passport - redirected to brand comparison page
-/coldcard-mk4-vs-passport-core/ /coldcard-vs-passport/ 301
+/coldcard-mk4-vs-passport-core/ /tools/coldcard-vs-passport/ 301
 
 # BitBox vs Passport - redirected to brand comparison page
-/bitbox02-vs-passport-core/ /bitbox-vs-passport/ 301
+/bitbox02-vs-passport-core/ /tools/bitbox-vs-passport/ 301
