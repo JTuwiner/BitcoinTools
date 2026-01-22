@@ -1373,6 +1373,125 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
     color: #d1d5db;
   }
 }
+
+/* Quick Compare Section */
+.quick-compare-section {
+  margin: 32px 0;
+  max-width: 600px;
+}
+
+.quick-compare-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.quick-compare-toggle:hover {
+  background: #f2a900;
+  border-color: #f2a900;
+  color: #000;
+}
+
+.quick-compare-toggle .toggle-chevron {
+  transition: transform 0.2s;
+}
+
+.quick-compare-toggle.expanded .toggle-chevron {
+  transform: rotate(180deg);
+}
+
+.quick-compare-grid-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.quick-compare-grid-wrapper.expanded {
+  max-height: 400px;
+  margin-top: 16px;
+}
+
+.quick-compare-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  background: linear-gradient(135deg, #232939 0%, #1a1f2e 100%);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.quick-compare-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.quick-compare-link:hover {
+  background: rgba(242,169,0,0.12);
+  border-color: #f2a900;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.quick-compare-brands {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.quick-compare-arrow {
+  color: #f2a900;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: transform 0.15s ease;
+}
+
+.quick-compare-link:hover .quick-compare-arrow {
+  transform: translateX(2px);
+}
+
+@media (max-width: 768px) {
+  .quick-compare-section {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .quick-compare-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dark mode for quick compare toggle */
+@media (prefers-color-scheme: dark) {
+  .quick-compare-toggle {
+    background: #232939;
+    border-color: #3a4255;
+    color: #ffffff;
+  }
+
+  .quick-compare-toggle:hover {
+    background: #f2a900;
+    border-color: #f2a900;
+    color: #000;
+  }
+}
 </style>
 
 <br><br>
@@ -1528,6 +1647,61 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <!-- Quick Compare Links -->
+  <div class="quick-compare-section">
+    <button class="quick-compare-toggle" onclick="document.querySelector('.quick-compare-grid-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded');">
+      <span>Compare Brands Side-by-Side</span>
+      <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="quick-compare-grid-wrapper">
+      <div class="quick-compare-grid">
+        <a href="/trezor-vs-ledger/" class="quick-compare-link">
+          <span class="quick-compare-brands">Trezor vs Ledger</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/trezor-vs-coldcard/" class="quick-compare-link">
+          <span class="quick-compare-brands">Trezor vs Coldcard</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/coldcard-vs-ledger/" class="quick-compare-link">
+          <span class="quick-compare-brands">Coldcard vs Ledger</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/bitbox-vs-ledger/" class="quick-compare-link">
+          <span class="quick-compare-brands">BitBox vs Ledger</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/trezor-vs-bitbox/" class="quick-compare-link">
+          <span class="quick-compare-brands">Trezor vs BitBox</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/coldcard-vs-jade/" class="quick-compare-link">
+          <span class="quick-compare-brands">Coldcard vs Jade</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/trezor-vs-jade/" class="quick-compare-link">
+          <span class="quick-compare-brands">Trezor vs Jade</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/coldcard-vs-bitbox/" class="quick-compare-link">
+          <span class="quick-compare-brands">Coldcard vs BitBox</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/trezor-compare/" class="quick-compare-link">
+          <span class="quick-compare-brands">Compare Trezors</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/ledger-compare/" class="quick-compare-link">
+          <span class="quick-compare-brands">Compare Ledgers</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+      </div>
     </div>
   </div>
 
