@@ -58,13 +58,98 @@ capture: yes
   .toc-list {
     grid-template-columns: 1fr;
   }
-  
+
   .toc-box {
     padding: 24px 20px;
   }
-  
+
   .toc-title {
     font-size: 1.5rem;
+  }
+}
+
+/* Compare Wallets Box */
+.compare-wallets-box {
+  max-width: 700px;
+  margin: 35px auto;
+  background: linear-gradient(135deg, #232939 0%, #1a1f2e 100%);
+  border-radius: 16px;
+  padding: 28px 30px 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.compare-wallets-title {
+  margin: 0 0 8px 0;
+  font-size: 1.4rem;
+  color: #f2a900;
+  font-weight: 600;
+}
+
+.compare-wallets-desc {
+  margin: 0 0 20px 0;
+  color: rgba(255,255,255,0.8);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.compare-wallets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.compare-wallet-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.compare-wallet-link:hover {
+  background: rgba(242,169,0,0.15);
+  border-color: #f2a900;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.compare-brand {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.compare-arrow {
+  color: #f2a900;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.compare-wallet-link:hover .compare-arrow {
+  transform: translateX(3px);
+}
+
+@media (max-width: 768px) {
+  .compare-wallets-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .compare-wallets-box {
+    padding: 24px 20px 20px;
+  }
+
+  .compare-wallets-title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .compare-wallets-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>
@@ -112,7 +197,37 @@ capture: yes
 <br>
 
 <p>Before we cover those features in more detail, let's briefly discuss all of the benefits that cold storage wallets offer.</p>
- 
+
+<div class="compare-wallets-box">
+  <h3 class="compare-wallets-title">Compare Coldcard to Other Wallets</h3>
+  <p class="compare-wallets-desc">See how Coldcard stacks up against the top hardware wallets with detailed side-by-side comparisons.</p>
+  <div class="compare-wallets-grid">
+    <a href="/coldcard-vs-ledger/" class="compare-wallet-link">
+      <span class="compare-brand">Coldcard vs Ledger</span>
+      <span class="compare-arrow">&rarr;</span>
+    </a>
+    <a href="/trezor-vs-coldcard/" class="compare-wallet-link">
+      <span class="compare-brand">Coldcard vs Trezor</span>
+      <span class="compare-arrow">&rarr;</span>
+    </a>
+    <a href="/coldcard-vs-bitbox/" class="compare-wallet-link">
+      <span class="compare-brand">Coldcard vs BitBox</span>
+      <span class="compare-arrow">&rarr;</span>
+    </a>
+    <a href="/coldcard-vs-jade/" class="compare-wallet-link">
+      <span class="compare-brand">Coldcard vs Jade</span>
+      <span class="compare-arrow">&rarr;</span>
+    </a>
+    <a href="/coldcard-vs-passport/" class="compare-wallet-link">
+      <span class="compare-brand">Coldcard vs Passport</span>
+      <span class="compare-arrow">&rarr;</span>
+    </a>
+    <a href="/coldcard-vs-bitkey/" class="compare-wallet-link">
+      <span class="compare-brand">Coldcard vs Bitkey</span>
+      <span class="compare-arrow">&rarr;</span>
+    </a>
+  </div>
+</div>
 
 <h2>Benefits of a Cold Storage Wallet</h2>
 
