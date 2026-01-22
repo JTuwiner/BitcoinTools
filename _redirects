@@ -36,3 +36,7 @@
 # Ledger vs Ledger - redirected to Ledger comparison page
 /ledger-x-vs-flex/ /ledger-compare/ 301
 /ledger-x-vs-s-plus/ /ledger-compare/ 301
+
+# Trezor vs Trezor - redirected to Trezor comparison page
+/trezor-safe-7-vs-5/ /trezor-compare/ 301
+/trezor-safe-3-vs-5/ /trezor-compare/ 301
