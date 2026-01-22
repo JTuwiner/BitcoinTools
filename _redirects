@@ -23,60 +23,69 @@
 /coldcard-mk4-vs-ledger-stax/ /tools/coldcard-vs-ledger/ 301
 
 # Coldcard vs Jade - redirected to brand comparison page
-/coldcard-mk4-vs-jade/ /coldcard-vs-jade/ 301
-/coldcard-mk4-vs-jade-plus/ /coldcard-vs-jade/ 301
+/coldcard-mk4-vs-jade/ /tools/coldcard-vs-jade/ 301
+/coldcard-mk4-vs-jade-plus/ /tools/coldcard-vs-jade/ 301
 
 # BitBox vs Jade - redirected to brand comparison page
-/bitbox02-vs-jade/ /bitbox-vs-jade/ 301
-/bitbox02-vs-jade-plus/ /bitbox-vs-jade/ 301
+/bitbox02-vs-jade/ /tools/bitbox-vs-jade/ 301
+/bitbox02-vs-jade-plus/ /tools/bitbox-vs-jade/ 301
 
 # Coldcard vs BitBox - redirected to brand comparison page
-/coldcard-mk4-vs-bitbox02/ /coldcard-vs-bitbox/ 301
+/coldcard-mk4-vs-bitbox02/ /tools/coldcard-vs-bitbox/ 301
 
 # Ledger vs Ledger - redirected to Ledger comparison page
-/ledger-x-vs-flex/ /ledger-compare/ 301
-/ledger-x-vs-s-plus/ /ledger-compare/ 301
+/ledger-x-vs-flex/ /tools/ledger-compare/ 301
+/ledger-x-vs-s-plus/ /tools/ledger-compare/ 301
 
 # Trezor vs Trezor - redirected to Trezor comparison page
-/trezor-safe-7-vs-5/ /trezor-compare/ 301
-/trezor-safe-3-vs-5/ /trezor-compare/ 301
+/trezor-safe-7-vs-5/ /tools/trezor-compare/ 301
+/trezor-safe-3-vs-5/ /tools/trezor-compare/ 301
 
 # Trezor vs Coldcard - redirected to brand comparison page
-/trezor-safe-3-vs-coldcard-mk4/ /trezor-vs-coldcard/ 301
-/trezor-5-vs-coldcard-mk4/ /trezor-vs-coldcard/ 301
-/trezor-safe-7-vs-coldcard-mk4/ /trezor-vs-coldcard/ 301
-/trezor-3-vs-coldcard-q/ /trezor-vs-coldcard/ 301
-/trezor-5-vs-coldcard-q/ /trezor-vs-coldcard/ 301
-/trezor-safe-7-vs-coldcard-q/ /trezor-vs-coldcard/ 301
+/trezor-safe-3-vs-coldcard-mk4/ /tools/trezor-vs-coldcard/ 301
+/trezor-5-vs-coldcard-mk4/ /tools/trezor-vs-coldcard/ 301
+/trezor-safe-7-vs-coldcard-mk4/ /tools/trezor-vs-coldcard/ 301
+/trezor-3-vs-coldcard-q/ /tools/trezor-vs-coldcard/ 301
+/trezor-5-vs-coldcard-q/ /tools/trezor-vs-coldcard/ 301
+/trezor-safe-7-vs-coldcard-q/ /tools/trezor-vs-coldcard/ 301
 
 # Trezor vs Jade - redirected to brand comparison page
-/trezor-safe-3-vs-jade/ /trezor-vs-jade/ 301
-/trezor-5-vs-jade/ /trezor-vs-jade/ 301
-/trezor-safe-7-vs-jade/ /trezor-vs-jade/ 301
-/trezor-safe-3-vs-jade-plus/ /trezor-vs-jade/ 301
-/trezor-5-vs-jade-plus/ /trezor-vs-jade/ 301
-/trezor-safe-7-vs-jade-plus/ /trezor-vs-jade/ 301
+/trezor-safe-3-vs-jade/ /tools/trezor-vs-jade/ 301
+/trezor-5-vs-jade/ /tools/trezor-vs-jade/ 301
+/trezor-safe-7-vs-jade/ /tools/trezor-vs-jade/ 301
+/trezor-safe-3-vs-jade-plus/ /tools/trezor-vs-jade/ 301
+/trezor-5-vs-jade-plus/ /tools/trezor-vs-jade/ 301
+/trezor-safe-7-vs-jade-plus/ /tools/trezor-vs-jade/ 301
 
 # Trezor vs Ledger - redirected to brand comparison page
-/trezor-5-vs-ledger-x/ /trezor-vs-ledger/ 301
-/trezor-safe-7-vs-ledger-nano-x/ /trezor-vs-ledger/ 301
-/ledger-x-vs-trezor-safe-3/ /trezor-vs-ledger/ 301
-/trezor-5-vs-ledger-flex/ /trezor-vs-ledger/ 301
-/trezor-safe-7-vs-ledger-flex/ /trezor-vs-ledger/ 301
-/trezor-5-vs-ledger-stax/ /trezor-vs-ledger/ 301
-/trezor-safe-7-vs-ledger-stax/ /trezor-vs-ledger/ 301
+/trezor-5-vs-ledger-x/ /tools/trezor-vs-ledger/ 301
+/trezor-safe-7-vs-ledger-nano-x/ /tools/trezor-vs-ledger/ 301
+/ledger-x-vs-trezor-safe-3/ /tools/trezor-vs-ledger/ 301
+/trezor-5-vs-ledger-flex/ /tools/trezor-vs-ledger/ 301
+/trezor-safe-7-vs-ledger-flex/ /tools/trezor-vs-ledger/ 301
+/trezor-5-vs-ledger-stax/ /tools/trezor-vs-ledger/ 301
+/trezor-safe-7-vs-ledger-stax/ /tools/trezor-vs-ledger/ 301
 
 # Trezor vs BitBox - redirected to brand comparison page
-/trezor-5-vs-bitbox02/ /trezor-vs-bitbox/ 301
-/trezor-safe-7-vs-bitbox02/ /trezor-vs-bitbox/ 301
-/bitbox02-vs-safe-3/ /trezor-vs-bitbox/ 301
+/trezor-5-vs-bitbox02/ /tools/trezor-vs-bitbox/ 301
+/trezor-safe-7-vs-bitbox02/ /tools/trezor-vs-bitbox/ 301
+/bitbox02-vs-safe-3/ /tools/trezor-vs-bitbox/ 301
 
 # Trezor vs Bitkey - redirected to brand comparison page
-/trezor-5-vs-bitkey/ /trezor-vs-bitkey/ 301
-/trezor-safe-7-vs-bitkey/ /trezor-vs-bitkey/ 301
+/trezor-5-vs-bitkey/ /tools/trezor-vs-bitkey/ 301
+/trezor-safe-7-vs-bitkey/ /tools/trezor-vs-bitkey/ 301
 
 # Coldcard vs Bitkey - redirected to brand comparison page
-/coldcard-mk4-vs-bitkey/ /coldcard-vs-bitkey/ 301
+/coldcard-mk4-vs-bitkey/ /tools/coldcard-vs-bitkey/ 301
 
 # BitBox vs Bitkey - redirected to brand comparison page
 /bitbox02-vs-bitkey/ /bitbox-vs-bitkey/ 301
+
+# Trezor vs Passport - redirected to brand comparison page
+/trezor-5-vs-passport-core/ /trezor-vs-passport/ 301
+
+# Coldcard vs Passport - redirected to brand comparison page
+/coldcard-mk4-vs-passport-core/ /coldcard-vs-passport/ 301
+
+# BitBox vs Passport - redirected to brand comparison page
+/bitbox02-vs-passport-core/ /bitbox-vs-passport/ 301
