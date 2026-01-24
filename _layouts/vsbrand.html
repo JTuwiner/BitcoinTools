@@ -11,6 +11,11 @@ layout: base
 <h1 style="text-align: center; width: 100%;margin-bottom: 40px;">{{ page.title }}</h1>
 
 <style>
+  /* Prevent horizontal scroll on vsbrand pages */
+  html, body {
+    overflow-x: hidden;
+  }
+  
   .brand-compare-header {
     display: flex;
     align-items: stretch;
@@ -20,6 +25,7 @@ layout: base
     flex-wrap: wrap;
     width: 100%;
     padding: 0 20px;
+    box-sizing: border-box;
   }
   
   .brand-card {
@@ -180,8 +186,9 @@ layout: base
     }
     
     .brand-card {
-      min-width: 100%;
+      min-width: 0;
       max-width: 350px;
+      width: 100%;
     }
   }
   
@@ -882,6 +889,31 @@ document.addEventListener('DOMContentLoaded', function() {
       #sticky-cta a:hover {
         background: #000;
         color: #f2a900 !important;
+      }
+
+      @media (max-width: 600px) {
+        #sticky-cta {
+          padding: 10px;
+          gap: 8px;
+        }
+        
+        #sticky-cta a {
+          padding: 10px 12px;
+          font-size: 12px;
+          flex: 1;
+          min-width: 0;
+          text-align: center;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 50%;
+        }
+        
+        #sticky-cta a img {
+          width: 20px !important;
+          height: 20px !important;
+          margin-right: 4px !important;
+        }
       }
 
       /* Inline Section CTAs */
