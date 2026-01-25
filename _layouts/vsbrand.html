@@ -2232,7 +2232,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <ul class="related-comparisons-list">
               {% for comp in brand1_comparisons %}
               <li>
-                <a href="/tools{{ comp.url }}" class="vs-related-comparison-link">
+                <a href="/tools/{{ comp.url }}" class="vs-related-comparison-link">
                   <span class="comparison-arrow">→</span> {{ comp.title }}
                 </a>
               </li>
@@ -2247,7 +2247,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <ul class="related-comparisons-list">
               {% for comp in brand2_comparisons %}
               <li>
-                <a href="/tools{{ comp.url }}" class="vs-related-comparison-link">
+                <a href="/tools/{{ comp.url }}" class="vs-related-comparison-link">
                   <span class="comparison-arrow">→</span> {{ comp.title }}
                 </a>
               </li>
