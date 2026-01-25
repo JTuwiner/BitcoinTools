@@ -1112,6 +1112,33 @@ document.addEventListener('DOMContentLoaded', function() {
           padding: 25px 20px;
         }
       }
+
+      /* Top Picks Styling for Light Background */
+      .vsbrand-top-picks-wrapper {
+        max-width: 700px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      .vsbrand-top-picks-wrapper .top-picks {
+        background: #232939;
+        border-radius: 8px;
+        border: 1px solid #3a4259;
+        overflow: hidden;
+      }
+
+      .vsbrand-top-picks-wrapper .top-picks h3 {
+        color: #9ca3af;
+        padding-top: 12px;
+      }
+
+      .vsbrand-top-picks-wrapper .top-picks a {
+        border-color: #3a4259 !important;
+      }
+
+      .vsbrand-top-picks-wrapper .top-picks a:hover {
+        background: #1a1f2e !important;
+      }
     </style>
 
     <script>
@@ -1627,6 +1654,10 @@ document.addEventListener('DOMContentLoaded', function() {
               </div>
             </div>
 
+            <!-- Top Picks - Related Tools -->
+            <div class="vsbrand-top-picks-wrapper">
+              {% include top-picks.html title="Related Tools" pick1="wallets" pick2="steel" pick3="coldstorage" %}
+            </div>
 
             <h2 class="section-category-heading" id="technical-details"> Technical Details</h2>
 
