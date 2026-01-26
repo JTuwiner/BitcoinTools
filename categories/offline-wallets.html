@@ -1,31 +1,31 @@
 ---
-layout: multicat
-title: Offline Wallets
+layout: page
+title: Hardware Wallets
 full-width: yes
 permalink: "/offline-wallets/"
 category: yes
-seotitle: 7 Bitcoin Offline Wallets & Cold Storage Tools [2026]
-subdesc: Hardware wallets, steel backups, and vaults for secure Bitcoin cold storage.
-icon: wallet
-svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path fill="currentColor" d="M216 64H56a8 8 0 0 1 0-16h136a8 8 0 0 0 0-16H56a24 24 0 0 0-24 24v128a24 24 0 0 0 24 24h160a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16m-36 80a12 12 0 1 1 12-12a12 12 0 0 1-12 12"/></svg>'
+seotitle: 7 Best Bitcoin Hardware Wallets [2026]
+subdesc: Bitcoin hardware wallets, some Bitcoin-only.
+icon: lock
+svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path fill="currentColor" d="M216 40H40a16 16 0 0 0-16 16v136a16 16 0 0 0 16 16h16v16a8 8 0 0 0 16 0v-16h112v16a8 8 0 0 0 16 0v-16h16a16 16 0 0 0 16-16V56a16 16 0 0 0-16-16m-8 96h-28.91a36 36 0 1 1 0-16H208a8 8 0 0 1 0 16m-44-8a20 20 0 1 1-20-20a20 20 0 0 1 20 20"/></svg>'
 ---
 
-{% assign wallets = site.pages | where: "secondcat", "Offline Wallets" | sort: "offline_wallet_sort" %}
+{% assign wallets = site.pages | where: "cat", "Hardware Wallets" | sort: "sort" %}
 
 <style>
-.wallet-intro {
+.hw-intro {
   max-width: 800px;
   margin-bottom: 32px;
 }
 
-.wallet-intro p {
+.hw-intro p {
   font-size: 16px;
   line-height: 1.7;
   color: #e5e7eb;
   margin-bottom: 16px;
 }
 
-.wallet-intro-highlight {
+.hw-intro-highlight {
   background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
   border: 1px solid #F59E0B;
   border-radius: 8px;
@@ -33,19 +33,65 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   margin: 24px 0;
 }
 
-.wallet-intro-highlight p {
+.hw-intro-highlight p {
   margin: 0;
   font-weight: 500;
   color: #92400E;
 }
 
-.comparison-table-wrapper {
-  margin-bottom: 40px;
-  max-width: 100%;
-  overflow-x: auto;
+.toc-box {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  max-width: 400px;
 }
 
-.comparison-table-header {
+.toc-box-label {
+  font-weight: 700;
+  color: #f2a900;
+  margin-bottom: 12px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.toc-box nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-box nav ul li {
+  margin-bottom: 8px;
+}
+
+.toc-box nav ul li a {
+  color: #d1d5db;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.15s;
+}
+
+.toc-box nav ul li a:hover {
+  color: #f2a900;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .toc-box {
+    max-width: 100%;
+  }
+}
+
+.hw-comparison-table-wrapper {
+  margin-bottom: 40px;
+  margin-top: 30px;
+  max-width: 100%;
+}
+
+.hw-comparison-table-header {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -53,113 +99,119 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   gap: 16px;
 }
 
-.comparison-table-title {
+.hw-comparison-table-title {
   font-weight: 700;
   color: #111827;
   margin: 0;
 }
 
-.comparison-table {
+.hw-comparison-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.comparison-table thead {
+.hw-comparison-table thead {
   background: #f9fafb;
   border-bottom: 2px solid #e5e7eb;
 }
 
-.comparison-table th {
+.hw-comparison-table th {
   padding: 12px 16px;
   text-align: left;
   font-weight: 600;
   font-size: 14px;
   color: #111827;
-  white-space: nowrap;
+  min-width: 100px;
 }
 
-.comparison-table th:first-child {
-  min-width: 180px;
+.hw-comparison-table th:first-child {
+  min-width: 160px;
 }
 
-.comparison-table tbody tr {
+.hw-comparison-table tbody tr {
   border-bottom: 1px solid #e5e7eb;
   transition: background-color 0.2s;
 }
 
-.comparison-table tbody tr:hover {
+.hw-comparison-table tbody tr:hover {
   background-color: #f9fafb;
 }
 
-.comparison-table td {
+.hw-comparison-table td {
   padding: 12px 16px;
   font-size: 14px;
   color: #111827;
   vertical-align: middle;
 }
 
-.comparison-table td:first-child {
+.hw-comparison-table td:first-child {
   font-weight: 500;
-  min-width: 180px;
 }
 
-.comparison-table-wallet-name {
+.hw-table-wallet-link {
+  text-decoration: none;
+  display: block;
+}
+
+.hw-table-wallet-link:hover .hw-table-wallet-name {
+  color: #f2a900;
+}
+
+.hw-table-wallet-name {
   display: flex;
   align-items: center;
   gap: 12px;
   color: #111827;
+  transition: color 0.15s;
 }
 
-.comparison-table-wallet-img {
+.hw-table-wallet-img {
   width: 40px;
   height: 40px;
   object-fit: contain;
-  border-radius: 8px;
-  transition: all 0.2s ease;
+  border-radius: 6px;
 }
 
-.wallet-type-badge {
+.best-for-badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px 10px;
-  border-radius: 6px;
+  gap: 5px;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+  color: #92400E;
   font-size: 12px;
   font-weight: 600;
-  background: #f3f4f6;
-  color: #374151;
-  border: 1px solid #e5e7eb;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
 }
 
-.wallet-type-badge.hardware {
-  background: #DBEAFE;
-  color: #1E40AF;
-  border-color: #93C5FD;
+.best-for-badge svg {
+  flex-shrink: 0;
 }
 
-.wallet-type-badge.steel {
-  background: #E5E7EB;
-  color: #374151;
-  border-color: #9CA3AF;
+.opensource-yes {
+  color: #059669;
+  font-weight: 600;
 }
 
-.wallet-type-badge.vault {
-  background: #D1FAE5;
-  color: #065F46;
-  border-color: #6EE7B7;
+.opensource-partial {
+  color: #D97706;
+  font-weight: 500;
 }
 
-.wallet-type-badge.custodial {
-  background: #FEF3C7;
-  color: #92400E;
-  border-color: #FCD34D;
+/* Desktop table wrapper */
+.desktop-hw-table {
+  display: block;
+  overflow-x: auto;
 }
 
-.mobile-comparison-cards {
+/* Mobile comparison cards */
+.mobile-hw-cards {
   display: none;
 }
 
-.mobile-comparison-card {
+.mobile-hw-card {
   background: white;
   border: 1px solid #e5e7eb;
   border-radius: 10px;
@@ -168,49 +220,41 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
-.mobile-card-header {
+.mobile-hw-card-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   margin-bottom: 12px;
   padding-bottom: 12px;
   border-bottom: 1px solid #e5e7eb;
 }
 
-.mobile-card-img {
+.mobile-hw-card-img {
   width: 44px;
   height: 44px;
   object-fit: contain;
   border-radius: 8px;
-  flex-shrink: 0;
 }
 
-.mobile-card-name {
+.mobile-hw-card-name {
   font-weight: 600;
   font-size: 15px;
   color: #111827;
-  transition: color 0.15s;
   flex: 1;
 }
 
-.mobile-card-header .wallet-type-badge {
-  flex-shrink: 0;
-  font-size: 11px;
-  padding: 3px 8px;
-}
-
-.mobile-card-details {
+.mobile-hw-card-details {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
 
-.mobile-detail-item {
+.mobile-hw-detail-item {
   display: flex;
   flex-direction: column;
 }
 
-.mobile-detail-label {
+.mobile-hw-detail-label {
   font-size: 11px;
   color: #6b7280;
   text-transform: uppercase;
@@ -218,27 +262,349 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   margin-bottom: 2px;
 }
 
-.mobile-detail-value {
+.mobile-hw-detail-value {
   font-size: 14px;
   font-weight: 500;
   color: #111827;
 }
 
 @media (max-width: 768px) {
-  .desktop-comparison-table {
+  .desktop-hw-table {
     display: none;
   }
   
-  .mobile-comparison-cards {
+  .mobile-hw-cards {
     display: block;
   }
 }
 
-.wallets-listing {
+/* Brand Ratings Section */
+.brand-ratings-section {
+  margin: 32px 0;
+  max-width: 600px;
+}
+
+.brand-ratings-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #FEF3C7;
+  border: 1px solid #F59E0B;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #92400E;
+  line-height: 1.5;
+}
+
+.brand-ratings-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.brand-ratings-toggle:hover {
+  background: #f2a900;
+  border-color: #f2a900;
+  color: #000;
+}
+
+.brand-ratings-toggle .toggle-chevron {
+  transition: transform 0.2s;
+}
+
+.brand-ratings-toggle.expanded .toggle-chevron {
+  transform: rotate(180deg);
+}
+
+.brand-ratings-table-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.brand-ratings-table-wrapper.expanded {
+  max-height: 500px;
+  margin-top: 16px;
+}
+
+.brand-ratings-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.brand-ratings-table thead {
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.brand-ratings-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+  color: #111827;
+}
+
+.brand-ratings-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.brand-ratings-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.brand-ratings-table td {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.brand-rating-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.brand-rating-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.rating-stars {
+  font-weight: 600;
+  color: #111827;
+}
+
+.brand-ratings-table td a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.brand-ratings-table td a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .brand-ratings-section {
+    max-width: 100%;
+  }
+  
+  .brand-ratings-table th,
+  .brand-ratings-table td {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .brand-rating-img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Dark mode for brand ratings */
+@media (prefers-color-scheme: dark) {
+  .brand-ratings-info {
+    background: #422006;
+    border-color: #f2a900;
+    color: #FDE68A;
+  }
+  
+  .brand-ratings-toggle {
+    background: #232939;
+    border-color: #3a4255;
+    color: #ffffff;
+  }
+  
+  .brand-ratings-toggle:hover {
+    background: #f2a900;
+    border-color: #f2a900;
+    color: #000;
+  }
+  
+  .brand-ratings-table {
+    background: #232939;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+  
+  .brand-ratings-table thead {
+    background: #1a1f2e;
+    border-bottom-color: #3a4255;
+  }
+  
+  .brand-ratings-table th {
+    color: #f2a900;
+  }
+  
+  .brand-ratings-table tbody tr {
+    border-bottom-color: #3a4255;
+  }
+  
+  .brand-ratings-table td {
+    color: #e5e7eb;
+  }
+  
+  .brand-rating-name,
+  .rating-stars {
+    color: #ffffff;
+  }
+  
+  .brand-ratings-table td a {
+    color: #60a5fa;
+  }
+}
+
+/* Brand Lineup Section */
+.brand-lineup-section {
+  margin: 48px 0;
+  padding: 32px;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.brand-lineup-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-lineup-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 24px;
+  background: #f2a900;
+  border-radius: 2px;
+}
+
+.brand-lineup-intro {
+  font-size: 15px;
+  color: #374151;
+  margin: 0 0 24px 0;
+}
+
+.brand-lineup-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.brand-lineup-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border: 1px solid #E5E7EB;
+}
+
+.brand-lineup-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.brand-lineup-card-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.brand-lineup-card-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.brand-lineup-card-badge {
+  font-size: 11px;
+  background: #f3f4f6;
+  color: #6b7280;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-left: auto;
+}
+
+.brand-lineup-devices {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.brand-device-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #f9fafb;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.brand-device-name {
+  color: #111827;
+  font-weight: 500;
+}
+
+.brand-device-price {
+  color: #059669;
+  font-weight: 600;
+}
+
+.brand-device-highlight {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+}
+
+@media (max-width: 768px) {
+  .brand-lineup-section {
+    padding: 20px;
+    margin: 32px 0;
+  }
+  
+  .brand-lineup-title {
+    font-size: 20px;
+  }
+  
+  .brand-lineup-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Wallet Listings */
+.hw-listing {
   margin-top: 40px;
 }
 
-.wallet-item {
+.hw-item {
   background: white;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
@@ -248,55 +614,16 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   padding: 24px;
 }
 
-.wallet-item:hover {
+.hw-item:hover {
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.wallet-header {
+.hw-header {
   display: flex;
   gap: 24px;
 }
 
-.wallet-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 10px;
-  background: #f9fafb;
-  padding: 8px;
-  transition: box-shadow 0.15s;
-}
-
-.wallet-info {
-  flex: 1;
-}
-
-.wallet-title-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-}
-
-.wallet-title-link {
-  text-decoration: none;
-}
-
-.wallet-title-link:hover .wallet-title {
-  color: #f2a900 !important;
-  text-decoration: underline;
-}
-
-.wallet-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #111827 !important;
-  margin: 0;
-  transition: color 0.15s;
-}
-
-.wallet-image-wrapper {
+.hw-image-wrapper {
   position: relative;
   width: 120px;
   height: 120px;
@@ -304,23 +631,63 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   display: block;
 }
 
-.wallet-image-wrapper:hover .wallet-image {
+.hw-image-wrapper:hover .hw-image {
   box-shadow: 0 4px 12px rgba(242, 169, 0, 0.3);
 }
 
-.wallet-data-grid {
+.hw-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #f9fafb;
+  padding: 8px;
+  transition: box-shadow 0.15s;
+}
+
+.hw-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.hw-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.hw-title-link {
+  text-decoration: none;
+}
+
+.hw-title-link:hover .hw-title {
+  color: #f2a900 !important;
+  text-decoration: underline;
+}
+
+.hw-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827 !important;
+  margin: 0 0 12px 0;
+  transition: color 0.15s;
+}
+
+.hw-data-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 16px;
   margin-bottom: 20px;
 }
 
-.wallet-data-item {
+.hw-data-item {
   display: flex;
   flex-direction: column;
 }
 
-.wallet-data-label {
+.hw-data-label {
   font-size: 12px;
   color: #6b7280;
   text-transform: uppercase;
@@ -328,20 +695,20 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   margin-bottom: 4px;
 }
 
-.wallet-data-value {
+.hw-data-value {
   font-size: 15px;
   font-weight: 600;
   color: #111827;
 }
 
-.wallet-actions {
+.hw-actions {
   display: flex;
   align-items: center;
   gap: 16px;
   margin-top: 20px;
 }
 
-.wallet-apply-button {
+.hw-apply-button {
   background: #f2a900;
   color: black !important;
   padding: 12px 24px;
@@ -355,22 +722,22 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   transition: background 0.2s;
 }
 
-.wallet-apply-button:hover {
+.hw-apply-button:hover {
   background: #059669;
   color: white !important;
 }
 
-.wallet-breakdown-section {
+.hw-breakdown-section {
   margin-top: 12px;
   border-top: 1px solid #e5e7eb;
   padding-top: 12px;
 }
 
-.wallet-breakdown-section:first-of-type {
+.hw-breakdown-section:first-of-type {
   margin-top: 20px;
 }
 
-.wallet-breakdown-header {
+.hw-breakdown-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -383,12 +750,12 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   border: 1px solid transparent;
 }
 
-.wallet-breakdown-header:hover {
+.hw-breakdown-header:hover {
   background: #FEF9E7;
   border-color: #F2A900;
 }
 
-.wallet-breakdown-title {
+.hw-breakdown-title {
   display: flex;
   align-items: center;
   font-weight: 600;
@@ -397,7 +764,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   transition: color 0.15s;
 }
 
-.wallet-breakdown-icon {
+.hw-breakdown-icon {
   width: 20px;
   height: 20px;
   display: flex;
@@ -407,28 +774,28 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   margin-right: 10px;
 }
 
-.wallet-breakdown-header:hover .wallet-breakdown-icon {
+.hw-breakdown-header:hover .hw-breakdown-icon {
   color: #D97706;
 }
 
-.wallet-breakdown-header:hover .wallet-breakdown-title {
+.hw-breakdown-header:hover .hw-breakdown-title {
   color: #111827;
 }
 
-.wallet-breakdown-chevron {
+.hw-breakdown-chevron {
   color: #9ca3af;
   transition: transform 0.15s, color 0.15s;
 }
 
-.wallet-breakdown-header:hover .wallet-breakdown-chevron {
+.hw-breakdown-header:hover .hw-breakdown-chevron {
   color: #D97706;
 }
 
-.wallet-breakdown-section.expanded .wallet-breakdown-chevron {
+.hw-breakdown-section.expanded .hw-breakdown-chevron {
   transform: rotate(180deg);
 }
 
-.wallet-breakdown-content {
+.hw-breakdown-content {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.25s ease-out, padding-top 0.2s ease-out;
@@ -436,18 +803,18 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   color: #111827;
 }
 
-.wallet-breakdown-section.expanded .wallet-breakdown-content {
+.hw-breakdown-section.expanded .hw-breakdown-content {
   max-height: 500px;
   padding-top: 10px;
 }
 
-.wallet-breakdown-content ul {
+.hw-breakdown-content ul {
   list-style: none;
   padding-left: 0;
   margin: 0;
 }
 
-.wallet-breakdown-content li {
+.hw-breakdown-content li {
   display: flex;
   align-items: flex-start;
   margin-bottom: 6px;
@@ -455,7 +822,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   color: #111827;
 }
 
-.wallet-breakdown-content li::before {
+.hw-breakdown-content li::before {
   content: "✓";
   color: #10b981;
   font-weight: bold;
@@ -463,245 +830,92 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   flex-shrink: 0;
 }
 
-.wallet-cons-content li::before {
+.hw-cons-content li::before {
   content: "✗";
   color: #EF4444;
 }
 
-.wallet-summary-text {
+.hw-summary-text {
   font-size: 14px;
   line-height: 1.7;
   color: #374151;
 }
 
 @media (max-width: 768px) {
-  .wallet-header {
+  .hw-header {
     flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
   
-  .wallet-image-wrapper {
-    width: 80px;
-    height: 80px;
+  .hw-image-wrapper {
+    width: 100px;
+    height: 100px;
     margin-bottom: 16px;
   }
   
-  .wallet-title {
-    font-size: 20px;
+  .hw-info {
+    text-align: center;
   }
   
-  .wallet-title-row {
-    gap: 8px;
+  .hw-badges-row {
+    justify-content: center;
+    margin-top: 12px;
     margin-bottom: 12px;
-    flex-wrap: nowrap;
   }
   
-  .wallet-title-row .wallet-type-badge {
-    font-size: 11px;
-    padding: 3px 8px;
-    flex-shrink: 0;
+  .hw-title {
+    font-size: 22px;
+    text-align: center;
   }
   
-  .wallet-data-grid {
+  .hw-data-grid {
     grid-template-columns: 1fr 1fr;
     gap: 12px;
+    text-align: left;
   }
   
-  .wallet-data-value {
-    font-size: 13px;
-    word-break: break-word;
+  .hw-data-item {
+    padding: 12px;
+    background: #f9fafb;
+    border-radius: 8px;
   }
   
-  .wallet-actions {
+  .hw-actions {
     flex-direction: column;
     gap: 12px;
   }
   
-  .wallet-apply-button {
+  .hw-apply-button {
     width: 100%;
     justify-content: center;
   }
   
-  .wallet-item {
+  .hw-item {
     padding: 16px;
-    margin-left: -8px;
-    margin-right: -8px;
-    border-radius: 8px;
+    border-radius: 10px;
+  }
+  
+  .hw-breakdown-section {
+    text-align: left;
   }
 }
 
 @media (max-width: 480px) {
-  .wallet-data-grid {
+  .hw-data-grid {
     grid-template-columns: 1fr;
   }
   
-  .wallet-item {
+  .hw-item {
     padding: 14px;
   }
   
-  .wallet-title {
-    font-size: 18px;
-  }
-  
-  .wallet-title-row {
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .wallet-title-row .wallet-type-badge {
-    font-size: 10px;
-    padding: 2px 6px;
+  .hw-title {
+    font-size: 20px;
   }
 }
 
-.faq-section {
-  margin-top: 60px;
-  margin-bottom: 40px;
-}
-
-.faq-section h2 {
-  font-size: 28px;
-  font-weight: 700;
-  color: #111827;
-  margin-bottom: 24px;
-}
-
-.faq-item {
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  margin-bottom: 12px;
-  overflow: hidden;
-}
-
-.faq-question {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 20px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 15px;
-  color: #111827;
-  background: #f9fafb;
-  transition: background 0.15s;
-}
-
-.faq-question:hover {
-  background: #f3f4f6;
-}
-
-.faq-chevron {
-  color: #9ca3af;
-  transition: transform 0.2s;
-  flex-shrink: 0;
-}
-
-.faq-item.expanded .faq-chevron {
-  transform: rotate(180deg);
-}
-
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
-}
-
-.faq-item.expanded .faq-answer {
-  max-height: 500px;
-}
-
-.faq-answer-content {
-  padding: 16px 20px;
-  font-size: 14px;
-  line-height: 1.7;
-  color: #374151;
-}
-
-.faq-answer-content ul {
-  margin: 12px 0;
-  padding-left: 20px;
-}
-
-.faq-answer-content li {
-  margin-bottom: 6px;
-}
-
-.methodology-section {
-  margin-top: 60px;
-  margin-bottom: 32px;
-  padding: 32px;
-  background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
-  border-radius: 12px;
-  border: 1px solid #F59E0B;
-}
-
-.methodology-title {
-  font-size: 28px;
-  font-weight: 700;
-  color: #111827;
-  margin: 0 0 16px 0;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.methodology-title::before {
-  content: '';
-  display: inline-block;
-  width: 4px;
-  height: 28px;
-  background: #F7931A;
-  border-radius: 2px;
-}
-
-.methodology-content > p {
-  font-size: 16px;
-  line-height: 1.7;
-  color: #374151;
-  margin: 0 0 24px 0;
-}
-
-.methodology-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-
-.methodology-item {
-  background: white;
-  padding: 24px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  border: 1px solid #E5E7EB;
-}
-
-.methodology-icon {
-  width: 48px;
-  height: 48px;
-  background: #FEF3C7;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
-}
-
-.methodology-item h3 {
-  font-size: 18px;
-  font-weight: 600;
-  color: #111827;
-  margin: 0 0 10px 0;
-}
-
-.methodology-item p {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #4B5563;
-  margin: 0;
-}
-
-.wallet-disclaimer {
+.hw-disclaimer {
   margin-top: 48px;
   padding: 20px 24px;
   background: #f9fafb;
@@ -709,7 +923,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   border-left: 3px solid #d1d5db;
 }
 
-.wallet-disclaimer p {
+.hw-disclaimer p {
   margin: 0;
   font-size: 12px;
   line-height: 1.6;
@@ -717,312 +931,811 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 }
 
 @media (max-width: 768px) {
-  .methodology-section {
-    margin-top: 40px;
-    padding: 20px;
-  }
-  
-  .methodology-title {
-    font-size: 22px;
-  }
-  
-  .methodology-content > p {
-    font-size: 14px;
-  }
-  
-  .methodology-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  
-  .methodology-item {
-    padding: 18px;
-  }
-  
-  .methodology-item h3 {
-    font-size: 16px;
-  }
-  
-  .methodology-item p {
-    font-size: 13px;
-  }
-  
-  .wallet-disclaimer {
+  .hw-disclaimer {
     margin-top: 32px;
     padding: 16px;
   }
   
-  .wallet-disclaimer p {
+  .hw-disclaimer p {
     font-size: 11px;
   }
-  
-  .faq-section h2 {
-    font-size: 22px;
+}
+
+/* Integrations Section */
+.integrations-section {
+  margin: 60px 0 40px 0;
+}
+
+.integrations-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px 0;
+}
+
+.integrations-intro {
+  font-size: 15px;
+  color: #374151;
+  margin: 0 0 16px 0;
+  max-width: 700px;
+}
+
+.expert-advice {
+  font-size: 15px;
+  color: #374151;
+  margin: 0 0 24px 0;
+  max-width: 700px;
+  padding: 12px 16px;
+  background: #f0fdf4;
+  border-left: 4px solid #10b981;
+  border-radius: 0 8px 8px 0;
+}
+
+.expert-advice strong {
+  color: #047857;
+}
+
+.integrations-table-wrapper {
+  overflow-x: auto;
+}
+
+.integrations-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.integrations-table thead {
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.integrations-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+}
+
+.integrations-table th:first-child {
+  min-width: 140px;
+}
+
+.integrations-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.integrations-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.integrations-table td {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #374151;
+  vertical-align: top;
+}
+
+.integrations-table td:first-child {
+  font-weight: 600;
+  color: #111827;
+}
+
+.integration-provider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.integration-provider-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.integration-devices {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.integration-device {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.integration-device .check {
+  color: #10b981;
+  font-weight: bold;
+}
+
+.integration-device.deprecated {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.integration-device.deprecated .check {
+  color: #d1d5db;
+}
+
+@media (max-width: 768px) {
+  .integrations-section {
+    margin: 40px 0 32px 0;
   }
   
-  .faq-question {
-    font-size: 14px;
-    padding: 14px 16px;
+  .integrations-title {
+    font-size: 20px;
   }
   
-  .faq-answer-content {
-    padding: 14px 16px;
+  .integrations-table th,
+  .integrations-table td {
+    padding: 12px;
     font-size: 13px;
+  }
+  
+  .integration-provider-img {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .integration-device {
+    font-size: 12px;
   }
 }
 
 /* Dark mode styles */
 @media (prefers-color-scheme: dark) {
-  .comparison-table-title {
+  /* Intro highlight box dark mode */
+  .hw-intro-highlight {
+    background: linear-gradient(135deg, #422006 0%, #78350f 100%);
+    border-color: #f2a900;
+  }
+  
+  .hw-intro-highlight p {
+    color: #FDE68A;
+  }
+  
+  .hw-comparison-table-title {
     color: #f9fafb;
   }
   
-  .comparison-table thead {
+  .hw-comparison-table thead {
     background: #1a1f2e;
     border-bottom-color: #3a4255;
   }
   
-  .comparison-table th {
+  .hw-comparison-table th {
     color: #f2a900;
     background-color: #1a1f2e;
   }
   
-  .comparison-table tbody tr {
+  .hw-comparison-table tbody tr {
     border-bottom-color: #3a4255;
   }
   
-  .comparison-table tbody tr:hover {
+  .hw-comparison-table tbody tr:hover {
     background-color: #2a3142;
   }
   
-  .comparison-table td {
+  .hw-comparison-table td {
     color: #ffffff;
     background-color: #232939;
   }
   
-  .comparison-table-wallet-name {
+  .hw-table-name {
+    color: #ffffff;
+  }
+  
+  /* Wallet names in comparison table */
+  .hw-table-wallet-link:hover .hw-table-wallet-name,
+  .hw-table-wallet-link:hover .hw-table-wallet-name span {
+    color: #f2a900;
+  }
+  
+  .hw-table-wallet-name {
+    color: #ffffff;
+  }
+  
+  .hw-table-wallet-name span {
     color: #ffffff;
   }
   
   /* Mobile cards dark mode */
-  .mobile-comparison-card {
+  .mobile-hw-card {
     background: #232939;
     border-color: #3a4255;
   }
   
-  .mobile-card-header {
+  .mobile-hw-card-header {
     border-bottom-color: #3a4255;
   }
   
-  .mobile-card-name {
+  .mobile-hw-card-name {
     color: #ffffff;
   }
   
-  .mobile-detail-label {
+  .mobile-hw-detail-label {
     color: #9ca3af;
   }
   
-  .mobile-detail-value {
+  .mobile-hw-detail-value {
     color: #ffffff;
   }
   
-  /* Wallet item cards dark mode */
-  .wallet-item {
+  .mobile-hw-comparison-selector select {
+    background: #232939;
+    border-color: #3a4255;
+    color: #ffffff;
+  }
+  
+  .mobile-hw-comparison-selector label {
+    color: #9ca3af;
+  }
+  
+  /* Hardware wallet item cards dark mode */
+  .hw-item {
     background: #232939;
     border-color: #3a4255;
   }
   
-  .wallet-title {
+  .hw-title {
     color: #ffffff !important;
   }
   
-  .wallet-data-label {
+  .hw-data-label {
     color: #9ca3af;
   }
   
-  .wallet-data-value {
+  .hw-data-value {
     color: #ffffff;
   }
   
-  .wallet-image {
+  .hw-data-item {
+    background: transparent !important;
+  }
+
+  .hw-image {
     background: #1a1f2e;
   }
   
-  .wallet-breakdown-section {
+  .hw-breakdown-section {
     border-top-color: #3a4255;
   }
   
-  .wallet-breakdown-header:hover {
+  .hw-breakdown-header:hover {
     background: #2a3142;
     border-color: #f2a900;
   }
   
-  .wallet-breakdown-header:hover .wallet-breakdown-title {
+  .hw-breakdown-header:hover .hw-breakdown-title {
     color: #ffffff;
   }
   
-  .wallet-breakdown-title {
+  .hw-breakdown-title {
     color: #d1d5db;
   }
   
-  .wallet-breakdown-content,
-  .wallet-breakdown-content li {
+  .hw-breakdown-content,
+  .hw-breakdown-content li {
     color: #e5e7eb;
   }
   
-  .wallet-summary-text {
+  .hw-summary-text {
     color: #d1d5db;
   }
   
-  /* FAQ section dark mode */
-  .faq-section h2 {
+  /* Integrations table dark mode */
+  .integrations-section {
+    background: transparent;
+  }
+  
+  .integrations-title {
     color: #f9fafb;
   }
   
-  .faq-item {
-    background: #232939;
+  .integrations-intro {
+    color: #d1d5db;
+  }
+  
+  .expert-advice {
+    background: #064e3b;
+    border-left-color: #10b981;
+    color: #d1fae5;
+  }
+  
+  .expert-advice strong {
+    color: #6ee7b7;
+  }
+  
+  .integrations-table th {
+    background: #1a1f2e;
+    color: #f2a900;
     border-color: #3a4255;
   }
   
-  .faq-question {
-    background: #1a1f2e;
+  .integrations-table td {
+    background: #232939;
     color: #ffffff;
+    border-color: #3a4255;
   }
   
-  .faq-question:hover {
+  .integrations-table tr:hover td {
     background: #2a3142;
   }
   
-  .faq-answer-content {
+  .integration-provider-name {
+    color: #ffffff;
+  }
+  
+  .integration-provider span {
+    color: #ffffff;
+  }
+  
+  .integrations-table td:first-child {
+    color: #ffffff;
+  }
+  
+  .integration-device {
     color: #d1d5db;
   }
   
-  /* Methodology section dark mode */
-  .methodology-section {
-    background: linear-gradient(135deg, #2a2510 0%, #3d3516 100%);
-    border-color: #f2a900;
-  }
-  
-  .methodology-title {
+  /* Brand section dark mode */
+  .brand-section h2 {
     color: #f9fafb;
   }
   
-  .methodology-content > p {
-    color: #d1d5db;
-  }
-  
-  .methodology-item {
+  .brand-card {
     background: #232939;
     border-color: #3a4255;
   }
   
-  .methodology-item h3 {
+  .brand-card:hover {
+    background: #2a3142;
+    border-color: #f2a900;
+  }
+  
+  .brand-name {
     color: #ffffff;
   }
   
-  .methodology-item p {
+  .brand-description {
     color: #d1d5db;
   }
   
-  .wallet-disclaimer {
+  .hw-disclaimer {
     background: #1a1f2e;
     border-left-color: #3a4255;
   }
   
-  .wallet-disclaimer p {
+  .hw-disclaimer p {
     color: #9ca3af;
+  }
+  
+  .hw-intro p {
+    color: #d1d5db;
+  }
+  
+  /* Brand Lineup Section dark mode */
+  .brand-lineup-section {
+    background: #232939;
+    border-color: #3a4255;
+  }
+  
+  .brand-lineup-title {
+    color: #f9fafb;
+  }
+  
+  .brand-lineup-intro {
+    color: #d1d5db;
+  }
+  
+  .brand-lineup-card {
+    background: #1a1f2e;
+    border-color: #3a4255;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  
+  .brand-lineup-card-header {
+    border-color: #3a4255;
+  }
+  
+  .brand-lineup-card-name {
+    color: #ffffff;
+  }
+  
+  .brand-lineup-card-badge {
+    background: #3a4255;
+    color: #d1d5db;
+  }
+  
+  .brand-device-item {
+    background: #232939;
+  }
+  
+  .brand-device-item.brand-device-highlight {
+    background: #2a3142;
+    border-color: #f2a900;
+  }
+  
+  .brand-device-name {
+    color: #ffffff;
+  }
+  
+  .brand-device-price {
+    color: #d1d5db;
+  }
+}
+
+/* Quick Compare Section */
+.quick-compare-section {
+  margin: 32px 0;
+  max-width: 600px;
+}
+
+.quick-compare-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.quick-compare-toggle:hover {
+  background: #f2a900;
+  border-color: #f2a900;
+  color: #000;
+}
+
+.quick-compare-toggle .toggle-chevron {
+  transition: transform 0.2s;
+}
+
+.quick-compare-toggle.expanded .toggle-chevron {
+  transform: rotate(180deg);
+}
+
+.quick-compare-grid-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.quick-compare-grid-wrapper.expanded {
+  max-height: 400px;
+  margin-top: 16px;
+}
+
+.quick-compare-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  background: linear-gradient(135deg, #232939 0%, #1a1f2e 100%);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.quick-compare-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.quick-compare-link:hover {
+  background: rgba(242,169,0,0.12);
+  border-color: #f2a900;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.quick-compare-brands {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.quick-compare-arrow {
+  color: #f2a900;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: transform 0.15s ease;
+}
+
+.quick-compare-link:hover .quick-compare-arrow {
+  transform: translateX(2px);
+}
+
+@media (max-width: 768px) {
+  .quick-compare-section {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .quick-compare-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dark mode for quick compare toggle */
+@media (prefers-color-scheme: dark) {
+  .quick-compare-toggle {
+    background: #232939;
+    border-color: #3a4255;
+    color: #ffffff;
+  }
+
+  .quick-compare-toggle:hover {
+    background: #f2a900;
+    border-color: #f2a900;
+    color: #000;
   }
 }
 </style>
 
 <br><br>
 
-<div class="wallet-intro">
-  <p>An offline Bitcoin wallet keeps your private keys disconnected from the internet, dramatically reducing the risk of hacks and theft. Cold storage is essential for securing larger Bitcoin holdings.</p>
+<div class="hw-intro">
+
+<div class="toc-box">
+    <div class="toc-box-label">Table Of Contents</div>
+    <nav>
+        <ul>
+            <li><a href="#compare-hardware-wallets">Compare Hardware Wallets</a></li>
+            <li><a href="#hardware-wallet-details">Hardware Wallet Details</a></li>
+            <li><a href="#multisig-integrations">Multisig Integrations</a></li>
+            <li><a href="#hardware-wallet-brands">Hardware Wallet Brands & Devices</a></li>
+        </ul>
+    </nav>
+</div>
+
+  <p>A hardware wallet keeps your Bitcoin private keys offline on a dedicated device, protecting them from hackers and malware. It's the gold standard for securing any significant Bitcoin holdings.</p>
   
-  <div class="wallet-intro-highlight">
-    <p>💡 <strong>Key insight:</strong> More bitcoins are lost due to user error than from hackers. Hardware wallets protect against both threats by keeping keys offline and preventing mistakes.</p>
-	</div>
+  <div class="hw-intro-highlight">
+    <p>💡 Hardware wallets don't store your Bitcoin — they store the private keys that control your Bitcoin on the blockchain. Even if the device breaks, you can recover your funds with your seed phrase backup.</p>
+  </div>
 </div>
 
 {% if wallets.size > 0 %}
-<div class="comparison-table-wrapper">
-  <div class="comparison-table-header">
-    <h2 class="comparison-table-title">Compare Offline Wallets</h2>
-</div>
-
-  <div class="desktop-comparison-table">
-    <table class="comparison-table">
-  <thead>
-	<tr>
+<div class="hw-comparison-table-wrapper" id="compare-hardware-wallets">
+  <div class="hw-comparison-table-header">
+    <h2 class="hw-comparison-table-title">Compare Hardware Wallets</h2>
+  </div>
+  
+  <!-- Desktop Table -->
+  <div class="desktop-hw-table">
+    <table class="hw-comparison-table">
+      <thead>
+        <tr>
           <th>Wallet</th>
-          <th>Type</th>
+          <th>Best For</th>
           <th>Price</th>
           <th>Coins</th>
-          <th>Custody</th>
-	</tr>
-  </thead>
-  <tbody>
+          <th>Open Source</th>
+        </tr>
+      </thead>
+      <tbody>
         {% for wallet in wallets %}
         <tr>
           <td>
-            <div class="comparison-table-wallet-name">
-              <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="comparison-table-wallet-img">
+            <div class="hw-table-wallet-name">
+              <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="hw-table-wallet-img">
               <span>{{ wallet.title }}</span>
             </div>
           </td>
-          <td>
-            {% if wallet.wallet_type == "Hardware Wallet" %}
-              <span class="wallet-type-badge hardware">🔐 Hardware</span>
-            {% elsif wallet.wallet_type == "Steel Backup" %}
-              <span class="wallet-type-badge steel">🛡️ Steel</span>
-            {% elsif wallet.wallet_type == "Vault" %}
-              <span class="wallet-type-badge vault">🏦 Vault</span>
-            {% elsif wallet.wallet_type == "Custodial" %}
-              <span class="wallet-type-badge custodial">☁️ Custodial</span>
-            {% else %}
-              <span class="wallet-type-badge">{{ wallet.wallet_type | default: "—" }}</span>
-            {% endif %}
-          </td>
+          <td>{{ wallet.hw_bestfor | default: wallet.wallet_bestfor | default: "—" }}</td>
           <td>{{ wallet.wallet_price | default: "—" }}</td>
           <td>{{ wallet.wallet_coins | default: "—" }}</td>
-          <td>{{ wallet.wallet_custody | default: "—" }}</td>
-	</tr>
+          <td>
+            {% if wallet.wallet_opensource == "Yes" %}
+              <span class="opensource-yes">✓ Yes</span>
+            {% elsif wallet.wallet_opensource == "Partial" %}
+              <span class="opensource-partial">Partial</span>
+            {% else %}
+              <span>{{ wallet.wallet_opensource | default: "—" }}</span>
+            {% endif %}
+          </td>
+        </tr>
         {% endfor %}
-  </tbody>
-</table>
+      </tbody>
+    </table>
   </div>
   
-  <div class="mobile-comparison-cards">
-    {% for wallet in wallets %}
-    <div class="mobile-comparison-card">
-      <div class="mobile-card-header">
-        <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-card-img">
-        <div class="mobile-card-name">{{ wallet.title }}</div>
-        {% if wallet.wallet_type == "Hardware Wallet" %}
-          <span class="wallet-type-badge hardware">🔐 Hardware</span>
-        {% elsif wallet.wallet_type == "Steel Backup" %}
-          <span class="wallet-type-badge steel">🛡️ Steel</span>
-        {% elsif wallet.wallet_type == "Vault" %}
-          <span class="wallet-type-badge vault">🏦 Vault</span>
-        {% elsif wallet.wallet_type == "Custodial" %}
-          <span class="wallet-type-badge custodial">☁️ Custodial</span>
-        {% else %}
-          <span class="wallet-type-badge">{{ wallet.wallet_type | default: "—" }}</span>
-        {% endif %}
+  <!-- Brand Ratings Section -->
+  <div class="brand-ratings-section">
+    <div class="brand-ratings-info">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+        <path d="M12 16v-4M12 8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span>These are <strong>brand ratings</strong>, not individual wallet ratings. Reviews cover all products and customer service experiences for each company. <em style="font-size: 12px; opacity: 0.8;">(As of January 2026)</em></span>
+    </div>
+    
+    <button class="brand-ratings-toggle" onclick="document.querySelector('.brand-ratings-table-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded');">
+      <span>Compare Brand Ratings</span>
+      <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    
+    <div class="brand-ratings-table-wrapper">
+      <table class="brand-ratings-table">
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th>Rating</th>
+            <th>Reviews</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="brand-rating-name">
+                <img src="/tools/img/bitbox.png" alt="BitBox" class="brand-rating-img">
+                <span>BitBox</span>
+              </div>
+            </td>
+            <td><span class="rating-stars">⭐ 4.8/5</span></td>
+            <td>1,985</td>
+            <td><a href="https://www.trustpilot.com/review/bitbox.swiss" target="_blank" rel="nofollow noopener">Trustpilot</a></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="brand-rating-name">
+                <img src="/tools/img/trezor.png" alt="Trezor" class="brand-rating-img">
+                <span>Trezor</span>
+              </div>
+            </td>
+            <td><span class="rating-stars">⭐ 4.6/5</span></td>
+            <td>1,689</td>
+            <td><a href="https://www.trustpilot.com/review/trezor.io" target="_blank" rel="nofollow noopener">Trustpilot</a></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="brand-rating-name">
+                <img src="/tools/img/coldcard.jpeg" alt="Coldcard" class="brand-rating-img">
+                <span>Coldcard</span>
+              </div>
+            </td>
+            <td><span class="rating-stars">⭐ 4.6/5</span></td>
+            <td>53</td>
+            <td><a href="https://heyapollo.com/product/coldcard-mk4" target="_blank" rel="nofollow noopener">HeyApollo</a></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="brand-rating-name">
+                <img src="/tools/img/jade.png" alt="Blockstream" class="brand-rating-img">
+                <span>Blockstream</span>
+              </div>
+            </td>
+            <td><span class="rating-stars">⭐ 4.5/5</span></td>
+            <td>73</td>
+            <td><a href="https://heyapollo.com/product/blockstream-jade" target="_blank" rel="nofollow noopener">HeyApollo</a></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="brand-rating-name">
+                <img src="/tools/img/ledger.png" alt="Ledger" class="brand-rating-img">
+                <span>Ledger</span>
+              </div>
+            </td>
+            <td><span class="rating-stars">⭐ 3.4/5</span></td>
+            <td>2,381</td>
+            <td><a href="https://www.trustpilot.com/review/ledger.com" target="_blank" rel="nofollow noopener">Trustpilot</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Quick Compare Links -->
+  <div class="quick-compare-section">
+    <button class="quick-compare-toggle" onclick="document.querySelector('.quick-compare-grid-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded');">
+      <span>Compare Brands Side-by-Side</span>
+      <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="quick-compare-grid-wrapper">
+      <div class="quick-compare-grid">
+        <a href="/tools/trezor-vs-ledger/" class="quick-compare-link">
+          <span class="quick-compare-brands">Trezor vs Ledger</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/tools/trezor-vs-coldcard/" class="quick-compare-link">
+          <span class="quick-compare-brands">Trezor vs Coldcard</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/tools/coldcard-vs-ledger/" class="quick-compare-link">
+          <span class="quick-compare-brands">Coldcard vs Ledger</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/tools/bitbox-vs-ledger/" class="quick-compare-link">
+          <span class="quick-compare-brands">BitBox vs Ledger</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/tools/trezor-vs-bitbox/" class="quick-compare-link">
+          <span class="quick-compare-brands">Trezor vs BitBox</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/tools/coldcard-vs-jade/" class="quick-compare-link">
+          <span class="quick-compare-brands">Coldcard vs Jade</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/tools/trezor-vs-jade/" class="quick-compare-link">
+          <span class="quick-compare-brands">Trezor vs Jade</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/tools/coldcard-vs-bitbox/" class="quick-compare-link">
+          <span class="quick-compare-brands">Coldcard vs BitBox</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/tools/trezor-compare/" class="quick-compare-link">
+          <span class="quick-compare-brands">Compare Trezors</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/tools/ledger-compare/" class="quick-compare-link">
+          <span class="quick-compare-brands">Compare Ledgers</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
       </div>
-      <div class="mobile-card-details">
-        <div class="mobile-detail-item">
-          <span class="mobile-detail-label">Price</span>
-          <span class="mobile-detail-value">{{ wallet.wallet_price | default: "—" }}</span>
+    </div>
+  </div>
+
+  <!-- Mobile Cards -->
+  <div class="mobile-hw-cards">
+    {% for wallet in wallets %}
+    <div class="mobile-hw-card">
+      <div class="mobile-hw-card-header">
+        <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-hw-card-img">
+        <div class="mobile-hw-card-name">{{ wallet.title }}</div>
+      </div>
+      <div class="mobile-hw-card-details">
+        <div class="mobile-hw-detail-item">
+          <span class="mobile-hw-detail-label">Best For</span>
+          <span class="mobile-hw-detail-value">{{ wallet.hw_bestfor | default: wallet.wallet_bestfor | default: "—" }}</span>
         </div>
-        <div class="mobile-detail-item">
-          <span class="mobile-detail-label">Coins</span>
-          <span class="mobile-detail-value">{{ wallet.wallet_coins | default: "—" }}</span>
+        <div class="mobile-hw-detail-item">
+          <span class="mobile-hw-detail-label">Price</span>
+          <span class="mobile-hw-detail-value">{{ wallet.wallet_price | default: "—" }}</span>
         </div>
-        <div class="mobile-detail-item">
-          <span class="mobile-detail-label">Custody</span>
-          <span class="mobile-detail-value">{{ wallet.wallet_custody | default: "—" }}</span>
+        <div class="mobile-hw-detail-item">
+          <span class="mobile-hw-detail-label">Coins</span>
+          <span class="mobile-hw-detail-value">{{ wallet.wallet_coins | default: "—" }}</span>
+        </div>
+        <div class="mobile-hw-detail-item">
+          <span class="mobile-hw-detail-label">Open Source</span>
+          <span class="mobile-hw-detail-value">
+            {% if wallet.wallet_opensource == "Yes" %}
+              <span class="opensource-yes">✓ Yes</span>
+            {% elsif wallet.wallet_opensource == "Partial" %}
+              <span class="opensource-partial">Partial</span>
+            {% else %}
+              {{ wallet.wallet_opensource | default: "—" }}
+            {% endif %}
+          </span>
         </div>
       </div>
     </div>
@@ -1030,72 +1743,76 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   </div>
 </div>
 
-<h2>Wallet Details</h2>
+<h2 id="hardware-wallet-details">Wallet Details</h2>
 
-<div class="wallets-listing">
+<div class="hw-listing">
   {% for wallet in wallets %}
-  <div class="wallet-item">
-    <div class="wallet-header">
-      <a href="{{ wallet.link }}" target="_blank" class="wallet-image-wrapper" onclick="fathom.trackEvent('Click Offline Wallet'); fathom.trackEvent('Click Offline Wallet: {{ wallet.title }}');">
-        <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="wallet-image">
+  <div class="hw-item">
+    <div class="hw-header">
+      <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-image-wrapper" onclick="fathom.trackEvent('Click Hardware Wallet'); fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}');">
+        <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="hw-image">
       </a>
       
-      <div class="wallet-info">
-        <div class="wallet-title-row">
-          <a href="{{ wallet.link }}" target="_blank" class="wallet-title-link" onclick="fathom.trackEvent('Click Offline Wallet'); fathom.trackEvent('Click Offline Wallet: {{ wallet.title }}');">
-            <h2 class="wallet-title">{{ wallet.title }}</h2>
-          </a>
-          {% if wallet.wallet_type == "Hardware Wallet" %}
-            <span class="wallet-type-badge hardware">🔐 Hardware</span>
-          {% elsif wallet.wallet_type == "Steel Backup" %}
-            <span class="wallet-type-badge steel">🛡️ Steel</span>
-          {% elsif wallet.wallet_type == "Vault" %}
-            <span class="wallet-type-badge vault">🏦 Vault</span>
-          {% elsif wallet.wallet_type == "Custodial" %}
-            <span class="wallet-type-badge custodial">☁️ Custodial</span>
-          {% else %}
-            <span class="wallet-type-badge">{{ wallet.wallet_type | default: "Wallet" }}</span>
-          {% endif %}
+      <div class="hw-info">
+        {% if wallet.hw_bestfor or wallet.wallet_bestfor %}
+        <div class="hw-badges-row">
+          <span class="best-for-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#F59E0B" stroke="#F59E0B" stroke-width="1.5"/>
+            </svg>
+            Best for: {{ wallet.hw_bestfor | default: wallet.wallet_bestfor }}
+          </span>
+        </div>
+        {% endif %}
+        
+        <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-title-link" onclick="fathom.trackEvent('Click Hardware Wallet'); fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}');">
+          <h2 class="hw-title">{{ wallet.title }}</h2>
+        </a>
+        
+        <div class="hw-data-grid">
+          <div class="hw-data-item">
+            <div class="hw-data-label">Price</div>
+            <div class="hw-data-value">{{ wallet.wallet_price | default: "—" }}</div>
+          </div>
+          
+          <div class="hw-data-item">
+            <div class="hw-data-label">Coins Supported</div>
+            <div class="hw-data-value">{{ wallet.wallet_coins | default: "—" }}</div>
+          </div>
+          
+          <div class="hw-data-item">
+            <div class="hw-data-label">Custody</div>
+            <div class="hw-data-value">{{ wallet.wallet_custody | default: "—" }}</div>
+          </div>
+          
+          <div class="hw-data-item">
+            <div class="hw-data-label">Open Source</div>
+            <div class="hw-data-value">
+              {% if wallet.wallet_opensource == "Yes" %}
+                <span class="opensource-yes">✓ Yes</span>
+              {% elsif wallet.wallet_opensource == "Partial" %}
+                <span class="opensource-partial">Partial</span>
+              {% else %}
+                {{ wallet.wallet_opensource | default: "—" }}
+              {% endif %}
+            </div>
+          </div>
         </div>
         
-        <div class="wallet-data-grid">
-          <div class="wallet-data-item">
-            <div class="wallet-data-label">Price</div>
-            <div class="wallet-data-value">{{ wallet.wallet_price | default: "—" }}</div>
-          </div>
-          
-          <div class="wallet-data-item">
-            <div class="wallet-data-label">Coins Supported</div>
-            <div class="wallet-data-value">{{ wallet.wallet_coins | default: "—" }}</div>
-          </div>
-          
-          <div class="wallet-data-item">
-            <div class="wallet-data-label">Custody</div>
-            <div class="wallet-data-value">{{ wallet.wallet_custody | default: "—" }}</div>
-          </div>
-          
-          {% if wallet.wallet_bestfor %}
-          <div class="wallet-data-item">
-            <div class="wallet-data-label">Best For</div>
-            <div class="wallet-data-value">{{ wallet.wallet_bestfor }}</div>
-          </div>
-          {% endif %}
-        </div>
-        
-        <div class="wallet-actions">
-          <a href="{{ wallet.link }}" target="_blank" class="wallet-apply-button" onclick="fathom.trackEvent('Click Offline Wallet'); fathom.trackEvent('Click Offline Wallet: {{ wallet.title }}');">
+        <div class="hw-actions">
+          <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-apply-button" onclick="fathom.trackEvent('Click Hardware Wallet'); fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}');">
             GET {{ wallet.title | upcase }}
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-</div>
+        </div>
         
         {% if wallet.wallet_summary %}
-        <div class="wallet-breakdown-section">
-          <div class="wallet-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
-            <div class="wallet-breakdown-title">
-              <div class="wallet-breakdown-icon">
+        <div class="hw-breakdown-section">
+          <div class="hw-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="hw-breakdown-title">
+              <div class="hw-breakdown-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
                   <path d="M7 9h10M7 13h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -1103,53 +1820,53 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
               </div>
               Overview
             </div>
-            <svg class="wallet-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="hw-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <div class="wallet-breakdown-content">
-            <p class="wallet-summary-text">{{ wallet.wallet_summary }}</p>
+          <div class="hw-breakdown-content">
+            <p class="hw-summary-text">{{ wallet.wallet_summary }}</p>
           </div>
         </div>
         {% endif %}
         
         {% if wallet.wallet_pros %}
-        <div class="wallet-breakdown-section">
-          <div class="wallet-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
-            <div class="wallet-breakdown-title">
-              <div class="wallet-breakdown-icon">
+        <div class="hw-breakdown-section">
+          <div class="hw-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="hw-breakdown-title">
+              <div class="hw-breakdown-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
               Pros
             </div>
-            <svg class="wallet-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="hw-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <div class="wallet-breakdown-content">
+          <div class="hw-breakdown-content">
             {{ wallet.wallet_pros }}
           </div>
         </div>
         {% endif %}
         
         {% if wallet.wallet_cons %}
-        <div class="wallet-breakdown-section">
-          <div class="wallet-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
-            <div class="wallet-breakdown-title">
-              <div class="wallet-breakdown-icon">
+        <div class="hw-breakdown-section">
+          <div class="hw-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="hw-breakdown-title">
+              <div class="hw-breakdown-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
               Cons
             </div>
-            <svg class="wallet-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="hw-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <div class="wallet-breakdown-content wallet-cons-content">
+          <div class="hw-breakdown-content hw-cons-content">
             {{ wallet.wallet_cons }}
           </div>
         </div>
@@ -1160,161 +1877,377 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   {% endfor %}
 </div>
 {% else %}
-<p>No offline wallets available at this time.</p>
+<p>No hardware wallets available at this time.</p>
 {% endif %}
 
-<div class="methodology-section">
-  <h2 class="methodology-title">Our Methodology</h2>
-  <div class="methodology-content">
-    <p>We evaluated offline Bitcoin wallets based on security, ease of use, and value for money. Our goal is to provide a balanced overview of hardware wallets, steel backups, and custody solutions at various price points.</p>
+<!-- Integrations Section -->
+<div class="integrations-section" id="multisig-integrations">
+  <h2 class="integrations-title">Multisig Integrations</h2>
+  <p class="integrations-intro">Many hardware wallets integrate with multisig custody solutions for enhanced security. Here's which wallets work with the major providers:</p>
+  
+  <p class="expert-advice"><strong>Expert Advice:</strong> Bitcoin security expert Jameson Lopp, co-founder of Casa, recommends using multi-signature setups with hardware wallets from different manufacturers for significant holdings. Lopp states this eliminates single points of failure and provides redundancy if one device or company has security issues.</p>
+  
+  <div class="integrations-table-wrapper">
+    <table class="integrations-table">
+      <thead>
+        <tr>
+          <th>Provider</th>
+          <th>Trezor</th>
+          <th>Ledger</th>
+          <th>Coldcard</th>
+          <th>Other</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="integration-provider">
+              <img src="/tools/img/unchained.png" alt="Unchained" class="integration-provider-img">
+              <span>Unchained</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Safe 7</span>
+              <span class="integration-device"><span class="check">✓</span> Safe 5</span>
+              <span class="integration-device"><span class="check">✓</span> Safe 3</span>
+              <span class="integration-device"><span class="check">✓</span> Model T</span>
+              <span class="integration-device"><span class="check">✓</span> Model One</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Stax</span>
+              <span class="integration-device"><span class="check">✓</span> Flex</span>
+              <span class="integration-device"><span class="check">✓</span> Nano X</span>
+              <span class="integration-device"><span class="check">✓</span> Nano S Plus</span>
+              <span class="integration-device deprecated"><span class="check">✓</span> Nano S (legacy)</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Q</span>
+              <span class="integration-device"><span class="check">✓</span> Mk4</span>
+              <span class="integration-device deprecated"><span class="check">✓</span> Mk3/Mk2 (legacy)</span>
+            </div>
+          </td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="integration-provider">
+              <img src="/tools/img/casa.png" alt="Casa" class="integration-provider-img">
+              <span>Casa</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Safe 3</span>
+              <span class="integration-device"><span class="check">✓</span> Model T</span>
+              <span class="integration-device"><span class="check">✓</span> Model One</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> All models</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Coldcard</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Keystone</span>
+              <span class="integration-device"><span class="check">✓</span> Passport</span>
+              <span class="integration-device"><span class="check">✓</span> YubiKey</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Brand Lineup Section -->
+<div class="brand-lineup-section" id="hardware-wallet-brands">
+  <h2 class="brand-lineup-title">Hardware Wallet Brands & Devices</h2>
+  <p class="brand-lineup-intro">Each of the top brands sells multiple devices, so we've listed them here to help clear up any confusion.</p>
+  
+  <div class="brand-lineup-grid">
+    <!-- Trezor -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img src="/tools/img/trezor.png" alt="Trezor" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">Trezor</span>
+        <span class="brand-lineup-card-badge">5 devices</span>
+      </div>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">Safe 7 (newest)</span>
+          <span class="brand-device-price">$249</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Safe 5</span>
+          <span class="brand-device-price">$169</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Safe 3</span>
+          <span class="brand-device-price">$79</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Model T (legacy)</span>
+          <span class="brand-device-price">$219</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Model One (legacy)</span>
+          <span class="brand-device-price">$69</span>
+        </div>
+      </div>
+    </div>
     
-    <div class="methodology-grid">
-      <div class="methodology-item">
-        <div class="methodology-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#F7931A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <h3>Security First</h3>
-        <p>We prioritize wallets with proven security track records, open-source code where possible, and features like secure elements, air-gapped operation, and multisig support.</p>
+    <!-- Ledger -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img src="/tools/img/ledger.png" alt="Ledger" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">Ledger</span>
+        <span class="brand-lineup-card-badge">5 devices</span>
       </div>
-      
-      <div class="methodology-item">
-        <div class="methodology-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="10" stroke="#F7931A" stroke-width="2"/>
-            <path d="M12 6v6l4 2" stroke="#F7931A" stroke-width="2" stroke-linecap="round"/>
-          </svg>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">Stax (premium)</span>
+          <span class="brand-device-price">$399</span>
         </div>
-        <h3>Price Transparency</h3>
-        <p>We clearly list prices and ongoing costs so you can compare options. From $65 budget hardware wallets to $250/year vault services, we show the full range of what's available.</p>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Flex</span>
+          <span class="brand-device-price">$249</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Nano Gen5</span>
+          <span class="brand-device-price">$179</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Nano X</span>
+          <span class="brand-device-price">$149</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Nano S Plus</span>
+          <span class="brand-device-price">$79</span>
+        </div>
       </div>
-      
-      <div class="methodology-item">
-        <div class="methodology-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="3" width="18" height="18" rx="2" stroke="#F7931A" stroke-width="2"/>
-            <path d="M3 9h18M9 21V9" stroke="#F7931A" stroke-width="2"/>
-          </svg>
-        </div>
-        <h3>Balanced Coverage</h3>
-        <p>We include hardware wallets for signing, steel backups for seed phrase protection, and vault services for those wanting professional support — because a complete security setup often needs multiple tools.</p>
+    </div>
+    
+    <!-- Blockstream Jade -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img src="/tools/img/jade.png" alt="Blockstream Jade" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">Blockstream</span>
+        <span class="brand-lineup-card-badge">2 devices</span>
       </div>
-      
-      <div class="methodology-item">
-        <div class="methodology-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="#F7931A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M22 4L12 14.01l-3-3" stroke="#F7931A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">Jade Plus</span>
+          <span class="brand-device-price">$149</span>
         </div>
-        <h3>Real-World Testing</h3>
-        <p>We've personally used these products and evaluated their setup process, daily usability, and recovery procedures. We only recommend wallets we'd trust with our own Bitcoin.</p>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Jade Classic</span>
+          <span class="brand-device-price">$65</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Coldcard -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img src="/tools/img/coldcard.jpeg" alt="Coldcard" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">Coldcard</span>
+        <span class="brand-lineup-card-badge">2 devices</span>
+      </div>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">Q (full keyboard)</span>
+          <span class="brand-device-price">$219</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Mk4</span>
+          <span class="brand-device-price">$157</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- BitBox -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img src="/tools/img/bitbox.png" alt="BitBox" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">BitBox</span>
+        <span class="brand-lineup-card-badge">2 devices</span>
+      </div>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">BitBox02 Nova</span>
+          <span class="brand-device-price">$169</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">BitBox02</span>
+          <span class="brand-device-price">$149</span>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="faq-section">
-<h2>Frequently Asked Questions</h2>
+<!-- FAQ Section -->
+<style>
+.hw-faq-section {
+  max-width: 800px;
+  margin: 60px 0 40px 0;
+}
 
-  <div class="faq-item">
-    <div class="faq-question" onclick="this.parentElement.classList.toggle('expanded')">
-      What is cold storage vs a hot wallet?
-      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+.hw-faq-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 24px 0;
+}
+
+.hw-faq-item {
+  margin-bottom: 10px;
+}
+
+.hw-faq-question {
+  background: #232939;
+  padding: 15px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.hw-faq-question h3 {
+  margin: 0;
+  padding-right: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.hw-faq-question:hover {
+  background: #f2a900;
+}
+
+.hw-faq-question:hover h3 {
+  color: #000000;
+}
+
+.hw-faq-question::after {
+  content: '+';
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #ffffff;
+  transition: transform 0.3s ease;
+}
+
+.hw-faq-question:hover::after {
+  color: #000000;
+}
+
+.hw-faq-question.active::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.hw-faq-answer {
+  display: none;
+  padding: 15px;
+  border: 1px solid #e5e7eb;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  background: #f9fafb;
+}
+
+.hw-faq-answer p {
+  margin: 0;
+  color: #374151;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (prefers-color-scheme: dark) {
+  .hw-faq-title {
+    color: #f9fafb;
+  }
+  
+  .hw-faq-answer {
+    background: #1a1f2e;
+    border-color: #3a4255;
+  }
+  
+  .hw-faq-answer p {
+    color: #d1d5db;
+  }
+}
+</style>
+
+<div class="hw-faq-section">
+  <h2 class="hw-faq-title">Frequently Asked Questions</h2>
+  
+  <div class="hw-faq-item">
+    <div class="hw-faq-question">
+      <h3>What happens if my hardware wallet breaks?</h3>
     </div>
-    <div class="faq-answer">
-      <div class="faq-answer-content">
-        <p><strong>Hot wallet:</strong> A wallet connected to the internet (mobile apps, browser extensions, exchange accounts). Convenient for daily transactions but more vulnerable to hacks.</p>
-        <p><strong>Cold storage:</strong> Any wallet that keeps private keys completely offline. This includes hardware wallets, paper wallets, and steel backups. Much more secure for long-term holdings.</p>
-      </div>
+    <div class="hw-faq-answer">
+      <p>If your hardware wallet breaks, you can always restore it using a backup seed. Every hardware wallet, no matter which company, will make you create a backup when setting up your wallet.</p>
     </div>
   </div>
-  
-  <div class="faq-item">
-    <div class="faq-question" onclick="this.parentElement.classList.toggle('expanded')">
-      What happens if my hardware wallet company goes out of business?
-      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+
+  <div class="hw-faq-item">
+    <div class="hw-faq-question">
+      <h3>Can I recover my Bitcoin without the hardware wallet?</h3>
     </div>
-    <div class="faq-answer">
-      <div class="faq-answer-content">
-        <p>Your Bitcoin is safe! Hardware wallets use standard BIP39 seed phrases. If Trezor or Ledger shut down tomorrow, you could restore your wallet using any compatible software (like Electrum, Sparrow, or BlueWallet) with your 24-word seed phrase.</p>
-        <p>This is why backing up your seed phrase on steel is so important — it's your ultimate recovery tool.</p>
-      </div>
+    <div class="hw-faq-answer">
+      <p>Yes, you do not need to spend money on a new hardware wallet in order to recover your funds. Your seed phrase can be imported into any compatible wallet software or a new hardware wallet from any manufacturer.</p>
     </div>
   </div>
-  
-  <div class="faq-item">
-    <div class="faq-question" onclick="this.parentElement.classList.toggle('expanded')">
-      Do I need both a hardware wallet AND a steel backup?
-      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+
+  <div class="hw-faq-item">
+    <div class="hw-faq-question">
+      <h3>Is a hardware wallet better than a software wallet?</h3>
     </div>
-    <div class="faq-answer">
-      <div class="faq-answer-content">
-        <p><strong>Yes, we recommend both.</strong> A hardware wallet secures your daily signing operations, but the seed phrase is the master key to your funds.</p>
-        <p>If your hardware wallet is lost, stolen, or damaged, you can recover everything from your seed phrase. A steel backup protects that seed from fire, flood, and corrosion — threats that would destroy paper.</p>
-      </div>
-    </div>
-  </div>
-  
-  <div class="faq-item">
-    <div class="faq-question" onclick="this.parentElement.classList.toggle('expanded')">
-      What's the difference between self-custody and collaborative custody?
-      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <div class="faq-answer">
-      <div class="faq-answer-content">
-        <p><strong>Self-custody:</strong> You hold all the keys. Full control, full responsibility. If you lose your seed phrase, your Bitcoin is gone forever.</p>
-        <p><strong>Collaborative custody (multisig):</strong> Multiple keys are required to move funds (e.g., 2-of-3). Services like Unchained hold one key while you hold two. This provides recovery assistance without giving up control — you can always move your Bitcoin without their permission.</p>
-      </div>
-    </div>
-  </div>
-  
-  <div class="faq-item">
-    <div class="faq-question" onclick="this.parentElement.classList.toggle('expanded')">
-      Is it safe to use a custodial wallet like River?
-      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <div class="faq-answer">
-      <div class="faq-answer-content">
-        <p>Custodial wallets mean someone else holds your keys — "not your keys, not your coins." However, reputable custodians like River offer proof of reserves so you can verify they actually hold your Bitcoin.</p>
-        <p>Custodial options can be a good starting point for beginners not yet comfortable with self-custody. River specifically offers automatic withdrawals to self-custody, making it easy to transition when you're ready.</p>
-      </div>
-    </div>
-  </div>
-  
-  <div class="faq-item">
-    <div class="faq-question" onclick="this.parentElement.classList.toggle('expanded')">
-      Which hardware wallet is best for beginners?
-      <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <div class="faq-answer">
-      <div class="faq-answer-content">
-        <p>For most beginners, we recommend <strong>Trezor Safe 5</strong> or <strong>Blockstream Jade</strong>:</p>
-        <ul>
-          <li><strong>Trezor Safe 5</strong> ($169) — Beautiful touchscreen, intuitive setup, excellent documentation</li>
-          <li><strong>Blockstream Jade</strong> ($65) — Best value, fully open source, great for Bitcoin-only users</li>
-</ul>
-        <p>Both are open source and have strong track records. Jade is the budget pick; Trezor offers a more premium experience.</p>
-      </div>
+    <div class="hw-faq-answer">
+      <p>Better depends on what you need it for. Generally, experts say that hardware wallets offer better security. Software wallets can be easier to spend from, making them more convenient.</p>
     </div>
   </div>
 </div>
 
-<div class="wallet-disclaimer">
-  <p>Disclaimer: The information provided on this page is for informational purposes only and does not constitute financial or security advice. Hardware wallets and cold storage solutions involve technical complexity — always follow manufacturer instructions carefully and test your backup recovery process before storing significant funds. Prices and features may change without notice. We recommend purchasing hardware wallets directly from manufacturers to avoid tampered devices. Some links on this page may be affiliate links, which help support our research at no extra cost to you.</p>
+<script>
+document.querySelectorAll('.hw-faq-question').forEach(question => {
+  question.addEventListener('click', () => {
+    const answer = question.nextElementSibling;
+    const isOpen = answer.style.display === 'block';
+    
+    // Close all answers
+    document.querySelectorAll('.hw-faq-answer').forEach(a => {
+      a.style.display = 'none';
+    });
+    document.querySelectorAll('.hw-faq-question').forEach(q => {
+      q.classList.remove('active');
+    });
+    
+    // Open clicked answer if it was closed
+    if (!isOpen) {
+      answer.style.display = 'block';
+      question.classList.add('active');
+    }
+  });
+});
+</script>
+
+
+<div class="hw-disclaimer">
+  <p>Disclaimer: The information provided on this page is for informational purposes only and does not constitute financial advice. Hardware wallets involve technical complexity — always follow manufacturer instructions carefully and test your backup recovery process before storing significant funds. We recommend purchasing hardware wallets directly from manufacturers to avoid tampered devices. Some links on this page may be affiliate links, which help support our research at no extra cost to you.</p>
 </div>
 
 <script>
@@ -1323,8 +2256,8 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
     document.querySelectorAll('.tool-link').forEach(function(link) {
       link.addEventListener('click', function() {
         var title = link.getAttribute('title');
-        fathom.trackEvent('Click Offline Wallet');
-        fathom.trackEvent('Click Offline Wallet: ' + title);
+        fathom.trackEvent('Click Hardware Wallet');
+        fathom.trackEvent('Click Hardware Wallet: ' + title);
       });
     });
   });

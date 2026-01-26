@@ -90,4 +90,7 @@
 # BitBox vs Passport - redirected to brand comparison page
 /bitbox02-vs-passport-core/ /tools/bitbox-vs-passport/ 301
 
-/tools/compare-hardware-wallets/ /tools/hardware-wallets/ 301
+/compare-hardware-wallets/ /tools/hardware-wallets/ 301
+
+/hardware-wallets/ /tools/offline-wallets/ 301
+
