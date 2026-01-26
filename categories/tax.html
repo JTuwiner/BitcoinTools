@@ -973,4 +973,15 @@ document.querySelectorAll('.faq-question').forEach(question => {
     });
     document.getElementById('result').innerHTML = selectedSoftware.join('<br>');
   }
+
+  // Track tool-link clicks
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.tool-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        var title = link.getAttribute('title');
+        fathom.trackEvent('Click Tax Software');
+        fathom.trackEvent('Click Tax Software: ' + title);
+      });
+    });
+  });
 </script>
