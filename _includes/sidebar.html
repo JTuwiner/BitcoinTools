@@ -58,7 +58,11 @@
       {% for cat in catlist %}
       {% if cat.category %}
       <li>
+        {% if cat.title == "Exchanges" %}
+        <a title="{{ cat.title }}" class="sidebar-category" href="https://bitbo.io/buy/">
+        {% else %}
         <a title="{{ cat.title }}" class="sidebar-category" href="/tools{{ cat.permalink }}">
+        {% endif %}
           {% if cat.svgicon %}{{ cat.svgicon }}{% else %}<i class="fa-solid fa-{{ cat.icon }}"></i>{% endif %} {{ cat.title }}
         </a>
       </li>
