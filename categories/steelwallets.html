@@ -1236,3 +1236,16 @@ a.mobile-card-header .method-badge {
 <div class="steel-disclaimer">
   <p>Disclaimer: The information provided on this page is for informational purposes only and does not constitute financial advice. Steel wallets protect against physical damage but anyone who finds your backup can access your coins — store them securely. Prices and features may change without notice. Some links on this page may be affiliate links, which help support our research at no extra cost to you.</p>
 </div>
+
+<script>
+  // Track tool-link clicks
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.tool-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        var title = link.getAttribute('title');
+        fathom.trackEvent('Click Steel Wallet');
+        fathom.trackEvent('Click Steel Wallet: ' + title);
+      });
+    });
+  });
+</script>

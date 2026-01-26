@@ -1338,3 +1338,16 @@ a.mobile-card-header .custody-badge {
 <div class="wallet-disclaimer">
   <p>Disclaimer: The information provided on this page is for informational purposes only and does not constitute financial advice. Cryptocurrency wallets involve technical complexity and risks — always back up your seed phrase securely and understand the custody model before storing significant funds. Features and availability may change without notice. Some links on this page may be affiliate links, which help support our research at no extra cost to you.</p>
 </div>
+
+<script>
+  // Track tool-link clicks
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.tool-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        var title = link.getAttribute('title');
+        fathom.trackEvent('Click iOS Wallet');
+        fathom.trackEvent('Click iOS Wallet: ' + title);
+      });
+    });
+  });
+</script>
