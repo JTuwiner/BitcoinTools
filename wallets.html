@@ -60,8 +60,8 @@ full-width: yes
 .wallet-card:hover {
   border-color: #f2a900;
   background: #2a3142;
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(242, 169, 0, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(242, 169, 0, 0.15);
   text-decoration: none;
 }
 
@@ -80,7 +80,7 @@ full-width: yes
 .wallet-card:hover .wallet-card-icon {
   background: #f2a900;
   color: #000;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .wallet-card-icon svg {
@@ -215,18 +215,15 @@ full-width: yes
         </svg>
       </div>
       <h3 class="wallet-card-title">Hardware Wallets</h3>
-      <p class="wallet-card-desc">Physical devices that keep your Bitcoin keys offline and secure</p>
     </a>
     
     <a href="/tools/offline-wallets/" class="wallet-card">
       <div class="wallet-card-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="2" y="7" width="20" height="14" rx="2"/>
-          <path d="M16 3h4v4M22 3l-7 7"/>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 17a2 2 0 0 0 2-2a2 2 0 0 0-2-2a2 2 0 0 0-2 2a2 2 0 0 0 2 2m6-9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h1V6a5 5 0 0 1 5-5a5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"/>
         </svg>
       </div>
       <h3 class="wallet-card-title">Offline Wallets</h3>
-      <p class="wallet-card-desc">Air-gapped solutions for maximum security and privacy</p>
     </a>
     
     <a href="/tools/steel-wallets/" class="wallet-card">
@@ -238,7 +235,6 @@ full-width: yes
         </svg>
       </div>
       <h3 class="wallet-card-title">Steel Wallets</h3>
-      <p class="wallet-card-desc">Indestructible backup for your seed phrase recovery</p>
     </a>
   </div>
 </div>
@@ -254,7 +250,6 @@ full-width: yes
         </svg>
       </div>
       <h3 class="wallet-card-title">iOS Wallets</h3>
-      <p class="wallet-card-desc">Bitcoin wallets for iPhone and iPad</p>
     </a>
     
     <a href="/tools/android-wallets/" class="wallet-card">
@@ -264,7 +259,6 @@ full-width: yes
         </svg>
       </div>
       <h3 class="wallet-card-title">Android Wallets</h3>
-      <p class="wallet-card-desc">Bitcoin wallets for Android devices</p>
     </a>
     
     <a href="/tools/desktop-wallets/" class="wallet-card">
@@ -276,7 +270,6 @@ full-width: yes
         </svg>
       </div>
       <h3 class="wallet-card-title">Desktop Wallets</h3>
-      <p class="wallet-card-desc">Full-featured wallets for Windows, Mac & Linux</p>
     </a>
   </div>
 </div>
@@ -284,7 +277,10 @@ full-width: yes
 <!-- Wallet Comparisons Section -->
 <div class="wallet-hub-section">
   <h2 class="wallet-hub-section-title">Wallet Comparisons</h2>
-  <div class="comparisons-grid">
+  
+  <!-- Compare Within Brand -->
+  <h3 style="color: #9ca3af; font-size: 16px; font-weight: 600; margin: 0 auto 20px; max-width: 1000px; text-align: left;">Compare Models Within Brand</h3>
+  <div class="comparisons-grid" style="margin-bottom: 40px;">
     <a href="/tools/trezor-compare/" class="comparison-link">
       <span class="comparison-link-text">Compare Trezor Models</span>
       <span class="comparison-arrow">→</span>
@@ -294,7 +290,11 @@ full-width: yes
       <span class="comparison-link-text">Compare Ledger Models</span>
       <span class="comparison-arrow">→</span>
     </a>
-    
+  </div>
+  
+  <!-- Popular Comparisons -->
+  <h3 style="color: #9ca3af; font-size: 16px; font-weight: 600; margin: 0 auto 20px; max-width: 1000px; text-align: left;">Popular Brand Comparisons</h3>
+  <div class="comparisons-grid" style="margin-bottom: 40px;">
     <a href="/tools/trezor-vs-ledger/" class="comparison-link">
       <span class="comparison-link-text">Trezor vs Ledger</span>
       <span class="comparison-arrow">→</span>
@@ -324,7 +324,11 @@ full-width: yes
       <span class="comparison-link-text">Coldcard vs BitBox</span>
       <span class="comparison-arrow">→</span>
     </a>
-    
+  </div>
+  
+  <!-- More Comparisons -->
+  <h3 style="color: #9ca3af; font-size: 16px; font-weight: 600; margin: 0 auto 20px; max-width: 1000px; text-align: left;">More Comparisons</h3>
+  <div class="comparisons-grid">
     <a href="/tools/trezor-vs-jade/" class="comparison-link">
       <span class="comparison-link-text">Trezor vs Jade</span>
       <span class="comparison-arrow">→</span>
@@ -332,6 +336,11 @@ full-width: yes
     
     <a href="/tools/coldcard-vs-jade/" class="comparison-link">
       <span class="comparison-link-text">Coldcard vs Jade</span>
+      <span class="comparison-arrow">→</span>
+    </a>
+    
+    <a href="/tools/bitbox-vs-jade/" class="comparison-link">
+      <span class="comparison-link-text">BitBox vs Jade</span>
       <span class="comparison-arrow">→</span>
     </a>
     
@@ -367,11 +376,6 @@ full-width: yes
     
     <a href="/tools/bitbox-vs-bitkey/" class="comparison-link">
       <span class="comparison-link-text">BitBox vs Bitkey</span>
-      <span class="comparison-arrow">→</span>
-    </a>
-    
-    <a href="/tools/bitbox-vs-jade/" class="comparison-link">
-      <span class="comparison-link-text">BitBox vs Jade</span>
       <span class="comparison-arrow">→</span>
     </a>
   </div>
