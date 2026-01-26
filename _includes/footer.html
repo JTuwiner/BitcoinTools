@@ -35,41 +35,9 @@
 
 <script> 
 window.addEventListener('load', (event) => {
-  document.querySelectorAll('.helpful-link').forEach(item => {
-  item.addEventListener('click', event => {
-    fathom.trackEvent('Click Helpful Link');
-  });
-  });
-});
-
-window.addEventListener('load', (event) => {
-  document.querySelectorAll('.helpful-link-hash').forEach(item => {
-  item.addEventListener('click', event => {
-    fathom.trackEvent('Click Hash Calc Helpful Link');
-  });
-  });
-});
-
-window.addEventListener('load', (event) => {
-  document.querySelectorAll('.helpful-link-1').forEach(item => {
-  item.addEventListener('click', event => {
-    fathom.trackEvent('Click Satoshi Helpful Link');
-  });
-  });
-});
-
-window.addEventListener('load', (event) => {
   document.querySelectorAll('.fearad').forEach(item => {
   item.addEventListener('click', event => {
     fathom.trackEvent('Click Fear & Greed Top');
-  });
-  });
-});
-
-window.addEventListener('load', (event) => {
-  document.querySelectorAll('.bitbo-logo-nav-link').forEach(item => {
-  item.addEventListener('click', event => {
-    fathom.trackEvent('Click Bitbo Logo Nav');
   });
   });
 });
@@ -94,14 +62,6 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.bitbo-charts-link').forEach(item => {
   item.addEventListener('click', event => {
     fathom.trackEvent('Click Bitbo Charts Nav');
-  });
-  });
-});
-
-window.addEventListener('load', (event) => {
-  document.querySelectorAll('.treasuries-link').forEach(item => {
-  item.addEventListener('click', event => {
-    fathom.trackEvent('Click Treasuries Nav');
   });
   });
 });

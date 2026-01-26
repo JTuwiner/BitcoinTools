@@ -55,15 +55,6 @@ capture: yes
 
 
 <script>
-	
-	window.addEventListener('load', (event) => {
-	document.querySelectorAll('.view-live-chart').forEach(item => {
-		item.addEventListener('click', event => {
-			fathom.trackEvent('Click View Live Chart');
-			});
-		});
-	});
-	
 	function calculatePrice() {
 		const inputDate = document.getElementById('date').value;
 		if (!inputDate) {
