@@ -909,7 +909,7 @@ function updateMobileComparison() {
   <div class="card-item">
     <div class="card-header">
       <div class="card-image-wrapper">
-        <a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="card-image-link" onclick="fathom.trackEvent('Click Card: {{ card.title }}');">
+        <a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="card-image-link" onclick="fathom.trackEvent('Click Card'); fathom.trackEvent('Click Card: {{ card.title }}');">
           <img src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="card-image">
         </a>
         <div class="card-type-below-image">
@@ -938,7 +938,7 @@ function updateMobileComparison() {
         </div>
         {% endif %}
         
-        <h2 class="card-title"><a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="card-title-link" onclick="fathom.trackEvent('Click Card: {{ card.title }}');">{{ card.title }}</a></h2>
+        <h2 class="card-title"><a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="card-title-link" onclick="fathom.trackEvent('Click Card'); fathom.trackEvent('Click Card: {{ card.title }}');">{{ card.title }}</a></h2>
         
         {% if card.rating %}
         <div class="card-rating">
@@ -1022,7 +1022,7 @@ function updateMobileComparison() {
         </div>
         
         <div class="card-actions">
-          <a href="{{ card.link }}" target="_blank" class="apply-button" onclick="fathom.trackEvent('Click Card: {{ card.title }}');">
+          <a href="{{ card.link }}" target="_blank" class="apply-button" onclick="fathom.trackEvent('Click Card'); fathom.trackEvent('Click Card: {{ card.title }}');">
             APPLY NOW
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

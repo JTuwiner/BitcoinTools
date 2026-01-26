@@ -66,14 +66,6 @@ window.addEventListener('load', (event) => {
   });
 });
 
-window.addEventListener('load', (event) => {
-  document.querySelectorAll('.tool-link').forEach(item => {
-    item.addEventListener('click', event => {
-      let toolName = item.getAttribute('title');
-      fathom.trackEvent(`Click Tool: ${toolName}`);
-    });
-  });
-});
 
 
 </script>

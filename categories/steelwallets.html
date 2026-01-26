@@ -1007,7 +1007,7 @@ a.mobile-card-header .method-badge {
   {% for steel in steels %}
   <div class="steel-item">
     <div class="steel-header">
-      <a href="{{ steel.link }}" target="_blank" rel="nofollow noopener" class="steel-image-wrapper" onclick="fathom.trackEvent('Click Steel Wallet: {{ steel.title }}');">
+      <a href="{{ steel.link }}" target="_blank" rel="nofollow noopener" class="steel-image-wrapper" onclick="fathom.trackEvent('Click Steel Wallet'); fathom.trackEvent('Click Steel Wallet: {{ steel.title }}');">
         <img src="/tools/img/{{ steel.img }}" alt="{{ steel.title }}" class="steel-image">
       </a>
       
@@ -1023,7 +1023,7 @@ a.mobile-card-header .method-badge {
         </div>
         {% endif %}
         
-        <a href="{{ steel.link }}" target="_blank" rel="nofollow noopener" class="steel-title-link" onclick="fathom.trackEvent('Click Steel Wallet: {{ steel.title }}');">
+        <a href="{{ steel.link }}" target="_blank" rel="nofollow noopener" class="steel-title-link" onclick="fathom.trackEvent('Click Steel Wallet'); fathom.trackEvent('Click Steel Wallet: {{ steel.title }}');">
           <h3 class="steel-title">{{ steel.title }}</h3>
         </a>
         
@@ -1058,7 +1058,7 @@ a.mobile-card-header .method-badge {
     </div>
     
         <div class="steel-actions">
-          <a href="{{ steel.link }}" target="_blank" rel="nofollow noopener" class="steel-apply-button" onclick="fathom.trackEvent('Click Steel Wallet: {{ steel.title }}');">
+          <a href="{{ steel.link }}" target="_blank" rel="nofollow noopener" class="steel-apply-button" onclick="fathom.trackEvent('Click Steel Wallet'); fathom.trackEvent('Click Steel Wallet: {{ steel.title }}');">
             GET {{ steel.title | upcase | truncate: 20, "" }}
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

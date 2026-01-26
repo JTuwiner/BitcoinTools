@@ -1002,7 +1002,7 @@ function updateMobileWalletComparison() {
   {% for wallet in wallets %}
   <div class="wallet-item">
     <div class="wallet-header">
-      <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="wallet-image-wrapper" onclick="fathom.trackEvent('Click Android Wallet: {{ wallet.title }}');">
+      <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="wallet-image-wrapper" onclick="fathom.trackEvent('Click Android Wallet'); fathom.trackEvent('Click Android Wallet: {{ wallet.title }}');">
         <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="wallet-image">
       </a>
       
@@ -1018,7 +1018,7 @@ function updateMobileWalletComparison() {
         </div>
         {% endif %}
         
-        <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="wallet-title-link" onclick="fathom.trackEvent('Click Android Wallet: {{ wallet.title }}');">
+        <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="wallet-title-link" onclick="fathom.trackEvent('Click Android Wallet'); fathom.trackEvent('Click Android Wallet: {{ wallet.title }}');">
           <h2 class="wallet-title">{{ wallet.title }}</h2>
         </a>
         
@@ -1083,7 +1083,7 @@ function updateMobileWalletComparison() {
         </div>
         
         <div class="wallet-actions">
-          <a href="{{ wallet.link }}" target="_blank" class="wallet-download-button" onclick="fathom.trackEvent('Click Android Wallet: {{ wallet.title }}');">
+          <a href="{{ wallet.link }}" target="_blank" class="wallet-download-button" onclick="fathom.trackEvent('Click Android Wallet'); fathom.trackEvent('Click Android Wallet: {{ wallet.title }}');">
             DOWNLOAD
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

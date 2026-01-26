@@ -1750,7 +1750,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   {% for wallet in wallets %}
   <div class="hw-item">
     <div class="hw-header">
-      <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-image-wrapper" onclick="fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}');">
+      <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-image-wrapper" onclick="fathom.trackEvent('Click Hardware Wallet'); fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}');">
         <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="hw-image">
       </a>
       
@@ -1766,7 +1766,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
         </div>
         {% endif %}
         
-        <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-title-link" onclick="fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}');">
+        <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-title-link" onclick="fathom.trackEvent('Click Hardware Wallet'); fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}');">
           <h2 class="hw-title">{{ wallet.title }}</h2>
         </a>
         
@@ -1801,7 +1801,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
         </div>
         
         <div class="hw-actions">
-          <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-apply-button" onclick="fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}');">
+          <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-apply-button" onclick="fathom.trackEvent('Click Hardware Wallet'); fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}');">
             GET {{ wallet.title | upcase }}
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
