@@ -62,13 +62,6 @@ layout: base
     text-align: center;
   }
   
-  .brand-card-rating {
-    margin-bottom: 15px;
-  }
-  
-  .brand-card-rating .item-rating {
-    margin: 0;
-  }
   
   .brand-card-select-wrapper {
     width: 100%;
@@ -461,16 +454,6 @@ const quantumSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="2
 const waterSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="currentColor" d="M9.882 9.093c-.511 4.115-3.121 4.847-3.121 7.708C6.761 18.567 8.244 20 10 20s3.238-1.434 3.238-3.199c0-2.861-2.61-3.593-3.121-7.708c-.016-.123-.219-.123-.235 0m-5.999-9C3.372 4.208.762 4.939.762 7.801C.762 9.566 2.244 11 4 11s3.238-1.434 3.238-3.199c0-2.861-2.61-3.593-3.121-7.708c-.015-.123-.219-.123-.234 0m12 0c-.511 4.115-3.121 4.847-3.121 7.708C12.762 9.566 14.244 11 16 11s3.238-1.434 3.238-3.199c0-2.861-2.61-3.593-3.121-7.708c-.016-.123-.219-.123-.234 0"/></svg>`;
 const batterySvg = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M16 20H8V6h8m.67-2H15V2H9v2H7.33A1.33 1.33 0 0 0 6 5.33v15.34c0 .73.6 1.33 1.33 1.33h9.34c.73 0 1.33-.6 1.33-1.33V5.33C18 4.6 17.4 4 16.67 4"/></svg>`;
 
-function generateRatingHtml(rating) {
-  if (rating === 4) {
-    return `<div class="item-rating"><img src="https://buybitcoinworldwide.com/pages/img/star-rating-four.svg" role="presentation" /></div>`;
-  } else if (rating === 5) {
-    return `<div class="item-rating"><img src="https://buybitcoinworldwide.com/pages/img/star-rating-five.svg" role="presentation" /></div>`;
-  } else if (rating === 3) {
-    return `<div class="item-rating"><img src="https://buybitcoinworldwide.com/pages/img/star-rating-three.svg" role="presentation" /></div>`;
-  }
-  return `<div class="item-rating"></div>`;
-}
 
 function generatePlatformsList(platforms) {
   if (!platforms || platforms.length === 0) return '';
@@ -516,7 +499,6 @@ function updateModels() {
   // Update combined header cards
   document.getElementById('brand1-card-img').src = `/tools/img/${w1.img}`;
   document.getElementById('brand1-card-name').textContent = w1.title;
-  document.getElementById('brand1-card-rating').innerHTML = generateRatingHtml(w1.rating);
   
   // Update brand1 CTA link
   const brand1CtaLink = document.getElementById('brand1-cta-link');
@@ -530,7 +512,6 @@ function updateModels() {
   
   document.getElementById('brand2-card-img').src = `/tools/img/${w2.img}`;
   document.getElementById('brand2-card-name').textContent = w2.title;
-  document.getElementById('brand2-card-rating').innerHTML = generateRatingHtml(w2.rating);
   
   // Update brand2 CTA link
   const brand2CtaLink = document.getElementById('brand2-cta-link');
@@ -737,9 +718,6 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="brand-card">
         <img src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}" class="brand-card-img" id="brand1-card-img">
         <div class="brand-card-name" id="brand1-card-name">{{ exchange1_page.title }}</div>
-        <div class="brand-card-rating" id="brand1-card-rating">
-          {% include item-rating.html rating=exchange1_page.rating %}
-        </div>
         {% if brand1_models.size > 1 %}
         <div class="brand-card-select-wrapper">
           <label class="brand-card-select-label" for="brand1-model">Change {{ page.brand1 }} Model</label>
@@ -767,9 +745,6 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="brand-card">
         <img src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}" class="brand-card-img" id="brand2-card-img">
         <div class="brand-card-name" id="brand2-card-name">{{ exchange2_page.title }}</div>
-        <div class="brand-card-rating" id="brand2-card-rating">
-          {% include item-rating.html rating=exchange2_page.rating %}
-        </div>
         {% if brand2_models.size > 1 %}
         <div class="brand-card-select-wrapper">
           <label class="brand-card-select-label" for="brand2-model">Change {{ page.brand2 }} Model</label>
