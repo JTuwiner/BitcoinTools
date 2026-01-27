@@ -17,6 +17,9 @@ layout: base
           {% include item-rating.html rating=exchange1_page.rating %}
           <div class="header-exchange-label">Overall Rating</div>
         </div>
+        {% if exchange1_page.review_url %}
+        <a href="{{ exchange1_page.review_url }}" class="vs-review-link">Read Full Review</a>
+        {% endif %}
       </div>
       <div class="exchange-card">
         <div class="exchange-card-top">
@@ -29,6 +32,9 @@ layout: base
           {% include item-rating.html rating=exchange2_page.rating %}
           <div class="header-exchange-label">Overall Rating</div>
         </div>
+        {% if exchange2_page.review_url %}
+        <a href="{{ exchange2_page.review_url }}" class="vs-review-link">Read Full Review</a>
+        {% endif %}
       </div>
     </div>
 
@@ -123,6 +129,26 @@ layout: base
       #sticky-cta a:hover {
         background: #000;
         color: #f2a900 !important;
+      }
+
+      .vs-review-link {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 8px 16px;
+        background: transparent;
+        color: #f2a900 !important;
+        border: 2px solid #f2a900;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 13px;
+        transition: all 0.2s;
+      }
+
+      .vs-review-link:hover {
+        background: #f2a900;
+        color: black !important;
+        text-decoration: none;
       }
     </style>
 
