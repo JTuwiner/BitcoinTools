@@ -13,12 +13,10 @@ layout: base
           </div>
           <div class="header-exchange-name">{{ exchange1_page.title }}</div>
         </div>
-        <div class="exchange-card-bottom">
-          {% include item-rating.html rating=exchange1_page.rating %}
-          <div class="header-exchange-label">Overall Rating</div>
-        </div>
         {% if exchange1_page.review_url %}
-        <a href="{{ exchange1_page.review_url }}" class="vs-review-link">Read Full Review</a>
+        <div class="vs-review-link-wrapper">
+          <a href="{{ exchange1_page.review_url }}" class="vs-review-link">Read Full Review</a>
+        </div>
         {% endif %}
       </div>
       <div class="exchange-card">
@@ -28,12 +26,10 @@ layout: base
           </div>
           <div class="header-exchange-name">{{ exchange2_page.title }}</div>
         </div>
-        <div class="exchange-card-bottom">
-          {% include item-rating.html rating=exchange2_page.rating %}
-          <div class="header-exchange-label">Overall Rating</div>
-        </div>
         {% if exchange2_page.review_url %}
-        <a href="{{ exchange2_page.review_url }}" class="vs-review-link">Read Full Review</a>
+        <div class="vs-review-link-wrapper">
+          <a href="{{ exchange2_page.review_url }}" class="vs-review-link">Read Full Review</a>
+        </div>
         {% endif %}
       </div>
     </div>
@@ -131,9 +127,13 @@ layout: base
         color: #f2a900 !important;
       }
 
+      .vs-review-link-wrapper {
+        text-align: center;
+        margin-top: 12px;
+      }
+
       .vs-review-link {
         display: inline-block;
-        margin-top: 12px;
         padding: 8px 16px;
         background: transparent;
         color: #f2a900 !important;
