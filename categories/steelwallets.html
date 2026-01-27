@@ -421,6 +421,27 @@ a.mobile-card-header .method-badge {
   color: white !important;
 }
 
+.steel-review-link {
+  background: transparent;
+  color: #f2a900 !important;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  border: 2px solid #f2a900;
+}
+
+.steel-review-link:hover {
+  background: #f2a900;
+  color: black !important;
+  text-decoration: none;
+}
+
 .steel-breakdown-section {
   margin-top: 12px;
   border-top: 1px solid #e5e7eb;
@@ -854,6 +875,16 @@ a.mobile-card-header .method-badge {
   .takeaway-box li {
     color: #93c5fd;
   }
+  
+  .steel-review-link {
+    color: #f2a900 !important;
+    border-color: #f2a900;
+  }
+  
+  .steel-review-link:hover {
+    background: #f2a900;
+    color: black !important;
+  }
 }
 </style>
 
@@ -1064,6 +1095,14 @@ a.mobile-card-header .method-badge {
               <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
+          {% if steel.review_url %}
+          <a href="{{ steel.review_url }}" class="steel-review-link" onclick="fathom.trackEvent('Click Steel Review'); fathom.trackEvent('Click Steel Review: {{ steel.title }}');">
+            Read Review
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          {% endif %}
 </div>
 
         {% if steel.desc %}
