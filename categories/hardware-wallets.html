@@ -1606,7 +1606,7 @@ body .tool img {
           <th>Best For</th>
           <th>Price</th>
           <th>Coins</th>
-          <th>Open Source</th>
+          <th>Screen</th>
         </tr>
       </thead>
       <tbody>
@@ -1621,15 +1621,7 @@ body .tool img {
           <td>{{ wallet.hw_bestfor | default: wallet.wallet_bestfor | default: "—" }}</td>
           <td>{{ wallet.wallet_price | default: "—" }}</td>
           <td>{{ wallet.wallet_coins | default: "—" }}</td>
-          <td>
-            {% if wallet.wallet_opensource == "Yes" %}
-              <span class="opensource-yes">✓ Yes</span>
-            {% elsif wallet.wallet_opensource == "Partial" %}
-              <span class="opensource-partial">Partial</span>
-            {% else %}
-              <span>{{ wallet.wallet_opensource | default: "—" }}</span>
-            {% endif %}
-          </td>
+          <td>{{ wallet.wallet_screen | default: "—" }}</td>
         </tr>
         {% endfor %}
       </tbody>
@@ -1801,16 +1793,8 @@ body .tool img {
           <span class="mobile-hw-detail-value">{{ wallet.wallet_coins | default: "—" }}</span>
         </div>
         <div class="mobile-hw-detail-item">
-          <span class="mobile-hw-detail-label">Open Source</span>
-          <span class="mobile-hw-detail-value">
-            {% if wallet.wallet_opensource == "Yes" %}
-              <span class="opensource-yes">✓ Yes</span>
-            {% elsif wallet.wallet_opensource == "Partial" %}
-              <span class="opensource-partial">Partial</span>
-            {% else %}
-              {{ wallet.wallet_opensource | default: "—" }}
-            {% endif %}
-          </span>
+          <span class="mobile-hw-detail-label">Screen</span>
+          <span class="mobile-hw-detail-value">{{ wallet.wallet_screen | default: "—" }}</span>
         </div>
       </div>
     </div>
