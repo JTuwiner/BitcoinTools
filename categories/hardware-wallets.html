@@ -8,6 +8,15 @@ seotitle: 7 Best Bitcoin Hardware Wallets [2026]
 subdesc: Secure your Bitcoin offline with a hardware wallet. Your keys, your coins.
 icon: lock
 svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path fill="currentColor" d="M216 40H40a16 16 0 0 0-16 16v136a16 16 0 0 0 16 16h16v16a8 8 0 0 0 16 0v-16h112v16a8 8 0 0 0 16 0v-16h16a16 16 0 0 0 16-16V56a16 16 0 0 0-16-16m-8 96h-28.91a36 36 0 1 1 0-16H208a8 8 0 0 1 0 16m-44-8a20 20 0 1 1-20-20a20 20 0 0 1 20 20"/></svg>'
+sidebar_toc:
+  - id: compare-hardware-wallets
+    title: Compare Hardware Wallets
+  - id: hardware-wallet-details
+    title: Hardware Wallet Details
+  - id: multisig-integrations
+    title: Multisig Integrations
+  - id: hardware-wallet-brands
+    title: Hardware Wallet Brands & Devices
 ---
 
 {% assign wallets = site.pages | where: "cat", "Hardware Wallets" | sort: "sort" %}
@@ -77,54 +86,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 .toc-box nav ul li a:hover {
   color: #f2a900;
   text-decoration: underline;
-}
-
-/* Sticky Sidebar Layout */
-.page-layout {
-  display: flex;
-  gap: 40px;
-  max-width: 1400px;
-}
-
-.sidebar {
-  width: 280px;
-  flex-shrink: 0;
-}
-
-.sidebar .toc-box {
-  max-width: 100%;
-}
-
-.main-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.toc-box.sticky {
-  position: fixed;
-  top: 20px;
-  width: 260px;
-}
-
-.toc-box.sticky-bottom {
-  position: absolute;
-  bottom: 0;
-  top: auto;
-  width: 260px;
-}
-
-@media (max-width: 1024px) {
-  .page-layout {
-    flex-direction: column;
-  }
-  .sidebar {
-    width: 100%;
-  }
-  .toc-box.sticky,
-  .toc-box.sticky-bottom {
-    position: static;
-    width: 100%;
-  }
 }
 
 @media (max-width: 768px) {
@@ -1543,24 +1504,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 
 <br><br>
 
-<div class="page-layout">
-
-<div class="sidebar" id="toc-sidebar">
-<div class="toc-box" id="toc-box">
-    <div class="toc-box-label">Table Of Contents</div>
-    <nav>
-        <ul>
-            <li><a href="#compare-hardware-wallets">Compare Hardware Wallets</a></li>
-            <li><a href="#hardware-wallet-details">Hardware Wallet Details</a></li>
-            <li><a href="#multisig-integrations">Multisig Integrations</a></li>
-            <li><a href="#hardware-wallet-brands">Hardware Wallet Brands & Devices</a></li>
-        </ul>
-    </nav>
-</div>
-</div>
-
-<div class="main-content">
-
 <div class="hw-intro">
 
   <p>A hardware wallet keeps your Bitcoin private keys offline on a dedicated device, protecting them from hackers and malware. It's the gold standard for securing any significant Bitcoin holdings.</p>
@@ -2363,9 +2306,6 @@ document.querySelectorAll('.hw-faq-question').forEach(question => {
 });
 </script>
 
-</div><!-- end .main-content -->
-</div><!-- end .page-layout -->
-
 <div class="hw-disclaimer">
   <p>Disclaimer: The information provided on this page is for informational purposes only and does not constitute financial advice. Hardware wallets involve technical complexity — always follow manufacturer instructions carefully and test your backup recovery process before storing significant funds. We recommend purchasing hardware wallets directly from manufacturers to avoid tampered devices. Some links on this page may be affiliate links, which help support our research at no extra cost to you.</p>
 </div>
@@ -2380,60 +2320,5 @@ document.querySelectorAll('.hw-faq-question').forEach(question => {
         fathom.trackEvent('Click Hardware Wallet: ' + title);
       });
     });
-  });
-
-  // Sticky TOC sidebar
-  document.addEventListener('DOMContentLoaded', function() {
-    const tocBox = document.getElementById('toc-box');
-    const sidebar = document.getElementById('toc-sidebar');
-    const pageLayout = document.querySelector('.page-layout');
-    
-    if (!tocBox || !sidebar || !pageLayout) return;
-    
-    let tocOriginalTop = null;
-    let isDesktop = window.innerWidth > 1024;
-    
-    function updateTocPosition() {
-      if (!isDesktop) {
-        tocBox.classList.remove('sticky', 'sticky-bottom');
-        return;
-      }
-      
-      const sidebarRect = sidebar.getBoundingClientRect();
-      const pageLayoutRect = pageLayout.getBoundingClientRect();
-      const tocHeight = tocBox.offsetHeight;
-      
-      // Calculate when to start sticking (when sidebar top goes above viewport)
-      if (tocOriginalTop === null) {
-        tocOriginalTop = sidebar.offsetTop;
-      }
-      
-      const scrollY = window.scrollY;
-      const startSticky = tocOriginalTop - 20;
-      const stopSticky = pageLayout.offsetTop + pageLayout.offsetHeight - tocHeight - 40;
-      
-      if (scrollY >= startSticky && scrollY < stopSticky) {
-        tocBox.classList.add('sticky');
-        tocBox.classList.remove('sticky-bottom');
-        sidebar.style.position = 'relative';
-      } else if (scrollY >= stopSticky) {
-        tocBox.classList.remove('sticky');
-        tocBox.classList.add('sticky-bottom');
-        sidebar.style.position = 'relative';
-      } else {
-        tocBox.classList.remove('sticky', 'sticky-bottom');
-        sidebar.style.position = 'static';
-      }
-    }
-    
-    function handleResize() {
-      isDesktop = window.innerWidth > 1024;
-      tocOriginalTop = null;
-      updateTocPosition();
-    }
-    
-    window.addEventListener('scroll', updateTocPosition);
-    window.addEventListener('resize', handleResize);
-    updateTocPosition();
   });
 </script>
