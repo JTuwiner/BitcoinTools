@@ -2,11 +2,11 @@
    class="{% if tool.class %}{{ tool.class }} {% endif %}tool tool-link" 
    title="{{ tool.title }}" 
    href="{{ tool.link }}"
-   {% if tool.btc_only_img %}data-btc-img="/img/{{ tool.btc_only_img }}"{% endif %}
+   {% if tool.btc_only_img %}data-btc-img="/tools/img/{{ tool.btc_only_img }}"{% endif %}
    {% if tool.btc_only_link %}data-btc-link="{{ tool.btc_only_link }}"{% endif %}
-   data-default-img="/img/{{ tool.img }}"
+   data-default-img="/tools/img/{{ tool.img }}"
    data-default-link="{{ tool.link }}">
-     <img src="/img/{{ tool.img }}" alt="{{ tool.title }}">
+     <img src="/tools/img/{{ tool.img }}" alt="{{ tool.title }}">
      <div class="tool-info">
          <h3>{{ tool.title }}</h3>
          <p>{{ tool.desc }}</p>
