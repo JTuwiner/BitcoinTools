@@ -52,7 +52,7 @@
   <header class="sidebar-header {% if page.home %}homepage{% endif %}" id="sidebarHeader">
     
     {% if page.sidebar_toc %}
-    <div class="sidebar-toc" id="sidebar-toc" style="display: none;">
+    <div class="sidebar-toc" id="sidebar-toc" style="display: none; visibility: visible !important; opacity: 1 !important;">
       <h3>Table of Contents</h3>
       <ul class="sidebar-toc-list">
         {% for item in page.sidebar_toc %}
@@ -78,6 +78,8 @@
           
           if (scrollPercent >= 15 && isDesktop) {
             sidebarToc.style.display = 'block';
+            sidebarToc.style.visibility = 'visible';
+            console.log('TOC should be visible now');
             if (inlineToc) inlineToc.style.display = 'none';
           } else {
             sidebarToc.style.display = 'none';
