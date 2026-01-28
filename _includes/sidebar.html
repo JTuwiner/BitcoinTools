@@ -80,10 +80,16 @@
             sidebarToc.style.display = 'block';
             sidebarToc.style.visibility = 'visible';
             console.log('TOC should be visible now');
-            if (inlineToc) inlineToc.style.display = 'none';
+            if (inlineToc) {
+              inlineToc.style.visibility = 'hidden';
+              inlineToc.style.opacity = '0';
+            }
           } else {
             sidebarToc.style.display = 'none';
-            if (inlineToc) inlineToc.style.display = 'block';
+            if (inlineToc) {
+              inlineToc.style.visibility = 'visible';
+              inlineToc.style.opacity = '1';
+            }
           }
         }
         
@@ -168,6 +174,11 @@
    .sidebar-toc-list li a:hover {
      color: #f2a900 !important;
      text-decoration: underline;
+   }
+
+   /* Inline TOC transition - prevents content jump */
+   #inline-toc {
+     transition: opacity 0.2s ease, visibility 0.2s ease;
    }
 
    .sidebar-list {

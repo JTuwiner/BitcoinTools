@@ -2396,6 +2396,9 @@ document.querySelectorAll('.hw-faq-question').forEach(question => {
     if (btcToggle) {
       btcToggle.addEventListener('change', function() {
         var isChecked = this.checked;
+        if (isChecked) {
+          fathom.trackEvent('Bitcoin-only Toggle Enabled');
+        }
         document.querySelectorAll('.tool-link').forEach(function(link) {
           var img = link.querySelector('img');
           var titleEl = link.querySelector('h3');
