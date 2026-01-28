@@ -583,6 +583,31 @@ a.mobile-card-header .method-badge {
   color: #374151;
 }
 
+.quick-info-pros {
+  list-style: none;
+  padding-left: 0;
+  margin: 20px 0;
+}
+
+.quick-info-pros li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  background: #f9fafb;
+  border-radius: 6px;
+  color: #374151;
+  font-weight: 500;
+}
+
+.quick-info-pros li::before {
+  content: "✓";
+  color: #10b981;
+  font-weight: bold;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
 .backup-comparison-table {
   width: 100%;
   border-collapse: collapse;
@@ -884,6 +909,20 @@ a.mobile-card-header .method-badge {
   .steel-review-link:hover {
     background: #f2a900;
     color: black !important;
+  }
+  
+  .steel-intro-highlight {
+    background: linear-gradient(135deg, #422006 0%, #78350f 100%);
+    border-color: #f2a900;
+  }
+  
+  .steel-intro-highlight p {
+    color: #FDE68A;
+  }
+  
+  .quick-info-pros li {
+    color: #d1d5db;
+    background: #1a1f2e;
   }
 }
 </style>
