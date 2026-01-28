@@ -52,7 +52,7 @@
   <header class="sidebar-header {% if page.home %}homepage{% endif %}" id="sidebarHeader">
     
     {% if page.sidebar_toc %}
-    <div class="sidebar-toc">
+    <div class="sidebar-toc" id="sidebar-toc" style="display: none;">
       <h3>Table of Contents</h3>
       <ul class="sidebar-toc-list">
         {% for item in page.sidebar_toc %}
@@ -60,6 +60,30 @@
         {% endfor %}
       </ul>
     </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const sidebarToc = document.getElementById('sidebar-toc');
+        const inlineToc = document.getElementById('inline-toc');
+        if (!sidebarToc) return;
+        
+        function updateTocVisibility() {
+          const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+          const isDesktop = window.innerWidth > 768;
+          
+          if (scrollPercent >= 15 && isDesktop) {
+            sidebarToc.style.display = 'block';
+            if (inlineToc) inlineToc.style.display = 'none';
+          } else {
+            sidebarToc.style.display = 'none';
+            if (inlineToc) inlineToc.style.display = 'block';
+          }
+        }
+        
+        window.addEventListener('scroll', updateTocVisibility);
+        window.addEventListener('resize', updateTocVisibility);
+        updateTocVisibility();
+      });
+    </script>
     {% endif %}
     
     <h2>Tools Categories</h2>
