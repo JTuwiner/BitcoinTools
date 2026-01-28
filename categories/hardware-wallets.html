@@ -1504,6 +1504,58 @@ body .tool img {
     color: #000;
   }
 }
+
+/* Bitcoin-only Toggle */
+.btc-only-toggle-wrapper {
+  margin-bottom: 24px;
+  margin-top: -10px;
+}
+
+.btc-only-toggle {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 12px;
+}
+
+.btc-only-toggle input {
+  display: none;
+}
+
+.toggle-slider {
+  width: 48px;
+  height: 26px;
+  background: #3a4255;
+  border-radius: 13px;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.toggle-slider::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.2s;
+}
+
+.btc-only-toggle input:checked + .toggle-slider {
+  background: #f2a900;
+}
+
+.btc-only-toggle input:checked + .toggle-slider::after {
+  transform: translateX(22px);
+}
+
+.toggle-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e5e7eb;
+}
 </style>
 
 <br><br>
@@ -2336,5 +2388,39 @@ document.querySelectorAll('.hw-faq-question').forEach(question => {
         fathom.trackEvent('Click Hardware Wallet: ' + title);
       });
     });
+    
+    // Move Bitcoin-only toggle before tools-container
+    var toggle = document.getElementById('btc-only-toggle-wrapper');
+    var toolsContainer = document.querySelector('.tools-container');
+    if (toggle && toolsContainer) {
+      toolsContainer.parentNode.insertBefore(toggle, toolsContainer);
+      toggle.style.display = 'block';
+    }
+    
+    // Bitcoin-only toggle functionality
+    var btcToggle = document.getElementById('btcOnlyToggle');
+    if (btcToggle) {
+      btcToggle.addEventListener('change', function() {
+        var isChecked = this.checked;
+        document.querySelectorAll('.tool-link').forEach(function(link) {
+          var img = link.querySelector('img');
+          if (isChecked) {
+            if (link.dataset.btcImg) img.src = link.dataset.btcImg;
+            if (link.dataset.btcLink) link.href = link.dataset.btcLink;
+          } else {
+            if (link.dataset.defaultImg) img.src = link.dataset.defaultImg;
+            if (link.dataset.defaultLink) link.href = link.dataset.defaultLink;
+          }
+        });
+      });
+    }
   });
 </script>
+
+<div id="btc-only-toggle-wrapper" class="btc-only-toggle-wrapper" style="display: none;">
+  <label class="btc-only-toggle">
+    <input type="checkbox" id="btcOnlyToggle">
+    <span class="toggle-slider"></span>
+    <span class="toggle-label">Show Bitcoin-only versions</span>
+  </label>
+</div>
