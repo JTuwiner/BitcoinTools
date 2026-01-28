@@ -79,6 +79,54 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="26.67" height="32" view
   text-decoration: underline;
 }
 
+/* Sticky Sidebar Layout */
+.page-layout {
+  display: flex;
+  gap: 40px;
+  max-width: 1400px;
+}
+
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.sidebar .toc-box {
+  max-width: 100%;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.toc-box.sticky {
+  position: fixed;
+  top: 20px;
+  width: 260px;
+}
+
+.toc-box.sticky-bottom {
+  position: absolute;
+  bottom: 0;
+  top: auto;
+  width: 260px;
+}
+
+@media (max-width: 1024px) {
+  .page-layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+  }
+  .toc-box.sticky,
+  .toc-box.sticky-bottom {
+    position: static;
+    width: 100%;
+  }
+}
+
 .comparison-table-wrapper {
   margin-bottom: 40px;
   max-width: 100%;
@@ -929,9 +977,10 @@ a.mobile-card-header .method-badge {
 
 <br><br>
 
-<div class="steel-intro">
+<div class="page-layout">
 
-<div class="toc-box">
+<div class="sidebar" id="toc-sidebar">
+<div class="toc-box" id="toc-box">
     <div class="toc-box-label">Table Of Contents</div>
     <nav>
         <ul>
@@ -945,6 +994,11 @@ a.mobile-card-header .method-badge {
         </ul>
     </nav>
 </div>
+</div>
+
+<div class="main-content">
+
+<div class="steel-intro">
 
 <p>Steel wallets have become the standard for crypto seed storage security. If you are storing your own Bitcoin or crypto seed phrase, a steel/metal wallet is a must-have.</p>
 
@@ -1311,6 +1365,9 @@ a.mobile-card-header .method-badge {
 <p>These were extreme tests. Most steel wallets will be good enough for most holders.</p>
 </div>
 
+</div><!-- end .main-content -->
+</div><!-- end .page-layout -->
+
 <div class="steel-disclaimer">
   <p>Disclaimer: The information provided on this page is for informational purposes only and does not constitute financial advice. Steel wallets protect against physical damage but anyone who finds your backup can access your coins — store them securely. Prices and features may change without notice. Some links on this page may be affiliate links, which help support our research at no extra cost to you.</p>
 </div>
@@ -1325,5 +1382,60 @@ a.mobile-card-header .method-badge {
         fathom.trackEvent('Click Steel Wallet: ' + title);
       });
     });
+  });
+
+  // Sticky TOC sidebar
+  document.addEventListener('DOMContentLoaded', function() {
+    const tocBox = document.getElementById('toc-box');
+    const sidebar = document.getElementById('toc-sidebar');
+    const pageLayout = document.querySelector('.page-layout');
+    
+    if (!tocBox || !sidebar || !pageLayout) return;
+    
+    let tocOriginalTop = null;
+    let isDesktop = window.innerWidth > 1024;
+    
+    function updateTocPosition() {
+      if (!isDesktop) {
+        tocBox.classList.remove('sticky', 'sticky-bottom');
+        return;
+      }
+      
+      const sidebarRect = sidebar.getBoundingClientRect();
+      const pageLayoutRect = pageLayout.getBoundingClientRect();
+      const tocHeight = tocBox.offsetHeight;
+      
+      // Calculate when to start sticking (when sidebar top goes above viewport)
+      if (tocOriginalTop === null) {
+        tocOriginalTop = sidebar.offsetTop;
+      }
+      
+      const scrollY = window.scrollY;
+      const startSticky = tocOriginalTop - 20;
+      const stopSticky = pageLayout.offsetTop + pageLayout.offsetHeight - tocHeight - 40;
+      
+      if (scrollY >= startSticky && scrollY < stopSticky) {
+        tocBox.classList.add('sticky');
+        tocBox.classList.remove('sticky-bottom');
+        sidebar.style.position = 'relative';
+      } else if (scrollY >= stopSticky) {
+        tocBox.classList.remove('sticky');
+        tocBox.classList.add('sticky-bottom');
+        sidebar.style.position = 'relative';
+      } else {
+        tocBox.classList.remove('sticky', 'sticky-bottom');
+        sidebar.style.position = 'static';
+      }
+    }
+    
+    function handleResize() {
+      isDesktop = window.innerWidth > 1024;
+      tocOriginalTop = null;
+      updateTocPosition();
+    }
+    
+    window.addEventListener('scroll', updateTocPosition);
+    window.addEventListener('resize', handleResize);
+    updateTocPosition();
   });
 </script>
