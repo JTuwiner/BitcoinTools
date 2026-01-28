@@ -1507,7 +1507,7 @@ body .tool img {
 
 /* Bitcoin-only Toggle */
 .btc-only-toggle-wrapper {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   margin-top: -10px;
 }
 
@@ -1515,54 +1515,47 @@ body .tool img {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
-  background: #2a3142;
-  border: 1px solid #3a4255;
-  border-radius: 20px;
-  padding: 6px 14px 6px 8px;
-  gap: 8px;
-  transition: all 0.2s;
-}
-
-.btc-only-toggle:hover {
-  border-color: #F7931A;
+  gap: 12px;
 }
 
 .btc-only-toggle input {
   display: none;
 }
 
-.toggle-btc-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.toggle-slider {
+  width: 48px;
+  height: 26px;
   background: #3a4255;
-  transition: all 0.2s;
+  border-radius: 13px;
+  position: relative;
+  transition: background 0.2s;
 }
 
-.toggle-btc-icon svg {
-  width: 16px;
-  height: 16px;
-  opacity: 0.5;
-  transition: opacity 0.2s;
+.toggle-slider::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.2s;
 }
 
-.btc-only-toggle input:checked ~ .toggle-btc-icon {
+.btc-only-toggle input:checked + .toggle-slider {
   background: #F7931A;
 }
 
-.btc-only-toggle input:checked ~ .toggle-btc-icon svg {
-  opacity: 1;
+.btc-only-toggle input:checked + .toggle-slider::after {
+  transform: translateX(22px);
 }
 
 .toggle-label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
-  color: #9ca3af;
+  color: #e5e7eb;
   transition: color 0.2s;
-  white-space: nowrap;
 }
 
 .btc-only-toggle input:checked ~ .toggle-label {
@@ -2421,13 +2414,17 @@ document.querySelectorAll('.hw-faq-question').forEach(question => {
         var isChecked = this.checked;
         document.querySelectorAll('.tool-link').forEach(function(link) {
           var img = link.querySelector('img');
+          var titleEl = link.querySelector('h3');
+          var descEl = link.querySelector('p');
           var hasBtcVersion = link.dataset.btcImg;
           
           if (isChecked) {
-            // If wallet has BTC-only version, swap image/link
+            // If wallet has BTC-only version, swap image/link/title/desc
             if (hasBtcVersion) {
               img.src = link.dataset.btcImg;
               if (link.dataset.btcLink) link.href = link.dataset.btcLink;
+              if (link.dataset.btcTitle && titleEl) titleEl.textContent = link.dataset.btcTitle;
+              if (link.dataset.btcDesc && descEl) descEl.textContent = link.dataset.btcDesc;
             } else {
               // Hide wallets without BTC-only version (like Ledger)
               link.classList.add('hide-non-btc');
@@ -2436,6 +2433,8 @@ document.querySelectorAll('.hw-faq-question').forEach(question => {
             // Restore defaults
             if (link.dataset.defaultImg) img.src = link.dataset.defaultImg;
             if (link.dataset.defaultLink) link.href = link.dataset.defaultLink;
+            if (link.dataset.defaultTitle && titleEl) titleEl.textContent = link.dataset.defaultTitle;
+            if (link.dataset.defaultDesc && descEl) descEl.textContent = link.dataset.defaultDesc;
             link.classList.remove('hide-non-btc');
           }
         });
@@ -2447,11 +2446,7 @@ document.querySelectorAll('.hw-faq-question').forEach(question => {
 <div id="btc-only-toggle-wrapper" class="btc-only-toggle-wrapper" style="display: none;">
   <label class="btc-only-toggle">
     <input type="checkbox" id="btcOnlyToggle">
-    <span class="toggle-btc-icon">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#FFF" d="M12.005 0C5.378 0 0 5.378 0 12.005 0 18.63 5.378 24 12.005 24 18.63 24 24 18.63 24 12.005 24 5.378 18.63 0 12.005 0zm2.596 17.703l-.527 2.116-1.295-.323.52-2.082c-.34-.085-.688-.175-1.032-.27l-.522 2.093-1.294-.323.527-2.12c-.28-.072-.565-.144-.844-.212l-1.685-.42.456-1.383s.953.251.94.237c.37.092.535-.15.6-.31l.841-3.374.135.034a.876.876 0 0 0-.134-.044l.6-2.409c.022-.223-.044-.502-.476-.61.021-.015-.94-.234-.94-.234l.339-1.36 1.786.445-.002.008c.263.066.534.127.81.19l.523-2.098 1.294.323-.512 2.053c.354.083.708.17 1.054.26l.508-2.037 1.295.323-.523 2.1c1.727.466 2.994 1.32 2.766 2.998-.153 1.12-.744 1.692-1.523 1.927.861.378 1.366 1.03 1.108 2.322-.322 1.611-1.456 2.184-3.398 1.882zm-.19-3.084c.481-1.927-2.67-2.26-3.508-2.47l-.704 2.822c.838.21 3.706.63 4.212-.352zm.75-3.355c.438-1.756-2.2-2.027-2.89-2.199l-.639 2.56c.69.172 3.07.565 3.529-.361z"/>
-      </svg>
-    </span>
-    <span class="toggle-label">Bitcoin-only</span>
+    <span class="toggle-slider"></span>
+    <span class="toggle-label">Show Bitcoin-only versions</span>
   </label>
 </div>
