@@ -64,11 +64,17 @@
       document.addEventListener('DOMContentLoaded', function() {
         const sidebarToc = document.getElementById('sidebar-toc');
         const inlineToc = document.getElementById('inline-toc');
-        if (!sidebarToc) return;
+        if (!sidebarToc) {
+          console.log('Sidebar TOC not found');
+          return;
+        }
         
         function updateTocVisibility() {
-          const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-          const isDesktop = window.innerWidth > 768;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const scrollPercent = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+          const isDesktop = window.innerWidth > 992;
+          
+          console.log('Scroll:', scrollPercent.toFixed(1) + '%', 'Desktop:', isDesktop);
           
           if (scrollPercent >= 15 && isDesktop) {
             sidebarToc.style.display = 'block';
