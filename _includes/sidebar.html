@@ -70,66 +70,81 @@
       {% endfor %}
     </ul>
     
-    {% if page.sidebar_toc %}
-    <div class="sidebar-toc" id="sidebar-toc">
-      <h3>Table of Contents</h3>
-      <ul class="sidebar-toc-list">
-        {% for item in page.sidebar_toc %}
-        <li><a href="#{{ item.id }}">{{ item.title }}</a></li>
-        {% endfor %}
-      </ul>
-    </div>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const sidebarToc = document.getElementById('sidebar-toc');
-        const inlineToc = document.getElementById('inline-toc');
-        if (!sidebarToc) {
-          return;
-        }
+  </header>
+  
+  {% if page.sidebar_toc %}
+  <div class="sidebar-toc" id="sidebar-toc">
+    <h3>Table of Contents</h3>
+    <ul class="sidebar-toc-list">
+      {% for item in page.sidebar_toc %}
+      <li><a href="#{{ item.id }}">{{ item.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const sidebarToc = document.getElementById('sidebar-toc');
+      const inlineToc = document.getElementById('inline-toc');
+      if (!sidebarToc) {
+        return;
+      }
+      
+      function updateTocVisibility() {
+        const isDesktop = window.innerWidth > 992;
         
-        function updateTocVisibility() {
-          const isDesktop = window.innerWidth > 992;
-          
-          // Always show on desktop, always hide on mobile (CSS handles mobile hiding)
-          if (isDesktop) {
-            sidebarToc.style.display = 'block';
-            sidebarToc.style.visibility = 'visible';
-            // Hide inline TOC on desktop when sidebar TOC is visible
-            if (inlineToc) {
-              inlineToc.style.display = 'none';
-            }
-          } else {
-            sidebarToc.style.display = 'none';
-            // Show inline TOC on mobile
-            if (inlineToc) {
-              inlineToc.style.display = 'block';
-              inlineToc.style.visibility = 'visible';
-              inlineToc.style.opacity = '1';
-            }
+        // Always show on desktop, always hide on mobile (CSS handles mobile hiding)
+        if (isDesktop) {
+          sidebarToc.style.display = 'block';
+          sidebarToc.style.visibility = 'visible';
+          // Hide inline TOC on desktop when sidebar TOC is visible
+          if (inlineToc) {
+            inlineToc.style.display = 'none';
+          }
+        } else {
+          sidebarToc.style.display = 'none';
+          // Show inline TOC on mobile
+          if (inlineToc) {
+            inlineToc.style.display = 'block';
+            inlineToc.style.visibility = 'visible';
+            inlineToc.style.opacity = '1';
           }
         }
-        
-        window.addEventListener('resize', updateTocVisibility);
-        updateTocVisibility();
-      });
-    </script>
-    {% endif %}
-  </header>
+      }
+      
+      window.addEventListener('resize', updateTocVisibility);
+      updateTocVisibility();
+    });
+  </script>
+  {% endif %}
 
     
 </aside>
  
  <style>
+   /* Make aside a flex column so TOC can stick properly */
+   .main-page-content aside {
+     display: flex;
+     flex-direction: column;
+     align-self: stretch;
+   }
+   
+   .main-page-content aside header.sidebar-header {
+     flex-shrink: 0;
+   }
+   
    .sidebar-toc {
      background: #1f2937;
      border: 1px solid #374151;
      border-radius: 10px;
      padding: 16px 20px;
-     margin-top: 24px;
+     margin: 16px;
      position: sticky;
-     top: 20px;
+     top: 80px; /* Account for navbar height */
      display: block;
      visibility: visible;
+     align-self: flex-start;
+     max-height: calc(100vh - 100px);
+     overflow-y: auto;
    }
    
    /* Hide on mobile/tablet */
