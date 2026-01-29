@@ -8,11 +8,248 @@ seotitle: 3 Best Bitcoin IRAs for 2026
 subdesc: Self-directed Bitcoin IRAs for tax-advantaged retirement savings.
 icon: money-bill-transfer
 svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="currentColor" d="M16 11q.425 0 .713-.288T17 10t-.288-.712T16 9t-.712.288T15 10t.288.713T16 11M8 9h5V7H8zM4.5 21q-.85-2.85-1.675-5.687T2 9.5q0-2.3 1.6-3.9T7.5 4h5q.725-.95 1.763-1.475T16.5 2q.625 0 1.063.438T18 3.5q0 .125-.125.575q-.1.275-.187.563t-.138.587L19.825 7.5H22v6.975l-2.825.925L17.5 21H12v-2h-2v2z"/></svg>'
+sidebar_toc:
+  - id: key-takeaways
+    title: Key Takeaways
+  - id: can-you-buy-bitcoin-in-roth-ira
+    title: Can You Buy Bitcoin in a Roth IRA?
+  - id: roth-vs-traditional-ira-bitcoin
+    title: Roth vs Traditional IRA
+  - id: bitcoin-etf-vs-self-directed-ira
+    title: Bitcoin ETF vs Self-Directed IRA
+  - id: brokerage-bitcoin-ira-comparison
+    title: Fidelity, Schwab & Vanguard
+  - id: compare-bitcoin-iras
+    title: Compare Bitcoin IRAs
 ---
 
 {% assign iras = site.pages | where: "glance", "ira-only" | sort: "sort" %}
 
 <style>
+.ira-intro {
+  max-width: 800px;
+  margin-bottom: 32px;
+}
+
+.ira-intro p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #374151;
+  margin-bottom: 16px;
+}
+
+.takeaway-box {
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+  border: 1px solid #3B82F6;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+
+.takeaway-box h3 {
+  color: #1E40AF;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+.takeaway-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.takeaway-box li {
+  color: #1E3A8A;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.content-section {
+  max-width: 900px;
+  margin-top: 48px;
+  margin-bottom: 48px;
+}
+
+.content-section h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.content-section h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.content-section p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #374151;
+  margin-bottom: 16px;
+}
+
+.ira-info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+}
+
+.ira-info-table th,
+.ira-info-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border: 1px solid #e5e7eb;
+}
+
+.ira-info-table th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #111827;
+}
+
+.ira-info-table td {
+  color: #374151;
+}
+
+.ira-info-table tr:hover {
+  background: #f9fafb;
+}
+
+.ira-info-table .highlight-cell {
+  background: #FEF3C7;
+  font-weight: 500;
+}
+
+.check-icon {
+  color: #059669;
+  font-weight: bold;
+}
+
+.x-icon {
+  color: #DC2626;
+  font-weight: bold;
+}
+
+.etf-highlight-box {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 24px 0;
+}
+
+.etf-highlight-box p {
+  margin: 0;
+  font-weight: 500;
+  color: #92400E;
+}
+
+.broker-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.broker-badge.yes {
+  background: #D1FAE5;
+  color: #065F46;
+  border: 1px solid #6EE7B7;
+}
+
+.broker-badge.no {
+  background: #FEE2E2;
+  color: #991B1B;
+  border: 1px solid #FCA5A5;
+}
+
+.broker-badge.limited {
+  background: #FEF3C7;
+  color: #92400E;
+  border: 1px solid #FCD34D;
+}
+
+@media (max-width: 768px) {
+  .ira-info-table {
+    font-size: 14px;
+  }
+  
+  .ira-info-table th,
+  .ira-info-table td {
+    padding: 10px 12px;
+  }
+  
+  .content-section {
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
+}
+
+/* Dark mode for new sections */
+@media (prefers-color-scheme: dark) {
+  .takeaway-box {
+    background: linear-gradient(135deg, #1a2744 0%, #1e3a5f 100%);
+    border-color: #3B82F6;
+  }
+  
+  .takeaway-box h3 {
+    color: #60a5fa;
+  }
+  
+  .takeaway-box li {
+    color: #93c5fd;
+  }
+  
+  .content-section h2,
+  .content-section h3 {
+    color: #f9fafb;
+  }
+  
+  .content-section p {
+    color: #d1d5db;
+  }
+  
+  .ira-intro p {
+    color: #d1d5db;
+  }
+  
+  .ira-info-table th {
+    background: #1a1f2e;
+    color: #f2a900;
+    border-color: #3a4255;
+  }
+  
+  .ira-info-table td {
+    color: #d1d5db;
+    border-color: #3a4255;
+    background: #232939;
+  }
+  
+  .ira-info-table tr:hover td {
+    background: #2a3142;
+  }
+  
+  .ira-info-table .highlight-cell {
+    background: #422006;
+    color: #FDE68A;
+  }
+  
+  .etf-highlight-box {
+    background: linear-gradient(135deg, #422006 0%, #78350f 100%);
+    border-color: #f2a900;
+  }
+  
+  .etf-highlight-box p {
+    color: #FDE68A;
+  }
+}
 .ira-comparison-table-wrapper {
   margin-bottom: 40px;
   margin-top: 30px;
@@ -640,10 +877,299 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 
 <br><br>
 
+<div class="ira-intro">
+
+<p>A Bitcoin IRA allows you to hold Bitcoin in a tax-advantaged retirement account. You can invest in Bitcoin directly through a self-directed IRA, or gain exposure through Bitcoin ETFs in a traditional brokerage IRA.</p>
+
+<div class="takeaway-box" id="key-takeaways">
+    <h3>🔑 Key Takeaways</h3>
+    <ul>
+        <li><strong>Yes, you can buy Bitcoin in a Roth IRA</strong> — either through a specialized self-directed Bitcoin IRA provider, or by purchasing Bitcoin ETFs (like IBIT or FBTC) through any brokerage like Fidelity or Schwab.</li>
+        <li><strong>Bitcoin ETFs are now the easiest way</strong> to add Bitcoin to your IRA. Since January 2024, spot Bitcoin ETFs trade on major exchanges and can be purchased in any brokerage IRA with fees as low as 0.2%.</li>
+        <li><strong>Self-directed Bitcoin IRAs</strong> let you hold actual Bitcoin (not just ETF shares), but come with higher fees (1-2%+ annually) and more complexity. Best for those who want true Bitcoin ownership and self-custody options.</li>
+    </ul>
+</div>
+
+</div>
+
+<!-- Can You Buy Bitcoin in a Roth IRA Section -->
+<div class="content-section" id="can-you-buy-bitcoin-in-roth-ira">
+<h2>Can You Buy Bitcoin in a Roth IRA?</h2>
+
+<p>Yes, you can absolutely buy Bitcoin in a Roth IRA. There are two main ways to do it:</p>
+
+<table class="ira-info-table">
+    <thead>
+        <tr>
+            <th>Question</th>
+            <th>Short Answer</th>
+            <th>How To Do It</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Can you buy Bitcoin in a Roth IRA?</td>
+            <td><span class="check-icon">✓ Yes</span></td>
+            <td>Through self-directed IRAs or Bitcoin ETFs</td>
+        </tr>
+        <tr>
+            <td>Can you buy Bitcoin in a Traditional IRA?</td>
+            <td><span class="check-icon">✓ Yes</span></td>
+            <td>Same methods — self-directed IRA or ETFs</td>
+        </tr>
+        <tr>
+            <td>Can you buy Bitcoin at Fidelity in an IRA?</td>
+            <td><span class="check-icon">✓ Yes</span> (via ETF)</td>
+            <td>Purchase FBTC, IBIT, or other spot Bitcoin ETFs</td>
+        </tr>
+        <tr>
+            <td>Can you buy actual Bitcoin (not ETF) in an IRA?</td>
+            <td><span class="check-icon">✓ Yes</span></td>
+            <td>Requires a self-directed Bitcoin IRA provider</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>The key difference is whether you want <strong>Bitcoin exposure</strong> (through ETFs at any brokerage) or <strong>actual Bitcoin ownership</strong> (through a specialized self-directed IRA). Both qualify for tax-advantaged growth in your Roth IRA.</p>
+</div>
+
+<!-- Roth IRA vs Traditional IRA for Bitcoin Section -->
+<div class="content-section" id="roth-vs-traditional-ira-bitcoin">
+<h2>Roth IRA vs Traditional IRA for Bitcoin</h2>
+
+<p>Choosing between a Roth and Traditional IRA for your Bitcoin investment depends on your tax situation and how much you expect Bitcoin to grow.</p>
+
+<table class="ira-info-table">
+    <thead>
+        <tr>
+            <th>Factor</th>
+            <th>Roth IRA</th>
+            <th>Traditional IRA</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Tax on Contributions</strong></td>
+            <td>After-tax (no deduction)</td>
+            <td>Pre-tax (tax deductible)</td>
+        </tr>
+        <tr>
+            <td><strong>Tax on Withdrawals</strong></td>
+            <td class="highlight-cell">Tax-free withdrawals</td>
+            <td>Taxed as ordinary income</td>
+        </tr>
+        <tr>
+            <td><strong>Tax on Bitcoin Gains</strong></td>
+            <td class="highlight-cell">$0 — completely tax-free</td>
+            <td>Taxed at withdrawal as income</td>
+        </tr>
+        <tr>
+            <td><strong>Best If Bitcoin...</strong></td>
+            <td class="highlight-cell">Grows significantly over time</td>
+            <td>You want tax deduction now</td>
+        </tr>
+        <tr>
+            <td><strong>Required Minimum Distributions</strong></td>
+            <td class="highlight-cell">None — no forced withdrawals</td>
+            <td>Required starting at age 73</td>
+        </tr>
+        <tr>
+            <td><strong>2025 Contribution Limit</strong></td>
+            <td>$7,000 ($8,000 if 50+)</td>
+            <td>$7,000 ($8,000 if 50+)</td>
+        </tr>
+        <tr>
+            <td><strong>Income Limits</strong></td>
+            <td>Yes — phaseout at higher incomes</td>
+            <td>No limits for contributions</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Which is Better for Bitcoin?</h3>
+
+<p><strong>A Roth IRA is generally better for Bitcoin</strong> if you believe Bitcoin will appreciate significantly. Since Roth withdrawals are tax-free, any gains — whether 2x or 100x — come out completely untaxed in retirement. With a Traditional IRA, those same gains would be taxed as ordinary income when you withdraw.</p>
+
+<p>However, if you're in a high tax bracket now and expect to be in a lower bracket in retirement, a Traditional IRA's upfront tax deduction might make more sense.</p>
+</div>
+
+<!-- Bitcoin ETF vs Self-Directed IRA Section -->
+<div class="content-section" id="bitcoin-etf-vs-self-directed-ira">
+<h2>Bitcoin ETF vs Self-Directed Bitcoin IRA</h2>
+
+<p>Since the SEC approved spot Bitcoin ETFs in January 2024, you now have two distinct paths to hold Bitcoin in your IRA. Here's how they compare:</p>
+
+<div class="etf-highlight-box">
+    <p>💡 <strong>New in 2024:</strong> You can now buy spot Bitcoin ETFs (IBIT, FBTC, ARKB, BITB, etc.) in ANY standard brokerage IRA — no special self-directed account needed. This is the simplest and cheapest way to add Bitcoin exposure to your retirement portfolio.</p>
+</div>
+
+<table class="ira-info-table">
+    <thead>
+        <tr>
+            <th>Factor</th>
+            <th>Bitcoin ETF Route</th>
+            <th>Self-Directed Bitcoin IRA</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Where to Open</strong></td>
+            <td>Any brokerage (Fidelity, Schwab, etc.)</td>
+            <td>Specialized provider (iTrustCapital, Bitcoin IRA, etc.)</td>
+        </tr>
+        <tr>
+            <td><strong>What You Own</strong></td>
+            <td>ETF shares (Bitcoin exposure)</td>
+            <td>Actual Bitcoin</td>
+        </tr>
+        <tr>
+            <td><strong>Annual Fees</strong></td>
+            <td class="highlight-cell">0.19% - 0.25% (ETF expense ratio only)</td>
+            <td>1% - 2%+ annually</td>
+        </tr>
+        <tr>
+            <td><strong>Trading Fees</strong></td>
+            <td class="highlight-cell">$0 at most brokerages</td>
+            <td>0.5% - 2% per trade</td>
+        </tr>
+        <tr>
+            <td><strong>Account Minimum</strong></td>
+            <td class="highlight-cell">$0 - $1 (price of 1 share)</td>
+            <td>$1,000 - $10,000+</td>
+        </tr>
+        <tr>
+            <td><strong>Setup Complexity</strong></td>
+            <td class="highlight-cell">Easy — same as buying any stock</td>
+            <td>More complex — new account, transfers</td>
+        </tr>
+        <tr>
+            <td><strong>Self-Custody Option</strong></td>
+            <td><span class="x-icon">✗ No</span> — ETF issuer holds Bitcoin</td>
+            <td><span class="check-icon">✓ Yes</span> — some providers offer it</td>
+        </tr>
+        <tr>
+            <td><strong>Direct Bitcoin Ownership</strong></td>
+            <td><span class="x-icon">✗ No</span> — you own ETF shares</td>
+            <td><span class="check-icon">✓ Yes</span> — you own actual BTC</td>
+        </tr>
+        <tr>
+            <td><strong>Best For</strong></td>
+            <td>Most investors, simplicity, low fees</td>
+            <td>Bitcoin purists, self-custody, larger accounts</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Popular Bitcoin ETFs for IRAs</h3>
+
+<table class="ira-info-table">
+    <thead>
+        <tr>
+            <th>ETF</th>
+            <th>Ticker</th>
+            <th>Expense Ratio</th>
+            <th>Issuer</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>iShares Bitcoin Trust</td>
+            <td><strong>IBIT</strong></td>
+            <td>0.25%</td>
+            <td>BlackRock</td>
+        </tr>
+        <tr>
+            <td>Fidelity Wise Origin Bitcoin</td>
+            <td><strong>FBTC</strong></td>
+            <td>0.25%</td>
+            <td>Fidelity</td>
+        </tr>
+        <tr>
+            <td>ARK 21Shares Bitcoin ETF</td>
+            <td><strong>ARKB</strong></td>
+            <td>0.21%</td>
+            <td>ARK/21Shares</td>
+        </tr>
+        <tr>
+            <td>Bitwise Bitcoin ETF</td>
+            <td><strong>BITB</strong></td>
+            <td>0.20%</td>
+            <td>Bitwise</td>
+        </tr>
+        <tr>
+            <td>VanEck Bitcoin Trust</td>
+            <td><strong>HODL</strong></td>
+            <td>0.20%</td>
+            <td>VanEck</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>For most people, <strong>the ETF route is the better choice</strong> — it's dramatically cheaper (0.2% vs 1-2% annually), simpler to set up, and available at brokerages you likely already use. The main reason to choose a self-directed Bitcoin IRA is if you specifically want to own actual Bitcoin with self-custody options.</p>
+</div>
+
+<!-- Brokerage Comparison Section -->
+<div class="content-section" id="brokerage-bitcoin-ira-comparison">
+<h2>Can I Buy Bitcoin at Fidelity, Schwab, or Vanguard?</h2>
+
+<p>Many people search for whether they can buy Bitcoin directly at mainstream brokerages. Here's the current state of Bitcoin access at major brokerages:</p>
+
+<table class="ira-info-table">
+    <thead>
+        <tr>
+            <th>Brokerage</th>
+            <th>Buy Bitcoin Directly?</th>
+            <th>Bitcoin ETFs Available?</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Fidelity</strong></td>
+            <td><span class="broker-badge no">✗ No</span></td>
+            <td><span class="broker-badge yes">✓ Yes</span></td>
+            <td>Offers own ETF (FBTC) + all others</td>
+        </tr>
+        <tr>
+            <td><strong>Charles Schwab</strong></td>
+            <td><span class="broker-badge no">✗ No</span></td>
+            <td><span class="broker-badge yes">✓ Yes</span></td>
+            <td>Full access to all spot Bitcoin ETFs</td>
+        </tr>
+        <tr>
+            <td><strong>Vanguard</strong></td>
+            <td><span class="broker-badge no">✗ No</span></td>
+            <td><span class="broker-badge no">✗ No</span></td>
+            <td>Does not allow Bitcoin ETF purchases</td>
+        </tr>
+        <tr>
+            <td><strong>E*TRADE</strong></td>
+            <td><span class="broker-badge no">✗ No</span></td>
+            <td><span class="broker-badge yes">✓ Yes</span></td>
+            <td>Access to all spot Bitcoin ETFs</td>
+        </tr>
+        <tr>
+            <td><strong>Robinhood</strong></td>
+            <td><span class="broker-badge limited">⚠ Limited</span></td>
+            <td><span class="broker-badge yes">✓ Yes</span></td>
+            <td>Crypto available, but IRA features limited</td>
+        </tr>
+        <tr>
+            <td><strong>Interactive Brokers</strong></td>
+            <td><span class="broker-badge yes">✓ Yes</span></td>
+            <td><span class="broker-badge yes">✓ Yes</span></td>
+            <td>Direct crypto trading + ETFs available</td>
+        </tr>
+    </tbody>
+</table>
+
+<p><strong>Key takeaway:</strong> If you have an IRA at Fidelity or Schwab, you can buy Bitcoin ETFs today with no account changes needed. If you're at Vanguard and want Bitcoin exposure, you'll need to either transfer to another brokerage or open a separate self-directed Bitcoin IRA.</p>
+</div>
+
 {% if iras.size > 0 %}
-<div class="ira-comparison-table-wrapper">
+<div class="ira-comparison-table-wrapper" id="compare-bitcoin-iras">
   <div class="ira-comparison-table-header">
-    <h2 class="ira-comparison-table-title">Compare Bitcoin IRAs</h2>
+    <h2 class="ira-comparison-table-title">Compare Self-Directed Bitcoin IRAs</h2>
   </div>
   
   <!-- Desktop Table -->
