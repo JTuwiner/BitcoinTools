@@ -69,6 +69,78 @@ sidebar_toc:
   color: #f2a900 !important;
 }
 
+.expert-quote {
+  background: linear-gradient(135deg, #1a1f2e 0%, #232939 100%);
+  border-left: 4px solid #f2a900;
+  border-radius: 0 10px 10px 0;
+  padding: 20px 24px;
+  margin: 24px 0;
+  position: relative;
+}
+
+.expert-quote::before {
+  content: '"';
+  font-size: 48px;
+  color: #f2a900;
+  opacity: 0.3;
+  position: absolute;
+  top: 10px;
+  left: 16px;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+.expert-quote p {
+  margin: 0;
+  padding-left: 24px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #e5e7eb;
+  font-style: italic;
+}
+
+.expert-quote .quote-attribution {
+  margin-top: 12px;
+  padding-left: 24px;
+  font-size: 13px;
+  color: #9ca3af;
+  font-style: normal;
+}
+
+.expert-quote .quote-attribution strong {
+  color: #f2a900;
+}
+
+.fact-check-notice {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 20px 0;
+  font-size: 13px;
+  color: #166534;
+}
+
+.fact-check-notice strong {
+  color: #15803d;
+}
+
+@media (prefers-color-scheme: dark) {
+  .expert-quote {
+    background: linear-gradient(135deg, #1a1f2e 0%, #232939 100%);
+  }
+  
+  .fact-check-notice {
+    background: #052e16;
+    border-color: #166534;
+    color: #86efac;
+  }
+  
+  .fact-check-notice strong {
+    color: #4ade80;
+  }
+}
+
 .content-section {
   max-width: 900px;
   margin-top: 48px;
@@ -889,9 +961,10 @@ sidebar_toc:
 
 <p>A Bitcoin IRA allows you to hold Bitcoin in a tax-advantaged retirement account. You can invest in Bitcoin directly through a self-directed IRA, or gain exposure through Bitcoin ETFs in a traditional brokerage IRA.</p>
 
-<p><strong>Fact Check:</strong> All IRA contribution limits, tax rules, and RMD requirements on this page are verified against IRS Publication 590-A and current IRS guidelines (2026)<sup><a href="#article-sources">(1)</a></sup>. Bitcoin ETF information is confirmed through official SEC filings and brokerage disclosures.</p>
-
-<p><strong>Expert Insight:</strong> "We would love to have more people, more individuals, more families, more 401Ks exposed to digital assets and bitcoin is a really great way to start. And if folks need an ETF to kind of begin that journey, that's great." — Christine Sandler, Head of Sales and Marketing, Fidelity Digital Assets<sup><a href="#article-sources">(2)</a></sup></p>
+<div class="expert-quote">
+  <p>We would love to have more people, more individuals, more families, more 401Ks exposed to digital assets and bitcoin is a really great way to start. And if folks need an ETF to kind of begin that journey, that's great.</p>
+  <div class="quote-attribution">— <strong>Christine Sandler</strong>, Head of Sales and Marketing, Fidelity Digital Assets<sup><a href="#article-sources" style="color: #9ca3af;">(2)</a></sup></div>
+</div>
 
 <div class="takeaway-box" id="key-takeaways">
     <h3>🔑 Key Takeaways</h3>
@@ -986,7 +1059,7 @@ sidebar_toc:
             <td>Required starting at age 73</td>
         </tr>
         <tr>
-            <td><strong>2025 Contribution Limit</strong></td>
+            <td><strong>2026 Contribution Limit</strong></td>
             <td>$7,000 ($8,000 if 50+)</td>
             <td>$7,000 ($8,000 if 50+)</td>
         </tr>
@@ -997,6 +1070,10 @@ sidebar_toc:
         </tr>
     </tbody>
 </table>
+
+<div class="fact-check-notice">
+  <strong>Fact Check:</strong> IRA contribution limits ($7,000/$8,000), RMD age (73), and tax treatment rules verified against IRS Publication 590-A<sup><a href="#article-sources" style="color: inherit;">(1)</a></sup>.
+</div>
 
 <h3 class="highlight-heading">Which is Better for Bitcoin?</h3>
 
