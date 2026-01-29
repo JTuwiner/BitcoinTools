@@ -52,7 +52,7 @@
   <header class="sidebar-header {% if page.home %}homepage{% endif %}" id="sidebarHeader">
     
     {% if page.sidebar_toc %}
-    <div class="sidebar-toc" id="sidebar-toc" style="display: none; visibility: visible !important; opacity: 1 !important;">
+    <div class="sidebar-toc" id="sidebar-toc">
       <h3>Table of Contents</h3>
       <ul class="sidebar-toc-list">
         {% for item in page.sidebar_toc %}
@@ -65,35 +65,31 @@
         const sidebarToc = document.getElementById('sidebar-toc');
         const inlineToc = document.getElementById('inline-toc');
         if (!sidebarToc) {
-          console.log('Sidebar TOC not found');
           return;
         }
         
         function updateTocVisibility() {
-          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-          const scrollPercent = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
           const isDesktop = window.innerWidth > 992;
           
-          console.log('Scroll:', scrollPercent.toFixed(1) + '%', 'Desktop:', isDesktop);
-          
-          if (scrollPercent >= 15 && isDesktop) {
+          // Always show on desktop, always hide on mobile (CSS handles mobile hiding)
+          if (isDesktop) {
             sidebarToc.style.display = 'block';
             sidebarToc.style.visibility = 'visible';
-            console.log('TOC should be visible now');
+            // Hide inline TOC on desktop when sidebar TOC is visible
             if (inlineToc) {
-              inlineToc.style.visibility = 'hidden';
-              inlineToc.style.opacity = '0';
+              inlineToc.style.display = 'none';
             }
           } else {
             sidebarToc.style.display = 'none';
+            // Show inline TOC on mobile
             if (inlineToc) {
+              inlineToc.style.display = 'block';
               inlineToc.style.visibility = 'visible';
               inlineToc.style.opacity = '1';
             }
           }
         }
         
-        window.addEventListener('scroll', updateTocVisibility);
         window.addEventListener('resize', updateTocVisibility);
         updateTocVisibility();
       });
@@ -135,11 +131,23 @@
      left: 16px;
      width: 200px;
      z-index: 100;
+     display: block;
+     visibility: visible;
    }
    
+   /* Hide on mobile/tablet */
    @media (max-width: 992px) {
      .sidebar-toc {
        display: none !important;
+       visibility: hidden !important;
+     }
+   }
+   
+   /* Ensure visible on desktop */
+   @media (min-width: 993px) {
+     .sidebar-toc {
+       display: block !important;
+       visibility: visible !important;
      }
    }
    

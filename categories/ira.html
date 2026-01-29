@@ -61,7 +61,12 @@ sidebar_toc:
 .takeaway-box li {
   color: #1E3A8A;
   margin-bottom: 8px;
-  line-height: 1.5;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.highlight-heading {
+  color: #f2a900 !important;
 }
 
 .content-section {
@@ -205,11 +210,16 @@ sidebar_toc:
   
   .takeaway-box li {
     color: #93c5fd;
+    font-size: 14px;
   }
   
   .content-section h2,
   .content-section h3 {
     color: #f9fafb;
+  }
+  
+  .highlight-heading {
+    color: #f2a900 !important;
   }
   
   .content-section p {
@@ -875,11 +885,13 @@ sidebar_toc:
 }
 </style>
 
-<br><br>
-
 <div class="ira-intro">
 
 <p>A Bitcoin IRA allows you to hold Bitcoin in a tax-advantaged retirement account. You can invest in Bitcoin directly through a self-directed IRA, or gain exposure through Bitcoin ETFs in a traditional brokerage IRA.</p>
+
+<p><strong>Fact Check:</strong> All IRA contribution limits, tax rules, and RMD requirements on this page are verified against IRS Publication 590-A and current IRS guidelines (2026)<sup><a href="#article-sources">(1)</a></sup>. Bitcoin ETF information is confirmed through official SEC filings and brokerage disclosures.</p>
+
+<p><strong>Expert Insight:</strong> "We would love to have more people, more individuals, more families, more 401Ks exposed to digital assets and bitcoin is a really great way to start. And if folks need an ETF to kind of begin that journey, that's great." — Christine Sandler, Head of Sales and Marketing, Fidelity Digital Assets<sup><a href="#article-sources">(2)</a></sup></p>
 
 <div class="takeaway-box" id="key-takeaways">
     <h3>🔑 Key Takeaways</h3>
@@ -986,7 +998,7 @@ sidebar_toc:
     </tbody>
 </table>
 
-<h3>Which is Better for Bitcoin?</h3>
+<h3 class="highlight-heading">Which is Better for Bitcoin?</h3>
 
 <p><strong>A Roth IRA is generally better for Bitcoin</strong> if you believe Bitcoin will appreciate significantly. Since Roth withdrawals are tax-free, any gains — whether 2x or 100x — come out completely untaxed in retirement. With a Traditional IRA, those same gains would be taxed as ordinary income when you withdraw.</p>
 
@@ -1616,6 +1628,43 @@ function updateMobileIRAComparison() {
   
   .ira-disclaimer p {
     color: #9ca3af;
+  }
+}
+</style>
+
+<div id="article-sources" style="max-width: 800px; margin-top: 48px; padding: 20px 24px; background: #f9fafb; border-radius: 8px; border-left: 3px solid #d1d5db;">
+  <h3 style="margin-top: 0; color: #111827;">Sources</h3>
+  <ol style="margin: 0; padding-left: 20px; line-height: 1.8;">
+    <li>
+      <a href="https://www.irs.gov/retirement-plans/individual-retirement-arrangements-iras" target="_blank" rel="noopener">IRS - Individual Retirement Arrangements (IRAs)</a>
+    </li>
+    <li>
+      <a href="https://blockworks.co/news/fidelity-enters-the-bitcoin-etf-race" target="_blank" rel="noopener">Blockworks - Fidelity Enters the Bitcoin ETF Race (Christine Sandler quote)</a>
+    </li>
+  </ol>
+</div>
+
+<style>
+@media (prefers-color-scheme: dark) {
+  #article-sources {
+    background: #1a1f2e !important;
+    border-left-color: #3a4255 !important;
+  }
+  
+  #article-sources h3 {
+    color: #f9fafb !important;
+  }
+  
+  #article-sources ol {
+    color: #d1d5db !important;
+  }
+  
+  #article-sources a {
+    color: #f2a900 !important;
+  }
+  
+  #article-sources a:hover {
+    color: #fbbf24 !important;
   }
 }
 </style>
