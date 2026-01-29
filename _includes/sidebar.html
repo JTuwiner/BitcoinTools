@@ -51,6 +51,25 @@
   
   <header class="sidebar-header {% if page.home %}homepage{% endif %}" id="sidebarHeader">
     
+    <h2>Tools Categories</h2>
+  
+    <ul class="sidebar-list">
+      {% assign catlist = site.pages | sort_natural: "title" %}
+      {% for cat in catlist %}
+      {% if cat.category %}
+      <li>
+        {% if cat.title == "Exchanges" %}
+        <a title="{{ cat.title }}" class="sidebar-category" href="https://bitbo.io/buy/">
+        {% else %}
+        <a title="{{ cat.title }}" class="sidebar-category" href="/tools{{ cat.permalink }}">
+        {% endif %}
+          {% if cat.svgicon %}{{ cat.svgicon }}{% else %}<i class="fa-solid fa-{{ cat.icon }}"></i>{% endif %} {{ cat.title }}
+        </a>
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    
     {% if page.sidebar_toc %}
     <div class="sidebar-toc" id="sidebar-toc">
       <h3>Table of Contents</h3>
@@ -95,25 +114,6 @@
       });
     </script>
     {% endif %}
-    
-    <h2>Tools Categories</h2>
-  
-    <ul class="sidebar-list">
-      {% assign catlist = site.pages | sort_natural: "title" %}
-      {% for cat in catlist %}
-      {% if cat.category %}
-      <li>
-        {% if cat.title == "Exchanges" %}
-        <a title="{{ cat.title }}" class="sidebar-category" href="https://bitbo.io/buy/">
-        {% else %}
-        <a title="{{ cat.title }}" class="sidebar-category" href="/tools{{ cat.permalink }}">
-        {% endif %}
-          {% if cat.svgicon %}{{ cat.svgicon }}{% else %}<i class="fa-solid fa-{{ cat.icon }}"></i>{% endif %} {{ cat.title }}
-        </a>
-      </li>
-      {% endif %}
-      {% endfor %}
-    </ul>
   </header>
 
     
@@ -125,8 +125,9 @@
      border: 1px solid #374151;
      border-radius: 10px;
      padding: 16px 20px;
-     margin-bottom: 24px;
-     position: relative;
+     margin-top: 24px;
+     position: sticky;
+     top: 20px;
      display: block;
      visibility: visible;
    }
