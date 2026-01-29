@@ -1446,7 +1446,7 @@ header.main-site-header aside form button {
 .main-page-content {
   display: flex;
   flex-wrap: wrap;
-  align-items: stretch;
+  align-items: stretch; /* Stretch to match content height for sticky TOC */
   justify-content: space-between;
 }
 
@@ -1454,6 +1454,8 @@ header.main-site-header aside form button {
   width: 16%;
   border-right: 1px solid #232939;
   min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 @media screen and (max-width: 992px) {
   .main-page-content aside {
