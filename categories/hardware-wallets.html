@@ -1731,31 +1731,23 @@ body .tool img {
   flex-direction: column;
 }
 
-.expert-quote-name {
+.expert-quote-name-link {
   font-weight: 600;
   color: #ffffff;
   font-size: 15px;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.expert-quote-name-link:hover {
+  color: #f2a900;
+  text-decoration: underline;
 }
 
 .expert-quote-title {
   font-size: 13px;
   color: #9ca3af;
   margin-top: 2px;
-}
-
-.expert-quote-source {
-  font-size: 12px;
-  color: #6b7280;
-  margin-top: 12px;
-}
-
-.expert-quote-source a {
-  color: #f2a900;
-  text-decoration: none;
-}
-
-.expert-quote-source a:hover {
-  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -1793,22 +1785,6 @@ body .tool img {
   
   <div class="hw-intro-highlight">
     <p>💡 Hardware wallets don't store your Bitcoin — they store the private keys that control your Bitcoin on the blockchain. Even if the device breaks, you can recover your funds with your seed phrase backup.</p>
-  </div>
-</div>
-
-<div class="expert-quote-section">
-  <div class="expert-quote-card">
-    <p class="expert-quote-text">Bitcoin has the advantage that you can send it to people all over the world and store it on a hardware wallet, which is a fairly secure way to store it.</p>
-    <div class="expert-quote-attribution">
-      <div class="expert-quote-avatar">NS</div>
-      <div class="expert-quote-info">
-        <span class="expert-quote-name">Nick Szabo</span>
-        <span class="expert-quote-title">Computer scientist, legal scholar, cryptographer & security expert</span>
-      </div>
-    </div>
-    <div class="expert-quote-source">
-      Source: <a href="https://tim.blog/2018/06/01/the-tim-ferriss-show-transcripts-nick-szabo/" target="_blank" rel="noopener">The Tim Ferriss Show</a>
-    </div>
   </div>
 </div>
 
@@ -1914,7 +1890,7 @@ body .tool img {
             <td>
               <div class="brand-rating-name">
                 <img src="/tools/img/jade.png" alt="Blockstream" class="brand-rating-img">
-                <span>Blockstream</span>
+                <span>Jade</span>
               </div>
             </td>
             <td><span class="rating-stars">⭐ 4.5/5</span></td>
@@ -2183,6 +2159,19 @@ body .tool img {
 {% else %}
 <p>No hardware wallets available at this time.</p>
 {% endif %}
+
+<div class="expert-quote-section">
+  <div class="expert-quote-card">
+    <p class="expert-quote-text">Bitcoin has the advantage that you can send it to people all over the world and store it on a hardware wallet, which is a fairly secure way to store it.</p>
+    <div class="expert-quote-attribution">
+      <div class="expert-quote-avatar">NS</div>
+      <div class="expert-quote-info">
+        <a href="https://tim.blog/2018/06/01/the-tim-ferriss-show-transcripts-nick-szabo/" target="_blank" rel="noopener" class="expert-quote-name-link">Nick Szabo</a>
+        <span class="expert-quote-title">Computer scientist, legal scholar, cryptographer & security expert</span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Integrations Section -->
 <div class="integrations-section" id="multisig-integrations">
