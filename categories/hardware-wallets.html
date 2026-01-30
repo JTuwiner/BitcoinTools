@@ -1566,6 +1566,207 @@ body .tool img {
 .tool-link.hide-non-btc {
   display: none !important;
 }
+
+/* Video Button Styles */
+.hw-video-button {
+  background: transparent;
+  color: #f2a900 !important;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid #f2a900;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.hw-video-button:hover {
+  background: #f2a900;
+  color: black !important;
+}
+
+/* Video Modal Styles */
+.video-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-modal-overlay.active {
+  display: flex;
+}
+
+.video-modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.video-modal-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 32px;
+  cursor: pointer;
+  padding: 8px;
+  line-height: 1;
+  z-index: 10;
+}
+
+.video-modal-close:hover {
+  color: #f2a900;
+}
+
+.video-modal-iframe-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+
+.video-modal-iframe-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .hw-video-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .video-modal-content {
+    width: 95%;
+  }
+  
+  .video-modal-close {
+    top: -35px;
+    font-size: 28px;
+  }
+}
+
+/* Expert Quote Section */
+.expert-quote-section {
+  margin: 32px 0;
+  max-width: 700px;
+}
+
+.expert-quote-card {
+  background: linear-gradient(135deg, #1a1f2e 0%, #232939 100%);
+  border: 1px solid #3a4255;
+  border-left: 4px solid #f2a900;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.expert-quote-text {
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.7;
+  color: #e5e7eb;
+  margin: 0 0 16px 0;
+}
+
+.expert-quote-text::before {
+  content: '"';
+  font-size: 28px;
+  color: #f2a900;
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+.expert-quote-text::after {
+  content: '"';
+  font-size: 28px;
+  color: #f2a900;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+.expert-quote-attribution {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.expert-quote-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #3a4255;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f2a900;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.expert-quote-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.expert-quote-name {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.expert-quote-title {
+  font-size: 13px;
+  color: #9ca3af;
+  margin-top: 2px;
+}
+
+.expert-quote-source {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 12px;
+}
+
+.expert-quote-source a {
+  color: #f2a900;
+  text-decoration: none;
+}
+
+.expert-quote-source a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .expert-quote-section {
+    max-width: 100%;
+  }
+  
+  .expert-quote-card {
+    padding: 20px;
+  }
+  
+  .expert-quote-text {
+    font-size: 15px;
+  }
+}
 </style>
 
 <br><br>
@@ -1588,6 +1789,22 @@ body .tool img {
   
   <div class="hw-intro-highlight">
     <p>💡 Hardware wallets don't store your Bitcoin — they store the private keys that control your Bitcoin on the blockchain. Even if the device breaks, you can recover your funds with your seed phrase backup.</p>
+  </div>
+</div>
+
+<div class="expert-quote-section">
+  <div class="expert-quote-card">
+    <p class="expert-quote-text">Bitcoin has the advantage that you can send it to people all over the world and store it on a hardware wallet, which is a fairly secure way to store it.</p>
+    <div class="expert-quote-attribution">
+      <div class="expert-quote-avatar">NS</div>
+      <div class="expert-quote-info">
+        <span class="expert-quote-name">Nick Szabo</span>
+        <span class="expert-quote-title">Computer scientist, legal scholar, cryptographer & security expert</span>
+      </div>
+    </div>
+    <div class="expert-quote-source">
+      Source: <a href="https://tim.blog/2018/06/01/the-tim-ferriss-show-transcripts-nick-szabo/" target="_blank" rel="noopener">The Tim Ferriss Show</a>
+    </div>
   </div>
 </div>
 
@@ -1865,6 +2082,14 @@ body .tool img {
               <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
+          {% if wallet.youtube_id %}
+          <button class="hw-video-button" onclick="openVideoModal('{{ wallet.youtube_id }}', '{{ wallet.title }}')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 3l14 9-14 9V3z" fill="currentColor"/>
+            </svg>
+            Watch Official Video
+          </button>
+          {% endif %}
         </div>
         
         {% if wallet.wallet_summary %}
@@ -2343,6 +2568,15 @@ body .tool img {
       <p>Both are open source and have strong track records. Jade is the budget pick; Trezor offers a more premium experience.</p>
     </div>
   </div>
+
+  <div class="hw-faq-item">
+    <div class="hw-faq-question">
+      <h3>Why aren't Tangem, Ellipal, or Dcent listed?</h3>
+    </div>
+    <div class="hw-faq-answer">
+      <p>We haven't been able to test these hardware wallets yet, and don't know enough about them right now. We may add them in the future.</p>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -2365,6 +2599,51 @@ document.querySelectorAll('.hw-faq-question').forEach(question => {
       question.classList.add('active');
     }
   });
+});
+</script>
+
+<!-- Video Modal -->
+<div class="video-modal-overlay" id="videoModal">
+  <div class="video-modal-content">
+    <button class="video-modal-close" onclick="closeVideoModal()">&times;</button>
+    <div class="video-modal-iframe-wrapper">
+      <iframe id="videoModalIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+function openVideoModal(videoId, walletName) {
+  var modal = document.getElementById('videoModal');
+  var iframe = document.getElementById('videoModalIframe');
+  iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  if (typeof fathom !== 'undefined') {
+    fathom.trackEvent('Watch Video: ' + walletName);
+  }
+}
+
+function closeVideoModal() {
+  var modal = document.getElementById('videoModal');
+  var iframe = document.getElementById('videoModalIframe');
+  iframe.src = '';
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Close modal on overlay click
+document.getElementById('videoModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeVideoModal();
+  }
+});
+
+// Close modal on escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeVideoModal();
+  }
 });
 </script>
 
