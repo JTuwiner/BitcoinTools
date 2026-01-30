@@ -1625,13 +1625,14 @@ body .tool img {
 .hw-video-embed {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-out, margin-top 0.3s ease-out;
+  transition: max-height 0.4s ease-out, margin-top 0.3s ease-out;
   margin-top: 0;
 }
 
 .hw-video-section.expanded .hw-video-embed {
-  max-height: 450px;
+  max-height: 600px;
   margin-top: 12px;
+  overflow: visible;
 }
 
 .hw-video-embed-wrapper {
@@ -1639,8 +1640,38 @@ body .tool img {
   padding-bottom: 56.25%;
   height: 0;
   border-radius: 8px;
-  overflow: hidden;
+  overflow: visible;
   background: #000;
+}
+
+.hw-video-cta {
+  display: none;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.hw-video-section.expanded .hw-video-cta {
+  display: block;
+}
+
+.hw-video-cta-button {
+  background: #f2a900;
+  color: black !important;
+  padding: 14px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s;
+}
+
+.hw-video-cta-button:hover {
+  background: #059669;
+  color: white !important;
+  text-decoration: none;
 }
 
 .hw-video-embed-wrapper iframe {
@@ -1659,7 +1690,12 @@ body .tool img {
   }
   
   .hw-video-section.expanded .hw-video-embed {
-    max-height: 300px;
+    max-height: 400px;
+  }
+  
+  .hw-video-cta-button {
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -2147,6 +2183,14 @@ body .tool img {
           <div class="hw-video-embed" id="video-embed-{{ wallet.title | slugify }}">
             <div class="hw-video-embed-wrapper">
               <!-- iframe loads on click -->
+            </div>
+            <div class="hw-video-cta">
+              <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-video-cta-button" onclick="fathom.trackEvent('Click Hardware Wallet'); fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}');">
+                GET {{ wallet.title | upcase }}
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
             </div>
           </div>
         </div>
