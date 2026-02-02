@@ -455,6 +455,13 @@ body .tool img {
   }
 }
 
+@media (max-width: 410px) {
+  .brand-ratings-table th:nth-child(3),
+  .brand-ratings-table td:nth-child(3) {
+    display: none;
+  }
+}
+
 /* Dark mode for brand ratings */
 @media (prefers-color-scheme: dark) {
   .brand-ratings-info {
@@ -1103,6 +1110,93 @@ body .tool img {
   color: #d1d5db;
 }
 
+/* Mobile Cards - Hidden on desktop */
+.integrations-mobile-cards {
+  display: none;
+}
+
+.integration-mobile-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.integration-mobile-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.integration-mobile-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.integration-mobile-provider-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.integration-mobile-body {
+  padding: 16px;
+}
+
+.integration-mobile-brand-section {
+  margin-bottom: 16px;
+}
+
+.integration-mobile-brand-section:last-child {
+  margin-bottom: 0;
+}
+
+.integration-mobile-brand-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.integration-mobile-devices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.integration-mobile-device {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #374151;
+}
+
+.integration-mobile-device .check {
+  color: #10b981;
+  font-weight: bold;
+}
+
+.integration-mobile-device.deprecated {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.integration-mobile-device.deprecated .check {
+  color: #d1d5db;
+}
+
 @media (max-width: 768px) {
   .integrations-section {
     margin: 40px 0 32px 0;
@@ -1112,27 +1206,15 @@ body .tool img {
     font-size: 20px;
   }
   
-  .integrations-table th,
-  .integrations-table td {
-    padding: 10px 8px;
-    font-size: 11px;
+  /* Hide table on mobile */
+  .integrations-table-wrapper {
+    display: none;
   }
   
-  .integrations-table th {
-    white-space: nowrap;
-  }
-  
-  .integration-devices {
-    min-width: 80px;
-  }
-  
-  .integration-provider-img {
-    width: 28px;
-    height: 28px;
-  }
-  
-  .integration-device {
-    font-size: 12px;
+  /* Show mobile cards on mobile */
+  .integrations-mobile-cards {
+    display: block;
+    margin-top: 16px;
   }
 }
 
@@ -1330,6 +1412,31 @@ body .tool img {
   
   .integration-device {
     color: #d1d5db;
+  }
+  
+  /* Mobile cards dark mode */
+  .integration-mobile-card {
+    background: #232939;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+  
+  .integration-mobile-header {
+    background: #1a1f2e;
+    border-bottom-color: #3a4255;
+  }
+  
+  .integration-mobile-provider-name {
+    color: #ffffff;
+  }
+  
+  .integration-mobile-brand-name {
+    color: #f2a900;
+    border-bottom-color: #3a4255;
+  }
+  
+  .integration-mobile-device {
+    background: #1a1f2e;
+    color: #e5e7eb;
   }
   
   /* Brand section dark mode */
@@ -2336,6 +2443,85 @@ body .tool img {
         </tr>
       </tbody>
     </table>
+  </div>
+  
+  <!-- Mobile Cards (shown on mobile only) -->
+  <div class="integrations-mobile-cards">
+    <!-- Unchained Card -->
+    <div class="integration-mobile-card">
+      <div class="integration-mobile-header">
+        <img src="/tools/img/unchained.png" alt="Unchained" class="integration-mobile-logo">
+        <span class="integration-mobile-provider-name">Unchained</span>
+      </div>
+      <div class="integration-mobile-body">
+        <div class="integration-mobile-brand-section">
+          <div class="integration-mobile-brand-name">Trezor</div>
+          <div class="integration-mobile-devices">
+            <span class="integration-mobile-device"><span class="check">✓</span> Safe 7</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Safe 5</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Safe 3</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Model T</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Model One</span>
+          </div>
+        </div>
+        <div class="integration-mobile-brand-section">
+          <div class="integration-mobile-brand-name">Ledger</div>
+          <div class="integration-mobile-devices">
+            <span class="integration-mobile-device"><span class="check">✓</span> Stax</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Flex</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Nano X</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Nano S Plus</span>
+            <span class="integration-mobile-device deprecated"><span class="check">✓</span> Nano S (legacy)</span>
+          </div>
+        </div>
+        <div class="integration-mobile-brand-section">
+          <div class="integration-mobile-brand-name">Coldcard</div>
+          <div class="integration-mobile-devices">
+            <span class="integration-mobile-device"><span class="check">✓</span> Q</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Mk4</span>
+            <span class="integration-mobile-device deprecated"><span class="check">✓</span> Mk3/Mk2 (legacy)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Casa Card -->
+    <div class="integration-mobile-card">
+      <div class="integration-mobile-header">
+        <img src="/tools/img/casa.png" alt="Casa" class="integration-mobile-logo">
+        <span class="integration-mobile-provider-name">Casa</span>
+      </div>
+      <div class="integration-mobile-body">
+        <div class="integration-mobile-brand-section">
+          <div class="integration-mobile-brand-name">Trezor</div>
+          <div class="integration-mobile-devices">
+            <span class="integration-mobile-device"><span class="check">✓</span> Safe 3</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Model T</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Model One</span>
+          </div>
+        </div>
+        <div class="integration-mobile-brand-section">
+          <div class="integration-mobile-brand-name">Ledger</div>
+          <div class="integration-mobile-devices">
+            <span class="integration-mobile-device"><span class="check">✓</span> All models</span>
+          </div>
+        </div>
+        <div class="integration-mobile-brand-section">
+          <div class="integration-mobile-brand-name">Coldcard</div>
+          <div class="integration-mobile-devices">
+            <span class="integration-mobile-device"><span class="check">✓</span> Coldcard</span>
+          </div>
+        </div>
+        <div class="integration-mobile-brand-section">
+          <div class="integration-mobile-brand-name">Other Wallets</div>
+          <div class="integration-mobile-devices">
+            <span class="integration-mobile-device"><span class="check">✓</span> Keystone</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Passport</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> YubiKey</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
