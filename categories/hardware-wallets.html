@@ -978,6 +978,7 @@ body .tool img {
 /* Integrations Section */
 .integrations-section {
   margin: 60px 0 40px 0;
+  overflow: hidden;
 }
 
 .integrations-title {
@@ -1012,11 +1013,11 @@ body .tool img {
 .integrations-table-wrapper {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  max-width: 100%;
 }
 
 .integrations-table {
   width: 100%;
-  min-width: 600px;
   border-collapse: collapse;
   background: white;
   border-radius: 10px;
@@ -1111,18 +1112,18 @@ body .tool img {
     font-size: 20px;
   }
   
-  .integrations-table {
-    min-width: 650px;
-  }
-  
   .integrations-table th,
   .integrations-table td {
-    padding: 12px 14px;
-    font-size: 13px;
+    padding: 10px 8px;
+    font-size: 11px;
   }
   
   .integrations-table th {
     white-space: nowrap;
+  }
+  
+  .integration-devices {
+    min-width: 80px;
   }
   
   .integration-provider-img {
