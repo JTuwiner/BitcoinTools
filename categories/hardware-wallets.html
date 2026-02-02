@@ -990,10 +990,12 @@ body .tool img {
 
 .integrations-table-wrapper {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .integrations-table {
   width: 100%;
+  min-width: 600px;
   border-collapse: collapse;
   background: white;
   border-radius: 10px;
@@ -1012,6 +1014,7 @@ body .tool img {
   font-weight: 600;
   font-size: 14px;
   color: #111827;
+  white-space: nowrap;
 }
 
 .integrations-table th:first-child {
@@ -1087,10 +1090,36 @@ body .tool img {
     font-size: 20px;
   }
   
+  .integrations-table-wrapper {
+    margin: 0 -15px;
+    padding: 0 15px;
+    position: relative;
+  }
+  
+  .integrations-table-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 30px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.8));
+    pointer-events: none;
+    border-radius: 0 10px 10px 0;
+  }
+  
+  .integrations-table {
+    min-width: 650px;
+  }
+  
   .integrations-table th,
   .integrations-table td {
-    padding: 12px;
+    padding: 12px 14px;
     font-size: 13px;
+  }
+  
+  .integrations-table th {
+    white-space: nowrap;
   }
   
   .integration-provider-img {
@@ -1265,6 +1294,10 @@ body .tool img {
   
   .expert-advice strong {
     color: #6ee7b7;
+  }
+  
+  .integrations-table-wrapper::after {
+    background: linear-gradient(to right, transparent, rgba(35, 41, 57, 0.9));
   }
   
   .integrations-table th {
