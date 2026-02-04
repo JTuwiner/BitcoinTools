@@ -568,6 +568,12 @@ sidebar_toc:
   z-index: 10;
 }
 
+.mobile-ira-card.top-pick {
+  border: 2px solid #f2a900;
+  box-shadow: 0 0 20px rgba(242, 169, 0, 0.2), inset 0 0 30px rgba(242, 169, 0, 0.03);
+  position: relative;
+}
+
 .ira-header {
   display: flex;
   gap: 24px;
@@ -1166,7 +1172,8 @@ sidebar_toc:
       </select>
     </div>
     {% for ira in iras %}
-    <div class="mobile-ira-card">
+    <div class="mobile-ira-card{% if ira.toppick %} top-pick{% endif %}">
+      {% if ira.toppick %}<span class="card-badge">Top Pick</span>{% endif %}
       <div class="mobile-ira-card-header">
         <img src="/tools/img/{{ ira.img }}" alt="{{ ira.title }}" class="mobile-ira-card-img">
         <div>
