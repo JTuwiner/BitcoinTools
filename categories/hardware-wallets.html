@@ -521,38 +521,37 @@ body .tool img {
 }
 
 .wallet-scrutiny-intro {
-  background: #f0fdf4;
-  border: 1px solid #10b981;
-  border-radius: 8px;
-  padding: 16px 18px;
+  background: #f9fafb;
+  border-radius: 6px;
+  padding: 14px 16px;
   margin-bottom: 16px;
-  font-size: 14px;
-  color: #065f46;
+  font-size: 13px;
+  color: #4b5563;
   line-height: 1.6;
 }
 
 .wallet-scrutiny-intro strong {
-  color: #047857;
+  color: #374151;
 }
 
 .wallet-scrutiny-intro p {
-  margin: 0 0 10px 0;
+  margin: 0 0 8px 0;
 }
 
-.wallet-scrutiny-intro p:last-child {
+.wallet-scrutiny-intro p:last-of-type {
   margin-bottom: 0;
 }
 
 .wallet-scrutiny-attribution {
   font-size: 12px;
   color: #6b7280;
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid #d1fae5;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #e5e7eb;
 }
 
 .wallet-scrutiny-attribution a {
-  color: #047857;
+  color: #2563eb;
   text-decoration: none;
 }
 
@@ -590,14 +589,14 @@ body .tool img {
   transform: rotate(180deg);
 }
 
-.wallet-scrutiny-table-wrapper {
+.wallet-scrutiny-content-wrapper {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease-out;
 }
 
-.wallet-scrutiny-table-wrapper.expanded {
-  max-height: 800px;
+.wallet-scrutiny-content-wrapper.expanded {
+  max-height: 1200px;
   margin-top: 16px;
 }
 
@@ -716,22 +715,21 @@ body .tool img {
 /* Dark mode for WalletScrutiny */
 @media (prefers-color-scheme: dark) {
   .wallet-scrutiny-intro {
-    background: #064e3b;
-    border-color: #10b981;
-    color: #d1fae5;
+    background: #1a1f2e;
+    color: #9ca3af;
   }
   
   .wallet-scrutiny-intro strong {
-    color: #6ee7b7;
+    color: #d1d5db;
   }
   
   .wallet-scrutiny-attribution {
-    color: #9ca3af;
-    border-top-color: #065f46;
+    color: #6b7280;
+    border-top-color: #3a4255;
   }
   
   .wallet-scrutiny-attribution a {
-    color: #6ee7b7;
+    color: #60a5fa;
   }
   
   .wallet-scrutiny-toggle {
@@ -2355,7 +2353,7 @@ body .tool img {
       <span>These are <strong>brand ratings</strong>, not individual wallet ratings. Reviews cover all products and customer service experiences for each company. <em style="font-size: 12px; opacity: 0.8;">(As of January 2026)</em></span>
     </div>
     
-    <button class="brand-ratings-toggle" onclick="document.querySelector('.brand-ratings-table-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded');">
+    <button class="brand-ratings-toggle" onclick="document.querySelector('.brand-ratings-table-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded'); if(typeof fathom !== 'undefined') fathom.trackEvent('Toggle Compare Brand Ratings');">
       <span>Compare Brand Ratings</span>
       <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2435,23 +2433,22 @@ body .tool img {
 
   <!-- WalletScrutiny Section -->
   <div class="wallet-scrutiny-section">
-    <div class="wallet-scrutiny-intro">
-      <p><strong>WalletScrutiny</strong> tests whether a wallet provider could theoretically steal all user funds at once (a "retirement attack"). It checks if the code is open source and verifiable — not whether the wallet is secure against all threats.</p>
-      <p><strong>What it does:</strong> Verifies the wallet is real, available, self-custodial, has proper transaction verification, and that the source code is publicly available and reproducible.</p>
-      <p><strong>What it doesn't do:</strong> This is NOT a full security audit. It doesn't test for vulnerabilities, bugs, or endorse any wallet's overall security.</p>
-      <div class="wallet-scrutiny-attribution">
-        Tests by <a href="https://walletscrutiny.com" target="_blank" rel="nofollow noopener">WalletScrutiny.com</a>, founded by <strong>Leo Wandersleb</strong> (contributing since 2019, former Mycelium release manager).
-      </div>
-    </div>
-    
-    <button class="wallet-scrutiny-toggle" onclick="document.querySelector('.wallet-scrutiny-table-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded');">
+    <button class="wallet-scrutiny-toggle" onclick="document.querySelector('.wallet-scrutiny-content-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded'); if(typeof fathom !== 'undefined') fathom.trackEvent('Toggle WalletScrutiny Scores');">
       <span>Compare WalletScrutiny Scores</span>
       <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
     
-    <div class="wallet-scrutiny-table-wrapper">
+    <div class="wallet-scrutiny-content-wrapper">
+      <div class="wallet-scrutiny-intro">
+        <p><strong>WalletScrutiny</strong> tests whether a wallet provider could theoretically steal all user funds at once (a "retirement attack"). It checks if the code is open source and verifiable — not whether the wallet is secure against all threats.</p>
+        <p><strong>What it does:</strong> Verifies the wallet is real, available, self-custodial, has proper transaction verification, and that the source code is publicly available and reproducible.</p>
+        <p><strong>What it doesn't do:</strong> This is NOT a full security audit. It doesn't test for vulnerabilities, bugs, or endorse any wallet's overall security.</p>
+        <div class="wallet-scrutiny-attribution">
+          Tests by <a href="https://walletscrutiny.com" target="_blank" rel="nofollow noopener">WalletScrutiny.com</a>, founded by <strong>Leo Wandersleb</strong> (contributing since 2019, former Mycelium release manager).
+        </div>
+      </div>
       <table class="wallet-scrutiny-table">
         <thead>
           <tr>
@@ -2588,7 +2585,7 @@ body .tool img {
 
   <!-- Quick Compare Links -->
   <div class="quick-compare-section">
-    <button class="quick-compare-toggle" onclick="document.querySelector('.quick-compare-grid-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded');">
+    <button class="quick-compare-toggle" onclick="document.querySelector('.quick-compare-grid-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded'); if(typeof fathom !== 'undefined') fathom.trackEvent('Toggle Compare Brands Side-by-Side');">
       <span>Compare Brands Side-by-Side</span>
       <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
