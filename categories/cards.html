@@ -777,6 +777,68 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
     padding: 3px 8px;
   }
 }
+
+/* US-Only Toggle */
+.us-only-toggle-wrapper {
+  margin-bottom: 24px;
+  margin-top: -10px;
+}
+
+.us-only-toggle {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 12px;
+}
+
+.us-only-toggle input {
+  display: none;
+}
+
+.us-only-toggle .toggle-slider {
+  width: 48px;
+  height: 26px;
+  background: #3a4255;
+  border-radius: 13px;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.us-only-toggle .toggle-slider::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.2s;
+}
+
+.us-only-toggle input:checked + .toggle-slider {
+  background: #F7931A;
+}
+
+.us-only-toggle input:checked + .toggle-slider::after {
+  transform: translateX(22px);
+}
+
+.us-only-toggle .toggle-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e5e7eb;
+  transition: color 0.2s;
+}
+
+.us-only-toggle input:checked ~ .toggle-label {
+  color: #F7931A;
+}
+
+/* Hide US-only cards when toggle is on */
+.tool-link.hide-us-only {
+  display: none !important;
+}
 </style>
 <br><br><br>
 <div class="comparison-table-wrapper">
@@ -2189,5 +2251,43 @@ document.addEventListener('DOMContentLoaded', function() {
         fathom.trackEvent('Click Card: ' + title);
       });
     });
+    
+    // Move US-only toggle before tools-container
+    var toggle = document.getElementById('us-only-toggle-wrapper');
+    var toolsContainer = document.querySelector('.tools-container');
+    if (toggle && toolsContainer) {
+      toolsContainer.parentNode.insertBefore(toggle, toolsContainer);
+      toggle.style.display = 'block';
+    }
+    
+    // US-only toggle functionality
+    var usOnlyToggle = document.getElementById('usOnlyToggle');
+    if (usOnlyToggle) {
+      usOnlyToggle.addEventListener('change', function() {
+        var isChecked = this.checked;
+        if (isChecked && typeof fathom !== 'undefined') {
+          fathom.trackEvent('Hide US-Only Cards Toggle Enabled');
+        }
+        document.querySelectorAll('.tool-link').forEach(function(link) {
+          var isUsOnly = link.dataset.usOnly === 'true';
+          
+          if (isChecked && isUsOnly) {
+            // Hide US-only cards
+            link.classList.add('hide-us-only');
+          } else {
+            // Show all cards
+            link.classList.remove('hide-us-only');
+          }
+        });
+      });
+    }
   });
 </script>
+
+<div id="us-only-toggle-wrapper" class="us-only-toggle-wrapper" style="display: none;">
+  <label class="us-only-toggle">
+    <input type="checkbox" id="usOnlyToggle">
+    <span class="toggle-slider"></span>
+    <span class="toggle-label">Hide US-only cards</span>
+  </label>
+</div>
