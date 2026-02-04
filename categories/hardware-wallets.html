@@ -298,17 +298,17 @@ body .tool img {
 }
 
 .brand-ratings-info {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  background: #FEF3C7;
-  border: 1px solid #F59E0B;
-  border-radius: 8px;
-  padding: 14px 16px;
+  background: #f9fafb;
+  border-radius: 6px;
+  padding: 12px 14px;
   margin-bottom: 16px;
-  font-size: 14px;
-  color: #92400E;
+  font-size: 13px;
+  color: #4b5563;
   line-height: 1.5;
+}
+
+.brand-ratings-info strong {
+  color: #374151;
 }
 
 .brand-ratings-toggle {
@@ -341,14 +341,14 @@ body .tool img {
   transform: rotate(180deg);
 }
 
-.brand-ratings-table-wrapper {
+.brand-ratings-content-wrapper {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease-out;
 }
 
-.brand-ratings-table-wrapper.expanded {
-  max-height: 500px;
+.brand-ratings-content-wrapper.expanded {
+  max-height: 600px;
   margin-top: 16px;
 }
 
@@ -465,9 +465,12 @@ body .tool img {
 /* Dark mode for brand ratings */
 @media (prefers-color-scheme: dark) {
   .brand-ratings-info {
-    background: #422006;
-    border-color: #f2a900;
-    color: #FDE68A;
+    background: #1a1f2e;
+    color: #9ca3af;
+  }
+  
+  .brand-ratings-info strong {
+    color: #d1d5db;
   }
   
   .brand-ratings-toggle {
@@ -2345,22 +2348,17 @@ body .tool img {
   
   <!-- Brand Ratings Section -->
   <div class="brand-ratings-section">
-    <div class="brand-ratings-info">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
-        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-        <path d="M12 16v-4M12 8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      <span>These are <strong>brand ratings</strong>, not individual wallet ratings. Reviews cover all products and customer service experiences for each company. <em style="font-size: 12px; opacity: 0.8;">(As of January 2026)</em></span>
-    </div>
-    
-    <button class="brand-ratings-toggle" onclick="document.querySelector('.brand-ratings-table-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded'); if(typeof fathom !== 'undefined') fathom.trackEvent('Toggle Compare Brand Ratings');">
+    <button class="brand-ratings-toggle" onclick="document.querySelector('.brand-ratings-content-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded'); if(typeof fathom !== 'undefined') fathom.trackEvent('Toggle Compare Brand Ratings');">
       <span>Compare Brand Ratings</span>
       <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
     
-    <div class="brand-ratings-table-wrapper">
+    <div class="brand-ratings-content-wrapper">
+      <div class="brand-ratings-info">
+        These are <strong>brand ratings</strong>, not individual wallet ratings. Reviews cover all products and customer service experiences for each company. <em style="font-size: 12px; opacity: 0.8;">(As of January 2026)</em>
+      </div>
       <table class="brand-ratings-table">
         <thead>
           <tr>
