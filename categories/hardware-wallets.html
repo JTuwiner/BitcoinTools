@@ -514,6 +514,281 @@ body .tool img {
   }
 }
 
+/* WalletScrutiny Section */
+.wallet-scrutiny-section {
+  margin: 32px 0;
+  max-width: 700px;
+}
+
+.wallet-scrutiny-intro {
+  background: #f0fdf4;
+  border: 1px solid #10b981;
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #065f46;
+  line-height: 1.6;
+}
+
+.wallet-scrutiny-intro strong {
+  color: #047857;
+}
+
+.wallet-scrutiny-intro p {
+  margin: 0 0 10px 0;
+}
+
+.wallet-scrutiny-intro p:last-child {
+  margin-bottom: 0;
+}
+
+.wallet-scrutiny-attribution {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #d1fae5;
+}
+
+.wallet-scrutiny-attribution a {
+  color: #047857;
+  text-decoration: none;
+}
+
+.wallet-scrutiny-attribution a:hover {
+  text-decoration: underline;
+}
+
+.wallet-scrutiny-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.wallet-scrutiny-toggle:hover {
+  background: #f2a900;
+  border-color: #f2a900;
+  color: #000;
+}
+
+.wallet-scrutiny-toggle .toggle-chevron {
+  transition: transform 0.2s;
+}
+
+.wallet-scrutiny-toggle.expanded .toggle-chevron {
+  transform: rotate(180deg);
+}
+
+.wallet-scrutiny-table-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.wallet-scrutiny-table-wrapper.expanded {
+  max-height: 800px;
+  margin-top: 16px;
+}
+
+.wallet-scrutiny-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.wallet-scrutiny-table thead {
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.wallet-scrutiny-table th {
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+  color: #111827;
+}
+
+.wallet-scrutiny-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wallet-scrutiny-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.wallet-scrutiny-table td {
+  padding: 10px 14px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.wallet-scrutiny-wallet-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.wallet-scrutiny-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.scrutiny-score {
+  font-weight: 600;
+}
+
+.scrutiny-score-perfect {
+  color: #059669;
+}
+
+.scrutiny-score-partial {
+  color: #D97706;
+}
+
+.scrutiny-failed-test {
+  font-size: 12px;
+  color: #DC2626;
+}
+
+.wallet-scrutiny-table td a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.wallet-scrutiny-table td a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .wallet-scrutiny-section {
+    max-width: 100%;
+  }
+  
+  .wallet-scrutiny-table th,
+  .wallet-scrutiny-table td {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  
+  .wallet-scrutiny-wallet-name {
+    gap: 6px;
+  }
+  
+  .wallet-scrutiny-wallet-name span {
+    white-space: nowrap;
+  }
+  
+  .wallet-scrutiny-img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .scrutiny-score {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  
+  .scrutiny-failed-test {
+    font-size: 11px;
+  }
+}
+
+
+/* Dark mode for WalletScrutiny */
+@media (prefers-color-scheme: dark) {
+  .wallet-scrutiny-intro {
+    background: #064e3b;
+    border-color: #10b981;
+    color: #d1fae5;
+  }
+  
+  .wallet-scrutiny-intro strong {
+    color: #6ee7b7;
+  }
+  
+  .wallet-scrutiny-attribution {
+    color: #9ca3af;
+    border-top-color: #065f46;
+  }
+  
+  .wallet-scrutiny-attribution a {
+    color: #6ee7b7;
+  }
+  
+  .wallet-scrutiny-toggle {
+    background: #232939;
+    border-color: #3a4255;
+    color: #ffffff;
+  }
+  
+  .wallet-scrutiny-toggle:hover {
+    background: #f2a900;
+    border-color: #f2a900;
+    color: #000;
+  }
+  
+  .wallet-scrutiny-table {
+    background: #232939;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+  
+  .wallet-scrutiny-table thead {
+    background: #1a1f2e;
+    border-bottom-color: #3a4255;
+  }
+  
+  .wallet-scrutiny-table th {
+    color: #f2a900;
+  }
+  
+  .wallet-scrutiny-table tbody tr {
+    border-bottom-color: #3a4255;
+  }
+  
+  .wallet-scrutiny-table td {
+    color: #e5e7eb;
+  }
+  
+  .wallet-scrutiny-wallet-name {
+    color: #ffffff;
+  }
+  
+  .scrutiny-score-perfect {
+    color: #6ee7b7;
+  }
+  
+  .scrutiny-score-partial {
+    color: #fbbf24;
+  }
+  
+  .scrutiny-failed-test {
+    color: #f87171;
+  }
+  
+  .wallet-scrutiny-table td a {
+    color: #60a5fa;
+  }
+}
+
 /* Brand Lineup Section */
 .brand-lineup-section {
   margin: 48px 0;
@@ -979,6 +1254,76 @@ body .tool img {
   
   .hw-disclaimer p {
     font-size: 11px;
+  }
+}
+
+.hw-sources {
+  margin-top: 32px;
+  padding: 20px 24px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border-left: 3px solid #f2a900;
+}
+
+.hw-sources h3 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.hw-sources ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hw-sources li {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.hw-sources li:last-child {
+  margin-bottom: 0;
+}
+
+.hw-sources a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.hw-sources a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .hw-sources {
+    padding: 16px;
+  }
+  
+  .hw-sources li {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .hw-sources {
+    background: #1a1f2e;
+    border-left-color: #f2a900;
+  }
+  
+  .hw-sources h3 {
+    color: #f9fafb;
+  }
+  
+  .hw-sources li {
+    color: #9ca3af;
+  }
+  
+  .hw-sources a {
+    color: #60a5fa;
   }
 }
 
@@ -2088,6 +2433,159 @@ body .tool img {
     </div>
   </div>
 
+  <!-- WalletScrutiny Section -->
+  <div class="wallet-scrutiny-section">
+    <div class="wallet-scrutiny-intro">
+      <p><strong>WalletScrutiny</strong> tests whether a wallet provider could theoretically steal all user funds at once (a "retirement attack"). It checks if the code is open source and verifiable — not whether the wallet is secure against all threats.</p>
+      <p><strong>What it does:</strong> Verifies the wallet is real, available, self-custodial, has proper transaction verification, and that the source code is publicly available and reproducible.</p>
+      <p><strong>What it doesn't do:</strong> This is NOT a full security audit. It doesn't test for vulnerabilities, bugs, or endorse any wallet's overall security.</p>
+      <div class="wallet-scrutiny-attribution">
+        Tests by <a href="https://walletscrutiny.com" target="_blank" rel="nofollow noopener">WalletScrutiny.com</a>, founded by <strong>Leo Wandersleb</strong> (contributing since 2019, former Mycelium release manager).
+      </div>
+    </div>
+    
+    <button class="wallet-scrutiny-toggle" onclick="document.querySelector('.wallet-scrutiny-table-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded');">
+      <span>Compare WalletScrutiny Scores</span>
+      <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    
+    <div class="wallet-scrutiny-table-wrapper">
+      <table class="wallet-scrutiny-table">
+        <thead>
+          <tr>
+            <th>Wallet</th>
+            <th>Score</th>
+            <th>Failed Tests</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img src="/tools/img/bitbox.png" alt="BitBox02" class="wallet-scrutiny-img">
+                <span>BitBox02</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img src="/tools/img/coldcard.jpeg" alt="Coldcard Q" class="wallet-scrutiny-img">
+                <span>Coldcard Q</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img src="/tools/img/coldcard.jpeg" alt="Coldcard Mk4" class="wallet-scrutiny-img">
+                <span>Coldcard Mk4</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img src="/tools/img/trezor.png" alt="Trezor Safe 7" class="wallet-scrutiny-img">
+                <span>Trezor Safe 7</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img src="/tools/img/trezor.png" alt="Trezor Safe 5" class="wallet-scrutiny-img">
+                <span>Trezor Safe 5</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img src="/tools/img/trezor.png" alt="Trezor Safe 3" class="wallet-scrutiny-img">
+                <span>Trezor Safe 3</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img src="/tools/img/jade.png" alt="Jade Plus" class="wallet-scrutiny-img">
+                <span>Jade Plus</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img src="/tools/img/jade.png" alt="Jade" class="wallet-scrutiny-img">
+                <span>Jade</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img src="/tools/img/ledger.png" alt="Ledger Stax" class="wallet-scrutiny-img">
+                <span>Ledger Stax</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-partial">8/10</span></td>
+            <td><span class="scrutiny-failed-test">No source code for current release</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img src="/tools/img/ledger.png" alt="Ledger Flex" class="wallet-scrutiny-img">
+                <span>Ledger Flex</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-partial">8/10</span></td>
+            <td><span class="scrutiny-failed-test">No source code for current release</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img src="/tools/img/ledger.png" alt="Ledger Nano X" class="wallet-scrutiny-img">
+                <span>Ledger Nano X</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-partial">8/10</span></td>
+            <td><span class="scrutiny-failed-test">No source code for current release</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img src="/tools/img/ledger.png" alt="Ledger Nano S Plus" class="wallet-scrutiny-img">
+                <span>Ledger Nano S Plus</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-partial">8/10</span></td>
+            <td><span class="scrutiny-failed-test">No source code for current release</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <!-- Quick Compare Links -->
   <div class="quick-compare-section">
     <button class="quick-compare-toggle" onclick="document.querySelector('.quick-compare-grid-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded');">
@@ -2896,6 +3394,13 @@ function toggleInlineVideo(walletSlug, videoId) {
 
 <div class="hw-disclaimer">
   <p>Disclaimer: The information provided on this page is for informational purposes only and does not constitute financial advice. Hardware wallets involve technical complexity — always follow manufacturer instructions carefully and test your backup recovery process before storing significant funds. We recommend purchasing hardware wallets directly from manufacturers to avoid tampered devices. Some links on this page may be affiliate links, which help support our research at no extra cost to you.</p>
+</div>
+
+<div class="hw-sources">
+  <h3>Sources</h3>
+  <ul>
+    <li><a href="https://walletscrutiny.com" target="_blank" rel="nofollow noopener">WalletScrutiny.com</a> — Hardware wallet verification scores by Leo Wandersleb</li>
+  </ul>
 </div>
 
 <script>
