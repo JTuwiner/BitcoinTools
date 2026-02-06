@@ -10,6 +10,8 @@ Good internal link (using markdown as example, should match page):
 
  The Mayer Multiple Price Bands chart is a simple modification to the original Mayer Multiple chart [can be seen on Bitbo's page.]](https://charts.bitbo.io/mayer-multiple/).  
 
+ Also, don't just add randomly. Only add when the internal link would be extremely relevant.
+
 ## URL List
 
 https://charts.bitbo.io/price/
