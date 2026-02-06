@@ -2,6 +2,8 @@
 
 Using the URL list below, scan the provided page(s) and add relevant internal links where appropriate. Link anchor text should feel natural within the surrounding sentence.
 
+Do not ask about or adjust existing internal links.
+
 Good internal link (using markdown as example, should match page):
 
  The Mayer Multiple Price Bands chart is a simple modification to the [original Mayer Multiple chart](https://charts.bitbo.io/mayer-multiple/). 
