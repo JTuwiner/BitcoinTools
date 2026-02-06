@@ -2,7 +2,7 @@
 
 Using the URL list below, scan the provided page(s) and add relevant internal links where appropriate. Link anchor text should feel natural within the surrounding sentence.
 
-Do not ask about or adjust existing internal links.
+Only ask if it's a new link oppurtunity and we don't already internal link. 
 
 Good internal link (using markdown as example, should match page):
 
@@ -213,7 +213,7 @@ https://bitbo.io/tools/canada-tax-calculator/
 https://bitbo.io/buy/kraken-vs-revolut/
 https://bitbo.io/ko/
 https://bitbo.io/tools/desktop-wallets/
-https://bitbo.io/tools/offline-wallets/
+https://bitbo.io/tools/offline-wallets/ ## discusses hardware wallets as well
 https://charts.bitbo.io/price-year-over-year/
 https://charts.bitbo.io/mayer-bands/
 https://charts.bitbo.io/thermocap-multiple/
@@ -493,7 +493,6 @@ https://bitbo.io/alts/trx/
 https://bitbo.io/tools/trezor-5-vs-ledger-flex/
 https://bitbo.io/tools/loans/
 https://bitbo.io/buy/unchained-vs-onramp/
-https://bitbo.io/tools/hardware-wallets/
 https://bitbo.io/buy/north-carolina/
 https://bitbo.io/tools/ny-tax-calculator/
 https://bitbo.io/buy/robinhood-vs-cashapp/
