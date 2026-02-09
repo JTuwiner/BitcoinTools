@@ -58,7 +58,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 }
 
 .comparison-table th:first-child {
-  min-width: 180px;
+  min-width: 220px;
 }
 
 .comparison-table tbody tr {
@@ -71,7 +71,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 }
 
 .comparison-table td {
-  padding: 12px 16px;
+  padding: 16px 16px;
   font-size: 14px;
   color: #111827;
   vertical-align: middle;
@@ -79,7 +79,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 
 .comparison-table td:first-child {
   font-weight: 500;
-  min-width: 180px;
+  min-width: 220px;
 }
 
 .comparison-table-card-name {
@@ -87,13 +87,15 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   align-items: center;
   gap: 12px;
   color: #111827;
+  min-width: 200px;
 }
 
 .comparison-table-card-img {
-  width: 40px;
-  height: 25px;
+  width: 60px;
+  height: 38px;
   object-fit: contain;
   border-radius: 8px;
+  flex-shrink: 0;
   transition: transform 0.15s;
 }
 
