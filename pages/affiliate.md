@@ -228,6 +228,69 @@ table thead th {
 table tbody tr:nth-child(even) {
   background-color: #f8f9fa;
 }
+
+@media (prefers-color-scheme: dark) {
+  table {
+    border-color: #3a4255;
+  }
+
+  table th,
+  table td {
+    border-color: #3a4255;
+    color: #ffffff;
+  }
+
+  table thead th {
+    background-color: #1a1f2e;
+    color: #f2a900;
+  }
+
+  table tbody tr {
+    background-color: #232939;
+  }
+
+  table tbody tr:nth-child(even) {
+    background-color: #1a1f2e;
+  }
+
+  table tbody tr:hover {
+    background-color: #2a3142;
+  }
+
+  .takeaways {
+    background-color: #232939;
+    border-color: #3a4255;
+  }
+
+  .takeaways h3 {
+    color: #f2a900;
+  }
+
+  .takeaways li {
+    color: #d1d5db;
+  }
+
+  .earnings-calculator {
+    background-color: #232939;
+    border-color: #3a4255;
+  }
+
+  .earnings-calculator h3 {
+    color: #f2a900;
+  }
+
+  .calc-input,
+  .calc-select {
+    background-color: #1a1f2e;
+    border-color: #3a4255;
+    color: #ffffff;
+  }
+
+  .calc-result {
+    border-color: #3a4255;
+    color: #ffffff;
+  }
+}
 </style>
 
 <div class="toc-box">
