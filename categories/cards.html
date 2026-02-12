@@ -1094,6 +1094,12 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 .rewards-calc-results-table td:first-child {
   width: 36px;
   padding-right: 0;
+  border-right: none;
+}
+
+.rewards-calc-results-table th:nth-child(2),
+.rewards-calc-results-table td:nth-child(2) {
+  padding-left: 4px;
 }
 
 .rewards-calc-results-table tbody tr {
@@ -1563,7 +1569,6 @@ function updateMobileComparison() {
             <tr>
               <th>#</th>
               <th>Card</th>
-              <th>Rate Used</th>
               <th>Monthly Rewards</th>
             </tr>
           </thead>
@@ -1760,11 +1765,6 @@ function calculateRewards() {
     nameHtml += '</div></div>';
     tdName.innerHTML = nameHtml;
     row.appendChild(tdName);
-    
-    // Rate
-    var tdRate = document.createElement('td');
-    tdRate.textContent = card.effective;
-    row.appendChild(tdRate);
     
     // Monthly rewards
     var tdAmount = document.createElement('td');
