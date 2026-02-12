@@ -835,6 +835,525 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 .tool-link.hide-card {
   display: none !important;
 }
+
+/* Rewards Calculator Section */
+.rewards-calc-section {
+  margin: 32px 0;
+  max-width: 700px;
+}
+
+.rewards-calc-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.rewards-calc-toggle:hover {
+  background: #f2a900;
+  border-color: #f2a900;
+  color: #000;
+}
+
+.rewards-calc-toggle .toggle-chevron {
+  transition: transform 0.2s;
+}
+
+.rewards-calc-toggle.expanded .toggle-chevron {
+  transform: rotate(180deg);
+}
+
+.rewards-calc-content-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+
+.rewards-calc-content-wrapper.expanded {
+  max-height: 3000px;
+  margin-top: 16px;
+}
+
+.rewards-calc-content {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.rewards-calc-intro {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 20px 0;
+  line-height: 1.5;
+}
+
+.rewards-calc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.rewards-calc-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rewards-calc-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  min-width: 140px;
+  flex-shrink: 0;
+}
+
+.rewards-calc-input {
+  width: 120px;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #111827;
+  background: white;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.rewards-calc-input:focus {
+  outline: none;
+  border-color: #f2a900;
+  box-shadow: 0 0 0 2px rgba(242, 169, 0, 0.2);
+}
+
+.rewards-calc-input::placeholder {
+  color: #9ca3af;
+}
+
+.rewards-calc-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 8px 0;
+}
+
+.rewards-calc-balance-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.rewards-calc-balance-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  min-width: 140px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rewards-calc-tooltip-icon {
+  width: 16px;
+  height: 16px;
+  background: #e5e7eb;
+  color: #6b7280;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: help;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.rewards-calc-tooltip-icon:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1f2937;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 8px 12px;
+  border-radius: 6px;
+  white-space: normal;
+  width: 240px;
+  line-height: 1.4;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  pointer-events: none;
+}
+
+.rewards-calc-tooltip-icon:hover::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #1f2937;
+  z-index: 11;
+  pointer-events: none;
+}
+
+.rewards-calc-select {
+  padding: 10px 32px 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #111827;
+  background: white;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.rewards-calc-select:focus {
+  outline: none;
+  border-color: #f2a900;
+  box-shadow: 0 0 0 2px rgba(242, 169, 0, 0.2);
+}
+
+.rewards-calc-btn {
+  background: #f2a900;
+  color: #000;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
+.rewards-calc-btn:hover {
+  background: #d4920a;
+}
+
+/* Results */
+.rewards-calc-results {
+  display: none;
+}
+
+.rewards-calc-results.show {
+  display: block;
+}
+
+.rewards-calc-results-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rewards-calc-results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.rewards-calc-results-table thead {
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.rewards-calc-results-table th {
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+  color: #111827;
+}
+
+.rewards-calc-results-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background 0.15s;
+}
+
+.rewards-calc-results-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.rewards-calc-results-table td {
+  padding: 12px 12px;
+  font-size: 14px;
+  color: #374151;
+  vertical-align: middle;
+}
+
+.rewards-calc-results-table td:first-child {
+  font-weight: 500;
+  color: #111827;
+}
+
+.rewards-calc-card-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rewards-calc-card-img {
+  width: 36px;
+  height: 23px;
+  object-fit: contain;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.rewards-calc-rank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.rewards-calc-rank-1 {
+  background: #f2a900;
+  color: #000;
+}
+
+.rewards-calc-rank-2 {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.rewards-calc-rank-3 {
+  background: #e5e7eb;
+  color: #6b7280;
+}
+
+.rewards-calc-rank-other {
+  background: #f3f4f6;
+  color: #9ca3af;
+}
+
+.rewards-calc-amount {
+  font-weight: 600;
+  color: #059669;
+}
+
+.rewards-calc-amount-annual {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 400;
+}
+
+.rewards-calc-note {
+  font-size: 12px;
+  color: #9ca3af;
+  font-weight: 400;
+  display: block;
+  margin-top: 2px;
+}
+
+.rewards-calc-fee-note {
+  font-size: 12px;
+  color: #dc2626;
+}
+
+.rewards-calc-disclaimer {
+  margin-top: 16px;
+  font-size: 12px;
+  color: #9ca3af;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .rewards-calc-section {
+    max-width: 100%;
+  }
+  
+  .rewards-calc-content {
+    padding: 16px;
+  }
+  
+  .rewards-calc-field {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  
+  .rewards-calc-label {
+    min-width: auto;
+  }
+  
+  .rewards-calc-input {
+    width: 100%;
+  }
+  
+  .rewards-calc-balance-field {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  
+  .rewards-calc-balance-label {
+    min-width: auto;
+  }
+  
+  .rewards-calc-select {
+    width: 100%;
+  }
+  
+  .rewards-calc-btn {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .rewards-calc-results-table th,
+  .rewards-calc-results-table td {
+    padding: 8px 8px;
+    font-size: 12px;
+  }
+  
+  .rewards-calc-card-img {
+    display: none;
+  }
+  
+  .rewards-calc-results-table th:last-child,
+  .rewards-calc-results-table td:last-child {
+    text-align: right;
+  }
+}
+
+/* Dark mode for rewards calculator */
+@media (prefers-color-scheme: dark) {
+  .rewards-calc-toggle {
+    background: #232939;
+    border-color: #3a4255;
+    color: #ffffff;
+  }
+  
+  .rewards-calc-toggle:hover {
+    background: #f2a900;
+    border-color: #f2a900;
+    color: #000;
+  }
+  
+  .rewards-calc-content {
+    background: #232939;
+    border-color: #3a4255;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+  
+  .rewards-calc-intro {
+    color: #9ca3af;
+  }
+  
+  .rewards-calc-label,
+  .rewards-calc-balance-label {
+    color: #d1d5db;
+  }
+  
+  .rewards-calc-input {
+    background: #1a1f2e;
+    border-color: #3a4255;
+    color: #ffffff;
+  }
+  
+  .rewards-calc-input:focus {
+    border-color: #f2a900;
+  }
+  
+  .rewards-calc-input::placeholder {
+    color: #6b7280;
+  }
+  
+  .rewards-calc-divider {
+    background: #3a4255;
+  }
+  
+  .rewards-calc-tooltip-icon {
+    background: #3a4255;
+    color: #9ca3af;
+  }
+  
+  .rewards-calc-select {
+    background: #1a1f2e;
+    border-color: #3a4255;
+    color: #ffffff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239ca3af' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  }
+  
+  .rewards-calc-select:focus {
+    border-color: #f2a900;
+  }
+  
+  .rewards-calc-results-title {
+    color: #f9fafb;
+  }
+  
+  .rewards-calc-results-table thead {
+    background: #1a1f2e;
+    border-bottom-color: #3a4255;
+  }
+  
+  .rewards-calc-results-table th {
+    color: #f2a900;
+  }
+  
+  .rewards-calc-results-table tbody tr {
+    border-bottom-color: #3a4255;
+  }
+  
+  .rewards-calc-results-table tbody tr:hover {
+    background: #2a3142;
+  }
+  
+  .rewards-calc-results-table td {
+    color: #e5e7eb;
+  }
+  
+  .rewards-calc-results-table td:first-child {
+    color: #ffffff;
+  }
+  
+  .rewards-calc-amount {
+    color: #6ee7b7;
+  }
+  
+  .rewards-calc-note {
+    color: #6b7280;
+  }
+  
+  .rewards-calc-disclaimer {
+    color: #6b7280;
+  }
+  
+  .rewards-calc-fee-note {
+    color: #f87171;
+  }
+}
 </style>
 <br><br><br>
 <div class="comparison-table-wrapper">
@@ -959,6 +1478,309 @@ function updateMobileComparison() {
   });
 }
 </script>
+
+<!-- Rewards Calculator Section -->
+<div class="rewards-calc-section">
+  <button class="rewards-calc-toggle" onclick="document.querySelector('.rewards-calc-content-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded'); if(typeof fathom !== 'undefined') fathom.trackEvent('Toggle Rewards Calculator');">
+    <span>Rewards Calculator — Which Card Earns You the Most?</span>
+    <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  
+  <div class="rewards-calc-content-wrapper">
+    <div class="rewards-calc-content">
+      <p class="rewards-calc-intro">Enter your estimated monthly spending by category to see which card earns you the most crypto rewards.</p>
+      
+      <div class="rewards-calc-form">
+        <div class="rewards-calc-field">
+          <label class="rewards-calc-label" for="calc-gas">Gas & Transit</label>
+          <input type="number" id="calc-gas" class="rewards-calc-input" placeholder="$0" min="0" step="1">
+        </div>
+        <div class="rewards-calc-field">
+          <label class="rewards-calc-label" for="calc-dining">Dining</label>
+          <input type="number" id="calc-dining" class="rewards-calc-input" placeholder="$0" min="0" step="1">
+        </div>
+        <div class="rewards-calc-field">
+          <label class="rewards-calc-label" for="calc-groceries">Groceries</label>
+          <input type="number" id="calc-groceries" class="rewards-calc-input" placeholder="$0" min="0" step="1">
+        </div>
+        <div class="rewards-calc-field">
+          <label class="rewards-calc-label" for="calc-entertainment">Entertainment</label>
+          <input type="number" id="calc-entertainment" class="rewards-calc-input" placeholder="$0" min="0" step="1">
+        </div>
+        <div class="rewards-calc-field">
+          <label class="rewards-calc-label" for="calc-travel">Travel</label>
+          <input type="number" id="calc-travel" class="rewards-calc-input" placeholder="$0" min="0" step="1">
+        </div>
+        <div class="rewards-calc-field">
+          <label class="rewards-calc-label" for="calc-bills">Bills & Utilities</label>
+          <input type="number" id="calc-bills" class="rewards-calc-input" placeholder="$0" min="0" step="1">
+        </div>
+        <div class="rewards-calc-field">
+          <label class="rewards-calc-label" for="calc-other">Other</label>
+          <input type="number" id="calc-other" class="rewards-calc-input" placeholder="$0" min="0" step="1">
+        </div>
+        
+        <div class="rewards-calc-divider"></div>
+        
+        <div class="rewards-calc-balance-field">
+          <label class="rewards-calc-balance-label" for="calc-balance">
+            Balance on exchange
+            <span class="rewards-calc-tooltip-icon" data-tooltip="Some cards offer higher reward rates if you hold a certain balance on their exchange. Enter your approximate amount to see the best rate you'd qualify for on each card.">?</span>
+          </label>
+          <select id="calc-balance" class="rewards-calc-select">
+            <option value="0">$0</option>
+            <option value="500">$500+</option>
+            <option value="5000">$5,000+</option>
+            <option value="10000">$10,000+</option>
+            <option value="50000">$50,000+</option>
+            <option value="200000">$200,000+</option>
+            <option value="500000">$500,000+</option>
+          </select>
+        </div>
+        
+        <button class="rewards-calc-btn" onclick="calculateRewards()">Calculate Rewards</button>
+      </div>
+      
+      <div class="rewards-calc-results" id="rewardsCalcResults">
+        <h3 class="rewards-calc-results-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#f2a900" stroke="#f2a900" stroke-width="1.5"/>
+          </svg>
+          Estimated Monthly Crypto Rewards
+        </h3>
+        <table class="rewards-calc-results-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Card</th>
+              <th>Rate Used</th>
+              <th>Monthly Rewards</th>
+            </tr>
+          </thead>
+          <tbody id="rewardsCalcBody">
+          </tbody>
+        </table>
+        <p class="rewards-calc-disclaimer">Estimates are approximate and based on published rewards rates. Actual rewards may vary due to merchant category codes, monthly caps, spending thresholds, and card terms. Fold rewards are estimated averages — actual rewards vary due to their spin-based system.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function calculateRewards() {
+  var gas = parseFloat(document.getElementById('calc-gas').value) || 0;
+  var dining = parseFloat(document.getElementById('calc-dining').value) || 0;
+  var groceries = parseFloat(document.getElementById('calc-groceries').value) || 0;
+  var entertainment = parseFloat(document.getElementById('calc-entertainment').value) || 0;
+  var travel = parseFloat(document.getElementById('calc-travel').value) || 0;
+  var bills = parseFloat(document.getElementById('calc-bills').value) || 0;
+  var other = parseFloat(document.getElementById('calc-other').value) || 0;
+  var balance = parseFloat(document.getElementById('calc-balance').value) || 0;
+  
+  var totalSpend = gas + dining + groceries + entertainment + travel + bills + other;
+  
+  if (totalSpend === 0) {
+    alert('Please enter your estimated monthly spending in at least one category.');
+    return;
+  }
+  
+  // Category spends for Venmo auto-sort
+  var categories = [
+    { name: 'Gas & Transit', amount: gas },
+    { name: 'Dining', amount: dining },
+    { name: 'Groceries', amount: groceries },
+    { name: 'Entertainment', amount: entertainment },
+    { name: 'Travel', amount: travel },
+    { name: 'Bills & Utilities', amount: bills },
+    { name: 'Other', amount: other }
+  ];
+  
+  var results = [];
+  
+  // --- Gemini Credit Card ---
+  var geminiGas = Math.min(gas, 300) * 0.04 + Math.max(gas - 300, 0) * 0.01;
+  var geminiDining = dining * 0.03;
+  var geminiGroceries = groceries * 0.02;
+  var geminiOther = (entertainment + travel + bills + other) * 0.01;
+  var geminiTotal = geminiGas + geminiDining + geminiGroceries + geminiOther;
+  var geminiEffective = totalSpend > 0 ? ((geminiTotal / totalSpend) * 100).toFixed(1) : '0';
+  results.push({
+    name: 'Gemini Credit Card',
+    img: 'geminimulticard.png',
+    monthly: geminiTotal,
+    fee: 0,
+    rate: '1%-4%',
+    effective: geminiEffective + '%',
+    note: gas > 300 ? '4% gas capped at $300/mo' : '',
+    rewardType: 'BTC or 50+ crypto'
+  });
+  
+  // --- Coinbase One Card ---
+  var cbRate, cbRateLabel;
+  if (balance >= 200000) { cbRate = 0.04; cbRateLabel = '4%'; }
+  else if (balance >= 50000) { cbRate = 0.03; cbRateLabel = '3%'; }
+  else if (balance >= 10000) { cbRate = 0.025; cbRateLabel = '2.5%'; }
+  else { cbRate = 0.02; cbRateLabel = '2%'; }
+  
+  var cbTotal;
+  if (cbRate > 0.02) {
+    var cappedSpend = Math.min(totalSpend, 10000);
+    var overflowSpend = Math.max(totalSpend - 10000, 0);
+    cbTotal = cappedSpend * cbRate + overflowSpend * 0.02;
+  } else {
+    cbTotal = totalSpend * 0.02;
+  }
+  var cbFee = 50 / 12; // ~$4.17/mo
+  var cbNet = cbTotal - cbFee;
+  var cbNote = '';
+  if (balance >= 10000 && totalSpend > 10000) {
+    cbNote = cbRateLabel + ' on first $10k, then 2%';
+  } else if (balance >= 10000) {
+    cbNote = 'Based on $' + (balance >= 200000 ? '200k+' : balance >= 50000 ? '50k+' : '10k+') + ' balance';
+  }
+  results.push({
+    name: 'Coinbase One Card',
+    img: 'coinbaseone.png',
+    monthly: cbNet,
+    fee: cbFee,
+    rate: cbRateLabel + ' flat',
+    effective: cbRateLabel,
+    note: cbNote,
+    feeNote: '-$' + cbFee.toFixed(2) + '/mo membership',
+    rewardType: 'BTC only'
+  });
+  
+  // --- Fold Debit Card (Fold+ estimated) ---
+  // Fold+ base: 0.5% guaranteed + rotating categories avg ~1% extra = ~1.5% average
+  // Free tier: ~1% average
+  var foldPlusTotal = totalSpend * 0.015;
+  var foldPlusFee = 100 / 12; // ~$8.33/mo
+  var foldPlusNet = foldPlusTotal - foldPlusFee;
+  results.push({
+    name: 'Fold Card (Fold+)',
+    img: 'fold.webp',
+    monthly: foldPlusNet,
+    fee: foldPlusFee,
+    rate: '~1.5% avg',
+    effective: '~1.5%',
+    note: 'Estimated avg — rewards are spin-based',
+    feeNote: '-$' + foldPlusFee.toFixed(2) + '/mo membership',
+    rewardType: 'BTC only'
+  });
+  
+  // --- Crypto.com Card ---
+  var ccRate, ccRateLabel, ccTierName;
+  if (balance >= 500000) { ccRate = 0.06; ccRateLabel = '6%'; ccTierName = 'Obsidian'; }
+  else if (balance >= 50000) { ccRate = 0.05; ccRateLabel = '5%'; ccTierName = 'Icy/Rose'; }
+  else if (balance >= 5000) { ccRate = 0.045; ccRateLabel = '4.5%'; ccTierName = 'Indigo/Jade'; }
+  else if (balance >= 500) { ccRate = 0.035; ccRateLabel = '3.5%'; ccTierName = 'Ruby'; }
+  else { ccRate = 0.015; ccRateLabel = '1.5%'; ccTierName = 'Midnight Blue'; }
+  
+  var ccTotal = totalSpend * ccRate;
+  // Apply monthly reward caps for mid-tiers
+  var ccCapped = false;
+  if (ccTierName === 'Ruby' && ccTotal > 25) { ccTotal = 25; ccCapped = true; }
+  else if (ccTierName === 'Indigo/Jade' && ccTotal > 75) { ccTotal = 75; ccCapped = true; }
+  
+  var ccNote = ccTierName + ' tier';
+  if (ccCapped) { ccNote += ' (hit $' + (ccTierName === 'Ruby' ? '25' : '75') + '/mo cap)'; }
+  results.push({
+    name: 'Crypto.com Card',
+    img: 'cryptocomcard.png',
+    monthly: ccTotal,
+    fee: 0,
+    rate: ccRateLabel + ' flat',
+    effective: ccRateLabel,
+    note: ccNote,
+    rewardType: 'CRO token'
+  });
+  
+  // --- Venmo Credit Card ---
+  // Auto-sorts: 3% top category, 2% second, 1% rest
+  // Only uses eligible categories: Gas/Transit, Dining, Groceries, Entertainment, Travel, Bills
+  var venmoCategories = categories.filter(function(c) { return c.amount > 0; });
+  venmoCategories.sort(function(a, b) { return b.amount - a.amount; });
+  
+  var venmoTotal = 0;
+  for (var i = 0; i < venmoCategories.length; i++) {
+    if (i === 0) { venmoTotal += venmoCategories[i].amount * 0.03; }
+    else if (i === 1) { venmoTotal += venmoCategories[i].amount * 0.02; }
+    else { venmoTotal += venmoCategories[i].amount * 0.01; }
+  }
+  // Add zero-spend categories at 1% (they contribute $0 anyway)
+  var venmoEffective = totalSpend > 0 ? ((venmoTotal / totalSpend) * 100).toFixed(1) : '0';
+  var venmoTopCat = venmoCategories.length > 0 ? venmoCategories[0].name : 'N/A';
+  results.push({
+    name: 'Venmo Credit Card',
+    img: 'venmo.png',
+    monthly: venmoTotal,
+    fee: 0,
+    rate: '1%-3%',
+    effective: venmoEffective + '%',
+    note: '3% on ' + venmoTopCat,
+    rewardType: 'Cash back → crypto'
+  });
+  
+  // Sort by monthly rewards (descending)
+  results.sort(function(a, b) { return b.monthly - a.monthly; });
+  
+  // Build results table
+  var tbody = document.getElementById('rewardsCalcBody');
+  tbody.innerHTML = '';
+  
+  for (var r = 0; r < results.length; r++) {
+    var card = results[r];
+    var rankClass = r === 0 ? 'rewards-calc-rank-1' : r === 1 ? 'rewards-calc-rank-2' : r === 2 ? 'rewards-calc-rank-3' : 'rewards-calc-rank-other';
+    
+    var row = document.createElement('tr');
+    
+    // Rank
+    var tdRank = document.createElement('td');
+    tdRank.innerHTML = '<span class="rewards-calc-rank ' + rankClass + '">' + (r + 1) + '</span>';
+    row.appendChild(tdRank);
+    
+    // Card name
+    var tdName = document.createElement('td');
+    var nameHtml = '<div class="rewards-calc-card-name">';
+    nameHtml += '<img src="/tools/img/' + card.img + '" alt="' + card.name + '" class="rewards-calc-card-img">';
+    nameHtml += '<div>' + card.name;
+    if (card.note) {
+      nameHtml += '<span class="rewards-calc-note">' + card.note + '</span>';
+    }
+    nameHtml += '</div></div>';
+    tdName.innerHTML = nameHtml;
+    row.appendChild(tdName);
+    
+    // Rate
+    var tdRate = document.createElement('td');
+    tdRate.textContent = card.effective;
+    row.appendChild(tdRate);
+    
+    // Monthly rewards
+    var tdAmount = document.createElement('td');
+    var amountHtml = '<span class="rewards-calc-amount">$' + card.monthly.toFixed(2) + '/mo</span>';
+    amountHtml += '<span class="rewards-calc-amount-annual"> ($' + (card.monthly * 12).toFixed(0) + '/yr)</span>';
+    if (card.feeNote) {
+      amountHtml += '<br><span class="rewards-calc-fee-note">' + card.feeNote + '</span>';
+    }
+    tdAmount.innerHTML = amountHtml;
+    row.appendChild(tdAmount);
+    
+    tbody.appendChild(row);
+  }
+  
+  // Show results
+  document.getElementById('rewardsCalcResults').classList.add('show');
+  
+  // Track event
+  if (typeof fathom !== 'undefined') {
+    fathom.trackEvent('Calculate Card Rewards');
+  }
+}
+</script>
+
 <br><br><br>
 <h2>Card Details</h2>
 
