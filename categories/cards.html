@@ -1665,21 +1665,17 @@ function calculateRewards() {
     rewardType: 'BTC only'
   });
   
-  // --- Fold Debit Card (Fold+ estimated) ---
-  // Fold+ base: 0.5% guaranteed + rotating categories avg ~1% extra = ~1.5% average
-  // Free tier: ~1% average
-  var foldPlusTotal = totalSpend * 0.015;
-  var foldPlusFee = 100 / 12; // ~$8.33/mo
-  var foldPlusNet = foldPlusTotal - foldPlusFee;
+  // --- Fold Debit Card ---
+  // Free tier: ~1% average (rewards are gamified/spin-based)
+  var foldTotal = totalSpend * 0.01;
   results.push({
-    name: 'Fold Card (Fold+)',
+    name: 'Fold Debit Card',
     img: 'fold.webp',
-    monthly: foldPlusNet,
-    fee: foldPlusFee,
-    rate: '~1.5% avg',
-    effective: '~1.5%',
+    monthly: foldTotal,
+    fee: 0,
+    rate: '~1% avg',
+    effective: '~1%',
     note: 'Estimated avg — rewards are spin-based',
-    feeNote: '-$' + foldPlusFee.toFixed(2) + '/mo membership',
     rewardType: 'BTC only'
   });
   
