@@ -290,6 +290,15 @@ table tbody tr:nth-child(even) {
     border-color: #3a4255;
     color: #ffffff;
   }
+
+  .earnings-calculator label,
+  .earnings-calculator small {
+    color: #d1d5db;
+  }
+
+  .earnings-calculator {
+    color: #ffffff;
+  }
 }
 </style>
 
@@ -642,7 +651,7 @@ document.querySelectorAll('.program-link').forEach(link => {
   font-weight: bold;
 ">Show Calculator</button>
 
-<div id="calcContainer" class="earnings-calculator" style="color: #000000; display: none;">
+<div id="calcContainer" class="earnings-calculator" style="display: none;">
   <h3>TradingView Earnings Calculator</h3>
   
   <div style="margin-bottom: 15px;">
