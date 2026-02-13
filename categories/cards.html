@@ -1553,7 +1553,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   align-items: center;
   justify-content: center;
   background: #f2a900;
-  color: #000000;
+  color: #000000 !important;
   font-size: 16px;
   font-weight: 700;
   padding: 14px 28px;
@@ -1566,8 +1566,8 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
 .exit-modal-cta:hover {
   background: #d4940a;
   transform: translateY(-1px);
-  color: #000000;
-  text-decoration: none;
+  color: #000000 !important;
+  text-decoration: none !important;
 }
 
 @media (max-width: 640px) {
@@ -3418,15 +3418,26 @@ document.addEventListener('DOMContentLoaded', function() {
       var isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 
       if (!isTouchDevice) {
-        // Desktop: mouseleave with 5s delay guard
+        // Desktop: require mouse to enter page first, then 10s delay guard
+        var mouseEnteredPage = false;
+        var readyToDetect = false;
+
+        document.documentElement.addEventListener('mouseenter', function onEnter() {
+          mouseEnteredPage = true;
+          document.documentElement.removeEventListener('mouseenter', onEnter);
+        });
+
         setTimeout(function() {
-          document.documentElement.addEventListener('mouseleave', function handler(e) {
-            if (e.clientY <= 0) {
-              showModal();
-              document.documentElement.removeEventListener('mouseleave', handler);
-            }
-          });
-        }, 5000);
+          readyToDetect = true;
+        }, 60000);
+
+        document.documentElement.addEventListener('mouseleave', function handler(e) {
+          if (!mouseEnteredPage || !readyToDetect) return;
+          if (e.clientY <= 0) {
+            showModal();
+            document.documentElement.removeEventListener('mouseleave', handler);
+          }
+        });
       } else {
         // Mobile: rapid scroll-up after 60s on page
         var lastScrollY = window.scrollY;
