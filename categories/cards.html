@@ -1105,6 +1105,12 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   white-space: nowrap;
 }
 
+.rewards-calc-results-table td:last-child {
+  vertical-align: middle;
+  text-align: right;
+  white-space: nowrap;
+}
+
 .rewards-calc-cta {
   display: inline-flex;
   align-items: center;
@@ -1116,7 +1122,6 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   font-weight: 600;
   padding: 6px 14px;
   border-radius: 6px;
-  margin-top: 6px;
   transition: background 0.2s;
   white-space: nowrap;
 }
@@ -1281,9 +1286,9 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
     display: none;
   }
   
-  .rewards-calc-results-table th:last-child,
-  .rewards-calc-results-table td:last-child {
-    text-align: right;
+  .rewards-calc-cta {
+    font-size: 11px;
+    padding: 5px 10px;
   }
 }
 
@@ -1813,6 +1818,7 @@ function updateMobileComparison() {
             <tr>
               <th>Card</th>
               <th>Monthly Rewards</th>
+              <th></th>
             </tr>
           </thead>
           <tbody id="rewardsCalcBody">
@@ -2011,8 +2017,6 @@ function calculateRewards() {
     if (card.note) {
       nameHtml += '<span class="rewards-calc-note">' + card.note + '</span>';
     }
-    var link = cardLinks[card.name] || '#';
-    nameHtml += '<br><a href="' + link + '" target="_blank" rel="nofollow noopener" class="rewards-calc-cta" onclick="if(typeof fathom!==\'undefined\'){fathom.trackEvent(\'Click Card\');fathom.trackEvent(\'Click Card: ' + card.name + '\');}">APPLY NOW <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>';
     nameHtml += '</div></div>';
     tdName.innerHTML = nameHtml;
     row.appendChild(tdName);
@@ -2026,6 +2030,12 @@ function calculateRewards() {
     }
     tdAmount.innerHTML = amountHtml;
     row.appendChild(tdAmount);
+    
+    // CTA column
+    var tdCta = document.createElement('td');
+    var link = cardLinks[card.name] || '#';
+    tdCta.innerHTML = '<a href="' + link + '" target="_blank" rel="nofollow noopener" class="rewards-calc-cta" onclick="if(typeof fathom!==\'undefined\'){fathom.trackEvent(\'Click Card\');fathom.trackEvent(\'Click Card: ' + card.name + '\');}">APPLY NOW <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>';
+    row.appendChild(tdCta);
     
     tbody.appendChild(row);
   }
