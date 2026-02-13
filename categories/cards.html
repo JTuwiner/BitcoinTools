@@ -1397,7 +1397,227 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
     color: #f87171;
   }
 }
+
+/* Exit Intent Modal */
+.exit-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 99999;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.exit-modal-overlay.active {
+  display: flex;
+}
+
+.exit-modal {
+  background: #232939;
+  border-radius: 16px;
+  max-width: 680px;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  animation: exitModalSlideIn 0.35s ease-out;
+}
+
+@keyframes exitModalSlideIn {
+  from { opacity: 0; transform: translateY(-30px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.exit-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 2;
+  line-height: 1;
+  padding: 4px;
+  transition: color 0.2s;
+}
+
+.exit-modal-close:hover {
+  color: #ffffff;
+}
+
+.exit-modal-img-col {
+  flex: 0 0 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1f2e;
+  padding: 24px;
+}
+
+.exit-modal-img-col img {
+  max-width: 100%;
+  height: auto;
+}
+
+.exit-modal-body {
+  flex: 1;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.exit-modal-usa-badge {
+  display: inline-block;
+  background: rgba(242, 169, 0, 0.15);
+  color: #f2a900;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.exit-modal-headline {
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.exit-modal-headline span {
+  color: #f2a900;
+}
+
+.exit-modal-subline {
+  font-size: 14px;
+  color: #9ca3af;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.exit-modal-rewards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.exit-modal-reward-pill {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.exit-modal-reward-pill strong {
+  color: #f2a900;
+  font-weight: 700;
+}
+
+.exit-modal-perks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.exit-modal-perks span::before {
+  content: '✓ ';
+  color: #f2a900;
+  font-weight: 700;
+}
+
+.exit-modal-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f2a900;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  width: fit-content;
+}
+
+.exit-modal-cta:hover {
+  background: #d4940a;
+  transform: translateY(-1px);
+  color: #000000;
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .exit-modal {
+    flex-direction: column;
+    max-width: 400px;
+  }
+
+  .exit-modal-img-col {
+    flex: none;
+    padding: 20px;
+  }
+
+  .exit-modal-body {
+    padding: 20px 20px 24px;
+    gap: 12px;
+  }
+
+  .exit-modal-headline {
+    font-size: 22px;
+  }
+
+  .exit-modal-cta {
+    width: 100%;
+  }
+}
 </style>
+
+<!-- Exit Intent Modal -->
+<div class="exit-modal-overlay" id="exitModalOverlay">
+  <div class="exit-modal">
+    <button class="exit-modal-close" id="exitModalClose" aria-label="Close">&times;</button>
+    <div class="exit-modal-img-col">
+      <img src="https://bitbo.io/tools/img/geminimulticard.png" alt="Gemini Credit Card" width="200" height="200">
+    </div>
+    <div class="exit-modal-body">
+      <span class="exit-modal-usa-badge">USA Only</span>
+      <h3 class="exit-modal-headline">Get <span>$200</span> in Free Bitcoin</h3>
+      <p class="exit-modal-subline">Sign up for the Gemini Credit Card and earn crypto back on every purchase.</p>
+      <div class="exit-modal-rewards">
+        <div class="exit-modal-reward-pill"><strong>4%</strong> Gas & Transit</div>
+        <div class="exit-modal-reward-pill"><strong>3%</strong> Dining</div>
+        <div class="exit-modal-reward-pill"><strong>2%</strong> Groceries</div>
+        <div class="exit-modal-reward-pill"><strong>1%</strong> Everything Else</div>
+      </div>
+      <div class="exit-modal-perks">
+        <span>No annual fee</span>
+        <span>No foreign transaction fees</span>
+        <span>Mastercard World Elite</span>
+      </div>
+      <a href="https://gemini.sjv.io/JkbjvR" target="_blank" rel="noopener noreferrer" class="exit-modal-cta" id="exitModalCta">Claim Your $200 Bonus</a>
+    </div>
+  </div>
+</div>
+
 <br><br><br>
 <div class="comparison-table-wrapper">
   <div class="comparison-table-header">
@@ -3143,6 +3363,84 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       });
     }
+
+    // --- Exit Intent Modal ---
+    (function() {
+      var overlay = document.getElementById('exitModalOverlay');
+      var closeBtn = document.getElementById('exitModalClose');
+      var ctaBtn = document.getElementById('exitModalCta');
+      if (!overlay) return;
+
+      var shown = false;
+      var pageLoadTime = Date.now();
+
+      function showModal() {
+        if (shown) return;
+        if (sessionStorage.getItem('geminiExitShown')) return;
+        shown = true;
+        sessionStorage.setItem('geminiExitShown', '1');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function hideModal() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      closeBtn.addEventListener('click', hideModal);
+
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) hideModal();
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') hideModal();
+      });
+
+      ctaBtn.addEventListener('click', function() {
+        if (typeof fathom !== 'undefined') {
+          fathom.trackEvent('Exit Intent: Gemini Click');
+        }
+      });
+
+      // Detect touch device
+      var isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+
+      if (!isTouchDevice) {
+        // Desktop: mouseleave with 5s delay guard
+        setTimeout(function() {
+          document.documentElement.addEventListener('mouseleave', function handler(e) {
+            if (e.clientY <= 0) {
+              showModal();
+              document.documentElement.removeEventListener('mouseleave', handler);
+            }
+          });
+        }, 5000);
+      } else {
+        // Mobile: rapid scroll-up after 60s on page
+        var lastScrollY = window.scrollY;
+        var lastScrollTime = Date.now();
+
+        window.addEventListener('scroll', function() {
+          var now = Date.now();
+          var currentY = window.scrollY;
+          var timeDelta = now - lastScrollTime;
+          var scrollDelta = lastScrollY - currentY; // positive = scrolling up
+
+          if (timeDelta > 0 && timeDelta < 300 && scrollDelta > 100) {
+            // Rapid upward scroll detected
+            var elapsed = now - pageLoadTime;
+            if (elapsed >= 60000) {
+              showModal();
+            }
+          }
+
+          lastScrollY = currentY;
+          lastScrollTime = now;
+        }, { passive: true });
+      }
+    })();
   });
 </script>
 {% endraw %}
