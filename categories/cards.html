@@ -1090,16 +1090,45 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   color: #111827;
 }
 
-.rewards-calc-results-table th:first-child,
-.rewards-calc-results-table td:first-child {
-  width: 36px;
-  padding-right: 0;
-  border-right: none;
+.rewards-calc-best-match {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+  color: #92400E;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-bottom: 4px;
+  white-space: nowrap;
 }
 
-.rewards-calc-results-table th:nth-child(2),
-.rewards-calc-results-table td:nth-child(2) {
-  padding-left: 4px;
+.rewards-calc-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #f2a900;
+  color: #000 !important;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 6px;
+  margin-top: 6px;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.rewards-calc-cta:hover {
+  background: #059669;
+  color: #fff !important;
+  text-decoration: none;
+}
+
+.rewards-calc-cta svg {
+  flex-shrink: 0;
 }
 
 .rewards-calc-results-table tbody tr {
@@ -1736,25 +1765,34 @@ function calculateRewards() {
   var tbody = document.getElementById('rewardsCalcBody');
   tbody.innerHTML = '';
   
+  // Card link mapping
+  var cardLinks = {
+    'Gemini Credit Card': 'https://gemini.sjv.io/YRM05r',
+    'Coinbase One Card': 'https://coinbase-consumer.sjv.io/OeXxXn',
+    'Fold Debit Card': 'https://goto.foldapp.com/EELrBn',
+    'Crypto.com Card': 'https://cryptocom.sjv.io/LKz1qZ',
+    'Venmo Credit Card': 'https://venmo.com/about/creditcard/'
+  };
+  
   for (var r = 0; r < results.length; r++) {
     var card = results[r];
-    var rankClass = r === 0 ? 'rewards-calc-rank-1' : r === 1 ? 'rewards-calc-rank-2' : r === 2 ? 'rewards-calc-rank-3' : 'rewards-calc-rank-other';
-    
     var row = document.createElement('tr');
     
-    // Rank
-    var tdRank = document.createElement('td');
-    tdRank.innerHTML = '<span class="rewards-calc-rank ' + rankClass + '">' + (r + 1) + '</span>';
-    row.appendChild(tdRank);
-    
-    // Card name
+    // Card name (with rank badge inline, best-match badge on #1, and CTA)
     var tdName = document.createElement('td');
     var nameHtml = '<div class="rewards-calc-card-name">';
+    nameHtml += '<span class="rewards-calc-rank ' + (r === 0 ? 'rewards-calc-rank-1' : r === 1 ? 'rewards-calc-rank-2' : r === 2 ? 'rewards-calc-rank-3' : 'rewards-calc-rank-other') + '">' + (r + 1) + '</span>';
     nameHtml += '<img src="/tools/img/' + card.img + '" alt="' + card.name + '" class="rewards-calc-card-img">';
-    nameHtml += '<div>' + card.name;
+    nameHtml += '<div>';
+    if (r === 0) {
+      nameHtml += '<span class="rewards-calc-best-match">Best match for your spending</span><br>';
+    }
+    nameHtml += card.name;
     if (card.note) {
       nameHtml += '<span class="rewards-calc-note">' + card.note + '</span>';
     }
+    var link = cardLinks[card.name] || '#';
+    nameHtml += '<br><a href="' + link + '" target="_blank" rel="nofollow noopener" class="rewards-calc-cta" onclick="if(typeof fathom!==\'undefined\'){fathom.trackEvent(\'Click Card\');fathom.trackEvent(\'Click Card: ' + card.name + '\');}">APPLY NOW <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>';
     nameHtml += '</div></div>';
     tdName.innerHTML = nameHtml;
     row.appendChild(tdName);
