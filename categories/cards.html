@@ -1933,12 +1933,17 @@ function calculateRewards() {
   });
   
   // --- Crypto.com Card (2026 rates) ---
+  // Balance = CRO lockup amount. If user has enough for lockup, no subscription fee.
+  // Tiers: Midnight Blue (0%), Ruby/Plus (2%), Jade-Indigo/Pro (3%), Icy-Rose/Private (4%), Obsidian/Private (5%)
   var ccRate, ccRateLabel, ccTierName, ccFeeMonthly;
   if (balance >= 500000) { ccRate = 0.05; ccRateLabel = '5%'; ccTierName = 'Obsidian'; ccFeeMonthly = 0; }
   else if (balance >= 50000) { ccRate = 0.04; ccRateLabel = '4%'; ccTierName = 'Icy/Rose'; ccFeeMonthly = 0; }
   else if (balance >= 5000) { ccRate = 0.03; ccRateLabel = '3%'; ccTierName = 'Jade/Indigo'; ccFeeMonthly = 0; }
-  else if (balance >= 500) { ccRate = 0.02; ccRateLabel = '2%'; ccTierName = 'Ruby'; ccFeeMonthly = 4.99; }
+  else if (balance >= 500) { ccRate = 0.02; ccRateLabel = '2%'; ccTierName = 'Ruby'; ccFeeMonthly = 0; }
   else { ccRate = 0; ccRateLabel = '0%'; ccTierName = 'Midnight Blue'; ccFeeMonthly = 0; }
+  // Note: fees only apply if paying subscription instead of locking up CRO.
+  // Since our input is "balance on exchange" (i.e. lockup), no fee is deducted.
+  // Ruby: $4.99/mo or $500 lockup | Jade/Indigo: $29.99/mo or $5k lockup
   
   var ccTotal = totalSpend * ccRate;
   // Apply monthly reward caps for mid-tiers
@@ -1946,19 +1951,25 @@ function calculateRewards() {
   if (ccTierName === 'Ruby' && ccTotal > 25) { ccTotal = 25; ccCapped = true; }
   else if (ccTierName === 'Jade/Indigo' && ccTotal > 75) { ccTotal = 75; ccCapped = true; }
   
-  var ccNet = ccTotal - ccFeeMonthly;
   var ccNote = ccTierName + ' tier';
   if (ccRate === 0) { ccNote = 'Midnight Blue — 0% rewards'; }
-  else if (ccCapped) { ccNote += ' (hit $' + (ccTierName === 'Ruby' ? '25' : '75') + '/mo cap)'; }
+  else if (ccTierName === 'Ruby') {
+    ccNote = 'Ruby tier ($500 lockup or $4.99/mo)';
+    if (ccCapped) { ccNote += ' — hit $25/mo cap'; }
+  } else if (ccTierName === 'Jade/Indigo') {
+    ccNote = 'Jade/Indigo tier ($5k lockup or $29.99/mo)';
+    if (ccCapped) { ccNote += ' — hit $75/mo cap'; }
+  } else if (ccCapped) {
+    ccNote += ' (capped)';
+  }
   results.push({
     name: 'Crypto.com Card',
     img: 'cryptocomcard.png',
-    monthly: ccNet,
-    fee: ccFeeMonthly,
+    monthly: ccTotal,
+    fee: 0,
     rate: ccRateLabel + ' flat',
     effective: ccRateLabel,
     note: ccNote,
-    feeNote: ccFeeMonthly > 0 ? '-$' + ccFeeMonthly.toFixed(2) + '/mo subscription' : '',
     rewardType: 'CRO token'
   });
   
