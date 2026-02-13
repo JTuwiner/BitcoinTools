@@ -1679,30 +1679,33 @@ function calculateRewards() {
     rewardType: 'BTC only'
   });
   
-  // --- Crypto.com Card ---
-  var ccRate, ccRateLabel, ccTierName;
-  if (balance >= 500000) { ccRate = 0.06; ccRateLabel = '6%'; ccTierName = 'Obsidian'; }
-  else if (balance >= 50000) { ccRate = 0.05; ccRateLabel = '5%'; ccTierName = 'Icy/Rose'; }
-  else if (balance >= 5000) { ccRate = 0.045; ccRateLabel = '4.5%'; ccTierName = 'Indigo/Jade'; }
-  else if (balance >= 500) { ccRate = 0.035; ccRateLabel = '3.5%'; ccTierName = 'Ruby'; }
-  else { ccRate = 0.015; ccRateLabel = '1.5%'; ccTierName = 'Midnight Blue'; }
+  // --- Crypto.com Card (2026 rates) ---
+  var ccRate, ccRateLabel, ccTierName, ccFeeMonthly;
+  if (balance >= 500000) { ccRate = 0.05; ccRateLabel = '5%'; ccTierName = 'Obsidian'; ccFeeMonthly = 0; }
+  else if (balance >= 50000) { ccRate = 0.04; ccRateLabel = '4%'; ccTierName = 'Icy/Rose'; ccFeeMonthly = 0; }
+  else if (balance >= 5000) { ccRate = 0.03; ccRateLabel = '3%'; ccTierName = 'Jade/Indigo'; ccFeeMonthly = 0; }
+  else if (balance >= 500) { ccRate = 0.02; ccRateLabel = '2%'; ccTierName = 'Ruby'; ccFeeMonthly = 4.99; }
+  else { ccRate = 0; ccRateLabel = '0%'; ccTierName = 'Midnight Blue'; ccFeeMonthly = 0; }
   
   var ccTotal = totalSpend * ccRate;
   // Apply monthly reward caps for mid-tiers
   var ccCapped = false;
   if (ccTierName === 'Ruby' && ccTotal > 25) { ccTotal = 25; ccCapped = true; }
-  else if (ccTierName === 'Indigo/Jade' && ccTotal > 75) { ccTotal = 75; ccCapped = true; }
+  else if (ccTierName === 'Jade/Indigo' && ccTotal > 75) { ccTotal = 75; ccCapped = true; }
   
+  var ccNet = ccTotal - ccFeeMonthly;
   var ccNote = ccTierName + ' tier';
-  if (ccCapped) { ccNote += ' (hit $' + (ccTierName === 'Ruby' ? '25' : '75') + '/mo cap)'; }
+  if (ccRate === 0) { ccNote = 'Midnight Blue — 0% rewards'; }
+  else if (ccCapped) { ccNote += ' (hit $' + (ccTierName === 'Ruby' ? '25' : '75') + '/mo cap)'; }
   results.push({
     name: 'Crypto.com Card',
     img: 'cryptocomcard.png',
-    monthly: ccTotal,
-    fee: 0,
+    monthly: ccNet,
+    fee: ccFeeMonthly,
     rate: ccRateLabel + ' flat',
     effective: ccRateLabel,
     note: ccNote,
+    feeNote: ccFeeMonthly > 0 ? '-$' + ccFeeMonthly.toFixed(2) + '/mo subscription' : '',
     rewardType: 'CRO token'
   });
   
