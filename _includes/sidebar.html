@@ -60,8 +60,8 @@
       <li>
         {% if cat.title == "Exchanges" %}
         <a title="{{ cat.title }}" class="sidebar-category" href="https://bitbo.io/buy/">
-        {% elsif cat.canonical %}
-        <a title="{{ cat.title }}" class="sidebar-category" href="{{ cat.canonical }}">
+        {% elsif cat.custom_canonical %}
+        <a title="{{ cat.title }}" class="sidebar-category" href="{{ cat.custom_canonical }}">
         {% else %}
         <a title="{{ cat.title }}" class="sidebar-category" href="/tools{{ cat.permalink }}">
         {% endif %}
