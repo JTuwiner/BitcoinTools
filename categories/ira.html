@@ -692,19 +692,6 @@ sidebar_toc:
   border-color: #e5e7eb;
 }
 
-.ira-promo-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: #D1FAE5;
-  color: #065F46;
-  border: 1px solid #6EE7B7;
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
 .ira-actions {
   display: flex;
   align-items: center;
@@ -1290,7 +1277,7 @@ function updateMobileIRAComparison() {
           {% if ira.ira_bonus %}
           <div class="ira-data-item">
             <div class="ira-data-label">Promotion</div>
-            <div class="ira-data-value"><span class="ira-promo-badge">{{ ira.ira_bonus }}</span></div>
+            <div class="ira-data-value">{{ ira.ira_bonus }}</div>
           </div>
           {% endif %}
         </div>
