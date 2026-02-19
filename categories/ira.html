@@ -692,6 +692,29 @@ sidebar_toc:
   border-color: #e5e7eb;
 }
 
+.ira-bonus-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff8e6;
+  border: 1px solid #f2a900;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-top: 16px;
+  font-size: 0.875rem;
+  color: #7a5200;
+  font-weight: 500;
+}
+
+.ira-bonus-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.ira-bonus-text {
+  line-height: 1.4;
+}
+
 .ira-actions {
   display: flex;
   align-items: center;
@@ -1275,6 +1298,13 @@ function updateMobileIRAComparison() {
             </div>
           </div>
         </div>
+        
+        {% if ira.ira_bonus %}
+        <div class="ira-bonus-banner">
+          <span class="ira-bonus-icon">🎁</span>
+          <span class="ira-bonus-text">{{ ira.ira_bonus }}</span>
+        </div>
+        {% endif %}
         
         <div class="ira-actions">
           <a href="{{ ira.link }}" target="_blank" class="ira-apply-button" onclick="fathom.trackEvent('Click IRA'); fathom.trackEvent('Click IRA: {{ ira.title }}');">
