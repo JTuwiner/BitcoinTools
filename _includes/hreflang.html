@@ -1,0 +1,10 @@
+{% if page.hreflang_key %}
+{% for p in site.pages %}
+{% if p.hreflang_key == page.hreflang_key %}
+<link rel="alternate" hreflang="{{ p.language | default: 'en' }}" href="https://bitbo.io/tools{{ p.url | replace: 'index.html', '' }}" />
+{% if p.language == nil or p.language == 'en' %}
+<link rel="alternate" hreflang="x-default" href="https://bitbo.io/tools{{ p.url | replace: 'index.html', '' }}" />
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endif %}

@@ -1,0 +1,137 @@
+{% assign lang = page.lang | default: "en" %}
+{% assign t = site.data.hash-converter[lang] %}
+
+<div id="hashCalc">
+    <div class="hashrate-field">
+        <input type="number" id="hash" name="hash" />
+        <label for="hash" class="unit">H/s</label>
+    </div>
+    <div class="hashrate-field">
+        <input type="number" id="kilohash" name="kilohash" />
+        <label for="kilohash" class="unit">kH/s</label>
+    </div>
+    <div class="hashrate-field">
+        <input type="number" id="megahash" name="megahash" />
+        <label for="megahash" class="unit">MH/s</label>
+    </div>
+    <div class="hashrate-field">
+        <input type="number" id="gigahash" name="gigahash" />
+        <label for="gigahash" class="unit">GH/s</label>
+    </div>
+    <div class="hashrate-field">
+        <input type="number" id="terahash" name="terahash" />
+        <label for="terahash" class="unit">TH/s</label>
+    </div>
+    <div class="hashrate-field">
+        <input type="number" id="petahash" name="petahash" />
+        <label for="petahash" class="unit">PH/s</label>
+    </div>
+    <div class="hashrate-field">
+        <input type="number" id="exahash" name="exahash" />
+        <label for="exahash" class="unit">EH/s</label>
+    </div>
+</div>
+
+<br>
+
+<h3>{{ t.helpful_links_heading }}</h3>
+<ul>
+  <li><a class="helpful-link-hash" target="_blank" href="https://charts.bitbo.io/mining-difficulty/">{{ t.link_difficulty }}</a></li>
+  <li><a class="helpful-link-hash" target="_blank" href="https://charts.bitbo.io/hashrate/">{{ t.link_hashrate }}</a></li>
+  <li><a class="helpful-link-hash" target="_blank" href="https://bitbo.io/">{{ t.link_stats }}</a></li>
+</ul>
+
+<br>
+<br>
+
+<h2>{{ t.table_heading }}</h2>
+
+<table id="conversionTable" border="1" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead>
+        <tr>
+            <th>{{ t.table_unit }}</th>
+            <th>{{ t.table_value }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>H/s</td><td>1,000,000,000,000</td></tr>
+        <tr><td>kH/s</td><td>1,000,000,000</td></tr>
+        <tr><td>MH/s</td><td>1,000,000</td></tr>
+        <tr><td>GH/s</td><td>1,000</td></tr>
+        <tr><td>TH/s</td><td>1</td></tr>
+        <tr><td>PH/s</td><td>0.001</td></tr>
+        <tr><td>EH/s</td><td>0.000001</td></tr>
+    </tbody>
+</table>
+
+<h2>{{ t.how_heading }}</h2>
+<p>{{ t.how_intro }}</p>
+<ul>
+  {% for step in t.how_steps %}
+  <li>{{ step }}</li>
+  {% endfor %}
+</ul>
+
+<h2>{{ t.converting_heading }}</h2>
+<p>{{ t.converting_intro }}</p>
+<ul>
+    <li><strong>{{ t.converting_basic }}</strong></li>
+    <li><strong>{{ t.converting_factors_label }}</strong>
+        <ul>
+          {% for factor in t.converting_factors %}
+          <li>{{ factor }}</li>
+          {% endfor %}
+        </ul>
+    </li>
+    <li><strong>{{ t.converting_manual }}</strong></li>
+    <li><strong>{{ t.converting_online }}</strong></li>
+</ul>
+
+<style>
+#hashCalc {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.hashrate-field {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+#hashCalc input[type="number"] {
+  width: 100%;
+  padding-right: 50px;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  padding: 12px 50px 12px 20px;
+  font-weight: 500;
+  border: 1px solid #c3c3c3;
+}
+
+.unit {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    pointer-events: none;
+    color: black;
+}
+
+input[type=number]:focus {
+    border-color: blue;
+    outline: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  #conversionTable td,
+  #conversionTable th {
+    color: white;
+  }
+}
+</style>
