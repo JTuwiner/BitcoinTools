@@ -1,6 +1,9 @@
 en:
   title: "Hashrate Converter [TH, GH, PH, EH, MH, kH, H / s]"
   desc: "Convert between Bitcoin hashrate units instantly. Supports H/s, kH/s, MH/s, GH/s, TH/s, PH/s, and EH/s."
+  placeholder: "Enter value"
+  clear_button: "Clear All"
+  copied: "Copied!"
   helpful_links_heading: "Helpful Links"
   link_difficulty: "Mining difficulty history"
   link_hashrate: "Bitcoin hashrate and price"
@@ -31,6 +34,9 @@ en:
 de:
   title: "Hashrate-Umrechner [TH, GH, PH, EH, MH, kH, H / s]"
   desc: "Rechnen Sie Bitcoin-Hashrate-Einheiten sofort um. Unterstützt H/s, kH/s, MH/s, GH/s, TH/s, PH/s und EH/s."
+  placeholder: "Wert eingeben"
+  clear_button: "Alle löschen"
+  copied: "Kopiert!"
   helpful_links_heading: "Nützliche Links"
   link_difficulty: "Verlauf der Mining-Schwierigkeit"
   link_hashrate: "Bitcoin-Hashrate und Preis"
@@ -61,6 +67,9 @@ de:
 es:
   title: "Convertidor de Hashrate [TH, GH, PH, EH, MH, kH, H / s]"
   desc: "Convierte entre unidades de hashrate de Bitcoin al instante. Compatible con H/s, kH/s, MH/s, GH/s, TH/s, PH/s y EH/s."
+  placeholder: "Ingrese valor"
+  clear_button: "Borrar todo"
+  copied: "¡Copiado!"
   helpful_links_heading: "Enlaces útiles"
   link_difficulty: "Historial de dificultad de minería"
   link_hashrate: "Hashrate y precio de Bitcoin"
@@ -91,6 +100,9 @@ es:
 it:
   title: "Convertitore di Hashrate [TH, GH, PH, EH, MH, kH, H / s]"
   desc: "Converti istantaneamente tra le unità di hashrate di Bitcoin. Supporta H/s, kH/s, MH/s, GH/s, TH/s, PH/s e EH/s."
+  placeholder: "Inserisci valore"
+  clear_button: "Cancella tutto"
+  copied: "Copiato!"
   helpful_links_heading: "Link utili"
   link_difficulty: "Cronologia della difficoltà di mining"
   link_hashrate: "Hashrate e prezzo di Bitcoin"
@@ -121,6 +133,9 @@ it:
 zh:
   title: "算力转换器 [TH, GH, PH, EH, MH, kH, H / s]"
   desc: "即时转换比特币算力单位。支持 H/s、kH/s、MH/s、GH/s、TH/s、PH/s 和 EH/s。"
+  placeholder: "输入数值"
+  clear_button: "全部清除"
+  copied: "已复制！"
   helpful_links_heading: "实用链接"
   link_difficulty: "挖矿难度历史"
   link_hashrate: "比特币算力与价格"
@@ -151,6 +166,9 @@ zh:
 ru:
   title: "Конвертер хешрейта [TH, GH, PH, EH, MH, kH, H / s]"
   desc: "Мгновенная конвертация единиц хешрейта Биткоина. Поддерживает H/s, kH/s, MH/s, GH/s, TH/s, PH/s и EH/s."
+  placeholder: "Введите значение"
+  clear_button: "Очистить все"
+  copied: "Скопировано!"
   helpful_links_heading: "Полезные ссылки"
   link_difficulty: "История сложности майнинга"
   link_hashrate: "Хешрейт и цена Биткоина"
