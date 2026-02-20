@@ -45,8 +45,13 @@ $(document).ready(function() {
         }
     }
 
+    function stripFormatting(str) {
+        if (!str) return '';
+        return str.replace(/[^\d.\-]/g, '');
+    }
+
     function clearAll() {
-        $('#hashCalc input[type="number"]').val('').removeAttr('data-raw');
+        $('#hashCalc input[type="text"]').val('').removeAttr('data-raw');
         $('.hashrate-field').removeClass('hashrate-field--active');
         $('.hash-copy-btn').hide();
     }
@@ -62,9 +67,8 @@ $(document).ready(function() {
             var u = units[j];
             if (u.id === sourceId) continue;
             var converted = correctValue(hashesPerSecond / u.factor);
-            var formatted = formatNumber(converted);
             var $input = $('input#' + u.id);
-            $input.val(formatted);
+            $input.val(formatNumber(converted));
             $input.attr('data-raw', converted);
             $input.closest('.hashrate-field').find('.hash-copy-btn').show();
         }
@@ -77,18 +81,19 @@ $(document).ready(function() {
         $sourceInput.closest('.hashrate-field').addClass('hashrate-field--active');
     }
 
-    $('#hashCalc').on('keyup input', 'input[type="number"]', function() {
-        var value = $(this).val();
+    $('#hashCalc').on('keyup input', 'input[type="text"]', function() {
+        var raw = $(this).val();
         var type = $(this).attr('name');
 
-        if (value === '' || value === null) {
+        if (raw === '' || raw === null) {
             clearAll();
             return;
         }
-        if (value[value.length - 1] === '.' || value[value.length - 1] === ',') return;
 
-        value = value.replace(',', '.');
-        var parsed = parseFloat(value);
+        var cleaned = stripFormatting(raw);
+        if (cleaned === '' || cleaned === '.') return;
+
+        var parsed = parseFloat(cleaned);
 
         if (isNaN(parsed) || parsed === 0) {
             clearAll();

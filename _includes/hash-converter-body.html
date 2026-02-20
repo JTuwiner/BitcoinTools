@@ -3,22 +3,22 @@
 
 <div id="hashCalc" data-lang="{{ lang }}" data-copied="{{ t.copied }}">
     <div class="hashrate-field">
-        <input type="number" id="hash" name="hash" placeholder="{{ t.placeholder }}" />
+        <input type="text" inputmode="decimal" id="hash" name="hash" placeholder="{{ t.placeholder }}" />
         <button type="button" class="hash-copy-btn" style="display:none;" title="Copy"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
         <label for="hash" class="unit">H/s</label>
     </div>
     <div class="hashrate-field">
-        <input type="number" id="kilohash" name="kilohash" placeholder="{{ t.placeholder }}" />
+        <input type="text" inputmode="decimal" id="kilohash" name="kilohash" placeholder="{{ t.placeholder }}" />
         <button type="button" class="hash-copy-btn" style="display:none;" title="Copy"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
         <label for="kilohash" class="unit">kH/s</label>
     </div>
     <div class="hashrate-field">
-        <input type="number" id="megahash" name="megahash" placeholder="{{ t.placeholder }}" />
+        <input type="text" inputmode="decimal" id="megahash" name="megahash" placeholder="{{ t.placeholder }}" />
         <button type="button" class="hash-copy-btn" style="display:none;" title="Copy"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
         <label for="megahash" class="unit">MH/s</label>
     </div>
     <div class="hashrate-field">
-        <input type="number" id="gigahash" name="gigahash" placeholder="{{ t.placeholder }}" />
+        <input type="text" inputmode="decimal" id="gigahash" name="gigahash" placeholder="{{ t.placeholder }}" />
         <button type="button" class="hash-copy-btn" style="display:none;" title="Copy"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
         <label for="gigahash" class="unit">GH/s</label>
     </div>
@@ -28,12 +28,12 @@
         <label for="terahash" class="unit">TH/s</label>
     </div>
     <div class="hashrate-field">
-        <input type="number" id="petahash" name="petahash" placeholder="{{ t.placeholder }}" />
+        <input type="text" inputmode="decimal" id="petahash" name="petahash" placeholder="{{ t.placeholder }}" />
         <button type="button" class="hash-copy-btn" style="display:none;" title="Copy"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
         <label for="petahash" class="unit">PH/s</label>
     </div>
     <div class="hashrate-field">
-        <input type="number" id="exahash" name="exahash" placeholder="{{ t.placeholder }}" />
+        <input type="text" inputmode="decimal" id="exahash" name="exahash" placeholder="{{ t.placeholder }}" />
         <button type="button" class="hash-copy-btn" style="display:none;" title="Copy"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
         <label for="exahash" class="unit">EH/s</label>
     </div>
@@ -116,10 +116,8 @@
     padding-left: 4px;
 }
 
-#hashCalc input[type="number"] {
+#hashCalc input[type="text"] {
   width: 100%;
-  -webkit-appearance: textfield;
-  -moz-appearance: textfield;
   padding: 12px 90px 12px 20px;
   font-weight: 500;
   border: 1px solid #c3c3c3;
@@ -136,7 +134,7 @@
     color: black;
 }
 
-input[type=number]:focus {
+#hashCalc input[type="text"]:focus {
     border-color: blue;
     outline: none;
 }
