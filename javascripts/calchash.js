@@ -35,7 +35,7 @@ $(document).ready(function() {
 
     function formatNumber(num) {
         var parsed = parseFloat(num);
-        if (isNaN(parsed)) return num;
+        if (isNaN(parsed)) return String(num);
         if (parsed === 0) return '0';
         if (Math.abs(parsed) < 0.001) return String(num);
         try {
@@ -49,7 +49,6 @@ $(document).ready(function() {
         $('#hashCalc input[type="number"]').val('').removeAttr('data-raw');
         $('.hashrate-field').removeClass('hashrate-field--active');
         $('.hash-copy-btn').hide();
-        $('.hash-formatted-display').text('');
     }
 
     function convert(sourceId, rawValue) {
@@ -63,16 +62,15 @@ $(document).ready(function() {
             var u = units[j];
             if (u.id === sourceId) continue;
             var converted = correctValue(hashesPerSecond / u.factor);
+            var formatted = formatNumber(converted);
             var $input = $('input#' + u.id);
-            $input.val(converted);
+            $input.val(formatted);
             $input.attr('data-raw', converted);
-            $input.closest('.hashrate-field').find('.hash-formatted-display').text(formatNumber(converted));
             $input.closest('.hashrate-field').find('.hash-copy-btn').show();
         }
 
         var $sourceInput = $('input#' + sourceId);
         $sourceInput.attr('data-raw', rawValue);
-        $sourceInput.closest('.hashrate-field').find('.hash-formatted-display').text(formatNumber(rawValue));
         $sourceInput.closest('.hashrate-field').find('.hash-copy-btn').show();
 
         $('.hashrate-field').removeClass('hashrate-field--active');
