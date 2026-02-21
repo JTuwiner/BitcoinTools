@@ -1139,7 +1139,7 @@ sidebar_toc:
         <tr>
           <td>
             <div class="ira-table-provider-name">
-              <img src="/tools/img/{{ ira.img }}" alt="{{ ira.title }}" class="ira-table-provider-img">
+              <img loading="lazy" src="/tools/img/{{ ira.img }}" alt="{{ ira.title }}" class="ira-table-provider-img">
               <span>{{ ira.title }}</span>
             </div>
           </td>
@@ -1176,7 +1176,7 @@ sidebar_toc:
     <div class="mobile-ira-card{% if ira.toppick %} top-pick{% endif %}">
       {% if ira.toppick %}<span class="card-badge">Top Pick</span>{% endif %}
       <div class="mobile-ira-card-header">
-        <img src="/tools/img/{{ ira.img }}" alt="{{ ira.title }}" class="mobile-ira-card-img">
+        <img loading="lazy" src="/tools/img/{{ ira.img }}" alt="{{ ira.title }}" class="mobile-ira-card-img">
         <div>
           <div class="mobile-ira-card-name">{{ ira.title }}</div>
           {% if ira.ira_custody contains "Self" or ira.ira_custody contains "self" %}
@@ -1224,7 +1224,7 @@ function updateMobileIRAComparison() {
     {% if ira.toppick %}<span class="card-badge">Top Pick</span>{% endif %}
     <div class="ira-header">
       <a href="{{ ira.link }}" target="_blank" rel="nofollow noopener" class="ira-image-wrapper" onclick="fathom.trackEvent('Click IRA'); fathom.trackEvent('Click IRA: {{ ira.title }}');">
-        <img src="/tools/img/{{ ira.img }}" alt="{{ ira.title }}" class="ira-image">
+        <img loading="lazy" src="/tools/img/{{ ira.img }}" alt="{{ ira.title }}" class="ira-image">
       </a>
       
       <div class="ira-info">

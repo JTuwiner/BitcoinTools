@@ -1606,7 +1606,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
   <div class="exit-modal">
     <button class="exit-modal-close" id="exitModalClose" aria-label="Close">&times;</button>
     <div class="exit-modal-img-col">
-      <img src="https://bitbo.io/tools/img/geminimulticard.png" alt="Gemini Credit Card" width="200" height="200">
+      <img loading="lazy" src="https://bitbo.io/tools/img/geminimulticard.png" alt="Gemini Credit Card" width="200" height="200">
     </div>
     <div class="exit-modal-body">
       <span class="exit-modal-usa-badge">USA Only</span>
@@ -1651,7 +1651,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
         <tr>
           <td>
             <div class="comparison-table-card-name">
-              <img src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="comparison-table-card-img">
+              <img loading="lazy" src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="comparison-table-card-img">
               <span>{{ card.title }}</span>
             </div>
           </td>
@@ -1715,7 +1715,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" viewBox=
     {% for card in cards %}
     <div class="mobile-comparison-card" data-card="{{ card.title | escape }}">
       <div class="mobile-card-header">
-        <img src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="mobile-card-img">
+        <img loading="lazy" src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="mobile-card-img">
         <span class="mobile-card-name">{{ card.title }}</span>
       </div>
       <div class="mobile-comparison-label">Best For</div>
@@ -2024,7 +2024,7 @@ function calculateRewards() {
     var tdName = document.createElement('td');
     var nameHtml = '<div class="rewards-calc-card-name">';
     nameHtml += '<span class="rewards-calc-rank ' + (r === 0 ? 'rewards-calc-rank-1' : r === 1 ? 'rewards-calc-rank-2' : r === 2 ? 'rewards-calc-rank-3' : 'rewards-calc-rank-other') + '">' + (r + 1) + '</span>';
-    nameHtml += '<img src="/tools/img/' + card.img + '" alt="' + card.name + '" class="rewards-calc-card-img">';
+    nameHtml += '<img loading="lazy" src="/tools/img/' + card.img + '" alt="' + card.name + '" class="rewards-calc-card-img">';
     nameHtml += '<div>';
     if (r === 0) {
       nameHtml += '<span class="rewards-calc-best-match">Best match for your spending</span><br>';
@@ -2075,7 +2075,7 @@ function calculateRewards() {
     <div class="card-header">
       <div class="card-image-wrapper">
         <a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="card-image-link" onclick="fathom.trackEvent('Click Card'); fathom.trackEvent('Click Card: {{ card.title }}');">
-          <img src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="card-image">
+          <img loading="lazy" src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="card-image">
         </a>
         <div class="card-type-below-image">
           {% assign card_type = card.vs_cardtype | strip_html | strip %}

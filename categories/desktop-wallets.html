@@ -983,7 +983,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
         <tr>
           <td>
             <div class="wallet-table-provider-name">
-              <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="wallet-table-provider-img">
+              <img loading="lazy" src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="wallet-table-provider-img">
               <span>{{ wallet.title }}</span>
             </div>
           </td>
@@ -1040,7 +1040,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
     {% for wallet in wallets %}
     <div class="mobile-wallet-card">
       <div class="mobile-wallet-card-header">
-        <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-wallet-card-img">
+        <img loading="lazy" src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-wallet-card-img">
         <div class="mobile-wallet-card-name">{{ wallet.title }}</div>
       </div>
       <div class="mobile-wallet-comparison-label">Best For</div>
@@ -1081,7 +1081,7 @@ function updateMobileWalletComparison() {
   <div class="wallet-item">
     <div class="wallet-header">
       <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="wallet-image-wrapper" onclick="fathom.trackEvent('Click Desktop Wallet'); fathom.trackEvent('Click Desktop Wallet: {{ wallet.title }}');">
-        <img src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="wallet-image">
+        <img loading="lazy" src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="wallet-image">
       </a>
       
       <div class="wallet-info">

@@ -4,3 +4,21 @@ table {
   table-layout: fixed;
   width: 100%;
 }
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #404040;
+  color: #fff;
+  transition: background 0.2s;
+}
+.social-icon:hover {
+  background: #555;
+}
+.social-icon svg {
+  fill: #fff;
+}

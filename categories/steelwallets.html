@@ -997,7 +997,7 @@ a.mobile-card-header .method-badge {
         <tr>
           <td>
             <div class="comparison-table-steel-name">
-              <img src="/tools/img/{{ steel.img }}" alt="{{ steel.title }}" class="comparison-table-steel-img">
+              <img loading="lazy" src="/tools/img/{{ steel.img }}" alt="{{ steel.title }}" class="comparison-table-steel-img">
               <span>{{ steel.title }}</span>
               </div>
           </td>
@@ -1023,7 +1023,7 @@ a.mobile-card-header .method-badge {
     {% for steel in steels %}
     <div class="mobile-comparison-card">
       <div class="mobile-card-header">
-        <img src="/tools/img/{{ steel.img }}" alt="{{ steel.title }}" class="mobile-card-img">
+        <img loading="lazy" src="/tools/img/{{ steel.img }}" alt="{{ steel.title }}" class="mobile-card-img">
         <div class="mobile-card-name">{{ steel.title }}</div>
         {% if steel.steel_method contains "Tile" %}
           <span class="method-badge tile">🔤 Tiles</span>
@@ -1094,7 +1094,7 @@ a.mobile-card-header .method-badge {
   <div class="steel-item">
     <div class="steel-header">
       <a href="{{ steel.link }}" target="_blank" rel="nofollow noopener" class="steel-image-wrapper" onclick="fathom.trackEvent('Click Steel Wallet'); fathom.trackEvent('Click Steel Wallet: {{ steel.title }}');">
-        <img src="/tools/img/{{ steel.img }}" alt="{{ steel.title }}" class="steel-image">
+        <img loading="lazy" src="/tools/img/{{ steel.img }}" alt="{{ steel.title }}" class="steel-image">
       </a>
       
       <div class="steel-info">

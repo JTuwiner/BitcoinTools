@@ -4,7 +4,7 @@
     <div class="row">
       <div id="bj-wrap">
        <a href="https://charts.bitbo.io/fear-greed/" target="_blank" class="fearad b-unit"><div class="pic">
-          <picture><img src="/tools/assets/feargreed.png" alt="fear and greed"></picture></div>
+          <picture><img loading="lazy" src="/tools/assets/feargreed.png" alt="fear and greed"></picture></div>
           <div class="r-wrap">
             <div class="text">
              View the Bitcoin Fear & Greed Index live, with historical data of price.  
@@ -33,41 +33,20 @@
   </div>
 </footer>
 
-<script> 
-window.addEventListener('load', (event) => {
-  document.querySelectorAll('.fearad').forEach(item => {
-  item.addEventListener('click', event => {
-    fathom.trackEvent('Click Fear & Greed Top');
-  });
-  });
+<script>
+window.addEventListener('load', () => {
+  const tracks = {
+    '.fearad': 'Click Fear & Greed Top',
+    '.bitbo-nav-link': 'Click Dashboard Nav',
+    '.buy-nav-link': 'Click Buy Nav',
+    '.bitbo-charts-link': 'Click Bitbo Charts Nav'
+  };
+  for (const [sel, evt] of Object.entries(tracks)) {
+    document.querySelectorAll(sel).forEach(el => {
+      el.addEventListener('click', () => fathom.trackEvent(evt));
+    });
+  }
 });
-
-window.addEventListener('load', (event) => {
-  document.querySelectorAll('.bitbo-nav-link').forEach(item => {
-  item.addEventListener('click', event => {
-    fathom.trackEvent('Click Dashboard Nav');
-  });
-  });
-});
-
-window.addEventListener('load', (event) => {
-  document.querySelectorAll('.buy-nav-link').forEach(item => {
-  item.addEventListener('click', event => {
-    fathom.trackEvent('Click Buy Nav'); 
-  });
-  });
-});
-
-window.addEventListener('load', (event) => {
-  document.querySelectorAll('.bitbo-charts-link').forEach(item => {
-  item.addEventListener('click', event => {
-    fathom.trackEvent('Click Bitbo Charts Nav');
-  });
-  });
-});
-
-
-
 </script>
 
 

@@ -716,7 +716,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- Combined Model Selector + Rating Cards -->
     <div class="brand-compare-header">
       <div class="brand-card">
-        <img src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}" class="brand-card-img" id="brand1-card-img">
+        <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}" class="brand-card-img" id="brand1-card-img">
         <div class="brand-card-name" id="brand1-card-name">{{ exchange1_page.title }}</div>
         {% if brand1_models.size > 1 %}
         <div class="brand-card-select-wrapper">
@@ -743,7 +743,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <span class="brand-vs-divider">VS</span>
       
       <div class="brand-card">
-        <img src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}" class="brand-card-img" id="brand2-card-img">
+        <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}" class="brand-card-img" id="brand2-card-img">
         <div class="brand-card-name" id="brand2-card-name">{{ exchange2_page.title }}</div>
         {% if brand2_models.size > 1 %}
         <div class="brand-card-select-wrapper">
@@ -770,11 +770,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <div id="sticky-cta">
       <a href="{{ exchange1_page.link }}" target="_blank" id="sticky-cta-1">
-        <img src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }} logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px; border-radius: 50%;">
+        <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }} logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px; border-radius: 50%;">
         Visit {{ exchange1_page.brand }}'s Website
       </a>
       <a href="{{ exchange2_page.link }}" target="_blank" id="sticky-cta-2">
-        <img src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }} logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px; border-radius: 50%;">
+        <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }} logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px; border-radius: 50%;">
         Visit {{ exchange2_page.brand }}'s Website
       </a>
     </div>
@@ -1184,7 +1184,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange1_page.price }}</p>
@@ -1193,7 +1193,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange2_page.price }}</p>
@@ -1208,7 +1208,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange1_page.wallettype }}</p>
@@ -1216,7 +1216,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange2_page.wallettype }}</p>
@@ -1230,7 +1230,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange1_page.launched }}</p>
@@ -1238,7 +1238,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange2_page.launched }}</p>
@@ -1251,7 +1251,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange1_page.screensize }}</p>
@@ -1259,7 +1259,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange2_page.screensize }}</p>
@@ -1272,7 +1272,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -1280,7 +1280,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -1293,7 +1293,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <span class="inline-cta-label">Ready to decide?</span>
               <div class="inline-cta-buttons">
                 <a href="{{ exchange1_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet1">
-                  <img src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}">
+                  <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}">
                   <span class="inline-cta-text">
                     <span class="inline-cta-name">Get {{ exchange1_page.title }}</span>
                     {% if exchange1_page.title contains 'Trezor' %}
@@ -1303,7 +1303,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </a>
                 <span class="inline-cta-divider">or</span>
                 <a href="{{ exchange2_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet2">
-                  <img src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}">
+                  <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}">
                   <span class="inline-cta-text">
                     <span class="inline-cta-name">Get {{ exchange2_page.title }}</span>
                     {% if exchange2_page.title contains 'Trezor' %}
@@ -1320,7 +1320,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
@@ -1334,7 +1334,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
@@ -1353,7 +1353,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
@@ -1367,7 +1367,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
@@ -1386,7 +1386,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
@@ -1400,7 +1400,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
@@ -1419,7 +1419,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
@@ -1433,7 +1433,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
@@ -1452,7 +1452,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
@@ -1466,7 +1466,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
@@ -1487,14 +1487,14 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
                 </div>
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -1507,14 +1507,14 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
                 </div>
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -1527,14 +1527,14 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
                 </div>
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -1547,7 +1547,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <span class="inline-cta-label">Ready to decide?</span>
               <div class="inline-cta-buttons">
                 <a href="{{ exchange1_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet1">
-                  <img src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}">
+                  <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}">
                   <span class="inline-cta-text">
                     <span class="inline-cta-name">Get {{ exchange1_page.title }}</span>
                     {% if exchange1_page.title contains 'Trezor' %}
@@ -1557,7 +1557,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </a>
                 <span class="inline-cta-divider">or</span>
                 <a href="{{ exchange2_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet2">
-                  <img src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}">
+                  <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}">
                   <span class="inline-cta-text">
                     <span class="inline-cta-name">Get {{ exchange2_page.title }}</span>
                     {% if exchange2_page.title contains 'Trezor' %}
@@ -1574,7 +1574,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -1582,7 +1582,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -1595,7 +1595,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange1_page.supportedcoins }}</p>
@@ -1603,7 +1603,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange2_page.supportedcoins }}</p>
@@ -1616,7 +1616,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange1_page.interfaces }}</p>
@@ -1624,7 +1624,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange2_page.interfaces }}</p>
@@ -1645,7 +1645,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange1_page.secureelements }}</p>
@@ -1653,7 +1653,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange2_page.secureelements }}</p>
@@ -1666,7 +1666,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
@@ -1682,7 +1682,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
@@ -1703,7 +1703,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
@@ -1717,7 +1717,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
@@ -1736,7 +1736,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange1_page.size }}</p>
@@ -1744,7 +1744,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange2_page.size }}</p>
@@ -1757,7 +1757,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
@@ -1768,7 +1768,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
@@ -1784,7 +1784,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
@@ -1798,7 +1798,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">
@@ -1821,14 +1821,14 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
                 </div>
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -1841,14 +1841,14 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
                 </div>
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -1863,14 +1863,14 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
                 </div>
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -1883,14 +1883,14 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
                 </div>
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -1903,14 +1903,14 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
                 </div>
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -1925,14 +1925,14 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
                 </div>
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -1945,14 +1945,14 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
                 </div>
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -1965,14 +1965,14 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
                 </div>
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -1985,14 +1985,14 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
                 </div>
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -2005,14 +2005,14 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
                 </div>
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -2028,7 +2028,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -2036,7 +2036,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -2049,7 +2049,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -2057,7 +2057,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <div class="exchanges-details-side-subtitle"></div>
@@ -2073,7 +2073,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange1_page.parentcompany }}</p>
@@ -2081,7 +2081,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange2_page.parentcompany }}</p>
@@ -2094,7 +2094,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange1_page.founded }}</p>
@@ -2102,7 +2102,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange2_page.founded }}</p>
@@ -2117,7 +2117,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="exchanges-details-right">
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange1_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange1_page.securityincidents }}</p>
@@ -2125,7 +2125,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 <div class="exchanges-details-side">
                   <div class="exchanges-details-title">
-                    <img src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
+                    <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" class="exchanges-details-img">
                     <div class="exchanges-details-title-text">{{ exchange2_page.title }}</div>
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange2_page.securityincidents }}</p>
@@ -2143,7 +2143,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="inline-cta-label">Ready to decide?</span>
         <div class="inline-cta-buttons">
           <a href="{{ exchange1_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet1">
-            <img src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}">
+            <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}">
             <span class="inline-cta-text">
               <span class="inline-cta-name">Get {{ exchange1_page.title }}</span>
               {% if exchange1_page.title contains 'Trezor' %}
@@ -2153,7 +2153,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </a>
           <span class="inline-cta-divider">or</span>
           <a href="{{ exchange2_page.link }}" target="_blank" class="inline-cta-link inline-cta-wallet2">
-            <img src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}">
+            <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}">
             <span class="inline-cta-text">
               <span class="inline-cta-name">Get {{ exchange2_page.title }}</span>
               {% if exchange2_page.title contains 'Trezor' %}

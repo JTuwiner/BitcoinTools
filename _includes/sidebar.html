@@ -1,7 +1,7 @@
 <aside>
   <!-- <div id="bj-wrap">
     <a href="https://charts.bitbo.io/" target="_blank" class="b-unit chartsads" style="margin: 0 !important;"><div class="pic">
-      <picture><img src="https://calendar.bitbo.io/assets/bitbo.jpg" alt="bitcoin jobs"></picture></div>
+      <picture><img loading="lazy" src="https://calendar.bitbo.io/assets/bitbo.jpg" alt="bitcoin jobs"></picture></div>
       <div class="r-wrap">
         <div class="text" style="font-size: 14px !important;">
           Get simple & clear Bitcoin charts and data with Bitbo Charts. 
@@ -65,7 +65,7 @@
         {% else %}
         <a title="{{ cat.title }}" class="sidebar-category" href="/tools{{ cat.permalink }}">
         {% endif %}
-          {% if cat.svgicon %}{{ cat.svgicon }}{% else %}<i class="fa-solid fa-{{ cat.icon }}"></i>{% endif %} {{ cat.title }}
+          {% if cat.svgicon %}{{ cat.svgicon }}{% endif %} {{ cat.title }}
         </a>
       </li>
       {% endif %}

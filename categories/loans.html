@@ -1023,7 +1023,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
         <tr>
           <td>
             <div class="loan-table-provider-name">
-              <img src="/tools/img/{{ loan.img }}" alt="{{ loan.title }}" class="loan-table-provider-img">
+              <img loading="lazy" src="/tools/img/{{ loan.img }}" alt="{{ loan.title }}" class="loan-table-provider-img">
               <span>{{ loan.title }}</span>
             </div>
           </td>
@@ -1058,7 +1058,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
     {% for loan in loans %}
     <div class="mobile-loan-card">
       <div class="mobile-loan-card-header">
-        <img src="/tools/img/{{ loan.img }}" alt="{{ loan.title }}" class="mobile-loan-card-img">
+        <img loading="lazy" src="/tools/img/{{ loan.img }}" alt="{{ loan.title }}" class="mobile-loan-card-img">
         <div class="mobile-loan-card-name">{{ loan.title }}</div>
         {% if loan.loan_type contains "Commercial only" %}
           <span class="loan-type-badge commercial">🏢 Commercial</span>
@@ -1268,7 +1268,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="loan-item">
     <div class="loan-header">
       <a href="{{ loan.link }}" target="_blank" rel="nofollow noopener" class="loan-image-wrapper" onclick="fathom.trackEvent('Click Loan'); fathom.trackEvent('Click Loan: {{ loan.title }}');">
-        <img src="/tools/img/{{ loan.img }}" alt="{{ loan.title }}" class="loan-image">
+        <img loading="lazy" src="/tools/img/{{ loan.img }}" alt="{{ loan.title }}" class="loan-image">
       </a>
       
       <div class="loan-info">
