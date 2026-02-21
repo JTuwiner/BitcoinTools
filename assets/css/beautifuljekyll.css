@@ -1657,22 +1657,20 @@ body #main-navbar .ml-auto {
   margin-left: 50px !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  table tr {
-    border-top: 1px solid #232939;
-    background-color: #12151e;
-  }
-  table tr:nth-child(2n) {
-    background-color: #232939;
-  }
-  table tr th {
-    border: 1px solid #232939;
-  }
-  table tr td {
-    border: 1px solid #232939;
-  }
-  table tr td,
-  table tr th {
-    color: white;
-  }
+table tr {
+  border-top: 1px solid #232939;
+  background-color: #12151e;
+}
+table tr:nth-child(2n) {
+  background-color: #232939;
+}
+table tr th {
+  border: 1px solid #232939;
+}
+table tr td {
+  border: 1px solid #232939;
+}
+table tr td,
+table tr th {
+  color: white;
 }
