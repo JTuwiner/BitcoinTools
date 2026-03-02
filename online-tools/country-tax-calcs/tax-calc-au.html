@@ -7,180 +7,431 @@ jquery: yes
 capture: yes
 ---
 <div style="max-width: 800px;">
-<p>We built this free crypto tax calculator for Australian users that want to check their gains quickly. Our calculator is for informational purposes only. Consult an expert CPA or tax professional. You can use <a href="/tools/tax/">more advanced crypto tax software if you have a lot of trades</a>.</p>
+<p>We built this free crypto tax calculator for Australian users that want to check their gains quickly. All amounts are in <strong>Australian Dollars (AUD)</strong>. Our calculator is for informational purposes only. Consult an expert CPA or tax professional. You can use <a href="/tools/tax/">more advanced crypto tax software if you have a lot of trades</a>.</p>
 
+<style>
+    .info-icon {
+        display: inline-flex; align-items: center; justify-content: center;
+        margin-left: 6px; color: #86868b; cursor: help; vertical-align: middle;
+        opacity: 0.6; transition: opacity 0.2s ease;
+    }
+    .info-icon:hover { opacity: 1; }
+    .info-icon svg { width: 14px; height: 14px; }
+    .info-tooltip { position: relative; display: inline-flex; align-items: center; }
+    .info-tooltip:hover::after {
+        content: attr(data-tooltip); position: absolute; left: 28px; top: 50%;
+        transform: translateY(-50%); background: #1d1d1f; color: white;
+        padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 400;
+        white-space: nowrap; z-index: 100; box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
 
-<form id="taxForm">
-    <label for="income">Annual Income (AUD):</label>
-    <input type="number" id="income" required>
+    #cryptoTaxCalculator {
+        max-width: 540px; margin: 2rem auto; padding: 32px; color: #1d1d1f;
+        border-radius: 20px; background: #ffffff;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+        border: 1px solid rgba(0,0,0,0.04);
+    }
+    .calc-header {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid #d2d2d7;
+    }
+    .calc-header h2 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; color: #1d1d1f; }
+    .year-badge {
+        background: linear-gradient(135deg, #f2a900, #d99500); color: #000;
+        padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;
+    }
 
-    <label for="purchaseCost">Cost of Purchase (AUD):</label>
-    <input type="number" id="purchaseCost" required>
+    .form-group { margin-bottom: 20px; }
+    .form-row { display: flex; gap: 16px; }
+    .form-group.half { flex: 1; }
 
-    <label for="saleAmount">Amount of Sale (AUD):</label>
-    <input type="number" id="saleAmount" required>
+    #cryptoTaxCalculator label {
+        display: flex; align-items: center; margin-bottom: 8px;
+        font-size: 13px; font-weight: 500; color: #6e6e73; letter-spacing: 0.01em;
+    }
+    .input-wrapper { position: relative; display: flex; align-items: center; }
+    .input-prefix {
+        position: absolute; left: 14px; color: #86868b;
+        font-size: 16px; font-weight: 400; pointer-events: none;
+    }
+    #cryptoTaxCalculator select,
+    #cryptoTaxCalculator input[type="number"] {
+        width: 100%; padding: 14px 16px; border-radius: 12px;
+        border: 1px solid #d2d2d7; background: #f5f5f7;
+        font-size: 16px; font-family: inherit; color: #1d1d1f;
+        transition: all 0.2s ease; -webkit-appearance: none; appearance: none;
+    }
+    #cryptoTaxCalculator input[type="number"] { padding-left: 32px; }
+    #cryptoTaxCalculator select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2386868b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat; background-position: right 14px center;
+        padding-right: 40px; cursor: pointer;
+    }
+    #cryptoTaxCalculator select:focus,
+    #cryptoTaxCalculator input:focus {
+        outline: none; border-color: #f2a900; background: #ffffff;
+        box-shadow: 0 0 0 3px rgba(242,169,0,0.15);
+    }
+    #cryptoTaxCalculator input::placeholder { color: #86868b; opacity: 0.6; }
 
-    <label for="duration">Duration Held:</label>
-    <select id="duration">
-        <option value="lessThanAYear">Less than 1 year</option>
-        <option value="moreThanAYear">More than 1 year</option>
-    </select>
+    .validation-msg { font-size: 12px; margin-top: 4px; min-height: 16px; }
+    .validation-msg.error { color: #ff3b30; }
 
-    <button type="button" onclick="calculateTax()">Calculate Tax</button>
-</form>
-<div class="au-result" style="display: none;">
-    <p><span>Tax Rate Based on Income:</span> <span id="taxRate">0%</span></p>
-    <p><span>Total Profit from Trade:</span> <span id="profit">$0</span></p>
-    <p><span>Tax Due:</span> <span id="result">$0</span></p>
+    .toggle-container { display: flex; gap: 12px; }
+    .toggle-btn {
+        flex: 1; display: flex; flex-direction: column; align-items: center;
+        padding: 14px 16px; border: 1px solid #d2d2d7; border-radius: 12px;
+        background: #f5f5f7; cursor: pointer; transition: all 0.2s ease;
+        font-family: inherit; color: #1d1d1f;
+    }
+    .toggle-btn:hover { border-color: #f2a900; }
+    .toggle-btn.active {
+        background: linear-gradient(135deg, rgba(242,169,0,0.1), rgba(242,169,0,0.04));
+        border-color: #f2a900; box-shadow: 0 0 0 1px #f2a900;
+    }
+    .toggle-label { font-size: 14px; font-weight: 500; color: #1d1d1f; margin-bottom: 2px; }
+    .toggle-sub { font-size: 12px; color: #86868b; }
+
+    .calculate-btn {
+        width: 100%; padding: 16px 24px; margin-top: 8px;
+        background: #f2a900; color: #000; border: none; border-radius: 12px;
+        font-size: 16px; font-weight: 600; font-family: inherit;
+        cursor: pointer; transition: all 0.2s ease;
+    }
+    .calculate-btn:hover {
+        background: #d99500; transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(242,169,0,0.3);
+    }
+    .calculate-btn:active { transform: translateY(0); }
+
+    #result {
+        margin-top: 24px; padding: 20px; border-radius: 12px;
+        background: #f5f5f7; min-height: 60px;
+    }
+    .result-placeholder { text-align: center; color: #86868b; font-size: 14px; padding: 12px 0; }
+    .result-grid { display: flex; flex-direction: column; gap: 14px; }
+    .result-item {
+        display: flex; justify-content: space-between; align-items: center;
+        padding-bottom: 12px; border-bottom: 1px solid #e5e5e7;
+    }
+    .result-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .result-item.highlight {
+        background: linear-gradient(135deg, rgba(242,169,0,0.1), rgba(242,169,0,0.04));
+        margin: 8px -12px -12px; padding: 16px 12px; border-radius: 8px; border-bottom: none;
+    }
+    .result-label { font-size: 14px; color: #6e6e73; }
+    .result-value { font-size: 18px; font-weight: 600; color: #1d1d1f; font-variant-numeric: tabular-nums; }
+    .result-value.gain { color: #34c759; }
+    .result-value.loss { color: #ff3b30; }
+    .result-note { margin-top: 12px; font-size: 12px; color: #6e6e73; text-align: center; }
+
+    .result-actions { display: flex; gap: 10px; margin-top: 16px; }
+    .result-action-btn {
+        flex: 1; padding: 10px 16px; border: 1px solid #d2d2d7; border-radius: 8px;
+        background: #ffffff; color: #1d1d1f; font-size: 13px; font-weight: 500;
+        font-family: inherit; cursor: pointer; transition: all 0.2s ease;
+        display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .result-action-btn:hover { border-color: #f2a900; background: rgba(242,169,0,0.05); }
+    .result-action-btn svg { width: 14px; height: 14px; }
+    .copied-msg { color: #34c759; font-size: 12px; text-align: center; margin-top: 8px; min-height: 16px; }
+
+    .tax-bar-chart {
+        margin-top: 20px; padding: 16px; background: #ffffff;
+        border-radius: 8px; border: 1px solid #d2d2d7;
+    }
+    .tax-bar-chart h4 { margin: 0 0 12px; font-size: 13px; font-weight: 500; color: #6e6e73; }
+    .bar-row { display: flex; align-items: center; margin-bottom: 8px; }
+    .bar-row:last-child { margin-bottom: 0; }
+    .bar-label { width: 90px; font-size: 12px; font-weight: 500; color: #6e6e73; flex-shrink: 0; }
+    .bar-track { flex: 1; height: 24px; background: #f5f5f7; border-radius: 4px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; min-width: 2px; background: #f2a900; }
+    .bar-amount { width: 100px; text-align: right; font-size: 12px; font-weight: 600; color: #1d1d1f; flex-shrink: 0; padding-left: 8px; }
+
+    .federal-table {
+        background: #ffffff; border-radius: 12px; padding: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #d2d2d7; margin-bottom: 24px;
+    }
+    .federal-table table {
+        width: 100%; border-collapse: collapse; color: #1d1d1f;
+        font-size: 14px; background: #ffffff; border: none;
+    }
+    .federal-table table tr { background: #ffffff; border: none; }
+    .federal-table table th {
+        text-align: left; padding: 10px 12px; background: #f5f5f7;
+        font-weight: 500; font-size: 12px; color: #6e6e73;
+        text-transform: uppercase; letter-spacing: 0.03em; border: none;
+    }
+    .federal-table table th:first-child { border-radius: 8px 0 0 8px; }
+    .federal-table table th:last-child { border-radius: 0 8px 8px 0; text-align: right; }
+    .federal-table table td {
+        padding: 10px 12px; border: none; border-bottom: 1px solid #e5e5e7;
+        background: #ffffff; color: #1d1d1f;
+    }
+    .federal-table table td:last-child { text-align: right; font-weight: 600; }
+    .federal-table table tr:last-child td { border-bottom: none; }
+
+    #howToUse, #howCalculated {
+        margin-top: 24px; padding: 24px; background: #ffffff;
+        border-radius: 12px; border: 1px solid #d2d2d7;
+    }
+    #howToUse h3, #howCalculated h3 { margin: 0 0 16px; font-size: 18px; font-weight: 600; color: #1d1d1f; }
+    #howToUse ul, #howCalculated ul { margin: 0; padding-left: 20px; }
+    #howToUse li, #howCalculated li { margin-bottom: 10px; line-height: 1.5; color: #1d1d1f; }
+
+    @media (max-width: 768px) {
+        #cryptoTaxCalculator { margin: 1rem; padding: 24px 20px; }
+        .form-row { flex-direction: column; gap: 0; }
+        .calc-header h2 { font-size: 18px; }
+        .info-tooltip:hover::after { left: auto; right: 0; white-space: normal; max-width: 200px; }
+        .result-actions { flex-direction: column; }
+        .bar-label { width: 70px; font-size: 11px; }
+        .bar-amount { width: 80px; font-size: 11px; }
+    }
+</style>
+
+<div id="cryptoTaxCalculator">
+    <div class="calc-header">
+        <h2>Crypto Tax Estimator</h2>
+        <span class="year-badge">2024–25</span>
+    </div>
+
+    <div class="form-group">
+        <label for="income">Annual Income (AUD)
+            <span class="info-tooltip info-icon" data-tooltip="Your total taxable income — needed for marginal tax brackets">
+                {% include infoicon.html %}
+            </span>
+        </label>
+        <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="income" placeholder="0" min="0">
+        </div>
+        <div class="validation-msg" id="incomeMsg"></div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group half">
+            <label for="purchaseCost">Cost Basis (AUD)
+                <span class="info-tooltip info-icon" data-tooltip="The amount you originally paid for the crypto">
+                    {% include infoicon.html %}
+                </span>
+            </label>
+            <div class="input-wrapper">
+                <span class="input-prefix">$</span>
+                <input type="number" id="purchaseCost" placeholder="0" min="0">
+            </div>
+            <div class="validation-msg" id="purchaseMsg"></div>
+        </div>
+        <div class="form-group half">
+            <label for="saleAmount">Sale Amount (AUD)
+                <span class="info-tooltip info-icon" data-tooltip="The amount you received when selling">
+                    {% include infoicon.html %}
+                </span>
+            </label>
+            <div class="input-wrapper">
+                <span class="input-prefix">$</span>
+                <input type="number" id="saleAmount" placeholder="0" min="0">
+            </div>
+            <div class="validation-msg" id="saleMsg"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Holding Period
+            <span class="info-tooltip info-icon" data-tooltip="Assets held over 12 months get a 50% CGT discount">
+                {% include infoicon.html %}
+            </span>
+        </label>
+        <div class="toggle-container">
+            <button type="button" class="toggle-btn active" data-value="short" id="btnShort">
+                <span class="toggle-label">Under 12 months</span>
+                <span class="toggle-sub">No discount</span>
+            </button>
+            <button type="button" class="toggle-btn" data-value="long" id="btnLong">
+                <span class="toggle-label">Over 12 months</span>
+                <span class="toggle-sub">50% CGT discount</span>
+            </button>
+        </div>
+        <input type="hidden" id="duration" value="short">
+    </div>
+
+    <button class="calculate-btn" id="calculateButton">Calculate Tax</button>
+
+    <div id="result">
+        <div class="result-placeholder">Enter your details above to see your estimated tax</div>
+    </div>
 </div>
 
 {% include koinlylink.html link="https://coinledger.io/au?fpr=bitcoinww&fp_sid=tools" %}
 
-<h2>How to Use the Calculator:</h2>
-<ul>
-    <li>Enter your <strong>Annual Income</strong> to determine your applicable tax rate.</li>
-    <li>Input the <strong>Cost of Purchase</strong> for the crypto asset.</li>
-    <li>Provide the <strong>Amount of Sale</strong> to calculate your gains or losses.</li>
-    <li>Select the <strong>Duration Held</strong> from the dropdown, indicating whether you've held the asset for more or less than a year.</li>
-    <li>Click on the <strong>Calculate Tax</strong> button to get a breakdown of the tax due based on your inputs.</li>
-</ul>
+<script>
+(function() {
+    var BRACKETS = [
+        { min: 0, max: 18200, rate: 0 },
+        { min: 18200, max: 45000, rate: 0.19 },
+        { min: 45000, max: 135000, rate: 0.325 },
+        { min: 135000, max: 190000, rate: 0.37 },
+        { min: 190000, max: Infinity, rate: 0.45 }
+    ];
 
-<h2>Why Use This Calculator:</h2>
-<ul>
-    <li>Gain clarity on potential taxes owed for crypto transactions.</li>
-    <li>Stay informed and avoid surprises during tax season.</li>
-    <li>Benefit from accurate calculations tailored to Australian tax brackets and rates.</li>
-    <li>Identify potential tax savings if assets were held for longer durations.</li>
-    <li>Plan future trades with a clearer understanding of tax implications.</li>
-</ul>
+    function calcMarginal(brackets, totalIncome, gain) {
+        if (gain <= 0) return 0;
+        var base = totalIncome - gain;
+        var tax = 0, rem = gain;
+        for (var i = 0; i < brackets.length && rem > 0; i++) {
+            var b = brackets[i];
+            if (base >= b.max) continue;
+            var start = Math.max(base, b.min);
+            var end = Math.min(base + rem, b.max);
+            var amt = end - start;
+            if (amt > 0) { tax += amt * b.rate; rem -= amt; }
+        }
+        return tax;
+    }
+
+    function fmt(n) {
+        return new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n);
+    }
+
+    var holding = 'short';
+    function setHolding(val) {
+        holding = val;
+        document.getElementById('duration').value = val;
+        document.querySelectorAll('#cryptoTaxCalculator .toggle-btn').forEach(function(b) {
+            b.classList.toggle('active', b.dataset.value === val);
+        });
+    }
+
+    function validate() {
+        var ok = true;
+        var inc = parseFloat(document.getElementById('income').value);
+        var pur = parseFloat(document.getElementById('purchaseCost').value);
+        var sal = parseFloat(document.getElementById('saleAmount').value);
+        var im = document.getElementById('incomeMsg');
+        var pm = document.getElementById('purchaseMsg');
+        var sm = document.getElementById('saleMsg');
+        im.textContent = ''; pm.textContent = ''; sm.textContent = '';
+        im.className = 'validation-msg'; pm.className = 'validation-msg'; sm.className = 'validation-msg';
+        if (isNaN(inc) || inc < 0) { im.textContent = 'Enter a valid income'; im.className = 'validation-msg error'; ok = false; }
+        if (isNaN(pur) || pur < 0) { pm.textContent = 'Enter a valid cost basis'; pm.className = 'validation-msg error'; ok = false; }
+        if (isNaN(sal) || sal < 0) { sm.textContent = 'Enter a valid sale amount'; sm.className = 'validation-msg error'; ok = false; }
+        return ok;
+    }
+
+    function calculateTax() {
+        if (!validate()) return;
+
+        var income = parseFloat(document.getElementById('income').value) || 0;
+        var purchase = parseFloat(document.getElementById('purchaseCost').value) || 0;
+        var sale = parseFloat(document.getElementById('saleAmount').value) || 0;
+
+        var capitalGain = sale - purchase;
+        var isLoss = capitalGain < 0;
+        var taxableGain = isLoss ? 0 : capitalGain;
+        var discountApplied = false;
+
+        if (!isLoss && holding === 'long') {
+            taxableGain = capitalGain * 0.5;
+            discountApplied = true;
+        }
+
+        var totalIncome = income + taxableGain;
+        var tax = calcMarginal(BRACKETS, totalIncome, taxableGain);
+
+        var lossNote = '';
+        if (isLoss) {
+            lossNote = '<div class="result-note" style="color:#ff3b30;">Capital losses can be carried forward indefinitely in Australia to offset future capital gains.</div>';
+        }
+
+        var discountNote = discountApplied ? '<div class="result-note">50% CGT discount applied — asset held over 12 months.</div>' : '';
+
+        var chartHTML = (!isLoss && tax > 0) ? '<div class="tax-bar-chart"><h4>Tax on Crypto Gains</h4>' +
+            '<div class="bar-row"><span class="bar-label">Tax Owed</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-amount">' + fmt(tax) + '</span></div></div>' : '';
+
+        var html = '<div class="result-grid">' +
+            '<div class="result-item"><span class="result-label">Capital ' + (isLoss ? 'Loss' : 'Gain') + '</span><span class="result-value ' + (isLoss ? 'loss' : 'gain') + '">' + fmt(Math.abs(capitalGain)) + '</span></div>' +
+            (!isLoss && discountApplied ? '<div class="result-item"><span class="result-label">Taxable Gain (50% discount)</span><span class="result-value">' + fmt(taxableGain) + '</span></div>' : '') +
+            (!isLoss && !discountApplied ? '<div class="result-item"><span class="result-label">Taxable Gain</span><span class="result-value">' + fmt(taxableGain) + '</span></div>' : '') +
+            '<div class="result-item highlight"><span class="result-label">Estimated Tax Owed</span><span class="result-value">' + (isLoss ? fmt(0) : fmt(tax)) + '</span></div>' +
+            '</div>' + lossNote + discountNote + chartHTML +
+            '<div class="result-note">' + (isLoss ? '' : 'Marginal rates applied to taxable capital gain.') + '</div>' +
+            '<div class="result-actions"><button class="result-action-btn" onclick="copyAuResults()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy Results</button></div>' +
+            '<div class="copied-msg" id="copiedMsg"></div>';
+
+        document.getElementById('result').innerHTML = html;
+
+        window._lastAuResult = { capitalGain: capitalGain, taxableGain: taxableGain, tax: tax, income: income, isLoss: isLoss, discountApplied: discountApplied };
+    }
+
+    window.copyAuResults = function() {
+        var r = window._lastAuResult; if (!r) return;
+        var t = ['2024-25 Australia Crypto Tax Estimate', '—',
+            'Income: ' + fmt(r.income),
+            (r.isLoss ? 'Capital Loss: ' : 'Capital Gain: ') + fmt(Math.abs(r.capitalGain)),
+            r.discountApplied ? 'Taxable Gain (50% discount): ' + fmt(r.taxableGain) : 'Taxable Gain: ' + fmt(r.taxableGain),
+            'Estimated Tax: ' + (r.isLoss ? fmt(0) : fmt(r.tax)),
+            '—', 'Calculated at bitcointools.com'].join('\n');
+        navigator.clipboard.writeText(t).then(function() {
+            var m = document.getElementById('copiedMsg');
+            if (m) { m.textContent = 'Copied to clipboard!'; setTimeout(function() { m.textContent = ''; }, 2000); }
+        });
+    };
+
+    var timer;
+    function debounced() {
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+            if (document.getElementById('income').value && document.getElementById('purchaseCost').value && document.getElementById('saleAmount').value) calculateTax();
+        }, 400);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('calculateButton').addEventListener('click', calculateTax);
+        document.getElementById('btnShort').addEventListener('click', function() { setHolding('short'); debounced(); });
+        document.getElementById('btnLong').addEventListener('click', function() { setHolding('long'); debounced(); });
+        ['income', 'purchaseCost', 'saleAmount'].forEach(function(id) {
+            document.getElementById(id).addEventListener('input', debounced);
+        });
+    });
+})();
+</script>
+
+<div id="howToUse">
+    <h3>How to Use This Calculator</h3>
+    <ul>
+        <li><strong>Enter Your Annual Income:</strong> This determines your marginal tax bracket under the ATO's individual income tax rates.</li>
+        <li><strong>Provide Cost Basis & Sale Amount:</strong> Enter what you paid for the crypto and what you sold it for, both in AUD.</li>
+        <li><strong>Select Holding Period:</strong> If you held the asset for more than 12 months, you qualify for the 50% CGT discount — only half of your capital gain is taxable.</li>
+        <li><strong>View Results:</strong> The calculator auto-updates as you type. You'll see your capital gain, taxable gain, and estimated tax.</li>
+    </ul>
 </div>
 
+<div id="howCalculated">
+    <h3>How It's Calculated</h3>
+    <ul>
+        <li>Your <strong>capital gain</strong> is the sale amount minus your cost basis.</li>
+        <li>If held over 12 months, a <strong>50% CGT discount</strong> applies — only half the gain is added to your taxable income.</li>
+        <li>Tax is calculated using <strong>marginal brackets</strong> — each portion of the taxable gain is taxed at the rate for that bracket, not a single flat rate.</li>
+        <li>Capital losses can be <strong>carried forward indefinitely</strong> to offset future gains.</li>
+    </ul>
+</div>
 
-<style>
+<div style="margin-top: 40px;">
+    <h2>2024–25 Australian Tax Brackets (Residents)</h2>
+</div>
 
-  
-  #taxForm {
-      font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
-      color: black;
-  }
-  
-  #taxForm label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: bold;
-  }
-  
-  #taxForm input, #taxForm select {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 16px;
-  }
-  
-  #taxForm button {
-      background-color: #007BFF;
-      color: #ffffff;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
-  }
-  
-  #taxForm button:hover {
-      background-color: #0056b3;
-  }
-  
-  #taxForm p {
-      font-size: 18px;
-      margin-top: 20px;
-      padding: 10px;
-      background-color: #f1f1f1;
-      border-radius: 4px;
-  }
-  
- .au-result {
-     background-color: #e6e6e6;
-     padding: 20px;
-     border-radius: 5px;
-     margin-top: 20px;
-     color: black;
- }
- 
-  .au-result p {
-     font-size: 20px;
-     margin: 10px 0;
- }
- 
- .au-result #result, .au-result #profit, .au-result #taxRate {
-     font-weight: normal !important;
-     color: black;
- }
- 
- .au-result span {
-     font-weight: bold;
-     color: black;
- }
+<div class="federal-table">
+    <table>
+        <tr><th>Taxable Income</th><th>Rate</th></tr>
+        <tr><td>$0 – $18,200</td><td>0%</td></tr>
+        <tr><td>$18,201 – $45,000</td><td>19%</td></tr>
+        <tr><td>$45,001 – $135,000</td><td>32.5%</td></tr>
+        <tr><td>$135,001 – $190,000</td><td>37%</td></tr>
+        <tr><td>Over $190,000</td><td>45%</td></tr>
+    </table>
+</div>
 
+<p style="font-size: 12px; color: #6e6e73; margin-top: 24px; text-align: center;">Source: Australian Taxation Office — 2024–25 individual income tax rates for residents</p>
 
-
-
-</style>
-
-
-<script>
-   function formatCurrency(value) {
-    return new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD' }).format(value);
-}
-
-function calculateTax() {
-    const income = parseFloat(document.getElementById("income").value);
-    const purchaseCost = parseFloat(document.getElementById("purchaseCost").value);
-    const saleAmount = parseFloat(document.getElementById("saleAmount").value);
-    const durationSelection = document.getElementById("duration").value;
-
-    let capitalGain = saleAmount - purchaseCost;
-    let taxableCapitalGain = capitalGain;
-
-    let discountMessage = "";
-    // Adjusting taxable capital gains based on the duration held
-    if (durationSelection === "moreThanAYear") {
-        taxableCapitalGain *= 0.5;
-        discountMessage = "You qualify for a 50% tax discount as the asset was held for more than 1 year.";
-    }
-
-    document.getElementById("profit").innerText = formatCurrency(capitalGain);
- 
-    let taxRate;
-    let taxDue;
-
-    if (income <= 18200) {
-        taxRate = 0;
-    } else if (income <= 45000) {
-        taxRate = 0.19;
-    } else if (income <= 120000) {
-        taxRate = 0.325;
-    } else if (income <= 180000) {
-        taxRate = 0.37;
-    } else {
-        taxRate = 0.45;
-    }
-
-    taxDue = taxRate * taxableCapitalGain;
-
-    document.getElementById("taxRate").innerText = (taxRate * 100).toFixed(2) + "%";
-    document.getElementById("result").innerText = formatCurrency(taxDue) + ". " + discountMessage;
-    
-    document.querySelector('.au-result').style.display = 'block';
-}
-
-
-</script>
+</div>

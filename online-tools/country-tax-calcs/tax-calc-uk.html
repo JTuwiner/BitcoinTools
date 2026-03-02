@@ -8,173 +8,400 @@ capture: yes
 ---
 <div style="max-width: 800px;">
 
-    <p>We built this free crypto tax calculator for UK users that want to check their gains quickly. Our calculator is for informational purposes only. Consult an expert CPA or tax professional. You may need to use <a href="/tools/tax/">more advanced crypto tax software if you have a lot of trades</a>.</p>
+<p>We built this free crypto tax calculator for UK users that want to check their gains quickly. All amounts are in <strong>British Pounds (GBP)</strong>. Our calculator is for informational purposes only. Consult an expert CPA or tax professional. You may need to use <a href="/tools/tax/">more advanced crypto tax software if you have a lot of trades</a>.</p>
 
-    <form id="ukTaxForm">
-        <label for="ukIncome">Annual Income (in GBP):</label>
-        <input type="number" id="ukIncome" required>
-    
-        <label for="ukPurchaseCost">Cost of Purchase (in GBP):</label>
-        <input type="number" id="ukPurchaseCost" required>
-    
-        <label for="ukSaleAmount">Amount of Sale (in GBP):</label>
-        <input type="number" id="ukSaleAmount" required>
-    
-        <button type="button" onclick="calculateUKTax()">Calculate Tax</button>
-    </form>
-    <div class="uk-result" style="display: none;">
-        <p><span class="label1">Total Gains:</span> <span id="ukTotalGains" style="color: #444444;">0.00</span></p>
-        <p><span class="label1">Tax Bracket:</span> <span id="ukTaxBracket" style="color: #444444;">N/A</span></p>
-        <p><span class="label1">Tax Owed Without Allowance:</span> <span id="ukTaxOwedWithoutAllowance" style="color: #444444;">0.00</span></p>
-        <p><span class="label1">Final Tax Owed:</span> <span id="ukFinalTaxDue" style="color: #444444;">0.00</span></p>
+<style>
+    .info-icon {
+        display: inline-flex; align-items: center; justify-content: center;
+        margin-left: 6px; color: #86868b; cursor: help; vertical-align: middle;
+        opacity: 0.6; transition: opacity 0.2s ease;
+    }
+    .info-icon:hover { opacity: 1; }
+    .info-icon svg { width: 14px; height: 14px; }
+    .info-tooltip { position: relative; display: inline-flex; align-items: center; }
+    .info-tooltip:hover::after {
+        content: attr(data-tooltip); position: absolute; left: 28px; top: 50%;
+        transform: translateY(-50%); background: #1d1d1f; color: white;
+        padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 400;
+        white-space: nowrap; z-index: 100; box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+
+    #cryptoTaxCalculator {
+        max-width: 540px; margin: 2rem auto; padding: 32px; color: #1d1d1f;
+        border-radius: 20px; background: #ffffff;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+        border: 1px solid rgba(0,0,0,0.04);
+    }
+    .calc-header {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid #d2d2d7;
+    }
+    .calc-header h2 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; color: #1d1d1f; }
+    .year-badge {
+        background: linear-gradient(135deg, #f2a900, #d99500); color: #000;
+        padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;
+    }
+
+    .form-group { margin-bottom: 20px; }
+    .form-row { display: flex; gap: 16px; }
+    .form-group.half { flex: 1; }
+
+    #cryptoTaxCalculator label {
+        display: flex; align-items: center; margin-bottom: 8px;
+        font-size: 13px; font-weight: 500; color: #6e6e73; letter-spacing: 0.01em;
+    }
+    .input-wrapper { position: relative; display: flex; align-items: center; }
+    .input-prefix {
+        position: absolute; left: 14px; color: #86868b;
+        font-size: 16px; font-weight: 400; pointer-events: none;
+    }
+    #cryptoTaxCalculator input[type="number"] {
+        width: 100%; padding: 14px 16px 14px 32px; border-radius: 12px;
+        border: 1px solid #d2d2d7; background: #f5f5f7;
+        font-size: 16px; font-family: inherit; color: #1d1d1f;
+        transition: all 0.2s ease; -webkit-appearance: none; appearance: none;
+    }
+    #cryptoTaxCalculator input:focus {
+        outline: none; border-color: #f2a900; background: #ffffff;
+        box-shadow: 0 0 0 3px rgba(242,169,0,0.15);
+    }
+    #cryptoTaxCalculator input::placeholder { color: #86868b; opacity: 0.6; }
+
+    .validation-msg { font-size: 12px; margin-top: 4px; min-height: 16px; }
+    .validation-msg.error { color: #ff3b30; }
+
+    .calculate-btn {
+        width: 100%; padding: 16px 24px; margin-top: 8px;
+        background: #f2a900; color: #000; border: none; border-radius: 12px;
+        font-size: 16px; font-weight: 600; font-family: inherit;
+        cursor: pointer; transition: all 0.2s ease;
+    }
+    .calculate-btn:hover {
+        background: #d99500; transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(242,169,0,0.3);
+    }
+    .calculate-btn:active { transform: translateY(0); }
+
+    #result {
+        margin-top: 24px; padding: 20px; border-radius: 12px;
+        background: #f5f5f7; min-height: 60px;
+    }
+    .result-placeholder { text-align: center; color: #86868b; font-size: 14px; padding: 12px 0; }
+    .result-grid { display: flex; flex-direction: column; gap: 14px; }
+    .result-item {
+        display: flex; justify-content: space-between; align-items: center;
+        padding-bottom: 12px; border-bottom: 1px solid #e5e5e7;
+    }
+    .result-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .result-item.highlight {
+        background: linear-gradient(135deg, rgba(242,169,0,0.1), rgba(242,169,0,0.04));
+        margin: 8px -12px -12px; padding: 16px 12px; border-radius: 8px; border-bottom: none;
+    }
+    .result-label { font-size: 14px; color: #6e6e73; }
+    .result-value { font-size: 18px; font-weight: 600; color: #1d1d1f; font-variant-numeric: tabular-nums; }
+    .result-value.gain { color: #34c759; }
+    .result-value.loss { color: #ff3b30; }
+    .result-note { margin-top: 12px; font-size: 12px; color: #6e6e73; text-align: center; }
+
+    .result-actions { display: flex; gap: 10px; margin-top: 16px; }
+    .result-action-btn {
+        flex: 1; padding: 10px 16px; border: 1px solid #d2d2d7; border-radius: 8px;
+        background: #ffffff; color: #1d1d1f; font-size: 13px; font-weight: 500;
+        font-family: inherit; cursor: pointer; transition: all 0.2s ease;
+        display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .result-action-btn:hover { border-color: #f2a900; background: rgba(242,169,0,0.05); }
+    .result-action-btn svg { width: 14px; height: 14px; }
+    .copied-msg { color: #34c759; font-size: 12px; text-align: center; margin-top: 8px; min-height: 16px; }
+
+    .tax-bar-chart {
+        margin-top: 20px; padding: 16px; background: #ffffff;
+        border-radius: 8px; border: 1px solid #d2d2d7;
+    }
+    .tax-bar-chart h4 { margin: 0 0 12px; font-size: 13px; font-weight: 500; color: #6e6e73; }
+    .bar-row { display: flex; align-items: center; margin-bottom: 8px; }
+    .bar-row:last-child { margin-bottom: 0; }
+    .bar-label { width: 110px; font-size: 12px; font-weight: 500; color: #6e6e73; flex-shrink: 0; }
+    .bar-track { flex: 1; height: 24px; background: #f5f5f7; border-radius: 4px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; min-width: 2px; background: #f2a900; }
+    .bar-fill.basic { background: #f2a900; }
+    .bar-fill.higher { background: #232939; }
+    .bar-amount { width: 100px; text-align: right; font-size: 12px; font-weight: 600; color: #1d1d1f; flex-shrink: 0; padding-left: 8px; }
+
+    .federal-table {
+        background: #ffffff; border-radius: 12px; padding: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #d2d2d7; margin-bottom: 24px;
+    }
+    .federal-table table {
+        width: 100%; border-collapse: collapse; color: #1d1d1f;
+        font-size: 14px; background: #ffffff; border: none;
+    }
+    .federal-table table tr { background: #ffffff; border: none; }
+    .federal-table table th {
+        text-align: left; padding: 10px 12px; background: #f5f5f7;
+        font-weight: 500; font-size: 12px; color: #6e6e73;
+        text-transform: uppercase; letter-spacing: 0.03em; border: none;
+    }
+    .federal-table table th:first-child { border-radius: 8px 0 0 8px; }
+    .federal-table table th:last-child { border-radius: 0 8px 8px 0; text-align: right; }
+    .federal-table table td {
+        padding: 10px 12px; border: none; border-bottom: 1px solid #e5e5e7;
+        background: #ffffff; color: #1d1d1f;
+    }
+    .federal-table table td:last-child { text-align: right; font-weight: 600; }
+    .federal-table table tr:last-child td { border-bottom: none; }
+
+    #howToUse, #howCalculated {
+        margin-top: 24px; padding: 24px; background: #ffffff;
+        border-radius: 12px; border: 1px solid #d2d2d7;
+    }
+    #howToUse h3, #howCalculated h3 { margin: 0 0 16px; font-size: 18px; font-weight: 600; color: #1d1d1f; }
+    #howToUse ul, #howCalculated ul { margin: 0; padding-left: 20px; }
+    #howToUse li, #howCalculated li { margin-bottom: 10px; line-height: 1.5; color: #1d1d1f; }
+
+    @media (max-width: 768px) {
+        #cryptoTaxCalculator { margin: 1rem; padding: 24px 20px; }
+        .form-row { flex-direction: column; gap: 0; }
+        .calc-header h2 { font-size: 18px; }
+        .info-tooltip:hover::after { left: auto; right: 0; white-space: normal; max-width: 200px; }
+        .result-actions { flex-direction: column; }
+        .bar-label { width: 80px; font-size: 11px; }
+        .bar-amount { width: 80px; font-size: 11px; }
+    }
+</style>
+
+<div id="cryptoTaxCalculator">
+    <div class="calc-header">
+        <h2>Crypto Tax Estimator</h2>
+        <span class="year-badge">2024–25</span>
     </div>
 
-    {% include koinlylink.html link="https://coinledger.io/uk?fpr=bitcoinww&fp_sid=tools" %}
+    <div class="form-group">
+        <label for="ukIncome">Annual Income (GBP)
+            <span class="info-tooltip info-icon" data-tooltip="Your total annual income — determines your CGT rate (basic or higher)">
+                {% include infoicon.html %}
+            </span>
+        </label>
+        <div class="input-wrapper">
+            <span class="input-prefix">£</span>
+            <input type="number" id="ukIncome" placeholder="0" min="0">
+        </div>
+        <div class="validation-msg" id="incomeMsg"></div>
+    </div>
 
-    
-    <h2>How to Use This Calculator:</h2>
-    <ul>
-        <li><strong>Input Income:</strong> Begin by entering your annual income to determine your tax bracket.</li>
-        <li><strong>Enter Transaction Details:</strong> Provide the cost of your crypto purchase and the sale amount.</li>
-        <li><strong>Click 'Calculate':</strong> The calculator will display a breakdown of your gains, tax bracket, and the tax you owe.</li>
-        <li><strong>Review Results:</strong> Remember, the first £3,000 of your gains are tax-free. Any tax displayed is on gains beyond this allowance.</li>
-    </ul>
-    
-     <h2>How Our Calculations Are Made:</h2>
-    <ul>
-        <li><strong>Capital Gains:</strong> First, we determine your total capital gain by subtracting the purchase cost from the sale amount.</li>
-        <li><strong>Tax Bracket:</strong> Based on your provided annual income, you are categorized into one of the tax brackets: Basic (10%), Higher (20%), or Additional (20%). Note: These are CGT rates for crypto and other assets, not residential property.</li>
-        <li><strong>Allowance Deduction:</strong> If your gains exceed £3,000, this allowance is subtracted, ensuring you are only taxed on gains above this threshold.</li>
-        <li><strong>Tax Calculation:</strong> Finally, we apply the appropriate tax rate to the adjusted gains to determine the tax you owe.</li>
-    </ul>
-    
-    
-    <h2>Who Might Want to Use This:</h2>
-    <ul>
-        <li><strong>UK Residents:</strong> Specifically tailored for UK residents to understand their crypto tax obligations.</li>
-        <li><strong>Crypto Traders:</strong> Whether you're trading daily or occasionally, knowing your potential tax is essential.</li>
-        <li><strong>Casual Investors:</strong> Even if crypto is a small part of your portfolio, being aware of the tax implications is vital.</li>
-        <li><strong>Tax Professionals:</strong> For those offering tax guidance or services related to cryptocurrency.</li>
-    </ul>
-    
-    <style>
-      #ukTaxForm {
-          background-color: #ffffff;
-          padding: 20px;
-          border-radius: 8px;
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-          max-width: 400px;
-          margin: 0 auto;
-          color: black;
-      }
-      
-      #ukTaxForm label {
-          display: block;
-          margin-bottom: 8px;
-          font-weight: bold;
-      }
-      
-      #ukTaxForm input {
-          width: 100%;
-          padding: 10px;
-          margin-bottom: 16px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          font-size: 16px;
-      }
-      
-      #ukTaxForm button {
-          background-color: #007BFF;
-          color: #ffffff;
-          border: none;
-          padding: 10px 15px;
-          border-radius: 4px;
-          cursor: pointer;
-          font-size: 16px;
-          transition: background-color 0.3s ease;
-      }
-      
-      #ukTaxForm button:hover {
-          background-color: #0056b3;
-      }
-      
-      .uk-result {
-          font-size: 18px;
-          margin-top: 20px;
-          padding: 10px;
-          background-color: #f1f1f1;
-          border-radius: 4px;
-      }
-      
-      .uk-result p {
-          font-size: 20px;
-          margin: 10px 0;
-      }
-      
-       .uk-result .label1 {
-          font-weight: bold !important;
-          color: black !important;
-      }
-    
-    
-    </style>
-    
-    
-    
-    <div class="article-sources">
-        <p>Sources:</p>
-        <ul>
-            <li><a href="https://www.gov.uk/guidance/capital-gains-tax-rates-and-allowances" target="_blank">Gov.uk - Capital Gains Tax rates and allowances</a></li>
-        </ul>
+    <div class="form-row">
+        <div class="form-group half">
+            <label for="ukPurchaseCost">Cost Basis (GBP)
+                <span class="info-tooltip info-icon" data-tooltip="The amount you originally paid for the crypto">
+                    {% include infoicon.html %}
+                </span>
+            </label>
+            <div class="input-wrapper">
+                <span class="input-prefix">£</span>
+                <input type="number" id="ukPurchaseCost" placeholder="0" min="0">
+            </div>
+            <div class="validation-msg" id="purchaseMsg"></div>
+        </div>
+        <div class="form-group half">
+            <label for="ukSaleAmount">Sale Amount (GBP)
+                <span class="info-tooltip info-icon" data-tooltip="The amount you received when selling">
+                    {% include infoicon.html %}
+                </span>
+            </label>
+            <div class="input-wrapper">
+                <span class="input-prefix">£</span>
+                <input type="number" id="ukSaleAmount" placeholder="0" min="0">
+            </div>
+            <div class="validation-msg" id="saleMsg"></div>
+        </div>
+    </div>
+
+    <button class="calculate-btn" id="calculateButton">Calculate Tax</button>
+
+    <div id="result">
+        <div class="result-placeholder">Enter your details above to see your estimated tax</div>
     </div>
 </div>
 
+{% include koinlylink.html link="https://coinledger.io/uk?fpr=bitcoinww&fp_sid=tools" %}
+
 <script>
-    function formatNumber(num) {
-    return num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-}
+(function() {
+    var ALLOWANCE = 3000;
 
-function calculateUKTax() {
-    const income = parseFloat(document.getElementById("ukIncome").value);
-    const purchaseCost = parseFloat(document.getElementById("ukPurchaseCost").value);
-    const saleAmount = parseFloat(document.getElementById("ukSaleAmount").value);
+    var CGT_BRACKETS = [
+        { min: 0, max: 50270, rate: 0.10 },
+        { min: 50270, max: Infinity, rate: 0.20 }
+    ];
 
-    let capitalGain = saleAmount - purchaseCost;
-    document.getElementById("ukTotalGains").innerText = "£" + formatNumber(capitalGain);
-    let taxDue = 0;
-    let taxRate = 0;
-    let taxBracket = '';
-
-    if (capitalGain <= 3000) {
-        taxableGain = capitalGain;
-    } else {
-        taxableGain = capitalGain - 3000; // Deduct the allowance directly from gains only if gains exceed £3,000
+    function calcMarginalCGT(income, taxableGain) {
+        if (taxableGain <= 0) return { basicTax: 0, higherTax: 0, total: 0 };
+        var basicLimit = 50270;
+        var basicRoom = Math.max(0, basicLimit - income);
+        var basicPortion = Math.min(taxableGain, basicRoom);
+        var higherPortion = taxableGain - basicPortion;
+        var basicTax = basicPortion * 0.10;
+        var higherTax = higherPortion * 0.20;
+        return { basicTax: basicTax, higherTax: higherTax, total: basicTax + higherTax };
     }
 
-    // UK CGT rates for crypto/other assets (not residential property)
-    if (income <= 50270) {
-        taxRate = 0.10; 
-        taxBracket = "Basic Rate (10%)";
-    } else if (income <= 125140) {
-        taxRate = 0.20; 
-        taxBracket = "Higher Rate (20%)";
-    } else {
-        taxRate = 0.20; 
-        taxBracket = "Additional Rate (20%)";
+    function fmt(n) {
+        return new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n);
     }
 
-    taxDue = taxableGain * taxRate;
-
-    document.getElementById("ukTaxBracket").innerText = taxBracket;
-    document.getElementById("ukTaxOwedWithoutAllowance").innerText = "£" + formatNumber(capitalGain * taxRate);
-    
-    if (capitalGain <= 3000) {
-        document.getElementById("ukFinalTaxDue").innerText = "You would've owed tax at a rate of " + (taxRate * 100) + "% on the gains, but due to the £3,000 allowance, you don't owe any tax.";
-    } else {
-        document.getElementById("ukFinalTaxDue").innerText = "£" + formatNumber(taxDue);
+    function validate() {
+        var ok = true;
+        var inc = parseFloat(document.getElementById('ukIncome').value);
+        var pur = parseFloat(document.getElementById('ukPurchaseCost').value);
+        var sal = parseFloat(document.getElementById('ukSaleAmount').value);
+        var im = document.getElementById('incomeMsg');
+        var pm = document.getElementById('purchaseMsg');
+        var sm = document.getElementById('saleMsg');
+        im.textContent = ''; pm.textContent = ''; sm.textContent = '';
+        im.className = 'validation-msg'; pm.className = 'validation-msg'; sm.className = 'validation-msg';
+        if (isNaN(inc) || inc < 0) { im.textContent = 'Enter a valid income'; im.className = 'validation-msg error'; ok = false; }
+        if (isNaN(pur) || pur < 0) { pm.textContent = 'Enter a valid cost basis'; pm.className = 'validation-msg error'; ok = false; }
+        if (isNaN(sal) || sal < 0) { sm.textContent = 'Enter a valid sale amount'; sm.className = 'validation-msg error'; ok = false; }
+        return ok;
     }
-    
-    document.querySelector('.uk-result').style.display = 'block';
-}
 
+    function calculateTax() {
+        if (!validate()) return;
+
+        var income = parseFloat(document.getElementById('ukIncome').value) || 0;
+        var purchase = parseFloat(document.getElementById('ukPurchaseCost').value) || 0;
+        var sale = parseFloat(document.getElementById('ukSaleAmount').value) || 0;
+
+        var capitalGain = sale - purchase;
+        var isLoss = capitalGain < 0;
+
+        var taxableGain = 0;
+        var allowanceUsed = 0;
+        if (!isLoss) {
+            if (capitalGain <= ALLOWANCE) {
+                allowanceUsed = capitalGain;
+                taxableGain = 0;
+            } else {
+                allowanceUsed = ALLOWANCE;
+                taxableGain = capitalGain - ALLOWANCE;
+            }
+        }
+
+        var result = calcMarginalCGT(income, taxableGain);
+        var totalTax = result.total;
+
+        var lossNote = '';
+        if (isLoss) {
+            lossNote = '<div class="result-note" style="color:#ff3b30;">Capital losses can be reported to HMRC and carried forward to offset future capital gains.</div>';
+        }
+
+        var allowanceNote = '';
+        if (!isLoss && capitalGain <= ALLOWANCE) {
+            allowanceNote = '<div class="result-note" style="color:#34c759;">Your gains are within the £3,000 annual tax-free allowance — no CGT is owed.</div>';
+        }
+
+        var maxBar = Math.max(result.basicTax, result.higherTax, 1);
+        var chartHTML = (!isLoss && totalTax > 0) ? '<div class="tax-bar-chart"><h4>Tax Breakdown by Rate</h4>' +
+            (result.basicTax > 0 ? '<div class="bar-row"><span class="bar-label">Basic (10%)</span><div class="bar-track"><div class="bar-fill basic" style="width:' + (result.basicTax / maxBar * 100).toFixed(1) + '%"></div></div><span class="bar-amount">' + fmt(result.basicTax) + '</span></div>' : '') +
+            (result.higherTax > 0 ? '<div class="bar-row"><span class="bar-label">Higher (20%)</span><div class="bar-track"><div class="bar-fill higher" style="width:' + (result.higherTax / maxBar * 100).toFixed(1) + '%"></div></div><span class="bar-amount">' + fmt(result.higherTax) + '</span></div>' : '') +
+            '</div>' : '';
+
+        var html = '<div class="result-grid">' +
+            '<div class="result-item"><span class="result-label">Capital ' + (isLoss ? 'Loss' : 'Gain') + '</span><span class="result-value ' + (isLoss ? 'loss' : 'gain') + '">' + fmt(Math.abs(capitalGain)) + '</span></div>' +
+            (!isLoss ? '<div class="result-item"><span class="result-label">Tax-Free Allowance Used</span><span class="result-value">' + fmt(allowanceUsed) + '</span></div>' : '') +
+            (!isLoss && taxableGain > 0 ? '<div class="result-item"><span class="result-label">Taxable Gain</span><span class="result-value">' + fmt(taxableGain) + '</span></div>' : '') +
+            '<div class="result-item highlight"><span class="result-label">Estimated CGT Owed</span><span class="result-value">' + (isLoss ? fmt(0) : fmt(totalTax)) + '</span></div>' +
+            '</div>' + lossNote + allowanceNote + chartHTML +
+            '<div class="result-note">' + (isLoss || capitalGain <= ALLOWANCE ? '' : 'CGT rates: 10% basic rate, 20% higher/additional rate. £3,000 annual allowance deducted.') + '</div>' +
+            '<div class="result-actions"><button class="result-action-btn" onclick="copyUkResults()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy Results</button></div>' +
+            '<div class="copied-msg" id="copiedMsg"></div>';
+
+        document.getElementById('result').innerHTML = html;
+
+        window._lastUkResult = { capitalGain: capitalGain, taxableGain: taxableGain, totalTax: totalTax, income: income, isLoss: isLoss, allowanceUsed: allowanceUsed, basicTax: result.basicTax, higherTax: result.higherTax };
+    }
+
+    window.copyUkResults = function() {
+        var r = window._lastUkResult; if (!r) return;
+        var t = ['2024-25 UK Crypto Tax Estimate', '—',
+            'Income: ' + fmt(r.income),
+            (r.isLoss ? 'Capital Loss: ' : 'Capital Gain: ') + fmt(Math.abs(r.capitalGain)),
+            'Tax-Free Allowance: ' + fmt(r.allowanceUsed),
+            'Taxable Gain: ' + fmt(r.taxableGain),
+            'Basic Rate Tax (10%): ' + fmt(r.basicTax),
+            'Higher Rate Tax (20%): ' + fmt(r.higherTax),
+            'Total CGT Owed: ' + (r.isLoss ? fmt(0) : fmt(r.totalTax)),
+            '—', 'Calculated at bitcointools.com'].join('\n');
+        navigator.clipboard.writeText(t).then(function() {
+            var m = document.getElementById('copiedMsg');
+            if (m) { m.textContent = 'Copied to clipboard!'; setTimeout(function() { m.textContent = ''; }, 2000); }
+        });
+    };
+
+    var timer;
+    function debounced() {
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+            if (document.getElementById('ukIncome').value && document.getElementById('ukPurchaseCost').value && document.getElementById('ukSaleAmount').value) calculateTax();
+        }, 400);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('calculateButton').addEventListener('click', calculateTax);
+        ['ukIncome', 'ukPurchaseCost', 'ukSaleAmount'].forEach(function(id) {
+            document.getElementById(id).addEventListener('input', debounced);
+        });
+    });
+})();
 </script>
+
+<div id="howToUse">
+    <h3>How to Use This Calculator</h3>
+    <ul>
+        <li><strong>Enter Your Annual Income:</strong> This determines whether your gains are taxed at the basic rate (10%) or higher rate (20%).</li>
+        <li><strong>Provide Cost Basis & Sale Amount:</strong> Enter what you paid for the crypto and what you sold it for, both in GBP.</li>
+        <li><strong>View Results:</strong> The calculator auto-updates as you type. You'll see your capital gain, tax-free allowance used, taxable gain, and estimated CGT.</li>
+    </ul>
+</div>
+
+<div id="howCalculated">
+    <h3>How It's Calculated</h3>
+    <ul>
+        <li>Your <strong>capital gain</strong> is the sale amount minus your cost basis.</li>
+        <li>The first <strong>£3,000</strong> of gains per tax year is tax-free (the Annual Exempt Amount for 2024-25).</li>
+        <li>Gains above the allowance are taxed at <strong>10% (basic rate)</strong> if your total income is under £50,270, or <strong>20% (higher/additional rate)</strong> above that threshold.</li>
+        <li>If your gains straddle the basic-rate limit, the portion within it is taxed at 10% and the rest at 20%.</li>
+        <li>Capital losses can be <strong>reported to HMRC</strong> and carried forward to offset future gains.</li>
+    </ul>
+</div>
+
+<div style="margin-top: 40px;">
+    <h2>2024–25 UK Capital Gains Tax Rates</h2>
+    <p style="font-size: 14px; color: #6e6e73; margin-bottom: 16px;">For crypto and other non-property assets.</p>
+</div>
+
+<div class="federal-table">
+    <table>
+        <tr><th>Tax Band</th><th>CGT Rate</th></tr>
+        <tr><td>Basic rate (income up to £50,270)</td><td>10%</td></tr>
+        <tr><td>Higher / Additional rate (income over £50,270)</td><td>20%</td></tr>
+    </table>
+</div>
+
+<div class="federal-table">
+    <table>
+        <tr><th>Allowance</th><th>Amount</th></tr>
+        <tr><td>Annual Exempt Amount (2024–25)</td><td>£3,000</td></tr>
+    </table>
+</div>
+
+<div style="margin-top: 24px;">
+    <div class="article-sources" style="font-size: 13px; color: #6e6e73;">
+        <p>Sources:</p>
+        <ul style="padding-left: 20px;">
+            <li><a href="https://www.gov.uk/guidance/capital-gains-tax-rates-and-allowances" target="_blank" style="color: #f2a900;">Gov.uk - Capital Gains Tax rates and allowances</a></li>
+        </ul>
+    </div>
+</div>
+</div>
