@@ -1,0 +1,1158 @@
+---
+layout: page
+title: Free Canada Crypto Tax Calculator for Capital Gains
+full-width: yes
+permalink: "/canada-tax-calculator/"
+jquery: yes
+capture: yes
+---
+
+<div style="max-width: 800px;">
+    <p>We created this tax calculator for Canadian users that want to check calculations quickly. All amounts are in <strong>Canadian Dollars (CAD)</strong>. This is for informational purposes only. Consult an expert CPA or tax professional. You may need <a href="/tools/tax/">advanced tax software if you have many trades</a>.</p>
+
+    <style>
+        :root {
+            --ca-accent: #f2a900;
+            --ca-accent-hover: #d99500;
+            --ca-dark: #232939;
+            --ca-card: #ffffff;
+            --ca-border: #d2d2d7;
+            --ca-text: #1d1d1f;
+            --ca-text-secondary: #6e6e73;
+            --ca-input-bg: #f5f5f7;
+            --ca-green: #34c759;
+            --ca-red: #ff3b30;
+            --ca-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --ca-radius: 12px;
+            --ca-radius-sm: 8px;
+        }
+
+        .info-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 6px;
+            color: var(--ca-text-secondary);
+            cursor: help;
+            vertical-align: middle;
+            opacity: 0.6;
+            transition: opacity 0.2s ease;
+        }
+        .info-icon:hover { opacity: 1; }
+        .info-icon svg { width: 14px; height: 14px; }
+
+        .info-tooltip {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+        .info-tooltip:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 28px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--ca-text);
+            color: white;
+            padding: 8px 12px;
+            border-radius: var(--ca-radius-sm);
+            font-size: 13px;
+            font-weight: 400;
+            white-space: nowrap;
+            z-index: 100;
+            box-shadow: var(--ca-shadow);
+        }
+
+        #cryptoTaxCalculator {
+            max-width: 540px;
+            margin: 2rem auto;
+            padding: 32px;
+            color: var(--ca-text);
+            border-radius: 20px;
+            background: var(--ca-card);
+            box-shadow: var(--ca-shadow);
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .calc-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--ca-border);
+        }
+        .calc-header h2 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--ca-text);
+        }
+        .year-badge {
+            background: linear-gradient(135deg, var(--ca-accent) 0%, var(--ca-accent-hover) 100%);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .form-group { margin-bottom: 20px; }
+
+        .form-row {
+            display: flex;
+            gap: 16px;
+        }
+        .form-group.half { flex: 1; }
+
+        #cryptoTaxCalculator label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--ca-text-secondary);
+            letter-spacing: 0.01em;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .input-prefix {
+            position: absolute;
+            left: 14px;
+            color: var(--ca-text-secondary);
+            font-size: 16px;
+            font-weight: 400;
+            pointer-events: none;
+        }
+
+        #cryptoTaxCalculator select,
+        #cryptoTaxCalculator input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: var(--ca-radius);
+            border: 1px solid var(--ca-border);
+            background: var(--ca-input-bg);
+            font-size: 16px;
+            font-family: inherit;
+            color: var(--ca-text);
+            transition: all 0.2s ease;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        #cryptoTaxCalculator input { padding-left: 32px; }
+
+        #cryptoTaxCalculator select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2386868b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+
+        #cryptoTaxCalculator select:focus,
+        #cryptoTaxCalculator input:focus {
+            outline: none;
+            border-color: var(--ca-accent);
+            background: var(--ca-card);
+            box-shadow: 0 0 0 3px rgba(242, 169, 0, 0.15);
+        }
+
+        #cryptoTaxCalculator input::placeholder {
+            color: var(--ca-text-secondary);
+            opacity: 0.6;
+        }
+
+        .validation-msg {
+            font-size: 12px;
+            margin-top: 4px;
+            min-height: 16px;
+            transition: all 0.2s ease;
+        }
+        .validation-msg.error { color: var(--ca-red); }
+        .validation-msg.info { color: var(--ca-text-secondary); }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 16px 24px;
+            margin-top: 8px;
+            background: var(--ca-accent);
+            color: #000;
+            border: none;
+            border-radius: var(--ca-radius);
+            font-size: 16px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .calculate-btn:hover {
+            background: var(--ca-accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(242, 169, 0, 0.3);
+        }
+        .calculate-btn:active { transform: translateY(0); }
+
+        #result {
+            margin-top: 24px;
+            padding: 20px;
+            border-radius: var(--ca-radius);
+            background: var(--ca-input-bg);
+            min-height: 60px;
+        }
+
+        .result-placeholder {
+            text-align: center;
+            color: var(--ca-text-secondary);
+            font-size: 14px;
+            padding: 12px 0;
+        }
+
+        .result-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--ca-border);
+        }
+        .result-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .result-item.highlight {
+            background: linear-gradient(135deg, rgba(242, 169, 0, 0.1) 0%, rgba(242, 169, 0, 0.04) 100%);
+            margin: 8px -12px -12px;
+            padding: 16px 12px;
+            border-radius: var(--ca-radius-sm);
+            border-bottom: none;
+        }
+        .result-label {
+            font-size: 14px;
+            color: var(--ca-text-secondary);
+        }
+        .result-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--ca-text);
+            font-variant-numeric: tabular-nums;
+        }
+        .result-value.gain { color: var(--ca-green); }
+        .result-value.loss { color: var(--ca-red); }
+
+        .result-note {
+            margin-top: 12px;
+            font-size: 12px;
+            color: var(--ca-text-secondary);
+            text-align: center;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .result-action-btn {
+            flex: 1;
+            padding: 10px 16px;
+            border: 1px solid var(--ca-border);
+            border-radius: var(--ca-radius-sm);
+            background: var(--ca-card);
+            color: var(--ca-text);
+            font-size: 13px;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .result-action-btn:hover {
+            border-color: var(--ca-accent);
+            background: rgba(242, 169, 0, 0.05);
+        }
+        .result-action-btn svg { width: 14px; height: 14px; }
+        .copied-msg {
+            color: var(--ca-green);
+            font-size: 12px;
+            text-align: center;
+            margin-top: 8px;
+            min-height: 16px;
+        }
+
+        .tax-bar-chart {
+            margin-top: 20px;
+            padding: 16px;
+            background: var(--ca-card);
+            border-radius: var(--ca-radius-sm);
+            border: 1px solid var(--ca-border);
+        }
+        .tax-bar-chart h4 {
+            margin: 0 0 12px 0;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--ca-text-secondary);
+        }
+        .bar-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .bar-row:last-child { margin-bottom: 0; }
+        .bar-label {
+            width: 90px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--ca-text-secondary);
+            flex-shrink: 0;
+        }
+        .bar-track {
+            flex: 1;
+            height: 24px;
+            background: var(--ca-input-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        .bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.6s ease;
+            min-width: 2px;
+        }
+        .bar-fill.federal { background: var(--ca-accent); }
+        .bar-fill.provincial { background: var(--ca-dark); }
+        .bar-amount {
+            width: 90px;
+            text-align: right;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--ca-text);
+            flex-shrink: 0;
+            padding-left: 8px;
+        }
+
+        .province-accordion { margin-top: 30px; }
+        .province-accordion-item { margin-bottom: 8px; }
+        .province-accordion-trigger {
+            width: 100%;
+            background: var(--ca-dark);
+            color: #fff;
+            padding: 14px 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: var(--ca-radius-sm);
+            font-size: 15px;
+            font-weight: 500;
+            font-family: inherit;
+            text-align: left;
+            position: relative;
+            transition: background 0.2s ease;
+        }
+        .province-accordion-trigger:hover {
+            background: var(--ca-accent);
+            color: #000;
+        }
+        .province-accordion-trigger::after {
+            content: '+';
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+        .province-accordion-trigger.active::after {
+            transform: translateY(-50%) rotate(45deg);
+        }
+        .province-accordion-trigger.active {
+            border-radius: var(--ca-radius-sm) var(--ca-radius-sm) 0 0;
+        }
+        .province-accordion-content {
+            display: none;
+            padding: 16px;
+            border: 1px solid var(--ca-border);
+            border-top: none;
+            border-radius: 0 0 var(--ca-radius-sm) var(--ca-radius-sm);
+            background: var(--ca-card);
+            overflow-x: auto;
+        }
+
+        .province-accordion-content table,
+        .federal-table table {
+            width: 100%;
+            border-collapse: collapse;
+            color: var(--ca-text);
+            font-size: 14px;
+        }
+        .province-accordion-content table th,
+        .federal-table table th {
+            text-align: left;
+            padding: 10px 12px;
+            background: var(--ca-input-bg);
+            font-weight: 500;
+            font-size: 12px;
+            color: var(--ca-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .province-accordion-content table th:first-child,
+        .federal-table table th:first-child {
+            border-radius: var(--ca-radius-sm) 0 0 var(--ca-radius-sm);
+        }
+        .province-accordion-content table th:last-child,
+        .federal-table table th:last-child {
+            border-radius: 0 var(--ca-radius-sm) var(--ca-radius-sm) 0;
+            text-align: right;
+        }
+        .province-accordion-content table td,
+        .federal-table table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--ca-border);
+        }
+        .province-accordion-content table td:last-child,
+        .federal-table table td:last-child {
+            text-align: right;
+            font-weight: 600;
+        }
+        .province-accordion-content table tr:last-child td,
+        .federal-table table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .federal-table {
+            background: var(--ca-card);
+            border-radius: var(--ca-radius);
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--ca-border);
+            margin-bottom: 24px;
+        }
+
+        .section-heading {
+            margin-top: 40px;
+            margin-bottom: 16px;
+        }
+        .section-heading h2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--ca-text);
+        }
+        .section-subtext {
+            font-size: 14px;
+            color: var(--ca-text-secondary);
+            margin-bottom: 16px;
+        }
+
+        #howToUseCalculator {
+            margin-top: 40px;
+            padding: 24px;
+            background: var(--ca-card);
+            border-radius: var(--ca-radius);
+            border: 1px solid var(--ca-border);
+        }
+        #howToUseCalculator h3 {
+            margin: 0 0 16px 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--ca-text);
+        }
+        #howToUseCalculator ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+        #howToUseCalculator li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+            color: var(--ca-text);
+        }
+
+        #howCalculated {
+            margin-top: 24px;
+            padding: 24px;
+            background: var(--ca-card);
+            border-radius: var(--ca-radius);
+            border: 1px solid var(--ca-border);
+        }
+        #howCalculated h3 {
+            margin: 0 0 16px 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--ca-text);
+        }
+        #howCalculated ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        #howCalculated li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+            color: var(--ca-text);
+        }
+
+        @media (max-width: 768px) {
+            #cryptoTaxCalculator {
+                margin: 1rem;
+                padding: 24px 20px;
+            }
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            .calc-header h2 { font-size: 18px; }
+            .info-tooltip:hover::after {
+                left: auto;
+                right: 0;
+                white-space: normal;
+                max-width: 200px;
+            }
+            .result-actions {
+                flex-direction: column;
+            }
+            .bar-label { width: 70px; font-size: 11px; }
+            .bar-amount { width: 70px; font-size: 11px; }
+        }
+    </style>
+
+    <div id="cryptoTaxCalculator">
+        <div class="calc-header">
+            <h2>Crypto Tax Estimator</h2>
+            <span class="year-badge">2025</span>
+        </div>
+
+        <div class="form-group">
+            <label for="income">Total Income (CAD)
+                <span class="info-tooltip info-icon" data-tooltip="Your total annual income — needed because Canadian tax rates are marginal">
+                    {% include infoicon.html %}
+                </span>
+            </label>
+            <div class="input-wrapper">
+                <span class="input-prefix">$</span>
+                <input type="number" id="income" placeholder="0" min="0">
+            </div>
+            <div class="validation-msg" id="incomeMsg"></div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group half">
+                <label for="cryptoPurchaseAmount">Cost Basis (CAD)
+                    <span class="info-tooltip info-icon" data-tooltip="The amount you originally paid for the crypto">
+                        {% include infoicon.html %}
+                    </span>
+                </label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">$</span>
+                    <input type="number" id="cryptoPurchaseAmount" placeholder="0" min="0">
+                </div>
+                <div class="validation-msg" id="purchaseMsg"></div>
+            </div>
+
+            <div class="form-group half">
+                <label for="cryptoSaleAmount">Sale Amount (CAD)
+                    <span class="info-tooltip info-icon" data-tooltip="The amount you received when selling">
+                        {% include infoicon.html %}
+                    </span>
+                </label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">$</span>
+                    <input type="number" id="cryptoSaleAmount" placeholder="0" min="0">
+                </div>
+                <div class="validation-msg" id="saleMsg"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="provinceDropdown">Province / Territory
+                <span class="info-tooltip info-icon" data-tooltip="Select your province to include provincial tax in the estimate">
+                    {% include infoicon.html %}
+                </span>
+            </label>
+            <select id="provinceDropdown">
+                <option value="none">— Select Province —</option>
+                <option value="alberta">Alberta</option>
+                <option value="british-columbia">British Columbia</option>
+                <option value="manitoba">Manitoba</option>
+                <option value="new-brunswick">New Brunswick</option>
+                <option value="newfoundland-labrador">Newfoundland and Labrador</option>
+                <option value="northwest-territories">Northwest Territories</option>
+                <option value="nova-scotia">Nova Scotia</option>
+                <option value="nunavut">Nunavut</option>
+                <option value="ontario">Ontario</option>
+                <option value="prince-edward-island">Prince Edward Island</option>
+                <option value="quebec">Quebec</option>
+                <option value="saskatchewan">Saskatchewan</option>
+                <option value="yukon">Yukon</option>
+            </select>
+        </div>
+
+        <button class="calculate-btn" id="calculateButton">Calculate Tax</button>
+
+        <div id="result">
+            <div class="result-placeholder">
+                Enter your details above to see your estimated tax
+            </div>
+        </div>
+    </div>
+
+    {% include koinlylink.html link="https://coinledger.io/ca?fpr=bitcoinww&fp_sid=tools" %}
+
+    <script>
+    (function() {
+        const FEDERAL_BRACKETS = [
+            { min: 0, max: 57375, rate: 0.15 },
+            { min: 57375, max: 114750, rate: 0.205 },
+            { min: 114750, max: 158468, rate: 0.26 },
+            { min: 158468, max: 221708, rate: 0.29 },
+            { min: 221708, max: Infinity, rate: 0.33 }
+        ];
+
+        const PROVINCIAL_BRACKETS = {
+            'alberta': [
+                { min: 0, max: 148269, rate: 0.10 },
+                { min: 148269, max: 177922, rate: 0.12 },
+                { min: 177922, max: 237230, rate: 0.13 },
+                { min: 237230, max: 355845, rate: 0.14 },
+                { min: 355845, max: Infinity, rate: 0.15 }
+            ],
+            'british-columbia': [
+                { min: 0, max: 47937, rate: 0.0506 },
+                { min: 47937, max: 95875, rate: 0.077 },
+                { min: 95875, max: 110076, rate: 0.105 },
+                { min: 110076, max: 133664, rate: 0.1229 },
+                { min: 133664, max: 181232, rate: 0.147 },
+                { min: 181232, max: 252752, rate: 0.168 },
+                { min: 252752, max: Infinity, rate: 0.205 }
+            ],
+            'manitoba': [
+                { min: 0, max: 47000, rate: 0.108 },
+                { min: 47000, max: 100000, rate: 0.1275 },
+                { min: 100000, max: Infinity, rate: 0.174 }
+            ],
+            'new-brunswick': [
+                { min: 0, max: 49958, rate: 0.094 },
+                { min: 49958, max: 99916, rate: 0.14 },
+                { min: 99916, max: 185064, rate: 0.16 },
+                { min: 185064, max: Infinity, rate: 0.195 }
+            ],
+            'newfoundland-labrador': [
+                { min: 0, max: 43198, rate: 0.087 },
+                { min: 43198, max: 86395, rate: 0.145 },
+                { min: 86395, max: 154244, rate: 0.158 },
+                { min: 154244, max: 215943, rate: 0.178 },
+                { min: 215943, max: 275870, rate: 0.198 },
+                { min: 275870, max: 551739, rate: 0.208 },
+                { min: 551739, max: 1103478, rate: 0.213 },
+                { min: 1103478, max: Infinity, rate: 0.218 }
+            ],
+            'northwest-territories': [
+                { min: 0, max: 50597, rate: 0.059 },
+                { min: 50597, max: 101198, rate: 0.086 },
+                { min: 101198, max: 164525, rate: 0.122 },
+                { min: 164525, max: Infinity, rate: 0.1405 }
+            ],
+            'nova-scotia': [
+                { min: 0, max: 29590, rate: 0.0879 },
+                { min: 29590, max: 59180, rate: 0.1495 },
+                { min: 59180, max: 93000, rate: 0.1667 },
+                { min: 93000, max: 150000, rate: 0.175 },
+                { min: 150000, max: Infinity, rate: 0.21 }
+            ],
+            'nunavut': [
+                { min: 0, max: 53268, rate: 0.04 },
+                { min: 53268, max: 106537, rate: 0.07 },
+                { min: 106537, max: 173205, rate: 0.09 },
+                { min: 173205, max: Infinity, rate: 0.115 }
+            ],
+            'ontario': [
+                { min: 0, max: 51446, rate: 0.0505 },
+                { min: 51446, max: 102894, rate: 0.0915 },
+                { min: 102894, max: 150000, rate: 0.1116 },
+                { min: 150000, max: 220000, rate: 0.1216 },
+                { min: 220000, max: Infinity, rate: 0.1316 }
+            ],
+            'prince-edward-island': [
+                { min: 0, max: 32656, rate: 0.095 },
+                { min: 32656, max: 63969, rate: 0.1347 },
+                { min: 63969, max: 105000, rate: 0.166 },
+                { min: 105000, max: 140000, rate: 0.1762 },
+                { min: 140000, max: Infinity, rate: 0.19 }
+            ],
+            'quebec': [
+                { min: 0, max: 51780, rate: 0.14 },
+                { min: 51780, max: 103545, rate: 0.19 },
+                { min: 103545, max: 126000, rate: 0.24 },
+                { min: 126000, max: Infinity, rate: 0.2575 }
+            ],
+            'saskatchewan': [
+                { min: 0, max: 52057, rate: 0.105 },
+                { min: 52057, max: 148734, rate: 0.125 },
+                { min: 148734, max: Infinity, rate: 0.145 }
+            ],
+            'yukon': [
+                { min: 0, max: 55867, rate: 0.064 },
+                { min: 55867, max: 111733, rate: 0.09 },
+                { min: 111733, max: 173205, rate: 0.109 },
+                { min: 173205, max: 500000, rate: 0.128 },
+                { min: 500000, max: Infinity, rate: 0.15 }
+            ]
+        };
+
+        function calcMarginalTax(brackets, totalIncome, taxableGain) {
+            if (taxableGain <= 0) return 0;
+            const baseIncome = totalIncome - taxableGain;
+            let tax = 0;
+            let remaining = taxableGain;
+
+            for (let i = 0; i < brackets.length && remaining > 0; i++) {
+                const bracket = brackets[i];
+                if (baseIncome >= bracket.max) continue;
+                const start = Math.max(baseIncome, bracket.min);
+                const end = Math.min(baseIncome + remaining, bracket.max);
+                const amountInBracket = end - start;
+                if (amountInBracket > 0) {
+                    tax += amountInBracket * bracket.rate;
+                    remaining -= amountInBracket;
+                }
+            }
+            return tax;
+        }
+
+        function formatCAD(num) {
+            return new Intl.NumberFormat('en-CA', {
+                style: 'currency',
+                currency: 'CAD',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(num);
+        }
+
+        function validate() {
+            let valid = true;
+            const income = parseFloat(document.getElementById('income').value);
+            const purchase = parseFloat(document.getElementById('cryptoPurchaseAmount').value);
+            const sale = parseFloat(document.getElementById('cryptoSaleAmount').value);
+
+            const incomeMsg = document.getElementById('incomeMsg');
+            const purchaseMsg = document.getElementById('purchaseMsg');
+            const saleMsg = document.getElementById('saleMsg');
+
+            incomeMsg.textContent = '';
+            purchaseMsg.textContent = '';
+            saleMsg.textContent = '';
+            incomeMsg.className = 'validation-msg';
+            purchaseMsg.className = 'validation-msg';
+            saleMsg.className = 'validation-msg';
+
+            if (isNaN(income) || income < 0) {
+                incomeMsg.textContent = 'Enter a valid income amount';
+                incomeMsg.className = 'validation-msg error';
+                valid = false;
+            }
+            if (isNaN(purchase) || purchase < 0) {
+                purchaseMsg.textContent = 'Enter a valid cost basis';
+                purchaseMsg.className = 'validation-msg error';
+                valid = false;
+            }
+            if (isNaN(sale) || sale < 0) {
+                saleMsg.textContent = 'Enter a valid sale amount';
+                saleMsg.className = 'validation-msg error';
+                valid = false;
+            }
+            return valid;
+        }
+
+        function calculateTax() {
+            if (!validate()) return;
+
+            const income = parseFloat(document.getElementById('income').value) || 0;
+            const purchaseAmount = parseFloat(document.getElementById('cryptoPurchaseAmount').value) || 0;
+            const saleAmount = parseFloat(document.getElementById('cryptoSaleAmount').value) || 0;
+            const province = document.getElementById('provinceDropdown').value;
+
+            const capitalGain = saleAmount - purchaseAmount;
+            const isLoss = capitalGain < 0;
+            const taxableGain = isLoss ? 0 : capitalGain * 0.5;
+            const totalIncome = income + taxableGain;
+
+            const federalTax = calcMarginalTax(FEDERAL_BRACKETS, totalIncome, taxableGain);
+
+            let provincialTax = 0;
+            let provinceName = '';
+            if (province !== 'none' && PROVINCIAL_BRACKETS[province]) {
+                provincialTax = calcMarginalTax(PROVINCIAL_BRACKETS[province], totalIncome, taxableGain);
+                const sel = document.getElementById('provinceDropdown');
+                provinceName = sel.options[sel.selectedIndex].text;
+            }
+
+            const totalTax = federalTax + provincialTax;
+            const maxBar = Math.max(federalTax, provincialTax, 1);
+
+            let lossNote = '';
+            if (isLoss) {
+                lossNote = '<div class="result-note" style="color:var(--ca-red);">Capital losses can be used to offset capital gains in the current year, or carried back 3 years or forward indefinitely.</div>';
+            }
+
+            const chartHTML = (!isLoss && totalTax > 0) ? `
+                <div class="tax-bar-chart">
+                    <h4>Tax Breakdown</h4>
+                    <div class="bar-row">
+                        <span class="bar-label">Federal</span>
+                        <div class="bar-track">
+                            <div class="bar-fill federal" style="width: ${(federalTax / maxBar * 100).toFixed(1)}%"></div>
+                        </div>
+                        <span class="bar-amount">${formatCAD(federalTax)}</span>
+                    </div>
+                    ${province !== 'none' ? `
+                    <div class="bar-row">
+                        <span class="bar-label">Provincial</span>
+                        <div class="bar-track">
+                            <div class="bar-fill provincial" style="width: ${(provincialTax / maxBar * 100).toFixed(1)}%"></div>
+                        </div>
+                        <span class="bar-amount">${formatCAD(provincialTax)}</span>
+                    </div>` : ''}
+                </div>
+            ` : '';
+
+            const resultHTML = `
+                <div class="result-grid">
+                    <div class="result-item">
+                        <span class="result-label">Capital ${isLoss ? 'Loss' : 'Gain'}</span>
+                        <span class="result-value ${isLoss ? 'loss' : 'gain'}">${formatCAD(Math.abs(capitalGain))}</span>
+                    </div>
+                    ${!isLoss ? `<div class="result-item">
+                        <span class="result-label">Taxable Gain (50%)</span>
+                        <span class="result-value">${formatCAD(taxableGain)}</span>
+                    </div>` : ''}
+                    <div class="result-item">
+                        <span class="result-label">Federal Tax</span>
+                        <span class="result-value">${formatCAD(federalTax)}</span>
+                    </div>
+                    ${province !== 'none' ? `<div class="result-item">
+                        <span class="result-label">${provinceName} Tax</span>
+                        <span class="result-value">${formatCAD(provincialTax)}</span>
+                    </div>` : ''}
+                    <div class="result-item highlight">
+                        <span class="result-label">Total Estimated Tax</span>
+                        <span class="result-value">${isLoss ? formatCAD(0) : formatCAD(totalTax)}</span>
+                    </div>
+                </div>
+                ${lossNote}
+                ${chartHTML}
+                <div class="result-note">
+                    ${isLoss ? '' : 'Only 50% of capital gains are taxable in Canada. Marginal rates applied.'}
+                </div>
+                <div class="result-actions">
+                    <button class="result-action-btn" onclick="copyResults()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        Copy Results
+                    </button>
+                </div>
+                <div class="copied-msg" id="copiedMsg"></div>
+            `;
+
+            document.getElementById('result').innerHTML = resultHTML;
+
+            window._lastResult = {
+                capitalGain, taxableGain, federalTax, provincialTax, totalTax,
+                income, province: provinceName || 'None', isLoss
+            };
+        }
+
+        window.copyResults = function() {
+            const r = window._lastResult;
+            if (!r) return;
+            const text = [
+                '2025 Canada Crypto Tax Estimate',
+                '—',
+                'Income: ' + formatCAD(r.income),
+                'Province: ' + r.province,
+                (r.isLoss ? 'Capital Loss: ' : 'Capital Gain: ') + formatCAD(Math.abs(r.capitalGain)),
+                r.isLoss ? '' : 'Taxable Gain (50%): ' + formatCAD(r.taxableGain),
+                'Federal Tax: ' + formatCAD(r.federalTax),
+                'Provincial Tax: ' + formatCAD(r.provincialTax),
+                'Total Estimated Tax: ' + (r.isLoss ? formatCAD(0) : formatCAD(r.totalTax)),
+                '—',
+                'Calculated at bitcointools.com'
+            ].filter(Boolean).join('\n');
+
+            navigator.clipboard.writeText(text).then(function() {
+                var msg = document.getElementById('copiedMsg');
+                if (msg) { msg.textContent = 'Copied to clipboard!'; setTimeout(function(){ msg.textContent = ''; }, 2000); }
+            });
+        };
+
+        let debounceTimer;
+        function debouncedCalc() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(function() {
+                const income = document.getElementById('income').value;
+                const purchase = document.getElementById('cryptoPurchaseAmount').value;
+                const sale = document.getElementById('cryptoSaleAmount').value;
+                if (income && purchase && sale) {
+                    calculateTax();
+                }
+            }, 400);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('calculateButton').addEventListener('click', calculateTax);
+            ['income', 'cryptoPurchaseAmount', 'cryptoSaleAmount'].forEach(function(id) {
+                document.getElementById(id).addEventListener('input', debouncedCalc);
+            });
+            document.getElementById('provinceDropdown').addEventListener('change', function() {
+                var income = document.getElementById('income').value;
+                var purchase = document.getElementById('cryptoPurchaseAmount').value;
+                var sale = document.getElementById('cryptoSaleAmount').value;
+                if (income && purchase && sale) calculateTax();
+            });
+
+            document.querySelectorAll('.province-accordion-trigger').forEach(function(trigger) {
+                trigger.addEventListener('click', function() {
+                    var content = this.nextElementSibling;
+                    var isOpen = content.style.display === 'block';
+                    document.querySelectorAll('.province-accordion-content').forEach(function(c) { c.style.display = 'none'; });
+                    document.querySelectorAll('.province-accordion-trigger').forEach(function(t) { t.classList.remove('active'); });
+                    if (!isOpen) {
+                        content.style.display = 'block';
+                        this.classList.add('active');
+                    }
+                });
+            });
+        });
+    })();
+    </script>
+
+    <div id="howToUseCalculator">
+        <h3>How to Use This Calculator</h3>
+        <ol>
+            <li><strong>Enter Your Total Income:</strong> Input your overall annual taxable income for 2025 in Canadian Dollars.</li>
+            <li><strong>Provide Cost Basis & Sale Amount:</strong> Enter what you originally paid for your crypto and the amount you sold it for.</li>
+            <li><strong>Select Your Province:</strong> Choose your province or territory so we can estimate your provincial tax.</li>
+            <li><strong>View Results:</strong> The calculator automatically updates as you type, or click the button to calculate. You'll see federal tax, provincial tax, and total estimated tax.</li>
+        </ol>
+    </div>
+
+    <div id="howCalculated">
+        <h3>How It's Calculated</h3>
+        <ul>
+            <li>Your <strong>capital gain</strong> is calculated as sale amount minus cost basis.</li>
+            <li>In Canada, only <strong>50% of capital gains</strong> are included as taxable income (the inclusion rate).</li>
+            <li>Federal and provincial taxes are calculated using <strong>marginal tax brackets</strong> — each portion of your taxable gain is taxed at the rate for that bracket, not a single flat rate.</li>
+            <li>If your sale is less than your cost basis, you have a <strong>capital loss</strong>, which can offset other capital gains.</li>
+        </ul>
+    </div>
+
+    <div class="section-heading">
+        <h2>2025 Federal Tax Brackets</h2>
+    </div>
+
+    <div class="federal-table">
+        <table>
+            <tr><th>Taxable Income</th><th>Rate</th></tr>
+            <tr><td>Up to $57,375</td><td>15%</td></tr>
+            <tr><td>$57,375 – $114,750</td><td>20.5%</td></tr>
+            <tr><td>$114,750 – $158,468</td><td>26%</td></tr>
+            <tr><td>$158,468 – $221,708</td><td>29%</td></tr>
+            <tr><td>Over $221,708</td><td>33%</td></tr>
+        </table>
+    </div>
+
+    <div class="section-heading">
+        <h2>2025 Provincial & Territorial Tax Brackets</h2>
+    </div>
+    <p class="section-subtext">Click a province to view its tax brackets. Each province applies additional tax on top of federal rates.</p>
+
+    <div class="province-accordion">
+        <div class="province-accordion-item">
+            <button class="province-accordion-trigger">Alberta</button>
+            <div class="province-accordion-content">
+                <table>
+                    <tr><th>Taxable Income</th><th>Rate</th></tr>
+                    <tr><td>Up to $148,269</td><td>10%</td></tr>
+                    <tr><td>$148,269 – $177,922</td><td>12%</td></tr>
+                    <tr><td>$177,922 – $237,230</td><td>13%</td></tr>
+                    <tr><td>$237,230 – $355,845</td><td>14%</td></tr>
+                    <tr><td>Over $355,845</td><td>15%</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="province-accordion-item">
+            <button class="province-accordion-trigger">British Columbia</button>
+            <div class="province-accordion-content">
+                <table>
+                    <tr><th>Taxable Income</th><th>Rate</th></tr>
+                    <tr><td>Up to $47,937</td><td>5.06%</td></tr>
+                    <tr><td>$47,937 – $95,875</td><td>7.7%</td></tr>
+                    <tr><td>$95,875 – $110,076</td><td>10.5%</td></tr>
+                    <tr><td>$110,076 – $133,664</td><td>12.29%</td></tr>
+                    <tr><td>$133,664 – $181,232</td><td>14.7%</td></tr>
+                    <tr><td>$181,232 – $252,752</td><td>16.8%</td></tr>
+                    <tr><td>Over $252,752</td><td>20.5%</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="province-accordion-item">
+            <button class="province-accordion-trigger">Manitoba</button>
+            <div class="province-accordion-content">
+                <table>
+                    <tr><th>Taxable Income</th><th>Rate</th></tr>
+                    <tr><td>Up to $47,000</td><td>10.8%</td></tr>
+                    <tr><td>$47,000 – $100,000</td><td>12.75%</td></tr>
+                    <tr><td>Over $100,000</td><td>17.4%</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="province-accordion-item">
+            <button class="province-accordion-trigger">New Brunswick</button>
+            <div class="province-accordion-content">
+                <table>
+                    <tr><th>Taxable Income</th><th>Rate</th></tr>
+                    <tr><td>Up to $49,958</td><td>9.4%</td></tr>
+                    <tr><td>$49,958 – $99,916</td><td>14%</td></tr>
+                    <tr><td>$99,916 – $185,064</td><td>16%</td></tr>
+                    <tr><td>Over $185,064</td><td>19.5%</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="province-accordion-item">
+            <button class="province-accordion-trigger">Newfoundland and Labrador</button>
+            <div class="province-accordion-content">
+                <table>
+                    <tr><th>Taxable Income</th><th>Rate</th></tr>
+                    <tr><td>Up to $43,198</td><td>8.7%</td></tr>
+                    <tr><td>$43,198 – $86,395</td><td>14.5%</td></tr>
+                    <tr><td>$86,395 – $154,244</td><td>15.8%</td></tr>
+                    <tr><td>$154,244 – $215,943</td><td>17.8%</td></tr>
+                    <tr><td>$215,943 – $275,870</td><td>19.8%</td></tr>
+                    <tr><td>$275,870 – $551,739</td><td>20.8%</td></tr>
+                    <tr><td>$551,739 – $1,103,478</td><td>21.3%</td></tr>
+                    <tr><td>Over $1,103,478</td><td>21.8%</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="province-accordion-item">
+            <button class="province-accordion-trigger">Northwest Territories</button>
+            <div class="province-accordion-content">
+                <table>
+                    <tr><th>Taxable Income</th><th>Rate</th></tr>
+                    <tr><td>Up to $50,597</td><td>5.9%</td></tr>
+                    <tr><td>$50,597 – $101,198</td><td>8.6%</td></tr>
+                    <tr><td>$101,198 – $164,525</td><td>12.2%</td></tr>
+                    <tr><td>Over $164,525</td><td>14.05%</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="province-accordion-item">
+            <button class="province-accordion-trigger">Nova Scotia</button>
+            <div class="province-accordion-content">
+                <table>
+                    <tr><th>Taxable Income</th><th>Rate</th></tr>
+                    <tr><td>Up to $29,590</td><td>8.79%</td></tr>
+                    <tr><td>$29,590 – $59,180</td><td>14.95%</td></tr>
+                    <tr><td>$59,180 – $93,000</td><td>16.67%</td></tr>
+                    <tr><td>$93,000 – $150,000</td><td>17.5%</td></tr>
+                    <tr><td>Over $150,000</td><td>21%</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="province-accordion-item">
+            <button class="province-accordion-trigger">Nunavut</button>
+            <div class="province-accordion-content">
+                <table>
+                    <tr><th>Taxable Income</th><th>Rate</th></tr>
+                    <tr><td>Up to $53,268</td><td>4%</td></tr>
+                    <tr><td>$53,268 – $106,537</td><td>7%</td></tr>
+                    <tr><td>$106,537 – $173,205</td><td>9%</td></tr>
+                    <tr><td>Over $173,205</td><td>11.5%</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="province-accordion-item">
+            <button class="province-accordion-trigger">Ontario</button>
+            <div class="province-accordion-content">
+                <table>
+                    <tr><th>Taxable Income</th><th>Rate</th></tr>
+                    <tr><td>Up to $51,446</td><td>5.05%</td></tr>
+                    <tr><td>$51,446 – $102,894</td><td>9.15%</td></tr>
+                    <tr><td>$102,894 – $150,000</td><td>11.16%</td></tr>
+                    <tr><td>$150,000 – $220,000</td><td>12.16%</td></tr>
+                    <tr><td>Over $220,000</td><td>13.16%</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="province-accordion-item">
+            <button class="province-accordion-trigger">Prince Edward Island</button>
+            <div class="province-accordion-content">
+                <table>
+                    <tr><th>Taxable Income</th><th>Rate</th></tr>
+                    <tr><td>Up to $32,656</td><td>9.5%</td></tr>
+                    <tr><td>$32,656 – $63,969</td><td>13.47%</td></tr>
+                    <tr><td>$63,969 – $105,000</td><td>16.6%</td></tr>
+                    <tr><td>$105,000 – $140,000</td><td>17.62%</td></tr>
+                    <tr><td>Over $140,000</td><td>19%</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="province-accordion-item">
+            <button class="province-accordion-trigger">Quebec</button>
+            <div class="province-accordion-content">
+                <table>
+                    <tr><th>Taxable Income</th><th>Rate</th></tr>
+                    <tr><td>Up to $51,780</td><td>14%</td></tr>
+                    <tr><td>$51,780 – $103,545</td><td>19%</td></tr>
+                    <tr><td>$103,545 – $126,000</td><td>24%</td></tr>
+                    <tr><td>Over $126,000</td><td>25.75%</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="province-accordion-item">
+            <button class="province-accordion-trigger">Saskatchewan</button>
+            <div class="province-accordion-content">
+                <table>
+                    <tr><th>Taxable Income</th><th>Rate</th></tr>
+                    <tr><td>Up to $52,057</td><td>10.5%</td></tr>
+                    <tr><td>$52,057 – $148,734</td><td>12.5%</td></tr>
+                    <tr><td>Over $148,734</td><td>14.5%</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="province-accordion-item">
+            <button class="province-accordion-trigger">Yukon</button>
+            <div class="province-accordion-content">
+                <table>
+                    <tr><th>Taxable Income</th><th>Rate</th></tr>
+                    <tr><td>Up to $55,867</td><td>6.4%</td></tr>
+                    <tr><td>$55,867 – $111,733</td><td>9%</td></tr>
+                    <tr><td>$111,733 – $173,205</td><td>10.9%</td></tr>
+                    <tr><td>$173,205 – $500,000</td><td>12.8%</td></tr>
+                    <tr><td>Over $500,000</td><td>15%</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <p style="font-size: 12px; color: var(--ca-text-secondary); margin-top: 32px; text-align: center;">Source: Canada Revenue Agency — 2025 tax year brackets</p>
+</div>
