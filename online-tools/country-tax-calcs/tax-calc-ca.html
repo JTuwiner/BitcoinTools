@@ -382,10 +382,10 @@ capture: yes
         .province-accordion-content {
             display: none;
             padding: 16px;
-            border: 1px solid var(--ca-border);
+            border: 1px solid #d2d2d7;
             border-top: none;
-            border-radius: 0 0 var(--ca-radius-sm) var(--ca-radius-sm);
-            background: var(--ca-card);
+            border-radius: 0 0 8px 8px;
+            background: #ffffff;
             overflow-x: auto;
         }
 
@@ -393,33 +393,44 @@ capture: yes
         .federal-table table {
             width: 100%;
             border-collapse: collapse;
-            color: var(--ca-text);
+            color: #1d1d1f;
             font-size: 14px;
+            background: #ffffff;
+            border: none;
+        }
+        .province-accordion-content table tr,
+        .federal-table table tr {
+            background: #ffffff;
+            border: none;
         }
         .province-accordion-content table th,
         .federal-table table th {
             text-align: left;
             padding: 10px 12px;
-            background: var(--ca-input-bg);
+            background: #f5f5f7;
             font-weight: 500;
             font-size: 12px;
-            color: var(--ca-text-secondary);
+            color: #6e6e73;
             text-transform: uppercase;
             letter-spacing: 0.03em;
+            border: none;
         }
         .province-accordion-content table th:first-child,
         .federal-table table th:first-child {
-            border-radius: var(--ca-radius-sm) 0 0 var(--ca-radius-sm);
+            border-radius: 8px 0 0 8px;
         }
         .province-accordion-content table th:last-child,
         .federal-table table th:last-child {
-            border-radius: 0 var(--ca-radius-sm) var(--ca-radius-sm) 0;
+            border-radius: 0 8px 8px 0;
             text-align: right;
         }
         .province-accordion-content table td,
         .federal-table table td {
             padding: 10px 12px;
-            border-bottom: 1px solid var(--ca-border);
+            border: none;
+            border-bottom: 1px solid #e5e5e7;
+            background: #ffffff;
+            color: #1d1d1f;
         }
         .province-accordion-content table td:last-child,
         .federal-table table td:last-child {
@@ -432,11 +443,11 @@ capture: yes
         }
 
         .federal-table {
-            background: var(--ca-card);
-            border-radius: var(--ca-radius);
+            background: #ffffff;
+            border-radius: 12px;
             padding: 20px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-            border: 1px solid var(--ca-border);
+            border: 1px solid #d2d2d7;
             margin-bottom: 24px;
         }
 
