@@ -7,43 +7,22 @@ jquery: yes
 capture: yes
 ---
 <div style="max-width: 800px;">
-<p><b>We built this free crypto tax calculator for USA users who want to check their Federal tax status quickly. This calculator is for informational purposes only. Consult an expert CPA or tax pro always. Use <a href="/tools/tax/">crypto tax software if you have a lot of trades</a>.</b></p>
+<p><b>We built this free crypto tax calculator for USA users who want to check their Federal and state tax status quickly. This calculator is for informational purposes only. Consult an expert CPA or tax pro always. Use <a href="/tools/tax/">crypto tax software if you have a lot of trades</a>.</b></p>
 
 <style>
-    :root {
-        --apple-bg: #fbfbfd;
-        --apple-card: #ffffff;
-        --apple-border: #d2d2d7;
-        --apple-text: #1d1d1f;
-        --apple-text-secondary: #86868b;
-        --apple-blue: #0071e3;
-        --apple-blue-hover: #0077ed;
-        --apple-green: #34c759;
-        --apple-input-bg: #f5f5f7;
-        --apple-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-        --apple-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
-        --apple-radius: 12px;
-        --apple-radius-sm: 8px;
-    }
-
     .info-icon {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         margin-left: 6px;
-        color: var(--apple-text-secondary);
+        color: #86868b;
         cursor: help;
         vertical-align: middle;
         opacity: 0.6;
         transition: opacity 0.2s ease;
     }
-    .info-icon:hover {
-        opacity: 1;
-    }
-    .info-icon svg {
-        width: 14px;
-        height: 14px;
-    }
+    .info-icon:hover { opacity: 1; }
+    .info-icon svg { width: 14px; height: 14px; }
     .info-tooltip {
         position: relative;
         display: inline-flex;
@@ -55,24 +34,467 @@ capture: yes
         left: 28px;
         top: 50%;
         transform: translateY(-50%);
-        background: var(--apple-text);
+        background: #1d1d1f;
         color: white;
         padding: 8px 12px;
-        border-radius: var(--apple-radius-sm);
+        border-radius: 8px;
         font-size: 13px;
         font-weight: 400;
         white-space: nowrap;
         z-index: 100;
-        box-shadow: var(--apple-shadow);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    /* ── Main tool tabs ── */
+    .tool-tabs {
+        display: flex;
+        max-width: 540px;
+        margin: 2rem auto 0;
+        border-radius: 12px 12px 0 0;
+        overflow: hidden;
+        border: 1px solid #d2d2d7;
+        border-bottom: none;
+    }
+    .tool-tab {
+        flex: 1;
+        padding: 14px 20px;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 600;
+        font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+        cursor: pointer;
+        border: none;
+        background: #f5f5f7;
+        color: #6e6e73;
+        transition: all 0.2s ease;
+    }
+    .tool-tab:hover { background: #eee; }
+    .tool-tab.active {
+        background: #ffffff;
+        color: #1d1d1f;
+    }
+    .tool-panel { display: none; }
+    .tool-panel.active { display: block; }
+
+    #cryptoTaxCalculator,
+    #costBasisCalculator {
+        max-width: 540px;
+        margin: 0 auto;
+        padding: 32px;
+        color: #1d1d1f;
+        border-radius: 0 0 20px 20px;
+        background: #ffffff;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .calc-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 28px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #d2d2d7;
+    }
+    .calc-header h2 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: #1d1d1f;
+    }
+    .year-badge {
+        background: linear-gradient(135deg, #f2a900 0%, #d99500 100%);
+        color: #000;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .form-group { margin-bottom: 20px; }
+    .form-row { display: flex; gap: 16px; }
+    .form-group.half { flex: 1; }
+
+    #cryptoTaxCalculator label,
+    #costBasisCalculator label {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+        font-size: 13px;
+        font-weight: 500;
+        color: #6e6e73;
+        letter-spacing: 0.01em;
+    }
+
+    .input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    .input-prefix {
+        position: absolute;
+        left: 14px;
+        color: #86868b;
+        font-size: 16px;
+        font-weight: 400;
+        pointer-events: none;
+    }
+
+    #cryptoTaxCalculator select,
+    #cryptoTaxCalculator input[type="number"],
+    #costBasisCalculator select,
+    #costBasisCalculator input[type="number"] {
+        width: 100%;
+        padding: 14px 16px;
+        border-radius: 12px;
+        border: 1px solid #d2d2d7;
+        background: #f5f5f7;
+        font-size: 16px;
+        font-family: inherit;
+        color: #1d1d1f;
+        transition: all 0.2s ease;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+    #cryptoTaxCalculator input[type="number"],
+    #costBasisCalculator input[type="number"] { padding-left: 32px; }
+
+    #cryptoTaxCalculator select,
+    #costBasisCalculator select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2386868b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 14px center;
+        padding-right: 40px;
+        cursor: pointer;
+    }
+
+    #cryptoTaxCalculator select:focus,
+    #cryptoTaxCalculator input:focus,
+    #costBasisCalculator select:focus,
+    #costBasisCalculator input:focus {
+        outline: none;
+        border-color: #f2a900;
+        background: #ffffff;
+        box-shadow: 0 0 0 3px rgba(242, 169, 0, 0.15);
+    }
+    #cryptoTaxCalculator input::placeholder,
+    #costBasisCalculator input::placeholder {
+        color: #86868b;
+        opacity: 0.6;
+    }
+
+    .validation-msg {
+        font-size: 12px;
+        margin-top: 4px;
+        min-height: 16px;
+    }
+    .validation-msg.error { color: #ff3b30; }
+
+    .toggle-container { display: flex; gap: 12px; }
+    .toggle-btn {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 14px 16px;
+        border: 1px solid #d2d2d7;
+        border-radius: 12px;
+        background: #f5f5f7;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: inherit;
+        color: #1d1d1f;
+    }
+    .toggle-btn:hover { border-color: #f2a900; }
+    .toggle-btn.active {
+        background: linear-gradient(135deg, rgba(242, 169, 0, 0.1) 0%, rgba(242, 169, 0, 0.04) 100%);
+        border-color: #f2a900;
+        box-shadow: 0 0 0 1px #f2a900;
+    }
+    .toggle-label {
+        font-size: 14px;
+        font-weight: 500;
+        color: #1d1d1f;
+        margin-bottom: 2px;
+    }
+    .toggle-sub {
+        font-size: 12px;
+        color: #86868b;
+    }
+
+    .calculate-btn {
+        width: 100%;
+        padding: 16px 24px;
+        margin-top: 8px;
+        background: #f2a900;
+        color: #000;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: inherit;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .calculate-btn:hover {
+        background: #d99500;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(242, 169, 0, 0.3);
+    }
+    .calculate-btn:active { transform: translateY(0); }
+
+    #taxResult, #cbResult {
+        margin-top: 24px;
+        padding: 20px;
+        border-radius: 12px;
+        background: #f5f5f7;
+        min-height: 60px;
+    }
+    .result-placeholder {
+        text-align: center;
+        color: #86868b;
+        font-size: 14px;
+        padding: 12px 0;
+    }
+    .result-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+    .result-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #e5e5e7;
+    }
+    .result-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .result-item.highlight {
+        background: linear-gradient(135deg, rgba(242, 169, 0, 0.1) 0%, rgba(242, 169, 0, 0.04) 100%);
+        margin: 8px -12px -12px;
+        padding: 16px 12px;
+        border-radius: 8px;
+        border-bottom: none;
+    }
+    .result-label { font-size: 14px; color: #6e6e73; }
+    .result-value {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1d1d1f;
+        font-variant-numeric: tabular-nums;
+    }
+    .result-value.gain { color: #34c759; }
+    .result-value.loss { color: #ff3b30; }
+    .result-note {
+        margin-top: 12px;
+        font-size: 12px;
+        color: #6e6e73;
+        text-align: center;
+    }
+
+    .result-actions { display: flex; gap: 10px; margin-top: 16px; }
+    .result-action-btn {
+        flex: 1;
+        padding: 10px 16px;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #1d1d1f;
+        font-size: 13px;
+        font-weight: 500;
+        font-family: inherit;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+    }
+    .result-action-btn:hover { border-color: #f2a900; background: rgba(242,169,0,0.05); }
+    .result-action-btn svg { width: 14px; height: 14px; }
+    .copied-msg {
+        color: #34c759;
+        font-size: 12px;
+        text-align: center;
+        margin-top: 8px;
+        min-height: 16px;
+    }
+
+    .tax-bar-chart {
+        margin-top: 20px;
+        padding: 16px;
+        background: #ffffff;
+        border-radius: 8px;
+        border: 1px solid #d2d2d7;
+    }
+    .tax-bar-chart h4 { margin: 0 0 12px; font-size: 13px; font-weight: 500; color: #6e6e73; }
+    .bar-row { display: flex; align-items: center; margin-bottom: 8px; }
+    .bar-row:last-child { margin-bottom: 0; }
+    .bar-label { width: 80px; font-size: 12px; font-weight: 500; color: #6e6e73; flex-shrink: 0; }
+    .bar-track { flex: 1; height: 24px; background: #f5f5f7; border-radius: 4px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; min-width: 2px; }
+    .bar-fill.federal { background: #f2a900; }
+    .bar-fill.state { background: #232939; }
+    .bar-amount { width: 90px; text-align: right; font-size: 12px; font-weight: 600; color: #1d1d1f; flex-shrink: 0; padding-left: 8px; }
+
+    /* ── Cost Basis specific ── */
+    .cb-lot-row { display: flex; gap: 10px; align-items: flex-end; margin-bottom: 12px; }
+    .cb-lot-row .form-group { margin-bottom: 0; flex: 1; }
+    .cb-remove-btn {
+        padding: 12px 14px;
+        border: 1px solid #ff3b30;
+        border-radius: 8px;
+        background: none;
+        color: #ff3b30;
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 1;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+        align-self: flex-end;
+        margin-bottom: 0;
+    }
+    .cb-remove-btn:hover { background: #ff3b30; color: #fff; }
+    .cb-add-btn {
+        padding: 10px 20px;
+        border: 1px dashed #d2d2d7;
+        border-radius: 8px;
+        background: none;
+        color: #6e6e73;
+        cursor: pointer;
+        font-size: 14px;
+        font-family: inherit;
+        width: 100%;
+        margin-bottom: 20px;
+        transition: all 0.2s ease;
+    }
+    .cb-add-btn:hover { border-color: #f2a900; color: #f2a900; }
+    .cb-method-btns { display: flex; gap: 10px; margin-bottom: 20px; }
+    .cb-method-btn {
+        flex: 1;
+        padding: 12px;
+        border: 1px solid #d2d2d7;
+        border-radius: 8px;
+        background: #f5f5f7;
+        color: #1d1d1f;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        font-family: inherit;
+        text-align: center;
+        transition: all 0.2s ease;
+    }
+    .cb-method-btn:hover { border-color: #f2a900; }
+    .cb-method-btn.active {
+        background: linear-gradient(135deg, rgba(242,169,0,0.1), rgba(242,169,0,0.04));
+        border-color: #f2a900;
+        box-shadow: 0 0 0 1px #f2a900;
+    }
+
+    /* ── Tables (hardcoded light for dark-mode compat) ── */
+    .tax-tables {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin: 24px 0;
+    }
+    .tax-table-card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border: 1px solid #d2d2d7;
+    }
+    .tax-table-card h3 {
+        margin: 0 0 16px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #1d1d1f;
+    }
+    .tax-table-card table {
+        width: 100%;
+        border-collapse: collapse;
+        color: #1d1d1f;
+        font-size: 14px;
+        background: #ffffff;
+        border: none;
+    }
+    .tax-table-card table tr {
+        background: #ffffff;
+        border: none;
+    }
+    .tax-table-card table th {
+        text-align: left;
+        padding: 10px 12px;
+        background: #f5f5f7;
+        font-weight: 500;
+        font-size: 12px;
+        color: #6e6e73;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        border: none;
+    }
+    .tax-table-card table th:first-child { border-radius: 8px 0 0 8px; }
+    .tax-table-card table th:last-child { border-radius: 0 8px 8px 0; text-align: right; }
+    .tax-table-card table td {
+        padding: 10px 12px;
+        border: none;
+        border-bottom: 1px solid #e5e5e7;
+        background: #ffffff;
+        color: #1d1d1f;
+    }
+    .tax-table-card table tr:last-child td { border-bottom: none; }
+    .rate-cell { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .rate-cell.zero { color: #34c759; }
+    .rate-cell.fifteen { color: #ff9500; }
+    .rate-cell.twenty { color: #ff3b30; }
+
+    .rate-note { font-size: 14px; color: #6e6e73; margin-bottom: 16px; }
+    .source-note { font-size: 12px; color: #6e6e73; margin-top: 32px; text-align: center; }
+
+    #howToUseCalculator {
+        margin-top: 40px;
+        padding: 24px;
+        background: #ffffff;
+        border-radius: 12px;
+        border: 1px solid #d2d2d7;
+    }
+    #howToUseCalculator h3 { margin: 0 0 16px; font-size: 18px; font-weight: 600; color: #1d1d1f; }
+    #howToUseCalculator ol { margin: 0; padding-left: 20px; }
+    #howToUseCalculator li { margin-bottom: 10px; line-height: 1.5; color: #1d1d1f; }
+    #howToUseCalculator p { margin: 16px 0 0; font-size: 14px; color: #6e6e73; }
+
+    @media (max-width: 768px) {
+        #cryptoTaxCalculator, #costBasisCalculator { margin: 0; padding: 24px 20px; }
+        .tool-tabs { margin: 1rem 0 0; }
+        .form-row { flex-direction: column; gap: 0; }
+        .calc-header h2 { font-size: 18px; }
+        .tax-tables { grid-template-columns: 1fr; }
+        .info-tooltip:hover::after { left: auto; right: 0; white-space: normal; max-width: 200px; }
+        .result-actions { flex-direction: column; }
+        .cb-lot-row { flex-wrap: wrap; }
+        .bar-label { width: 60px; font-size: 11px; }
+        .bar-amount { width: 70px; font-size: 11px; }
+        .cb-method-btns { flex-direction: column; }
     }
 </style>
 
+<!-- ═══════ TABS ═══════ -->
+<div class="tool-tabs">
+    <button class="tool-tab active" onclick="switchTab('tax')">Tax Calculator</button>
+    <button class="tool-tab" onclick="switchTab('costbasis')">Cost Basis Calculator</button>
+</div>
+
+<!-- ═══════ TAX CALCULATOR ═══════ -->
+<div id="panelTax" class="tool-panel active">
 <div id="cryptoTaxCalculator">
     <div class="calc-header">
         <h2>Tax Estimator</h2>
         <span class="year-badge">2025</span>
     </div>
-    
+
     <div class="form-group">
         <label for="filingStatus">Filing Status
             <span class="info-tooltip info-icon" data-tooltip="Your tax filing status affects your tax brackets">
@@ -88,15 +510,16 @@ capture: yes
     </div>
 
     <div class="form-group">
-        <label for="totalIncome">Total Income
+        <label for="totalIncome">Total Income (USD)
             <span class="info-tooltip info-icon" data-tooltip="Your total taxable income for 2025">
                 {% include infoicon.html %}
             </span>
         </label>
         <div class="input-wrapper">
             <span class="input-prefix">$</span>
-            <input type="number" id="totalIncome" placeholder="0">
+            <input type="number" id="totalIncome" placeholder="0" min="0">
         </div>
+        <div class="validation-msg" id="incomeMsg"></div>
     </div>
 
     <div class="form-row">
@@ -108,10 +531,10 @@ capture: yes
             </label>
             <div class="input-wrapper">
                 <span class="input-prefix">$</span>
-                <input type="number" id="purchaseCost" placeholder="0">
+                <input type="number" id="purchaseCost" placeholder="0" min="0">
             </div>
+            <div class="validation-msg" id="purchaseMsg"></div>
         </div>
-
         <div class="form-group half">
             <label for="saleAmount">Sale Amount
                 <span class="info-tooltip info-icon" data-tooltip="Amount received when selling">
@@ -120,23 +543,24 @@ capture: yes
             </label>
             <div class="input-wrapper">
                 <span class="input-prefix">$</span>
-                <input type="number" id="saleAmount" placeholder="0">
+                <input type="number" id="saleAmount" placeholder="0" min="0">
             </div>
+            <div class="validation-msg" id="saleMsg"></div>
         </div>
     </div>
-    
+
     <div class="form-group">
         <label for="holdingDuration">Holding Period
-            <span class="info-tooltip info-icon" data-tooltip="Determines short or long term rates">
+            <span class="info-tooltip info-icon" data-tooltip="Short-term (&lt;1yr) is taxed as ordinary income; long-term (&gt;1yr) gets preferential rates">
                 {% include infoicon.html %}
             </span>
         </label>
         <div class="toggle-container">
-            <button type="button" class="toggle-btn active" data-value="shortTerm" onclick="setHoldingDuration('shortTerm')">
+            <button type="button" class="toggle-btn active" data-value="shortTerm" id="btnShort">
                 <span class="toggle-label">Short Term</span>
                 <span class="toggle-sub">&lt; 1 year</span>
             </button>
-            <button type="button" class="toggle-btn" data-value="longTerm" onclick="setHoldingDuration('longTerm')">
+            <button type="button" class="toggle-btn" data-value="longTerm" id="btnLong">
                 <span class="toggle-label">Long Term</span>
                 <span class="toggle-sub">&gt; 1 year</span>
             </button>
@@ -144,146 +568,450 @@ capture: yes
         <input type="hidden" id="holdingDuration" value="shortTerm">
     </div>
 
-    <button class="calculate-btn" onclick="calculateTax()">Calculate Tax</button>
+    <div class="form-group">
+        <label for="stateDropdown">State
+            <span class="info-tooltip info-icon" data-tooltip="Select your state for an estimated state tax. Not all states tax capital gains.">
+                {% include infoicon.html %}
+            </span>
+        </label>
+        <select id="stateDropdown">
+            <option value="none">— No State Tax —</option>
+            <option value="AL">Alabama</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+        </select>
+    </div>
 
-    <div id="result">
-        <div class="result-placeholder">
-            Enter your details above to see your estimated tax
-        </div>
+    <button class="calculate-btn" id="calculateButton">Calculate Tax</button>
+
+    <div id="taxResult">
+        <div class="result-placeholder">Enter your details above to see your estimated tax</div>
     </div>
 </div>
+</div>
+
+<!-- ═══════ COST BASIS CALCULATOR ═══════ -->
+<div id="panelCostBasis" class="tool-panel">
+<div id="costBasisCalculator">
+    <div class="calc-header">
+        <h2>Cost Basis Calculator</h2>
+        <span class="year-badge">2025</span>
+    </div>
+
+    <label>Accounting Method</label>
+    <div class="cb-method-btns">
+        <button class="cb-method-btn active" data-method="fifo">FIFO</button>
+        <button class="cb-method-btn" data-method="lifo">LIFO</button>
+        <button class="cb-method-btn" data-method="average">Average Cost</button>
+    </div>
+
+    <label>Purchase Lots</label>
+    <div id="cbLots">
+        <div class="cb-lot-row">
+            <div class="form-group">
+                <div class="input-wrapper">
+                    <span class="input-prefix">#</span>
+                    <input type="number" placeholder="Qty" class="cb-qty" min="0" step="any">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-wrapper">
+                    <span class="input-prefix">$</span>
+                    <input type="number" placeholder="Price per unit" class="cb-price" min="0" step="any">
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="cb-add-btn" id="cbAddLot">+ Add Purchase Lot</button>
+
+    <div class="form-group">
+        <label for="cbSellQty">Quantity Sold</label>
+        <div class="input-wrapper">
+            <span class="input-prefix">#</span>
+            <input type="number" id="cbSellQty" placeholder="Qty sold" min="0" step="any">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="cbSellPrice">Sale Price per Unit (USD)</label>
+        <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="cbSellPrice" placeholder="Sale price per unit" min="0" step="any">
+        </div>
+    </div>
+
+    <button class="calculate-btn" id="cbCalculateBtn">Calculate Cost Basis</button>
+
+    <div id="cbResult">
+        <div class="result-placeholder">Add your purchase lots and sale details above</div>
+    </div>
+</div>
+</div>
+
+{% include koinlylink.html link="https://coinledger.io/?fpr=bitcoinww&fp_sid=tools" %}
 
 <script>
-    function setHoldingDuration(value) {
-        document.getElementById('holdingDuration').value = value;
-        document.querySelectorAll('.toggle-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.value === value);
-        });
-    }
-
-    function formatCurrency(num) {
-        return new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0
-        }).format(num);
-    }
-
-    function calculateTax() {
-        const purchaseCost = parseFloat(document.getElementById("purchaseCost").value) || 0;
-        const saleAmount = parseFloat(document.getElementById("saleAmount").value) || 0;
-        const totalIncome = parseFloat(document.getElementById("totalIncome").value) || 0;
-        const filingStatus = document.getElementById("filingStatus").value;
-        const holdingDuration = document.getElementById("holdingDuration").value;
-
-        const gain = saleAmount - purchaseCost;
-
-        let federalTaxRate;
-        let rateType;
-
-        if (holdingDuration === "longTerm") {
-            rateType = "Long-term capital gains";
-            // 2025 Long-term capital gains rates
-            switch (filingStatus) {
-                case 'single':
-                    federalTaxRate = totalIncome <= 48350 ? 0 : (totalIncome <= 533400 ? 15 : 20);
-                    break;
-                case 'marriedJointly':
-                    federalTaxRate = totalIncome <= 96700 ? 0 : (totalIncome <= 600050 ? 15 : 20);
-                    break;
-                case 'marriedSeparately':
-                    federalTaxRate = totalIncome <= 48350 ? 0 : (totalIncome <= 300000 ? 15 : 20);
-                    break;
-                case 'headOfHousehold':
-                    federalTaxRate = totalIncome <= 64750 ? 0 : (totalIncome <= 566700 ? 15 : 20);
-                    break;
-                default:
-                    federalTaxRate = 0;
-            }
+(function() {
+    /* ─── Tab switching ─── */
+    window.switchTab = function(tab) {
+        document.querySelectorAll('.tool-tab').forEach(function(t){ t.classList.remove('active'); });
+        document.querySelectorAll('.tool-panel').forEach(function(p){ p.classList.remove('active'); });
+        if (tab === 'tax') {
+            document.querySelector('.tool-tab:nth-child(1)').classList.add('active');
+            document.getElementById('panelTax').classList.add('active');
         } else {
-            rateType = "Short-term (ordinary income)";
-            // 2025 Ordinary income tax rates
-            switch (filingStatus) {
-                case 'single':
-                    federalTaxRate = totalIncome <= 11925 ? 10 : 
-                                    totalIncome <= 48475 ? 12 : 
-                                    totalIncome <= 103350 ? 22 :
-                                    totalIncome <= 197300 ? 24 :
-                                    totalIncome <= 250525 ? 32 :
-                                    totalIncome <= 626350 ? 35 : 37;
-                    break;
-                case 'headOfHousehold':
-                    federalTaxRate = totalIncome <= 17000 ? 10 : 
-                                    totalIncome <= 64850 ? 12 : 
-                                    totalIncome <= 103350 ? 22 :
-                                    totalIncome <= 197300 ? 24 :
-                                    totalIncome <= 250500 ? 32 :
-                                    totalIncome <= 626350 ? 35 : 37;
-                    break;
-                case 'marriedJointly':
-                    federalTaxRate = totalIncome <= 23850 ? 10 : 
-                                    totalIncome <= 96950 ? 12 : 
-                                    totalIncome <= 206700 ? 22 :
-                                    totalIncome <= 394600 ? 24 :
-                                    totalIncome <= 501050 ? 32 :
-                                    totalIncome <= 751600 ? 35 : 37;
-                    break;
-                case 'marriedSeparately':
-                    federalTaxRate = totalIncome <= 11925 ? 10 : 
-                                    totalIncome <= 48475 ? 12 : 
-                                    totalIncome <= 103350 ? 22 :
-                                    totalIncome <= 197300 ? 24 :
-                                    totalIncome <= 250525 ? 32 :
-                                    totalIncome <= 375800 ? 35 : 37;
-                    break;
-                default:
-                    federalTaxRate = 0;
+            document.querySelector('.tool-tab:nth-child(2)').classList.add('active');
+            document.getElementById('panelCostBasis').classList.add('active');
+        }
+    };
+
+    /* ─── Formatting ─── */
+    function fmt(n) {
+        return new Intl.NumberFormat('en-US', { style:'currency', currency:'USD', minimumFractionDigits:2, maximumFractionDigits:2 }).format(n);
+    }
+
+    /* ─── Marginal tax helper ─── */
+    function calcMarginal(brackets, totalIncome, gain) {
+        if (gain <= 0) return 0;
+        var base = totalIncome - gain;
+        var tax = 0, rem = gain;
+        for (var i = 0; i < brackets.length && rem > 0; i++) {
+            var b = brackets[i];
+            if (base >= b.max) continue;
+            var start = Math.max(base, b.min);
+            var end = Math.min(base + rem, b.max);
+            var amt = end - start;
+            if (amt > 0) { tax += amt * b.rate; rem -= amt; }
+        }
+        return tax;
+    }
+
+    /* ─── 2025 Federal short-term (ordinary income) brackets ─── */
+    var FED_SHORT = {
+        single: [
+            {min:0,max:11925,rate:0.10},{min:11925,max:48475,rate:0.12},{min:48475,max:103350,rate:0.22},
+            {min:103350,max:197300,rate:0.24},{min:197300,max:250525,rate:0.32},{min:250525,max:626350,rate:0.35},
+            {min:626350,max:Infinity,rate:0.37}
+        ],
+        marriedJointly: [
+            {min:0,max:23850,rate:0.10},{min:23850,max:96950,rate:0.12},{min:96950,max:206700,rate:0.22},
+            {min:206700,max:394600,rate:0.24},{min:394600,max:501050,rate:0.32},{min:501050,max:751600,rate:0.35},
+            {min:751600,max:Infinity,rate:0.37}
+        ],
+        marriedSeparately: [
+            {min:0,max:11925,rate:0.10},{min:11925,max:48475,rate:0.12},{min:48475,max:103350,rate:0.22},
+            {min:103350,max:197300,rate:0.24},{min:197300,max:250525,rate:0.32},{min:250525,max:375800,rate:0.35},
+            {min:375800,max:Infinity,rate:0.37}
+        ],
+        headOfHousehold: [
+            {min:0,max:17000,rate:0.10},{min:17000,max:64850,rate:0.12},{min:64850,max:103350,rate:0.22},
+            {min:103350,max:197300,rate:0.24},{min:197300,max:250500,rate:0.32},{min:250500,max:626350,rate:0.35},
+            {min:626350,max:Infinity,rate:0.37}
+        ]
+    };
+
+    /* 2025 Federal long-term capital gains brackets */
+    var FED_LONG = {
+        single: [
+            {min:0,max:48350,rate:0},{min:48350,max:533400,rate:0.15},{min:533400,max:Infinity,rate:0.20}
+        ],
+        marriedJointly: [
+            {min:0,max:96700,rate:0},{min:96700,max:600050,rate:0.15},{min:600050,max:Infinity,rate:0.20}
+        ],
+        marriedSeparately: [
+            {min:0,max:48350,rate:0},{min:48350,max:300000,rate:0.15},{min:300000,max:Infinity,rate:0.20}
+        ],
+        headOfHousehold: [
+            {min:0,max:64750,rate:0},{min:64750,max:566700,rate:0.15},{min:566700,max:Infinity,rate:0.20}
+        ]
+    };
+
+    /* ─── State tax brackets (top marginal rates for common states) ─── */
+    var STATE_BRACKETS = {
+        AL: [{min:0,max:500,rate:0.02},{min:500,max:3000,rate:0.04},{min:3000,max:Infinity,rate:0.05}],
+        AZ: [{min:0,max:Infinity,rate:0.025}],
+        AR: [{min:0,max:4400,rate:0.02},{min:4400,max:8800,rate:0.04},{min:8800,max:Infinity,rate:0.044}],
+        CA: [{min:0,max:10756,rate:0.01},{min:10756,max:25499,rate:0.02},{min:25499,max:40245,rate:0.04},{min:40245,max:55866,rate:0.06},{min:55866,max:70606,rate:0.08},{min:70606,max:360659,rate:0.093},{min:360659,max:432787,rate:0.103},{min:432787,max:721314,rate:0.113},{min:721314,max:Infinity,rate:0.123}],
+        CO: [{min:0,max:Infinity,rate:0.044}],
+        CT: [{min:0,max:10000,rate:0.02},{min:10000,max:50000,rate:0.045},{min:50000,max:100000,rate:0.055},{min:100000,max:200000,rate:0.06},{min:200000,max:250000,rate:0.065},{min:250000,max:500000,rate:0.069},{min:500000,max:Infinity,rate:0.0699}],
+        DE: [{min:0,max:2000,rate:0.022},{min:2000,max:5000,rate:0.039},{min:5000,max:10000,rate:0.048},{min:10000,max:20000,rate:0.052},{min:20000,max:25000,rate:0.0555},{min:25000,max:60000,rate:0.066},{min:60000,max:Infinity,rate:0.066}],
+        GA: [{min:0,max:750,rate:0.01},{min:750,max:2250,rate:0.02},{min:2250,max:3750,rate:0.03},{min:3750,max:5250,rate:0.04},{min:5250,max:7000,rate:0.05},{min:7000,max:Infinity,rate:0.055}],
+        HI: [{min:0,max:2400,rate:0.014},{min:2400,max:4800,rate:0.032},{min:4800,max:9600,rate:0.055},{min:9600,max:14400,rate:0.064},{min:14400,max:19200,rate:0.068},{min:19200,max:24000,rate:0.072},{min:24000,max:36000,rate:0.076},{min:36000,max:48000,rate:0.079},{min:48000,max:150000,rate:0.0825},{min:150000,max:175000,rate:0.09},{min:175000,max:200000,rate:0.10},{min:200000,max:Infinity,rate:0.11}],
+        ID: [{min:0,max:Infinity,rate:0.058}],
+        IL: [{min:0,max:Infinity,rate:0.0495}],
+        IN: [{min:0,max:Infinity,rate:0.0305}],
+        IA: [{min:0,max:6210,rate:0.044},{min:6210,max:31050,rate:0.0482},{min:31050,max:Infinity,rate:0.057}],
+        KS: [{min:0,max:15000,rate:0.031},{min:15000,max:30000,rate:0.0525},{min:30000,max:Infinity,rate:0.057}],
+        KY: [{min:0,max:Infinity,rate:0.04}],
+        LA: [{min:0,max:12500,rate:0.0185},{min:12500,max:50000,rate:0.035},{min:50000,max:Infinity,rate:0.0425}],
+        ME: [{min:0,max:26050,rate:0.058},{min:26050,max:61600,rate:0.0675},{min:61600,max:Infinity,rate:0.0715}],
+        MD: [{min:0,max:1000,rate:0.02},{min:1000,max:2000,rate:0.03},{min:2000,max:3000,rate:0.04},{min:3000,max:100000,rate:0.0475},{min:100000,max:125000,rate:0.05},{min:125000,max:150000,rate:0.0525},{min:150000,max:250000,rate:0.055},{min:250000,max:Infinity,rate:0.0575}],
+        MA: [{min:0,max:Infinity,rate:0.05}],
+        MI: [{min:0,max:Infinity,rate:0.0425}],
+        MN: [{min:0,max:31690,rate:0.0535},{min:31690,max:104090,rate:0.068},{min:104090,max:183340,rate:0.0785},{min:183340,max:Infinity,rate:0.0985}],
+        MS: [{min:0,max:10000,rate:0.04},{min:10000,max:Infinity,rate:0.05}],
+        MO: [{min:0,max:1273,rate:0.02},{min:1273,max:2546,rate:0.025},{min:2546,max:3819,rate:0.03},{min:3819,max:5092,rate:0.035},{min:5092,max:6365,rate:0.04},{min:6365,max:7638,rate:0.045},{min:7638,max:8911,rate:0.05},{min:8911,max:Infinity,rate:0.048}],
+        MT: [{min:0,max:20500,rate:0.047},{min:20500,max:Infinity,rate:0.059}],
+        NE: [{min:0,max:3700,rate:0.0246},{min:3700,max:22170,rate:0.0351},{min:22170,max:35730,rate:0.0501},{min:35730,max:Infinity,rate:0.0584}],
+        NJ: [{min:0,max:20000,rate:0.014},{min:20000,max:35000,rate:0.0175},{min:35000,max:40000,rate:0.035},{min:40000,max:75000,rate:0.05525},{min:75000,max:500000,rate:0.0637},{min:500000,max:1000000,rate:0.0897},{min:1000000,max:Infinity,rate:0.1075}],
+        NM: [{min:0,max:5500,rate:0.017},{min:5500,max:11000,rate:0.032},{min:11000,max:16000,rate:0.047},{min:16000,max:210000,rate:0.049},{min:210000,max:Infinity,rate:0.059}],
+        NY: [{min:0,max:8500,rate:0.04},{min:8500,max:11700,rate:0.045},{min:11700,max:13900,rate:0.0525},{min:13900,max:80650,rate:0.0585},{min:80650,max:215400,rate:0.0625},{min:215400,max:1077550,rate:0.0685},{min:1077550,max:5000000,rate:0.0965},{min:5000000,max:25000000,rate:0.103},{min:25000000,max:Infinity,rate:0.109}],
+        NC: [{min:0,max:Infinity,rate:0.045}],
+        ND: [{min:0,max:Infinity,rate:0.0195}],
+        OH: [{min:0,max:26050,rate:0},{min:26050,max:100000,rate:0.02765},{min:100000,max:Infinity,rate:0.035}],
+        OK: [{min:0,max:1000,rate:0.0025},{min:1000,max:2500,rate:0.0075},{min:2500,max:3750,rate:0.0175},{min:3750,max:4900,rate:0.0275},{min:4900,max:7200,rate:0.0375},{min:7200,max:Infinity,rate:0.0475}],
+        OR: [{min:0,max:4050,rate:0.0475},{min:4050,max:10200,rate:0.0675},{min:10200,max:125000,rate:0.0875},{min:125000,max:Infinity,rate:0.099}],
+        PA: [{min:0,max:Infinity,rate:0.0307}],
+        RI: [{min:0,max:77450,rate:0.0375},{min:77450,max:176050,rate:0.0475},{min:176050,max:Infinity,rate:0.0599}],
+        SC: [{min:0,max:3460,rate:0},{min:3460,max:17330,rate:0.03},{min:17330,max:Infinity,rate:0.064}],
+        UT: [{min:0,max:Infinity,rate:0.0465}],
+        VT: [{min:0,max:45400,rate:0.0335},{min:45400,max:110050,rate:0.066},{min:110050,max:229550,rate:0.076},{min:229550,max:Infinity,rate:0.0875}],
+        VA: [{min:0,max:3000,rate:0.02},{min:3000,max:5000,rate:0.03},{min:5000,max:17000,rate:0.05},{min:17000,max:Infinity,rate:0.0575}],
+        WV: [{min:0,max:10000,rate:0.0236},{min:10000,max:25000,rate:0.0315},{min:25000,max:40000,rate:0.0354},{min:40000,max:60000,rate:0.0472},{min:60000,max:Infinity,rate:0.0512}],
+        WI: [{min:0,max:14320,rate:0.035},{min:14320,max:28640,rate:0.044},{min:28640,max:315310,rate:0.053},{min:315310,max:Infinity,rate:0.0765}]
+    };
+
+    /* ─── Holding period toggle ─── */
+    function setHolding(val) {
+        document.getElementById('holdingDuration').value = val;
+        document.querySelectorAll('#cryptoTaxCalculator .toggle-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.value === val); });
+    }
+
+    /* ─── Validation ─── */
+    function validate() {
+        var ok = true;
+        var income = parseFloat(document.getElementById('totalIncome').value);
+        var purchase = parseFloat(document.getElementById('purchaseCost').value);
+        var sale = parseFloat(document.getElementById('saleAmount').value);
+        var im = document.getElementById('incomeMsg');
+        var pm = document.getElementById('purchaseMsg');
+        var sm = document.getElementById('saleMsg');
+        im.textContent = ''; pm.textContent = ''; sm.textContent = '';
+        im.className = 'validation-msg'; pm.className = 'validation-msg'; sm.className = 'validation-msg';
+        if (isNaN(income) || income < 0) { im.textContent = 'Enter a valid income'; im.className = 'validation-msg error'; ok = false; }
+        if (isNaN(purchase) || purchase < 0) { pm.textContent = 'Enter a valid cost basis'; pm.className = 'validation-msg error'; ok = false; }
+        if (isNaN(sale) || sale < 0) { sm.textContent = 'Enter a valid sale amount'; sm.className = 'validation-msg error'; ok = false; }
+        return ok;
+    }
+
+    /* ─── Main tax calculation ─── */
+    function calculateTax() {
+        if (!validate()) return;
+
+        var income = parseFloat(document.getElementById('totalIncome').value) || 0;
+        var purchase = parseFloat(document.getElementById('purchaseCost').value) || 0;
+        var sale = parseFloat(document.getElementById('saleAmount').value) || 0;
+        var filing = document.getElementById('filingStatus').value;
+        var holding = document.getElementById('holdingDuration').value;
+        var stateCode = document.getElementById('stateDropdown').value;
+
+        var gain = sale - purchase;
+        var isLoss = gain < 0;
+        var taxableGain = isLoss ? 0 : gain;
+        var totalIncome = income + taxableGain;
+
+        var brackets = holding === 'longTerm' ? FED_LONG[filing] : FED_SHORT[filing];
+        var rateType = holding === 'longTerm' ? 'Long-term capital gains' : 'Short-term (ordinary income)';
+        var fedTax = calcMarginal(brackets, totalIncome, taxableGain);
+
+        var stateTax = 0;
+        var stateName = '';
+        if (stateCode !== 'none' && STATE_BRACKETS[stateCode]) {
+            stateTax = calcMarginal(STATE_BRACKETS[stateCode], totalIncome, taxableGain);
+            var sel = document.getElementById('stateDropdown');
+            stateName = sel.options[sel.selectedIndex].text;
+        }
+
+        var totalTax = fedTax + stateTax;
+        var maxBar = Math.max(fedTax, stateTax, 1);
+
+        var lossNote = '';
+        if (isLoss) {
+            lossNote = '<div class="result-note" style="color:#ff3b30;">You can deduct up to $3,000 in net capital losses per year against ordinary income. Remaining losses carry forward to future years.</div>';
+        }
+
+        var chartHTML = (!isLoss && totalTax > 0) ? '<div class="tax-bar-chart"><h4>Tax Breakdown</h4>' +
+            '<div class="bar-row"><span class="bar-label">Federal</span><div class="bar-track"><div class="bar-fill federal" style="width:'+(fedTax/maxBar*100).toFixed(1)+'%"></div></div><span class="bar-amount">'+fmt(fedTax)+'</span></div>' +
+            (stateCode !== 'none' ? '<div class="bar-row"><span class="bar-label">State</span><div class="bar-track"><div class="bar-fill state" style="width:'+(stateTax/maxBar*100).toFixed(1)+'%"></div></div><span class="bar-amount">'+fmt(stateTax)+'</span></div>' : '') +
+            '</div>' : '';
+
+        var html = '<div class="result-grid">' +
+            '<div class="result-item"><span class="result-label">Capital '+(isLoss?'Loss':'Gain')+'</span><span class="result-value '+(isLoss?'loss':'gain')+'">'+fmt(Math.abs(gain))+'</span></div>' +
+            '<div class="result-item"><span class="result-label">Federal Tax</span><span class="result-value">'+fmt(fedTax)+'</span></div>' +
+            (stateCode !== 'none' ? '<div class="result-item"><span class="result-label">'+stateName+' Tax</span><span class="result-value">'+fmt(stateTax)+'</span></div>' : '') +
+            '<div class="result-item highlight"><span class="result-label">Total Estimated Tax</span><span class="result-value">'+(isLoss?fmt(0):fmt(totalTax))+'</span></div>' +
+            '</div>' + lossNote + chartHTML +
+            '<div class="result-note">'+(isLoss?'':rateType+' — marginal rates applied')+'</div>' +
+            '<div class="result-actions"><button class="result-action-btn" onclick="copyTaxResults()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy Results</button></div>' +
+            '<div class="copied-msg" id="copiedMsg"></div>';
+
+        document.getElementById('taxResult').innerHTML = html;
+
+        window._lastTaxResult = { gain:gain, fedTax:fedTax, stateTax:stateTax, totalTax:totalTax, income:income, stateName:stateName||'None', isLoss:isLoss, rateType:rateType, filing:filing };
+    }
+
+    window.copyTaxResults = function() {
+        var r = window._lastTaxResult; if(!r) return;
+        var t = ['2025 USA Crypto Tax Estimate','—',
+            'Filing: '+r.filing,'Income: '+fmt(r.income),
+            'State: '+r.stateName,
+            (r.isLoss?'Capital Loss: ':'Capital Gain: ')+fmt(Math.abs(r.gain)),
+            'Federal Tax: '+fmt(r.fedTax),'State Tax: '+fmt(r.stateTax),
+            'Total Estimated Tax: '+(r.isLoss?fmt(0):fmt(r.totalTax)),
+            '—','Calculated at bitcointools.com'].join('\n');
+        navigator.clipboard.writeText(t).then(function(){
+            var m=document.getElementById('copiedMsg'); if(m){m.textContent='Copied to clipboard!';setTimeout(function(){m.textContent='';},2000);}
+        });
+    };
+
+    /* ─── Cost Basis Calculator ─── */
+    var cbMethod = 'fifo';
+
+    function calcCostBasis() {
+        var rows = document.querySelectorAll('.cb-lot-row');
+        var lots = [];
+        rows.forEach(function(r){
+            var q = parseFloat(r.querySelector('.cb-qty').value)||0;
+            var p = parseFloat(r.querySelector('.cb-price').value)||0;
+            if(q>0 && p>0) lots.push({qty:q,price:p});
+        });
+        if(lots.length===0) return;
+
+        var sellQty = parseFloat(document.getElementById('cbSellQty').value)||0;
+        var sellPrice = parseFloat(document.getElementById('cbSellPrice').value)||0;
+        if(sellQty<=0) return;
+
+        var totalProceeds = sellQty * sellPrice;
+        var costBasis = 0;
+        var remaining = sellQty;
+
+        if(cbMethod === 'average') {
+            var totalCost = 0, totalQty = 0;
+            lots.forEach(function(l){ totalCost += l.qty*l.price; totalQty += l.qty; });
+            var avgPrice = totalQty > 0 ? totalCost/totalQty : 0;
+            costBasis = Math.min(remaining, totalQty) * avgPrice;
+        } else {
+            var ordered = lots.slice();
+            if(cbMethod === 'lifo') ordered.reverse();
+            for(var i=0; i<ordered.length && remaining>0; i++){
+                var use = Math.min(remaining, ordered[i].qty);
+                costBasis += use * ordered[i].price;
+                remaining -= use;
             }
         }
 
-        const federalTaxOwed = gain * (federalTaxRate / 100);
-        const isLoss = gain < 0;
+        var gainLoss = totalProceeds - costBasis;
+        var isLoss = gainLoss < 0;
+        var methodLabel = cbMethod.toUpperCase();
+        if(cbMethod==='average') methodLabel = 'Average Cost';
 
-        let resultHTML = `
-            <div class="result-grid">
-                <div class="result-item">
-                    <span class="result-label">Capital ${isLoss ? 'Loss' : 'Gain'}</span>
-                    <span class="result-value ${isLoss ? 'loss' : 'gain'}">${formatCurrency(Math.abs(gain))}</span>
-                </div>
-                <div class="result-item">
-                    <span class="result-label">Tax Rate</span>
-                    <span class="result-value">${federalTaxRate}%</span>
-                </div>
-                <div class="result-item highlight">
-                    <span class="result-label">Estimated Federal Tax</span>
-                    <span class="result-value">${isLoss ? '$0' : formatCurrency(federalTaxOwed)}</span>
-                </div>
-            </div>
-            <div class="result-note">
-                ${rateType} rate applied
-            </div>
-        `;
-
-        document.getElementById("result").innerHTML = resultHTML;
+        var html = '<div class="result-grid">' +
+            '<div class="result-item"><span class="result-label">Method</span><span class="result-value" style="font-size:15px;">'+methodLabel+'</span></div>' +
+            '<div class="result-item"><span class="result-label">Cost Basis</span><span class="result-value">'+fmt(costBasis)+'</span></div>' +
+            '<div class="result-item"><span class="result-label">Sale Proceeds</span><span class="result-value">'+fmt(totalProceeds)+'</span></div>' +
+            '<div class="result-item highlight"><span class="result-label">Capital '+(isLoss?'Loss':'Gain')+'</span><span class="result-value '+(isLoss?'loss':'gain')+'">'+fmt(Math.abs(gainLoss))+'</span></div>' +
+            '</div>' +
+            '<div class="result-note">Per-unit cost basis: '+fmt(costBasis/sellQty)+' | Per-unit gain: '+fmt(gainLoss/sellQty)+'</div>';
+        document.getElementById('cbResult').innerHTML = html;
     }
+
+    /* ─── Debounced auto-calc ─── */
+    var taxTimer;
+    function debouncedTax() {
+        clearTimeout(taxTimer);
+        taxTimer = setTimeout(function(){
+            if(document.getElementById('totalIncome').value && document.getElementById('purchaseCost').value && document.getElementById('saleAmount').value) calculateTax();
+        }, 400);
+    }
+
+    /* ─── Init ─── */
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('calculateButton').addEventListener('click', calculateTax);
+        document.getElementById('btnShort').addEventListener('click', function(){ setHolding('shortTerm'); debouncedTax(); });
+        document.getElementById('btnLong').addEventListener('click', function(){ setHolding('longTerm'); debouncedTax(); });
+
+        ['totalIncome','purchaseCost','saleAmount'].forEach(function(id){
+            document.getElementById(id).addEventListener('input', debouncedTax);
+        });
+        document.getElementById('filingStatus').addEventListener('change', debouncedTax);
+        document.getElementById('stateDropdown').addEventListener('change', function(){
+            if(document.getElementById('totalIncome').value && document.getElementById('purchaseCost').value && document.getElementById('saleAmount').value) calculateTax();
+        });
+
+        /* Cost basis */
+        document.getElementById('cbAddLot').addEventListener('click', function(){
+            var row = document.createElement('div');
+            row.className = 'cb-lot-row';
+            row.innerHTML = '<div class="form-group"><div class="input-wrapper"><span class="input-prefix">#</span><input type="number" placeholder="Qty" class="cb-qty" min="0" step="any"></div></div>' +
+                '<div class="form-group"><div class="input-wrapper"><span class="input-prefix">$</span><input type="number" placeholder="Price per unit" class="cb-price" min="0" step="any"></div></div>' +
+                '<button class="cb-remove-btn">&times;</button>';
+            row.querySelector('.cb-remove-btn').addEventListener('click', function(){ row.remove(); });
+            document.getElementById('cbLots').appendChild(row);
+        });
+
+        document.querySelectorAll('.cb-method-btn').forEach(function(btn){
+            btn.addEventListener('click', function(){
+                document.querySelectorAll('.cb-method-btn').forEach(function(b){ b.classList.remove('active'); });
+                btn.classList.add('active');
+                cbMethod = btn.dataset.method;
+            });
+        });
+
+        document.getElementById('cbCalculateBtn').addEventListener('click', calcCostBasis);
+    });
+})();
 </script>
 
-{% include koinlylink.html link="https://coinledger.io/?fpr=bitcoinww&fp_sid=tools" %}
-<br><br>
-
+<br>
 <div id="howToUseCalculator">
     <h3>How to Use This Calculator</h3>
     <ol>
         <li><strong>Select Your Filing Status:</strong> Choose the option that corresponds to your tax filing status.</li>
         <li><strong>Enter Your Total Income:</strong> Input your overall annual taxable income for 2025.</li>
         <li><strong>Provide Cost Basis & Sale Amount:</strong> Enter what you paid and what you sold for.</li>
-        <li><strong>Select Holding Period:</strong> Short-term (≤1 year) is taxed as ordinary income. Long-term (&gt;1 year) gets preferential rates.</li>
-        <li><strong>Calculate:</strong> Click the button to see your estimated federal tax.</li>
+        <li><strong>Select Holding Period:</strong> Short-term (less than 1 year) is taxed as ordinary income. Long-term (over 1 year) gets preferential rates.</li>
+        <li><strong>Select Your State:</strong> Choose your state to include estimated state income tax on your gains.</li>
+        <li><strong>View Results:</strong> The calculator auto-updates as you type, or click the button. You'll see federal tax, state tax, and total estimated tax.</li>
     </ol>
-    <p>
-        Always consult with a tax professional for precise numbers. This calculator provides estimates based on 2025 IRS rates.
-    </p>
+    <p>Always consult with a tax professional for precise numbers. This calculator provides estimates based on 2025 IRS rates and uses marginal bracket calculations.</p>
 </div>
 
 <h2>2025 Long-Term Capital Gains Rates</h2>
@@ -299,7 +1027,6 @@ capture: yes
             <tr><td>Over $533,400</td><td class="rate-cell twenty">20%</td></tr>
         </table>
     </div>
-
     <div class="tax-table-card">
         <h3>Married Filing Jointly</h3>
         <table>
@@ -309,7 +1036,6 @@ capture: yes
             <tr><td>Over $600,050</td><td class="rate-cell twenty">20%</td></tr>
         </table>
     </div>
-
     <div class="tax-table-card">
         <h3>Married Filing Separately</h3>
         <table>
@@ -319,7 +1045,6 @@ capture: yes
             <tr><td>Over $300,000</td><td class="rate-cell twenty">20%</td></tr>
         </table>
     </div>
-
     <div class="tax-table-card">
         <h3>Head of Household</h3>
         <table>
@@ -348,7 +1073,6 @@ capture: yes
             <tr><td>Over $626,350</td><td class="rate-cell">37%</td></tr>
         </table>
     </div>
-
     <div class="tax-table-card">
         <h3>Married Filing Jointly</h3>
         <table>
@@ -367,401 +1091,3 @@ capture: yes
 <p class="source-note">Source: IRS Revenue Procedure 2024-40 (2025 tax year rates)</p>
 
 </div>
-
-<style>
-    #cryptoTaxCalculator {
-        max-width: 480px;
-        margin: 2rem auto;
-        padding: 32px;
-        color: var(--apple-text);
-        border-radius: 20px;
-        background: var(--apple-card);
-        box-shadow: var(--apple-shadow);
-        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        border: 1px solid rgba(0, 0, 0, 0.04);
-    }
-
-    .calc-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 28px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid var(--apple-border);
-    }
-
-    .calc-header h2 {
-        margin: 0;
-        font-size: 24px;
-        font-weight: 600;
-        letter-spacing: -0.02em;
-        color: var(--apple-text);
-    }
-
-    .year-badge {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 6px 14px;
-        border-radius: 20px;
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.02em;
-    }
-
-    .form-group {
-        margin-bottom: 20px;
-    }
-
-    .form-row {
-        display: flex;
-        gap: 16px;
-    }
-
-    .form-group.half {
-        flex: 1;
-    }
-
-    #cryptoTaxCalculator label {
-        display: flex;
-        align-items: center;
-        margin-bottom: 8px;
-        font-size: 13px;
-        font-weight: 500;
-        color: var(--apple-text-secondary);
-        letter-spacing: 0.01em;
-    }
-
-    .input-wrapper {
-        position: relative;
-        display: flex;
-        align-items: center;
-    }
-
-    .input-prefix {
-        position: absolute;
-        left: 14px;
-        color: var(--apple-text-secondary);
-        font-size: 16px;
-        font-weight: 400;
-        pointer-events: none;
-    }
-
-    #cryptoTaxCalculator select,
-    #cryptoTaxCalculator input {
-        width: 100%;
-        padding: 14px 16px;
-        border-radius: var(--apple-radius);
-        border: 1px solid var(--apple-border);
-        background: var(--apple-input-bg);
-        font-size: 16px;
-        font-family: inherit;
-        color: var(--apple-text);
-        transition: all 0.2s ease;
-        -webkit-appearance: none;
-        appearance: none;
-    }
-
-    #cryptoTaxCalculator input {
-        padding-left: 32px;
-    }
-
-    #cryptoTaxCalculator select {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2386868b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: right 14px center;
-        padding-right: 40px;
-        cursor: pointer;
-    }
-
-    #cryptoTaxCalculator select:focus,
-    #cryptoTaxCalculator input:focus {
-        outline: none;
-        border-color: var(--apple-blue);
-        background: var(--apple-card);
-        box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
-    }
-
-    #cryptoTaxCalculator input::placeholder {
-        color: var(--apple-text-secondary);
-        opacity: 0.6;
-    }
-
-    .toggle-container {
-        display: flex;
-        gap: 12px;
-    }
-
-    .toggle-btn {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 14px 16px;
-        border: 1px solid var(--apple-border);
-        border-radius: var(--apple-radius);
-        background: var(--apple-input-bg);
-        cursor: pointer;
-        transition: all 0.2s ease;
-        font-family: inherit;
-    }
-
-    .toggle-btn:hover {
-        border-color: var(--apple-blue);
-    }
-
-    .toggle-btn.active {
-        background: linear-gradient(135deg, rgba(0, 113, 227, 0.08) 0%, rgba(0, 113, 227, 0.04) 100%);
-        border-color: var(--apple-blue);
-        box-shadow: 0 0 0 1px var(--apple-blue);
-    }
-
-    .toggle-label {
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--apple-text);
-        margin-bottom: 2px;
-    }
-
-    .toggle-sub {
-        font-size: 12px;
-        color: var(--apple-text-secondary);
-    }
-
-    .calculate-btn {
-        width: 100%;
-        padding: 16px 24px;
-        margin-top: 8px;
-        background: var(--apple-blue);
-        color: white;
-        border: none;
-        border-radius: var(--apple-radius);
-        font-size: 16px;
-        font-weight: 500;
-        font-family: inherit;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-
-    .calculate-btn:hover {
-        background: var(--apple-blue-hover);
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
-    }
-
-    .calculate-btn:active {
-        transform: translateY(0);
-    }
-
-    #result {
-        margin-top: 24px;
-        padding: 20px;
-        border-radius: var(--apple-radius);
-        background: var(--apple-input-bg);
-        min-height: 80px;
-    }
-
-    .result-placeholder {
-        text-align: center;
-        color: var(--apple-text-secondary);
-        font-size: 14px;
-        padding: 20px 0;
-    }
-
-    .result-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-
-    .result-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-bottom: 12px;
-        border-bottom: 1px solid var(--apple-border);
-    }
-
-    .result-item:last-child {
-        border-bottom: none;
-        padding-bottom: 0;
-    }
-
-    .result-item.highlight {
-        background: linear-gradient(135deg, rgba(52, 199, 89, 0.1) 0%, rgba(52, 199, 89, 0.05) 100%);
-        margin: 8px -12px -12px;
-        padding: 16px 12px;
-        border-radius: var(--apple-radius-sm);
-        border-bottom: none;
-    }
-
-    .result-label {
-        font-size: 14px;
-        color: var(--apple-text-secondary);
-    }
-
-    .result-value {
-        font-size: 18px;
-        font-weight: 600;
-        color: var(--apple-text);
-        font-variant-numeric: tabular-nums;
-    }
-
-    .result-value.gain {
-        color: var(--apple-green);
-    }
-
-    .result-value.loss {
-        color: #ff3b30;
-    }
-
-    .result-note {
-        margin-top: 12px;
-        font-size: 12px;
-        color: var(--apple-text-secondary);
-        text-align: center;
-    }
-
-    /* Tables */
-    .tax-tables {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
-        margin: 24px 0;
-    }
-
-    .tax-table-card {
-        background: var(--apple-card);
-        border-radius: var(--apple-radius);
-        padding: 20px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-        border: 1px solid var(--apple-border);
-    }
-
-    .tax-table-card h3 {
-        margin: 0 0 16px 0;
-        font-size: 15px;
-        font-weight: 600;
-        color: var(--apple-text);
-        letter-spacing: -0.01em;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        color: var(--apple-text);
-        font-size: 14px;
-    }
-
-    table th {
-        text-align: left;
-        padding: 10px 12px;
-        background: var(--apple-input-bg);
-        font-weight: 500;
-        font-size: 12px;
-        color: var(--apple-text-secondary);
-        text-transform: uppercase;
-        letter-spacing: 0.03em;
-    }
-
-    table th:first-child {
-        border-radius: var(--apple-radius-sm) 0 0 var(--apple-radius-sm);
-    }
-
-    table th:last-child {
-        border-radius: 0 var(--apple-radius-sm) var(--apple-radius-sm) 0;
-        text-align: right;
-    }
-
-    table td {
-        padding: 12px;
-        border-bottom: 1px solid var(--apple-border);
-    }
-
-    table tr:last-child td {
-        border-bottom: none;
-    }
-
-    .rate-cell {
-        text-align: right;
-        font-weight: 600;
-        font-variant-numeric: tabular-nums;
-    }
-
-    .rate-cell.zero {
-        color: var(--apple-green);
-    }
-
-    .rate-cell.fifteen {
-        color: #ff9500;
-    }
-
-    .rate-cell.twenty {
-        color: #ff3b30;
-    }
-
-    .rate-note {
-        font-size: 14px;
-        color: var(--apple-text-secondary);
-        margin-bottom: 16px;
-    }
-
-    .source-note {
-        font-size: 12px;
-        color: var(--apple-text-secondary);
-        margin-top: 32px;
-        text-align: center;
-    }
-
-    #howToUseCalculator {
-        margin-top: 40px;
-        padding: 24px;
-        background: var(--apple-card);
-        border-radius: var(--apple-radius);
-        border: 1px solid var(--apple-border);
-    }
-
-    #howToUseCalculator h3 {
-        margin: 0 0 16px 0;
-        font-size: 18px;
-        font-weight: 600;
-        color: var(--apple-text);
-    }
-
-    #howToUseCalculator ol {
-        margin: 0;
-        padding-left: 20px;
-    }
-
-    #howToUseCalculator li {
-        margin-bottom: 10px;
-        line-height: 1.5;
-        color: var(--apple-text);
-    }
-
-    #howToUseCalculator p {
-        margin: 16px 0 0 0;
-        font-size: 14px;
-        color: var(--apple-text-secondary);
-    }
-
-    /* Mobile Styles */
-    @media (max-width: 768px) {
-        #cryptoTaxCalculator {
-            margin: 1rem;
-            padding: 24px;
-        }
-
-        .form-row {
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .calc-header h2 {
-            font-size: 20px;
-        }
-
-        .tax-tables {
-            grid-template-columns: 1fr;
-        }
-    }
-</style>
