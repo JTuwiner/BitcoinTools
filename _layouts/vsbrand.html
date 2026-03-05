@@ -782,53 +782,53 @@ document.addEventListener('DOMContentLoaded', function() {
     <script>
       window.addEventListener('load', (event) => {
         document.getElementById('sticky-cta-1').addEventListener('click', event => {
-          fathom.trackEvent('Click Wallet');
-          fathom.trackEvent('Click Wallet: {{ exchange1_page.title }}');
+          fathom.trackEvent('Click Wallet'); if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet');
+          fathom.trackEvent('Click Wallet: {{ exchange1_page.title }}'); if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet: {{ exchange1_page.title }}');
         });
         document.getElementById('sticky-cta-2').addEventListener('click', event => {
-          fathom.trackEvent('Click Wallet');
-          fathom.trackEvent('Click Wallet: {{ exchange2_page.title }}');
+          fathom.trackEvent('Click Wallet'); if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet');
+          fathom.trackEvent('Click Wallet: {{ exchange2_page.title }}'); if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet: {{ exchange2_page.title }}');
         });
         document.querySelectorAll('.vs-related-comparison-link').forEach(link => {
           link.addEventListener('click', event => {
-            fathom.trackEvent('Click Related Comparison');
+            fathom.trackEvent('Click Related Comparison'); if(typeof gmTrackEvent==='function')gmTrackEvent('Click Related Comparison');
           });
         });
         document.querySelectorAll('.vs-review-link').forEach(link => {
           link.addEventListener('click', event => {
-            fathom.trackEvent('Click Review');
+            fathom.trackEvent('Click Review'); if(typeof gmTrackEvent==='function')gmTrackEvent('Click Review');
           });
         });
 
         // Track inline CTA clicks for wallet 1
         document.querySelectorAll('.inline-cta-wallet1').forEach(link => {
           link.addEventListener('click', event => {
-            fathom.trackEvent('Click Wallet');
-            fathom.trackEvent('Click Wallet: {{ exchange1_page.title }}');
+            fathom.trackEvent('Click Wallet'); if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet');
+            fathom.trackEvent('Click Wallet: {{ exchange1_page.title }}'); if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet: {{ exchange1_page.title }}');
           });
         });
 
         // Track inline CTA clicks for wallet 2
         document.querySelectorAll('.inline-cta-wallet2').forEach(link => {
           link.addEventListener('click', event => {
-            fathom.trackEvent('Click Wallet');
-            fathom.trackEvent('Click Wallet: {{ exchange2_page.title }}');
+            fathom.trackEvent('Click Wallet'); if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet');
+            fathom.trackEvent('Click Wallet: {{ exchange2_page.title }}'); if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet: {{ exchange2_page.title }}');
           });
         });
 
         // Track quick buy link clicks for wallet 1
         document.querySelectorAll('.quick-buy-wallet1').forEach(link => {
           link.addEventListener('click', event => {
-            fathom.trackEvent('Click Wallet');
-            fathom.trackEvent('Click Wallet: {{ exchange1_page.title }}');
+            fathom.trackEvent('Click Wallet'); if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet');
+            fathom.trackEvent('Click Wallet: {{ exchange1_page.title }}'); if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet: {{ exchange1_page.title }}');
           });
         });
 
         // Track quick buy link clicks for wallet 2
         document.querySelectorAll('.quick-buy-wallet2').forEach(link => {
           link.addEventListener('click', event => {
-            fathom.trackEvent('Click Wallet');
-            fathom.trackEvent('Click Wallet: {{ exchange2_page.title }}');
+            fathom.trackEvent('Click Wallet'); if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet');
+            fathom.trackEvent('Click Wallet: {{ exchange2_page.title }}'); if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet: {{ exchange2_page.title }}');
           });
         });
       });
@@ -1169,7 +1169,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.compare-bright-section-toc-link').forEach(link => {
               link.addEventListener('click', event => {
                 const section = link.getAttribute('href').substring(1);
-                fathom.trackEvent(`Click TOC ${section}`);
+                fathom.trackEvent(`Click TOC ${section}`); if(typeof gmTrackEvent==='function')gmTrackEvent(`Click TOC ${section}`);
               });
             });
           });

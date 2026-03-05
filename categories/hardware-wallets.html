@@ -2350,7 +2350,7 @@ body .tool img {
   
   <!-- Brand Ratings Section -->
   <div class="brand-ratings-section">
-    <button class="brand-ratings-toggle" onclick="document.querySelector('.brand-ratings-content-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded'); if(typeof fathom !== 'undefined') fathom.trackEvent('Toggle Compare Brand Ratings');">
+    <button class="brand-ratings-toggle" onclick="document.querySelector('.brand-ratings-content-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded'); if(typeof fathom !== 'undefined') fathom.trackEvent('Toggle Compare Brand Ratings'); if(typeof gmTrackEvent==='function') gmTrackEvent('Toggle Compare Brand Ratings');">
       <span>Compare Brand Ratings</span>
       <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2433,7 +2433,7 @@ body .tool img {
 
   <!-- WalletScrutiny Section -->
   <div class="wallet-scrutiny-section">
-    <button class="wallet-scrutiny-toggle" onclick="document.querySelector('.wallet-scrutiny-content-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded'); if(typeof fathom !== 'undefined') fathom.trackEvent('Toggle WalletScrutiny Scores');">
+    <button class="wallet-scrutiny-toggle" onclick="document.querySelector('.wallet-scrutiny-content-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded'); if(typeof fathom !== 'undefined') fathom.trackEvent('Toggle WalletScrutiny Scores'); if(typeof gmTrackEvent==='function') gmTrackEvent('Toggle WalletScrutiny Scores');">
       <span>Compare WalletScrutiny Scores</span>
       <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2585,7 +2585,7 @@ body .tool img {
 
   <!-- Quick Compare Links -->
   <div class="quick-compare-section">
-    <button class="quick-compare-toggle" onclick="document.querySelector('.quick-compare-grid-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded'); if(typeof fathom !== 'undefined') fathom.trackEvent('Toggle Compare Brands Side-by-Side');">
+    <button class="quick-compare-toggle" onclick="document.querySelector('.quick-compare-grid-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded'); if(typeof fathom !== 'undefined') fathom.trackEvent('Toggle Compare Brands Side-by-Side'); if(typeof gmTrackEvent==='function') gmTrackEvent('Toggle Compare Brands Side-by-Side');">
       <span>Compare Brands Side-by-Side</span>
       <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2675,7 +2675,7 @@ body .tool img {
   {% for wallet in wallets %}
   <div class="hw-item">
     <div class="hw-header">
-      <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-image-wrapper" onclick="fathom.trackEvent('Click Hardware Wallet'); fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}');">
+      <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-image-wrapper" onclick="fathom.trackEvent('Click Hardware Wallet'); fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}'); if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Hardware Wallet');gmTrackEvent('Click Hardware Wallet: {{ wallet.title }}');}">
         <img loading="lazy" src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="hw-image">
       </a>
       
@@ -2691,7 +2691,7 @@ body .tool img {
         </div>
         {% endif %}
         
-        <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-title-link" onclick="fathom.trackEvent('Click Hardware Wallet'); fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}');">
+        <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-title-link" onclick="fathom.trackEvent('Click Hardware Wallet'); fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}'); if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Hardware Wallet');gmTrackEvent('Click Hardware Wallet: {{ wallet.title }}');}">
           <h2 class="hw-title">{{ wallet.title }}</h2>
         </a>
         
@@ -2726,14 +2726,14 @@ body .tool img {
         </div>
         
         <div class="hw-actions">
-          <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-apply-button" onclick="fathom.trackEvent('Click Hardware Wallet'); fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}');">
+          <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-apply-button" onclick="fathom.trackEvent('Click Hardware Wallet'); fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}'); if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Hardware Wallet');gmTrackEvent('Click Hardware Wallet: {{ wallet.title }}');}">
             GET {{ wallet.title | upcase }}
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
           {% if wallet.wallet_review %}
-          <a href="{{ wallet.wallet_review }}" class="hw-review-button" onclick="if(typeof fathom !== 'undefined') fathom.trackEvent('Click Hardware Wallet Review');">
+          <a href="{{ wallet.wallet_review }}" class="hw-review-button" onclick="if(typeof fathom !== 'undefined') fathom.trackEvent('Click Hardware Wallet Review'); if(typeof gmTrackEvent==='function') gmTrackEvent('Click Hardware Wallet Review');">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 6.25278V19.2528M12 6.25278C10.8321 5.47686 9.24649 5 7.5 5C5.75351 5 4.16789 5.47686 3 6.25278V19.2528C4.16789 18.4769 5.75351 18 7.5 18C9.24649 18 10.8321 18.4769 12 19.2528M12 6.25278C13.1679 5.47686 14.7535 5 16.5 5C18.2465 5 19.8321 5.47686 21 6.25278V19.2528C19.8321 18.4769 18.2465 18 16.5 18C14.7535 18 13.1679 18.4769 12 19.2528" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -2819,7 +2819,7 @@ body .tool img {
               <!-- iframe loads on click -->
             </div>
             <div class="hw-video-cta">
-              <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-video-cta-button" onclick="fathom.trackEvent('Click Hardware Wallet'); fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}');">
+              <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-video-cta-button" onclick="fathom.trackEvent('Click Hardware Wallet'); fathom.trackEvent('Click Hardware Wallet: {{ wallet.title }}'); if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Hardware Wallet');gmTrackEvent('Click Hardware Wallet: {{ wallet.title }}');}">
                 GET {{ wallet.title | upcase }}
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -3385,6 +3385,9 @@ function toggleInlineVideo(walletSlug, videoId) {
     if (typeof fathom !== 'undefined') {
       fathom.trackEvent('Click Hardware Wallet Video');
     }
+    if (typeof gmTrackEvent === 'function') {
+      gmTrackEvent('Click Hardware Wallet Video');
+    }
   }
 }
 </script>
@@ -3406,8 +3409,8 @@ function toggleInlineVideo(walletSlug, videoId) {
     document.querySelectorAll('.tool-link').forEach(function(link) {
       link.addEventListener('click', function() {
         var title = link.getAttribute('title');
-        fathom.trackEvent('Click Hardware Wallet');
-        fathom.trackEvent('Click Hardware Wallet: ' + title);
+        fathom.trackEvent('Click Hardware Wallet'); if(typeof gmTrackEvent==='function')gmTrackEvent('Click Hardware Wallet');
+        fathom.trackEvent('Click Hardware Wallet: ' + title); if(typeof gmTrackEvent==='function')gmTrackEvent('Click Hardware Wallet: ' + title);
       });
     });
     
@@ -3426,6 +3429,9 @@ function toggleInlineVideo(walletSlug, videoId) {
         var isChecked = this.checked;
         if (isChecked && typeof fathom !== 'undefined') {
           fathom.trackEvent('Bitcoin-only Toggle Enabled');
+        }
+        if (isChecked && typeof gmTrackEvent === 'function') {
+          gmTrackEvent('Bitcoin-only Toggle Enabled');
         }
         document.querySelectorAll('.tool-link').forEach(function(link) {
           var img = link.querySelector('img');

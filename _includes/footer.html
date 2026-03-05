@@ -40,7 +40,7 @@ window.addEventListener('load', () => {
   };
   for (const [sel, evt] of Object.entries(tracks)) {
     document.querySelectorAll(sel).forEach(el => {
-      el.addEventListener('click', () => fathom.trackEvent(evt));
+      el.addEventListener('click', () => { fathom.trackEvent(evt); if(typeof gmTrackEvent === 'function') gmTrackEvent(evt); });
     });
   }
 });
