@@ -33,12 +33,31 @@ layout: base
     </div>
 
     <div class="compare-exchange-cta">
-        {% include sticky-compare-cta.html 
-          exchange1=exchange1_page.brand
-          exchange2=exchange2_page.brand
-          exchange1Link=exchange1_page.link
-          exchange2Link=exchange2_page.link
-        %}
+      <div class="sticky-compare-cta"></div>
+      <div class="sticky-compare-cta-inner">
+        <div class="sticky-compare-cta-col">
+          <a href="{{ exchange1_page.link }}" rel="nofollow" target="_blank" class="sticky-compare-cta-button sticky-compare-cta-button--with-proof">
+            Visit {{ exchange1_page.brand }}'s Site
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="ml-2 w-3 h-3"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            {% if exchange1_page.vs_signupbonus %}
+            <span class="sticky-cta-proof">{{ exchange1_page.vs_signupbonus }}</span>
+            {% elsif exchange1_page.vs_trustpilot %}
+            <span class="sticky-cta-proof">⭐ {{ exchange1_page.vs_trustpilot }}</span>
+            {% endif %}
+          </a>
+        </div>
+        <div class="sticky-compare-cta-col">
+          <a href="{{ exchange2_page.link }}" rel="nofollow" target="_blank" class="sticky-compare-cta-button sticky-compare-cta-button--with-proof">
+            Visit {{ exchange2_page.brand }}'s Site
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="ml-2 w-3 h-3"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            {% if exchange2_page.vs_signupbonus %}
+            <span class="sticky-cta-proof">{{ exchange2_page.vs_signupbonus }}</span>
+            {% elsif exchange2_page.vs_trustpilot %}
+            <span class="sticky-cta-proof">⭐ {{ exchange2_page.vs_trustpilot }}</span>
+            {% endif %}
+          </a>
+        </div>
+      </div>
     </div>
     <script>
       window.addEventListener('load', (event) => {
@@ -59,11 +78,25 @@ layout: base
     <div id="sticky-cta">
       <a href="{{ exchange1_page.link }}" target="_blank" id="sticky-cta-1">
         <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }} logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px; border-radius: 50%;">
-        Visit {{ exchange1_page.brand }}'s Website
+        <span class="sticky-cta-inner-text">
+          <span>Visit {{ exchange1_page.brand }}'s Website</span>
+          {% if exchange1_page.vs_signupbonus %}
+          <span class="sticky-cta-proof sticky-cta-proof--bar">{{ exchange1_page.vs_signupbonus }}</span>
+          {% elsif exchange1_page.vs_trustpilot %}
+          <span class="sticky-cta-proof sticky-cta-proof--bar">⭐ {{ exchange1_page.vs_trustpilot }}</span>
+          {% endif %}
+        </span>
       </a>
       <a href="{{ exchange2_page.link }}" target="_blank" id="sticky-cta-2">
         <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }} logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px; border-radius: 50%;">
-        Visit {{ exchange2_page.brand }}'s Website
+        <span class="sticky-cta-inner-text">
+          <span>Visit {{ exchange2_page.brand }}'s Website</span>
+          {% if exchange2_page.vs_signupbonus %}
+          <span class="sticky-cta-proof sticky-cta-proof--bar">{{ exchange2_page.vs_signupbonus }}</span>
+          {% elsif exchange2_page.vs_trustpilot %}
+          <span class="sticky-cta-proof sticky-cta-proof--bar">⭐ {{ exchange2_page.vs_trustpilot }}</span>
+          {% endif %}
+        </span>
       </a>
     </div>
 
@@ -123,6 +156,34 @@ layout: base
       #sticky-cta a:hover {
         background: #000;
         color: #f2a900 !important;
+      }
+      .sticky-cta-inner-text {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        vertical-align: middle;
+        gap: 2px;
+      }
+      .sticky-cta-proof--bar {
+        font-size: 10px;
+        font-weight: 500;
+        opacity: 0.8;
+        line-height: 1;
+      }
+      #sticky-cta a:hover .sticky-cta-proof--bar {
+        color: rgba(242, 169, 0, 0.8) !important;
+      }
+      /* Top CTA proof subline */
+      .sticky-compare-cta-button--with-proof {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+      }
+      .sticky-cta-proof {
+        font-size: 11px;
+        font-weight: 500;
+        opacity: 0.8;
       }
 
       /* Inline Section CTAs */
