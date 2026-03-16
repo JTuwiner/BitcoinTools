@@ -124,6 +124,91 @@ layout: base
         background: #000;
         color: #f2a900 !important;
       }
+
+      /* Inline Section CTAs */
+      .inline-section-cta {
+        text-align: center;
+        padding: 30px 20px;
+        background: #fff;
+        border-radius: 12px;
+        margin: 30px 0;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      }
+      .inline-section-cta-bottom {
+        margin-top: 30px;
+        margin-bottom: 40px;
+      }
+      .inline-cta-label {
+        display: block;
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 16px;
+        font-weight: 500;
+      }
+      .inline-cta-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .inline-cta-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: #f2a900;
+        color: #000 !important;
+        text-decoration: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+      }
+      .inline-cta-link:hover {
+        background: #000;
+        color: #f2a900 !important;
+        text-decoration: none;
+      }
+      .inline-cta-link:hover .inline-cta-proof {
+        color: rgba(242, 169, 0, 0.8) !important;
+      }
+      .inline-cta-link img {
+        width: 28px;
+        height: 28px;
+        border-radius: 4px;
+      }
+      .inline-cta-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+      }
+      .inline-cta-name {
+        font-weight: 600;
+        font-size: 15px;
+      }
+      .inline-cta-proof {
+        font-size: 11px;
+        font-weight: 500;
+        opacity: 0.8;
+      }
+      .inline-cta-divider {
+        color: #999;
+        font-size: 14px;
+      }
+      @media (max-width: 500px) {
+        .inline-cta-buttons {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .inline-cta-divider {
+          display: none;
+        }
+        .inline-cta-link {
+          width: 100%;
+          justify-content: center;
+        }
+      }
     </style>
 
     <script>
@@ -351,6 +436,36 @@ layout: base
                   </div>
                   <p class="exchanges-details-side-subtitle">{{ exchange2_page.vs_price }}</p>
                 </div>
+              </div>
+            </div>
+
+            <!-- Inline CTA before Tax Forms -->
+            <div class="inline-section-cta">
+              <span class="inline-cta-label">Ready to decide?</span>
+              <div class="inline-cta-buttons">
+                <a href="{{ exchange1_page.link }}" target="_blank" class="inline-cta-link">
+                  <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}">
+                  <span class="inline-cta-text">
+                    <span class="inline-cta-name">Get {{ exchange1_page.title }}</span>
+                    {% if exchange1_page.vs_signupbonus %}
+                    <span class="inline-cta-proof">{{ exchange1_page.vs_signupbonus }}</span>
+                    {% elsif exchange1_page.vs_trustpilot %}
+                    <span class="inline-cta-proof">⭐ {{ exchange1_page.vs_trustpilot }}</span>
+                    {% endif %}
+                  </span>
+                </a>
+                <span class="inline-cta-divider">or</span>
+                <a href="{{ exchange2_page.link }}" target="_blank" class="inline-cta-link">
+                  <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}">
+                  <span class="inline-cta-text">
+                    <span class="inline-cta-name">Get {{ exchange2_page.title }}</span>
+                    {% if exchange2_page.vs_signupbonus %}
+                    <span class="inline-cta-proof">{{ exchange2_page.vs_signupbonus }}</span>
+                    {% elsif exchange2_page.vs_trustpilot %}
+                    <span class="inline-cta-proof">⭐ {{ exchange2_page.vs_trustpilot }}</span>
+                    {% endif %}
+                  </span>
+                </a>
               </div>
             </div>
 
@@ -664,6 +779,36 @@ layout: base
             </div>
 
           </div>
+        </div>
+      </div>
+
+      <!-- Inline CTA bottom -->
+      <div class="inline-section-cta inline-section-cta-bottom">
+        <span class="inline-cta-label">Ready to decide?</span>
+        <div class="inline-cta-buttons">
+          <a href="{{ exchange1_page.link }}" target="_blank" class="inline-cta-link">
+            <img loading="lazy" src="/tools/img/{{ exchange1_page.img }}" alt="{{ exchange1_page.title }}">
+            <span class="inline-cta-text">
+              <span class="inline-cta-name">Get {{ exchange1_page.title }}</span>
+              {% if exchange1_page.vs_signupbonus %}
+              <span class="inline-cta-proof">{{ exchange1_page.vs_signupbonus }}</span>
+              {% elsif exchange1_page.vs_trustpilot %}
+              <span class="inline-cta-proof">⭐ {{ exchange1_page.vs_trustpilot }}</span>
+              {% endif %}
+            </span>
+          </a>
+          <span class="inline-cta-divider">or</span>
+          <a href="{{ exchange2_page.link }}" target="_blank" class="inline-cta-link">
+            <img loading="lazy" src="/tools/img/{{ exchange2_page.img }}" alt="{{ exchange2_page.title }}">
+            <span class="inline-cta-text">
+              <span class="inline-cta-name">Get {{ exchange2_page.title }}</span>
+              {% if exchange2_page.vs_signupbonus %}
+              <span class="inline-cta-proof">{{ exchange2_page.vs_signupbonus }}</span>
+              {% elsif exchange2_page.vs_trustpilot %}
+              <span class="inline-cta-proof">⭐ {{ exchange2_page.vs_trustpilot }}</span>
+              {% endif %}
+            </span>
+          </a>
         </div>
       </div>
 
