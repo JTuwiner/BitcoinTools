@@ -215,11 +215,6 @@ document.addEventListener("DOMContentLoaded", function() {
     picks.forEach(function(pick) {
         pick.addEventListener('click', function() {
             var pickName = pick.getAttribute('data-pick');
-            if (typeof fathom !== "undefined" && fathom.trackEvent) {
-                fathom.trackEvent('Clicked Top Pick');
-                if (pickName) {
-                    fathom.trackEvent('Clicked Top Pick: ' + pickName);
-                }
             }
             if (typeof gmTrackEvent === 'function') {
                 gmTrackEvent('Clicked Top Pick');

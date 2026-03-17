@@ -508,8 +508,6 @@ document.addEventListener('DOMContentLoaded', function() {
 document.querySelectorAll('.program-link').forEach(link => {
   link.addEventListener('click', event => {
     const program = link.getAttribute('data-program');
-    fathom.trackEvent('Click Affiliate');
-    fathom.trackEvent(`Click Affiliate: ${program}`);
     if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Affiliate');gmTrackEvent(`Click Affiliate: ${program}`);}
   });
 });

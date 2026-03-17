@@ -52,7 +52,6 @@
     window.addEventListener('load', (event) => {
       document.querySelectorAll('.button-coinledger').forEach(item => {
       item.addEventListener('click', event => {
-        fathom.trackEvent('Click CoinLedger Link');
         if(typeof gmTrackEvent==='function') gmTrackEvent('Click CoinLedger Link');
       });
       });

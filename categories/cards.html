@@ -1754,7 +1754,7 @@ function updateMobileComparison() {
 
 <!-- Rewards Calculator Section -->
 <div class="rewards-calc-section">
-  <button class="rewards-calc-toggle" onclick="document.querySelector('.rewards-calc-content-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded'); if(typeof fathom !== 'undefined') fathom.trackEvent('Toggle Rewards Calculator'); if(typeof gmTrackEvent==='function') gmTrackEvent('Toggle Rewards Calculator');">
+  <button class="rewards-calc-toggle" onclick="document.querySelector('.rewards-calc-content-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded'); if(typeof gmTrackEvent==='function') gmTrackEvent('Toggle Rewards Calculator');">
     <span>Rewards Calculator — Which Card Earns You the Most?</span>
     <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2050,7 +2050,7 @@ function calculateRewards() {
     // CTA column
     var tdCta = document.createElement('td');
     var link = cardLinks[card.name] || '#';
-    tdCta.innerHTML = '<a href="' + link + '" target="_blank" rel="nofollow noopener" class="rewards-calc-cta" onclick="if(typeof fathom!==\'undefined\'){fathom.trackEvent(\'Click Card\');fathom.trackEvent(\'Click Card: ' + card.name + '\');}if(typeof gmTrackEvent===\'function\'){gmTrackEvent(\'Click Card\');gmTrackEvent(\'Click Card: ' + card.name + '\');}">APPLY NOW <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>';
+    tdCta.innerHTML = '<a href="' + link + '" target="_blank" rel="nofollow noopener" class="rewards-calc-cta" onclick="if(typeof gmTrackEvent===\'function\'){gmTrackEvent(\'Click Card\');gmTrackEvent(\'Click Card: ' + card.name + '\');}">APPLY NOW <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>';
     row.appendChild(tdCta);
     
     tbody.appendChild(row);
@@ -2060,10 +2060,7 @@ function calculateRewards() {
   document.getElementById('rewardsCalcResults').classList.add('show');
   
   // Track event
-  if (typeof fathom !== 'undefined') {
-    fathom.trackEvent('Calculate Card Rewards'); if(typeof gmTrackEvent==='function')gmTrackEvent('Calculate Card Rewards');
   }
-}
 </script>
 
 <br><br><br>
@@ -2074,7 +2071,7 @@ function calculateRewards() {
   <div class="card-item">
     <div class="card-header">
       <div class="card-image-wrapper">
-        <a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="card-image-link" onclick="fathom.trackEvent('Click Card'); fathom.trackEvent('Click Card: {{ card.title }}'); if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Card');gmTrackEvent('Click Card: {{ card.title }}');}">
+        <a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="card-image-link" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Card');gmTrackEvent('Click Card: {{ card.title }}');}">
           <img loading="lazy" src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="card-image">
         </a>
         <div class="card-type-below-image">
@@ -2103,7 +2100,7 @@ function calculateRewards() {
         </div>
         {% endif %}
         
-        <h2 class="card-title"><a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="card-title-link" onclick="fathom.trackEvent('Click Card'); fathom.trackEvent('Click Card: {{ card.title }}'); if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Card');gmTrackEvent('Click Card: {{ card.title }}');}">{{ card.title }}</a></h2>
+        <h2 class="card-title"><a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="card-title-link" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Card');gmTrackEvent('Click Card: {{ card.title }}');}">{{ card.title }}</a></h2>
         
         {% if card.rating %}
         <div class="card-rating">
@@ -2187,7 +2184,7 @@ function calculateRewards() {
         </div>
         
         <div class="card-actions">
-          <a href="{{ card.link }}" target="_blank" class="apply-button" onclick="fathom.trackEvent('Click Card'); fathom.trackEvent('Click Card: {{ card.title }}'); if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Card');gmTrackEvent('Click Card: {{ card.title }}');}">
+          <a href="{{ card.link }}" target="_blank" class="apply-button" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Card');gmTrackEvent('Click Card: {{ card.title }}');}">
             APPLY NOW
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -3351,8 +3348,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.tool-link').forEach(function(link) {
       link.addEventListener('click', function() {
         var title = link.getAttribute('title');
-        fathom.trackEvent('Click Card'); if(typeof gmTrackEvent==='function')gmTrackEvent('Click Card');
-        fathom.trackEvent('Click Card: ' + title); if(typeof gmTrackEvent==='function')gmTrackEvent('Click Card: ' + title);
+        if(typeof gmTrackEvent==='function')gmTrackEvent('Click Card');
+        if(typeof gmTrackEvent==='function')gmTrackEvent('Click Card: ' + title);
       });
     });
     
@@ -3369,8 +3366,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (cardFilter) {
       cardFilter.addEventListener('change', function() {
         var filterValue = this.value;
-        if (filterValue !== 'all' && typeof fathom !== 'undefined') {
-          fathom.trackEvent('Card Filter: ' + filterValue); if(typeof gmTrackEvent==='function')gmTrackEvent('Card Filter: ' + filterValue);
+        if (filterValue !== 'all' && typeof gmTrackEvent === 'function') {
+          gmTrackEvent('Card Filter: ' + filterValue);
         }
         document.querySelectorAll('.tool-link').forEach(function(link) {
           var isUsOnly = link.dataset.usOnly === 'true';
@@ -3425,10 +3422,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
 
       ctaBtn.addEventListener('click', function() {
-        if (typeof fathom !== 'undefined') {
-          fathom.trackEvent('Exit Intent: Gemini Click'); if(typeof gmTrackEvent==='function')gmTrackEvent('Exit Intent: Gemini Click');
-        }
-      });
+        });
 
       // Detect touch device
       var isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
