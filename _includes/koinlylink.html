@@ -1,5 +1,5 @@
 <style>
-.coinledger-link {
+.tax-cta-box {
     background-color: #f8f9fa;
     border-radius: 8px;
     padding: 30px;
@@ -8,18 +8,30 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.coinledger-link h2 {
+.tax-cta-box h2 {
     margin-top: 0;
     color: #333;
 }
 
-.coinledger-link p {
+.tax-cta-box p {
     font-size: 18px;
     margin: 15px 0;
-    color:black;
+    color: black;
 }
 
-.button-coinledger {
+.tax-cta-box .promo-code {
+    display: inline-block;
+    background-color: #232939;
+    color: #f2a900;
+    font-family: monospace;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+}
+
+.button-tax-cta {
     display: inline-block;
     background-color: #f2a900;
     color: black !important;
@@ -31,29 +43,45 @@
     transition: background-color 0.2s;
 }
 
-.button-coinledger:hover {
+.button-tax-cta:hover {
     background-color: #218838;
     color: white;
     text-decoration: none;
 }
 </style>
 
-<div class="coinledger-link">
-
-<h2>Have a complex trading history?</h2>
-
-<p>Use <b>CoinLedger</b> to import your transactions and calculate your taxes.</p>
-
-<a href="{{ include.link }}" class="button-coinledger">Calculate for free</a>
-
+<!-- Summ shown by default; JS randomly swaps 50% of sessions to CoinLedger -->
+<div class="tax-cta-box" id="tax-cta-summ">
+  <h2>Have a complex trading history?</h2>
+  <p>Use <b>Summ</b> to import your transactions and calculate your crypto taxes.<br>Get <b>20% off</b> with code <span class="promo-code">BITBO</span></p>
+  <a href="https://cryptotaxcalculator.io?via=bitbo&promo=BITBO" class="button-tax-cta" id="btn-summ">Get 20% Off with Summ</a>
 </div>
 
-<script> 
-    window.addEventListener('load', (event) => {
-      document.querySelectorAll('.button-coinledger').forEach(item => {
-      item.addEventListener('click', event => {
-        if(typeof gmTrackEvent==='function') gmTrackEvent('Click CoinLedger Link');
-      });
-      });
+<div class="tax-cta-box" id="tax-cta-coinledger" style="display:none">
+  <h2>Have a complex trading history?</h2>
+  <p>Use <b>CoinLedger</b> to import your transactions and calculate your taxes.</p>
+  <a href="{{ include.link }}" class="button-tax-cta" id="btn-coinledger">Calculate for free</a>
+</div>
+
+<script>
+  (function() {
+    if (Math.random() < 0.5) {
+      document.getElementById('tax-cta-summ').style.display = 'none';
+      document.getElementById('tax-cta-coinledger').style.display = '';
+    }
+    window.addEventListener('load', function() {
+      var btnSumm = document.getElementById('btn-summ');
+      var btnCoinledger = document.getElementById('btn-coinledger');
+      if (btnSumm) {
+        btnSumm.addEventListener('click', function() {
+          if (typeof gmTrackEvent === 'function') gmTrackEvent('Click Summ Link');
+        });
+      }
+      if (btnCoinledger) {
+        btnCoinledger.addEventListener('click', function() {
+          if (typeof gmTrackEvent === 'function') gmTrackEvent('Click CoinLedger Link');
+        });
+      }
     });
+  })();
 </script>
