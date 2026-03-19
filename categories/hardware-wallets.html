@@ -2675,7 +2675,7 @@ body .tool img {
   {% for wallet in wallets %}
   <div class="hw-item">
     <div class="hw-header">
-      <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-image-wrapper" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Hardware Wallet');gmTrackEvent('Click Hardware Wallet: {{ wallet.title }}');}">
+      <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-image-wrapper" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Hardware Wallet', { property: '{{ wallet.title }}' });}">
         <img loading="lazy" src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="hw-image">
       </a>
       
@@ -2691,7 +2691,7 @@ body .tool img {
         </div>
         {% endif %}
         
-        <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-title-link" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Hardware Wallet');gmTrackEvent('Click Hardware Wallet: {{ wallet.title }}');}">
+        <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-title-link" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Hardware Wallet', { property: '{{ wallet.title }}' });}">
           <h2 class="hw-title">{{ wallet.title }}</h2>
         </a>
         
@@ -2726,7 +2726,7 @@ body .tool img {
         </div>
         
         <div class="hw-actions">
-          <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-apply-button" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Hardware Wallet');gmTrackEvent('Click Hardware Wallet: {{ wallet.title }}');}">
+          <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-apply-button" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Hardware Wallet', { property: '{{ wallet.title }}' });}">
             GET {{ wallet.title | upcase }}
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2819,7 +2819,7 @@ body .tool img {
               <!-- iframe loads on click -->
             </div>
             <div class="hw-video-cta">
-              <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-video-cta-button" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Hardware Wallet');gmTrackEvent('Click Hardware Wallet: {{ wallet.title }}');}">
+              <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-video-cta-button" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Hardware Wallet', { property: '{{ wallet.title }}' });}">
                 GET {{ wallet.title | upcase }}
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -3404,7 +3404,7 @@ function toggleInlineVideo(walletSlug, videoId) {
     section.classList.add('expanded');
     wrapper.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
     if (typeof gmTrackEvent === 'function') {
-      gmTrackEvent('Click Hardware Wallet Video');
+      gmTrackEvent('Click Hardware Wallet Video', { property: walletSlug });
     }
   }
 }
@@ -3427,8 +3427,7 @@ function toggleInlineVideo(walletSlug, videoId) {
     document.querySelectorAll('.tool-link').forEach(function(link) {
       link.addEventListener('click', function() {
         var title = link.getAttribute('title');
-        if(typeof gmTrackEvent==='function')gmTrackEvent('Click Hardware Wallet');
-        if(typeof gmTrackEvent==='function')gmTrackEvent('Click Hardware Wallet: ' + title);
+        if(typeof gmTrackEvent==='function')gmTrackEvent('Click Hardware Wallet', { property: title });
       });
     });
     

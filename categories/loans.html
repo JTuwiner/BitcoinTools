@@ -1267,7 +1267,7 @@ document.addEventListener('DOMContentLoaded', function() {
   {% for loan in loans %}
   <div class="loan-item">
     <div class="loan-header">
-      <a href="{{ loan.link }}" target="_blank" rel="nofollow noopener" class="loan-image-wrapper" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Loan');gmTrackEvent('Click Loan: {{ loan.title }}');}">
+      <a href="{{ loan.link }}" target="_blank" rel="nofollow noopener" class="loan-image-wrapper" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Loan', { property: '{{ loan.title }}' });}">
         <img loading="lazy" src="/tools/img/{{ loan.img }}" alt="{{ loan.title }}" class="loan-image">
       </a>
       
@@ -1283,7 +1283,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         {% endif %}
         
-        <a href="{{ loan.link }}" target="_blank" rel="nofollow noopener" class="loan-title-link" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Loan');gmTrackEvent('Click Loan: {{ loan.title }}');}">
+        <a href="{{ loan.link }}" target="_blank" rel="nofollow noopener" class="loan-title-link" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Loan', { property: '{{ loan.title }}' });}">
           <h2 class="loan-title">{{ loan.title }}</h2>
         </a>
         
@@ -1322,7 +1322,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         
         <div class="loan-actions">
-          <a href="{{ loan.link }}" target="_blank" class="loan-apply-button" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Loan');gmTrackEvent('Click Loan: {{ loan.title }}');}">
+          <a href="{{ loan.link }}" target="_blank" class="loan-apply-button" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Loan', { property: '{{ loan.title }}' });}">
             GET A LOAN
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1412,8 +1412,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.tool-link').forEach(function(link) {
       link.addEventListener('click', function() {
         var title = link.getAttribute('title');
-        if(typeof gmTrackEvent==='function')gmTrackEvent('Click Loan');
-        if(typeof gmTrackEvent==='function')gmTrackEvent('Click Loan: ' + title);
+        if(typeof gmTrackEvent==='function')gmTrackEvent('Click Loan', { property: title });
       });
     });
   });

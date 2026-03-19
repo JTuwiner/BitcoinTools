@@ -782,12 +782,10 @@ document.addEventListener('DOMContentLoaded', function() {
     <script>
       window.addEventListener('load', (event) => {
         document.getElementById('sticky-cta-1').addEventListener('click', event => {
-          if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet');
-          if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet: {{ exchange1_page.title }}');
+          if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet', { property: '{{ exchange1_page.title }}' });
         });
         document.getElementById('sticky-cta-2').addEventListener('click', event => {
-          if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet');
-          if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet: {{ exchange2_page.title }}');
+          if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet', { property: '{{ exchange2_page.title }}' });
         });
         document.querySelectorAll('.vs-related-comparison-link').forEach(link => {
           link.addEventListener('click', event => {
@@ -803,32 +801,28 @@ document.addEventListener('DOMContentLoaded', function() {
         // Track inline CTA clicks for wallet 1
         document.querySelectorAll('.inline-cta-wallet1').forEach(link => {
           link.addEventListener('click', event => {
-            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet');
-            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet: {{ exchange1_page.title }}');
+            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet', { property: '{{ exchange1_page.title }}' });
           });
         });
 
         // Track inline CTA clicks for wallet 2
         document.querySelectorAll('.inline-cta-wallet2').forEach(link => {
           link.addEventListener('click', event => {
-            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet');
-            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet: {{ exchange2_page.title }}');
+            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet', { property: '{{ exchange2_page.title }}' });
           });
         });
 
         // Track quick buy link clicks for wallet 1
         document.querySelectorAll('.quick-buy-wallet1').forEach(link => {
           link.addEventListener('click', event => {
-            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet');
-            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet: {{ exchange1_page.title }}');
+            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet', { property: '{{ exchange1_page.title }}' });
           });
         });
 
         // Track quick buy link clicks for wallet 2
         document.querySelectorAll('.quick-buy-wallet2').forEach(link => {
           link.addEventListener('click', event => {
-            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet');
-            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet: {{ exchange2_page.title }}');
+            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet', { property: '{{ exchange2_page.title }}' });
           });
         });
       });

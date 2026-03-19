@@ -217,10 +217,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var pickName = pick.getAttribute('data-pick');
             }
             if (typeof gmTrackEvent === 'function') {
-                gmTrackEvent('Clicked Top Pick');
-                if (pickName) {
-                    gmTrackEvent('Clicked Top Pick: ' + pickName);
-                }
+                gmTrackEvent('Clicked Top Pick', { property: pickName || '' });
             }
         });
     });

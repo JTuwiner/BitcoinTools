@@ -2050,7 +2050,7 @@ function calculateRewards() {
     // CTA column
     var tdCta = document.createElement('td');
     var link = cardLinks[card.name] || '#';
-    tdCta.innerHTML = '<a href="' + link + '" target="_blank" rel="nofollow noopener" class="rewards-calc-cta" onclick="if(typeof gmTrackEvent===\'function\'){gmTrackEvent(\'Click Card\');gmTrackEvent(\'Click Card: ' + card.name + '\');}">APPLY NOW <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>';
+    tdCta.innerHTML = '<a href="' + link + '" target="_blank" rel="nofollow noopener" class="rewards-calc-cta" onclick="if(typeof gmTrackEvent===\'function\'){gmTrackEvent(\'Click Card\', { property: \'' + card.name + '\' });}">APPLY NOW <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>';
     row.appendChild(tdCta);
     
     tbody.appendChild(row);
@@ -2071,7 +2071,7 @@ function calculateRewards() {
   <div class="card-item">
     <div class="card-header">
       <div class="card-image-wrapper">
-        <a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="card-image-link" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Card');gmTrackEvent('Click Card: {{ card.title }}');}">
+        <a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="card-image-link" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Card', { property: '{{ card.title }}' });}">
           <img loading="lazy" src="/tools/img/{{ card.img }}" alt="{{ card.title }}" class="card-image">
         </a>
         <div class="card-type-below-image">
@@ -2100,7 +2100,7 @@ function calculateRewards() {
         </div>
         {% endif %}
         
-        <h2 class="card-title"><a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="card-title-link" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Card');gmTrackEvent('Click Card: {{ card.title }}');}">{{ card.title }}</a></h2>
+        <h2 class="card-title"><a href="{{ card.link }}" target="_blank" rel="nofollow noopener" class="card-title-link" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Card', { property: '{{ card.title }}' });}">{{ card.title }}</a></h2>
         
         {% if card.rating %}
         <div class="card-rating">
@@ -2184,7 +2184,7 @@ function calculateRewards() {
         </div>
         
         <div class="card-actions">
-          <a href="{{ card.link }}" target="_blank" class="apply-button" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Card');gmTrackEvent('Click Card: {{ card.title }}');}">
+          <a href="{{ card.link }}" target="_blank" class="apply-button" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Card', { property: '{{ card.title }}' });}">
             APPLY NOW
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -3348,8 +3348,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.tool-link').forEach(function(link) {
       link.addEventListener('click', function() {
         var title = link.getAttribute('title');
-        if(typeof gmTrackEvent==='function')gmTrackEvent('Click Card');
-        if(typeof gmTrackEvent==='function')gmTrackEvent('Click Card: ' + title);
+        if(typeof gmTrackEvent==='function')gmTrackEvent('Click Card', { property: title });
       });
     });
     
@@ -3367,7 +3366,7 @@ document.addEventListener('DOMContentLoaded', function() {
       cardFilter.addEventListener('change', function() {
         var filterValue = this.value;
         if (filterValue !== 'all' && typeof gmTrackEvent === 'function') {
-          gmTrackEvent('Card Filter: ' + filterValue);
+          gmTrackEvent('Card Filter', { property: filterValue });
         }
         document.querySelectorAll('.tool-link').forEach(function(link) {
           var isUsOnly = link.dataset.usOnly === 'true';
