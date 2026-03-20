@@ -22,21 +22,13 @@
   image: ledger.png
   product: Bitcoin and crypto hardware wallets.
 
-- company: Koinly
-  url: https://koinly.io/affiliate/
-  terms: "20% commission on first purchase, 10% lifetime commission on repeat purchases"
-  payoutfrequency: "Every 30 days via PayPal"
-  type: software
-  image: koinly.jpg
-  product: Crypto tax software.
-
-- company: Coinbase
-  url: https://coinbase-consumer.sjv.io/yqqj93
-  terms: "50% of trading fees for first 3 months"
-  payoutfrequency: "Local currency via PayPal or bank account"
+- company: ChangeNOW
+  url: https://www.changenow.io/affiliate
+  terms: "0.4% of completed swap volume by default, with adjustable fees available"
+  payoutfrequency: "Withdraw anytime in 11+ cryptocurrencies (about $100 minimum)"
   type: exchange
-  image: coinbase.webp
-  product: Cryptocurrency exchange.
+  image: changenow.svg
+  product: Crypto exchange, swap widget, API, and referral tools.
 - company: CoinLedger
   url: https://coinledger.io/affiliate-program
   terms: "25% recurring lifetime commission"
@@ -84,6 +76,14 @@
   type: software
   image: tradingview.jpg
   product: Charting & trading platform with social features.
+
+- company: Koinly
+  url: https://koinly.io/affiliate/
+  terms: "20% commission on first purchase, 10% lifetime commission on repeat purchases"
+  payoutfrequency: "Every 30 days via PayPal"
+  type: software
+  image: koinly.jpg
+  product: Crypto tax software.
 
 - company: Exodus
   url: https://www.exodus.com/support/en/articles/8598885-how-do-i-earn-rewards-with-the-exodus-referral-program
