@@ -55,7 +55,10 @@ capture: yes
 }
 
 .affiliate-logo-wide {
-  max-width: 180px;
+  width: 100px;
+  max-width: 100px;
+  height: 100px;
+  object-fit: contain;
   border-radius: 12px;
   border: none;
 }
