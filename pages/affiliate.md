@@ -721,7 +721,7 @@ document.querySelectorAll('.program-link').forEach(link => {
         <input type="number" id="ultimateAnnual" class="calc-input" placeholder="# of referrals" min="0">
       </div>
     </div>
-  </div>
+  </div> 
 
   <div id="tvCalcResult" class="calc-result">
     Estimated earnings: $0
