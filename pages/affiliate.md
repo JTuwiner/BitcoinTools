@@ -535,7 +535,7 @@ document.querySelectorAll('.program-link').forEach(link => {
     {% if program.type == 'software' %}
     <div class="affiliate-card" data-type="{{ program.type }}">
       <img src="/tools/img/{{ program.image }}" alt="{{ program.company }} logo" class="affiliate-logo{% if program.company == 'ChangeNOW' %} affiliate-logo-wide{% endif %}">
-      <h3><a href="{{ program.url }}" class="program-link" data-program="{{ program.company }}" target="_blank" rel="nofollow">{{ program.company }} →</a></h3>
+      <h3><a href="{{ program.url }}" class="program-link" data-program="{{ program.company }}" target="_blank">{{ program.company }} →</a></h3>
       <div class="affiliate-details">
         <p><strong>Product:</strong> {{ program.product }}</p>
         <p><strong>Commission:</strong> {{ program.terms }}</p>
@@ -563,7 +563,7 @@ document.querySelectorAll('.program-link').forEach(link => {
     {% if program.type == 'wallet' %}
     <div class="affiliate-card" data-type="{{ program.type }}">
       <img src="/tools/img/{{ program.image }}" alt="{{ program.company }} logo" class="affiliate-logo{% if program.company == 'ChangeNOW' %} affiliate-logo-wide{% endif %}">
-      <h3><a href="{{ program.url }}" class="program-link" data-program="{{ program.company }}" target="_blank" rel="nofollow">{{ program.company }} →</a></h3>
+      <h3><a href="{{ program.url }}" class="program-link" data-program="{{ program.company }}" target="_blank">{{ program.company }} →</a></h3>
       <div class="affiliate-details">
         <p><strong>Product:</strong> {{ program.product }}</p>
         <p><strong>Commission:</strong> {{ program.terms }}</p>
@@ -594,7 +594,7 @@ document.querySelectorAll('.program-link').forEach(link => {
     {% if program.type == 'exchange' %}
     <div class="affiliate-card" data-type="{{ program.type }}">
       <img src="/tools/img/{{ program.image }}" alt="{{ program.company }} logo" class="affiliate-logo{% if program.company == 'ChangeNOW' %} affiliate-logo-wide{% endif %}">
-      <h3><a href="{{ program.url }}" class="program-link" data-program="{{ program.company }}" target="_blank" rel="nofollow">{{ program.company }} →</a></h3>
+      <h3><a href="{{ program.url }}" class="program-link" data-program="{{ program.company }}" target="_blank">{{ program.company }} →</a></h3>
       <div class="affiliate-details">
         <p><strong>Product:</strong> {{ program.product }}</p>
         <p><strong>Commission:</strong> {{ program.terms }}</p>
