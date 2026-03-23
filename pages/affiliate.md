@@ -351,14 +351,9 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
     <td>Monthly via BTC/Bank</td>
   </tr>
   <tr>
-    <td>Koinly</td>
-    <td>20% initial + 10% recurring</td>
-    <td>Every 30 days via PayPal</td>
-  </tr>
-  <tr>
-    <td>Coinbase</td>
-    <td>50% of fees for 3 months</td>
-    <td>Local currency via PayPal/Bank</td>
+    <td>ChangeNOW</td>
+    <td>0.4% of swap volume by default</td>
+    <td>Anytime in 11+ cryptocurrencies</td>
   </tr>
   <tr>
     <td>CoinLedger</td>
@@ -390,6 +385,11 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
     <td>$10-350 per subscription</td>
     <td>Monthly, 30 days after month end</td>
   </tr>
+  <tr>
+    <td>Koinly</td>
+    <td>20% initial + 10% recurring</td>
+    <td>Every 30 days via PayPal</td>
+  </tr>
 </tbody>
 </table>
 
@@ -402,13 +402,13 @@ We've researched and listed the top cryptocurrency affiliate programs across dif
     <option value="bitbo">Bitbo Pro (50%)</option>
     <option value="trezor">Trezor (15%)</option>
     <option value="ledger">Ledger (10%)</option>
-    <option value="koinly">Koinly (20%)</option>
-    <option value="coinbase">Coinbase (50% trading fees)</option>
+    <option value="changenow">ChangeNOW (0.4% of swap volume)</option>
     <option value="coinledger">CoinLedger (25%)</option>
     <option value="bitbox">BitBox (12%)</option>
     <option value="river">River (Up to $95 per $10k referral)</option>
     <option value="kraken">Kraken ($10 per referral)</option>
     <option value="robinhood">Robinhood ($20 per referral)</option>
+    <option value="koinly">Koinly (20%)</option>
   </select>
   
   <input type="number" id="calcInput" class="calc-input" placeholder="Select a program above">
@@ -430,10 +430,10 @@ document.addEventListener('DOMContentLoaded', function() {
       case 'bitbo':
       case 'trezor':
       case 'ledger':
-      case 'koinly':
-      case 'coinbase':
+      case 'changenow':
       case 'coinledger':
       case 'bitbox':
+      case 'koinly':
         calcInput.placeholder = "Enter Sales Volume ($)";
         break;
       case 'river':
@@ -468,11 +468,8 @@ document.addEventListener('DOMContentLoaded', function() {
       case 'ledger':
         earnings = input * 0.1;
         break;
-      case 'koinly':
-        earnings = input * 0.2;
-        break;
-      case 'coinbase':
-        earnings = input * 0.5;
+      case 'changenow':
+        earnings = input * 0.004;
         break;
       case 'coinledger':
         earnings = input * 0.25;
@@ -488,6 +485,9 @@ document.addEventListener('DOMContentLoaded', function() {
         break;
       case 'robinhood':
         earnings = input * 20;
+        break;
+      case 'koinly':
+        earnings = input * 0.2;
         break;
     }
     
