@@ -1,3 +1,6 @@
+{% assign tl_lang = page.lang | default: "en" %}
+{% assign tl_desc_key = "desc_" | append: tl_lang %}
+{% assign tl_desc = tool[tl_desc_key] | default: tool.desc %}
 <a target="_blank" 
    class="{% if tool.class %}{{ tool.class }} {% endif %}tool tool-link{% if tool.toppick %} top-pick{% endif %}" 
    title="{{ tool.title }}" 
@@ -10,10 +13,10 @@
    data-default-img="/tools/img/{{ tool.img }}"
    data-default-link="{{ tool.link }}"
    data-default-title="{{ tool.title }}"
-   data-default-desc="{{ tool.desc }}">
+   data-default-desc="{{ tl_desc }}">
      <img loading="lazy" src="/tools/img/{{ tool.img }}" alt="{{ tool.title }}">
      <div class="tool-info">
          <h3>{{ tool.title }}</h3>
-         <p>{{ tool.desc }}</p>
+         <p>{{ tl_desc }}</p>
      </div>
 </a>

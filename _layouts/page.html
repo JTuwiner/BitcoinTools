@@ -25,9 +25,10 @@ layout: base
       
       {% if page.category %}
       <div class="tools-container">
+        {% assign cat_match = page.category_key | default: page.title %}
         {% assign items = site.pages | sort: "sort" %}
         {% for tool in items %}
-          {% if tool.cat == page.title %}
+          {% if tool.cat == cat_match %}
              {% include toolslist.html %}
           {% endif %}  
         {% endfor %}
