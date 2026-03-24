@@ -1,9 +1,15 @@
 {%- if page.hreflang_key -%}
+{%- assign hreflang_base = page.hreflang_base | default: "https://bitbo.io/tools" -%}
 {%- for p in site.pages -%}
 {%- if p.hreflang_key == page.hreflang_key %}
-<link rel="alternate" hreflang="{{ p.language | default: 'en' }}" href="https://bitbo.io/tools{{ p.url | replace: 'index.html', '' }}" />
+{%- if p.custom_canonical %}
+{%- assign hreflang_href = p.custom_canonical -%}
+{%- else %}
+{%- assign hreflang_href = hreflang_base | append: p.url | replace: 'index.html', '' -%}
+{%- endif %}
+<link rel="alternate" hreflang="{{ p.language | default: 'en' }}" href="{{ hreflang_href }}" />
 {%- if p.language == nil or p.language == 'en' %}
-<link rel="alternate" hreflang="x-default" href="https://bitbo.io/tools{{ p.url | replace: 'index.html', '' }}" />
+<link rel="alternate" hreflang="x-default" href="{{ hreflang_href }}" />
 {%- endif -%}
 {%- endif -%}
 {%- endfor -%}

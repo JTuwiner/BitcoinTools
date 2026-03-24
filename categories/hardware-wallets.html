@@ -19,9 +19,12 @@ sidebar_toc:
     title: Multisig Integrations
   - id: hardware-wallet-brands
     title: Hardware Wallet Brands & Devices
+lang: en
+language: en
+hreflang_key: hardware-wallets
+head-extra:
+  - hreflang.html
 ---
-
-{% assign wallets = site.pages | where: "cat", "Hardware Wallets" | sort: "sort" %}
 
 <style>
 .hw-intro {
@@ -2288,8 +2291,10 @@ body .tool img {
 }
 </style>
 
-<br><br>
+{% include hardware-wallets-body.html %}
 
+<!-- LEGACY CONTENT PRESERVED BELOW - kept for reference, not rendered -->
+{% comment %}
 <div class="toc-box" id="inline-toc">
     <div class="toc-box-label">Table Of Contents</div>
     <nav>
@@ -3485,3 +3490,4 @@ function toggleInlineVideo(walletSlug, videoId) {
     <span class="toggle-label">Show Bitcoin-only versions</span>
   </label>
 </div>
+{% endcomment %}

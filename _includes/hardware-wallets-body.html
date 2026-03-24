@@ -1,0 +1,1038 @@
+{% assign lang = page.lang | default: "en" %}
+{% assign t = site.data.hardware-wallets[lang] %}
+{% assign lang_suffix = "" %}
+{% if lang != "en" %}{% assign lang_suffix = "_" | append: lang %}{% endif %}
+
+{% assign wallets = site.pages | where: "cat", "Hardware Wallets" | sort: "sort" %}
+
+<br><br>
+
+<div class="toc-box" id="inline-toc">
+    <div class="toc-box-label">{{ t.toc_label }}</div>
+    <nav>
+        <ul>
+            <li><a href="#compare-hardware-wallets">{{ t.toc_compare }}</a></li>
+            <li><a href="#hardware-wallet-details">{{ t.toc_details }}</a></li>
+            <li><a href="#multisig-integrations">{{ t.toc_multisig }}</a></li>
+            <li><a href="#hardware-wallet-brands">{{ t.toc_brands }}</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="hw-intro">
+
+  <p>{{ t.intro_p1 }}</p>
+  
+  <div class="hw-intro-highlight">
+    <p>{{ t.intro_highlight }}</p>
+  </div>
+</div>
+
+{% if wallets.size > 0 %}
+<div class="hw-comparison-table-wrapper" id="compare-hardware-wallets">
+  <div class="hw-comparison-table-header">
+    <h2 class="hw-comparison-table-title">{{ t.compare_title }}</h2>
+  </div>
+  
+  <!-- Desktop Table -->
+  <div class="desktop-hw-table">
+    <table class="hw-comparison-table">
+      <thead>
+        <tr>
+          <th>{{ t.th_wallet }}</th>
+          <th>{{ t.th_bestfor }}</th>
+          <th>{{ t.th_price }}</th>
+          <th>{{ t.th_coins }}</th>
+          <th>{{ t.th_screen }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for wallet in wallets %}
+        {% assign bestfor_key = "hw_bestfor" | append: lang_suffix %}
+        {% assign wallet_bestfor_t = wallet[bestfor_key] | default: wallet.hw_bestfor | default: wallet.wallet_bestfor | default: "—" %}
+        <tr>
+          <td>
+            <div class="hw-table-wallet-name">
+              <img loading="lazy" src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="hw-table-wallet-img">
+              <span>{{ wallet.title }}</span>
+            </div>
+          </td>
+          <td>{{ wallet_bestfor_t }}</td>
+          <td>{{ wallet.wallet_price | default: "—" }}</td>
+          <td>{{ wallet.wallet_coins | default: "—" }}</td>
+          <td>{{ wallet.wallet_screen | default: "—" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Brand Ratings Section -->
+  <div class="brand-ratings-section">
+    <button class="brand-ratings-toggle" onclick="document.querySelector('.brand-ratings-content-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded'); if(typeof gmTrackEvent==='function') gmTrackEvent('Toggle Compare Brand Ratings');">
+      <span>{{ t.brand_ratings_toggle }}</span>
+      <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    
+    <div class="brand-ratings-content-wrapper">
+      <div class="brand-ratings-info">
+        {{ t.brand_ratings_info }}
+      </div>
+      <table class="brand-ratings-table">
+        <thead>
+          <tr>
+            <th>{{ t.th_brand }}</th>
+            <th>{{ t.th_rating }}</th>
+            <th>{{ t.th_reviews }}</th>
+            <th>{{ t.th_source }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="brand-rating-name">
+                <img loading="lazy" src="/tools/img/bitbox.png" alt="BitBox" class="brand-rating-img">
+                <span>BitBox</span>
+              </div>
+            </td>
+            <td><span class="rating-stars">⭐ 4.8/5</span></td>
+            <td>1,985</td>
+            <td><a href="https://www.trustpilot.com/review/bitbox.swiss" target="_blank" rel="nofollow noopener">Trustpilot</a></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="brand-rating-name">
+                <img loading="lazy" src="/tools/img/trezor.png" alt="Trezor" class="brand-rating-img">
+                <span>Trezor</span>
+              </div>
+            </td>
+            <td><span class="rating-stars">⭐ 4.6/5</span></td>
+            <td>1,689</td>
+            <td><a href="https://www.trustpilot.com/review/trezor.io" target="_blank" rel="nofollow noopener">Trustpilot</a></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="brand-rating-name">
+                <img loading="lazy" src="/tools/img/coldcard.jpeg" alt="Coldcard" class="brand-rating-img">
+                <span>Coldcard</span>
+              </div>
+            </td>
+            <td><span class="rating-stars">⭐ 4.6/5</span></td>
+            <td>53</td>
+            <td><a href="https://heyapollo.com/product/coldcard-mk4" target="_blank" rel="nofollow noopener">HeyApollo</a></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="brand-rating-name">
+                <img loading="lazy" src="/tools/img/jade.png" alt="Blockstream" class="brand-rating-img">
+                <span>Jade</span>
+              </div>
+            </td>
+            <td><span class="rating-stars">⭐ 4.5/5</span></td>
+            <td>73</td>
+            <td><a href="https://heyapollo.com/product/blockstream-jade" target="_blank" rel="nofollow noopener">HeyApollo</a></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="brand-rating-name">
+                <img loading="lazy" src="/tools/img/ledger.png" alt="Ledger" class="brand-rating-img">
+                <span>Ledger</span>
+              </div>
+            </td>
+            <td><span class="rating-stars">⭐ 3.4/5</span></td>
+            <td>2,381</td>
+            <td><a href="https://www.trustpilot.com/review/ledger.com" target="_blank" rel="nofollow noopener">Trustpilot</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- WalletScrutiny Section -->
+  <div class="wallet-scrutiny-section">
+    <button class="wallet-scrutiny-toggle" onclick="document.querySelector('.wallet-scrutiny-content-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded'); if(typeof gmTrackEvent==='function') gmTrackEvent('Toggle WalletScrutiny Scores');">
+      <span>{{ t.scrutiny_toggle }}</span>
+      <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    
+    <div class="wallet-scrutiny-content-wrapper">
+      <div class="wallet-scrutiny-intro">
+        <p>{{ t.scrutiny_intro_p1 }}</p>
+        <p>{{ t.scrutiny_intro_p2 }}</p>
+        <p>{{ t.scrutiny_intro_p3 }}</p>
+        <div class="wallet-scrutiny-attribution">
+          {{ t.scrutiny_attribution }}
+        </div>
+      </div>
+      <table class="wallet-scrutiny-table">
+        <thead>
+          <tr>
+            <th>{{ t.th_wallet }}</th>
+            <th>{{ t.th_score }}</th>
+            <th>{{ t.th_failed }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img loading="lazy" src="/tools/img/bitbox.png" alt="BitBox02" class="wallet-scrutiny-img">
+                <span>BitBox02</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img loading="lazy" src="/tools/img/coldcard.jpeg" alt="Coldcard Q" class="wallet-scrutiny-img">
+                <span>Coldcard Q</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img loading="lazy" src="/tools/img/coldcard.jpeg" alt="Coldcard Mk4" class="wallet-scrutiny-img">
+                <span>Coldcard Mk4</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img loading="lazy" src="/tools/img/trezor.png" alt="Trezor Safe 7" class="wallet-scrutiny-img">
+                <span>Trezor Safe 7</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img loading="lazy" src="/tools/img/trezor.png" alt="Trezor Safe 5" class="wallet-scrutiny-img">
+                <span>Trezor Safe 5</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img loading="lazy" src="/tools/img/trezor.png" alt="Trezor Safe 3" class="wallet-scrutiny-img">
+                <span>Trezor Safe 3</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img loading="lazy" src="/tools/img/jade.png" alt="Jade Plus" class="wallet-scrutiny-img">
+                <span>Jade Plus</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img loading="lazy" src="/tools/img/jade.png" alt="Jade" class="wallet-scrutiny-img">
+                <span>Jade</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img loading="lazy" src="/tools/img/ledger.png" alt="Ledger Stax" class="wallet-scrutiny-img">
+                <span>Ledger Stax</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-partial">8/10</span></td>
+            <td><span class="scrutiny-failed-test">{{ t.scrutiny_no_source }}</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img loading="lazy" src="/tools/img/ledger.png" alt="Ledger Flex" class="wallet-scrutiny-img">
+                <span>Ledger Flex</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-partial">8/10</span></td>
+            <td><span class="scrutiny-failed-test">{{ t.scrutiny_no_source }}</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img loading="lazy" src="/tools/img/ledger.png" alt="Ledger Nano X" class="wallet-scrutiny-img">
+                <span>Ledger Nano X</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-partial">8/10</span></td>
+            <td><span class="scrutiny-failed-test">{{ t.scrutiny_no_source }}</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="wallet-scrutiny-wallet-name">
+                <img loading="lazy" src="/tools/img/ledger.png" alt="Ledger Nano S Plus" class="wallet-scrutiny-img">
+                <span>Ledger Nano S Plus</span>
+              </div>
+            </td>
+            <td><span class="scrutiny-score scrutiny-score-partial">8/10</span></td>
+            <td><span class="scrutiny-failed-test">{{ t.scrutiny_no_source }}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Quick Compare Links -->
+  <div class="quick-compare-section">
+    <button class="quick-compare-toggle" onclick="document.querySelector('.quick-compare-grid-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded'); if(typeof gmTrackEvent==='function') gmTrackEvent('Toggle Compare Brands Side-by-Side');">
+      <span>{{ t.compare_brands_toggle }}</span>
+      <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="quick-compare-grid-wrapper">
+      <div class="quick-compare-grid">
+        <a href="/tools/trezor-vs-ledger/" class="quick-compare-link">
+          <span class="quick-compare-brands">Trezor vs Ledger</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/tools/trezor-vs-coldcard/" class="quick-compare-link">
+          <span class="quick-compare-brands">Trezor vs Coldcard</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/tools/coldcard-vs-ledger/" class="quick-compare-link">
+          <span class="quick-compare-brands">Coldcard vs Ledger</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/tools/bitbox-vs-ledger/" class="quick-compare-link">
+          <span class="quick-compare-brands">BitBox vs Ledger</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/tools/trezor-vs-bitbox/" class="quick-compare-link">
+          <span class="quick-compare-brands">Trezor vs BitBox</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/tools/coldcard-vs-jade/" class="quick-compare-link">
+          <span class="quick-compare-brands">Coldcard vs Jade</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/tools/trezor-vs-jade/" class="quick-compare-link">
+          <span class="quick-compare-brands">Trezor vs Jade</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/tools/coldcard-vs-bitbox/" class="quick-compare-link">
+          <span class="quick-compare-brands">Coldcard vs BitBox</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/tools/trezor-compare/" class="quick-compare-link">
+          <span class="quick-compare-brands">Compare Trezors</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+        <a href="/tools/ledger-compare/" class="quick-compare-link">
+          <span class="quick-compare-brands">Compare Ledgers</span>
+          <span class="quick-compare-arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Cards -->
+  <div class="mobile-hw-cards">
+    {% for wallet in wallets %}
+    {% assign bestfor_key = "hw_bestfor" | append: lang_suffix %}
+    {% assign wallet_bestfor_t = wallet[bestfor_key] | default: wallet.hw_bestfor | default: wallet.wallet_bestfor | default: "—" %}
+    <div class="mobile-hw-card">
+      <div class="mobile-hw-card-header">
+        <img loading="lazy" src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-hw-card-img">
+        <div class="mobile-hw-card-name">{{ wallet.title }}</div>
+      </div>
+      <div class="mobile-hw-card-details">
+        <div class="mobile-hw-detail-item">
+          <span class="mobile-hw-detail-label">{{ t.mobile_bestfor }}</span>
+          <span class="mobile-hw-detail-value">{{ wallet_bestfor_t }}</span>
+        </div>
+        <div class="mobile-hw-detail-item">
+          <span class="mobile-hw-detail-label">{{ t.mobile_price }}</span>
+          <span class="mobile-hw-detail-value">{{ wallet.wallet_price | default: "—" }}</span>
+        </div>
+        <div class="mobile-hw-detail-item">
+          <span class="mobile-hw-detail-label">{{ t.mobile_coins }}</span>
+          <span class="mobile-hw-detail-value">{{ wallet.wallet_coins | default: "—" }}</span>
+        </div>
+        <div class="mobile-hw-detail-item">
+          <span class="mobile-hw-detail-label">{{ t.mobile_screen }}</span>
+          <span class="mobile-hw-detail-value">{{ wallet.wallet_screen | default: "—" }}</span>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<h2 id="hardware-wallet-details">{{ t.wallet_details_title }}</h2>
+
+<div class="hw-listing">
+  {% for wallet in wallets %}
+  {% assign desc_key = "desc" | append: lang_suffix %}
+  {% assign wallet_desc_t = wallet[desc_key] | default: wallet.desc %}
+  {% assign summary_key = "wallet_summary" | append: lang_suffix %}
+  {% assign wallet_summary_t = wallet[summary_key] | default: wallet.wallet_summary %}
+  {% assign pros_key = "wallet_pros" | append: lang_suffix %}
+  {% assign wallet_pros_t = wallet[pros_key] | default: wallet.wallet_pros %}
+  {% assign cons_key = "wallet_cons" | append: lang_suffix %}
+  {% assign wallet_cons_t = wallet[cons_key] | default: wallet.wallet_cons %}
+  {% assign bestfor_key = "hw_bestfor" | append: lang_suffix %}
+  {% assign wallet_bestfor_t = wallet[bestfor_key] | default: wallet.hw_bestfor | default: wallet.wallet_bestfor %}
+  <div class="hw-item">
+    <div class="hw-header">
+      <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-image-wrapper" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Hardware Wallet', { property: '{{ wallet.title }}' });}">
+        <img loading="lazy" src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="hw-image">
+      </a>
+      
+      <div class="hw-info">
+        {% if wallet_bestfor_t %}
+        <div class="hw-badges-row">
+          <span class="best-for-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#F59E0B" stroke="#F59E0B" stroke-width="1.5"/>
+            </svg>
+            {{ t.bestfor_label }} {{ wallet_bestfor_t }}
+          </span>
+        </div>
+        {% endif %}
+        
+        <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-title-link" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Hardware Wallet', { property: '{{ wallet.title }}' });}">
+          <h2 class="hw-title">{{ wallet.title }}</h2>
+        </a>
+        
+        <div class="hw-data-grid">
+          <div class="hw-data-item">
+            <div class="hw-data-label">{{ t.label_price }}</div>
+            <div class="hw-data-value">{{ wallet.wallet_price | default: "—" }}</div>
+          </div>
+          
+          <div class="hw-data-item">
+            <div class="hw-data-label">{{ t.label_coins }}</div>
+            <div class="hw-data-value">{{ wallet.wallet_coins | default: "—" }}</div>
+          </div>
+          
+          <div class="hw-data-item">
+            <div class="hw-data-label">{{ t.label_custody }}</div>
+            <div class="hw-data-value">{{ wallet.wallet_custody | default: "—" }}</div>
+          </div>
+          
+          <div class="hw-data-item">
+            <div class="hw-data-label">{{ t.label_opensource }}</div>
+            <div class="hw-data-value">
+              {% if wallet.wallet_opensource == "Yes" %}
+                <span class="opensource-yes">{{ t.opensource_yes }}</span>
+              {% elsif wallet.wallet_opensource == "Partial" %}
+                <span class="opensource-partial">{{ t.opensource_partial }}</span>
+              {% else %}
+                {{ wallet.wallet_opensource | default: "—" }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        
+        <div class="hw-actions">
+          <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-apply-button" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Hardware Wallet', { property: '{{ wallet.title }}' });}">
+            {{ t.btn_get }} {{ wallet.title | upcase }}
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          {% if wallet.wallet_review %}
+          <a href="{{ wallet.wallet_review }}" class="hw-review-button" onclick="if(typeof gmTrackEvent==='function') gmTrackEvent('Click Hardware Wallet Review');">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 6.25278V19.2528M12 6.25278C10.8321 5.47686 9.24649 5 7.5 5C5.75351 5 4.16789 5.47686 3 6.25278V19.2528C4.16789 18.4769 5.75351 18 7.5 18C9.24649 18 10.8321 18.4769 12 19.2528M12 6.25278C13.1679 5.47686 14.7535 5 16.5 5C18.2465 5 19.8321 5.47686 21 6.25278V19.2528C19.8321 18.4769 18.2465 18 16.5 18C14.7535 18 13.1679 18.4769 12 19.2528" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            {{ t.btn_read_review }}
+          </a>
+          {% endif %}
+        </div>
+        
+        {% if wallet_summary_t %}
+        <div class="hw-breakdown-section">
+          <div class="hw-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="hw-breakdown-title">
+              <div class="hw-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                  <path d="M7 9h10M7 13h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              {{ t.label_overview }}
+            </div>
+            <svg class="hw-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="hw-breakdown-content">
+            <p class="hw-summary-text">{{ wallet_summary_t }}</p>
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if wallet_pros_t %}
+        <div class="hw-breakdown-section">
+          <div class="hw-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="hw-breakdown-title">
+              <div class="hw-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              {{ t.label_pros }}
+            </div>
+            <svg class="hw-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="hw-breakdown-content">
+            {{ wallet_pros_t }}
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if wallet_cons_t %}
+        <div class="hw-breakdown-section">
+          <div class="hw-breakdown-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="hw-breakdown-title">
+              <div class="hw-breakdown-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              {{ t.label_cons }}
+            </div>
+            <svg class="hw-breakdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="hw-breakdown-content hw-cons-content">
+            {{ wallet_cons_t }}
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if wallet.youtube_id %}
+        <div class="hw-video-section" id="video-section-{{ wallet.title | slugify }}">
+          <button class="hw-video-toggle" onclick="toggleInlineVideo('{{ wallet.title | slugify }}', '{{ wallet.youtube_id }}')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 3l14 9-14 9V3z" fill="currentColor"/>
+            </svg>
+            {{ t.label_watch_video }}
+          </button>
+          <div class="hw-video-embed" id="video-embed-{{ wallet.title | slugify }}">
+            <div class="hw-video-embed-wrapper">
+              <!-- iframe loads on click -->
+            </div>
+            <div class="hw-video-cta">
+              <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="hw-video-cta-button" onclick="if(typeof gmTrackEvent==='function'){gmTrackEvent('Click Hardware Wallet', { property: '{{ wallet.title }}' });}">
+                {{ t.btn_get }} {{ wallet.title | upcase }}
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>{{ t.no_wallets }}</p>
+{% endif %}
+
+<div class="expert-quote-section">
+  <div class="expert-quote-card">
+    <p class="expert-quote-text">{{ t.quote_text }}</p>
+    <div class="expert-quote-attribution">
+      <div class="expert-quote-avatar">NS</div>
+      <div class="expert-quote-info">
+        <a href="https://tim.blog/2018/06/01/the-tim-ferriss-show-transcripts-nick-szabo/" target="_blank" rel="noopener" class="expert-quote-name-link">{{ t.quote_name }}</a>
+        <span class="expert-quote-title">{{ t.quote_title }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Integrations Section -->
+<div class="integrations-section" id="multisig-integrations">
+  <h2 class="integrations-title">{{ t.multisig_title }}</h2>
+  <p class="integrations-intro">{{ t.multisig_intro }}</p>
+  
+  <p class="expert-advice">{{ t.multisig_expert }}</p>
+  
+  <div class="integrations-table-wrapper">
+    <table class="integrations-table">
+      <thead>
+        <tr>
+          <th>{{ t.th_provider }}</th>
+          <th>Trezor</th>
+          <th>Ledger</th>
+          <th>Coldcard</th>
+          <th>{{ t.th_other }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="integration-provider">
+              <img loading="lazy" src="/tools/img/unchained.png" alt="Unchained" class="integration-provider-img">
+              <span>Unchained</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Safe 7</span>
+              <span class="integration-device"><span class="check">✓</span> Safe 5</span>
+              <span class="integration-device"><span class="check">✓</span> Safe 3</span>
+              <span class="integration-device"><span class="check">✓</span> Model T</span>
+              <span class="integration-device"><span class="check">✓</span> Model One</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Stax</span>
+              <span class="integration-device"><span class="check">✓</span> Flex</span>
+              <span class="integration-device"><span class="check">✓</span> Nano X</span>
+              <span class="integration-device"><span class="check">✓</span> Nano S Plus</span>
+              <span class="integration-device deprecated"><span class="check">✓</span> Nano S (legacy)</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Q</span>
+              <span class="integration-device"><span class="check">✓</span> Mk4</span>
+              <span class="integration-device deprecated"><span class="check">✓</span> Mk3/Mk2 (legacy)</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Jade Plus</span>
+              <span class="integration-device"><span class="check">✓</span> Jade</span>
+              <span class="integration-device"><span class="check">✓</span> BitBox02 Nova</span>
+              <span class="integration-device"><span class="check">✓</span> BitBox02</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="integration-provider">
+              <img loading="lazy" src="/tools/img/casa.png" alt="Casa" class="integration-provider-img">
+              <span>Casa</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Safe 3</span>
+              <span class="integration-device"><span class="check">✓</span> Model T</span>
+              <span class="integration-device"><span class="check">✓</span> Model One</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> All models</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Coldcard</span>
+            </div>
+          </td>
+          <td>
+            <div class="integration-devices">
+              <span class="integration-device"><span class="check">✓</span> Keystone</span>
+              <span class="integration-device"><span class="check">✓</span> Passport</span>
+              <span class="integration-device"><span class="check">✓</span> YubiKey</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Mobile Cards (shown on mobile only) -->
+  <div class="integrations-mobile-cards">
+    <!-- Unchained Card -->
+    <div class="integration-mobile-card">
+      <div class="integration-mobile-header">
+        <img loading="lazy" src="/tools/img/unchained.png" alt="Unchained" class="integration-mobile-logo">
+        <span class="integration-mobile-provider-name">Unchained</span>
+      </div>
+      <div class="integration-mobile-body">
+        <div class="integration-mobile-brand-section">
+          <div class="integration-mobile-brand-name">Trezor</div>
+          <div class="integration-mobile-devices">
+            <span class="integration-mobile-device"><span class="check">✓</span> Safe 7</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Safe 5</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Safe 3</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Model T</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Model One</span>
+          </div>
+        </div>
+        <div class="integration-mobile-brand-section">
+          <div class="integration-mobile-brand-name">Ledger</div>
+          <div class="integration-mobile-devices">
+            <span class="integration-mobile-device"><span class="check">✓</span> Stax</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Flex</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Nano X</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Nano S Plus</span>
+            <span class="integration-mobile-device deprecated"><span class="check">✓</span> Nano S (legacy)</span>
+          </div>
+        </div>
+        <div class="integration-mobile-brand-section">
+          <div class="integration-mobile-brand-name">Coldcard</div>
+          <div class="integration-mobile-devices">
+            <span class="integration-mobile-device"><span class="check">✓</span> Q</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Mk4</span>
+            <span class="integration-mobile-device deprecated"><span class="check">✓</span> Mk3/Mk2 (legacy)</span>
+          </div>
+        </div>
+        <div class="integration-mobile-brand-section">
+          <div class="integration-mobile-brand-name">Blockstream</div>
+          <div class="integration-mobile-devices">
+            <span class="integration-mobile-device"><span class="check">✓</span> Jade Plus</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Jade</span>
+          </div>
+        </div>
+        <div class="integration-mobile-brand-section">
+          <div class="integration-mobile-brand-name">BitBox</div>
+          <div class="integration-mobile-devices">
+            <span class="integration-mobile-device"><span class="check">✓</span> BitBox02 Nova</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> BitBox02</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Casa Card -->
+    <div class="integration-mobile-card">
+      <div class="integration-mobile-header">
+        <img loading="lazy" src="/tools/img/casa.png" alt="Casa" class="integration-mobile-logo">
+        <span class="integration-mobile-provider-name">Casa</span>
+      </div>
+      <div class="integration-mobile-body">
+        <div class="integration-mobile-brand-section">
+          <div class="integration-mobile-brand-name">Trezor</div>
+          <div class="integration-mobile-devices">
+            <span class="integration-mobile-device"><span class="check">✓</span> Safe 3</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Model T</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Model One</span>
+          </div>
+        </div>
+        <div class="integration-mobile-brand-section">
+          <div class="integration-mobile-brand-name">Ledger</div>
+          <div class="integration-mobile-devices">
+            <span class="integration-mobile-device"><span class="check">✓</span> All models</span>
+          </div>
+        </div>
+        <div class="integration-mobile-brand-section">
+          <div class="integration-mobile-brand-name">Coldcard</div>
+          <div class="integration-mobile-devices">
+            <span class="integration-mobile-device"><span class="check">✓</span> Coldcard</span>
+          </div>
+        </div>
+        <div class="integration-mobile-brand-section">
+          <div class="integration-mobile-brand-name">{{ t.th_other }}</div>
+          <div class="integration-mobile-devices">
+            <span class="integration-mobile-device"><span class="check">✓</span> Keystone</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> Passport</span>
+            <span class="integration-mobile-device"><span class="check">✓</span> YubiKey</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Brand Lineup Section -->
+<div class="brand-lineup-section" id="hardware-wallet-brands">
+  <h2 class="brand-lineup-title">{{ t.brands_title }}</h2>
+  <p class="brand-lineup-intro">{{ t.brands_intro }}</p>
+  
+  <div class="brand-lineup-grid">
+    <!-- Trezor -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img loading="lazy" src="/tools/img/trezor.png" alt="Trezor" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">Trezor</span>
+        <span class="brand-lineup-card-badge">5 devices</span>
+      </div>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">Safe 7 (newest)</span>
+          <span class="brand-device-price">$249</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Safe 5</span>
+          <span class="brand-device-price">$169</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Safe 3</span>
+          <span class="brand-device-price">$79</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Model T (legacy)</span>
+          <span class="brand-device-price">$219</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Model One (legacy)</span>
+          <span class="brand-device-price">$69</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Ledger -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img loading="lazy" src="/tools/img/ledger.png" alt="Ledger" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">Ledger</span>
+        <span class="brand-lineup-card-badge">5 devices</span>
+      </div>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">Stax (premium)</span>
+          <span class="brand-device-price">$399</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Flex</span>
+          <span class="brand-device-price">$249</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Nano Gen5</span>
+          <span class="brand-device-price">$179</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Nano X</span>
+          <span class="brand-device-price">$149</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Nano S Plus</span>
+          <span class="brand-device-price">$79</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Blockstream Jade -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img loading="lazy" src="/tools/img/jade.png" alt="Blockstream Jade" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">Blockstream</span>
+        <span class="brand-lineup-card-badge">2 devices</span>
+      </div>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">Jade Plus</span>
+          <span class="brand-device-price">$149</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Jade Classic</span>
+          <span class="brand-device-price">$65</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Coldcard -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img loading="lazy" src="/tools/img/coldcard.jpeg" alt="Coldcard" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">Coldcard</span>
+        <span class="brand-lineup-card-badge">2 devices</span>
+      </div>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">Q (full keyboard)</span>
+          <span class="brand-device-price">$219</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">Mk4</span>
+          <span class="brand-device-price">$157</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- BitBox -->
+    <div class="brand-lineup-card">
+      <div class="brand-lineup-card-header">
+        <img loading="lazy" src="/tools/img/bitbox.png" alt="BitBox" class="brand-lineup-card-img">
+        <span class="brand-lineup-card-name">BitBox</span>
+        <span class="brand-lineup-card-badge">2 devices</span>
+      </div>
+      <div class="brand-lineup-devices">
+        <div class="brand-device-item brand-device-highlight">
+          <span class="brand-device-name">BitBox02 Nova</span>
+          <span class="brand-device-price">$169</span>
+        </div>
+        <div class="brand-device-item">
+          <span class="brand-device-name">BitBox02</span>
+          <span class="brand-device-price">$149</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ Section -->
+<div class="hw-faq-section">
+  <h2 class="hw-faq-title">{{ t.faq_title }}</h2>
+  
+  {% for faq in t.faqs %}
+  <div class="hw-faq-item">
+    <div class="hw-faq-question">
+      <h3>{{ faq.q }}</h3>
+    </div>
+    <div class="hw-faq-answer">
+      <p>{{ faq.a }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<script>
+document.querySelectorAll('.hw-faq-question').forEach(question => {
+  question.addEventListener('click', () => {
+    const answer = question.nextElementSibling;
+    const isOpen = answer.style.display === 'block';
+    
+    // Close all answers
+    document.querySelectorAll('.hw-faq-answer').forEach(a => {
+      a.style.display = 'none';
+    });
+    document.querySelectorAll('.hw-faq-question').forEach(q => {
+      q.classList.remove('active');
+    });
+    
+    // Open clicked answer if it was closed
+    if (!isOpen) {
+      answer.style.display = 'block';
+      question.classList.add('active');
+    }
+  });
+});
+</script>
+
+<script>
+function toggleInlineVideo(walletSlug, videoId) {
+  var section = document.getElementById('video-section-' + walletSlug);
+  var embedContainer = document.getElementById('video-embed-' + walletSlug);
+  var wrapper = embedContainer.querySelector('.hw-video-embed-wrapper');
+  
+  if (section.classList.contains('expanded')) {
+    // Collapse and remove iframe
+    section.classList.remove('expanded');
+    wrapper.innerHTML = '';
+  } else {
+    // Expand and load iframe
+    section.classList.add('expanded');
+    wrapper.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    if (typeof gmTrackEvent === 'function') {
+      gmTrackEvent('Click Hardware Wallet Video', { property: walletSlug });
+    }
+  }
+}
+</script>
+
+<div class="hw-disclaimer">
+  <p>{{ t.disclaimer }}</p>
+</div>
+
+<div class="hw-sources">
+  <h3>{{ t.sources_title }}</h3>
+  <ul>
+    {% for source in t.sources %}
+    <li>{{ source.text }}</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<script>
+  // Track tool-link clicks
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.tool-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        var title = link.getAttribute('title');
+        if(typeof gmTrackEvent==='function')gmTrackEvent('Click Hardware Wallet', { property: title });
+      });
+    });
+    
+    // Move Bitcoin-only toggle before tools-container
+    var toggle = document.getElementById('btc-only-toggle-wrapper');
+    var toolsContainer = document.querySelector('.tools-container');
+    if (toggle && toolsContainer) {
+      toolsContainer.parentNode.insertBefore(toggle, toolsContainer);
+      toggle.style.display = 'block';
+    }
+    
+    // Bitcoin-only toggle functionality
+    var btcToggle = document.getElementById('btcOnlyToggle');
+    if (btcToggle) {
+      btcToggle.addEventListener('change', function() {
+        var isChecked = this.checked;
+        if (isChecked && typeof gmTrackEvent === 'function') {
+          gmTrackEvent('Bitcoin-only Toggle Enabled');
+        }
+        document.querySelectorAll('.tool-link').forEach(function(link) {
+          var img = link.querySelector('img');
+          var titleEl = link.querySelector('h3');
+          var descEl = link.querySelector('p');
+          var hasBtcVersion = link.dataset.btcImg;
+          
+          if (isChecked) {
+            // If wallet has BTC-only version, swap image/link/title/desc
+            if (hasBtcVersion) {
+              img.src = link.dataset.btcImg;
+              if (link.dataset.btcLink) link.href = link.dataset.btcLink;
+              if (link.dataset.btcTitle && titleEl) titleEl.textContent = link.dataset.btcTitle;
+              if (link.dataset.btcDesc && descEl) descEl.textContent = link.dataset.btcDesc;
+            } else {
+              // Hide wallets without BTC-only version (like Ledger)
+              link.classList.add('hide-non-btc');
+            }
+          } else {
+            // Restore defaults
+            if (link.dataset.defaultImg) img.src = link.dataset.defaultImg;
+            if (link.dataset.defaultLink) link.href = link.dataset.defaultLink;
+            if (link.dataset.defaultTitle && titleEl) titleEl.textContent = link.dataset.defaultTitle;
+            if (link.dataset.defaultDesc && descEl) descEl.textContent = link.dataset.defaultDesc;
+            link.classList.remove('hide-non-btc');
+          }
+        });
+      });
+    }
+  });
+</script>
+
+<div id="btc-only-toggle-wrapper" class="btc-only-toggle-wrapper" style="display: none;">
+  <label class="btc-only-toggle">
+    <input type="checkbox" id="btcOnlyToggle">
+    <span class="toggle-slider"></span>
+    <span class="toggle-label">{{ t.btc_only_toggle }}</span>
+  </label>
+</div>
