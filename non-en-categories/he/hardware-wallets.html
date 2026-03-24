@@ -22,7 +22,7 @@ sidebar_toc:
     title: "מותגים ומכשירים"
 lang: he
 language: he
-dir: rtl
+text_direction: rtl
 hreflang_key: hardware-wallets
 head-extra:
   - hreflang.html
@@ -46,6 +46,10 @@ head-extra:
   flex-direction: row-reverse;
 }
 
+[dir="rtl"] .hw-comparison-table {
+  direction: rtl;
+}
+
 [dir="rtl"] .hw-comparison-table th,
 [dir="rtl"] .hw-comparison-table td {
   text-align: right;
@@ -53,6 +57,15 @@ head-extra:
 
 [dir="rtl"] .hw-table-wallet-name {
   flex-direction: row-reverse;
+}
+
+[dir="rtl"] .brand-ratings-table {
+  direction: rtl;
+}
+
+[dir="rtl"] .brand-ratings-table th,
+[dir="rtl"] .brand-ratings-table td {
+  text-align: right;
 }
 
 [dir="rtl"] .brand-rating-name {
@@ -73,6 +86,10 @@ head-extra:
 
 [dir="rtl"] .mobile-hw-card-header {
   flex-direction: row-reverse;
+}
+
+[dir="rtl"] .integrations-table {
+  direction: rtl;
 }
 
 [dir="rtl"] .integrations-table th,

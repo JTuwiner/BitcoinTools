@@ -14,7 +14,7 @@ common-js:
 ---
 
 <!DOCTYPE html>
-<html lang="{{ page.language | default: site.language | default: 'en' }}" dir="{{ page.dir | default: 'ltr' }}">
+<html lang="{{ page.language | default: site.language | default: 'en' }}" dir="{{ page.text_direction | default: 'ltr' }}">
 <!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
 {% include head.html %}
 
