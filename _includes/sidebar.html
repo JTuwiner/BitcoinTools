@@ -56,7 +56,8 @@
     <ul class="sidebar-list">
       {% assign catlist = site.pages | sort_natural: "title" %}
       {% for cat in catlist %}
-      {% if cat.category %}
+      {% assign cat_lang = cat.lang | default: "en" %}
+      {% if cat.category and cat_lang == "en" %}
       <li>
         {% if cat.title == "Exchanges" %}
         <a title="{{ cat.title }}" class="sidebar-category" href="https://bitbo.io/buy/">
