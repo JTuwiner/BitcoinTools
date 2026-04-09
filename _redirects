@@ -1,5 +1,25 @@
 /mayer-multiple/ https://charts.bitbo.io/mayer-multiple-bars/ 301
 
+# Legacy brand comparison pages -> restored wallet comparison pages
+/bitbox-vs-bitkey/ /bitbox02-vs-bitkey/ 301
+/bitbox-vs-jade/ /bitbox02-vs-jade-plus/ 301
+/bitbox-vs-ledger/ /bitbox02-vs-ledger-x/ 301
+/bitbox-vs-passport/ /bitbox02-vs-passport-core/ 301
+/coldcard-vs-bitbox/ /coldcard-mk4-vs-bitbox02/ 301
+/coldcard-vs-bitkey/ /coldcard-mk4-vs-bitkey/ 301
+/coldcard-vs-jade/ /coldcard-mk4-vs-jade-plus/ 301
+/coldcard-vs-ledger/ /coldcard-mk4-vs-ledger-x/ 301
+/coldcard-vs-passport/ /coldcard-mk4-vs-passport-core/ 301
+/ledger-compare/ /ledger-x-vs-flex/ 301
+# No restored Ledger-vs-Passport comparison exists, so send this legacy route to Passport Core.
+/trezor-compare/ /trezor-safe-7-vs-5/ 301
+/trezor-vs-bitbox/ /trezor-safe-7-vs-bitbox02/ 301
+/trezor-vs-bitkey/ /trezor-safe-7-vs-bitkey/ 301
+/trezor-vs-coldcard/ /trezor-safe-7-vs-coldcard-q/ 301
+/trezor-vs-jade/ /trezor-safe-7-vs-jade-plus/ 301
+/trezor-vs-ledger/ /trezor-safe-7-vs-ledger-nano-x/ 301
+/trezor-vs-passport/ /trezor-5-vs-passport-core/ 301
+
 /compare-hardware-wallets/ /tools/hardware-wallets/ 301
 /hardware-wallets/ /tools/offline-wallets/ 301
 
