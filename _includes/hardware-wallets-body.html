@@ -312,8 +312,8 @@
     </div>
     <div class="compare-widget-form">
       <div class="compare-widget-select-wrap">
-        <select id="compareWallet1" class="compare-widget-select" aria-label="First wallet">
-          <option value="" disabled selected>Choose wallet...</option>
+        <select id="compareWallet1" class="compare-widget-select" aria-label="{{ t.compare_choose_wallet | default: 'Choose wallet...' }}">
+          <option value="" disabled selected>{{ t.compare_choose_wallet | default: "Choose wallet..." }}</option>
           <option value="BitBox02">BitBox02</option>
           <option value="Bitkey">Bitkey</option>
           <option value="Blockstream Jade">Blockstream Jade</option>
@@ -334,28 +334,11 @@
       </div>
       <span class="compare-widget-vs">vs</span>
       <div class="compare-widget-select-wrap">
-        <select id="compareWallet2" class="compare-widget-select" aria-label="Second wallet">
-          <option value="" disabled selected>Choose wallet...</option>
-          <option value="BitBox02">BitBox02</option>
-          <option value="Bitkey">Bitkey</option>
-          <option value="Blockstream Jade">Blockstream Jade</option>
-          <option value="Blockstream Jade Plus">Blockstream Jade Plus</option>
-          <option value="Coldcard MK4">Coldcard MK4</option>
-          <option value="Coldcard Q">Coldcard Q</option>
-          <option value="Ledger Flex">Ledger Flex</option>
-          <option value="Ledger Nano S Plus">Ledger Nano S Plus</option>
-          <option value="Ledger Nano X">Ledger Nano X</option>
-          <option value="Ledger Stax">Ledger Stax</option>
-          <option value="Passport Core">Passport Core</option>
-          <option value="Trezor Model One">Trezor Model One</option>
-          <option value="Trezor Model T">Trezor Model T</option>
-          <option value="Trezor Safe 3">Trezor Safe 3</option>
-          <option value="Trezor Safe 5">Trezor Safe 5</option>
-          <option value="Trezor Safe 7">Trezor Safe 7</option>
+        <select id="compareWallet2" class="compare-widget-select" aria-label="{{ t.compare_choose_wallet | default: 'Choose wallet...' }}" disabled>
+          <option value="" disabled selected>{{ t.compare_pick_first | default: "Pick first wallet..." }}</option>
         </select>
       </div>
-      <button class="compare-widget-btn" id="compareBtn" disabled onclick="goCompare()">Compare &rarr;</button>
-      <div class="compare-widget-error" id="compareError"></div>
+      <button class="compare-widget-btn" id="compareBtn" disabled onclick="goCompare()">{{ t.compare_btn | default: "Compare" }} &rarr;</button>
     </div>
   </div>
 
@@ -414,38 +397,55 @@
       "Trezor Safe 5|Trezor Safe 7": "/trezor-safe-7-vs-5/"
     };
 
+    var neighbors = {};
+    Object.keys(comparisons).forEach(function(key) {
+      var parts = key.split('|');
+      var a = parts[0], b = parts[1];
+      if (!neighbors[a]) neighbors[a] = {};
+      if (!neighbors[b]) neighbors[b] = {};
+      neighbors[a][b] = true;
+      neighbors[b][a] = true;
+    });
+
     function lookup(a, b) {
       return comparisons[a + '|' + b] || comparisons[b + '|' + a] || null;
     }
 
+    var pickFirstText = {{ t.compare_pick_first | default: "Pick first wallet..." | jsonify }};
+    var chooseText = {{ t.compare_choose_wallet | default: "Choose wallet..." | jsonify }};
+
     var sel1 = document.getElementById('compareWallet1');
     var sel2 = document.getElementById('compareWallet2');
     var btn = document.getElementById('compareBtn');
-    var err = document.getElementById('compareError');
 
-    function update() {
-      var a = sel1.value, b = sel2.value;
-      err.classList.remove('visible');
-      err.textContent = '';
-      if (!a || !b) { btn.disabled = true; return; }
-      if (a === b) {
-        btn.disabled = true;
-        err.textContent = 'Please select two different wallets.';
-        err.classList.add('visible');
+    sel1.addEventListener('change', function() {
+      var a = sel1.value;
+      sel2.innerHTML = '';
+      btn.disabled = true;
+      if (!a || !neighbors[a]) {
+        sel2.disabled = true;
+        sel2.innerHTML = '<option value="" disabled selected>' + pickFirstText + '</option>';
         return;
       }
-      var url = lookup(a, b);
-      if (url) {
-        btn.disabled = false;
-      } else {
-        btn.disabled = true;
-        err.textContent = 'No comparison available for this pair yet.';
-        err.classList.add('visible');
-      }
-    }
+      var opts = Object.keys(neighbors[a]).sort();
+      sel2.disabled = false;
+      var placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.disabled = true;
+      placeholder.selected = true;
+      placeholder.textContent = chooseText;
+      sel2.appendChild(placeholder);
+      opts.forEach(function(name) {
+        var o = document.createElement('option');
+        o.value = name;
+        o.textContent = name;
+        sel2.appendChild(o);
+      });
+    });
 
-    sel1.addEventListener('change', update);
-    sel2.addEventListener('change', update);
+    sel2.addEventListener('change', function() {
+      btn.disabled = !(sel1.value && sel2.value);
+    });
 
     window.goCompare = function() {
       var a = sel1.value, b = sel2.value;
