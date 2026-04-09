@@ -2753,7 +2753,8 @@ body .tool img {
     });
 
     function lookup(a, b) {
-      return comparisons[a + '|' + b] || comparisons[b + '|' + a] || null;
+      var url = comparisons[a + '|' + b] || comparisons[b + '|' + a] || null;
+      return url ? '/tools' + url : null;
     }
 
     var sel1 = document.getElementById('compareWallet1');

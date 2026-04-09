@@ -408,7 +408,8 @@
     });
 
     function lookup(a, b) {
-      return comparisons[a + '|' + b] || comparisons[b + '|' + a] || null;
+      var url = comparisons[a + '|' + b] || comparisons[b + '|' + a] || null;
+      return url ? '/tools' + url : null;
     }
 
     var pickFirstText = {{ t.compare_pick_first | default: "Pick first wallet..." | jsonify }};
