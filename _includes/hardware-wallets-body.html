@@ -304,60 +304,161 @@
     </div>
   </div>
 
-  <!-- Quick Compare Links -->
-  <div class="quick-compare-section">
-    <button class="quick-compare-toggle" onclick="document.querySelector('.quick-compare-grid-wrapper').classList.toggle('expanded'); this.classList.toggle('expanded'); if(typeof gmTrackEvent==='function') gmTrackEvent('Toggle Compare Brands Side-by-Side');">
-      <span>{{ t.compare_brands_toggle }}</span>
-      <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
-
-    <div class="quick-compare-grid-wrapper">
-      <div class="quick-compare-grid">
-        <a href="/tools/trezor-vs-ledger/" class="quick-compare-link">
-          <span class="quick-compare-brands">Trezor vs Ledger</span>
-          <span class="quick-compare-arrow">&rarr;</span>
-        </a>
-        <a href="/tools/trezor-vs-coldcard/" class="quick-compare-link">
-          <span class="quick-compare-brands">Trezor vs Coldcard</span>
-          <span class="quick-compare-arrow">&rarr;</span>
-        </a>
-        <a href="/tools/coldcard-vs-ledger/" class="quick-compare-link">
-          <span class="quick-compare-brands">Coldcard vs Ledger</span>
-          <span class="quick-compare-arrow">&rarr;</span>
-        </a>
-        <a href="/tools/bitbox-vs-ledger/" class="quick-compare-link">
-          <span class="quick-compare-brands">BitBox vs Ledger</span>
-          <span class="quick-compare-arrow">&rarr;</span>
-        </a>
-        <a href="/tools/trezor-vs-bitbox/" class="quick-compare-link">
-          <span class="quick-compare-brands">Trezor vs BitBox</span>
-          <span class="quick-compare-arrow">&rarr;</span>
-        </a>
-        <a href="/tools/coldcard-vs-jade/" class="quick-compare-link">
-          <span class="quick-compare-brands">Coldcard vs Jade</span>
-          <span class="quick-compare-arrow">&rarr;</span>
-        </a>
-        <a href="/tools/trezor-vs-jade/" class="quick-compare-link">
-          <span class="quick-compare-brands">Trezor vs Jade</span>
-          <span class="quick-compare-arrow">&rarr;</span>
-        </a>
-        <a href="/tools/coldcard-vs-bitbox/" class="quick-compare-link">
-          <span class="quick-compare-brands">Coldcard vs BitBox</span>
-          <span class="quick-compare-arrow">&rarr;</span>
-        </a>
-        <a href="/tools/trezor-compare/" class="quick-compare-link">
-          <span class="quick-compare-brands">Compare Trezors</span>
-          <span class="quick-compare-arrow">&rarr;</span>
-        </a>
-        <a href="/tools/ledger-compare/" class="quick-compare-link">
-          <span class="quick-compare-brands">Compare Ledgers</span>
-          <span class="quick-compare-arrow">&rarr;</span>
-        </a>
+  <!-- Compare Devices Widget -->
+  <div class="compare-widget" id="compareWidget">
+    <div class="compare-widget-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M21 3l-7 7"/><path d="M3 3l7 7"/><path d="M16 21h5v-5"/><path d="M8 21H3v-5"/><path d="M21 21l-7-7"/><path d="M3 21l7-7"/></svg>
+      {{ t.compare_brands_toggle | default: "Compare Devices Side-by-Side" }}
+    </div>
+    <div class="compare-widget-form">
+      <div class="compare-widget-select-wrap">
+        <select id="compareWallet1" class="compare-widget-select" aria-label="First wallet">
+          <option value="" disabled selected>Choose wallet...</option>
+          <option value="BitBox02">BitBox02</option>
+          <option value="Bitkey">Bitkey</option>
+          <option value="Blockstream Jade">Blockstream Jade</option>
+          <option value="Blockstream Jade Plus">Blockstream Jade Plus</option>
+          <option value="Coldcard MK4">Coldcard MK4</option>
+          <option value="Coldcard Q">Coldcard Q</option>
+          <option value="Ledger Flex">Ledger Flex</option>
+          <option value="Ledger Nano S Plus">Ledger Nano S Plus</option>
+          <option value="Ledger Nano X">Ledger Nano X</option>
+          <option value="Ledger Stax">Ledger Stax</option>
+          <option value="Passport Core">Passport Core</option>
+          <option value="Trezor Model One">Trezor Model One</option>
+          <option value="Trezor Model T">Trezor Model T</option>
+          <option value="Trezor Safe 3">Trezor Safe 3</option>
+          <option value="Trezor Safe 5">Trezor Safe 5</option>
+          <option value="Trezor Safe 7">Trezor Safe 7</option>
+        </select>
       </div>
+      <span class="compare-widget-vs">vs</span>
+      <div class="compare-widget-select-wrap">
+        <select id="compareWallet2" class="compare-widget-select" aria-label="Second wallet">
+          <option value="" disabled selected>Choose wallet...</option>
+          <option value="BitBox02">BitBox02</option>
+          <option value="Bitkey">Bitkey</option>
+          <option value="Blockstream Jade">Blockstream Jade</option>
+          <option value="Blockstream Jade Plus">Blockstream Jade Plus</option>
+          <option value="Coldcard MK4">Coldcard MK4</option>
+          <option value="Coldcard Q">Coldcard Q</option>
+          <option value="Ledger Flex">Ledger Flex</option>
+          <option value="Ledger Nano S Plus">Ledger Nano S Plus</option>
+          <option value="Ledger Nano X">Ledger Nano X</option>
+          <option value="Ledger Stax">Ledger Stax</option>
+          <option value="Passport Core">Passport Core</option>
+          <option value="Trezor Model One">Trezor Model One</option>
+          <option value="Trezor Model T">Trezor Model T</option>
+          <option value="Trezor Safe 3">Trezor Safe 3</option>
+          <option value="Trezor Safe 5">Trezor Safe 5</option>
+          <option value="Trezor Safe 7">Trezor Safe 7</option>
+        </select>
+      </div>
+      <button class="compare-widget-btn" id="compareBtn" disabled onclick="goCompare()">Compare &rarr;</button>
+      <div class="compare-widget-error" id="compareError"></div>
     </div>
   </div>
+
+  <script>
+  (function() {
+    var comparisons = {
+      "BitBox02|Bitkey": "/bitbox02-vs-bitkey/",
+      "BitBox02|Blockstream Jade": "/bitbox02-vs-jade/",
+      "BitBox02|Blockstream Jade Plus": "/bitbox02-vs-jade-plus/",
+      "BitBox02|Coldcard MK4": "/coldcard-mk4-vs-bitbox02/",
+      "BitBox02|Ledger Nano X": "/bitbox02-vs-ledger-x/",
+      "BitBox02|Passport Core": "/bitbox02-vs-passport-core/",
+      "BitBox02|Trezor Safe 3": "/bitbox02-vs-safe-3/",
+      "BitBox02|Trezor Safe 5": "/trezor-5-vs-bitbox02/",
+      "BitBox02|Trezor Safe 7": "/trezor-safe-7-vs-bitbox02/",
+      "Bitkey|Coldcard MK4": "/coldcard-mk4-vs-bitkey/",
+      "Bitkey|Trezor Safe 5": "/trezor-5-vs-bitkey/",
+      "Bitkey|Trezor Safe 7": "/trezor-safe-7-vs-bitkey/",
+      "Blockstream Jade|Coldcard MK4": "/coldcard-mk4-vs-jade/",
+      "Blockstream Jade|Trezor Safe 3": "/trezor-safe-3-vs-jade/",
+      "Blockstream Jade|Trezor Safe 5": "/trezor-5-vs-jade/",
+      "Blockstream Jade|Trezor Safe 7": "/trezor-safe-7-vs-jade/",
+      "Blockstream Jade Plus|Coldcard MK4": "/coldcard-mk4-vs-jade-plus/",
+      "Blockstream Jade Plus|Trezor Safe 3": "/trezor-safe-3-vs-jade-plus/",
+      "Blockstream Jade Plus|Trezor Safe 5": "/trezor-5-vs-jade-plus/",
+      "Blockstream Jade Plus|Trezor Safe 7": "/trezor-safe-7-vs-jade-plus/",
+      "Coldcard MK4|Ledger Flex": "/coldcard-mk4-vs-ledger-flex/",
+      "Coldcard MK4|Ledger Nano X": "/coldcard-mk4-vs-ledger-x/",
+      "Coldcard MK4|Ledger Stax": "/coldcard-mk4-vs-ledger-stax/",
+      "Coldcard MK4|Passport Core": "/coldcard-mk4-vs-passport-core/",
+      "Coldcard MK4|Trezor Safe 3": "/trezor-safe-3-vs-coldcard-mk4/",
+      "Coldcard MK4|Trezor Safe 5": "/trezor-5-vs-coldcard-mk4/",
+      "Coldcard MK4|Trezor Safe 7": "/trezor-safe-7-vs-coldcard-mk4/",
+      "Coldcard Q|Trezor Safe 3": "/trezor-3-vs-coldcard-q/",
+      "Coldcard Q|Trezor Safe 5": "/trezor-5-vs-coldcard-q/",
+      "Coldcard Q|Trezor Safe 7": "/trezor-safe-7-vs-coldcard-q/",
+      "Ledger Flex|Ledger Nano X": "/ledger-x-vs-flex/",
+      "Ledger Flex|Trezor Safe 5": "/trezor-5-vs-ledger-flex/",
+      "Ledger Flex|Trezor Safe 7": "/trezor-safe-7-vs-ledger-flex/",
+      "Ledger Nano S Plus|Ledger Nano X": "/ledger-x-vs-s-plus/",
+      "Ledger Nano S Plus|Trezor Model One": "/trezor-one-vs-ledger-s-plus/",
+      "Ledger Nano X|Trezor Model T": "/trezor-t-ledger-x/",
+      "Ledger Nano X|Trezor Safe 3": "/ledger-x-vs-trezor-safe-3/",
+      "Ledger Nano X|Trezor Safe 5": "/trezor-5-vs-ledger-x/",
+      "Ledger Nano X|Trezor Safe 7": "/trezor-safe-7-vs-ledger-nano-x/",
+      "Ledger Stax|Trezor Safe 5": "/trezor-5-vs-ledger-stax/",
+      "Ledger Stax|Trezor Safe 7": "/trezor-safe-7-vs-ledger-stax/",
+      "Passport Core|Trezor Safe 5": "/trezor-5-vs-passport-core/",
+      "Trezor Model One|Trezor Safe 3": "/trezor-safe-3-vs-model-one/",
+      "Trezor Model One|Trezor Safe 5": "/trezor-5-vs-model-one/",
+      "Trezor Model One|Trezor Safe 7": "/trezor-safe-7-vs-model-one/",
+      "Trezor Model T|Trezor Safe 3": "/trezor-safe-3-vs-model-t/",
+      "Trezor Model T|Trezor Safe 5": "/trezor-5-vs-t/",
+      "Trezor Model T|Trezor Safe 7": "/trezor-safe-7-vs-model-t/",
+      "Trezor Safe 3|Trezor Safe 5": "/trezor-safe-3-vs-5/",
+      "Trezor Safe 5|Trezor Safe 7": "/trezor-safe-7-vs-5/"
+    };
+
+    function lookup(a, b) {
+      return comparisons[a + '|' + b] || comparisons[b + '|' + a] || null;
+    }
+
+    var sel1 = document.getElementById('compareWallet1');
+    var sel2 = document.getElementById('compareWallet2');
+    var btn = document.getElementById('compareBtn');
+    var err = document.getElementById('compareError');
+
+    function update() {
+      var a = sel1.value, b = sel2.value;
+      err.classList.remove('visible');
+      err.textContent = '';
+      if (!a || !b) { btn.disabled = true; return; }
+      if (a === b) {
+        btn.disabled = true;
+        err.textContent = 'Please select two different wallets.';
+        err.classList.add('visible');
+        return;
+      }
+      var url = lookup(a, b);
+      if (url) {
+        btn.disabled = false;
+      } else {
+        btn.disabled = true;
+        err.textContent = 'No comparison available for this pair yet.';
+        err.classList.add('visible');
+      }
+    }
+
+    sel1.addEventListener('change', update);
+    sel2.addEventListener('change', update);
+
+    window.goCompare = function() {
+      var a = sel1.value, b = sel2.value;
+      var url = lookup(a, b);
+      if (url) {
+        if (typeof gmTrackEvent === 'function') {
+          gmTrackEvent('Compare Devices', { property: a + ' vs ' + b });
+        }
+        window.location.href = url;
+      }
+    };
+  })();
+  </script>
 
   <!-- Mobile Cards -->
   <div class="mobile-hw-cards">

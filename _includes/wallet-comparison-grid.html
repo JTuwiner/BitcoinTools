@@ -1,19 +1,20 @@
 {% assign comparison_pages = site.pages | where: "layout", "vswallet" | sort: "title" %}
 {% assign wallet_name = include.wallet_name %}
+{% assign url_prefix = include.url_prefix | default: "/tools" %}
 {% capture comparison_links %}
-  {% for comparison in comparison_pages %}
-    {% if comparison.wallet1 == wallet_name or comparison.wallet2 == wallet_name %}
-      {% if comparison.wallet1 == wallet_name %}
-        {% assign other_wallet = comparison.wallet2 %}
-      {% else %}
-        {% assign other_wallet = comparison.wallet1 %}
-      {% endif %}
-      <a href="{{ comparison.permalink }}" class="compare-wallet-link">
+  {%- for comparison in comparison_pages -%}
+    {%- if comparison.wallet1 == wallet_name or comparison.wallet2 == wallet_name -%}
+      {%- if comparison.wallet1 == wallet_name -%}
+        {%- assign other_wallet = comparison.wallet2 -%}
+      {%- else -%}
+        {%- assign other_wallet = comparison.wallet1 -%}
+      {%- endif -%}
+      <a href="{{ url_prefix }}{{ comparison.permalink }}" class="compare-wallet-link">
         <span class="compare-brand">{{ wallet_name }} vs {{ other_wallet }}</span>
         <span class="compare-arrow">&rarr;</span>
       </a>
-    {% endif %}
-  {% endfor %}
+    {%- endif -%}
+  {%- endfor -%}
 {% endcapture %}
 {% assign comparison_links = comparison_links | strip %}
 {% if comparison_links != "" %}
