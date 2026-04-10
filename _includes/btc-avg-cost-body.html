@@ -1,0 +1,279 @@
+{%- assign lang = page.language | default: 'en' -%}
+{%- assign t = site.data.btc-avg-cost[lang] -%}
+
+<div class="fee-calc-wrapper">
+    <div class="fee-calc-form">
+        <form id="avgCostForm">
+            <div id="entries">
+            </div>
+
+            <div class="fee-calc-form-row">
+                <button type="button" class="btn btn-success" id="addEntry">{{ t.btn_add }}</button>
+                <button type="button" class="btn btn-danger" id="removeEntry">{{ t.btn_remove }}</button>
+                <button type="button" class="btn btn-primary ms-2" id="calculate">{{ t.btn_calculate }}</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="form-results-wrapper">
+        <div class="form-results-wrapper-inner">
+            <div>
+                <div class="form-results-main-col">
+                    <div class="form-results-col-number is--large">
+                        $<span id="avgCost">0</span>
+                    </div>
+                    <div class="form-results-col-label">
+                        {{ t.label_avg_cost }}
+                    </div>
+                </div>
+
+                <div class="form-results-row-inner">
+                    <div class="form-results-col">
+                        <div class="form-results-col-number">
+                            <span id="totalBtc">0</span>
+                        </div>
+                        <div class="form-results-col-label">
+                            {{ t.label_total_btc }}
+                        </div>
+                    </div>
+
+                    <div class="form-results-col">
+                        <div class="form-results-col-number">
+                            $<span id="totalCost">0</span>
+                        </div>
+                        <div class="form-results-col-label">
+                            {{ t.label_total_cost }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<h2>{{ t.h2_why }}</h2>
+<p>{{ t.p_why }}</p>
+<ul>
+    <li>{{ t.li_why_1 }}</li>
+    <li>{{ t.li_why_2 }}</li>
+    <li>{{ t.li_why_3 }}</li>
+    <li>{{ t.li_why_4 }}</li>
+</ul>
+
+<h2>{{ t.h2_dca }}</h2>
+<p>{{ t.p_dca }}</p>
+
+<style>
+.entry-row {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.entry-row input {
+    background: #FFFFFF;
+    border: 1px solid #D8D8D8;
+    border-radius: 8px;
+    padding: 14px 19px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    color: #4B5066;
+    width: 100%;
+}
+
+.remove-row {
+    cursor: pointer;
+    color: #dc3545;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+}
+
+.btn {
+    background: #FFFFFF;
+    border: 1px solid #D8D8D8;
+    border-radius: 8px;
+    padding: 14px 19px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.btn-primary {
+    background: #3D79C0;
+    color: white;
+    border-color: #3D79C0;
+}
+
+.fee-calc-wrapper {
+    display: flex;
+    grid-gap: 45px;
+    justify-content: space-between;
+    max-width: 820px;
+    margin-bottom: 50px;
+}
+
+.fee-calc-form {
+    width: 100%;
+}
+
+.form-results-wrapper {
+    max-width: 320px;
+    margin-top: 20px;
+    width: 100%;
+    background: #3D79C0;
+    border-radius: 8px;
+    padding: 17px;
+}
+
+.form-results-main-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 25px;
+    border-bottom: 1px solid #2C61A0;
+}
+
+.form-results-col-number {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+}
+
+.form-results-col-number.is--large {
+    font-size: 60px;
+    line-height: 73px;
+    margin-bottom: 5px;
+}
+
+.form-results-col-label {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    color: #FFFFFF;
+}
+
+.form-results-row-inner {
+    display: flex;
+    justify-content: space-around;
+    grid-gap: 40px;
+    margin-top: 25px;
+}
+
+h2 {
+    margin-bottom: 25px;
+    margin-top: 50px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+p {
+    color: #98A2B3;
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 23px;
+}
+
+@media(max-width: 750px) {
+    .fee-calc-wrapper {
+        flex-direction: column;
+        grid-gap: 0px;
+    }
+    .form-results-wrapper {
+        max-width: 100%;
+    }
+}
+</style>
+
+<script>
+var avgCostI18n = {
+  placeholderBtc: {{ t.placeholder_btc | jsonify }},
+  placeholderCost: {{ t.placeholder_cost | jsonify }}
+};
+
+var entryCount = 0;
+
+function createEntryRow() {
+    var row = document.createElement('div');
+    row.className = 'entry-row';
+    row.innerHTML =
+        '<input type="number" class="btc-amount" step="any" placeholder="' + avgCostI18n.placeholderBtc + '" required>' +
+        '<input type="number" class="cost" step="any" placeholder="' + avgCostI18n.placeholderCost + '" required>' +
+        '<span class="remove-row">&times;</span>';
+
+    row.querySelector('.remove-row').addEventListener('click', function() {
+        if (document.querySelectorAll('.entry-row').length > 1) {
+            row.remove();
+        }
+    });
+
+    return row;
+}
+
+function addEntry() {
+    var entries = document.getElementById('entries');
+    entries.appendChild(createEntryRow());
+    entryCount++;
+}
+
+function removeEntry() {
+    var entries = document.getElementById('entries');
+    var rows = entries.getElementsByClassName('entry-row');
+    if (rows.length > 1) {
+        entries.removeChild(rows[rows.length - 1]);
+        entryCount--;
+    }
+}
+
+function calculate() {
+    var totalBtc = 0;
+    var totalCost = 0;
+
+    document.querySelectorAll('.entry-row').forEach(function(row) {
+        var btc = parseFloat(row.querySelector('.btc-amount').value) || 0;
+        var cost = parseFloat(row.querySelector('.cost').value) || 0;
+        totalBtc += btc;
+        totalCost += cost;
+    });
+
+    var avgCost = totalBtc > 0 ? totalCost / totalBtc : 0;
+
+    document.getElementById('totalBtc').textContent = totalBtc.toFixed(8);
+    document.getElementById('totalCost').textContent = totalCost.toFixed(2);
+    document.getElementById('avgCost').textContent = avgCost.toFixed(2);
+}
+
+for (var i = 0; i < 3; i++) {
+    addEntry();
+}
+
+document.getElementById('addEntry').addEventListener('click', addEntry);
+document.getElementById('removeEntry').addEventListener('click', removeEntry);
+document.getElementById('calculate').addEventListener('click', calculate);
+</script>

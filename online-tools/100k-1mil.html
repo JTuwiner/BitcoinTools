@@ -1,69 +1,16 @@
 ---
 layout: page
-title: If Bitcoin Hits 500k or 1 Million Calculator
+title: "If Bitcoin Hits 500k or 1 Million Calculator"
+desc: "Calculate how much your Bitcoin will be worth if it hits $500,000 or $1 million per BTC."
 full-width: yes
 permalink: "/if-bitcoin-hits/"
 jquery: yes
 capture: yes
+lang: en
+language: en
+hreflang_key: if-bitcoin-hits
+head-extra:
+  - hreflang.html
 ---
 
-<p>Easily calculate how much your Bitcoin will be worth if we go to 500k or 1 million per BTC.</p>
-
-<div class="calc-100">
-  
-  <p>Enter the amount of Bitcoin:</p>
-  <input type="number" id="bitcoinAmount" placeholder="Amount of Bitcoin" min="0" step="0.000001">
-  <p>Select the target price per Bitcoin:</p>
-  <label><input type="radio" name="targetValue" value="500000" checked>$500,000</label>
-  <label><input type="radio" name="targetValue" value="1000000">$1,000,000</label>
-  <button onclick="calculateValue()">Calculate</button>
-  <p id="result"></p>
-
-</div>
-
-<style>
-.calc-100 input {
-    padding: 10px;
-    margin: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-.calc-100 button {
-    padding: 10px;
-    margin: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-.calc-100 button {
-    color: white;
-    background-color: #007bff;
-    border-color: #007bff;
-    cursor: pointer;
-}
-.calc-100 button:hover {
-    background-color: #0056b3;
-    border-color: #004085;
-}
-.calc-100 label {
-    margin-right: 20px;
-    font-size: 16px;
-}
-.calc-100 p {
-    margin-top: 20px;
-}
-</style>
-
-<script>
-
-function calculateValue() {
-    var bitcoinAmount = document.getElementById("bitcoinAmount").value;
-    var targetValue = document.querySelector('input[name="targetValue"]:checked').value;
-    var formattedTargetValue = parseInt(targetValue).toLocaleString(); // Format target value with commas
-    var result = bitcoinAmount * targetValue;
-    var formattedResult = result.toLocaleString(); // Ensure the result is also formatted with commas
-    document.getElementById("result").innerHTML = "If Bitcoin hits $" + formattedTargetValue + ", your Bitcoin will be worth $" + formattedResult;
-}
-
-</script>
+{% include 100k-1mil-body.html %}

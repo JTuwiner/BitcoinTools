@@ -1,0 +1,66 @@
+{%- assign lang = page.language | default: 'en' -%}
+{%- assign t = site.data.100k-1mil[lang] -%}
+
+<p>{{ t.intro }}</p>
+
+<div class="calc-100">
+
+  <p>{{ t.label_amount }}</p>
+  <input type="number" id="bitcoinAmount" placeholder="{{ t.placeholder_amount }}" min="0" step="0.000001">
+  <p>{{ t.label_target }}</p>
+  <label><input type="radio" name="targetValue" value="500000" checked>$500,000</label>
+  <label><input type="radio" name="targetValue" value="1000000">$1,000,000</label>
+  <button onclick="calculateValue()">{{ t.btn_calculate }}</button>
+  <p id="result"></p>
+
+</div>
+
+<style>
+.calc-100 input {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.calc-100 button {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.calc-100 button {
+    color: white;
+    background-color: #007bff;
+    border-color: #007bff;
+    cursor: pointer;
+}
+.calc-100 button:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+.calc-100 label {
+    margin-right: 20px;
+    font-size: 16px;
+}
+.calc-100 p {
+    margin-top: 20px;
+}
+</style>
+
+<script>
+var i18n100k = {
+  resultPrefix: {{ t.result_prefix | jsonify }},
+  resultMiddle: {{ t.result_middle | jsonify }}
+};
+
+function calculateValue() {
+    var bitcoinAmount = document.getElementById("bitcoinAmount").value;
+    var targetValue = document.querySelector('input[name="targetValue"]:checked').value;
+    var formattedTargetValue = parseInt(targetValue).toLocaleString();
+    var result = bitcoinAmount * targetValue;
+    var formattedResult = result.toLocaleString();
+    document.getElementById("result").innerHTML = i18n100k.resultPrefix + formattedTargetValue + i18n100k.resultMiddle + formattedResult;
+}
+</script>
