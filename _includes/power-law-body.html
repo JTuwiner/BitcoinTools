@@ -1,0 +1,127 @@
+{%- assign lang = page.language | default: 'en' -%}
+{%- assign t = site.data.power-law-calculator[lang] -%}
+
+<p>{{ t.intro }}</p>
+
+<div style="max-width: 350px;">
+<label for="date">{{ t.date_label }}</label>
+<input type="date" id="date">
+<button onclick="calculatePrice()">{{ t.calculate_button }}</button>
+<div id="result" class="result"></div>
+</div>
+<br>
+
+<a class="view-live-chart" href="https://charts.bitbo.io/long-term-power-law/">{{ t.view_chart }}</a>
+
+<br><br><br>
+
+<h2 style="margin-bottom: 10px;">{{ t.table_heading }}</h2>
+
+<table style="color: black; margin-top: 25px; margin-bottom: 25px;">
+	<thead>
+		<tr>
+			<th>{{ t.col_year }}</th>
+			<th>{{ t.col_price }}</th>
+		</tr>
+	</thead>
+	<tbody id="priceTable">
+	</tbody>
+</table>
+<br>
+
+<a class="view-live-chart" href="https://charts.bitbo.io/long-term-power-law/">{{ t.view_chart }}</a>
+
+<style>
+	.view-live-chart {
+		background: #242424;
+		color: white;
+		padding: 10px 20px;
+		border-radius: 2px;
+		border: 1px solid #000;
+	}
+	.view-live-chart:hover {
+		background: #000;
+		color: white !important;
+		border: 1px solid #000;
+	}
+</style>
+
+<script>
+	var alertInvalidDate = {{ t.alert_invalid_date | jsonify }};
+	var projectedPrefix = {{ t.projected_prefix | jsonify }};
+
+	function calculatePrice() {
+		var inputDate = document.getElementById('date').value;
+		if (!inputDate) {
+			alert(alertInvalidDate);
+			return;
+		}
+
+		var pastDate = new Date('January 1, 2009');
+		var selectedDate = new Date(inputDate);
+		var days = Math.floor((selectedDate.getTime() - pastDate.getTime()) / (1000 * 3600 * 24));
+
+		var a = -17.0161223;
+		var b = 5.8451542;
+
+		var projectedPrice = Math.pow(10, a + b * Math.log10(days));
+
+		document.getElementById('result').innerText = projectedPrefix + ' $' + projectedPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+	}
+
+	function populateTable() {
+		var years = [2025, 2026, 2027, 2028, 2029, 2030, 2035, 2040];
+		var pastDate = new Date('January 1, 2009');
+		var a = -17.0161223;
+		var b = 5.8451542;
+		var tableBody = document.getElementById('priceTable');
+
+		years.forEach(function(year) {
+			var futureDate = new Date('January 1, ' + year);
+			var days = Math.floor((futureDate.getTime() - pastDate.getTime()) / (1000 * 3600 * 24));
+			var projectedPrice = Math.pow(10, a + b * Math.log10(days)).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+
+			var row = document.createElement('tr');
+			var yearCell = document.createElement('td');
+			var priceCell = document.createElement('td');
+
+			yearCell.innerText = year;
+			priceCell.innerText = projectedPrice;
+
+			row.appendChild(yearCell);
+			row.appendChild(priceCell);
+
+			tableBody.appendChild(row);
+		});
+	}
+
+	window.onload = populateTable;
+</script>
+
+<style>
+	.container {
+		max-width: 500px;
+		padding: 20px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+	}
+	label, input, button {
+		display: block;
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	button {
+		padding: 10px;
+		background-color: #4CAF50;
+		color: white;
+		border: none;
+		cursor: pointer;
+	}
+	button:hover {
+		background-color: #45a049;
+	}
+	.result {
+		font-size: 1.2em;
+		margin-top: 20px;
+	}
+</style>
