@@ -1,99 +1,371 @@
 {%- assign lang = page.language | default: 'en' -%}
 {%- assign t = site.data.market-cap-calculator[lang] -%}
 
-<div class="calc-tabs">
-    <button class="tab-btn active" data-calc="market-cap">{{ t.tab_market_cap }}</button>
-    <button class="tab-btn" data-calc="price">{{ t.tab_price }}</button>
-</div>
+<div class="mcap-calculator">
+    <div class="mcap-card">
+        <div class="mcap-tabs">
+            <button class="mcap-tab active" data-calc="market-cap">{{ t.tab_market_cap }}</button>
+            <button class="mcap-tab" data-calc="price">{{ t.tab_price }}</button>
+        </div>
 
-<div class="market-cap-calc" id="market-cap-form">
-    <label for="price">{{ t.label_price }}</label>
-    <input type="number" id="price" placeholder="{{ t.placeholder_price }}">
+        <div id="market-cap-form" class="mcap-form">
+            <div class="mcap-field-header">
+                <span>{{ t.label_price }}</span>
+                <span>USD</span>
+            </div>
+            <div class="mcap-input-row">
+                <div class="mcap-icon mcap-icon-price">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                </div>
+                <div class="mcap-input-label">
+                    <span class="mcap-input-title">{{ t.input_title_price | default: "Price" }}</span>
+                    <span class="mcap-input-sub">{{ t.input_sub_price | default: "Per Unit" }}</span>
+                </div>
+                <input type="text" id="price" inputmode="decimal" placeholder="{{ t.placeholder_price }}">
+            </div>
 
-    <label for="supply">{{ t.label_supply }}</label>
-    <input type="number" id="supply" placeholder="{{ t.placeholder_supply }}">
+            <div class="mcap-field-header">
+                <span>{{ t.label_supply }}</span>
+                <span>{{ t.unit_supply | default: "Units" }}</span>
+            </div>
+            <div class="mcap-input-row">
+                <div class="mcap-icon mcap-icon-supply">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+                <div class="mcap-input-label">
+                    <span class="mcap-input-title">{{ t.input_title_supply | default: "Total Supply" }}</span>
+                    <span class="mcap-input-sub">{{ t.input_sub_supply | default: "Shares / Coins" }}</span>
+                </div>
+                <input type="text" id="supply" inputmode="decimal" placeholder="{{ t.placeholder_supply }}">
+            </div>
 
-    <button id="calculate-cap">{{ t.btn_calculate_cap }}</button>
-</div>
+            <button id="calculate-cap" class="mcap-btn">{{ t.btn_calculate_cap }}</button>
+        </div>
 
-<div class="market-cap-calc" id="price-form" style="display: none;">
-    <label for="market-cap">{{ t.label_market_cap }}</label>
-    <input type="number" id="market-cap" placeholder="{{ t.placeholder_market_cap }}">
+        <div id="price-form" class="mcap-form" style="display: none;">
+            <div class="mcap-field-header">
+                <span>{{ t.label_market_cap }}</span>
+                <span>USD</span>
+            </div>
+            <div class="mcap-input-row">
+                <div class="mcap-icon mcap-icon-cap">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                </div>
+                <div class="mcap-input-label">
+                    <span class="mcap-input-title">{{ t.input_title_mcap | default: "Market Cap" }}</span>
+                    <span class="mcap-input-sub">{{ t.input_sub_mcap | default: "Total Value" }}</span>
+                </div>
+                <input type="text" id="market-cap" inputmode="decimal" placeholder="{{ t.placeholder_market_cap }}">
+            </div>
 
-    <label for="supply-price">{{ t.label_supply_price }}</label>
-    <input type="number" id="supply-price" placeholder="{{ t.placeholder_supply_price }}">
+            <div class="mcap-field-header">
+                <span>{{ t.label_supply_price }}</span>
+                <span>{{ t.unit_supply | default: "Units" }}</span>
+            </div>
+            <div class="mcap-input-row">
+                <div class="mcap-icon mcap-icon-supply">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+                <div class="mcap-input-label">
+                    <span class="mcap-input-title">{{ t.input_title_supply | default: "Total Supply" }}</span>
+                    <span class="mcap-input-sub">{{ t.input_sub_supply | default: "Shares / Coins" }}</span>
+                </div>
+                <input type="text" id="supply-price" inputmode="decimal" placeholder="{{ t.placeholder_supply_price }}">
+            </div>
 
-    <button id="calculate-price">{{ t.btn_calculate_price }}</button>
-</div>
+            <button id="calculate-price" class="mcap-btn">{{ t.btn_calculate_price }}</button>
+        </div>
+    </div>
 
-<div id="result" style="display: none;"></div>
+    <div id="mcap-result" class="mcap-result" style="display: none;">
+        <div class="mcap-result-header">
+            <span id="mcap-result-title">{{ t.result_header | default: "RESULT" }}</span>
+        </div>
+        <div class="mcap-result-body">
+            <div class="mcap-result-item">
+                <span class="mcap-result-value" id="mcap-result-value">$0.00</span>
+                <span class="mcap-result-label" id="mcap-result-label">{{ t.result_market_cap_label }}</span>
+            </div>
+        </div>
+    </div>
 
-<div style="max-width: 700px;">
-    <h3>{{ t.h3_formula }}</h3>
-    <p>{{ t.p_formula }}</p>
-    <p>{{ t.p_formula2 }}</p>
+    <div class="mcap-content">
+        <h3>{{ t.h3_formula }}</h3>
+        <p>{{ t.p_formula }}</p>
+        <p>{{ t.p_formula2 }}</p>
 
-    <h3>{{ t.h3_meaning }}</h3>
-    <p>{{ t.p_meaning }}</p>
+        <h3>{{ t.h3_meaning }}</h3>
+        <p>{{ t.p_meaning }}</p>
 
-    <h3>{{ t.h3_price }}</h3>
-    <p>{{ t.p_price }}</p>
+        <h3>{{ t.h3_price }}</h3>
+        <p>{{ t.p_price }}</p>
+    </div>
 </div>
 
 <style>
-  .calc-tabs {
-      margin-bottom: 20px;
-  }
+.mcap-calculator {
+    max-width: 660px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
 
-  .tab-btn {
-      padding: 10px 20px;
-      margin-right: 10px;
-      border: none;
-      background: #333;
-      color: white;
-      cursor: pointer;
-      border-radius: 5px;
-  }
+.mcap-card {
+    background: linear-gradient(145deg, #1a1f2e 0%, #141824 100%);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 24px;
+}
 
-  .tab-btn.active {
-      background: #666;
-  }
+.mcap-tabs {
+    display: flex;
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    padding: 4px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(255,255,255,0.06);
+}
 
-  .market-cap-calc input, .market-cap-calc button {
-      padding: 10px;
-      margin: 5px;
-      width: 200px;
-      display: block;
-  }
+.mcap-tab {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    background: transparent;
+    color: #8892a4;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
 
-  .market-cap-calc button:disabled, .market-cap-calc input:disabled {
-      background-color: #ccc;
-      opacity: 0.5;
-  }
+.mcap-tab.active {
+    background: #232939;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
 
-  .market-cap-calc {
-      margin: 20px 0;
-  }
+.mcap-tab:hover:not(.active) {
+    color: #bcc4d4;
+}
 
-  #result {
-      margin: 20px 0;
-      padding: 15px;
-      background-color: #f5f5f5;
-      border-radius: 5px;
-      color: black !important;
-      max-width: 400px;
-  }
+.mcap-field-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    margin-top: 16px;
+    padding: 0 4px;
+}
 
-  label {
-      font-weight: bold;
-      display: block;
-      margin-top: 10px;
-  }
+.mcap-field-header:first-child {
+    margin-top: 0;
+}
 
-  h2, h3 {
-      color: white;
-      margin-top: 30px;
-  }
+.mcap-field-header span {
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.mcap-input-row {
+    display: flex;
+    align-items: center;
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 12px 16px;
+    transition: border-color 0.2s ease;
+}
+
+.mcap-input-row:focus-within {
+    border-color: #f2a900;
+    box-shadow: 0 0 0 1px rgba(242,169,0,0.15);
+}
+
+.mcap-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-right: 12px;
+}
+
+.mcap-icon-price {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    color: #fff;
+}
+
+.mcap-icon-supply {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #fff;
+}
+
+.mcap-icon-cap {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    color: #fff;
+}
+
+.mcap-input-label {
+    display: flex;
+    flex-direction: column;
+    margin-right: 12px;
+    min-width: 100px;
+}
+
+.mcap-input-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e5e7eb;
+    line-height: 1.3;
+}
+
+.mcap-input-sub {
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1.3;
+}
+
+.mcap-input-row input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    text-align: right;
+    padding: 0;
+    outline: none;
+    min-width: 0;
+    font-weight: 500;
+}
+
+.mcap-input-row input::placeholder {
+    color: #4b5563;
+    font-weight: 400;
+}
+
+.mcap-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 24px;
+    background: linear-gradient(135deg, #f2a900 0%, #e09500 100%);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.3px;
+}
+
+.mcap-btn:hover {
+    background: linear-gradient(135deg, #fbbf24 0%, #f2a900 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(242,169,0,0.35);
+}
+
+.mcap-btn:active {
+    transform: translateY(0);
+}
+
+.mcap-result {
+    background: linear-gradient(145deg, #1a1f2e 0%, #141824 100%);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 32px;
+}
+
+.mcap-result-header {
+    background: linear-gradient(135deg, #f2a900 0%, #e09500 100%);
+    padding: 12px 24px;
+}
+
+.mcap-result-header span {
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+    letter-spacing: 1px;
+}
+
+.mcap-result-body {
+    padding: 24px;
+}
+
+.mcap-result-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.mcap-result-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #22c55e;
+    line-height: 1.2;
+    word-break: break-all;
+    text-align: center;
+}
+
+.mcap-result-label {
+    font-size: 13px;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.mcap-result .mcap-result-error .mcap-result-value {
+    color: #ef4444;
+    font-size: 16px;
+}
+
+.mcap-content {
+    max-width: 660px;
+    margin: 0 auto;
+}
+
+.mcap-content h3 {
+    color: #f2a900;
+    margin-top: 28px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.mcap-content p {
+    color: #d1d5db;
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+@media screen and (max-width: 480px) {
+    .mcap-card {
+        padding: 20px 16px;
+    }
+    .mcap-input-label {
+        min-width: 80px;
+    }
+    .mcap-input-title {
+        font-size: 13px;
+    }
+    .mcap-input-row input {
+        font-size: 16px;
+    }
+    .mcap-result-value {
+        font-size: 24px;
+    }
+    .mcap-tab {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+}
 </style>
 
 <script>
@@ -101,12 +373,13 @@ var i18n = {
     errorInvalid: {{ t.error_invalid | jsonify }},
     errorInvalidCap: {{ t.error_invalid_cap | jsonify }},
     resultMarketCapLabel: {{ t.result_market_cap_label | jsonify }},
-    resultPriceLabel: {{ t.result_price_label | jsonify }}
+    resultPriceLabel: {{ t.result_price_label | jsonify }},
+    resultHeader: {{ t.result_header | default: "RESULT" | jsonify }}
 };
 
 $(document).ready(function() {
-    $('.tab-btn').on('click', function() {
-        $('.tab-btn').removeClass('active');
+    $('.mcap-tab').on('click', function() {
+        $('.mcap-tab').removeClass('active');
         $(this).addClass('active');
 
         var calcType = $(this).data('calc');
@@ -117,53 +390,76 @@ $(document).ready(function() {
             $('#market-cap-form').hide();
             $('#price-form').show();
         }
-        $('#result').hide();
+        $('#mcap-result').hide();
     });
 
-    $('#calculate-cap').on('click', function() {
-        var price = parseFloat($('#price').val());
-        var supply = parseFloat($('#supply').val());
-
-        if (isNaN(price) || isNaN(supply)) {
-            $('#result').html('<p style="color: red;">' + i18n.errorInvalid + '</p>').show();
-            return;
-        }
-
-        var marketCap = price * supply;
-
-        var formattedMarketCap = new Intl.NumberFormat('en-US', {
+    function formatNumber(num) {
+        return new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
-        }).format(marketCap);
+        }).format(num);
+    }
 
-        $('#result').html('<p><b>' + i18n.resultMarketCapLabel + '</b> ' + formattedMarketCap + '</p>').show();
-    });
-
-    $('#calculate-price').on('click', function() {
-        var marketCap = parseFloat($('#market-cap').val());
-        var supply = parseFloat($('#supply-price').val());
-
-        if (isNaN(marketCap) || isNaN(supply)) {
-            $('#result').html('<p style="color: red;">' + i18n.errorInvalidCap + '</p>').show();
-            return;
-        }
-
-        var price = marketCap / supply;
-
-        var formattedPrice = new Intl.NumberFormat('en-US', {
+    function formatPrice(num) {
+        return new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
             minimumFractionDigits: 2,
             maximumFractionDigits: 6
-        }).format(price);
+        }).format(num);
+    }
 
-        $('#result').html('<p><b>' + i18n.resultPriceLabel + '</b> ' + formattedPrice + '</p>').show();
+    function showResult(value, label, isError) {
+        var $result = $('#mcap-result');
+        var $item = $result.find('.mcap-result-item');
+        if (isError) {
+            $item.addClass('mcap-result-error');
+        } else {
+            $item.removeClass('mcap-result-error');
+        }
+        $('#mcap-result-value').text(value);
+        $('#mcap-result-label').text(label);
+        $result.show();
+        $result[0].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    $('#calculate-cap').on('click', function() {
+        var price = parseFloat($('#price').val().replace(/,/g, ''));
+        var supply = parseFloat($('#supply').val().replace(/,/g, ''));
+
+        if (isNaN(price) || isNaN(supply)) {
+            showResult(i18n.errorInvalid, '', true);
+            return;
+        }
+
+        var marketCap = price * supply;
+        showResult(formatNumber(marketCap), i18n.resultMarketCapLabel, false);
+    });
+
+    $('#calculate-price').on('click', function() {
+        var marketCap = parseFloat($('#market-cap').val().replace(/,/g, ''));
+        var supply = parseFloat($('#supply-price').val().replace(/,/g, ''));
+
+        if (isNaN(marketCap) || isNaN(supply)) {
+            showResult(i18n.errorInvalidCap, '', true);
+            return;
+        }
+
+        var price = marketCap / supply;
+        showResult(formatPrice(price), i18n.resultPriceLabel, false);
     });
 
     $('#price, #supply, #market-cap, #supply-price').on('input', function() {
-        this.value = this.value.replace(/[^0-9.]/g, '');
+        this.value = this.value.replace(/[^0-9.,]/g, '');
+    });
+
+    $('#price, #supply, #market-cap, #supply-price').on('keypress', function(e) {
+        if (e.which === 13) {
+            e.preventDefault();
+            $(this).closest('.mcap-form').find('.mcap-btn').click();
+        }
     });
 });
 </script>
