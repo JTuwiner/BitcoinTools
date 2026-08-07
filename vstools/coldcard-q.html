@@ -4,8 +4,8 @@ title: Coldcard Q
 full-width: yes
 permalink: "/coldcard-q/"
 tool: yes
-link: https://store.coinkite.com/promo/1E0DD7D50340FEFAF900
-desc: COLDCARD Q™ is a premium, battery-powered Bitcoin hardware wallet with a full QWERTY keyboard, 3.2" color LCD, built-in QR scanner, dual Secure Elements, and dual MicroSD slots—offering air-gapped security, NFC tap-to-sign, and advanced PIN protections for truly sovereign cold storage.
+link: https://unchained.com/vaults?utm_source=referral-21-bitbo
+desc: Security advisory: Coldcard-generated keys may be vulnerable. Prefer multivendor multisig (Unchained) until resolved. Historical Q product details below.
 img: coldcard-q.png
 sort: 84
 price: $239.99 USD
@@ -34,7 +34,7 @@ founded: 2011
 parentcompany: Coinkite
 securityfeatures: [passphrase, pin, shamirsecret, tor]
 passphrasentry: Device
-securityincidents: "No known security incidents"
+securityincidents: "2026 Coinkite advisory: Coldcard-generated seeds (Mk3/Mk4/Mk5/Q) may have insufficient randomness. Treat affected keys as compromised; new keys must be generated on non-Coldcard hardware. Multivendor multisig reduces single-vendor risk."
 # Connectivity
 bluetooth: false
 nfc: true
@@ -56,3 +56,32 @@ dualsecureelement: true
 # iOS
 ioscompatibility: Full
 ---
+
+<style>
+.coldcard-security-warning {
+  max-width: 640px;
+  margin: 0 auto 24px;
+  padding: 18px 20px;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 2px solid #DC2626;
+  border-radius: 10px;
+  color: #78350F;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  text-align: left;
+}
+.coldcard-security-warning strong {
+  color: #991B1B;
+  display: block;
+  margin-bottom: 8px;
+}
+.coldcard-security-warning a { color: #991B1B; font-weight: 600; }
+</style>
+<div class="coldcard-security-warning" role="alert">
+  <strong>Major security advisory</strong>
+  Keys generated on Coldcard Mk3, Mk4, Mk5, and Q may be vulnerable due to weaker-than-expected randomness. Moving a Coldcard seed elsewhere does not fix it. Prefer multivendor multisig for meaningful balances.
+  <br><br>
+  <a href="https://unchained.com/vaults?utm_source=referral-21-bitbo" target="_blank" rel="nofollow noopener">Unchained multisig — 10% off BITBO10</a>
+  ·
+  <a href="https://www.unchained.com/blog/coldcard-security-advisory/" target="_blank" rel="noopener">Unchained advisory</a>
+</div>

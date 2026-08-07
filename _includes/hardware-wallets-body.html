@@ -28,6 +28,18 @@
   <div class="hw-intro-highlight">
     <p>{{ t.intro_highlight }}</p>
   </div>
+
+  <div class="hw-coldcard-advisory" id="coldcard-security-advisory">
+    <h2 class="hw-coldcard-advisory-title">Coldcard Security Advisory</h2>
+    <p><strong>Coinkite disclosed a vulnerability</strong> affecting seed phrase generation on Coldcard devices. Private keys generated on Mk3, Mk4, Mk5, and Q models may have fewer random bits than expected, making them potentially vulnerable to attack. Moving a Coldcard-generated seed to a Trezor, Ledger, or any other device does <strong>not</strong> fix it — new keys must be generated on non-Coldcard hardware.</p>
+    <p>We have temporarily removed Coldcard from this comparison while the industry responds.</p>
+    <p><strong>Why single-sig is risky:</strong> If you hold bitcoin with one key on one vendor’s device, a single bug or disclosure can put your funds at immediate risk. That is the lesson of this incident for anyone using a lone hardware wallet.</p>
+    <p><strong>Why multivendor multisig matters:</strong> In a 2-of-3 setup with keys from different manufacturers (plus a collaborative partner), one compromised device does not by itself let an attacker move your bitcoin. Unchained vaults are built around that model — you hold two keys, Unchained holds one, and their key was not generated on Coldcard.</p>
+    <p class="hw-coldcard-advisory-ctas">
+      <a href="https://unchained.com/vaults?utm_source=referral-21-bitbo" target="_blank" rel="nofollow noopener" class="hw-coldcard-advisory-cta">Get Unchained Multisig — 10% off with BITBO10</a>
+      <a href="https://www.unchained.com/blog/coldcard-security-advisory/" target="_blank" rel="noopener" class="hw-coldcard-advisory-link">Read Unchained’s Coldcard advisory</a>
+    </p>
+  </div>
 </div>
 
 {% if wallets.size > 0 %}
@@ -117,17 +129,6 @@
           <tr>
             <td>
               <div class="brand-rating-name">
-                <img loading="lazy" src="/tools/img/coldcard.jpeg" alt="Coldcard" class="brand-rating-img">
-                <span>Coldcard</span>
-              </div>
-            </td>
-            <td><span class="rating-stars">⭐ 4.6/5</span></td>
-            <td>53</td>
-            <td><a href="https://heyapollo.com/product/coldcard-mk4" target="_blank" rel="nofollow noopener">HeyApollo</a></td>
-          </tr>
-          <tr>
-            <td>
-              <div class="brand-rating-name">
                 <img loading="lazy" src="/tools/img/jade.png" alt="Blockstream" class="brand-rating-img">
                 <span>Jade</span>
               </div>
@@ -184,26 +185,6 @@
               <div class="wallet-scrutiny-wallet-name">
                 <img loading="lazy" src="/tools/img/bitbox.png" alt="BitBox02" class="wallet-scrutiny-img">
                 <span>BitBox02</span>
-              </div>
-            </td>
-            <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td>
-              <div class="wallet-scrutiny-wallet-name">
-                <img loading="lazy" src="/tools/img/coldcard.jpeg" alt="Coldcard Q" class="wallet-scrutiny-img">
-                <span>Coldcard Q</span>
-              </div>
-            </td>
-            <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td>
-              <div class="wallet-scrutiny-wallet-name">
-                <img loading="lazy" src="/tools/img/coldcard.jpeg" alt="Coldcard Mk4" class="wallet-scrutiny-img">
-                <span>Coldcard Mk4</span>
               </div>
             </td>
             <td><span class="scrutiny-score scrutiny-score-perfect">10/10</span></td>
@@ -318,8 +299,6 @@
           <option value="Bitkey">Bitkey</option>
           <option value="Blockstream Jade">Blockstream Jade</option>
           <option value="Blockstream Jade Plus">Blockstream Jade Plus</option>
-          <option value="Coldcard MK4">Coldcard MK4</option>
-          <option value="Coldcard Q">Coldcard Q</option>
           <option value="Ledger Flex">Ledger Flex</option>
           <option value="Ledger Nano S Plus">Ledger Nano S Plus</option>
           <option value="Ledger Nano X">Ledger Nano X</option>
@@ -348,33 +327,19 @@
       "BitBox02|Bitkey": "/bitbox02-vs-bitkey/",
       "BitBox02|Blockstream Jade": "/bitbox02-vs-jade/",
       "BitBox02|Blockstream Jade Plus": "/bitbox02-vs-jade-plus/",
-      "BitBox02|Coldcard MK4": "/coldcard-mk4-vs-bitbox02/",
       "BitBox02|Ledger Nano X": "/bitbox02-vs-ledger-x/",
       "BitBox02|Passport Core": "/bitbox02-vs-passport-core/",
       "BitBox02|Trezor Safe 3": "/bitbox02-vs-safe-3/",
       "BitBox02|Trezor Safe 5": "/trezor-5-vs-bitbox02/",
       "BitBox02|Trezor Safe 7": "/trezor-safe-7-vs-bitbox02/",
-      "Bitkey|Coldcard MK4": "/coldcard-mk4-vs-bitkey/",
       "Bitkey|Trezor Safe 5": "/trezor-5-vs-bitkey/",
       "Bitkey|Trezor Safe 7": "/trezor-safe-7-vs-bitkey/",
-      "Blockstream Jade|Coldcard MK4": "/coldcard-mk4-vs-jade/",
       "Blockstream Jade|Trezor Safe 3": "/trezor-safe-3-vs-jade/",
       "Blockstream Jade|Trezor Safe 5": "/trezor-5-vs-jade/",
       "Blockstream Jade|Trezor Safe 7": "/trezor-safe-7-vs-jade/",
-      "Blockstream Jade Plus|Coldcard MK4": "/coldcard-mk4-vs-jade-plus/",
       "Blockstream Jade Plus|Trezor Safe 3": "/trezor-safe-3-vs-jade-plus/",
       "Blockstream Jade Plus|Trezor Safe 5": "/trezor-5-vs-jade-plus/",
       "Blockstream Jade Plus|Trezor Safe 7": "/trezor-safe-7-vs-jade-plus/",
-      "Coldcard MK4|Ledger Flex": "/coldcard-mk4-vs-ledger-flex/",
-      "Coldcard MK4|Ledger Nano X": "/coldcard-mk4-vs-ledger-x/",
-      "Coldcard MK4|Ledger Stax": "/coldcard-mk4-vs-ledger-stax/",
-      "Coldcard MK4|Passport Core": "/coldcard-mk4-vs-passport-core/",
-      "Coldcard MK4|Trezor Safe 3": "/trezor-safe-3-vs-coldcard-mk4/",
-      "Coldcard MK4|Trezor Safe 5": "/trezor-5-vs-coldcard-mk4/",
-      "Coldcard MK4|Trezor Safe 7": "/trezor-safe-7-vs-coldcard-mk4/",
-      "Coldcard Q|Trezor Safe 3": "/trezor-3-vs-coldcard-q/",
-      "Coldcard Q|Trezor Safe 5": "/trezor-5-vs-coldcard-q/",
-      "Coldcard Q|Trezor Safe 7": "/trezor-safe-7-vs-coldcard-q/",
       "Ledger Flex|Ledger Nano X": "/ledger-x-vs-flex/",
       "Ledger Flex|Trezor Safe 5": "/trezor-5-vs-ledger-flex/",
       "Ledger Flex|Trezor Safe 7": "/trezor-safe-7-vs-ledger-flex/",
@@ -700,7 +665,6 @@
           <th>{{ t.th_provider }}</th>
           <th>Trezor</th>
           <th>Ledger</th>
-          <th>Coldcard</th>
           <th>{{ t.th_other }}</th>
         </tr>
       </thead>
@@ -732,13 +696,6 @@
           </td>
           <td>
             <div class="integration-devices">
-              <span class="integration-device"><span class="check">✓</span> Q</span>
-              <span class="integration-device"><span class="check">✓</span> Mk4</span>
-              <span class="integration-device deprecated"><span class="check">✓</span> Mk3/Mk2 (legacy)</span>
-            </div>
-          </td>
-          <td>
-            <div class="integration-devices">
               <span class="integration-device"><span class="check">✓</span> Jade Plus</span>
               <span class="integration-device"><span class="check">✓</span> Jade</span>
               <span class="integration-device"><span class="check">✓</span> BitBox02 Nova</span>
@@ -763,11 +720,6 @@
           <td>
             <div class="integration-devices">
               <span class="integration-device"><span class="check">✓</span> All models</span>
-            </div>
-          </td>
-          <td>
-            <div class="integration-devices">
-              <span class="integration-device"><span class="check">✓</span> Coldcard</span>
             </div>
           </td>
           <td>
@@ -812,14 +764,6 @@
           </div>
         </div>
         <div class="integration-mobile-brand-section">
-          <div class="integration-mobile-brand-name">Coldcard</div>
-          <div class="integration-mobile-devices">
-            <span class="integration-mobile-device"><span class="check">✓</span> Q</span>
-            <span class="integration-mobile-device"><span class="check">✓</span> Mk4</span>
-            <span class="integration-mobile-device deprecated"><span class="check">✓</span> Mk3/Mk2 (legacy)</span>
-          </div>
-        </div>
-        <div class="integration-mobile-brand-section">
           <div class="integration-mobile-brand-name">Blockstream</div>
           <div class="integration-mobile-devices">
             <span class="integration-mobile-device"><span class="check">✓</span> Jade Plus</span>
@@ -855,12 +799,6 @@
           <div class="integration-mobile-brand-name">Ledger</div>
           <div class="integration-mobile-devices">
             <span class="integration-mobile-device"><span class="check">✓</span> All models</span>
-          </div>
-        </div>
-        <div class="integration-mobile-brand-section">
-          <div class="integration-mobile-brand-name">Coldcard</div>
-          <div class="integration-mobile-devices">
-            <span class="integration-mobile-device"><span class="check">✓</span> Coldcard</span>
           </div>
         </div>
         <div class="integration-mobile-brand-section">
@@ -959,25 +897,6 @@
         <div class="brand-device-item">
           <span class="brand-device-name">Jade Classic</span>
           <span class="brand-device-price">$65</span>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Coldcard -->
-    <div class="brand-lineup-card">
-      <div class="brand-lineup-card-header">
-        <img loading="lazy" src="/tools/img/coldcard.jpeg" alt="Coldcard" class="brand-lineup-card-img">
-        <span class="brand-lineup-card-name">Coldcard</span>
-        <span class="brand-lineup-card-badge">2 devices</span>
-      </div>
-      <div class="brand-lineup-devices">
-        <div class="brand-device-item brand-device-highlight">
-          <span class="brand-device-name">Q (full keyboard)</span>
-          <span class="brand-device-price">$219</span>
-        </div>
-        <div class="brand-device-item">
-          <span class="brand-device-name">Mk4</span>
-          <span class="brand-device-price">$157</span>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Coldcard Review"
-seotitle: "Coldcard Mk4 Review: 3 Things to Know [2026]"
+seotitle: "Coldcard Mk4 Review: Security Advisory [2026]"
 full-width: yes
 permalink: "/coldcard-mk4-review/"
 capture: yes
@@ -152,8 +152,47 @@ capture: yes
     grid-template-columns: 1fr;
   }
 }
+
+.coldcard-security-warning {
+  max-width: 700px;
+  margin: 0 auto 28px;
+  padding: 18px 20px;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 2px solid #DC2626;
+  border-radius: 10px;
+  color: #78350F;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.coldcard-security-warning strong {
+  color: #991B1B;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.coldcard-security-warning-links {
+  display: block;
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.coldcard-security-warning-links a {
+  color: #991B1B;
+}
 </style>
 <div class="container-cold">
+
+<div class="coldcard-security-warning" role="alert">
+  <strong>Major security advisory:</strong> Coinkite warned that private keys generated on Coldcard devices (Mk3, Mk4, Mk5, and Q) may be vulnerable due to weaker-than-expected randomness. Treat any Coldcard-generated seed as potentially compromised — moving it to another wallet does not fix it. Generate new keys on non-Coldcard hardware. For meaningful balances, prefer multivendor multisig so one vendor bug cannot take your bitcoin alone.
+  <span class="coldcard-security-warning-links">
+    <a href="https://unchained.com/vaults?utm_source=referral-21-bitbo" target="_blank" rel="nofollow noopener">Unchained multisig (10% off BITBO10)</a>
+    ·
+    <a href="https://www.unchained.com/blog/coldcard-security-advisory/" target="_blank" rel="noopener">Unchained advisory</a>
+  </span>
+</div>
+
 <div class="toc-box">
   <h2 class="toc-title">Contents</h2>
   <ol class="toc-list">
@@ -303,6 +342,8 @@ capture: yes
 <p>The Mk 4 has a bright 128x64 pixel OLED screen that can be read in the dark as well as an indicator light to prove that the device has not been tampered with. The Coldcard is made in Canada which inspires more confidence in the device than were it to be made in China.</p>
 
 <h2>Maximum Security</h2>
+
+<p><strong>Note:</strong> The section below describes Coldcard’s historical security design. It does not override the 2026 Coinkite seed-generation advisory at the top of this page — treat Coldcard-generated keys as potentially compromised until replaced.</p>
 
 <p>The Coldcard Mk 4's primary selling point is security. It places heavy emphasis on being able to do everything on the device without the need for any external hardware.</p> 
 
@@ -501,11 +542,11 @@ capture: yes
 
 <p>As far as price goes, the ColdCard sits at about the same price point as Ledger the <a href="https://bitbo.io/tools/ledger-x-review/">Ledger Nano X</a>, while the Trezor T costs $320.</p> 
 
-<p>So far, the Coldcard has not been shown to have any serious security vulnerabilities and based on the amount of emphasis that the Coldcard team places on security, a Coldcard may always remain one step ahead of hackers.</p>
+<p><strong>Update (2026):</strong> Coinkite disclosed a seed-generation vulnerability affecting Coldcard Mk3, Mk4, Mk5, and Q. Treat Coldcard-generated keys as potentially compromised. Do not assume historical “maximum security” marketing still holds for keys created before remediation — generate new keys on non-Coldcard hardware, and prefer multivendor multisig for meaningful balances.</p>
 
 <h2>Where to Buy a Coldcard</h2>
 
-<p>If you'd like to purchase a Coldcard, the best option is to buy it directly from the Coldcard website.</p> 
+<p>We are not recommending new Coldcard purchases while this advisory is active. If you already hold bitcoin on Coldcard-generated keys, prioritize moving to new keys on other devices — ideally in a multivendor multisig setup such as <a href="https://unchained.com/vaults?utm_source=referral-21-bitbo" target="_blank" rel="nofollow noopener">Unchained</a> (10% off with code BITBO10). See <a href="https://www.unchained.com/blog/coldcard-security-advisory/" target="_blank" rel="noopener">Unchained’s Coldcard security advisory</a> for remediation guidance.</p> 
 
 <center>
     <img loading="lazy" class="half-img" alt="CardCard Mk 4 info page" src="https://buybitcoinworldwide.com/pages/wallet-reviews/articles/img/coldcard-home.png" />

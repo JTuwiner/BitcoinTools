@@ -12,13 +12,6 @@
   yearfounded: 2014
   mobileapp: "Yes"
 
-- name: Coldcard Mk4
-  price: 167.94
-  amazon_score: "Not sold on Amazon"
-  bestfor: "Best for advanced users & Bitcoin only"
-  yearfounded: 2018
-  mobileapp: "No"
-
 - name: BitBox02
   price: 157
   amazon_score: "Not sold on Amazon"
