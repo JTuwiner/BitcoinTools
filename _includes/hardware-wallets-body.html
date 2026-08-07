@@ -28,18 +28,6 @@
   <div class="hw-intro-highlight">
     <p>{{ t.intro_highlight }}</p>
   </div>
-
-  <div class="hw-coldcard-advisory" id="coldcard-security-advisory">
-    <h2 class="hw-coldcard-advisory-title">Coldcard Security Advisory</h2>
-    <p><strong>Coinkite disclosed a vulnerability</strong> affecting seed phrase generation on Coldcard devices. Private keys generated on Mk3, Mk4, Mk5, and Q models may have fewer random bits than expected, making them potentially vulnerable to attack. Moving a Coldcard-generated seed to a Trezor, Ledger, or any other device does <strong>not</strong> fix it — new keys must be generated on non-Coldcard hardware.</p>
-    <p>We have temporarily removed Coldcard from this comparison while the industry responds.</p>
-    <p><strong>Why single-sig is risky:</strong> If you hold bitcoin with one key on one vendor’s device, a single bug or disclosure can put your funds at immediate risk. That is the lesson of this incident for anyone using a lone hardware wallet.</p>
-    <p><strong>Why multivendor multisig matters:</strong> In a 2-of-3 setup with keys from different manufacturers (plus a collaborative partner), one compromised device does not by itself let an attacker move your bitcoin. Unchained vaults are built around that model — you hold two keys, Unchained holds one, and their key was not generated on Coldcard.</p>
-    <p class="hw-coldcard-advisory-ctas">
-      <a href="https://unchained.com/vaults?utm_source=referral-21-bitbo" target="_blank" rel="nofollow noopener" class="hw-coldcard-advisory-cta">Get Unchained Multisig — 10% off with BITBO10</a>
-      <a href="https://www.unchained.com/blog/coldcard-security-advisory/" target="_blank" rel="noopener" class="hw-coldcard-advisory-link">Read Unchained’s Coldcard advisory</a>
-    </p>
-  </div>
 </div>
 
 {% if wallets.size > 0 %}
@@ -920,6 +908,18 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="hw-coldcard-advisory" id="coldcard-security-advisory">
+  <h2 class="hw-coldcard-advisory-title">Coldcard Security Advisory</h2>
+  <p><strong>Coinkite disclosed a vulnerability</strong> affecting seed phrase generation on Coldcard devices. Private keys generated on Mk3, Mk4, Mk5, and Q models may have fewer random bits than expected, making them potentially vulnerable to attack. Moving a Coldcard-generated seed to a Trezor, Ledger, or any other device does <strong>not</strong> fix it — new keys must be generated on non-Coldcard hardware.</p>
+  <p>We have temporarily removed Coldcard from this comparison while the industry responds.</p>
+  <p><strong>Why single-sig is risky:</strong> If you hold bitcoin with one key on one vendor’s device, a single bug or disclosure can put your funds at immediate risk. That is the lesson of this incident for anyone using a lone hardware wallet.</p>
+  <p><strong>Why multivendor multisig matters:</strong> In a 2-of-3 setup with keys from different manufacturers (plus a collaborative partner), one compromised device does not by itself let an attacker move your bitcoin. Unchained vaults are built around that model — you hold two keys, Unchained holds one, and their key was not generated on Coldcard.</p>
+  <p class="hw-coldcard-advisory-ctas">
+    <a href="https://unchained.com/vaults?utm_source=referral-21-bitbo" target="_blank" rel="nofollow noopener" class="hw-coldcard-advisory-cta">Get Unchained Multisig — 10% off with BITBO10</a>
+    <a href="https://www.unchained.com/blog/coldcard-security-advisory/" target="_blank" rel="noopener" class="hw-coldcard-advisory-link">Read Unchained’s Coldcard advisory</a>
+  </p>
 </div>
 
 <!-- FAQ Section -->
