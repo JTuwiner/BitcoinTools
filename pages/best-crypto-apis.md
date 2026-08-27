@@ -315,28 +315,20 @@ table tbody tr:nth-child(even) {
 
 <div class="toc-box">
   <ul>
-    <li><a href="#takeaways">Key Takeaways</a></li>
-    <li><a href="#comparison">API Comparison</a></li>
-    <li><a href="#chooser">Which API?</a></li>
-    <li><a href="#changenow">ChangeNOW</a></li>
-    <li><a href="#bitbo">Bitbo</a></li>
-    <li><a href="#coingecko">CoinGecko</a></li>
-    <li><a href="#kraken">Kraken</a></li>
-    <li><a href="#binance">Binance</a></li>
-    <li><a href="#mempool">mempool.space</a></li>
-    <li><a href="#coinapi">CoinAPI</a></li>
-    <li><a href="#coinmarketcap">CoinMarketCap</a></li>
-    <li><a href="#types">Types of APIs</a></li>
-    <li><a href="#choose">How to Choose</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#methodology">Methodology</a></li>
+    <li><a href="#changenow">Best Exchange API</a></li>
+    <li><a href="#bitbo">Best Bitcoin API</a></li>
+    <li><a href="#coingecko">Best Crypto Data API</a></li>
+    <li><a href="#kraken">Best API for Traders</a></li>
+    <li><a href="#binance">Best WebSocket API</a></li>
+    <li><a href="#mempool">Best Mempool API</a></li>
+    <li><a href="#coinapi">Best Institutional API</a></li>
   </ul>
 </div>
 
 <div class="takeaways" id="takeaways">
   <h3>Key Takeaways</h3>
   <ul>
-    <li><strong>ChangeNOW is the best overall crypto API.</strong> It is the one to use for in-app swaps, cross-chain liquidity, and a partner revenue share without running a custodial exchange.</li>
+    <li>ChangeNOW is the best crypto exchange API for in-app swaps, cross-chain liquidity, and a partner revenue share without running a custodial exchange.</li>
     <li>Use Bitbo for Bitcoin chart and on-chain metrics, CoinGecko for broad market data, Kraken when the API must place orders, and Binance for the densest public market-data WebSockets.</li>
     <li>mempool.space is the default free Bitcoin fee/UTXO/tx API. CoinAPI is the self-serve pick when you need normalized tick and order-book data across many venues.</li>
     <li><b>Expert advice from Bitbo's CEO:</b> these are APIs we have actually used or reviewed against production docs. This is not a scraped vendor roundup.</li>
@@ -350,96 +342,67 @@ table tbody tr:nth-child(even) {
   <tr>
     <th>API</th>
     <th>Best for</th>
-    <th>Type</th>
-    <th>Pricing</th>
-    <th>REST / WebSocket</th>
-    <th>Auth</th>
+    <th>Cost</th>
   </tr>
 </thead>
 <tbody>
   <tr>
     <td><a href="#changenow">ChangeNOW</a></td>
     <td>In-app swaps</td>
-    <td>Exchange / swap</td>
-    <td>Free to integrate; 0.4%+ partner share</td>
-    <td>REST</td>
-    <td>Partner API key</td>
+    <td>Free; you earn 0.4%+ on volume</td>
   </tr>
   <tr>
     <td><a href="#bitbo">Bitbo</a></td>
-    <td>Bitcoin metrics / history</td>
-    <td>Bitcoin data</td>
-    <td>Pro++ ($89/mo yearly); 1M calls/mo</td>
-    <td>REST</td>
-    <td>API key</td>
+    <td>Bitcoin charts and metrics</td>
+    <td>$89/mo (Pro++)</td>
   </tr>
   <tr>
     <td><a href="#coingecko">CoinGecko</a></td>
-    <td>Multi-asset prices / metadata</td>
-    <td>Market data</td>
-    <td>Free Demo 10k calls; paid from $35/mo</td>
-    <td>REST; WS on paid</td>
-    <td>Key or keyless</td>
+    <td>Crypto prices</td>
+    <td>Free tier; paid from $35/mo</td>
   </tr>
   <tr>
     <td><a href="#kraken">Kraken</a></td>
-    <td>Spot / futures / OTC trading</td>
-    <td>Exchange trading</td>
-    <td>API free; trading fees apply</td>
-    <td>REST + WS + FIX</td>
-    <td>API key + secret</td>
+    <td>Placing trades</td>
+    <td>Free API; you pay trading fees</td>
   </tr>
   <tr>
     <td><a href="#binance">Binance</a></td>
-    <td>Live books / trades / klines</td>
-    <td>Market-data sockets</td>
-    <td>Free public streams</td>
-    <td>WS streams + WS API</td>
-    <td>None for public streams</td>
+    <td>Live market data</td>
+    <td>Free</td>
   </tr>
   <tr>
     <td><a href="#mempool">mempool.space</a></td>
-    <td>Fees, txs, UTXOs, Lightning</td>
-    <td>Bitcoin node / explorer</td>
-    <td>Free public; enterprise for higher limits</td>
-    <td>REST + WS</td>
-    <td>None for public</td>
+    <td>Bitcoin fees and transactions</td>
+    <td>Free</td>
   </tr>
   <tr>
     <td><a href="#coinapi">CoinAPI</a></td>
-    <td>Normalized multi-exchange books</td>
-    <td>Institutional market data</td>
+    <td>Data from many exchanges</td>
     <td>From $79/mo</td>
-    <td>REST + WS + FIX</td>
-    <td>API key</td>
   </tr>
   <tr>
     <td><a href="#coinmarketcap">CoinMarketCap</a></td>
-    <td>Rankings / brand data</td>
-    <td>Market data (runner-up)</td>
-    <td>Free Basic 15k credits</td>
-    <td>REST; WS on paid</td>
-    <td>Key or keyless</td>
+    <td>Rankings and prices</td>
+    <td>Free tier</td>
   </tr>
 </tbody>
 </table>
 
-<h2 id="chooser">Which Crypto API Should You Use?</h2>
+<h2 id="chooser">Which API?</h2>
 
-<p>Match the API to the job. If you are building two jobs (a dashboard that also swaps), you will usually combine two of these rather than forcing one vendor to do both.</p>
+<p>Pick what you need:</p>
 
 <div class="api-chooser">
-  <h3>API chooser</h3>
-  <label for="jobSelect">What are you building?</label>
   <select id="jobSelect" class="calc-select">
-    <option value="">Select a job</option>
-    <option value="swap">In-app crypto swaps / wallet exchange</option>
-    <option value="bitcoin">Bitcoin dashboard, charts, or research metrics</option>
-    <option value="prices">Token prices, market cap, metadata</option>
-    <option value="trade">A bot or app that places orders</option>
-    <option value="socket">Live order book / trade tape UI</option>
-    <option value="fees">Fee estimator, address watch, broadcast a tx</option>
-    <option value="books">Tick data / books across many exchanges</option>
+    <option value="">Select</option>
+    <option value="swap">Swaps</option>
+    <option value="bitcoin">Bitcoin data</option>
+    <option value="prices">Prices</option>
+    <option value="trade">Trading</option>
+    <option value="socket">Live data</option>
+    <option value="fees">Fees</option>
+    <option value="books">Many exchanges</option>
   </select>
   <div id="jobResult" class="calc-result" style="display: none;"></div>
 </div>
@@ -447,13 +410,13 @@ table tbody tr:nth-child(even) {
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const recs = {
-    swap: '<a href="#changenow">ChangeNOW</a> — best crypto exchange API for in-app swaps and partner revenue share.',
-    bitcoin: '<a href="#bitbo">Bitbo</a> — best Bitcoin data API for chart metrics and on-chain time series.',
-    prices: '<a href="#coingecko">CoinGecko</a> — best crypto data API for multi-asset prices and metadata.',
-    trade: '<a href="#kraken">Kraken</a> — best API for traders who need to place and manage orders (including US users).',
-    socket: '<a href="#binance">Binance</a> — best WebSocket API for public books, trades, and klines. Execute in the US on Kraken.',
-    fees: '<a href="#mempool">mempool.space</a> — best free Bitcoin mempool API for fees, UTXOs, and live chain data.',
-    books: '<a href="#coinapi">CoinAPI</a> — best institutional market data API for normalized multi-venue books.'
+    swap: 'Use <a href="#changenow">ChangeNOW</a>',
+    bitcoin: 'Use <a href="#bitbo">Bitbo</a>',
+    prices: 'Use <a href="#coingecko">CoinGecko</a>',
+    trade: 'Use <a href="#kraken">Kraken</a>',
+    socket: 'Use <a href="#binance">Binance</a>',
+    fees: 'Use <a href="#mempool">mempool.space</a>',
+    books: 'Use <a href="#coinapi">CoinAPI</a>'
   };
   const select = document.getElementById('jobSelect');
   const result = document.getElementById('jobResult');
@@ -479,15 +442,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <h2>The 7 Best Crypto APIs</h2>
 
-<p>ChangeNOW leads because it is the one API on this list that both ships a complete product (swaps) and lets partners earn on volume. The others win a specific job.</p>
+<p>Each pick wins a specific job. ChangeNOW is the exchange/swap API; the rest cover Bitcoin data, market data, trading, sockets, mempool, and institutional feeds.</p>
 
 <div class="api-section" id="changenow">
   <div class="affiliate-card">
-    <span class="card-badge">Best Overall</span>
+    <span class="card-badge">Best Exchange API</span>
     <img src="/tools/img/changenow.svg" alt="ChangeNOW logo" class="affiliate-logo affiliate-logo-wide">
     <h3><a href="https://changenow.io/affiliate" class="program-link" data-program="ChangeNOW" target="_blank" rel="noopener">ChangeNOW →</a></h3>
     <div class="affiliate-details">
-      <p><strong>Badge:</strong> Best overall / Best crypto exchange API</p>
+      <p><strong>Badge:</strong> Best crypto exchange API</p>
       <p><strong>Product:</strong> Non-custodial instant crypto swaps for wallets, widgets, and apps.</p>
       <p><strong>Pricing:</strong> Free to integrate. Default 0.4% partner share, customizable per pair.</p>
       <p><strong>Best for:</strong> In-app exchange without holding user funds or running an order book.</p>
@@ -497,7 +460,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <p>ChangeNOW is a swap API, not a custodial CEX. Your user sends asset A to a deposit address; ChangeNOW sends asset B to the destination wallet. You never hold the funds, you do not need matching-engine infrastructure, and you do not need to source liquidity across 1,500+ assets yourself.</p>
 
-  <p>That is why it is the best overall crypto API for most product teams who want “exchange” inside a wallet, media site, or Web3 app. Kraken and Binance are better if you are actually trading. ChangeNOW is better if you want the user to complete a swap and you want to earn on it.</p>
+  <p>That is why it is the best crypto exchange API for product teams who want swaps inside a wallet, media site, or Web3 app. Kraken and Binance are better if you are actually trading. ChangeNOW is better if you want the user to complete a swap and you want to earn on it.</p>
 
   <p>Integration is free. There is no monthly platform fee. Partners earn a default <strong>0.4% of completed swap volume</strong>, adjustable per asset, pair, or flow if you ask your account manager. Withdraw anytime in 11+ coins after about a $100 minimum. Fixed-rate flow freezes the quote for 20 minutes; standard flow follows the market. Liquidity is pulled from both CEXes and DEXes, which is how they advertise 2,250,000+ pairs.</p>
 
@@ -510,7 +473,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="api-section" id="bitbo">
   <div class="affiliate-card">
-    <span class="card-badge">Best Bitcoin Data</span>
+    <span class="card-badge">Best Bitcoin API</span>
     <img src="/tools/img/bitbo.jpg" alt="Bitbo logo" class="affiliate-logo">
     <h3><a href="https://charts.bitbo.io/btc-api/" class="program-link" data-program="Bitbo" target="_blank" rel="noopener">Bitbo →</a></h3>
     <div class="affiliate-details">
@@ -530,7 +493,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="api-section" id="coingecko">
   <div class="affiliate-card">
-    <span class="card-badge">Best Crypto Data</span>
+    <span class="card-badge">Best Crypto Data API</span>
     <img src="/tools/img/coingecko.svg" alt="CoinGecko logo" class="affiliate-logo">
     <h3><a href="https://www.coingecko.com/en/api" class="program-link" data-program="CoinGecko" target="_blank" rel="noopener">CoinGecko →</a></h3>
     <div class="affiliate-details">
@@ -550,7 +513,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="api-section" id="kraken">
   <div class="affiliate-card">
-    <span class="card-badge">Best for Traders</span>
+    <span class="card-badge">Best API for Traders</span>
     <img src="/tools/img/kraken.jpg" alt="Kraken logo" class="affiliate-logo">
     <h3><a href="https://docs.kraken.com/api/" class="program-link" data-program="Kraken" target="_blank" rel="noopener">Kraken →</a></h3>
     <div class="affiliate-details">
@@ -570,7 +533,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="api-section" id="binance">
   <div class="affiliate-card">
-    <span class="card-badge">Best WebSocket</span>
+    <span class="card-badge">Best WebSocket API</span>
     <img src="/tools/img/binance.svg" alt="Binance logo" class="affiliate-logo">
     <h3><a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams" class="program-link" data-program="Binance" target="_blank" rel="noopener">Binance →</a></h3>
     <div class="affiliate-details">
@@ -590,7 +553,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="api-section" id="mempool">
   <div class="affiliate-card">
-    <span class="card-badge">Best Free Mempool</span>
+    <span class="card-badge">Best Mempool API</span>
     <img src="/tools/img/mempoolspace.jpg" alt="mempool.space logo" class="affiliate-logo">
     <h3><a href="https://mempool.space/docs/api/rest" class="program-link" data-program="mempool.space" target="_blank" rel="noopener">mempool.space →</a></h3>
     <div class="affiliate-details">
@@ -610,7 +573,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="api-section" id="coinapi">
   <div class="affiliate-card">
-    <span class="card-badge">Best Institutional Data</span>
+    <span class="card-badge">Best Institutional API</span>
     <img src="/tools/img/coinapi.svg" alt="CoinAPI logo" class="affiliate-logo">
     <h3><a href="https://www.coinapi.io/" class="program-link" data-program="CoinAPI" target="_blank" rel="noopener">CoinAPI →</a></h3>
     <div class="affiliate-details">
@@ -675,7 +638,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <h2 id="faq">FAQ</h2>
 
 <p><strong>Is there one best crypto API?</strong><br>
-ChangeNOW is the best overall crypto API on this list because it ships a complete swap product with a partner revenue share. For every other job, a specialist wins.</p>
+No. Pick by job: ChangeNOW for swaps, Bitbo for Bitcoin metrics, CoinGecko for market data, Kraken to place orders, Binance for public WebSockets, mempool.space for live chain data, CoinAPI for multi-venue books.</p>
 
 <p><strong>Is ChangeNOW a trading API?</strong><br>
 No. It creates non-custodial swaps. It does not maintain an order book or accept limit orders like Kraken.</p>
@@ -696,7 +659,7 @@ For light traffic, yes, until you hit unpublished limits. For a wallet or paymen
 
 <p>I run Bitbo. We consume Bitcoin data APIs in production, we have integrated partner swap flows, and I reviewed current vendor docs in August 2026 (pricing pages, rate limits, geo terms, and WebSocket vs REST splits).</p>
 
-<p>ChangeNOW is the sponsored lead on this page — first slot, “best overall,” do-follow partner link — because it is the best swap/exchange API for product teams who want to earn on volume. The other picks are editorial. Rankings are by job, not a single score from 1 to 7.</p>
+<p>Rankings are by job, not a single score from 1 to 7.</p>
 
 <h2>Disclaimer</h2>
 
