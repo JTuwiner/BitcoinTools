@@ -1,13 +1,13 @@
 ---
 layout: page
 title: Crypto APIs
-h1title: "7 Best Crypto APIs [2026]"
-seotitle: "7 Best Crypto APIs [2026]"
+h1title: "6 Best Crypto APIs [2026]"
+seotitle: "6 Best Crypto APIs [2026]"
 full-width: yes
 permalink: "/best-crypto-apis/"
 category: yes
 capture: yes
-desc: "Compare the best crypto APIs for 2026: ChangeNOW for in-app swaps, Bitbo for Bitcoin metrics, CoinGecko for market data, Kraken for trading, Binance for WebSockets, plus mempool and institutional feeds."
+desc: "Compare the best crypto APIs for 2026: ChangeNOW for in-app swaps, Bitbo for Bitcoin metrics, CoinGecko for market data, Kraken for trading, Binance for WebSockets, and mempool.space for fees."
 subdesc: "Swap APIs, Bitcoin data, market data, trading, and WebSockets — picked by job, not as one generic winner."
 svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4Zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4Z"/></svg>'
 ---
@@ -425,7 +425,6 @@ table tbody tr:nth-child(even) {
     <li><a href="#kraken">Best API for Traders</a></li>
     <li><a href="#binance">Best WebSocket API</a></li>
     <li><a href="#mempool">Best Mempool API</a></li>
-    <li><a href="#coinapi">Best Institutional API</a></li>
   </ul>
 </div>
 
@@ -434,7 +433,7 @@ table tbody tr:nth-child(even) {
   <ul>
     <li>ChangeNOW is the best crypto exchange API. It lets you add swaps to your app and earn a cut of every trade, without ever holding user funds.</li>
     <li>Bitbo is best for Bitcoin data, CoinGecko for prices, Kraken for trading, and Binance for WebSockets.</li>
-    <li>mempool.space is the best free API for Bitcoin fees and transactions. CoinAPI is best if you need data from many exchanges at once.</li>
+    <li>mempool.space is the best free API for Bitcoin fees and transactions.</li>
     <li><b>Expert advice from Bitbo's CEO:</b> these are APIs I've either used myself or would use. This isn't a scraped vendor list.</li>
   </ul>
 </div>
@@ -481,11 +480,6 @@ table tbody tr:nth-child(even) {
     <td>Free</td>
   </tr>
   <tr>
-    <td><a href="#coinapi">CoinAPI</a></td>
-    <td>Data from many exchanges</td>
-    <td>From $79/mo</td>
-  </tr>
-  <tr>
     <td><a href="#coinmarketcap">CoinMarketCap</a></td>
     <td>Rankings and prices</td>
     <td>Free tier</td>
@@ -506,7 +500,6 @@ table tbody tr:nth-child(even) {
     <option value="trade">Trading</option>
     <option value="socket">Live data</option>
     <option value="fees">Fees</option>
-    <option value="books">Many exchanges</option>
   </select>
   <div id="jobResult" class="calc-result" style="display: none;"></div>
 </div>
@@ -519,8 +512,7 @@ document.addEventListener('DOMContentLoaded', function() {
     prices: 'Use <a href="#coingecko">CoinGecko</a>',
     trade: 'Use <a href="#kraken">Kraken</a>',
     socket: 'Use <a href="#binance">Binance</a>',
-    fees: 'Use <a href="#mempool">mempool.space</a>',
-    books: 'Use <a href="#coinapi">CoinAPI</a>'
+    fees: 'Use <a href="#mempool">mempool.space</a>'
   };
   const select = document.getElementById('jobSelect');
   const result = document.getElementById('jobResult');
@@ -563,7 +555,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<h2>The 7 Best Crypto APIs</h2>
+<h2>The 6 Best Crypto APIs</h2>
 
 <p>Here's each pick and what it's best at.</p>
 
@@ -624,7 +616,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <p>Most apps start with a call like <code>GET /api/v3/simple/price?ids=bitcoin&amp;vs_currencies=usd</code>. The free Demo plan gives you 10k calls a month at 100 per minute, which is plenty for testing, but it requires attribution and commercial use is paid-only. Paid plans start at $35/mo ($29 billed yearly) and add 100k credits, 300 calls per minute, and WebSocket access.</p>
 
-  <p>Data refreshes about every 60 seconds on the free plan and every 10 on Basic. That's fine for a portfolio app, but it's not a live order book — use Binance or CoinAPI for that. Docs: <a href="https://docs.coingecko.com/" target="_blank" rel="noopener">docs.coingecko.com</a>. Pricing: <a href="https://www.coingecko.com/en/api/pricing" target="_blank" rel="noopener">coingecko.com/en/api/pricing</a>.</p>
+  <p>Data refreshes about every 60 seconds on the free plan and every 10 on Basic. That's fine for a portfolio app, but it's not a live order book — use Binance for that. Docs: <a href="https://docs.coingecko.com/" target="_blank" rel="noopener">docs.coingecko.com</a>. Pricing: <a href="https://www.coingecko.com/en/api/pricing" target="_blank" rel="noopener">coingecko.com/en/api/pricing</a>.</p>
 </div>
 
 <div class="api-section" id="kraken">
@@ -685,24 +677,6 @@ document.addEventListener('DOMContentLoaded', function() {
   <p>The catch: rate limits aren't published. Overdo it and you'll get 429 errors, then a ban. For anything serious, self-host it (it's open source) or get an enterprise plan. It also only covers live chain data, not historical metrics — that's what Bitbo is for. REST docs: <a href="https://mempool.space/docs/api/rest" target="_blank" rel="noopener">mempool.space/docs/api/rest</a>. WebSocket: <a href="https://mempool.space/docs/api/websocket" target="_blank" rel="noopener">/docs/api/websocket</a>.</p>
 </div>
 
-<div class="api-section" id="coinapi">
-  <div class="affiliate-card">
-    <span class="card-badge">Best Institutional API</span>
-    <img src="/tools/img/coinapi.svg" alt="CoinAPI logo" class="affiliate-logo">
-    <h3><a href="https://www.coinapi.io/" class="program-link" data-program="CoinAPI" target="_blank" rel="noopener">CoinAPI →</a></h3>
-    <div class="affiliate-details">
-      <p><strong>Product</strong> Normalized trades, quotes, L2/L3 books, and OHLCV from 300–400+ exchanges over REST, WebSocket, and FIX.</p>
-      <p><strong>Pricing</strong> Pay-as-you-go with trial credits, then Startup $79 / Streamer $249 / Pro $599 per month.</p>
-      <p><strong>Best for</strong> Backtests, multi-venue dashboards, and anything that needs one schema across many books.</p>
-    </div>
-    <a href="https://www.coinapi.io/" class="join-button program-link" data-program="CoinAPI" target="_blank" rel="noopener">See CoinAPI pricing</a>
-  </div>
-
-  <p>Once you need order books from more than two or three exchanges, writing and maintaining an adapter for each one gets old fast. CoinAPI normalizes trades, quotes, L2/L3 books, and OHLCV from 300+ exchanges into one schema — REST for history, WebSocket for live data, FIX and flat files on the higher plans.</p>
-
-  <p>Auth is an <code>X-CoinAPI-Key</code> header against <code>https://rest.coinapi.io/v1/</code>. Plans start at $79/mo (Startup, 1k REST credits/day), with Streamer at $249 and Pro at $599 adding FIX access. If you need regulated indices or benchmarks, Kaiko is the alternative, but it's sales-led and usually starts around $1k/mo. Docs: <a href="https://docs.coinapi.io/" target="_blank" rel="noopener">docs.coinapi.io</a>. Pricing: <a href="https://www.coinapi.io/products/market-data-api/pricing" target="_blank" rel="noopener">Market Data API pricing</a>.</p>
-</div>
-
 <div class="api-section" id="coinmarketcap">
   <div class="affiliate-card">
     <img src="/tools/img/coinmarketcap.svg" alt="CoinMarketCap logo" class="affiliate-logo">
@@ -731,7 +705,6 @@ document.addEventListener('DOMContentLoaded', function() {
   <li><strong>Trading APIs</strong> — Kraken. Place and manage orders on a real exchange.</li>
   <li><strong>Market-data WebSockets</strong> — Binance. Live order books and trades.</li>
   <li><strong>Chain / explorer APIs</strong> — mempool.space. Fees, transactions, UTXOs, broadcast.</li>
-  <li><strong>Institutional market data</strong> — CoinAPI (self-serve), Kaiko (sales-led).</li>
   <li><strong>Payment gateways</strong> — merchant checkout (BitPay, Zaprite, and similar). Separate article.</li>
 </ul>
 
@@ -740,9 +713,9 @@ document.addEventListener('DOMContentLoaded', function() {
 <ul>
   <li><strong>Custody.</strong> If you don't want to hold user funds, use a swap API (ChangeNOW), not an exchange trading API.</li>
   <li><strong>Location.</strong> Don't build a US product on Binance trading keys, and don't send UK traffic to ChangeNOW. Kraken is the safe pick for US users.</li>
-  <li><strong>Speed vs coverage.</strong> CoinGecko covers everything but updates slowly. Binance is fast but one venue. CoinAPI is fast across many venues, and you pay for it.</li>
+  <li><strong>Speed vs coverage.</strong> CoinGecko covers everything but updates slowly. Binance is fast but one venue.</li>
   <li><strong>Bitcoin vs everything.</strong> Realized price and supply data is Bitbo. Altcoins and long-tail tokens are CoinGecko. Live Bitcoin fees are mempool.space.</li>
-  <li><strong>Cost.</strong> ChangeNOW, Binance streams, and mempool.space are free. Bitbo, CoinGecko, and CoinAPI are subscriptions. Kraken just charges trading fees.</li>
+  <li><strong>Cost.</strong> ChangeNOW, Binance streams, and mempool.space are free. Bitbo and CoinGecko are subscriptions. Kraken just charges trading fees.</li>
 </ul>
 
 <p>The three mistakes I see most often: using CoinGecko as an order book, using ChangeNOW as a price ticker, and treating mempool.space's public API like a paid service.</p>
@@ -755,7 +728,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <h3>Is there one best crypto API?</h3>
     </div>
     <div class="faq-answer">
-      <p>No. It depends on what you're building: ChangeNOW for swaps, Bitbo for Bitcoin metrics, CoinGecko for market data, Kraken for placing orders, Binance for WebSockets, mempool.space for live chain data, and CoinAPI for data from many exchanges.</p>
+      <p>No. It depends on what you're building: ChangeNOW for swaps, Bitbo for Bitcoin metrics, CoinGecko for market data, Kraken for placing orders, Binance for WebSockets, and mempool.space for live chain data.</p>
     </div>
   </div>
 
@@ -809,7 +782,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <p>I run Bitbo. We use Bitcoin data APIs in production every day, and I've integrated partner swap flows myself. Everything on this page was checked against the vendors' own docs in August 2026 — pricing, rate limits, and region restrictions.</p>
 
-<p>There's no single ranking from 1 to 7 here. Each pick is the best at its own job.</p>
+<p>There's no single ranking from 1 to 6 here. Each pick is the best at its own job.</p>
 
 <h2>Disclaimer</h2>
 
