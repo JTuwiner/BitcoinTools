@@ -281,6 +281,15 @@ table tbody tr:nth-child(even) {
   background: #ffffff;
 }
 
+code {
+  background-color: #fff8e8;
+  color: #232939;
+  border: 1px solid rgba(242, 169, 0, 0.45);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+
 .api-section {
   margin: 2.5rem 0 3rem;
 }
@@ -455,6 +464,12 @@ table tbody tr:nth-child(even) {
   .faq-answer {
     background: #1a1f2e;
     border-color: #3a4255;
+  }
+
+  code {
+    background-color: #1a1f2e;
+    color: #f0ead8;
+    border-color: rgba(242, 169, 0, 0.35);
   }
 }
 </style>
