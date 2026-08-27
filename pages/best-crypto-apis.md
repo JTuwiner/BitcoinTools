@@ -682,7 +682,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <p>ChangeNOW is a swap API. Your user sends one coin to a deposit address, and ChangeNOW sends back another. You never hold the funds, and you don't need to run an order book or find liquidity — they cover 1,500+ assets from both CEXes and DEXes.</p>
 
-  <p>Integration is free, and you earn <strong>0.4% of every swap</strong> your users make (adjustable if you ask). The flow is simple: list currencies, estimate the rate, create the exchange, then poll the status. There's also a fixed-rate mode that locks the quote for 20 minutes. You get your API key by signing up at <a href="https://changenow.io/api" target="_blank" rel="noopener">changenow.io/api</a>.</p>
+  <p>Integration is free, and you earn <strong>0.4% of every swap</strong> your users make (adjustable if you ask). The flow is simple: list currencies, estimate the rate, create the exchange, then poll the status. There's also a fixed-rate mode that locks the quote for 20 minutes. You get your API key by signing up at <a href="https://changenow.io/affiliate" target="_blank" rel="noopener">ChangeNOW Partner Account</a>.</p>
 
   <p>Two caveats: ChangeNOW doesn't serve UK users, and the estimate endpoint isn't a price feed. For prices, use CoinGecko or Bitbo.</p>
 
