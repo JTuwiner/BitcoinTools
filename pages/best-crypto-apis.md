@@ -478,9 +478,7 @@ code {
 
 <p>There's no single "crypto API." Some swap coins inside your app, some return Bitcoin chart data, some aggregate prices, some place orders on an exchange, and some stream live order books.</p>
 
-<p>Picking the wrong type is painful. CoinGecko can't place a trade, ChangeNOW isn't a price feed, and Binance's sockets won't give you realized price. So I've organized this list by what you're actually trying to build.</p>
-
-<p>Payment gateways (BitPay, Zaprite, and similar) are a different category. We're covering those in a separate article.</p>
+<p>Picking the wrong type is painful. CoinGecko can't place a trade, and ChangeNOW isn't a price feed. I've organized this list by job.</p>
 
 <div class="toc-box">
   <ul>
