@@ -56,24 +56,53 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 }
 
 .affiliate-details {
-  margin-top: 15px;
+  margin-top: 20px;
+  border-top: 1px solid #e5e7eb;
 }
 
 .affiliate-details p {
-  margin: 5px 0;
+  margin: 0;
+  padding: 12px 0;
   font-size: 14px;
+  line-height: 1.55;
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.affiliate-grid .join-button {
-  background-color: #f2a900;
-  color: black !important;
+.affiliate-details p:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.affiliate-details p strong {
   display: block;
-  margin: 0 auto;
-  margin-top: 20px !important;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #6b7280;
+  margin-bottom: 3px;
+}
+
+.affiliate-card .join-button {
+  background-color: #f2a900;
+  color: #000000 !important;
+  display: block;
+  max-width: 320px;
+  margin: 20px auto 0;
   text-align: center;
   font-weight: bold;
-  padding: 5px 5px 8px 5px;
+  text-decoration: none !important;
+  padding: 10px 16px;
   border-radius: 7px;
+  transition: background-color 0.2s ease;
+}
+
+.affiliate-card .join-button::after {
+  content: ' →';
+}
+
+.affiliate-card .join-button:hover {
+  background-color: #d99200;
 }
 
 .card-badge {
@@ -233,6 +262,67 @@ table tbody tr:nth-child(even) {
   margin: 2.5rem 0 3rem;
 }
 
+.faq-item {
+  margin-bottom: 10px;
+}
+
+.faq-question {
+  background: #232939;
+  padding: 15px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.faq-question h3 {
+  margin: 0;
+  padding-right: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.faq-question:hover {
+  background: #f2a900;
+}
+
+.faq-question:hover h3 {
+  color: #000000;
+}
+
+.faq-question::after {
+  content: '+';
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #ffffff;
+  transition: transform 0.3s ease;
+}
+
+.faq-question:hover::after {
+  color: #000000;
+}
+
+.faq-question.active::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.faq-answer {
+  display: none;
+  padding: 15px;
+  border: 1px solid #dee2e6;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  background: #f8f9fa;
+}
+
+.faq-answer p {
+  margin: 0;
+}
+
 .tools-container {
   display: none !important;
 }
@@ -302,6 +392,20 @@ table tbody tr:nth-child(even) {
   .affiliate-card {
     border-color: #3a4255;
   }
+
+  .affiliate-details,
+  .affiliate-details p {
+    border-color: #3a4255;
+  }
+
+  .affiliate-details p strong {
+    color: #f2a900;
+  }
+
+  .faq-answer {
+    background: #1a1f2e;
+    border-color: #3a4255;
+  }
 }
 </style>
 
@@ -331,7 +435,7 @@ table tbody tr:nth-child(even) {
     <li>ChangeNOW is the best crypto exchange API. It lets you add swaps to your app and earn a cut of every trade, without ever holding user funds.</li>
     <li>Bitbo is best for Bitcoin data, CoinGecko for prices, Kraken for trading, and Binance for WebSockets.</li>
     <li>mempool.space is the best free API for Bitcoin fees and transactions. CoinAPI is best if you need data from many exchanges at once.</li>
-    <li><b>Expert advice from Bitbo's CEO:</b> I've used or tested all of these myself. This isn't a scraped vendor list.</li>
+    <li><b>Expert advice from Bitbo's CEO:</b> these are APIs I've either used myself or would use. This isn't a scraped vendor list.</li>
   </ul>
 </div>
 
@@ -437,6 +541,25 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+      const answer = question.nextElementSibling;
+      const isOpen = question.classList.contains('active');
+
+      document.querySelectorAll('.faq-answer').forEach(a => {
+        a.style.display = 'none';
+      });
+      document.querySelectorAll('.faq-question').forEach(q => {
+        q.classList.remove('active');
+      });
+
+      if (!isOpen) {
+        answer.style.display = 'block';
+        question.classList.add('active');
+      }
+    });
+  });
 });
 </script>
 
@@ -450,9 +573,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <img src="/tools/img/changenow.svg" alt="ChangeNOW logo" class="affiliate-logo affiliate-logo-wide">
     <h3><a href="https://changenow.io/affiliate" class="program-link" data-program="ChangeNOW" target="_blank" rel="noopener">ChangeNOW →</a></h3>
     <div class="affiliate-details">
-      <p><strong>Product:</strong> Non-custodial instant crypto swaps for wallets, widgets, and apps.</p>
-      <p><strong>Pricing:</strong> Free to integrate. Default 0.4% partner share, customizable per pair.</p>
-      <p><strong>Best for:</strong> In-app exchange without holding user funds or running an order book.</p>
+      <p><strong>Product</strong> Non-custodial instant crypto swaps for wallets, widgets, and apps.</p>
+      <p><strong>Pricing</strong> Free to integrate. Default 0.4% partner share, customizable per pair.</p>
+      <p><strong>Best for</strong> In-app exchange without holding user funds or running an order book.</p>
     </div>
     <a href="https://changenow.io/affiliate" class="join-button program-link" data-program="ChangeNOW" target="_blank" rel="noopener">Get the ChangeNOW API</a>
   </div>
@@ -470,9 +593,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <img src="/tools/img/bitbo.jpg" alt="Bitbo logo" class="affiliate-logo">
     <h3><a href="https://charts.bitbo.io/btc-api/" class="program-link" data-program="Bitbo" target="_blank" rel="noopener">Bitbo →</a></h3>
     <div class="affiliate-details">
-      <p><strong>Product:</strong> 200+ Bitcoin chart and on-chain metric endpoints, live values plus full history.</p>
-      <p><strong>Pricing:</strong> Included with Bitbo Pro++ ($89/mo billed yearly). 1,000,000 calls/month, 5 requests per 60 seconds.</p>
-      <p><strong>Best for:</strong> Dashboards, models, and research that need Bitcoin-native time series.</p>
+      <p><strong>Product</strong> 200+ Bitcoin chart and on-chain metric endpoints, live values plus full history.</p>
+      <p><strong>Pricing</strong> Included with Bitbo Pro++ ($89/mo billed yearly). 1,000,000 calls/month, 5 requests per 60 seconds.</p>
+      <p><strong>Best for</strong> Dashboards, models, and research that need Bitcoin-native time series.</p>
     </div>
     <a href="https://charts.bitbo.io/btc-api/" class="join-button program-link" data-program="Bitbo" target="_blank" rel="noopener">Explore the Bitbo API</a>
   </div>
@@ -490,9 +613,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <img src="/tools/img/coingecko.svg" alt="CoinGecko logo" class="affiliate-logo">
     <h3><a href="https://www.coingecko.com/en/api" class="program-link" data-program="CoinGecko" target="_blank" rel="noopener">CoinGecko →</a></h3>
     <div class="affiliate-details">
-      <p><strong>Product:</strong> Independent market-data aggregator: prices, metadata, exchanges, DEX / onchain data.</p>
-      <p><strong>Pricing:</strong> Free Demo (10k calls/mo, 100/min, attribution). Paid from $35/mo ($29/mo yearly). WebSocket and webhooks from Basic.</p>
-      <p><strong>Best for:</strong> Portfolios, screeners, and token pages. Not tick-level order books.</p>
+      <p><strong>Product</strong> Independent market-data aggregator: prices, metadata, exchanges, DEX / onchain data.</p>
+      <p><strong>Pricing</strong> Free Demo (10k calls/mo, 100/min, attribution). Paid from $35/mo ($29/mo yearly). WebSocket and webhooks from Basic.</p>
+      <p><strong>Best for</strong> Portfolios, screeners, and token pages. Not tick-level order books.</p>
     </div>
     <a href="https://www.coingecko.com/en/api" class="join-button program-link" data-program="CoinGecko" target="_blank" rel="noopener">Get the CoinGecko API</a>
   </div>
@@ -510,9 +633,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <img src="/tools/img/kraken.jpg" alt="Kraken logo" class="affiliate-logo">
     <h3><a href="https://docs.kraken.com/api/" class="program-link" data-program="Kraken" target="_blank" rel="noopener">Kraken →</a></h3>
     <div class="affiliate-details">
-      <p><strong>Product:</strong> Spot, derivatives, OTC, custody, and earn over REST, WebSocket v2, and unified FIX.</p>
-      <p><strong>Pricing:</strong> API access is free. Spot maker/taker starts at 0.40% / 0.80% and falls with 30-day volume or assets on platform.</p>
-      <p><strong>Best for:</strong> Bots and apps that must place, amend, and cancel real orders — including US users.</p>
+      <p><strong>Product</strong> Spot, derivatives, OTC, custody, and earn over REST, WebSocket v2, and unified FIX.</p>
+      <p><strong>Pricing</strong> API access is free. Spot maker/taker starts at 0.40% / 0.80% and falls with 30-day volume or assets on platform.</p>
+      <p><strong>Best for</strong> Bots and apps that must place, amend, and cancel real orders — including US users.</p>
     </div>
     <a href="https://docs.kraken.com/api/" class="join-button program-link" data-program="Kraken" target="_blank" rel="noopener">Read Kraken API docs</a>
   </div>
@@ -530,9 +653,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <img src="/tools/img/binance.svg" alt="Binance logo" class="affiliate-logo">
     <h3><a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams" class="program-link" data-program="Binance" target="_blank" rel="noopener">Binance →</a></h3>
     <div class="affiliate-details">
-      <p><strong>Product:</strong> Public WebSocket Streams for trades, depth, klines, and tickers, plus a separate WebSocket API for trading/user data.</p>
-      <p><strong>Pricing:</strong> Public market-data streams are free. No API key for <code>wss://stream.binance.com</code>.</p>
-      <p><strong>Best for:</strong> Live UIs and local order books. Not the default US execution venue.</p>
+      <p><strong>Product</strong> Public WebSocket Streams for trades, depth, klines, and tickers, plus a separate WebSocket API for trading/user data.</p>
+      <p><strong>Pricing</strong> Public market-data streams are free. No API key for <code>wss://stream.binance.com</code>.</p>
+      <p><strong>Best for</strong> Live UIs and local order books. Not the default US execution venue.</p>
     </div>
     <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams" class="join-button program-link" data-program="Binance" target="_blank" rel="noopener">Open Binance stream docs</a>
   </div>
@@ -550,9 +673,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <img src="/tools/img/mempoolspace.jpg" alt="mempool.space logo" class="affiliate-logo">
     <h3><a href="https://mempool.space/docs/api/rest" class="program-link" data-program="mempool.space" target="_blank" rel="noopener">mempool.space →</a></h3>
     <div class="affiliate-details">
-      <p><strong>Product:</strong> Open-source Bitcoin explorer API: fees, addresses, UTXOs, blocks, mining, Lightning, tx broadcast.</p>
-      <p><strong>Pricing:</strong> Public REST/WS are free, no key. Limits are undisclosed; 429 then a ban. Self-host or buy enterprise for production volume.</p>
-      <p><strong>Best for:</strong> Fee estimators, payment watchers, and live chain state. Not derived research metrics.</p>
+      <p><strong>Product</strong> Open-source Bitcoin explorer API: fees, addresses, UTXOs, blocks, mining, Lightning, tx broadcast.</p>
+      <p><strong>Pricing</strong> Public REST/WS are free, no key. Limits are undisclosed; 429 then a ban. Self-host or buy enterprise for production volume.</p>
+      <p><strong>Best for</strong> Fee estimators, payment watchers, and live chain state. Not derived research metrics.</p>
     </div>
     <a href="https://mempool.space/docs/api/rest" class="join-button program-link" data-program="mempool.space" target="_blank" rel="noopener">Open mempool API docs</a>
   </div>
@@ -568,9 +691,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <img src="/tools/img/coinapi.svg" alt="CoinAPI logo" class="affiliate-logo">
     <h3><a href="https://www.coinapi.io/" class="program-link" data-program="CoinAPI" target="_blank" rel="noopener">CoinAPI →</a></h3>
     <div class="affiliate-details">
-      <p><strong>Product:</strong> Normalized trades, quotes, L2/L3 books, and OHLCV from 300–400+ exchanges over REST, WebSocket, and FIX.</p>
-      <p><strong>Pricing:</strong> Pay-as-you-go with trial credits, then Startup $79 / Streamer $249 / Pro $599 per month.</p>
-      <p><strong>Best for:</strong> Backtests, multi-venue dashboards, and anything that needs one schema across many books.</p>
+      <p><strong>Product</strong> Normalized trades, quotes, L2/L3 books, and OHLCV from 300–400+ exchanges over REST, WebSocket, and FIX.</p>
+      <p><strong>Pricing</strong> Pay-as-you-go with trial credits, then Startup $79 / Streamer $249 / Pro $599 per month.</p>
+      <p><strong>Best for</strong> Backtests, multi-venue dashboards, and anything that needs one schema across many books.</p>
     </div>
     <a href="https://www.coinapi.io/" class="join-button program-link" data-program="CoinAPI" target="_blank" rel="noopener">See CoinAPI pricing</a>
   </div>
@@ -585,9 +708,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <img src="/tools/img/coinmarketcap.svg" alt="CoinMarketCap logo" class="affiliate-logo">
     <h3><a href="https://coinmarketcap.com/api/" class="program-link" data-program="CoinMarketCap" target="_blank" rel="noopener">CoinMarketCap →</a></h3>
     <div class="affiliate-details">
-      <p><strong>Product:</strong> Rankings, quotes, global metrics, and DEX endpoints. Strong brand IDs. Binance-owned.</p>
-      <p><strong>Pricing:</strong> Keyless trial plus free Basic (15,000 credits/mo, 50 rpm, commercial use on Basic). Paid from $29/mo. WebSocket from Startup ($79/mo).</p>
-      <p><strong>Why it is a runner-up:</strong> Fine as a second source or if you specifically need CMC ranks. CoinGecko remains the better independent crypto data API.</p>
+      <p><strong>Product</strong> Rankings, quotes, global metrics, and DEX endpoints. Strong brand IDs. Binance-owned.</p>
+      <p><strong>Pricing</strong> Keyless trial plus free Basic (15,000 credits/mo, 50 rpm, commercial use on Basic). Paid from $29/mo. WebSocket from Startup ($79/mo).</p>
+      <p><strong>Why it's a runner-up</strong> Fine as a second source or if you specifically need CMC ranks. CoinGecko remains the better independent crypto data API.</p>
     </div>
     <a href="https://coinmarketcap.com/api/" class="join-button program-link" data-program="CoinMarketCap" target="_blank" rel="noopener">Open CoinMarketCap API</a>
   </div>
@@ -626,23 +749,61 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <h2 id="faq">FAQ</h2>
 
-<p><strong>Is there one best crypto API?</strong><br>
-No. It depends on what you're building: ChangeNOW for swaps, Bitbo for Bitcoin metrics, CoinGecko for market data, Kraken for placing orders, Binance for WebSockets, mempool.space for live chain data, and CoinAPI for data from many exchanges.</p>
+<div class="faq-section">
+  <div class="faq-item">
+    <div class="faq-question">
+      <h3>Is there one best crypto API?</h3>
+    </div>
+    <div class="faq-answer">
+      <p>No. It depends on what you're building: ChangeNOW for swaps, Bitbo for Bitcoin metrics, CoinGecko for market data, Kraken for placing orders, Binance for WebSockets, mempool.space for live chain data, and CoinAPI for data from many exchanges.</p>
+    </div>
+  </div>
 
-<p><strong>Is ChangeNOW a trading API?</strong><br>
-No. It creates non-custodial swaps. There's no order book and no limit orders — that's what Kraken is for.</p>
+  <div class="faq-item">
+    <div class="faq-question">
+      <h3>Is ChangeNOW a trading API?</h3>
+    </div>
+    <div class="faq-answer">
+      <p>No. It creates non-custodial swaps. There's no order book and no limit orders — that's what Kraken is for.</p>
+    </div>
+  </div>
 
-<p><strong>Is the Bitbo API free?</strong><br>
-No. It's included with Bitbo Pro++ ($89/mo billed yearly), with 1 million calls per month.</p>
+  <div class="faq-item">
+    <div class="faq-question">
+      <h3>Is the Bitbo API free?</h3>
+    </div>
+    <div class="faq-answer">
+      <p>No. It's included with Bitbo Pro++ ($89/mo billed yearly), with 1 million calls per month.</p>
+    </div>
+  </div>
 
-<p><strong>CoinGecko vs CoinMarketCap?</strong><br>
-CoinGecko for independence and coverage. CMC if you need their rankings or already depend on CMC IDs. I wouldn't pick CMC as your only source just because the free tier is bigger.</p>
+  <div class="faq-item">
+    <div class="faq-question">
+      <h3>CoinGecko vs CoinMarketCap?</h3>
+    </div>
+    <div class="faq-answer">
+      <p>CoinGecko for independence and coverage. CMC if you need their rankings or already depend on CMC IDs. I wouldn't pick CMC as your only source just because the free tier is bigger.</p>
+    </div>
+  </div>
 
-<p><strong>Kraken vs Binance?</strong><br>
-Kraken to trade, especially in the US. Binance for free WebSocket market data.</p>
+  <div class="faq-item">
+    <div class="faq-question">
+      <h3>Kraken vs Binance?</h3>
+    </div>
+    <div class="faq-answer">
+      <p>Kraken to trade, especially in the US. Binance for free WebSocket market data.</p>
+    </div>
+  </div>
 
-<p><strong>Can I use mempool.space in production?</strong><br>
-For light traffic, yes. For a wallet or payments flow, self-host it or get an enterprise plan — the public instance has unpublished rate limits.</p>
+  <div class="faq-item">
+    <div class="faq-question">
+      <h3>Can I use mempool.space in production?</h3>
+    </div>
+    <div class="faq-answer">
+      <p>For light traffic, yes. For a wallet or payments flow, self-host it or get an enterprise plan — the public instance has unpublished rate limits.</p>
+    </div>
+  </div>
+</div>
 
 <h2 id="methodology">Methodology</h2>
 
@@ -652,6 +813,6 @@ For light traffic, yes. For a wallet or payments flow, self-host it or get an en
 
 <h2>Disclaimer</h2>
 
-<p>Some links on this page are partner or affiliate links, and we may earn a commission if you integrate ChangeNOW or subscribe to Bitbo Pro++. APIs, fees, rate limits, and region rules change all the time, so confirm on the vendor's site before you ship. This isn't financial, legal, or investment advice.</p>
+<p>We own Bitbo. APIs, fees, rate limits, and region rules change all the time, so confirm on the vendor's site before you ship. This isn't financial, legal, or investment advice.</p>
 
 </div>
