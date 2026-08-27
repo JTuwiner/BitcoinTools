@@ -442,7 +442,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <h2>The 7 Best Crypto APIs</h2>
 
-<p>Each pick wins a specific job. ChangeNOW is the exchange/swap API; the rest cover Bitcoin data, market data, trading, sockets, mempool, and institutional feeds.</p>
+<p>Each API wins one job.</p>
 
 <div class="api-section" id="changenow">
   <div class="affiliate-card">
@@ -450,7 +450,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <img src="/tools/img/changenow.svg" alt="ChangeNOW logo" class="affiliate-logo affiliate-logo-wide">
     <h3><a href="https://changenow.io/affiliate" class="program-link" data-program="ChangeNOW" target="_blank" rel="noopener">ChangeNOW →</a></h3>
     <div class="affiliate-details">
-      <p><strong>Badge:</strong> Best crypto exchange API</p>
       <p><strong>Product:</strong> Non-custodial instant crypto swaps for wallets, widgets, and apps.</p>
       <p><strong>Pricing:</strong> Free to integrate. Default 0.4% partner share, customizable per pair.</p>
       <p><strong>Best for:</strong> In-app exchange without holding user funds or running an order book.</p>
@@ -458,17 +457,11 @@ document.addEventListener('DOMContentLoaded', function() {
     <a href="https://changenow.io/affiliate" class="join-button program-link" data-program="ChangeNOW" target="_blank" rel="noopener">Get the ChangeNOW API</a>
   </div>
 
-  <p>ChangeNOW is a swap API, not a custodial CEX. Your user sends asset A to a deposit address; ChangeNOW sends asset B to the destination wallet. You never hold the funds, you do not need matching-engine infrastructure, and you do not need to source liquidity across 1,500+ assets yourself.</p>
+  <p>ChangeNOW is a non-custodial swap API, not a CEX order API. The user sends asset A to a deposit address; ChangeNOW sends asset B to their wallet. 1,500+ assets, CEX+DEX liquidity, standard or fixed-rate (20 min). Free to integrate. Default partner share is <strong>0.4% of swap volume</strong> (customizable). No UK traffic.</p>
 
-  <p>That is why it is the best crypto exchange API for product teams who want swaps inside a wallet, media site, or Web3 app. Kraken and Binance are better if you are actually trading. ChangeNOW is better if you want the user to complete a swap and you want to earn on it.</p>
+  <p>Flow: list currencies → estimate → create exchange → poll status. Partner key from <a href="https://changenow.io/affiliate" target="_blank" rel="noopener">changenow.io/affiliate</a>. Docs: <a href="https://documenter.getpostman.com/view/8180765/SVfTPnM8?version=latest#intro" target="_blank" rel="noopener">Postman collection</a> and <a href="https://changenow.io/api" target="_blank" rel="noopener">changenow.io/api</a>. Fiat on/off-ramp via Guardarian needs KYB.</p>
 
-  <p>Integration is free. There is no monthly platform fee. Partners earn a default <strong>0.4% of completed swap volume</strong>, adjustable per asset, pair, or flow if you ask your account manager. Withdraw anytime in 11+ coins after about a $100 minimum. Fixed-rate flow freezes the quote for 20 minutes; standard flow follows the market. Liquidity is pulled from both CEXes and DEXes, which is how they advertise 2,250,000+ pairs.</p>
-
-  <p>The practical flow is short: list currencies, estimate the rate, create the exchange, then poll status. Docs live in their <a href="https://documenter.getpostman.com/view/8180765/SVfTPnM8?version=latest#intro" target="_blank" rel="noopener">Postman collection</a>. Fiat on/off-ramp exists via Guardarian, but it is KYB for registered companies, not the default hobby-project path.</p>
-
-  <p>They claim 99.99% availability and ~350ms responses. The important geo caveat: <strong>ChangeNOW does not serve UK users or partners</strong> under current terms. Review their API terms before you send traffic from a restricted jurisdiction.</p>
-
-  <p>Do not use ChangeNOW as a price oracle. The estimate endpoint is for quoting a swap, not for powering a ticker on your homepage. For prices, use CoinGecko or Bitbo.</p>
+  <p>Do not use the estimate endpoint as a price oracle. For prices, use CoinGecko or Bitbo. For placing limit orders, use Kraken.</p>
 </div>
 
 <div class="api-section" id="bitbo">
@@ -504,11 +497,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <a href="https://www.coingecko.com/en/api" class="join-button program-link" data-program="CoinGecko" target="_blank" rel="noopener">Get the CoinGecko API</a>
   </div>
 
-  <p>CoinGecko is the best crypto data API because it is independent. CoinMarketCap is owned by Binance. That conflict matters if you are ranking tokens, showing “trust” metadata, or you do not want your price source owned by the largest exchange on the list.</p>
+  <p>Independent market data (not exchange-owned). 17,000+ coins, DEX/onchain data, 12+ years of history. Start with <code>GET /api/v3/simple/price?ids=bitcoin&amp;vs_currencies=usd</code>. Demo: 10k calls/mo, 100/min, attribution required. Basic: $35/mo ($29 yearly), 100k credits, 300/min, WebSocket. Commercial use is paid-only.</p>
 
-  <p>Coverage is the other reason it wins this lane: 17,000+ coins, DEX data, 12+ years of history on core series, and a simple <code>/simple/price</code> path that most apps start with. The Demo plan is genuinely usable for prototypes (10,000 monthly calls at 100/min). Attribution is required, and commercial use is a paid-plan feature. Basic is $35/mo ($29 billed yearly) with 100k credits, 300 rpm, and WebSocket access.</p>
-
-  <p>REST freshness starts around 60 seconds on Demo and 10 seconds on Basic. That is fine for a portfolio app. It is not an HFT feed. For live books, use Binance or CoinAPI.</p>
+  <p>REST freshness is ~60s on Demo, ~10s on Basic. Not tick-level books — use Binance or CoinAPI for that. Docs: <a href="https://docs.coingecko.com/" target="_blank" rel="noopener">docs.coingecko.com</a>. Pricing: <a href="https://www.coingecko.com/en/api/pricing" target="_blank" rel="noopener">coingecko.com/en/api/pricing</a>.</p>
 </div>
 
 <div class="api-section" id="kraken">
@@ -524,11 +515,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <a href="https://docs.kraken.com/api/" class="join-button program-link" data-program="Kraken" target="_blank" rel="noopener">Read Kraken API docs</a>
   </div>
 
-  <p>Kraken is the best API for traders because it is a full execution stack, not a data vendor with a “trade” button bolted on. Spot REST, WebSocket v2 (<code>wss://ws.kraken.com/v2</code>), unified FIX, derivatives, OTC, custody, paper trading, and an official CLI are all in one docs site.</p>
+  <p>Full execution API: spot, derivatives, OTC, custody. REST, WebSocket v2 (<code>wss://ws.kraken.com/v2</code>), unified FIX, paper trading, official CLI. API access is free. Spot starts at <strong>0.40% maker / 0.80% taker</strong>; volume/AoP tiers go to 0% / 0.05–0.10%. Instant Buy on the consumer app is a different, higher-fee product.</p>
 
-  <p>The US point matters. Binance’s public sockets are excellent. Binance’s trading API is a geo mess for a US retail product. If your users are in the United States and the API has to submit orders, start with Kraken.</p>
-
-  <p>Fees are a maker/taker schedule, not an API bill. As of August 2026, Tier 1 is <strong>0.40% maker / 0.80% taker</strong>. High-volume Pro tiers go to 0% maker and 0.05–0.10% taker. Your 30-day spot volume or assets on platform sets the tier. Instant Buy on the consumer app is a different, higher-fee product — do not confuse it with Pro API trading.</p>
+  <p>Use Kraken when the API must place orders, especially for US users. Binance sockets are for market data, not US execution. Docs: <a href="https://docs.kraken.com/api/" target="_blank" rel="noopener">docs.kraken.com/api</a>. Fees: <a href="https://www.kraken.com/features/fee-schedule" target="_blank" rel="noopener">kraken.com/features/fee-schedule</a>.</p>
 </div>
 
 <div class="api-section" id="binance">
@@ -544,11 +533,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams" class="join-button program-link" data-program="Binance" target="_blank" rel="noopener">Open Binance stream docs</a>
   </div>
 
-  <p>Binance wins WebSockets on density: more pairs, 100ms book updates, combined streams, 1024 streams per connection, and the most copied “how to maintain a local order book” write-up in crypto. Connect to <code>wss://stream.binance.com:9443</code> (or 443). Subscribe to <code>btcusdt@trade</code>, <code>@depth</code>, <code>@kline_1m</code>, <code>@bookTicker</code>.</p>
+  <p>Public <strong>WebSocket Streams</strong> at <code>wss://stream.binance.com:9443</code> (or 443). No API key. Subscribe to <code>btcusdt@trade</code>, <code>@depth</code>, <code>@kline_1m</code>, <code>@bookTicker</code>. Combined streams, 1024 streams/connection, 100ms book updates. Separate <strong>WebSocket API</strong> at <code>wss://ws-api.binance.com:443/ws-api/v3</code> is request/response for orders and user data — do not mix them.</p>
 
-  <p>That is <strong>WebSocket Streams</strong> — push-only public market data. The separate <strong>WebSocket API</strong> at <code>wss://ws-api.binance.com:443/ws-api/v3</code> is request/response for placing orders and user data. Do not mix them up in your architecture.</p>
-
-  <p><strong>US caveat:</strong> treat Binance as a market-data feed, not as the place your US users trade. For execution, use Kraken. Plenty of US dashboards still subscribe to Binance public streams for the tape because the liquidity is there. Keep API keys and order placement on a venue your users can actually use.</p>
+  <p>Treat this as a market-data feed. For US order placement, use Kraken. Stream docs: <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams" target="_blank" rel="noopener">WebSocket Streams</a>. Trading socket: <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api" target="_blank" rel="noopener">WebSocket API</a>.</p>
 </div>
 
 <div class="api-section" id="mempool">
@@ -564,11 +551,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <a href="https://mempool.space/docs/api/rest" class="join-button program-link" data-program="mempool.space" target="_blank" rel="noopener">Open mempool API docs</a>
   </div>
 
-  <p>If you need recommended fees, an address’s UTXOs, or to broadcast a raw transaction, start here: <code>GET https://mempool.space/api/v1/fees/recommended</code>, <code>/address/:address/utxo</code>, <code>POST /api/tx</code>. WebSocket is <code>wss://mempool.space/api/v1/ws</code> for blocks, mempool events, and tracked addresses.</p>
+  <p>Live Bitcoin chain/mempool, not derived chart metrics (that is Bitbo). No API key for public endpoints. Fees: <code>GET https://mempool.space/api/v1/fees/recommended</code>. UTXOs: <code>/api/address/:address/utxo</code>. Broadcast: <code>POST /api/tx</code>. WebSocket: <code>wss://mempool.space/api/v1/ws</code> (blocks, mempool, tracked addresses).</p>
 
-  <p>The public instance is a gift, not a contract. Rate limits are not published. Hit them hard and you get HTTP 429, then you get banned. For a wallet or payment processor, run your own instance or pay for enterprise sponsorship.</p>
-
-  <p>This does not replace Bitbo. mempool.space is live chain and mempool. Bitbo is historical Bitcoin metrics. Most serious Bitcoin products end up calling both.</p>
+  <p>Rate limits are unpublished. Overuse returns 429, then a ban. For production volume, self-host or get enterprise. REST: <a href="https://mempool.space/docs/api/rest" target="_blank" rel="noopener">mempool.space/docs/api/rest</a>. WS: <a href="https://mempool.space/docs/api/websocket" target="_blank" rel="noopener">/docs/api/websocket</a>.</p>
 </div>
 
 <div class="api-section" id="coinapi">
@@ -584,11 +569,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <a href="https://www.coinapi.io/" class="join-button program-link" data-program="CoinAPI" target="_blank" rel="noopener">See CoinAPI pricing</a>
   </div>
 
-  <p>Once you need the same order book format from Binance, Kraken, and twenty other venues, you stop writing adapters and you buy a normalizer. CoinAPI is the self-serve version of that job: REST for history, WebSocket for the live tape, FIX on Pro, flat files for bulk.</p>
+  <p>Normalized trades, quotes, L2/L3 books, and OHLCV from 300–400+ exchanges. One schema instead of per-venue adapters. REST for history, WebSocket for live data, FIX and flat files on higher plans. Auth: <code>X-CoinAPI-Key</code> header. Base: <code>https://rest.coinapi.io/v1/</code>.</p>
 
-  <p>Startup at $79/mo is enough to evaluate. Streamer ($249) and Pro ($599) raise daily REST credits and unlock deeper book/FIX access. This is still cheaper and faster to start than a sales-led feed.</p>
-
-  <p>If you specifically need regulated indices, benchmarks, or MiCA-style market data with a legal team attached, look at <strong>Kaiko</strong> instead. Kaiko is quote-driven (often $1,000+/mo for L1/L2 packages). For a developer roundup, CoinAPI is the one you can actually subscribe to this afternoon.</p>
+  <p>Startup $79/mo (1k REST credits/day), Streamer $249, Pro $599 (FIX). For regulated indices/benchmarks, look at Kaiko (sales-led, typically $1k+/mo). Docs: <a href="https://docs.coinapi.io/" target="_blank" rel="noopener">docs.coinapi.io</a>. Pricing: <a href="https://www.coinapi.io/products/market-data-api/pricing" target="_blank" rel="noopener">Market Data API pricing</a>.</p>
 </div>
 
 <div class="api-section" id="coinmarketcap">
@@ -603,9 +586,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <a href="https://coinmarketcap.com/api/" class="join-button program-link" data-program="CoinMarketCap" target="_blank" rel="noopener">Open CoinMarketCap API</a>
   </div>
 
-  <p>CoinMarketCap is on this page because developers search for it, the free Basic plan is generous (15k credits, commercial use, 60-second REST quotes), and CMC IDs still show up in a lot of existing code. It is not a “best” pick here.</p>
+  <p>Runner-up to CoinGecko. Rankings, quotes, global metrics, DEX endpoints. Binance-owned. Free Basic: 15k credits/mo, 50 rpm, ~60s REST freshness, commercial use. Keyless trial at <code>/trial-pro-api</code>. Paid from $29/mo. WebSocket from Startup ($79/mo).</p>
 
-  <p>Independence is the issue. Binance owns CMC. If your product ranks tokens or you care that the data vendor is not also the largest exchange, use CoinGecko. CMC REST is also slower to refresh on the cheap tiers, and streaming is gated. Use it as a backup quote or for CMC-specific rankings, not as your only market-data layer.</p>
+  <p>Use it for CMC IDs or as a second price source. For an independent aggregator, use CoinGecko. Docs: <a href="https://coinmarketcap.com/api/documentation/v1/" target="_blank" rel="noopener">CMC API docs</a>. Pricing: <a href="https://coinmarketcap.com/api/pricing/" target="_blank" rel="noopener">coinmarketcap.com/api/pricing</a>.</p>
 </div>
 
 <h2 id="types">Types of Crypto APIs</h2>
