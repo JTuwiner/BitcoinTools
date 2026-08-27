@@ -258,8 +258,50 @@ table tbody tr:nth-child(even) {
   background-color: #f8f9fa;
 }
 
+.api-table-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+}
+
+.api-table-name:hover {
+  color: #f2a900;
+  text-decoration: none;
+}
+
+.api-table-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 6px;
+  flex-shrink: 0;
+  background: #ffffff;
+}
+
 .api-section {
   margin: 2.5rem 0 3rem;
+}
+
+.api-links {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.api-links li {
+  margin: 0.25rem 0;
+}
+
+.api-links a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.api-links a:hover {
+  text-decoration: underline;
 }
 
 .faq-item {
@@ -353,6 +395,14 @@ table tbody tr:nth-child(even) {
 
   table tbody tr:hover {
     background-color: #2a3142;
+  }
+
+  .api-table-name {
+    color: #ffffff;
+  }
+
+  .api-table-logo {
+    background: #ffffff;
   }
 
   .takeaways {
@@ -450,37 +500,72 @@ table tbody tr:nth-child(even) {
 </thead>
 <tbody>
   <tr>
-    <td><a href="#changenow">ChangeNOW</a></td>
+    <td>
+      <a href="#changenow" class="api-table-name">
+        <img src="/tools/img/changenow.svg" alt="" class="api-table-logo">
+        ChangeNOW
+      </a>
+    </td>
     <td>In-app swaps</td>
     <td>Free; you earn 0.4%+ on volume</td>
   </tr>
   <tr>
-    <td><a href="#bitbo">Bitbo</a></td>
+    <td>
+      <a href="#bitbo" class="api-table-name">
+        <img src="/tools/img/bitbo.jpg" alt="" class="api-table-logo">
+        Bitbo
+      </a>
+    </td>
     <td>Bitcoin charts and metrics</td>
     <td>$89/mo (Pro++)</td>
   </tr>
   <tr>
-    <td><a href="#coingecko">CoinGecko</a></td>
+    <td>
+      <a href="#coingecko" class="api-table-name">
+        <img src="/tools/img/coingecko.png" alt="" class="api-table-logo">
+        CoinGecko
+      </a>
+    </td>
     <td>Crypto prices</td>
     <td>Free tier; paid from $35/mo</td>
   </tr>
   <tr>
-    <td><a href="#kraken">Kraken</a></td>
+    <td>
+      <a href="#kraken" class="api-table-name">
+        <img src="/tools/img/kraken.jpg" alt="" class="api-table-logo">
+        Kraken
+      </a>
+    </td>
     <td>Placing trades</td>
     <td>Free API; you pay trading fees</td>
   </tr>
   <tr>
-    <td><a href="#binance">Binance</a></td>
+    <td>
+      <a href="#binance" class="api-table-name">
+        <img src="/tools/img/binance.svg" alt="" class="api-table-logo">
+        Binance
+      </a>
+    </td>
     <td>Live market data</td>
     <td>Free</td>
   </tr>
   <tr>
-    <td><a href="#mempool">mempool.space</a></td>
+    <td>
+      <a href="#mempool" class="api-table-name">
+        <img src="/tools/img/mempoolspace.jpg" alt="" class="api-table-logo">
+        mempool.space
+      </a>
+    </td>
     <td>Bitcoin fees and transactions</td>
     <td>Free</td>
   </tr>
   <tr>
-    <td><a href="#coinmarketcap">CoinMarketCap</a></td>
+    <td>
+      <a href="#coinmarketcap" class="api-table-name">
+        <img src="/tools/img/coinmarketcap.svg" alt="" class="api-table-logo">
+        CoinMarketCap
+      </a>
+    </td>
     <td>Rankings and prices</td>
     <td>Free tier</td>
   </tr>
@@ -574,9 +659,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <p>ChangeNOW is a swap API. Your user sends one coin to a deposit address, and ChangeNOW sends back another. You never hold the funds, and you don't need to run an order book or find liquidity — they cover 1,500+ assets from both CEXes and DEXes.</p>
 
-  <p>Integration is free, and you earn <strong>0.4% of every swap</strong> your users make (adjustable if you ask). The flow is simple: list currencies, estimate the rate, create the exchange, then poll the status. There's also a fixed-rate mode that locks the quote for 20 minutes. You get your API key by signing up at <a href="https://changenow.io/affiliate" target="_blank" rel="noopener">changenow.io/affiliate</a>, and the docs are in their <a href="https://documenter.getpostman.com/view/8180765/SVfTPnM8?version=latest#intro" target="_blank" rel="noopener">Postman collection</a>.</p>
+  <p>Integration is free, and you earn <strong>0.4% of every swap</strong> your users make (adjustable if you ask). The flow is simple: list currencies, estimate the rate, create the exchange, then poll the status. There's also a fixed-rate mode that locks the quote for 20 minutes. You get your API key by signing up at <a href="https://changenow.io/affiliate" target="_blank" rel="noopener">changenow.io/affiliate</a>.</p>
 
   <p>Two caveats: ChangeNOW doesn't serve UK users, and the estimate endpoint isn't a price feed. For prices, use CoinGecko or Bitbo.</p>
+
+  <ul class="api-links">
+    <li><a href="https://documenter.getpostman.com/view/8180765/SVfTPnM8?version=latest#intro" target="_blank" rel="noopener">Docs →</a></li>
+  </ul>
 </div>
 
 <div class="api-section" id="bitbo">
@@ -594,15 +683,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <p>Full disclosure: this is our own API. CoinGecko will give you BTC/USD and mempool.space will give you the current fee rate, but Bitbo gives you the metrics we actually chart: realized price, market cap, circulating supply, ATH history, rainbow chart series, and 200+ more endpoints, each with full history.</p>
 
-  <p>You need a Pro++ account. Grab your key from <code>charts.bitbo.io/profile/api/</code>, then hit <code>https://charts.bitbo.io/api/v1/{metric}/</code> with <code>start_date</code>, <code>end_date</code>, or <code>latest=true</code>. Responses are JSON arrays of dates and values. There's a Swagger UI at <a href="https://charts.bitbo.io/api/" target="_blank" rel="noopener">charts.bitbo.io/api/</a> and docs at <a href="https://bitbo.io/api/docs/" target="_blank" rel="noopener">bitbo.io/api/docs/</a>.</p>
+  <p>You need a Pro++ account. Grab your key from <code>charts.bitbo.io/profile/api/</code>, then hit <code>https://charts.bitbo.io/api/v1/{metric}/</code> with <code>start_date</code>, <code>end_date</code>, or <code>latest=true</code>. Responses are JSON arrays of dates and values.</p>
 
   <p>Rate limits are tight on bursts (5 requests per minute) but generous on volume (1 million per month), so it works best for pulling a handful of well-chosen series rather than hammering it with lookups.</p>
+
+  <ul class="api-links">
+    <li><a href="https://bitbo.io/api/docs/" target="_blank" rel="noopener">Docs →</a></li>
+    <li><a href="https://charts.bitbo.io/api/" target="_blank" rel="noopener">Swagger →</a></li>
+  </ul>
 </div>
 
 <div class="api-section" id="coingecko">
   <div class="affiliate-card">
     <span class="card-badge">Best Crypto Data API</span>
-    <img src="/tools/img/coingecko.svg" alt="CoinGecko logo" class="affiliate-logo">
+    <img src="/tools/img/coingecko.png" alt="CoinGecko logo" class="affiliate-logo">
     <h3><a href="https://www.coingecko.com/en/api" class="program-link" data-program="CoinGecko" target="_blank" rel="noopener">CoinGecko →</a></h3>
     <div class="affiliate-details">
       <p><strong>Product</strong> Independent market-data aggregator: prices, metadata, exchanges, DEX / onchain data.</p>
@@ -616,7 +710,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <p>Most apps start with a call like <code>GET /api/v3/simple/price?ids=bitcoin&amp;vs_currencies=usd</code>. The free Demo plan gives you 10k calls a month at 100 per minute, which is plenty for testing, but it requires attribution and commercial use is paid-only. Paid plans start at $35/mo ($29 billed yearly) and add 100k credits, 300 calls per minute, and WebSocket access.</p>
 
-  <p>Data refreshes about every 60 seconds on the free plan and every 10 on Basic. That's fine for a portfolio app, but it's not a live order book — use Binance for that. Docs: <a href="https://docs.coingecko.com/" target="_blank" rel="noopener">docs.coingecko.com</a>. Pricing: <a href="https://www.coingecko.com/en/api/pricing" target="_blank" rel="noopener">coingecko.com/en/api/pricing</a>.</p>
+  <p>Data refreshes about every 60 seconds on the free plan and every 10 on Basic. That's fine for a portfolio app, but it's not a live order book — use Binance for that.</p>
+
+  <ul class="api-links">
+    <li><a href="https://docs.coingecko.com/" target="_blank" rel="noopener">Docs →</a></li>
+    <li><a href="https://www.coingecko.com/en/api/pricing" target="_blank" rel="noopener">Pricing →</a></li>
+  </ul>
 </div>
 
 <div class="api-section" id="kraken">
@@ -636,7 +735,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <p>The API itself is free — you just pay trading fees. Spot starts at <strong>0.40% maker / 0.80% taker</strong> and drops with volume, all the way to 0% maker at the top tiers. One thing to watch: Instant Buy in the consumer app charges more, so make sure you're on Kraken Pro rates through the API.</p>
 
-  <p>If your app needs to place orders and your users are in the US, this is the one to use. Docs: <a href="https://docs.kraken.com/api/" target="_blank" rel="noopener">docs.kraken.com/api</a>. Fees: <a href="https://www.kraken.com/features/fee-schedule" target="_blank" rel="noopener">kraken.com/features/fee-schedule</a>.</p>
+  <p>If your app needs to place orders and your users are in the US, this is the one to use.</p>
+
+  <ul class="api-links">
+    <li><a href="https://docs.kraken.com/api/" target="_blank" rel="noopener">Docs →</a></li>
+    <li><a href="https://www.kraken.com/features/fee-schedule" target="_blank" rel="noopener">Pricing →</a></li>
+  </ul>
 </div>
 
 <div class="api-section" id="binance">
@@ -656,7 +760,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <p>One thing that confuses people: Binance has two WebSocket products. The streams above are push-only market data. There's a separate <strong>WebSocket API</strong> at <code>wss://ws-api.binance.com:443/ws-api/v3</code> for placing orders and user data — keep them separate in your code.</p>
 
-  <p>I'd treat Binance as a data feed. If your users are in the US, place orders on Kraken instead. Stream docs: <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams" target="_blank" rel="noopener">WebSocket Streams</a>. Trading socket: <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api" target="_blank" rel="noopener">WebSocket API</a>.</p>
+  <p>I'd treat Binance as a data feed. If your users are in the US, place orders on Kraken instead.</p>
+
+  <ul class="api-links">
+    <li><a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams" target="_blank" rel="noopener">Docs →</a></li>
+    <li><a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api" target="_blank" rel="noopener">WebSocket API →</a></li>
+  </ul>
 </div>
 
 <div class="api-section" id="mempool">
@@ -674,7 +783,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <p>mempool.space gives you live Bitcoin chain data with no API key. Get recommended fees at <code>GET https://mempool.space/api/v1/fees/recommended</code>, an address's UTXOs at <code>/api/address/:address/utxo</code>, or broadcast a transaction with <code>POST /api/tx</code>. There's also a WebSocket at <code>wss://mempool.space/api/v1/ws</code> for new blocks and tracked addresses.</p>
 
-  <p>The catch: rate limits aren't published. Overdo it and you'll get 429 errors, then a ban. For anything serious, self-host it (it's open source) or get an enterprise plan. It also only covers live chain data, not historical metrics — that's what Bitbo is for. REST docs: <a href="https://mempool.space/docs/api/rest" target="_blank" rel="noopener">mempool.space/docs/api/rest</a>. WebSocket: <a href="https://mempool.space/docs/api/websocket" target="_blank" rel="noopener">/docs/api/websocket</a>.</p>
+  <p>The catch: rate limits aren't published. Overdo it and you'll get 429 errors, then a ban. For anything serious, self-host it (it's open source) or get an enterprise plan. It also only covers live chain data, not historical metrics — that's what Bitbo is for.</p>
+
+  <ul class="api-links">
+    <li><a href="https://mempool.space/docs/api/rest" target="_blank" rel="noopener">Docs →</a></li>
+    <li><a href="https://mempool.space/docs/api/websocket" target="_blank" rel="noopener">WebSocket →</a></li>
+  </ul>
 </div>
 
 <div class="api-section" id="coinmarketcap">
@@ -691,7 +805,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <p>CoinMarketCap is here as a runner-up. The free Basic plan is actually generous: 15k credits a month, 50 requests per minute, and commercial use is allowed. There's even a keyless trial at <code>/trial-pro-api</code> so you can test without signing up. Paid plans start at $29/mo, with WebSocket from Startup ($79/mo).</p>
 
-  <p>The catch is that Binance owns CMC, and data refreshes about every 60 seconds on the cheaper plans. I'd use it as a second price source, or if you specifically need CMC's rankings — and keep CoinGecko as your main aggregator. Docs: <a href="https://coinmarketcap.com/api/documentation/v1/" target="_blank" rel="noopener">CMC API docs</a>. Pricing: <a href="https://coinmarketcap.com/api/pricing/" target="_blank" rel="noopener">coinmarketcap.com/api/pricing</a>.</p>
+  <p>The catch is that Binance owns CMC, and data refreshes about every 60 seconds on the cheaper plans. I'd use it as a second price source, or if you specifically need CMC's rankings — and keep CoinGecko as your main aggregator.</p>
+
+  <ul class="api-links">
+    <li><a href="https://coinmarketcap.com/api/documentation/v1/" target="_blank" rel="noopener">Docs →</a></li>
+    <li><a href="https://coinmarketcap.com/api/pricing/" target="_blank" rel="noopener">Pricing →</a></li>
+  </ul>
 </div>
 
 <h2 id="types">Types of Crypto APIs</h2>
