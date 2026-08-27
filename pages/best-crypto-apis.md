@@ -307,11 +307,11 @@ table tbody tr:nth-child(even) {
 
 <div style="max-width: 800px;">
 
-<p>A “crypto API” is not one product. Some APIs execute swaps inside your app. Some return Bitcoin chart and on-chain metrics. Some aggregate token prices. Some place orders on an exchange. Some stream live order books. Some expose the Bitcoin mempool.</p>
+<p>There's no single "crypto API." Some swap coins inside your app, some return Bitcoin chart data, some aggregate prices, some place orders on an exchange, and some stream live order books.</p>
 
-<p>If you pick the wrong category, you will fight the integration the entire time: CoinGecko will not place a trade, ChangeNOW is not a price oracle, and Binance sockets will not give you realized price. This list is organized by job.</p>
+<p>Picking the wrong type is painful. CoinGecko can't place a trade, ChangeNOW isn't a price feed, and Binance's sockets won't give you realized price. So I've organized this list by what you're actually trying to build.</p>
 
-<p>Payment gateways (BitPay, Zaprite, and similar merchant checkout APIs) are a different category. We are covering those in a separate article.</p>
+<p>Payment gateways (BitPay, Zaprite, and similar) are a different category. We're covering those in a separate article.</p>
 
 <div class="toc-box">
   <ul>
@@ -328,10 +328,10 @@ table tbody tr:nth-child(even) {
 <div class="takeaways" id="takeaways">
   <h3>Key Takeaways</h3>
   <ul>
-    <li>ChangeNOW is the best crypto exchange API for in-app swaps, cross-chain liquidity, and a partner revenue share without running a custodial exchange.</li>
-    <li>Use Bitbo for Bitcoin chart and on-chain metrics, CoinGecko for broad market data, Kraken when the API must place orders, and Binance for the densest public market-data WebSockets.</li>
-    <li>mempool.space is the default free Bitcoin fee/UTXO/tx API. CoinAPI is the self-serve pick when you need normalized tick and order-book data across many venues.</li>
-    <li><b>Expert advice from Bitbo's CEO:</b> these are APIs we have actually used or reviewed against production docs. This is not a scraped vendor roundup.</li>
+    <li>ChangeNOW is the best crypto exchange API. It lets you add swaps to your app and earn a cut of every trade, without ever holding user funds.</li>
+    <li>Bitbo is best for Bitcoin data, CoinGecko for prices, Kraken for trading, and Binance for WebSockets.</li>
+    <li>mempool.space is the best free API for Bitcoin fees and transactions. CoinAPI is best if you need data from many exchanges at once.</li>
+    <li><b>Expert advice from Bitbo's CEO:</b> I've used or tested all of these myself. This isn't a scraped vendor list.</li>
   </ul>
 </div>
 
@@ -442,7 +442,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <h2>The 7 Best Crypto APIs</h2>
 
-<p>Each API wins one job.</p>
+<p>Here's each pick and what it's best at.</p>
 
 <div class="api-section" id="changenow">
   <div class="affiliate-card">
@@ -457,11 +457,11 @@ document.addEventListener('DOMContentLoaded', function() {
     <a href="https://changenow.io/affiliate" class="join-button program-link" data-program="ChangeNOW" target="_blank" rel="noopener">Get the ChangeNOW API</a>
   </div>
 
-  <p>ChangeNOW is a non-custodial swap API, not a CEX order API. The user sends asset A to a deposit address; ChangeNOW sends asset B to their wallet. 1,500+ assets, CEX+DEX liquidity, standard or fixed-rate (20 min). Free to integrate. Default partner share is <strong>0.4% of swap volume</strong> (customizable). No UK traffic.</p>
+  <p>ChangeNOW is a swap API. Your user sends one coin to a deposit address, and ChangeNOW sends back another. You never hold the funds, and you don't need to run an order book or find liquidity — they cover 1,500+ assets from both CEXes and DEXes.</p>
 
-  <p>Flow: list currencies → estimate → create exchange → poll status. Partner key from <a href="https://changenow.io/affiliate" target="_blank" rel="noopener">changenow.io/affiliate</a>. Docs: <a href="https://documenter.getpostman.com/view/8180765/SVfTPnM8?version=latest#intro" target="_blank" rel="noopener">Postman collection</a> and <a href="https://changenow.io/api" target="_blank" rel="noopener">changenow.io/api</a>. Fiat on/off-ramp via Guardarian needs KYB.</p>
+  <p>Integration is free, and you earn <strong>0.4% of every swap</strong> your users make (adjustable if you ask). The flow is simple: list currencies, estimate the rate, create the exchange, then poll the status. There's also a fixed-rate mode that locks the quote for 20 minutes. You get your API key by signing up at <a href="https://changenow.io/affiliate" target="_blank" rel="noopener">changenow.io/affiliate</a>, and the docs are in their <a href="https://documenter.getpostman.com/view/8180765/SVfTPnM8?version=latest#intro" target="_blank" rel="noopener">Postman collection</a>.</p>
 
-  <p>Do not use the estimate endpoint as a price oracle. For prices, use CoinGecko or Bitbo. For placing limit orders, use Kraken.</p>
+  <p>Two caveats: ChangeNOW doesn't serve UK users, and the estimate endpoint isn't a price feed. For prices, use CoinGecko or Bitbo.</p>
 </div>
 
 <div class="api-section" id="bitbo">
@@ -477,11 +477,11 @@ document.addEventListener('DOMContentLoaded', function() {
     <a href="https://charts.bitbo.io/btc-api/" class="join-button program-link" data-program="Bitbo" target="_blank" rel="noopener">Explore the Bitbo API</a>
   </div>
 
-  <p>This is our own Bitcoin data API, so I will be direct about what it is for. CoinGecko will give you BTC/USD. mempool.space will give you the current fee rate and a UTXO set. Bitbo gives you the derived Bitcoin metrics we chart: realized price, market cap, circulating supply, ATH history, rainbow / halving-price regression style series, and the rest of the 200+ endpoints.</p>
+  <p>Full disclosure: this is our own API. CoinGecko will give you BTC/USD and mempool.space will give you the current fee rate, but Bitbo gives you the metrics we actually chart: realized price, market cap, circulating supply, ATH history, rainbow chart series, and 200+ more endpoints, each with full history.</p>
 
-  <p>You need a Pro++ account. Grab the key from <code>charts.bitbo.io/profile/api/</code>, then hit <code>https://charts.bitbo.io/api/v1/{metric}/</code> with <code>start_date</code>, <code>end_date</code>, or <code>latest=true</code>. Responses are JSON arrays of dates and values. There is a Swagger UI at <a href="https://charts.bitbo.io/api/" target="_blank" rel="noopener">charts.bitbo.io/api/</a> and docs at <a href="https://bitbo.io/api/docs/" target="_blank" rel="noopener">bitbo.io/api/docs/</a>.</p>
+  <p>You need a Pro++ account. Grab your key from <code>charts.bitbo.io/profile/api/</code>, then hit <code>https://charts.bitbo.io/api/v1/{metric}/</code> with <code>start_date</code>, <code>end_date</code>, or <code>latest=true</code>. Responses are JSON arrays of dates and values. There's a Swagger UI at <a href="https://charts.bitbo.io/api/" target="_blank" rel="noopener">charts.bitbo.io/api/</a> and docs at <a href="https://bitbo.io/api/docs/" target="_blank" rel="noopener">bitbo.io/api/docs/</a>.</p>
 
-  <p>Rate limits are tight on burst (5 requests per minute) and generous on volume (1 million per month). That is the opposite of a public mempool scraper. Design for a small number of well-chosen series, not a firehose of address lookups.</p>
+  <p>Rate limits are tight on bursts (5 requests per minute) but generous on volume (1 million per month), so it works best for pulling a handful of well-chosen series rather than hammering it with lookups.</p>
 </div>
 
 <div class="api-section" id="coingecko">
@@ -497,9 +497,11 @@ document.addEventListener('DOMContentLoaded', function() {
     <a href="https://www.coingecko.com/en/api" class="join-button program-link" data-program="CoinGecko" target="_blank" rel="noopener">Get the CoinGecko API</a>
   </div>
 
-  <p>Independent market data (not exchange-owned). 17,000+ coins, DEX/onchain data, 12+ years of history. Start with <code>GET /api/v3/simple/price?ids=bitcoin&amp;vs_currencies=usd</code>. Demo: 10k calls/mo, 100/min, attribution required. Basic: $35/mo ($29 yearly), 100k credits, 300/min, WebSocket. Commercial use is paid-only.</p>
+  <p>CoinGecko is the biggest market data provider that isn't owned by an exchange, which matters (CoinMarketCap is owned by Binance). It covers 17,000+ coins, DEX and onchain data, and 12+ years of price history.</p>
 
-  <p>REST freshness is ~60s on Demo, ~10s on Basic. Not tick-level books — use Binance or CoinAPI for that. Docs: <a href="https://docs.coingecko.com/" target="_blank" rel="noopener">docs.coingecko.com</a>. Pricing: <a href="https://www.coingecko.com/en/api/pricing" target="_blank" rel="noopener">coingecko.com/en/api/pricing</a>.</p>
+  <p>Most apps start with a call like <code>GET /api/v3/simple/price?ids=bitcoin&amp;vs_currencies=usd</code>. The free Demo plan gives you 10k calls a month at 100 per minute, which is plenty for testing, but it requires attribution and commercial use is paid-only. Paid plans start at $35/mo ($29 billed yearly) and add 100k credits, 300 calls per minute, and WebSocket access.</p>
+
+  <p>Data refreshes about every 60 seconds on the free plan and every 10 on Basic. That's fine for a portfolio app, but it's not a live order book — use Binance or CoinAPI for that. Docs: <a href="https://docs.coingecko.com/" target="_blank" rel="noopener">docs.coingecko.com</a>. Pricing: <a href="https://www.coingecko.com/en/api/pricing" target="_blank" rel="noopener">coingecko.com/en/api/pricing</a>.</p>
 </div>
 
 <div class="api-section" id="kraken">
@@ -515,9 +517,11 @@ document.addEventListener('DOMContentLoaded', function() {
     <a href="https://docs.kraken.com/api/" class="join-button program-link" data-program="Kraken" target="_blank" rel="noopener">Read Kraken API docs</a>
   </div>
 
-  <p>Full execution API: spot, derivatives, OTC, custody. REST, WebSocket v2 (<code>wss://ws.kraken.com/v2</code>), unified FIX, paper trading, official CLI. API access is free. Spot starts at <strong>0.40% maker / 0.80% taker</strong>; volume/AoP tiers go to 0% / 0.05–0.10%. Instant Buy on the consumer app is a different, higher-fee product.</p>
+  <p>Kraken's API does everything: spot, derivatives, OTC, and custody over REST, WebSocket v2 (<code>wss://ws.kraken.com/v2</code>), and FIX. There's also paper trading and an official CLI, which is great for testing a bot before you risk real money.</p>
 
-  <p>Use Kraken when the API must place orders, especially for US users. Binance sockets are for market data, not US execution. Docs: <a href="https://docs.kraken.com/api/" target="_blank" rel="noopener">docs.kraken.com/api</a>. Fees: <a href="https://www.kraken.com/features/fee-schedule" target="_blank" rel="noopener">kraken.com/features/fee-schedule</a>.</p>
+  <p>The API itself is free — you just pay trading fees. Spot starts at <strong>0.40% maker / 0.80% taker</strong> and drops with volume, all the way to 0% maker at the top tiers. One thing to watch: Instant Buy in the consumer app charges more, so make sure you're on Kraken Pro rates through the API.</p>
+
+  <p>If your app needs to place orders and your users are in the US, this is the one to use. Docs: <a href="https://docs.kraken.com/api/" target="_blank" rel="noopener">docs.kraken.com/api</a>. Fees: <a href="https://www.kraken.com/features/fee-schedule" target="_blank" rel="noopener">kraken.com/features/fee-schedule</a>.</p>
 </div>
 
 <div class="api-section" id="binance">
@@ -533,9 +537,11 @@ document.addEventListener('DOMContentLoaded', function() {
     <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams" class="join-button program-link" data-program="Binance" target="_blank" rel="noopener">Open Binance stream docs</a>
   </div>
 
-  <p>Public <strong>WebSocket Streams</strong> at <code>wss://stream.binance.com:9443</code> (or 443). No API key. Subscribe to <code>btcusdt@trade</code>, <code>@depth</code>, <code>@kline_1m</code>, <code>@bookTicker</code>. Combined streams, 1024 streams/connection, 100ms book updates. Separate <strong>WebSocket API</strong> at <code>wss://ws-api.binance.com:443/ws-api/v3</code> is request/response for orders and user data — do not mix them.</p>
+  <p>Binance's public WebSocket streams are free and don't even need an API key. Connect to <code>wss://stream.binance.com:9443</code> and subscribe to streams like <code>btcusdt@trade</code>, <code>@depth</code>, <code>@kline_1m</code>, or <code>@bookTicker</code>. You get order book updates every 100ms and can listen to up to 1,024 streams on one connection.</p>
 
-  <p>Treat this as a market-data feed. For US order placement, use Kraken. Stream docs: <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams" target="_blank" rel="noopener">WebSocket Streams</a>. Trading socket: <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api" target="_blank" rel="noopener">WebSocket API</a>.</p>
+  <p>One thing that confuses people: Binance has two WebSocket products. The streams above are push-only market data. There's a separate <strong>WebSocket API</strong> at <code>wss://ws-api.binance.com:443/ws-api/v3</code> for placing orders and user data — keep them separate in your code.</p>
+
+  <p>I'd treat Binance as a data feed. If your users are in the US, place orders on Kraken instead. Stream docs: <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams" target="_blank" rel="noopener">WebSocket Streams</a>. Trading socket: <a href="https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api" target="_blank" rel="noopener">WebSocket API</a>.</p>
 </div>
 
 <div class="api-section" id="mempool">
@@ -551,9 +557,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <a href="https://mempool.space/docs/api/rest" class="join-button program-link" data-program="mempool.space" target="_blank" rel="noopener">Open mempool API docs</a>
   </div>
 
-  <p>Live Bitcoin chain/mempool, not derived chart metrics (that is Bitbo). No API key for public endpoints. Fees: <code>GET https://mempool.space/api/v1/fees/recommended</code>. UTXOs: <code>/api/address/:address/utxo</code>. Broadcast: <code>POST /api/tx</code>. WebSocket: <code>wss://mempool.space/api/v1/ws</code> (blocks, mempool, tracked addresses).</p>
+  <p>mempool.space gives you live Bitcoin chain data with no API key. Get recommended fees at <code>GET https://mempool.space/api/v1/fees/recommended</code>, an address's UTXOs at <code>/api/address/:address/utxo</code>, or broadcast a transaction with <code>POST /api/tx</code>. There's also a WebSocket at <code>wss://mempool.space/api/v1/ws</code> for new blocks and tracked addresses.</p>
 
-  <p>Rate limits are unpublished. Overuse returns 429, then a ban. For production volume, self-host or get enterprise. REST: <a href="https://mempool.space/docs/api/rest" target="_blank" rel="noopener">mempool.space/docs/api/rest</a>. WS: <a href="https://mempool.space/docs/api/websocket" target="_blank" rel="noopener">/docs/api/websocket</a>.</p>
+  <p>The catch: rate limits aren't published. Overdo it and you'll get 429 errors, then a ban. For anything serious, self-host it (it's open source) or get an enterprise plan. It also only covers live chain data, not historical metrics — that's what Bitbo is for. REST docs: <a href="https://mempool.space/docs/api/rest" target="_blank" rel="noopener">mempool.space/docs/api/rest</a>. WebSocket: <a href="https://mempool.space/docs/api/websocket" target="_blank" rel="noopener">/docs/api/websocket</a>.</p>
 </div>
 
 <div class="api-section" id="coinapi">
@@ -569,9 +575,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <a href="https://www.coinapi.io/" class="join-button program-link" data-program="CoinAPI" target="_blank" rel="noopener">See CoinAPI pricing</a>
   </div>
 
-  <p>Normalized trades, quotes, L2/L3 books, and OHLCV from 300–400+ exchanges. One schema instead of per-venue adapters. REST for history, WebSocket for live data, FIX and flat files on higher plans. Auth: <code>X-CoinAPI-Key</code> header. Base: <code>https://rest.coinapi.io/v1/</code>.</p>
+  <p>Once you need order books from more than two or three exchanges, writing and maintaining an adapter for each one gets old fast. CoinAPI normalizes trades, quotes, L2/L3 books, and OHLCV from 300+ exchanges into one schema — REST for history, WebSocket for live data, FIX and flat files on the higher plans.</p>
 
-  <p>Startup $79/mo (1k REST credits/day), Streamer $249, Pro $599 (FIX). For regulated indices/benchmarks, look at Kaiko (sales-led, typically $1k+/mo). Docs: <a href="https://docs.coinapi.io/" target="_blank" rel="noopener">docs.coinapi.io</a>. Pricing: <a href="https://www.coinapi.io/products/market-data-api/pricing" target="_blank" rel="noopener">Market Data API pricing</a>.</p>
+  <p>Auth is an <code>X-CoinAPI-Key</code> header against <code>https://rest.coinapi.io/v1/</code>. Plans start at $79/mo (Startup, 1k REST credits/day), with Streamer at $249 and Pro at $599 adding FIX access. If you need regulated indices or benchmarks, Kaiko is the alternative, but it's sales-led and usually starts around $1k/mo. Docs: <a href="https://docs.coinapi.io/" target="_blank" rel="noopener">docs.coinapi.io</a>. Pricing: <a href="https://www.coinapi.io/products/market-data-api/pricing" target="_blank" rel="noopener">Market Data API pricing</a>.</p>
 </div>
 
 <div class="api-section" id="coinmarketcap">
@@ -586,66 +592,66 @@ document.addEventListener('DOMContentLoaded', function() {
     <a href="https://coinmarketcap.com/api/" class="join-button program-link" data-program="CoinMarketCap" target="_blank" rel="noopener">Open CoinMarketCap API</a>
   </div>
 
-  <p>Runner-up to CoinGecko. Rankings, quotes, global metrics, DEX endpoints. Binance-owned. Free Basic: 15k credits/mo, 50 rpm, ~60s REST freshness, commercial use. Keyless trial at <code>/trial-pro-api</code>. Paid from $29/mo. WebSocket from Startup ($79/mo).</p>
+  <p>CoinMarketCap is here as a runner-up. The free Basic plan is actually generous: 15k credits a month, 50 requests per minute, and commercial use is allowed. There's even a keyless trial at <code>/trial-pro-api</code> so you can test without signing up. Paid plans start at $29/mo, with WebSocket from Startup ($79/mo).</p>
 
-  <p>Use it for CMC IDs or as a second price source. For an independent aggregator, use CoinGecko. Docs: <a href="https://coinmarketcap.com/api/documentation/v1/" target="_blank" rel="noopener">CMC API docs</a>. Pricing: <a href="https://coinmarketcap.com/api/pricing/" target="_blank" rel="noopener">coinmarketcap.com/api/pricing</a>.</p>
+  <p>The catch is that Binance owns CMC, and data refreshes about every 60 seconds on the cheaper plans. I'd use it as a second price source, or if you specifically need CMC's rankings — and keep CoinGecko as your main aggregator. Docs: <a href="https://coinmarketcap.com/api/documentation/v1/" target="_blank" rel="noopener">CMC API docs</a>. Pricing: <a href="https://coinmarketcap.com/api/pricing/" target="_blank" rel="noopener">coinmarketcap.com/api/pricing</a>.</p>
 </div>
 
 <h2 id="types">Types of Crypto APIs</h2>
 
-<p>Most “best crypto API” articles pretend these are interchangeable. They are not:</p>
+<p>Most "best crypto API" articles treat these like they're interchangeable. They're not:</p>
 
 <ul>
-  <li><strong>Swap / exchange APIs</strong> — ChangeNOW. Execute a conversion without a custodial account.</li>
-  <li><strong>Bitcoin research data</strong> — Bitbo. Derived metrics and history for charts and models.</li>
+  <li><strong>Swap / exchange APIs</strong> — ChangeNOW. Convert coins without holding user funds.</li>
+  <li><strong>Bitcoin research data</strong> — Bitbo. Metrics and history for charts and models.</li>
   <li><strong>Market data aggregators</strong> — CoinGecko (best), CoinMarketCap (runner-up). Prices, caps, metadata.</li>
   <li><strong>Trading APIs</strong> — Kraken. Place and manage orders on a real exchange.</li>
-  <li><strong>Market-data WebSockets</strong> — Binance. Live books and prints.</li>
-  <li><strong>Chain / explorer APIs</strong> — mempool.space. Fees, txs, UTXOs, broadcast.</li>
+  <li><strong>Market-data WebSockets</strong> — Binance. Live order books and trades.</li>
+  <li><strong>Chain / explorer APIs</strong> — mempool.space. Fees, transactions, UTXOs, broadcast.</li>
   <li><strong>Institutional market data</strong> — CoinAPI (self-serve), Kaiko (sales-led).</li>
-  <li><strong>Payment gateways</strong> — merchant checkout (BitPay, Zaprite, and similar). Separate article. Not this list.</li>
+  <li><strong>Payment gateways</strong> — merchant checkout (BitPay, Zaprite, and similar). Separate article.</li>
 </ul>
 
 <h2 id="choose">How to Choose a Crypto API</h2>
 
 <ul>
-  <li><strong>Custody.</strong> If you do not want to hold user funds, you want a swap API (ChangeNOW), not a CEX trading API.</li>
-  <li><strong>Geo.</strong> Do not put Binance trading keys in a US retail product. Do not send UK traffic to ChangeNOW. Kraken is the default US-friendly execution API on this list.</li>
-  <li><strong>Latency vs coverage.</strong> CoinGecko covers everything slowly enough for a portfolio. Binance sockets cover one venue quickly. CoinAPI covers many venues as ticks, for a price.</li>
-  <li><strong>Bitcoin-native vs multi-asset.</strong> Realized price and supply remaining are Bitbo. SOL/ETH/long-tail tokens are CoinGecko. Live Bitcoin fees are mempool.space.</li>
-  <li><strong>Cost model.</strong> ChangeNOW and public Binance/mempool streams have no monthly bill. Bitbo and CoinGecko/CoinAPI are subscriptions. Kraken charges trading fees, not API fees.</li>
+  <li><strong>Custody.</strong> If you don't want to hold user funds, use a swap API (ChangeNOW), not an exchange trading API.</li>
+  <li><strong>Location.</strong> Don't build a US product on Binance trading keys, and don't send UK traffic to ChangeNOW. Kraken is the safe pick for US users.</li>
+  <li><strong>Speed vs coverage.</strong> CoinGecko covers everything but updates slowly. Binance is fast but one venue. CoinAPI is fast across many venues, and you pay for it.</li>
+  <li><strong>Bitcoin vs everything.</strong> Realized price and supply data is Bitbo. Altcoins and long-tail tokens are CoinGecko. Live Bitcoin fees are mempool.space.</li>
+  <li><strong>Cost.</strong> ChangeNOW, Binance streams, and mempool.space are free. Bitbo, CoinGecko, and CoinAPI are subscriptions. Kraken just charges trading fees.</li>
 </ul>
 
-<p>Three mistakes I see constantly: using CoinGecko as an order book, using ChangeNOW as a homepage ticker, and using mempool.space’s public instance as if it were a paid SLA.</p>
+<p>The three mistakes I see most often: using CoinGecko as an order book, using ChangeNOW as a price ticker, and treating mempool.space's public API like a paid service.</p>
 
 <h2 id="faq">FAQ</h2>
 
 <p><strong>Is there one best crypto API?</strong><br>
-No. Pick by job: ChangeNOW for swaps, Bitbo for Bitcoin metrics, CoinGecko for market data, Kraken to place orders, Binance for public WebSockets, mempool.space for live chain data, CoinAPI for multi-venue books.</p>
+No. It depends on what you're building: ChangeNOW for swaps, Bitbo for Bitcoin metrics, CoinGecko for market data, Kraken for placing orders, Binance for WebSockets, mempool.space for live chain data, and CoinAPI for data from many exchanges.</p>
 
 <p><strong>Is ChangeNOW a trading API?</strong><br>
-No. It creates non-custodial swaps. It does not maintain an order book or accept limit orders like Kraken.</p>
+No. It creates non-custodial swaps. There's no order book and no limit orders — that's what Kraken is for.</p>
 
 <p><strong>Is the Bitbo API free?</strong><br>
-No. It is included with Bitbo Pro++ ($89/mo yearly), with 1 million calls per month.</p>
+No. It's included with Bitbo Pro++ ($89/mo billed yearly), with 1 million calls per month.</p>
 
 <p><strong>CoinGecko vs CoinMarketCap?</strong><br>
-CoinGecko for independence and coverage. CMC if you specifically need their rankings or already depend on CMC IDs. Do not pick CMC as your only source just because the free credit count is higher.</p>
+CoinGecko for independence and coverage. CMC if you need their rankings or already depend on CMC IDs. I wouldn't pick CMC as your only source just because the free tier is bigger.</p>
 
 <p><strong>Kraken vs Binance?</strong><br>
-Kraken to trade, especially in the US. Binance for public WebSocket market data.</p>
+Kraken to trade, especially in the US. Binance for free WebSocket market data.</p>
 
 <p><strong>Can I use mempool.space in production?</strong><br>
-For light traffic, yes, until you hit unpublished limits. For a wallet or payments flow, self-host or get an enterprise plan.</p>
+For light traffic, yes. For a wallet or payments flow, self-host it or get an enterprise plan — the public instance has unpublished rate limits.</p>
 
 <h2 id="methodology">Methodology</h2>
 
-<p>I run Bitbo. We consume Bitcoin data APIs in production, we have integrated partner swap flows, and I reviewed current vendor docs in August 2026 (pricing pages, rate limits, geo terms, and WebSocket vs REST splits).</p>
+<p>I run Bitbo. We use Bitcoin data APIs in production every day, and I've integrated partner swap flows myself. Everything on this page was checked against the vendors' own docs in August 2026 — pricing, rate limits, and region restrictions.</p>
 
-<p>Rankings are by job, not a single score from 1 to 7.</p>
+<p>There's no single ranking from 1 to 7 here. Each pick is the best at its own job.</p>
 
 <h2>Disclaimer</h2>
 
-<p>Some links are partner or affiliate links. We may earn a commission if you integrate ChangeNOW or subscribe to Bitbo Pro++. APIs, fees, rate limits, and geo rules change; confirm on the vendor’s site before you ship. This is not financial, legal, or investment advice.</p>
+<p>Some links on this page are partner or affiliate links, and we may earn a commission if you integrate ChangeNOW or subscribe to Bitbo Pro++. APIs, fees, rate limits, and region rules change all the time, so confirm on the vendor's site before you ship. This isn't financial, legal, or investment advice.</p>
 
 </div>
