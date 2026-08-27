@@ -524,7 +524,7 @@ code {
   </tr>
   <tr>
     <td>
-      <a href="#bitbo" class="api-table-name">
+      <a href="https://charts.bitbo.io/btc-api/" class="api-table-name program-link" data-program="Bitbo" target="_blank" rel="noopener">
         <img src="/tools/img/bitbo.jpg" alt="" class="api-table-logo">
         Bitbo
       </a>
