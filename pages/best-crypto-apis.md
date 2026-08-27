@@ -38,7 +38,8 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
   display: block;
   margin: 0 auto 15px;
   border-radius: 100%;
-  border: 1px solid #ccc;
+  border: none;
+  background: transparent;
 }
 
 .affiliate-logo-wide {
@@ -239,7 +240,19 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 1rem 0;
+  margin: 1.75rem 0 1rem;
+}
+
+#comparison {
+  margin-top: 3rem;
+}
+
+#chooser {
+  margin-top: 3.25rem;
+}
+
+#best {
+  margin-top: 3.25rem;
 }
 
 table th,
@@ -278,7 +291,8 @@ table tbody tr:nth-child(even) {
   object-fit: contain;
   border-radius: 6px;
   flex-shrink: 0;
-  background: #ffffff;
+  background: transparent;
+  border: none;
 }
 
 code {
@@ -408,10 +422,6 @@ code {
 
   .api-table-name {
     color: #ffffff;
-  }
-
-  .api-table-logo {
-    background: #ffffff;
   }
 
   .takeaways {
@@ -653,7 +663,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<h2>The 6 Best Crypto APIs</h2>
+<h2 id="best">The 6 Best Crypto APIs</h2>
 
 <p>Here's each pick and what it's best at.</p>
 
@@ -661,18 +671,18 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="affiliate-card">
     <span class="card-badge">Best Exchange API</span>
     <img src="/tools/img/changenow.svg" alt="ChangeNOW logo" class="affiliate-logo affiliate-logo-wide">
-    <h3><a href="https://changenow.io/affiliate" class="program-link" data-program="ChangeNOW" target="_blank" rel="noopener">ChangeNOW →</a></h3>
+    <h3><a href="https://changenow.io/api" class="program-link" data-program="ChangeNOW" target="_blank" rel="noopener">ChangeNOW →</a></h3>
     <div class="affiliate-details">
       <p><strong>Product</strong> Non-custodial instant crypto swaps for wallets, widgets, and apps.</p>
       <p><strong>Pricing</strong> Free to integrate. Default 0.4% partner share, customizable per pair.</p>
       <p><strong>Best for</strong> In-app exchange without holding user funds or running an order book.</p>
     </div>
-    <a href="https://changenow.io/affiliate" class="join-button program-link" data-program="ChangeNOW" target="_blank" rel="noopener">Get the ChangeNOW API</a>
+    <a href="https://changenow.io/api" class="join-button program-link" data-program="ChangeNOW" target="_blank" rel="noopener">Get the ChangeNOW API</a>
   </div>
 
   <p>ChangeNOW is a swap API. Your user sends one coin to a deposit address, and ChangeNOW sends back another. You never hold the funds, and you don't need to run an order book or find liquidity — they cover 1,500+ assets from both CEXes and DEXes.</p>
 
-  <p>Integration is free, and you earn <strong>0.4% of every swap</strong> your users make (adjustable if you ask). The flow is simple: list currencies, estimate the rate, create the exchange, then poll the status. There's also a fixed-rate mode that locks the quote for 20 minutes. You get your API key by signing up at <a href="https://changenow.io/affiliate" target="_blank" rel="noopener">changenow.io/affiliate</a>.</p>
+  <p>Integration is free, and you earn <strong>0.4% of every swap</strong> your users make (adjustable if you ask). The flow is simple: list currencies, estimate the rate, create the exchange, then poll the status. There's also a fixed-rate mode that locks the quote for 20 minutes. You get your API key by signing up at <a href="https://changenow.io/api" target="_blank" rel="noopener">changenow.io/api</a>.</p>
 
   <p>Two caveats: ChangeNOW doesn't serve UK users, and the estimate endpoint isn't a price feed. For prices, use CoinGecko or Bitbo.</p>
 
