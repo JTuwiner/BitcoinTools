@@ -9,6 +9,12 @@ layout: base
     {%- assign all_hardware_wallets = site.pages | where: "wallettype", "Hardware" -%}
     {%- assign exchange1_page = all_hardware_wallets | where: "title", page.wallet1 | first -%}
     {%- assign exchange2_page = all_hardware_wallets | where: "title", page.wallet2 | first -%}
+    {%- unless exchange1_page -%}
+      {%- assign exchange1_page = site.pages | where: "title", page.wallet1 | first -%}
+    {%- endunless -%}
+    {%- unless exchange2_page -%}
+      {%- assign exchange2_page = site.pages | where: "title", page.wallet2 | first -%}
+    {%- endunless -%}
     <div class="compare-exchanges-inner">
       <div class="exchange-card">
         <div class="exchange-card-top">

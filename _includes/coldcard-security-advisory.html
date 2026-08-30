@@ -1,61 +1,28 @@
 <style>
-.hw-coldcard-advisory {
-  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
-  border: 2px solid #DC2626;
-  border-radius: 10px;
-  padding: 20px 24px;
-  margin: 0 0 40px;
-  text-align: left;
-}
-.hw-coldcard-advisory-title {
-  margin: 0 0 12px;
-  font-size: 1.25rem;
-  color: #991B1B;
-  font-weight: 700;
-}
-.hw-coldcard-advisory p {
-  margin: 0 0 12px;
-  color: #78350F;
-  font-size: 0.95rem;
-  line-height: 1.55;
-}
-.hw-coldcard-advisory p:last-child { margin-bottom: 0; }
-.hw-coldcard-advisory-ctas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 20px;
-  align-items: center;
-  margin-top: 16px !important;
-}
-.hw-coldcard-advisory-cta {
-  display: inline-block;
-  background: #f2a900;
-  color: #000 !important;
-  font-weight: 700;
-  text-decoration: none;
-  padding: 10px 16px;
+.vs-coldcard-note {
+  max-width: 420px;
+  width: fit-content;
+  margin: 0 auto 28px;
+  padding: 10px 14px;
+  background: #FEF3C7;
+  border: 1px solid #DC2626;
   border-radius: 8px;
-  font-size: 0.95rem;
+  color: #78350F;
+  font-size: 13px;
+  line-height: 1.45;
+  text-align: left;
+  box-sizing: border-box;
 }
-.hw-coldcard-advisory-cta:hover {
-  background: #d99600;
-  text-decoration: none;
-  color: #000 !important;
+.vs-coldcard-note strong {
+  color: #991B1B;
 }
-.hw-coldcard-advisory-link {
-  color: #991B1B !important;
+.vs-coldcard-note a {
+  color: #991B1B;
   font-weight: 600;
-  font-size: 0.9rem;
 }
 </style>
-<div class="hw-coldcard-advisory" id="coldcard-security-advisory" role="alert">
-  <h2 class="hw-coldcard-advisory-title">Coldcard Security Advisory</h2>
-  <p><strong>Coinkite disclosed a vulnerability</strong> affecting seed phrase generation on Coldcard devices. Private keys generated on Mk3, Mk4, Mk5, and Q models may have fewer random bits than expected, making them potentially vulnerable to attack. Moving a Coldcard-generated seed to a Trezor, Ledger, or any other device does <strong>not</strong> fix it — new keys must be generated on non-Coldcard hardware.</p>
-  <p>This comparison is for product specs only. We are not recommending new Coldcard purchases while the advisory is active.</p>
-  <p><strong>Why single-sig is risky:</strong> If you hold bitcoin with one key on one vendor’s device, a single bug or disclosure can put your funds at immediate risk. That is the lesson of this incident for anyone using a lone hardware wallet.</p>
-  <p><strong>Why multivendor multisig matters:</strong> In a 2-of-3 setup with keys from different manufacturers (plus a collaborative partner), one compromised device does not by itself let an attacker move your bitcoin. Unchained vaults are built around that model — you hold two keys, Unchained holds one, and their key was not generated on Coldcard.</p>
-  <p class="hw-coldcard-advisory-ctas">
-    <a href="https://unchained.com/vaults?utm_source=referral-21-bitbo" target="_blank" rel="nofollow noopener" class="hw-coldcard-advisory-cta">Get Unchained Multisig — 10% off with BITBO10</a>
-    <a href="https://www.unchained.com/blog/coldcard-security-advisory/" target="_blank" rel="noopener" class="hw-coldcard-advisory-link">Read Unchained’s Coldcard advisory</a>
-  </p>
-</div>
+<p class="vs-coldcard-note" id="coldcard-security-advisory" role="alert">
+  <strong>Coldcard advisory.</strong>
+  Seeds generated on Mk3, Mk4, Mk5, and Q may not be random enough. Moving the seed to another wallet does not fix it — generate new keys on other hardware.
+  <a href="https://unchained.com/vaults?utm_source=referral-21-bitbo" target="_blank" rel="nofollow noopener">Unchained multisig, 10% off BITBO10</a>
+</p>
