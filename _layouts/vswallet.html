@@ -1,8 +1,11 @@
 ---
 layout: base
 ---
-<h1 style="text-align: center; width: 100%;margin-bottom: 85px;">{{ page.title }}</h1>
+<h1 style="text-align: center; width: 100%;margin-bottom: {% if page.wallet1 contains "Coldcard" or page.wallet2 contains "Coldcard" %}20px{% else %}85px{% endif %};">{{ page.title }}</h1>
 <div class="post-inner-wrapper">
+    {%- if page.wallet1 contains "Coldcard" or page.wallet2 contains "Coldcard" -%}
+      {% include coldcard-security-advisory.html %}
+    {%- endif -%}
     {%- assign all_hardware_wallets = site.pages | where: "wallettype", "Hardware" -%}
     {%- assign exchange1_page = all_hardware_wallets | where: "title", page.wallet1 | first -%}
     {%- assign exchange2_page = all_hardware_wallets | where: "title", page.wallet2 | first -%}
@@ -47,9 +50,6 @@ layout: base
           exchange2Link=exchange2_page.link
         %}
     </div>
-    {%- if page.wallet1 contains "Coldcard" or page.wallet2 contains "Coldcard" -%}
-      {% include coldcard-security-advisory.html %}
-    {%- endif -%}
     <script>
       window.addEventListener('load', (event) => {
         document.querySelectorAll('.sticky-compare-cta-button').forEach((button, index) => {
