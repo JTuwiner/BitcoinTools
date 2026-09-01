@@ -636,8 +636,8 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.program-link').forEach(link => {
     link.addEventListener('click', () => {
       const program = link.getAttribute('data-program');
-      if (typeof gmTrackEvent === 'function') {
-        gmTrackEvent('Click Crypto API', { property: program });
+      if (typeof window.plausible === 'function') {
+        window.plausible('Click Crypto API', { property: program });
       }
     });
   });

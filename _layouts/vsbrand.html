@@ -782,47 +782,47 @@ document.addEventListener('DOMContentLoaded', function() {
     <script>
       window.addEventListener('load', (event) => {
         document.getElementById('sticky-cta-1').addEventListener('click', event => {
-          if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet', { property: '{{ exchange1_page.title }}' });
+          if(typeof window.plausible==='function')window.plausible('Click Wallet', { property: '{{ exchange1_page.title }}' });
         });
         document.getElementById('sticky-cta-2').addEventListener('click', event => {
-          if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet', { property: '{{ exchange2_page.title }}' });
+          if(typeof window.plausible==='function')window.plausible('Click Wallet', { property: '{{ exchange2_page.title }}' });
         });
         document.querySelectorAll('.vs-related-comparison-link').forEach(link => {
           link.addEventListener('click', event => {
-            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Related Comparison');
+            if(typeof window.plausible==='function')window.plausible('Click Related Comparison');
           });
         });
         document.querySelectorAll('.vs-review-link').forEach(link => {
           link.addEventListener('click', event => {
-            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Review');
+            if(typeof window.plausible==='function')window.plausible('Click Review');
           });
         });
 
         // Track inline CTA clicks for wallet 1
         document.querySelectorAll('.inline-cta-wallet1').forEach(link => {
           link.addEventListener('click', event => {
-            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet', { property: '{{ exchange1_page.title }}' });
+            if(typeof window.plausible==='function')window.plausible('Click Wallet', { property: '{{ exchange1_page.title }}' });
           });
         });
 
         // Track inline CTA clicks for wallet 2
         document.querySelectorAll('.inline-cta-wallet2').forEach(link => {
           link.addEventListener('click', event => {
-            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet', { property: '{{ exchange2_page.title }}' });
+            if(typeof window.plausible==='function')window.plausible('Click Wallet', { property: '{{ exchange2_page.title }}' });
           });
         });
 
         // Track quick buy link clicks for wallet 1
         document.querySelectorAll('.quick-buy-wallet1').forEach(link => {
           link.addEventListener('click', event => {
-            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet', { property: '{{ exchange1_page.title }}' });
+            if(typeof window.plausible==='function')window.plausible('Click Wallet', { property: '{{ exchange1_page.title }}' });
           });
         });
 
         // Track quick buy link clicks for wallet 2
         document.querySelectorAll('.quick-buy-wallet2').forEach(link => {
           link.addEventListener('click', event => {
-            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Wallet', { property: '{{ exchange2_page.title }}' });
+            if(typeof window.plausible==='function')window.plausible('Click Wallet', { property: '{{ exchange2_page.title }}' });
           });
         });
       });
@@ -1163,7 +1163,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.compare-bright-section-toc-link').forEach(link => {
               link.addEventListener('click', event => {
                 const section = link.getAttribute('href').substring(1);
-                if(typeof gmTrackEvent==='function')gmTrackEvent(`Click TOC ${section}`);
+                if(typeof window.plausible==='function')window.plausible(`Click TOC ${section}`);
               });
             });
           });

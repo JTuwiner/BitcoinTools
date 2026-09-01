@@ -216,8 +216,8 @@ document.addEventListener("DOMContentLoaded", function() {
         pick.addEventListener('click', function() {
             var pickName = pick.getAttribute('data-pick');
             }
-            if (typeof gmTrackEvent === 'function') {
-                gmTrackEvent('Clicked Top Pick', { property: pickName || '' });
+            if (typeof window.plausible === 'function') {
+                window.plausible('Clicked Top Pick', { property: pickName || '' });
             }
         });
     });

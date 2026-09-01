@@ -45,9 +45,9 @@ layout: base
         document.querySelectorAll('.sticky-compare-cta-button').forEach((button, index) => {
           button.addEventListener('click', event => {
             if (index === 0) {
-              if(typeof gmTrackEvent==='function')gmTrackEvent('Click Card', { property: '{{ exchange1_page.title }}' });
+              if(typeof window.plausible==='function')window.plausible('Click Card', { property: '{{ exchange1_page.title }}' });
             } else {
-              if(typeof gmTrackEvent==='function')gmTrackEvent('Click Card', { property: '{{ exchange2_page.title }}' });
+              if(typeof window.plausible==='function')window.plausible('Click Card', { property: '{{ exchange2_page.title }}' });
             }
           });
         });
@@ -68,19 +68,19 @@ layout: base
     <script>
       window.addEventListener('load', (event) => {
         document.getElementById('sticky-cta-1').addEventListener('click', event => {
-          if(typeof gmTrackEvent==='function')gmTrackEvent('Click Software', { property: '{{ exchange1_page.title }}' });
+          if(typeof window.plausible==='function')window.plausible('Click Software', { property: '{{ exchange1_page.title }}' });
         });
         document.getElementById('sticky-cta-2').addEventListener('click', event => {
-          if(typeof gmTrackEvent==='function')gmTrackEvent('Click Software', { property: '{{ exchange2_page.title }}' });
+          if(typeof window.plausible==='function')window.plausible('Click Software', { property: '{{ exchange2_page.title }}' });
         });
         document.querySelectorAll('.vs-related-comparison-link').forEach(link => {
           link.addEventListener('click', event => {
-            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Related Comparison');
+            if(typeof window.plausible==='function')window.plausible('Click Related Comparison');
           });
         });
         document.querySelectorAll('.vs-review-link').forEach(link => {
           link.addEventListener('click', event => {
-            if(typeof gmTrackEvent==='function')gmTrackEvent('Click Review');
+            if(typeof window.plausible==='function')window.plausible('Click Review');
           });
         });
       });
@@ -222,7 +222,7 @@ layout: base
             document.querySelectorAll('.compare-bright-section-toc-link').forEach(link => {
               link.addEventListener('click', event => {
                 const section = link.getAttribute('href').substring(1);
-                if(typeof gmTrackEvent==='function')gmTrackEvent(`Click TOC ${section}`);
+                if(typeof window.plausible==='function')window.plausible(`Click TOC ${section}`);
               });
             });
           });

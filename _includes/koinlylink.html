@@ -74,12 +74,12 @@
       var btnCoinledger = document.getElementById('btn-coinledger');
       if (btnSumm) {
         btnSumm.addEventListener('click', function() {
-          if (typeof gmTrackEvent === 'function') gmTrackEvent('Click Tax Link', { property: 'Summ' });
+          if (typeof window.plausible === 'function') window.plausible('Click Tax Link', { property: 'Summ' });
         });
       }
       if (btnCoinledger) {
         btnCoinledger.addEventListener('click', function() {
-          if (typeof gmTrackEvent === 'function') gmTrackEvent('Click Tax Link', { property: 'CoinLedger' });
+          if (typeof window.plausible === 'function') window.plausible('Click Tax Link', { property: 'CoinLedger' });
         });
       }
     });
