@@ -847,7 +847,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <li><strong>Trading APIs</strong> — Kraken. Place and manage orders on a real exchange.</li>
   <li><strong>Market-data WebSockets</strong> — Binance. Live order books and trades.</li>
   <li><strong>Chain / explorer APIs</strong> — mempool.space. Fees, transactions, UTXOs, broadcast.</li>
-  <li><strong>Payment gateways</strong> — merchant checkout (BitPay, Zaprite, and similar). Separate article.</li>
+  <li><strong>Payment gateways</strong> — merchant checkout. See our <a href="/tools/best-crypto-payment-gateways/">crypto payment gateways</a> list.</li>
 </ul>
 
 <h2 id="choose">How to Choose a Crypto API</h2>
