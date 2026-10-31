@@ -1,0 +1,228 @@
+<style>
+  .bitbo-ad {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin: 36px auto;
+    clear: both;
+    flex: 0 0 100%;
+  }
+
+  .bitbo-ad ins.adsbygoogle {
+    display: block;
+    width: 100%;
+    min-height: 90px;
+  }
+
+  .tools-container > .bitbo-ad,
+  .categories-grid > .bitbo-ad {
+    margin: 12px 0;
+  }
+</style>
+<script>
+(function () {
+  if (window.__bitboAds) return;
+  window.__bitboAds = true;
+
+  var CLIENT = "ca-pub-5272737443882963";
+  var SLOTS = ["3814738372", "1462026878", "7125417096", "9148945205", "7778481225"];
+  var ATOMIC = ".tool, .category-card, .exchange-card, .exchanges-details-card, .hw-item, .hw-faq-item, .mcap-calculator, .mcap-card, .inline-section-cta, .vs-related-comparisons, .brand-card";
+
+  function contentRoot() {
+    var main = document.querySelector(".main-page-content > main")
+      || document.querySelector("[role='main']");
+    if (main) return main;
+    return document.querySelector(".main-page-content");
+  }
+
+  function makeAd(slot) {
+    var wrap = document.createElement("div");
+    wrap.className = "bitbo-ad";
+    var ins = document.createElement("ins");
+    ins.className = "adsbygoogle";
+    ins.style.display = "block";
+    ins.setAttribute("data-ad-client", CLIENT);
+    ins.setAttribute("data-ad-slot", slot);
+    ins.setAttribute("data-ad-format", "auto");
+    ins.setAttribute("data-full-width-responsive", "true");
+    wrap.appendChild(ins);
+    return wrap;
+  }
+
+  function pushIns(ins) {
+    if (!ins || ins.getAttribute("data-adsbygoogle-status")) return;
+    var rect = ins.getBoundingClientRect();
+    if (rect.width < 100 || ins.offsetParent === null) return;
+    try {
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {}
+  }
+
+  function placeSidebar() {
+    var box = document.querySelector(".bitbo-sidebar-ad");
+    if (!box || window.matchMedia("(max-width: 1099px)").matches) return;
+    var ins = box.querySelector("ins");
+    pushIns(ins);
+    var toc = box.nextElementSibling && box.nextElementSibling.classList.contains("sidebar-toc")
+      ? box.nextElementSibling
+      : null;
+    if (!toc) return;
+    var fit = function () {
+      var h = box.offsetHeight;
+      if (!h) return;
+      toc.style.top = (88 + h + 12) + "px";
+      toc.style.maxHeight = "calc(100vh - " + (88 + h + 28) + "px)";
+    };
+    fit();
+    setTimeout(fit, 1000);
+    setTimeout(fit, 2500);
+  }
+
+  function collect(el, interval, out) {
+    if (!el || el.nodeType !== 1) return;
+    if (el.matches("script, style, noscript, link, template")) return;
+    var cs = window.getComputedStyle(el);
+    if (cs.display === "none" || cs.visibility === "hidden") return;
+
+    var keepWhole = el.matches("table, form, pre, figure, svg, nav, iframe, canvas, blockquote, ul, ol, " + ATOMIC);
+    if (!keepWhole && el.offsetHeight < Math.max(interval * 1.6, 800) && el.querySelector("input, textarea, select")) {
+      keepWhole = true;
+    }
+    if (keepWhole) {
+      if (el.offsetHeight >= 48) out.push(el);
+      return;
+    }
+
+    var kids = [];
+    for (var i = 0; i < el.children.length; i++) {
+      var kid = el.children[i];
+      if (kid.matches("script, style, noscript, link, template")) continue;
+      var kcs = window.getComputedStyle(kid);
+      if (kcs.display === "none" || kcs.position === "fixed" || kcs.position === "absolute") continue;
+      if (kid.offsetHeight < 28) continue;
+      kids.push(kid);
+    }
+
+    if (kids.length === 0) {
+      if (el.offsetHeight >= 80) out.push(el);
+      return;
+    }
+
+    if (kids.length === 1) {
+      collect(kids[0], interval, out);
+      return;
+    }
+
+    var tops = kids.map(function (k) { return k.getBoundingClientRect().top; });
+    var stacked = (Math.max.apply(null, tops) - Math.min.apply(null, tops)) > 36;
+    if (!stacked) {
+      if (el.offsetHeight >= 80) out.push(el);
+      return;
+    }
+
+    var splitAt = Math.max(interval * 0.65, 280);
+    kids.forEach(function (kid) {
+      var wrapper = kid.tagName === "DIV" || kid.tagName === "SECTION" || kid.tagName === "ARTICLE" || kid.tagName === "MAIN";
+      if (wrapper && kid.offsetHeight > splitAt && kid.children.length >= 1) collect(kid, interval, out);
+      else if (kid.offsetHeight >= 48) out.push(kid);
+    });
+  }
+
+  function rowStart(el) {
+    var top = el.getBoundingClientRect().top;
+    var node = el;
+    while (node.previousElementSibling) {
+      var prev = node.previousElementSibling;
+      if (prev.classList.contains("bitbo-ad")) break;
+      if (Math.abs(prev.getBoundingClientRect().top - top) > 8) break;
+      node = prev;
+    }
+    return node;
+  }
+
+  function insertionAnchor(el, root) {
+    var node = el;
+    while (node && node.parentNode && root.contains(node)) {
+      var parent = node.parentNode;
+      if (parent === root) return node;
+      var tag = parent.tagName;
+      if (/^(TABLE|TBODY|THEAD|TFOOT|TR|UL|OL|P|A|BUTTON|H1|H2|H3|H4|H5|H6|LI|DL|FIGURE)$/.test(tag)) {
+        node = parent;
+        continue;
+      }
+      var cs = window.getComputedStyle(parent);
+      var dir = cs.flexDirection || "row";
+      var horizontal = (cs.display === "flex" || cs.display === "inline-flex")
+        && dir.indexOf("column") === -1
+        && cs.flexWrap !== "wrap"
+        && cs.flexWrap !== "wrap-reverse";
+      if (horizontal) {
+        node = parent;
+        continue;
+      }
+      if (cs.display === "grid" || cs.display === "inline-grid") return rowStart(node);
+      return node;
+    }
+    return node && node.parentNode ? node : null;
+  }
+
+  function place() {
+    var root = contentRoot();
+    var vh = window.innerHeight || 800;
+    var mobile = window.matchMedia("(max-width: 768px)").matches;
+    var interval = Math.round(vh * (mobile ? 2 : 1));
+    var anchors = [];
+
+    if (root && root.offsetHeight >= 200) {
+      var blocks = [];
+      collect(root, interval, blocks);
+      var height = root.offsetHeight;
+      var count = Math.min(SLOTS.length, Math.floor(height / interval));
+      if (count < 1 && height >= vh * 0.45) count = 1;
+
+      var rootTop = root.getBoundingClientRect().top + window.scrollY;
+      var used = [];
+      for (var n = 1; n <= count; n++) {
+        var y = rootTop + (height * n) / (count + 1);
+        var best = null;
+        var bestDist = Infinity;
+        for (var i = 0; i < blocks.length; i++) {
+          var block = blocks[i];
+          var by = block.getBoundingClientRect().top + window.scrollY;
+          if (by < y - interval * 0.35) continue;
+          var dist = by - y;
+          if (block.tagName === "H2" || block.tagName === "H3") dist -= Math.min(160, interval * 0.15);
+          if (dist < bestDist) {
+            bestDist = dist;
+            best = block;
+          }
+        }
+        if (!best) continue;
+        var anchor = insertionAnchor(best, root);
+        if (!anchor || used.indexOf(anchor) !== -1) continue;
+        var ay = anchor.getBoundingClientRect().top + window.scrollY;
+        if (ay < rootTop + 120) continue;
+        used.push(anchor);
+        anchors.push(anchor);
+      }
+
+      if (!anchors.length && height >= vh * 0.45) {
+        var fallback = makeAd(SLOTS[0]);
+        root.appendChild(fallback);
+      }
+    }
+
+    anchors.forEach(function (anchor, i) {
+      if (i >= SLOTS.length) return;
+      anchor.parentNode.insertBefore(makeAd(SLOTS[i]), anchor);
+    });
+
+    requestAnimationFrame(function () {
+      document.querySelectorAll(".bitbo-ad ins").forEach(pushIns);
+      placeSidebar();
+    });
+  }
+
+  if (document.readyState === "complete") place();
+  else window.addEventListener("load", place);
+})();
+</script>

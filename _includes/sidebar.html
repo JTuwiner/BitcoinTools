@@ -74,6 +74,16 @@
     </ul>
     
   </header>
+
+  <div class="bitbo-sidebar-ad">
+    <!-- Bitbo right side -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-5272737443882963"
+         data-ad-slot="9338527795"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+  </div>
   
   {% if page.sidebar_toc %}
   <div class="sidebar-toc" id="sidebar-toc">
@@ -251,6 +261,39 @@
      padding: 6px;
      font-size: 13px;
      color: #f2a900
+   }
+
+   .bitbo-sidebar-ad {
+     position: sticky;
+     top: 88px;
+     align-self: flex-start;
+     z-index: 2;
+     width: 100%;
+     box-sizing: border-box;
+     padding: 12px;
+     background: #12151e;
+   }
+
+   .bitbo-sidebar-ad ins.adsbygoogle {
+     display: block;
+     width: 100%;
+     min-height: 250px;
+   }
+
+   .bitbo-sidebar-ad + .sidebar-toc {
+     top: 360px;
+     max-height: calc(100vh - 380px);
+   }
+
+   @media (max-width: 1099px) {
+     .bitbo-sidebar-ad {
+       display: none !important;
+     }
+
+     .bitbo-sidebar-ad + .sidebar-toc {
+       top: 80px;
+       max-height: calc(100vh - 100px);
+     }
    }
    
  </style>
