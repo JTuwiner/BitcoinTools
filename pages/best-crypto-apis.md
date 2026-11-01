@@ -6,6 +6,7 @@ seotitle: "6 Best Crypto APIs [2026]"
 full-width: yes
 permalink: "/best-crypto-apis/"
 category: yes
+hide_from_sidebar: true
 capture: yes
 desc: "Compare the best crypto APIs for 2026: ChangeNOW for in-app swaps, Bitbo for Bitcoin metrics, CoinGecko for market data, Kraken for trading, Binance for WebSockets, and mempool.space for fees."
 subdesc: "Swap APIs, Bitcoin data, market data, trading, and WebSockets — picked by job, not as one generic winner."

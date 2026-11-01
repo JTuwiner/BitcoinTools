@@ -6,6 +6,7 @@ seotitle: "6 Best Crypto Payment Gateways [2026]"
 full-width: yes
 permalink: "/best-crypto-payment-gateways/"
 category: yes
+hide_from_sidebar: true
 capture: yes
 desc: "Compare the best crypto payment gateways for 2026: NOWPayments for multi-coin checkout, Zaprite for Bitcoin-only, BTCPay for Lightning, OpenNode for fiat conversion, Stripe for stablecoins, and BitPay for POS."
 subdesc: "Merchant checkout APIs, plugins, and invoices — picked by job, not as one generic winner."

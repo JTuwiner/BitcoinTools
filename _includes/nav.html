@@ -25,30 +25,58 @@
   <div class="collapse navbar-collapse desktop-nav" id="main-navbar">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href="/tools/">Bitcoin Tools</a>
-      </li>
-      <li class="nav-item">
         <a target="_blank" class="bitbo-nav-link nav-link" href="https://bitbo.io">Dashboard</a>
       </li>
       <li class="nav-item">
         <a target="_blank" class="bitbo-charts-link nav-link" href="https://charts.bitbo.io/index/">Charts</a>
       </li>
       <li class="nav-item">
-        <a target="_blank" class="nav-link" href="https://charts.bitbo.io">Analytics</a>
+        <a target="_blank" class="nav-link buy-nav-link" href="https://bitbo.io/buy/usa/">Buy BTC</a>
       </li>
       <li class="nav-item">
-        <a target="_blank" class="nav-link buy-nav-link" href="https://bitbo.io/buy/">Buy BTC</a>
+        <a target="_blank" class="nav-link" href="https://bitbo.io/hardware-wallets/">Hardware Wallets</a>
       </li>
       <li class="nav-item">
-        <a target="_blank" class="nav-link treasuries-link" href="https://bitbo.io/treasuries/">Treasuries</a>
+        <a target="_blank" class="nav-link" href="https://bitbo.io/tools/tax/">Crypto Tax Software</a>
       </li>
-       
     </ul>
   </div>
 
   <div class="mobile-nav">
     {% include mobilenav.html %}
   </div>
+
+  <script>
+    (function () {
+      var slugs = {
+        AR: "argentina", AU: "australia", AT: "austria", BH: "bahrain", BE: "belgium",
+        BR: "brazil", CA: "canada", CO: "colombia", DK: "denmark", FR: "france",
+        DE: "germany", GR: "greece", HT: "haiti", HK: "hong-kong", HU: "hungary",
+        IE: "ireland", IL: "israel", IT: "italy", JM: "jamaica", KW: "kuwait",
+        MY: "malaysia", MX: "mexico", NL: "netherlands", NZ: "new-zealand", NO: "norway",
+        OM: "oman", PE: "peru", PH: "philippines", PL: "poland", PT: "portugal",
+        QA: "qatar", RO: "romania", SA: "saudi-arabia", SG: "singapore", ZA: "south-africa",
+        ES: "spain", SE: "sweden", CH: "switzerland", TH: "thailand", AE: "uae",
+        GB: "uk", UK: "uk", UY: "uruguay", US: "usa"
+      };
+
+      function applyCountry(code) {
+        var slug = slugs[(code || "").toUpperCase()] || "usa";
+        var href = "https://bitbo.io/buy/" + slug + "/";
+        var links = document.querySelectorAll(".buy-nav-link");
+        for (var i = 0; i < links.length; i++) links[i].href = href;
+      }
+
+      // loc in /cdn-cgi/trace is Cloudflare's CF-IPCountry. Unmatched countries stay on USA.
+      fetch("/cdn-cgi/trace", { credentials: "omit" })
+        .then(function (res) { return res.ok ? res.text() : ""; })
+        .then(function (text) {
+          var match = text && text.match(/(?:^|\n)loc=([A-Za-z]{2})/);
+          if (match) applyCountry(match[1]);
+        })
+        .catch(function () {});
+    })();
+  </script>
 
   {% if site.navbar-extra %}
     {% for file in site.navbar-extra %}
