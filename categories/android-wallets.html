@@ -10,7 +10,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox
 ---
 
 {% assign wallets_unsorted = site.pages | where: "cat", "Android Wallets" %}
-{% assign wallets = wallets_unsorted | sort: "rating" | reverse %}
+{% assign wallets = wallets_unsorted | sort: "sort" %}
 
 <style>
 /* Wallet Comparison Table Styles */
