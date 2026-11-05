@@ -20,6 +20,20 @@
         display: none;
       }
     }
+
+    /* Hide US-only tools until Cloudflare country is known, then keep them hidden outside the US. */
+    html.geo-pending [data-us-only],
+    html.geo-non-us [data-us-only] {
+      display: none !important;
+    }
+
+    [data-non-us-only] {
+      display: none !important;
+    }
+
+    html.geo-non-us [data-non-us-only] {
+      display: inline !important;
+    }
   </style>
 
   <div class="collapse navbar-collapse desktop-nav" id="main-navbar">
@@ -61,20 +75,32 @@
       };
 
       function applyCountry(code) {
-        var slug = slugs[(code || "").toUpperCase()] || "usa";
+        var upper = (code || "").toUpperCase();
+        var slug = slugs[upper] || "usa";
         var href = "https://bitbo.io/buy/" + slug + "/";
         var links = document.querySelectorAll(".buy-nav-link");
         for (var i = 0; i < links.length; i++) links[i].href = href;
+
+        if (upper && upper !== "US") {
+          document.documentElement.classList.add("geo-non-us");
+        }
+        document.documentElement.classList.remove("geo-pending");
       }
 
-      // loc in /cdn-cgi/trace is Cloudflare's CF-IPCountry. Unmatched countries stay on USA.
+      document.documentElement.classList.add("geo-pending");
+
+      // loc in /cdn-cgi/trace is Cloudflare's CF-IPCountry header.
+      // Unknown or failed lookups stay on the US buy link and show US-only tools.
       fetch("/cdn-cgi/trace", { credentials: "omit" })
         .then(function (res) { return res.ok ? res.text() : ""; })
         .then(function (text) {
-          var match = text && text.match(/(?:^|\n)loc=([A-Za-z]{2})/);
+          var match = text && text.match(/(?:^|\n)loc=([A-Za-z0-9]{2})/);
           if (match) applyCountry(match[1]);
+          else document.documentElement.classList.remove("geo-pending");
         })
-        .catch(function () {});
+        .catch(function () {
+          document.documentElement.classList.remove("geo-pending");
+        });
     })();
   </script>
 

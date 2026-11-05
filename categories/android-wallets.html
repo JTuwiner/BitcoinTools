@@ -908,7 +908,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox
       </thead>
       <tbody>
         {% for wallet in wallets %}
-        <tr>
+        <tr{% if wallet.us_only %} data-us-only="true"{% endif %}>
           <td>
             <div class="wallet-table-provider-name">
               <img loading="lazy" src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="wallet-table-provider-img">
@@ -956,7 +956,7 @@ svgicon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox
       </select>
     </div>
     {% for wallet in wallets %}
-    <div class="mobile-wallet-card">
+    <div class="mobile-wallet-card"{% if wallet.us_only %} data-us-only="true"{% endif %}>
       <div class="mobile-wallet-card-header">
         <img loading="lazy" src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-wallet-card-img">
         <div class="mobile-wallet-card-name">{{ wallet.title }}</div>
@@ -996,7 +996,7 @@ function updateMobileWalletComparison() {
 
 <div class="wallet-listing">
   {% for wallet in wallets %}
-  <div class="wallet-item">
+  <div class="wallet-item"{% if wallet.us_only %} data-us-only="true"{% endif %}>
     <div class="wallet-header">
       <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="wallet-image-wrapper" onclick="if(typeof window.plausible==='function'){window.plausible('Click Android Wallet', { property: '{{ wallet.title }}' });}">
         <img loading="lazy" src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="wallet-image">

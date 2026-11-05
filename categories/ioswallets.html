@@ -990,7 +990,7 @@ a.mobile-card-header .custody-badge {
     </thead>
     <tbody>
         {% for wallet in wallets %}
-        <tr>
+        <tr{% if wallet.us_only %} data-us-only="true"{% endif %}>
           <td>
             <div class="comparison-table-wallet-name">
               <img loading="lazy" src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="comparison-table-wallet-img">
@@ -1024,7 +1024,7 @@ a.mobile-card-header .custody-badge {
   
   <div class="mobile-comparison-cards">
     {% for wallet in wallets %}
-    <div class="mobile-comparison-card">
+    <div class="mobile-comparison-card"{% if wallet.us_only %} data-us-only="true"{% endif %}>
       <div class="mobile-card-header">
         <img loading="lazy" src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="mobile-card-img">
         <div class="mobile-card-name">{{ wallet.title }}</div>
@@ -1065,7 +1065,7 @@ a.mobile-card-header .custody-badge {
 
 <div class="wallets-listing">
   {% for wallet in wallets %}
-  <div class="wallet-item">
+  <div class="wallet-item"{% if wallet.us_only %} data-us-only="true"{% endif %}>
     <div class="wallet-header">
       <a href="{{ wallet.link }}" target="_blank" rel="nofollow noopener" class="wallet-image-wrapper" onclick="if(typeof window.plausible==='function'){window.plausible('Click iOS Wallet', { property: '{{ wallet.title }}' });}">
         <img loading="lazy" src="/tools/img/{{ wallet.img }}" alt="{{ wallet.title }}" class="wallet-image">
@@ -1229,8 +1229,8 @@ a.mobile-card-header .custody-badge {
     <div class="decision-item">
       <div class="decision-icon">🛒</div>
       <h3>Buying Bitcoin</h3>
-      <p><strong>Best picks: River or Strike</strong></p>
-      <p>Both offer seamless in-app purchasing with competitive fees. River has zero-fee recurring buys and proof of reserves. Strike is great for Lightning payments.</p>
+      <p><strong>Best pick<span data-us-only="true">s: River or Strike</span><span data-non-us-only="true">: Strike</span></strong></p>
+      <p><span data-us-only="true">Both offer seamless in-app purchasing with competitive fees. River has zero-fee recurring buys and proof of reserves. Strike is great for Lightning payments.</span><span data-non-us-only="true">Strike offers seamless in-app purchasing with competitive fees and is great for Lightning payments.</span></p>
     </div>
     
     <div class="decision-item">
@@ -1337,13 +1337,13 @@ a.mobile-card-header .custody-badge {
 
 <h3><strong>What is the difference between custodial and self-custody wallets?</strong></h3>
 
-<p>Self-custody wallets give you complete control over your Bitcoin by letting you hold your own private keys. Custodial wallets, like River and Strike, hold your keys for you — which is more convenient but means you're trusting a third party with your funds.</p>
+<p>Self-custody wallets give you complete control over your Bitcoin by letting you hold your own private keys. Custodial wallets, like <span data-us-only="true">River and </span>Strike, hold your keys for you — which is more convenient but means you're trusting a third party with your funds.</p>
 
 <br>
 
 <h3><strong>Which iOS wallet is best for beginners?</strong></h3>
 
-<p>Muun is excellent for beginners who want self-custody without complexity. For those who want to buy Bitcoin easily, River or Strike are great custodial options with simple interfaces.</p>
+<p>Muun is excellent for beginners who want self-custody without complexity. For those who want to buy Bitcoin easily, Strike is a simple custodial option<span data-us-only="true">, and River adds zero-fee recurring buys with proof of reserves</span>.</p>
 </div>
 
 <div class="wallet-disclaimer">
